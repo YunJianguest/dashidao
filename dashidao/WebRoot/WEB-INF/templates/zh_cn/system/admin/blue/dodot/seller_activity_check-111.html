@@ -1,0 +1,316 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<!--link href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/template.css"  rel="stylesheet" type="text/css"/-->
+	<!--link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet-->
+
+	<link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+	<script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+	<script src="$!webPath/resources/js/bootstrap.min.js"></script>
+	<!--layui-->
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+	<script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+
+	<script>
+
+        jQuery(document).ready(function(){
+            pagestyle();
+            jQuery(".webmap a").click(function(){
+                jQuery(".webmap_box").fadeIn('normal');
+            });
+            jQuery(".close_map").click(function(){
+                jQuery(".webmap_box").fadeOut('normal');
+            });
+            jQuery("a[id^=complex_]").click(function(){
+                var suffix=jQuery(this).attr("suffix");
+                if(jQuery("#"+suffix+"info").css("display")=="block"){
+                    jQuery("#"+suffix+"info").hide();
+                    jQuery("#"+suffix+"img").attr("src","$!webPath/resources/style/system/manage/blue/images/spread.jpg");
+                }else{
+                    jQuery("#"+suffix+"info").show();
+                    jQuery("#"+suffix+"img").attr("src","$!webPath/resources/style/system/manage/blue/images/contract.jpg");
+                }
+            });
+            jQuery("#cc").click(function(){
+                jQuery.ajax({
+                    type:"POST",
+                    cache: false,
+                    async:false,
+                    url:"/ajax.jsp",
+                    dataType:"json",
+                    data:"action=select&table=stu&field=name,age&values=c,5&page_size=2&page_no=2&moudle_id=1",
+                    error:function(){alert("数据错误，操作被取消！");},
+                    success:function(data)
+                    {
+                        if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                        alert(data.code);
+                        alert(data.msg);
+                    }
+                });
+
+            })
+        });
+
+
+	</script>
+
+
+	<title>续签合同审核</title>
+	<style>
+		body {
+			font-size:16px;
+			line-height: 1.42857143;
+			color: #333;
+			background-color: #fff;
+			font-family: "Microsoft Yahei", "Lucida Grande", Verdana, Lucida, Helvetica, Arial, 'Simsun', sans-serif;
+		}
+		tr{margin-top: 10px;}
+		td input {
+			border-radius: 5px;
+			padding: 3px 22px;
+			border: 1px solid #BBBBBB;
+			background: #fff;
+		}
+		table tr td {
+			border-bottom: 1px solid #eee;
+			padding: 10px 0;
+		}
+		.seth1 {
+			border-top: 1px solid #D9D9D9;
+			height: 35px;
+			border-bottom: 1px solid #D9D9D9;
+			line-height: 35px;
+			padding-left: 40px;
+			color: #686868;
+			margin: 5px;
+			font-size:16px;
+			padding: 0px;
+			text-align: left;
+			background: #f3f3f3;
+		}
+		.allmen input {
+			width: 180px;
+			height: 29px;
+			line-height:29px;
+			padding-left: 5px;
+			border: 1px solid #ccc;
+			color: #333333;
+			background: #FAFAFA none repeat scroll 0 0;
+			border-style: solid;
+			border-width: 1px;
+			border-color: #B2B2B2 #E7E7E8 #E7E7E8 #B2B2B2;
+			border-radius: 5px;
+			margin:5px 0 0 2%;
+		}
+		.btn_search input {
+			background-color: #108ee9;
+			width: 62px;
+			height: 30px;
+			border: 0px;
+			color: #FFF;
+		}
+		.ac9 a {
+			color: #999;
+			padding:3px 20px;
+			border-radius: 4px;
+			text-decoration: none;
+			border:1px solid #999;
+		}
+		.ac9 a:hover {
+			color:#999;
+			background: #fff;
+		}
+		.pagination{float: right;}
+		.disable a{border:0!important;color:#000!important;}
+		.disable a:hover{border:0!important;color:#000!important;background: #fff!important;}
+		.pagination .active a{background:#108ee9!important; }
+		.pagination li a{padding: 4px 10px!important;margin: 0 2px!important; border-radius: 4px;}
+	</style>
+</head>
+
+<body>
+<div class="seth1">
+	<img src="$!webPath/resources/style/system/manage/black/img/1.png" alt="">
+	商家活动审核
+</div>
+<div><span class="allmen"><input type="text"></span><span class="btn_search"> <input id="cc" type="submit" value="搜索" style="cursor:pointer;background-color: #108ee9;color:#FFF"></span></div>
+<table width="98%" style="font-size:16px;text-align: center;margin-left: 2%;margin-top: 20px;">
+	<tr style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#FFF;text-align: center">
+		<td>商家账号</td>
+		<td>姓名</td>
+		<td>活动类型</td>
+		<td>活动时间</td>
+		<td>操作</td>
+	</tr>
+	<tr>
+		<td>3200145</td>
+		<td>名秋月 </td>
+		<td>满500减30</td>
+		<td> 2017年7月12日 ——2017年7月30日</td>
+		<td class="ac9"><a href="">详情</a></td>
+	</tr>
+	<tr>
+		<td>3200145</td>
+		<td>名秋月 </td>
+		<td>满500减30</td>
+		<td> 2017年7月12日 ——2017年7月30日</td>
+		<td class="ac9"><a href="">详情</a></td>
+	</tr>
+	<tr>
+		<td>3200145</td>
+		<td>名秋月 </td>
+		<td>满500减30</td>
+		<td> 2017年7月12日 ——2017年7月30日</td>
+		<td class="ac9"><a href="">详情</a></td>
+	</tr>
+	<tr>
+		<td>3200145</td>
+		<td>名秋月 </td>
+		<td>满500减30</td>
+		<td> 2017年7月12日 ——2017年7月30日</td>
+		<td class="ac9"><a href="">详情</a></td>
+	</tr>
+</table>
+<!--分页开始-->
+<div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+<script>
+    layui.use(['laypage', 'layer'], function(){
+        var laypage = layui.laypage
+            ,layer = layui.layer;
+
+        //总页数低于页码总数
+        laypage.render({
+            elem: 'demo0'
+            ,count: 50 //数据总数
+        });
+
+        //总页数大于页码总数
+        laypage.render({
+            elem: 'demo1'
+            ,count: 70 //数据总数
+            ,jump: function(obj){
+                console.log(obj)
+            }
+        });
+
+        //自定义样式
+        laypage.render({
+            elem: 'demo2'
+            ,count: 100
+            ,theme: '#1E9FFF'
+        });
+        laypage.render({
+            elem: 'demo2-1'
+            ,count: 100
+            ,theme: '#FF5722'
+        });
+        laypage.render({
+            elem: 'demo2-2'
+            ,count: 100
+            ,theme: '#FFB800'
+        });
+
+        //自定义首页、尾页、上一页、下一页文本
+        laypage.render({
+            elem: 'demo3'
+            ,count: 100
+            ,first: '首页'
+            ,last: '尾页'
+            ,prev: '<em>←</em>'
+            ,next: '<em>→</em>'
+        });
+
+        //不显示首页尾页
+        laypage.render({
+            elem: 'demo4'
+            ,count: 100
+            ,first: false
+            ,last: false
+        });
+
+        //开启HASH
+        laypage.render({
+            elem: 'demo5'
+            ,count: 500
+            ,curr: location.hash.replace('#!fenye=', '') //获取hash值为fenye的当前页
+            ,hash: 'fenye' //自定义hash值
+        });
+
+        //只显示上一页、下一页
+        laypage.render({
+            elem: 'demo6'
+            ,count: 50
+            ,layout: ['prev', 'next']
+            ,jump: function(obj, first){
+                if(!first){
+                    layer.msg('第 '+ obj.curr +' 页');
+                }
+            }
+        });
+
+        //完整功能
+        laypage.render({
+            elem: 'demo7'
+            ,count: 100
+            ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+            ,jump: function(obj){
+                console.log(obj)
+            }
+        });
+
+        //自定义排版
+        laypage.render({
+            elem: 'demo8'
+            ,count: 1000
+            ,layout: ['limit', 'prev', 'page', 'next']
+        });
+        laypage.render({
+            elem: 'demo9'
+            ,count: 1000
+            ,layout: ['prev', 'next', 'page']
+        });
+        laypage.render({
+            elem: 'demo10'
+            ,count: 1000
+            ,layout: ['page', 'count']
+        });
+
+        //自定义每页条数的选择项
+        laypage.render({
+            elem: 'demo11'
+            ,count: 1000
+            ,limit: 100
+            ,limits: [100, 300, 500]
+        });
+
+        //调用分页
+        laypage.render({
+            elem: 'demo20'
+            ,count: data.length
+            ,jump: function(obj){
+                //模拟渲染
+                document.getElementById('biuuu_city_list').innerHTML = function(){
+                    var arr = []
+                        ,thisData = data.concat().splice(obj.curr*obj.limit - obj.limit, obj.limit);
+                    layui.each(thisData, function(index, item){
+                        arr.push('<li>'+ item +'</li>');
+                    });
+                    return arr.join('');
+                }();
+            }
+        });
+
+    });
+</script>
+<!--分页结束-->
+<script>
+    $(".pagination li").click(function(){
+        $(this).addClass("active");
+        $(this).siblings().removeClass("active");
+    })
+</script>
+</body>
+</html>

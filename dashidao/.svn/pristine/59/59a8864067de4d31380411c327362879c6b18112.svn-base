@@ -1,0 +1,237 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+	<link href="$!webPath/resources/style/system/manage/blue/tip.css"  rel="stylesheet" type="text/css"/>
+	<link href="$!webPath/resources/style/system/manage/blue/headquarters.css"  rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+	<script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+	<script src="$!webPath/resources/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+	<script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+	<title>商品警察</title>
+</head>
+
+<body>
+<div class="spjc">
+<script>
+	function tongzhi(id,ev)
+	{
+		var userid = $(ev).parent().parent().find("input[name='user_id']").val();
+		var bh = $(ev).parent().parent().find("input[name='bh']").val();
+		var mc = $(ev).parent().parent().find("input[name='mc']").val();
+		var id = $(ev).parent().parent().find("input[name='id']").val();
+		var is_told =1;
+		$("#userid2").val(userid);
+		$("#spbh").val(bh);
+		$("#spmc").val(mc);
+		$("#jyid").val(id);
+		jQuery.ajax({
+            type: "POST",
+            cache: false,
+            async: false,
+            url: "/ajax.jsp",
+            dataType: "json",
+            data: "action=update&table=zb_spjc&field=id,is_told&values="+id +"|"+ is_told,
+            success: function (data) {
+                if (data.state == "error") {
+                    alert("系统错误，操作被取消！");
+                    return;
+                } else {
+                	$("#spjcForm").submit();
+                }
+            },
+            error: function () {
+                alert("数据错误，操作被取消！");
+            }
+        });
+		
+	}
+    function suprise(is_told,id){
+      //  alert(id);
+        jQuery.ajax({
+            type: "POST",
+            cache: false,
+            async: false,
+            url: "/ajax.jsp",
+            dataType: "json",
+            data: "action=update&table=zb_spjc&field=id,is_told&values="+id +"|"+ is_told,
+            success: function (data) {
+                if (data.state == "error") {
+                    alert("系统错误，操作被取消！");
+                    return;
+                } else {
+                    alert("操作成功！");
+                   // location.href="$!webPath/admin/spjc_details.htm?id="+id;
+                }
+
+            },
+            error: function () {
+
+                alert("数据错误，操作被取消！");
+            }
+        });
+    }
+    
+    
+</script>
+<div class="seth1">
+	<img src="$!webPath/resources/style/system/manage/black/img/1.png" alt="">
+	商品警察
+</div>
+<div class="operation">
+	<h3>友情提示</h3>
+	<ul>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+<div class="ss"><span class="allmen size4"><input type="text"></span><span class="btn_search"> <input type="submit" value="搜索" ></span></div>
+<table width="98%" style="font-size:16px;text-align: center;margin-left: 2%;margin-top: 20px;">
+	<tr class="tableheader">
+		<td>商家号</td>
+		<td>商品名称</td>
+		<td>商品图片</td>
+		<td>商品编号</td>
+		<td>商品规格</td>
+		<td>出厂价</td>
+		<td>起订数量</td>
+		<td>存储及保质期</td>
+		<td>招栈代</td>
+		<td>操作</td>
+	</tr>
+	<tbody  id="tablesss" >
+	<tr>
+		<td>083751	</td>
+		<td>韩版修身T恤</td>
+		<td><img src="$!webPath/resources/style/system/manage/black/img/raw_1495541437.jpeg" alt=""></td>
+		<td>230817</td>
+		<td>尺码：S/M/L <br>颜色:月白/... <br>零售单位：件</td>
+		<td>30元/件</td>
+		<td>100箱</td>
+		<td>干燥防潮 <br>保质期：永久</td>
+		<td>是</td>
+		<td class="ac9"><a href="">通知商家</a></td>
+	</tr>
+	<tr>
+		<td>456732208</td>
+		<td>韩版修身T恤</td>
+		<td><img src="$!webPath/resources/style/system/manage/black/img/raw_1501246954.png" alt=""></td>
+		<td>230817</td>
+		<td>尺码：S/M/L <br>颜色:月白/... <br>零售单位：件</td>
+		<td>30元/件</td>
+		<td>100箱</td>
+		<td>干燥防潮 <br>保质期：永久</td>
+		<td>是</td>
+		<td class="ac9"><a href="">通知商家</a></td>
+	</tr>
+	<tr><td>456732208</td>
+		<td>韩版修身T恤</td>
+		<td><img src="$!webPath/resources/style/system/manage/black/img/raw_1495541437.jpeg" alt=""></td>
+		<td>230817</td>
+		<td>尺码：S/M/L <br>颜色:月白/... <br>零售单位：件</td>
+		<td>30元/件</td>
+		<td>100箱</td>
+		<td>干燥防潮 <br>保质期：永久</td>
+		<td>否</td>
+		<td class="ac9">已通知</td>
+	</tr>
+	<tr>
+		<td>456732208</td>
+		<td>韩版修身T恤</td>
+		<td><img src="$!webPath/resources/style/system/manage/black/img/raw_1501117118.png" alt=""></td>
+		<td>230817</td>
+		<td>尺码：S/M/L <br>颜色:月白/... <br>零售单位：件</td>
+		<td>30元/件</td>
+		<td>100箱</td>
+		<td>干燥防潮 <br>保质期：永久</td>
+		<td>否</td>
+		<td class="ac9">已通知</td>
+	</tr>
+	</tbody>
+</table>
+
+<!--分页开始-->
+<div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+<div style="display: none;">
+	<form action="$!webPath/admin/spjc_save.htm" method="post" id="spjcForm" name="spjcForm">
+		<input type="hidden" name="userid1" id="userid1" value="${user.id}" />
+		<input type="hidden" name="userid2" id="userid2" value="" />
+		<input type="hidden" name="spbh" id="spbh" value="" />
+		<input type="hidden" name="spmc" id="spmc" value="" />
+		<input type="hidden" name="jyid" id="jyid" value="" />
+	</form>
+
+</div>
+
+<script>
+    jQuery(document).ready(function(){
+        var mycars=new Array()
+        var cuur=1;
+        var pagelimit=2;
+        function loadajax(action,table,field,values,page_size,page_no,moudle_id){
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajax.jsp",
+                dataType:"json",
+                // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error:function(){alert("数据错误，操作被取消！");},
+                success:function(data)
+                {
+                    if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                    total=data.data.total;
+                    mycars[0]=total;
+                    var message=data.data.data;
+                    //console.log(message);
+                    $("#tablesss").html('');
+                    for(var i=0;i<message.length;i++){
+                        if(message[i]['is_told']=="0"){//user_id
+                            $("#tablesss").append("<tr><td><input type='hidden' name='user_id' value='"+message[i]['user_id']+"' /><input type='hidden' name='bh' value='"+message[i]['sjh']+"' /><input type='hidden' name='mc' value='"+message[i]['spmc']+"' /><input type='hidden' name='id' value='"+message[i]['id'] +"'/>"+message[i]['sjh']+"</td><td>"+message[i]['spmc']+"</td><td><img src='"+"$!webPath/resources/"+message[i]['sptp']+"' alt=\"\"/></td><td>"+message[i]['spbh']+"</td><td>"+message[i]['spgg1']+"<br>"+message[i]['spgg2']+"<br>"+message[i]['spgg3']+"</td><td>"+message[i]['ccj']+"</td><td>"+message[i]['qdsl']+"</td><td>"+message[i]['bzq1']+"<br>"+message[i]['bzq2']+"</td><td>"+message[i]['zzd']+"<td class='ac9'><a href='#' onclick='tongzhi("+message[i]['id']+",this);'>通知商家</a></td>"+"</td></tr>");
+
+                        }
+						if(message[i]['is_told']=="1"){
+                            $("#tablesss").append("<tr><td>"+message[i]['sjh']+"</td><td>"+message[i]['spmc']+"</td><td><img src='"+"$!webPath/resources/"+message[i]['sptp']+"' alt=\"\"/></td><td>"+message[i]['spbh']+"</td><td>"+message[i]['spgg1']+"<br>"+message[i]['spgg2']+"<br>"+message[i]['spgg3']+"</td><td>"+message[i]['ccj']+"</td><td>"+message[i]['qdsl']+"</td><td>"+message[i]['bzq1']+"<br>"+message[i]['bzq2']+"</td><td>"+message[i]['zzd']+"<td class='ac9'><a href='#' >已通知</a></td>"+"</td></tr>");
+
+                        }
+                   }
+                }
+            });
+        }
+        loadajax("select","zb_spjc","is_deleted","0",pagelimit,cuur,1);
+        layui.use(['laypage', 'layer'], function(){
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+            //完整功能
+            laypage.render({
+                elem: 'demo7'
+                ,count:total
+                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                ,jump: function(obj){
+                    //console.log(obj)
+                    cuur=obj.curr;
+                    pagelimit=obj.limit;
+                    //alert(pagelimit);
+                    loadajax("select","zb_spjc","is_deleted","0",pagelimit,cuur,1);
+                    //loadajax("select","stu",pagelimit,cuur,1);
+                },
+                limits:[2, 4, 6, 8, 10],
+                limit:pagelimit
+            });
+        });
+    });
+</script>
+<!--分页结束-->
+<script>
+    $(".pagination li").click(function(){
+        $(this).addClass("active");
+        $(this).siblings().removeClass("active");
+    })
+</script>
+</div>
+</body>
+</html>

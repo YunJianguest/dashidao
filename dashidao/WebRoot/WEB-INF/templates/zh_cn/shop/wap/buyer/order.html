@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="js/jquery1.42.min.js"></script>
+    <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/css.css" >
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <style type="text/css">
+        body{-webkit-tap-highlight-color:transparent;}
+        .fl{ float: left;}
+        .fr{ float: right;}
+        .search{ margin: 10px 0;}
+        .search img{ display: block; }
+        .search img.fl{width: 0.55rem; margin: 0.55rem 1.2rem; }
+        .search input{ background: url("images/search.png") no-repeat #f4f4f4 18px 12px; float: left; border-radius: 0.5rem; color: #b5b5b5; line-height: 2.2rem; text-align: center;  background-size:1rem 1rem; width: 70%; display: block; border: none; height: 2.2rem; }
+        .search img.fr{ width:1.6rem; margin: 0.6rem 1.2rem 0 0; }
+        /*切换按钮*/
+        .slideTxtBox{ border: none;}
+        .slideTxtBox .hd{ height:2.5rem; line-height:2.5rem; width: 100%;  }
+        .slideTxtBox .hd ul li{ float:left; width:20%; margin: 0 0%; text-align: center;  font-size:1rem;  cursor:pointer; color:#000000; }
+        .slideTxtBox .hd li.on{ background: #FFF;  border-bottom:1px solid #ff0000; }
+        .slideTxtBox .bd ul li{ height: auto; width: 100%; background: #f0f5f9;   }
+        .slideTxtBox .bd ul{ margin: 0px; padding: 0px;  }
+        /*容器内容*/
+        .clear{ clear: both; }
+        .goodcontent{ margin-top: 10px; float: left; padding:3%; width: 94%;   background: #fff;   }
+        .goodcontent h3{ color: #818181; text-align: left;   line-height:2rem; padding-left: 1.5rem; position: relative; font-size: 1rem; font-weight: normal; }
+        .goodcontent h3 img{ width: 1rem; height: 1rem; display: block; left: 0px; top: 0.5rem; position: absolute;  }
+        .goodcontent h3 span{ color: #e13036; float: right; }
+        .one{ padding: 1rem 0;  border-bottom: 1px solid #f6f6f6;}
+        .one img{ display: block; width:22%; height:75px; float: left;   }
+        .one .title{   width: 48%; float: left;  margin: 0 5%; line-height: 1.1rem;}
+        .one .title h1{ color: #454545; font-size: 0.9rem; line-height: 1.2rem; font-weight: normal; text-align:left; }
+        .one .title p{ color: #a0a0a0; font-size: 0.6rem; font-weight: normal; text-align:left; margin-top: 0.5rem; }
+        .one .price{  width: 20%;  }
+        .one .price h1{color: #454545; font-size: 0.9rem; font-weight: normal; text-align:right; }
+        .one .price font{ color: #999999;  text-align:right; display: block;}
+        .one .price h2{color: #000; font-size: 0.8rem; font-weight:600; text-align:right;    }
+        .one .price h2 span{ color: #e6b268; padding-right: 0.2rem; font-size: 0.9rem; font-weight: normal;  }
+        .three{ color: #707070;  padding: 0.5rem 0;  }
+        .three p{ text-align: right; font-size: 0.8rem; height: 2rem;  }
+        .three span{ color: #e92c32; font-weight: normal;    }
+        .three span.integral{ font-size: 1.2rem;  }
+        .fore div{ width: 22%; float: right; line-height: 2rem; border-radius:0.2rem;  height: 2rem; border: 1px solid #7676;  }
+        .fore div.fr{ margin-right: 0.5rem; }
+        .fore div a{ font-size: 0.9rem; display: block;  }
+        .fore div a:hover{border: 1px solid #d32a3a; color: #d32a3a;  }
+    </style>
+</head>
+<body>
+<div class="slideTxtBox">
+    <div class="search">
+        <img src="images/back.png" class="fl" onclick="history.go(-1)"  >
+        <input type="text" name="goods" value="请输入商品名/姓名/电话/订单号" />
+        <img src="images/look.png" class="fr" >
+        <div class="clear"></div>
+    </div>
+    <div class="hd">
+        <ul>
+            <li>全部</li>
+            <li>待付款</li>
+            <li>待发货</li>
+            <li>待收货</li>
+            <li>待评价</li>
+        </ul>
+    </div>
+    <div class="bd">
+        <!--全部-->
+        <ul>
+            <li>
+                <div class="goodcontent">
+                    <!--订单详情-->
+                    <a href="orderdetails.html">
+                        <h3><img src="images/mai1.png" > 2018-03-08 22:50<span>已完成</span></h3>
+                        <!--one-->
+                        <div class="one">
+                            <img src="images/good.png" >
+                            <div class="title fl" >
+                                <h1><span>特卖</span>华为nova 青春版全网通手机 双卡双待</h1>
+                                <p>规格：4GB+64GB 颜色：魅海蓝</p>
+                            </div>
+                            <div class="price fr">
+                                <h1>￥1130.00</h1>
+                                <font>×1</font>
+                                <h2><span>省</span>4.95</h2>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                        <!--three-->
+                        <div class="three" >
+                            <p>实付款：<span >￥</span><span id="price" >71.80</span>
+                                <font>(含运费￥0.00)</font></p>
+                        </div>
+                    </a>
+                    <div class="fore" >
+                    	 <div><a href="customer_ser.html" >申请售后</a></div>
+                        <div><a href="assess.html" >评价</a></div>
+                        <div class="fr"><a href="logisticsdetails.html">查看物流</a></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="goodcontent">
+                    <a href="orderdetails.html">
+                        <h3><img src="images/mai1.png" > 2018-03-08 22:50<span>已完成</span></h3>
+                        <!--one-->
+                        <div class="one">
+                            <img src="images/good.png" >
+                            <div class="title fl" >
+                                <h1><span>特卖</span>华为nova 青春版全网通手机 双卡双待</h1>
+                                <p>规格：4GB+64GB 颜色：魅海蓝</p>
+                            </div>
+                            <div class="price fr">
+                                <h1>￥1130.00</h1>
+                                <font>×1</font>
+                                <h2><span>省</span>4.95</h2>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                        <!--three-->
+                        <div class="three" >
+                            <p>实付款：<span >￥</span><span id="price" >71.80</span>
+                                <font>(含运费￥0.00)</font></p>
+                        </div>
+                    </a>
+                    <div class="fore" >
+                    	 <div><a href="customer_ser.html" >申请售后</a></div>
+                        <div><a href="assess.html" >评价</a></div>
+                        <div class="fr"><a href="logisticsdetails.html">查看物流</a></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="goodcontent">
+                    <a href="orderdetails.html">
+                        <h3><img src="images/mai1.png" > 2018-03-08 22:50<span>已完成</span></h3>
+                        <!--one-->
+                        <div class="one">
+                            <img src="images/good.png" >
+                            <div class="title fl" >
+                                <h1><span>特卖</span>华为nova 青春版全网通手机 双卡双待</h1>
+                                <p>规格：4GB+64GB 颜色：魅海蓝</p>
+                            </div>
+                            <div class="price fr">
+                                <h1>￥1130.00</h1>
+                                <font>×1</font>
+                                <h2><span>省</span>4.95</h2>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                        <!--three-->
+                        <div class="three" >
+                            <p>实付款：<span >￥</span><span id="price" >71.80</span>
+                                <font>(含运费￥0.00)</font></p>
+                        </div>
+                    </a>
+                    <div class="fore" >
+                    	 <div><a href="customer_ser.html" >申请售后</a></div>
+                        <div><a href="assess.html" >评价</a></div>
+                        <div class="fr"><a href="logisticsdetails.html">查看物流</a></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </li>
+        </ul>
+        <!--待付款-->
+        <ul>
+            <li>
+                <div class="goodcontent">
+                    <!--订单详情-->
+                    <a href="orderdetails.html">
+                        <h3><img src="images/mai1.png" > 2018-03-08 22:50<span>已完成</span></h3>
+                        <!--one-->
+                        <div class="one">
+                            <img src="images/good.png" >
+                            <div class="title fl" >
+                                <h1><span>特卖</span>华为nova 青春版全网通手机 双卡双待</h1>
+                                <p>规格：4GB+64GB 颜色：魅海蓝</p>
+                            </div>
+                            <div class="price fr">
+                                <h1>￥1130.00</h1>
+                                <font>×1</font>
+                                <h2><span>省</span>4.95</h2>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                        <!--three-->
+                        <div class="three" >
+                            <p>实付款：<span >￥</span><span id="price" >71.80</span>
+                                <font>(含运费￥0.00)</font></p>
+                        </div>
+                    </a>
+                    <div class="fore" >
+                    	 <div><a href="customer_ser.html" >申请售后</a></div>
+                        <div><a href="assess.html" >评价</a></div>
+                        <div class="fr"><a href="logisticsdetails.html">查看物流</a></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="goodcontent">
+                    <a href="orderdetails.html">
+                        <h3><img src="images/mai1.png" > 2018-03-08 22:50<span>已完成</span></h3>
+                        <!--one-->
+                        <div class="one">
+                            <img src="images/good.png" >
+                            <div class="title fl" >
+                                <h1><span>特卖</span>华为nova 青春版全网通手机 双卡双待</h1>
+                                <p>规格：4GB+64GB 颜色：魅海蓝</p>
+                            </div>
+                            <div class="price fr">
+                                <h1>￥1130.00</h1>
+                                <font>×1</font>
+                                <h2><span>省</span>4.95</h2>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                        <!--three-->
+                        <div class="three" >
+                            <p>实付款：<span >￥</span><span id="price" >71.80</span>
+                                <font>(含运费￥0.00)</font></p>
+                        </div>
+                    </a>
+                    <div class="fore" >
+                    	 <div><a href="customer_ser.html" >申请售后</a></div>
+                        <div><a href="assess.html" >评价</a></div>
+                        <div class="fr"><a href="logisticsdetails.html">查看物流</a></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="goodcontent">
+                    <a href="orderdetails.html">
+                        <h3><img src="images/mai1.png" > 2018-03-08 22:50<span>已完成</span></h3>
+                        <!--one-->
+                        <div class="one">
+                            <img src="images/good.png" >
+                            <div class="title fl" >
+                                <h1><span>特卖</span>华为nova 青春版全网通手机 双卡双待</h1>
+                                <p>规格：4GB+64GB 颜色：魅海蓝</p>
+                            </div>
+                            <div class="price fr">
+                                <h1>￥1130.00</h1>
+                                <font>×1</font>
+                                <h2><span>省</span>4.95</h2>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                        <!--three-->
+                        <div class="three" >
+                            <p>实付款：<span >￥</span><span id="price" >71.80</span>
+                                <font>(含运费￥0.00)</font></p>
+                        </div>
+                    </a>
+                    <div class="fore" >
+                    	 <div><a href="customer_ser.html" >申请售后</a></div>
+                        <div><a href="assess.html" >评价</a></div>
+                        <div class="fr"><a href="logisticsdetails.html">查看物流</a></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </li>
+        </ul>
+        <!--待发货-->
+        <ul>
+            <li>
+                <div class="goodcontent">
+                    <!--订单详情-->
+                    <a href="orderdetails.html">
+                        <h3><img src="images/mai1.png" > 2018-03-08 22:50<span>已完成</span></h3>
+                        <!--one-->
+                        <div class="one">
+                            <img src="images/good.png" >
+                            <div class="title fl" >
+                                <h1><span>特卖</span>华为nova 青春版全网通手机 双卡双待</h1>
+                                <p>规格：4GB+64GB 颜色：魅海蓝</p>
+                            </div>
+                            <div class="price fr">
+                                <h1>￥1130.00</h1>
+                                <font>×1</font>
+                                <h2><span>省</span>4.95</h2>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                        <!--three-->
+                        <div class="three" >
+                            <p>实付款：<span >￥</span><span id="price" >71.80</span>
+                                <font>(含运费￥0.00)</font></p>
+                        </div>
+                    </a>
+                    <div class="fore" >
+                    	 <div><a href="customer_ser.html" >申请售后</a></div>
+                        <div><a href="assess.html" >评价</a></div>
+                        <div class="fr"><a href="logisticsdetails.html">查看物流</a></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="goodcontent">
+                    <a href="orderdetails.html">
+                        <h3><img src="images/mai1.png" > 2018-03-08 22:50<span>已完成</span></h3>
+                        <!--one-->
+                        <div class="one">
+                            <img src="images/good.png" >
+                            <div class="title fl" >
+                                <h1><span>特卖</span>华为nova 青春版全网通手机 双卡双待</h1>
+                                <p>规格：4GB+64GB 颜色：魅海蓝</p>
+                            </div>
+                            <div class="price fr">
+                                <h1>￥1130.00</h1>
+                                <font>×1</font>
+                                <h2><span>省</span>4.95</h2>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                        <!--three-->
+                        <div class="three" >
+                            <p>实付款：<span >￥</span><span id="price" >71.80</span>
+                                <font>(含运费￥0.00)</font></p>
+                        </div>
+                    </a>
+                    <div class="fore" >
+                    	 <div><a href="customer_ser.html" >申请售后</a></div>
+                        <div><a href="assess.html" >评价</a></div>
+                        <div class="fr"><a href="logisticsdetails.html">查看物流</a></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="goodcontent">
+                    <a href="orderdetails.html">
+                        <h3><img src="images/mai1.png" > 2018-03-08 22:50<span>已完成</span></h3>
+                        <!--one-->
+                        <div class="one">
+                            <img src="images/good.png" >
+                            <div class="title fl" >
+                                <h1><span>特卖</span>华为nova 青春版全网通手机 双卡双待</h1>
+                                <p>规格：4GB+64GB 颜色：魅海蓝</p>
+                            </div>
+                            <div class="price fr">
+                                <h1>￥1130.00</h1>
+                                <font>×1</font>
+                                <h2><span>省</span>4.95</h2>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                        <!--three-->
+                        <div class="three" >
+                            <p>实付款：<span >￥</span><span id="price" >71.80</span>
+                                <font>(含运费￥0.00)</font></p>
+                        </div>
+                    </a>
+                    <div class="fore" >
+                    	 <div><a href="customer_ser.html" >申请售后</a></div>
+                        <div><a href="assess.html" >评价</a></div>
+                        <div class="fr"><a href="logisticsdetails.html">查看物流</a></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </li>
+        </ul>
+        <!--待收货-->
+        <ul>
+            <div class="goodcontent">
+                <!--订单详情-->
+                <a href="orderdetails.html">
+                    <h3><img src="images/mai1.png" > 2018-03-08 22:50<span>已完成</span></h3>
+                    <!--one-->
+                    <div class="one">
+                        <img src="images/good.png" >
+                        <div class="title fl" >
+                            <h1><span>特卖</span>华为nova 青春版全网通手机 双卡双待</h1>
+                            <p>规格：4GB+64GB 颜色：魅海蓝</p>
+                        </div>
+                        <div class="price fr">
+                            <h1>￥1130.00</h1>
+                            <font>×1</font>
+                            <h2><span>省</span>4.95</h2>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+                    <!--three-->
+                    <div class="three" >
+                        <p>实付款：<span >￥</span><span id="price" >71.80</span>
+                            <font>(含运费￥0.00)</font></p>
+                    </div>
+                </a>
+                <div class="fore" >
+                	 <div><a href="customer_ser.html" >申请售后</a></div>
+                    <div><a href="assess.html" >评价</a></div>
+                    <div class="fr"><a href="logisticsdetails.html">查看物流</a></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="goodcontent">
+                <a href="orderdetails.html">
+                    <h3><img src="images/mai1.png" > 2018-03-08 22:50<span>已完成</span></h3>
+                    <!--one-->
+                    <div class="one">
+                        <img src="images/good.png" >
+                        <div class="title fl" >
+                            <h1><span>特卖</span>华为nova 青春版全网通手机 双卡双待</h1>
+                            <p>规格：4GB+64GB 颜色：魅海蓝</p>
+                        </div>
+                        <div class="price fr">
+                            <h1>￥1130.00</h1>
+                            <font>×1</font>
+                            <h2><span>省</span>4.95</h2>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+                    <!--three-->
+                    <div class="three" >
+                        <p>实付款：<span >￥</span><span id="price" >71.80</span>
+                            <font>(含运费￥0.00)</font></p>
+                    </div>
+                </a>
+                <div class="fore" >
+                	 <div><a href="customer_ser.html" >申请售后</a></div>
+                    <div><a href="assess.html" >评价</a></div>
+                    <div class="fr"><a href="logisticsdetails.html">查看物流</a></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="goodcontent">
+                <a href="orderdetails.html">
+                    <h3><img src="images/mai1.png" > 2018-03-08 22:50<span>已完成</span></h3>
+                    <!--one-->
+                    <div class="one">
+                        <img src="images/good.png" >
+                        <div class="title fl" >
+                            <h1><span>特卖</span>华为nova 青春版全网通手机 双卡双待</h1>
+                            <p>规格：4GB+64GB 颜色：魅海蓝</p>
+                        </div>
+                        <div class="price fr">
+                            <h1>￥1130.00</h1>
+                            <font>×1</font>
+                            <h2><span>省</span>4.95</h2>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+                    <!--three-->
+                    <div class="three" >
+                        <p>实付款：<span >￥</span><span id="price" >71.80</span>
+                            <font>(含运费￥0.00)</font></p>
+                    </div>
+                </a>
+                <div class="fore" >
+                	 <div><a href="customer_ser.html" >申请售后</a></div>
+                    <div><a href="assess.html" >评价</a></div>
+                    <div class="fr"><a href="logisticsdetails.html">查看物流</a></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </ul>
+        <!--待评价-->
+        <ul>
+            <div class="goodcontent">
+                <!--订单详情-->
+                <a href="orderdetails.html">
+                    <h3><img src="images/mai1.png" > 2018-03-08 22:50<span>已完成</span></h3>
+                    <!--one-->
+                    <div class="one">
+                        <img src="images/good.png" >
+                        <div class="title fl" >
+                            <h1><span>特卖</span>华为nova 青春版全网通手机 双卡双待</h1>
+                            <p>规格：4GB+64GB 颜色：魅海蓝</p>
+                        </div>
+                        <div class="price fr">
+                            <h1>￥1130.00</h1>
+                            <font>×1</font>
+                            <h2><span>省</span>4.95</h2>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+                    <!--three-->
+                    <div class="three" >
+                        <p>实付款：<span >￥</span><span id="price" >71.80</span>
+                            <font>(含运费￥0.00)</font></p>
+                    </div>
+                </a>
+                <div class="fore" >
+                	 <div><a href="customer_ser.html" >申请售后</a></div>
+                    <div><a href="assess.html" >评价</a></div>
+                    <div class="fr"><a href="logisticsdetails.html">查看物流</a></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="goodcontent">
+                <a href="orderdetails.html">
+                    <h3><img src="images/mai1.png" > 2018-03-08 22:50<span>已完成</span></h3>
+                    <!--one-->
+                    <div class="one">
+                        <img src="images/good.png" >
+                        <div class="title fl" >
+                            <h1><span>特卖</span>华为nova 青春版全网通手机 双卡双待</h1>
+                            <p>规格：4GB+64GB 颜色：魅海蓝</p>
+                        </div>
+                        <div class="price fr">
+                            <h1>￥1130.00</h1>
+                            <font>×1</font>
+                            <h2><span>省</span>4.95</h2>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+                    <!--three-->
+                    <div class="three" >
+                        <p>实付款：<span >￥</span><span id="price" >71.80</span>
+                            <font>(含运费￥0.00)</font></p>
+                    </div>
+                </a>
+                <div class="fore" >
+                	 <div><a href="customer_ser.html" >申请售后</a></div>
+                    <div><a href="assess.html" >评价</a></div>
+                    <div class="fr"><a href="logisticsdetails.html">查看物流</a></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="goodcontent">
+                <a href="orderdetails.html">
+                    <h3><img src="images/mai1.png" > 2018-03-08 22:50<span>已完成</span></h3>
+                    <!--one-->
+                    <div class="one">
+                        <img src="images/good.png" >
+                        <div class="title fl" >
+                            <h1><span>特卖</span>华为nova 青春版全网通手机 双卡双待</h1>
+                            <p>规格：4GB+64GB 颜色：魅海蓝</p>
+                        </div>
+                        <div class="price fr">
+                            <h1>￥1130.00</h1>
+                            <font>×1</font>
+                            <h2><span>省</span>4.95</h2>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+                    <!--three-->
+                    <div class="three" >
+                        <p>实付款：<span >￥</span><span id="price" >71.80</span>
+                            <font>(含运费￥0.00)</font></p>
+                    </div>
+                </a>
+                <div class="fore" >
+                	 <div><a href="customer_ser.html" >申请售后</a></div>
+                    <div><a href="assess.html" >评价</a></div>
+                    <div class="fr"><a href="logisticsdetails.html">查看物流</a></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">jQuery(".slideTxtBox").slide({trigger:"click"});</script>
+<script type="text/javascript" >
+    $(function () {
+
+        var tags = $("#price").html();
+        //len = tags.length;
+        var integral = tags.substring(0, tags.indexOf('.'));
+        var decimal = tags.substring(tags.indexOf('.')+1);
+        $("#price").html('<span class="integral">' + integral + '.<\/span>' + decimal )
+    })
+</script>
+</body>
+</html>

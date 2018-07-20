@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>卖家品牌列表 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link href="$!webPath/resources/style/system/manage/black/zxx.css"  rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+</head>
+
+<body>
+<div class="main"> $!httpInclude.include("/seller/nav_head.htm")
+    <div class="user_center">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=evaluate_manager")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="buyer_position">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">商家中心</a> > <span>所有订单</span></div>
+                    </div>
+                    <div class="xx-box">
+                        <div class="ht-top"style="margin-left: 55px;" >
+                            <div class="ht-box" >
+                                <form class="form-inline" style="float: left;">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入查询内容" style="width: 200px;" >
+                                    </div>
+                                    <button type="submit" class="btn btn-default" style="border: none;  background: #3fa4ed; color: #fff; " >查询</button>
+                                </form>
+
+                            </div>
+                        </div>
+                        <div class="xx-botton" >
+                            <ul id="tablesss1">
+                                <li>
+                                    <div class="xx-botton-left"><img src="$!webPath/resources/style/system/manage/black/img/11.png"></div>
+                                    <div class="xx-botton-left2">云正通海鲜雁塔店<span>1万+</span>
+                                        <div class="xx-botton-left3">唐三 186 2838 0304 <span>2017-3-1至 2018-3-1</span></div></div>
+                                    <div class="xx-botton-left4">西安市雁塔路58号</div>
+                                    <div class="zhiying-tu1"><i class="iconfont icon-map"></i></div>
+                                    <div class="zhiying-tu2">
+                                        <p>&nbsp;好评：128</p><p>&nbsp;中评：35</p><p>&nbsp;差评： 12</p>
+                                        <!--//location.href='$!webPath/seller/add_bank2.htm' -->
+                                        <input type="button" value="评价详情" onclick="location.href='$!webPath/seller/evaluate.htm';" />
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="xx-botton-left"><img src="$!webPath/resources/style/system/manage/black/img/11.png"></div>
+                                    <div class="xx-botton-left2">云正通海鲜雁塔店<span>1万+</span>
+                                        <div class="xx-botton-left3">唐三 186 2838 0304 <span>2017-3-1至 2018-3-1</span></div></div>
+                                    <div class="xx-botton-left4">西安市雁塔路58号</div>
+                                    <div class="zhiying-tu1"><i class="iconfont icon-map"></i></div>
+                                    <div class="zhiying-tu2">
+                                        <p>&nbsp;好评：128</p><p>&nbsp;中评：35</p><p>&nbsp;差评： 12</p>
+                                        <input type="button" value="评价详情" />
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="xx-botton-left"><img src="$!webPath/resources/style/system/manage/black/img/11.png"></div>
+                                    <div class="xx-botton-left2">云正通海鲜雁塔店<span>1万+</span>
+                                        <div class="xx-botton-left3">唐三 186 2838 0304 <span>2017-3-1至 2018-3-1</span></div></div>
+                                    <div class="xx-botton-left4">西安市雁塔路58号</div>
+                                    <div class="zhiying-tu1"><i class="iconfont icon-map"></i></div>
+                                    <div class="zhiying-tu2">
+                                        <p>&nbsp;好评：128</p><p>&nbsp;中评：35</p><p>&nbsp;差评： 12</p>
+                                        <input type="button" value="评价详情" />
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--分页开始-->
+                        <div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+                        <script>
+                            function cc(){
+                                alert(1);
+                            }
+                            jQuery(document).ready(function(){
+                                var mycars=new Array();
+                                var cuur=1;
+                                var pagelimit=10;
+                                function loadajax(action,table,field,values,page_size,page_no,moudle_id){
+                                    jQuery.ajax({
+                                        type:"POST",
+                                        cache: false,
+                                        async:false,
+                                        url:"/ajax.jsp",
+                                        dataType:"json",
+                                        // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                                        data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                                        error:function(){alert("数据错误，操作被取消！");},
+                                        success:function(data)
+                                        {
+                                            if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                                            total=data.data.total;
+                                            mycars[0]=total;
+                                            var message=data.data.data;
+                                            //console.log(message);
+                                            // $("#tablesss1").html('');
+                                            for(var i=0;i<message.length;i++){
+
+                                                //   $("#tablesss1").append("<tr><td>"+message[i]['recon_num']+"<input type='hidden' value='"+ message[i]['id']+"'/></td><td>"+message[i]['create_date1']+"-"+message[i]['create_date2']+"</td><td>"+message[i]['recon_lastBalance']+"</td><td class='ac9'>"+message[i]['recon_inNum']  +"</td><td   > "+message[i]['recon_outtNum']+" </td><td class='ac9'>"+message[i]['recon_invoiceValue']  +"</td><td class='ac9'>商家已确认</td><td class='ac9'> <a href=''>查看明细</a></td></tr>");
+                                            }
+                                        }
+                                    });
+                                }
+                                loadajax("select","dashidao_evaluate","deleteStatus","0",pagelimit,cuur,1);
+                                layui.use(['laypage', 'layer'], function(){
+                                    var laypage = layui.laypage
+                                        ,layer = layui.layer;
+                                    //完整功能
+                                    laypage.render({
+                                        elem: 'demo7'
+                                        ,count:total
+                                        ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                                        ,jump: function(obj){
+                                            //console.log(obj)
+                                            cuur=obj.curr;
+                                            pagelimit=obj.limit;
+                                            //alert(pagelimit);
+                                            loadajax("select","dashidao_evaluate","deleteStatus","0",pagelimit,cuur,1);
+                                            //loadajax("select","stu",pagelimit,cuur,1);
+                                        },
+                                        limits:[2, 4, 6, 8, 10],
+                                        limit:pagelimit
+                                    });
+                                });
+                            });
+                        </script>
+                        <!--分页结束-->
+                        <script>
+                            $(".pagination li").click(function(){
+                                $(this).addClass("active");
+                                $(this).siblings().removeClass("active");
+                            })
+                        </script>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

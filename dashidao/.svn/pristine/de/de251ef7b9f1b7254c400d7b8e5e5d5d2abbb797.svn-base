@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>顶部导航列表添加 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css">
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+    <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<div class="main">
+    <div class="user_center">
+       
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr>
+                <td id="centerbg" valign="top" width="80%"  >
+                	<div class="buyer_position">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">顶部广告添加</a></div>
+                    </div>
+                    <div class="operation_tip">
+                        <h3>友情提示</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <div class="div_2 tiptitles">
+                        <p>顶部广告添加</p>
+                    </div>
+                    <style>
+                        .table_thead th{  text-align: center; line-height: 50px; }
+                        .solid tr td{ text-align: center; height: 50px; line-height: 50px; }
+                        .tiptitles p{ }
+                    </style>
+                    <div class="div_2">
+                        <table width="98%" border="0" cellspacing="0" cellpadding="0" class="addnavtable">
+                    		<tr>
+                      			<td align="right" valign="top">标题：</td>
+                      			<td  class="px10">
+                      				<span class="setinput">
+                        				<input name="title" type="text" id="title" />
+                      				</span>
+                      			</td>
+                    		</tr>
+                    		<tr>
+                      			<td align="right" valign="top">链接地址：</td>
+                      			<td  class="px10">
+                      				<span class="setinput">
+                        				<input name="url" type="text" id="url" />
+                      				</span>
+                      			</td>
+                    		</tr>
+                    		<tr>
+                      			<td align="right" valign="top">类型：</td>
+                      			<td  class="px10"> 
+                      				<span><select name="advert_type" id="advert_type">
+                      				<option value="0">总部</option>
+                      				<option value="1">商家</option>
+                      				<option value="2">栈代</option>
+                      				</select></span>
+                      			</td>
+                    		</tr>
+                    		<tr>
+                    			<td align="right" valign="top">上传图片：</td>
+                    			<td>
+                    				<div class="content uploadimg">
+        								<span>点击上传：</span>
+        								<input type="file" class="picture" name="zb_tupian" id="upload" value="" placeholder="" style="display: none;"/>
+        								<label for="upload">
+        									<img width="100" height="100" src="../img/raw_1501032270.png" alt="" id="imgss"/>
+        								</label>	
+        							</div>
+        							<input type="hidden" id="up_picture"/>
+                    			</td>
+                    		</tr>
+                    		<tr>
+                    			<td align="right">
+                    				<input type="button" onclick="save_advert()" value="保存"/>
+                    			</td>
+                    		</tr>
+                  </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+</div>
+<!--引入上传要用的js文件-->
+<script type="text/javascript" src="/fileup/index_no1.js"></script>
+<script>
+    //picture代表input<file类型>的class的值，up_picture代表隐藏（hidden）的input的id值，imgss代表<img>标签的id值
+    fileInput("picture","up_picture","imgss");
+</script>
+<script>
+
+    //保存
+	function save_advert(){
+		var now = new Date();  
+        
+        var year = now.getFullYear();       //年  
+        var month = now.getMonth() + 1;     //月  
+        var day = now.getDate();            //日  
+        var hh = now.getHours();			//时
+        var mm = now.getMinutes();          //分  
+        var ss = now.getSeconds();           //秒  
+        
+        var sj= year + "-"+ month +"-"+ day+" "+hh+":"+mm+":"+ss;
+        
+		var title = $("#title").val();
+		var url = $("#url").val();
+		var path = "upload/img";
+		var name = $('#up_picture').val();
+		var advert_type = $('#advert_type').val();
+		var field = "title,url,path,name,deleteStatus,addTime,advert_type";
+		var values = title+","+url+","+path+","+name+",0,"+sj+","+advert_type;
+		var action = "insert";
+		jQuery.ajax({
+            type:"POST",
+            url:"/ajaxuser.jsp",
+            dataType:"json",
+            data:"table=dashidao_top_advert&dates=addTime&action="+action+"&field="+field+"&values="+values,
+            error:function(){alert("数据错误，操作被取消！");},
+            success:function(data){
+                alert("添加完成");
+                window.location.href="$!webPath/admin/top_advert.htm";
+            }
+        });
+	}
+	
+</script>
+</body>
+</html>

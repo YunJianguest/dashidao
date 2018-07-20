@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>破损补寄管理 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>破损补寄管理</title>
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-2.0.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <!--<script src="$!webPath/resources/js/jquery.shop.common.js"></script>-->
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+
+
+
+    <script>
+        /* jQuery(document).ready(function(){
+             jQuery('#beginTime').datepicker({
+                 dateFormat:"yy-mm-dd",
+                 changeMonth: true,
+                 changeYear: true
+             });
+             jQuery('#endTime').datepicker({
+                 dateFormat:"yy-mm-dd",
+                 changeMonth: true,
+                 changeYear: true
+             });
+         });*/
+    </script>
+</head>
+<body>
+<div class="main">
+    <div class="user_center" >
+        $!httpInclude.include("/seller/nav_head.htm")
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <style>
+                #sellorbox .bd .first td{border:none; border-bottom:1px solid #ccc; }
+            </style>
+            <tr> $!httpInclude.include("/seller/nav.htm?op=refund")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="buyer_position">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代中心</a> > <span>所有订单</span></div>
+                    </div>
+                    <div class="shopadminbox" id="sellorbox" >
+                        <div class="hd">
+                            <ul class="orderul">
+                                <li class="this" id="all"><a href="$!webPath/seller/order.htm?order_status=all">所有订单</a></li>
+                                <li><a href="$!webPath/seller/order.htm?order_status=order_submit">已经提交</a></li>
+                                <li><a href="$!webPath/seller/order.htm?order_status=order_pay">已经付款</a></li>
+                                <li><a href="$!webPath/seller/order.htm?order_status=order_shipping">已经发货</a></li>
+                                <li><a href="$!webPath/seller/order.htm?order_status=order_receive">已经收货</a></li>
+                                <li><a href="$!webPath/seller/order.htm?order_status=order_evaluate">等待评价</a></li>
+                                <li><a href="$!webPath/seller/order.htm?order_status=order_finish">已经完成</a></li>
+                                <li><a href="$!webPath/seller/order.htm?order_status=order_cancel">已经取消</a></li>
+                            </ul>
+                        </div>
+                        <script>
+                            #if($!order_status)
+                            jQuery(".orderul li").removeClass("this");
+                            jQuery(".orderul li a[href$=$!order_status]").parent().addClass("this");
+                            #end
+                        </script>
+                        <div class="bd">
+                            <!--所有订单-->
+                            <ul>
+                                <li>
+                                    <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="returnthead" style="height: 90px;">
+                                            <td width="52%" colspan="8" style="height: 90px;" >
+                                                <form class="form-inline" style="float: right;">
+                                                    <div class="form-group">
+                                                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入查询内容" style="width: 200px;" >
+                                                    </div>
+                                                    <button type="submit" class="btn btn-default" style="border: none;  background: #3fa4ed; color: #fff;   " >查询</button>
+                                                </form>
+                                            </td>
+                                            <td width="22%" colspan="2">
+                                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type=checkbox checked >栈代订单&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type=checkbox checked >会员订单
+                                            </td>
+                                        </tr>
+                                        <tr id="thead" >
+                                            <td width="5%"></td>
+                                            <td width="24%" colspan="2" >商品信息</td>
+                                            <td width="12%">单价</td>
+                                            <td width="10%">数量</td>
+                                            <td width="11%">金额</td>
+                                            <td width="11%">总金额</td>
+                                            <td width="11%">交易状态</td>
+                                            <td width="11%">操作</td>
+                                            <td width="5%"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    #foreach($obj in $objs)
+                                    <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="tiptitles returntitle">
+                                            <td width="100%" colspan="10" >
+
+                                                <p><span>订单编号：$obj.id</span><span>日期：$obj.addTime</span><span>
+                                                    #if($obj.user.userRole=="SELLER")
+                                                    商家
+                                                    #end
+                                                    #if($obj.user.userRole=="POSTER")
+                                                    栈代
+                                                    #end
+                                                    #if($obj.user.userRole=="YUNKE")
+                                                    云客
+                                                    #end
+                                                    ：$obj.user.username</span></p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <table width="100%" class="returntable importbill" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        #foreach($ob in $obj.gcs)
+                                        <tr class="first" style="width: 70%"  >
+
+                                            <td colspan="2"  width="28%" >
+                                            <span class="fl">
+                                                $ob.goods.goods_name<br/>
+                                                <img src="$!webPath/resources/style/system/manage/black/img/11.png"/>
+                                            </span>
+                                                <span class="fr">
+                                                商品编号: $ob.goods.goods_serial<br/>
+                                                #foreach($sp in $ob.gsps)
+                                                    $sp.spec.name：$sp.spec.type/$sp.value<br/>
+                                                  #end
+                                            </span>
+                                            </td>
+                                            <td width="12%">
+                                                $ob.goods.goods_price元/件
+                                            </td>
+                                            <td width="12%"> $ob.count</td>
+                                            <td width="12%">$ob.price元</td>
+                                            #end
+                                            <td width="12%" rowspan="2" class="last" >$obj.totalPrice元</td>
+                                            <td width="12%" rowspan="2" class="last">
+
+                                                #if($!obj.order_status==0)
+                                                已取消
+                                                #end
+                                                #if($!obj.order_status==10)
+                                                待付款
+                                                #end
+                                                #if($!obj.order_status==11)
+                                                待配货
+                                                #end
+                                                #if($!obj.order_status==12)
+                                                待发货
+                                                #end
+                                                #if($!obj.order_status==15)
+                                                线下支付待审核
+                                                #end
+                                                #if($!obj.order_status==16)
+                                                货到付款待发货
+                                                #end
+                                                #if($!obj.order_status==20)
+                                                已付款
+                                                #end
+                                                #if($!obj.order_status==30)
+                                                已发货
+                                                #end
+                                                #if($!obj.order_status==40)
+                                                已收货
+                                                #end
+                                                #if($!obj.order_status==41)
+                                                未结算
+                                                #end
+                                                #if($!obj.order_status==42)
+                                                已结算
+                                                #end
+                                                #if($!obj.order_status==45)
+                                                买家申请退货
+                                                #end
+                                                #if($!obj.order_status==46)
+                                                买家退货中
+                                                #end
+                                                #if($!obj.order_status==47)
+                                                退货完成，已结束
+                                                #end
+                                                #if($!obj.order_status==48)
+                                                卖家拒绝退货
+                                                #end
+                                                #if($!obj.order_status==49)
+                                                退货失败
+                                                #end
+                                                #if($!obj.order_status==50)
+                                                已完成,已评价
+                                                #end
+
+                                                #if($!obj.order_status==60)
+                                                已结束
+                                                #end
+                                                #if($!obj.order_status==65)
+                                                已结束，不可评价
+                                                #end
+
+                                            </td>
+                                            <td width="12%" rowspan="2" class="last">
+                                                #if($!obj.order_status==11)
+                                                <p><span><a href='$!webPath/seller/'>待配货 </a> </span></p>
+                                                #end
+                                                #if($!obj.order_status==12)
+                                                <p><span><a href='$!webPath/seller/'>待发货 </a> </span></p>
+                                                #end
+                                                <p><span><a href="$!webPath/seller/seller_support_sheet_details.htm?id=$obj.id">供货单详情</a> </span></p>
+                                            </td>
+                                        </tr>
+
+
+                                        </tbody>
+                                    </table>
+
+                                    #end
+                                    <!-- PageNum -->
+                                    <!--分页开始-->
+                                    <div id="demo1" style=" text-align: center; margin-top: 30px;" ></div>
+                                    <script>
+                                        layui.use('laypage', function(){
+                                            var laypage = layui.laypage;
+                                            laypage.render({
+                                                elem: 'demo1' //注意，这里的 test1 是 ID，不用加 # 号
+                                                ,count:'${rows}'// 数据总数，从服务端得到
+                                                ,curr:'${currentPage}' // 服务器端回传当前页
+                                                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                                                ,jump: function(obj, first){
+                                                    //obj包含了当前分页的所有参数，比如：
+                                                    console.log(obj.curr);  //得到当前页，以便向服务端请求对应页的数据。
+                                                    console.log(obj.limit); //得到每页显示的条数
+                                                    //首次不执行,使用原始的curr,后面需要自己通过回传来更新
+                                                    var curr = obj.curr;
+                                                    if(!first){
+                                                        var url = window.location.href;
+                                                        if(url.indexOf("?") >= 0){
+                                                            url = url.split("?")[0] + "?currentPage=" + obj.curr;//切割字符串的方法
+                                                        }else{
+                                                            url = url + "?currentPage=" + obj.curr;
+                                                        }
+                                                        location.href=url;
+                                                    }
+                                                },
+                                                /* limits:[2, 4, 6, 8, 10],
+                                                 limit:pagelimit*/
+                                            });
+                                        });
+
+                                    </script>
+                                    <!--分页结束-->
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <style type="text/css">
+                        #show{width:40%; text-align: center;  height: auto; padding: 40px 0;
+                            position: fixed;
+                            z-index: 1000; background-color:rgba(210, 236, 250, 1); border-radius: 5px; display: none;  left: 30%; top:300px;    }
+                        #show i{ font-size: 2rem; color: #e51c23;  }
+                        #show p{ padding-top: 15px; color: #e51c23; }
+                        .prodcti i{ font-size: 1.8rem; margin-top: 10px;}
+                        #show2,#show3{width:40%; text-align: center;  height: auto; padding: 40px;
+                            position: fixed;
+                            z-index: 1000; background-color:rgba(210, 236, 250, 1); border-radius: 5px; display: none;  left: 30%; top:300px;    }
+                        #show2 select{ width: 50%; height: 40px; }
+                        #show2 p, #show3 p {color: #333; line-height: 40px; text-align: left;  }
+                        #show2 p.red,#show3 p.red{color: #e51c23; }
+                        #show2 button,#show3 button{ padding: 5px 30px; float: right;  margin-top: 50px; line-height: 40px; text-align: center; background:#3fa4ed; font-size: 16px; color: #fff; border: none; border-radius:5px;}
+                    </style>
+                    <div id="show2"  >
+                        <form>
+                            <p class="red" >您确定要取消进货单吗？取消后不可恢复。</p>
+                            <p>请选择取消进货单的理由：
+                                <select>
+                                    <option>请选择取消进货单的理由</option>
+                                    <option>下错了</option>
+                                    <option>不想进货了</option>
+                                </select>
+                            </p>
+                            <div><button class="close" type="button" >关闭</button><button style="margin-right: 20px;" type="submit"   class="submitac" >确定</button></div>
+                        </form>
+                    </div>
+                    <div id="show" >
+                        <i class="iconfont icon-success" ></i>
+                        <p>催货成功!</p>
+                    </div>
+                    <div id="show3"  >
+                        <form>
+                            <p class="red" >收到货后再确认收货哦，小心货钱两空</p>
+                            <div><button class="close2" type="button" >取消</button><button style="margin-right: 20px;" type="submit"   class="submitac2" >确定</button></div>
+                        </form>
+                    </div>
+                    <script>
+                        $(function () {
+                            $(".confirmsh").click(function () {
+
+                            });
+                            $(".cuihuo").click(function () {
+                                $("#show").css({'display':'block'});
+                                setTimeout(function() {
+                                    $("#show").css({'display':'none'});
+
+                                }, 1000);
+                            });
+                            $(".refund").click(function () {
+                                $("#show2").css({'display':'block'});
+                                $('.close').click(function (){
+                                    $("#show2").css({'display':'none'});
+                                });
+                                $('.submitac').click(function (){
+                                    $("#show2").css({'display':'none'});
+                                });
+
+                            });
+
+                            $(".confirmsh").click(function () {
+                                $("#show3").css({'display':'block'});
+                                $('.close2').click(function (){
+                                    $("#show3").css({'display':'none'});
+                                });
+                                $('.submitac2').click(function (){
+                                    $("#show3").css({'display':'none'});
+                                });
+
+                            });
+
+
+                        });
+
+                    </script>
+                    <script type="text/javascript">jQuery(".shopadminbox").slide({trigger:"click"});</script>
+                    <!-- <script type="text/javascript">
+                         $(function(){$(".pageDiv").createPage({
+                             pageCount:9,//总页数
+                             current:1,//当前页
+                             turndown:'true',//是否显示跳转框，显示为true，不现实为false,一定记得加上引号...
+                             backFn:function(p){
+                                 console.log(p);
+                             }
+                         });
+                         })
+                     </script>-->
+
+
+
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>
+
+</body>
+</html>

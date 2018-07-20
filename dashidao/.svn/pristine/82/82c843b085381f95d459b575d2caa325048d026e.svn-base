@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>售后详情</title>
+
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>售后详情 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+        });
+        function fanHuiClick()
+        {alert(11);
+        	window.location.href='$!webPath/poster/refundsale.htm';
+        }
+    </script>
+</head>
+<body>
+<div class="main"> $!httpInclude.include("/poster/nav_head.htm")
+    <div class="user_center">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/poster/nav.htm?op=refund")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="refundbox">
+                        <form method="post" action=""  >
+                            <div class="fl" >
+                                <h1>退款成功</h1>
+                                <p>退款成功时间：${map.zd_tuikuanchenggongday}</p>
+                                <div class="first" >
+                                    退款总金额：<span class="red" >￥${map.zd_tuikuanzongjine}</span><span class="blue">查看钱款方向</span>
+                                </div>
+                                <div class="first two" >
+                                    退款余额宝：￥72.71
+                                </div>
+                                <hr/>
+                                <h1>协商历史</h1>
+                                <div class="xscont"    >
+                <span class="fl">
+                    <img src="image/weixin.png"/>
+                </span>
+                                    <div class="fr">
+                                        <ul>
+                                            <li>我：云正通小蜗牛</li>
+                                            <li>${map.zd_xieshanglishi}</li>
+                                            <li>内容：退款成功</li>
+                                        </ul>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="xscont" style="border: none;" >
+							                <span class="fl">
+							                    售后类型：
+							                </span>
+                                    <div class="fr">
+                                        <ul>
+                                            <li class="on">${map.zd_shouhouleixing}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+
+                            </div>
+                            <div class="fr">
+                                <h2>退款详情</h2>
+                                <hr/>
+                                <div class="one">
+                                    <ul>
+                                        <li>商家：${map.zd_shop}</li>
+                                        <li>${map.zd_shopname}</li>
+                                        <li>${map.zd_color} &nbsp;&nbsp;${map.zd_chima}</li>
+                                    </ul>
+                                </div>
+                                <hr/>
+                                <div class="two">
+                                    <ul>
+                                        <li>
+                                            <span class="fl">订单编号：</span>
+                                            <span class="fr blue" >${map.zd_dingdanbianhao}</span>
+                                            <div class="clear"></div>
+                                        </li>
+                                        <li>
+                                            <span class="fl">成交时间：</span>
+                                            <span class="fr">${map.zd_chengjiaoshijian}</span>
+                                            <div class="clear"></div>
+                                        </li>
+                                        <li>
+                                            <span class="fl">单<font></font>价：</span>
+                                            <span class="fr">￥${map.zd_danjia}</span>
+                                            <div class="clear"></div>
+                                        </li>
+                                        <li>
+                                            <span class="fl">邮<font></font>费：</span>
+                                            <span class="fr">￥${map.zd_youfei}</span>
+                                            <div class="clear"></div>
+                                        </li>
+                                        <li>
+                                            <span class="fl">商品总价：</span>
+                                            <span class="fr">￥${map.zd_shangpingzongjia}</span>
+                                            <div class="clear"></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <hr/>
+                                <div class="two">
+                                    <ul>
+                                        <li>
+                                            <span class="fl">退款编号：</span>
+                                            <span class="fr" >${map.zd_tuikuanbianhao}</span>
+                                            <div class="clear"></div>
+                                        </li>
+                                        <li>
+                                            <span class="fl">退款金额：</span>
+                                            <span class="fr">￥${map.zd_tuikuanjine}</span>
+                                            <div class="clear"></div>
+                                        </li>
+                                        <li>
+                                            <span class="fl">原<font></font>因：</span>
+                                            <span class="fr">${map.zd_yuanyin}</span>
+                                            <div class="clear"></div>
+                                        </li>
+                                        <li>
+                                            <span class="fl">要<font></font>求：</span>
+                                            <span class="fr">${map.zd_yaoqiu}</span>
+                                            <div class="clear"></div>
+                                        </li>
+                                        <li>
+                                            <span class="fl">货物状态：</span>
+                                            <span class="fr">${map.zd_huowuzhuangtai}</span>
+                                            <div class="clear"></div>
+                                        </li>
+                                        <li>
+                                            <span class="fl">说<font></font>明：</span>
+                                            <span class="fr">${map.zd_shuoming}</span>
+                                            <div class="clear"></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                            <p><button onclick="javascript:history.back(-1);">返回</button></p><!-- //onclick="fanHuiClick();" -->
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>
+
+</body>
+</html>

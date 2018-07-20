@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>栈代合同 - $!{config.poweredby}</title>
+	<meta name="keywords" content="$!config.keywords" />
+	<meta name="description" content="$!config.description" />
+	<meta name="generator" content="$!{config.meta_generator}" />
+	<meta name="author" content="$!{config.meta_author}">
+	<meta name="copyright" content="$!{config.copyRight}">
+	#if($!config.website_ico)
+	<link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+	#end
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/zxx.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+	<link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+	<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+	<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+	<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+	<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+
+	<!--bootstrap-->
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+	<script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+	<!--layui-->
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+	<script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+	<link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+<link href="$!webPath/resources/style/system/manage/blue/zhandai.css"  rel="stylesheet" type="text/css"/>
+
+
+	<script>
+        jQuery(document).ready(function(){
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+	</script>
+
+	<script>
+        jQuery(document).ready(function(){
+        	loadAjax(page_size,page_no,1)
+            layui.use(['laypage', 'layer'], function(){
+                var laypage = layui.laypage
+                    ,layer = layui.layer;
+                //完整功能
+                laypage.render({
+                    elem: 'demo7'
+                    ,count:total
+                    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                    ,jump: function(obj){
+                    	page_no=obj.curr;
+                        page_size=obj.limit;
+                        loadAjax(page_size,page_no,1);
+                    },
+                    limits:[2, 4, 6, 8, 10],
+                    limit:page_size,
+                });
+            });
+        });
+        
+        var page_size=5;
+        var page_no =1;
+        var total =0;
+        function loadAjax(page_size,page_no,moudle_id)
+        {
+        	var html ="";
+        	$("#heTongDiv").html("");
+        	var sql ="select * from wemall_zhandaiCompact  order by create_date ";
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajaxuser.jsp",
+                dataType:"json",
+                data:"table=wemall_zhandaiCompact&dates=create_date,zdc_endTime,create_datezdc_designTime&sql="+sql+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error:function(){alert("数据错误，操作被取消！");},
+                success:function(data)
+                {
+                    if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                    total=data.data.total;
+                    var message=data.data.data;
+                    for(var i=0;i<message.length;i++){
+						html += "<div class='ht-botton1'>";
+						html += "<ul>";
+						html += "<li>"+message[i]['zdc_hetongbianhao']+"</li>";
+						html += "<li>"+message[i]['zdc_userName']+"</li>";
+						html += "<li> "+message[i]['zdc_phone']+"</li>";
+						html += "<li>"+message[i]['zdc_identify']+"</li>";
+						html += "<li>"+message[i]['create_datezdc_designTime']+"</li>";
+						html += "<li>合同详情</li>";
+						html += "</ul>";
+						html += "</div>";
+                    }
+                    $("#heTongDiv").append(html);
+                }
+            });
+        	
+        }
+	</script>
+</head>
+<body>
+<div class="main">
+	<div class="user_center">
+		$!httpInclude.include("/poster/nav_head.htm")
+		$!httpInclude.include("/seller/adv.htm")
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+			<tr> $!httpInclude.include("/poster/nav.htm?op=sub_account")
+				<td id="centerbg" valign="top" width="80%">
+					<div class="buyer_position" style="width: 99%; background: #fff;">
+						<div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代中心</a> > <span>合同信息</span></div>
+					</div>
+					<div class="operation_tip">
+	<h3>友情提示</h3>
+	<ul>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+					<div class="xx-box">
+						<div class="ht-top">
+
+							<form class="form-inline" style="float: right;">
+								<div class="form-group">
+									<input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入查询内容" style="width: 200px; border: 1px solid #ccc; text-indent: 2rem;" >
+								</div>
+								<button type="submit" class="btn btn-default" style="border: none;  background: #3fa4ed; color: #fff;   " >查询</button>
+							</form>
+						</div>
+
+						<div class="ht-top2">
+							<ul style="width: 100%;">
+								<li>合同编号</li>
+								<li>姓名</li>
+								<li>联系方式</li>
+								<li>身份</li>
+								<li>合同签署日期</li>
+								<li>操作</li>
+							</ul>
+
+						</div>
+						<div class="ht-botton" id="heTongDiv">
+
+						</div>
+
+						<!--分页开始-->
+						<div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+						<script>
+						</script>
+						<!--分页结束-->
+					</div>
+
+
+
+				</td>
+			</tr>
+		</table>
+	</div>
+	$!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

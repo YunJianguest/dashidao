@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+	<title>发起诉讼</title>
+
+	<link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+	<script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+	<script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>发起诉讼 - $!{config.poweredby}</title>
+	<meta name="keywords" content="$!config.keywords" />
+	<meta name="description" content="$!config.description" />
+	<meta name="generator" content="$!{config.meta_generator}" />
+	<meta name="author" content="$!{config.meta_author}">
+	<meta name="copyright" content="$!{config.copyRight}">
+	#if($!config.website_ico)
+	<link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+	#end
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/styles.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+	<link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+	<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+	<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+	<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+	<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+	<script>
+        jQuery(document).ready(function(){
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+	</script>
+</head>
+<body>
+<div class="main"> $!httpInclude.include("/poster/nav_head.htm") 
+	<div class="user_center">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+			<tr> $!httpInclude.include("/poster/nav.htm?op=refund")
+				<td id="centerbg" valign="top" width="80%">
+					<div class="from">
+						<div class="tiptitle">
+							<i class="iconfont icon-information" ></i>
+							可申请客服介入
+						</div>
+						<div class="derw_title">投诉对象</div>
+						<div style="width:80%;margin: 0 10%;">
+							<ul>
+								<li class="one">服务/物流：</li>
+								<li class="two" ><input type="radio" value="服务"> 服务<input type="radio" checked  value="物流"> 物流 </li>
+								<li class="one">维权申请时间：</li>
+								<li class="two">2017-03-22 10:10:10</li>
+							</ul>
+							<div class="clear"></div>
+							<hr>
+						</div>
+					</div>
+					<div class="draw_detail">
+						<div class="derw_title">投诉详情</div>
+						<div style="width:80%;margin: 0 10%;">
+							<ul>
+								<li class="one">订单编号：</li>
+								<li class="two">
+									<select>
+										<option>676767</option>
+										<option>676767</option>
+										<option>676767</option>
+									</select>
+									<i class="iconfont icon-search" ></i>
+								</li>
+								<li class="one">投诉对象：</li>
+								<li class="two">
+									<select>
+										<option>申通</option>
+										<option>676767</option>
+										<option>676767</option>
+									</select>
+									<i class="iconfont icon-search" ></i></li>
+								<li class="one">商品名称：</li>
+								<li class="two">韩版T恤</li>
+								<li class="one">单价：</li>
+								<li class="two">100元</li>
+								<li class="one">数量：</li>
+								<li class="two">10</li>
+								<li class="one">维权类型：</li>
+								<li class="two">
+									<select>
+										<option>包裹丢失</option>
+										<option>676767</option>
+										<option>676767</option>
+									</select>
+								</li>
+								<li class="one">维权说明：</li>
+								<li class="two">
+									<input type="text" value="包裹丢失了不处理" >
+								</li>
+							</ul>
+							<div class="clear"></div>
+							<hr>
+						</div>
+					</div>
+					<div class="news">
+						<div class="derw_title">消息记录</div>
+						<div style="width:80%;margin: 0 10%;">
+							<ul>
+								<li class="one">2017-03-22 10:10:10 </li>
+								<li class="two">栈代我</li>
+								<li class="three">申通不负责任。</li>                                        
+								<li class="one">2017-03-22 10:10:10 </li>
+								<li class="two">物流  申通</li>
+								<li class="three">你好，如果您不满意可以投诉我。</li>
+							</ul>
+							<div class="clear"></div>
+							<hr>
+						</div>
+					</div>
+					<div class="invoice">
+						<div class="derw_title">给他/她留言</div>
+						<div style="width:80%;margin: 0 10%;">
+							<script>
+                                $(".invo_stuta i").click(function(){
+                                    $(this).addClass("on");
+                                })
+							</script>
+							<div class="remarks"><span>留言：</span>
+								<div class="clear"></div>
+								<textarea name="memo" rows="5" id="memo" style="width:591px;height: 83px;margin-left:7%;" placeholder="我的备注" ></textarea></div>
+							<div style="padding-left:20px;height: 35px;line-height: 35px;margin-top:20px">上传凭证：<input type="file"></div>
+						</div>
+					</div>
+					<div class="sub">提交留言</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	$!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>
+
+</body>
+</html>

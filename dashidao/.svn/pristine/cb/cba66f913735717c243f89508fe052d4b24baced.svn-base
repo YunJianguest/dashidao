@@ -1,0 +1,697 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>商家中心-$!{config.title}-$!{config.poweredby}</title>
+<meta name="keywords" content="$!config.keywords" />
+<meta name="description" content="$!config.description" />
+<meta name="generator" content="$!{config.meta_generator}" />
+<meta name="author" content="$!{config.meta_author}">
+<meta name="copyright" content="$!{config.copyRight}">
+#if($!config.website_ico)
+<link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+#end
+<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+  <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+  <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+  <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+  <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+  <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+  <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+  <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+  <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+  <!--<script src="$!webPath/resources/js/jquery.shop.common.js"></script>-->
+  <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+  <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+  <script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+  <script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+  <script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+  <!--bootstrap-->
+  <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+  <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+  <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+  <!--layui-->
+  <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+  <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+ <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+ <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+<link href="$!webPath/resources/style/system/manage/blue/zhandai.css"  rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="$!webPath/resources/style/system/front/default/css/font_Icon/iconfont.css">
+<link href="$!webPath/resources/style/system/front/default/css/chat.css" type="text/css" rel="stylesheet" />
+<script>
+jQuery(document).ready(function(){
+  getShangPinCount();
+  $("#tongZhiSpan").html(shangPinCount);
+  getShangPinList(page_size,page_no);
+  layui.use(['laypage', 'layer'], function(){
+      var laypage = layui.laypage
+          ,layer = layui.layer;
+      //完整功能
+      laypage.render({
+          elem: 'demo7'
+          ,count:total
+          ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+          ,jump: function(obj){
+              page_no=obj.curr;
+              page_size=obj.limit;
+              getShangPinList(page_size,page_no);
+          },
+          limits:[2, 4, 6, 8, 10],
+          limit:page_size
+      });
+  });
+  
+});
+	var shangPinCount =0;
+	var userid = "${user.id}";
+	//获取商品总数
+	function getShangPinCount()
+	{
+		var sql ="SELECT COUNT(1)  AS spnum FROM dashidao_chatting WHERE dashidao_chatting.`type`='1' AND dashidao_chatting.`user2_id`="+userid+" order by dashidao_chatting.addTime";
+		//var sql="SELECT COUNT(1) AS spnum FROM zb_spjc WHERE zb_spjc.`is_told`='1' AND zb_spjc.`sjh`="+userid+"  order by zb_spjc.create_date ";
+        jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajaxuser.jsp",
+            dataType:"json",
+            data:"table=zb_spjc&dates=create_date&sql="+sql,
+            error:function(){alert("数据错误，操作被取消！");},
+            success:function(data)
+            {
+                if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                var message=data.data.data;
+                shangPinCount = message[0]['spnum'];
+            }
+        });
+	}
+	var page_size =2;
+	var page_no =1;
+	var total=0;
+	//获取商品list
+	function getShangPinList(page_size,page_no)
+	{
+		var html ="";$("#tablesss").append(html);
+		var sql=" SELECT dashidao_chatting.`addTime`,dashidao_chatting.`user1_id`,dashidao_chatting.`user2_id`,";
+		    sql +=" dashidao_chattinglog.`content`,dashidao_chattinglog.`mark` FROM dashidao_chatting ";
+		    sql +=" LEFT JOIN dashidao_chattinglog ON dashidao_chattinglog.`chatting_id` = dashidao_chatting.`id` ";
+		    sql +=" WHERE dashidao_chatting.`type`='1' AND dashidao_chatting.`user2_id`="+userid;
+		    sql +=" ORDER BY dashidao_chatting.`addTime`";
+		//var sql ="SELECT * FROM zb_spjc WHERE zb_spjc.`is_told`='1' AND zb_spjc.`sjh`="+userid+"  ORDER BY zb_spjc.create_date";
+		 jQuery.ajax({
+             type:"POST",
+             cache: false,
+             async:false,
+             url:"/ajaxuser.jsp",
+             dataType:"json",
+             data:"table=dashidao_chatting&dates=addTime&sql="+sql+"&page_size="+page_size+"&page_no="+page_no,
+             error:function(){alert("数据错误，操作被取消！");},
+             success:function(data)
+             {
+                 if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                 total=data.data.total;
+                 var message=data.data.data;
+                 $("#tablesss").html('');
+                 for(var i=0;i<message.length;i++){
+                	 //var told = message[i]['is_told'];
+                	 var content = message[i]['content'];
+                	 var id = content.substring(content.length-1,content.length);
+                	 html +="<tr height='80'><input type='hidden' name='user1_id' value='"+message[i]['user1_id']+"' />";
+                	// html +="<td width='8%'></td>";
+                	 html +="<td width='80%' style='align:left;'>"+message[i]['content']+"</td>";
+                	 html +="<td width='10%'>"+message[i]['addTime']+"</td>";
+                	 html +="<td width=''><a href='javascript:void(0);' class='chat-list-people' onclick='liaotianClick(this);'>聊天</a>|<a href='javascript:void(0);' onclick='queRenClick(\""+id+"\");'>确认</a> | <a onclick='shenshu(\""+id+"\");'>申诉</a> </td>";
+                	 html +="</tr>";
+                }
+                 $("#tablesss").append(html);
+             }
+         });
+	}
+
+	//确认操作
+	function queRenClick(id)
+	{
+		jQuery.ajax({
+            type: "POST",
+            cache: false,
+            async: false,
+            url: "/ajaxuser.jsp",
+            dataType: "json",
+            data: "action=update&table=zb_spjc&field=id,isqueren&values="+id+"|1",
+            error: function () {
+                alert("数据错误，操作被取消！");
+            },
+            success: function (data) {
+                if (data.state == "error") {
+                    alert("系统错误，操作被取消！");
+                    return;
+                } else {
+                    alert("操作成功！");
+                    window.location.href='$!webPath/seller/shangPinTongZhi.htm';
+                }
+            }
+        });
+	}
+	
+	//申诉
+	function shenshu(id)
+	{		var fpsz;
+			var spmc;
+	        var sql="SELECT * FROM zb_spjc WHERE  id='"+id+"' order by create_date";
+	        jQuery.ajax({
+	            type:"POST",
+	            cache: false,
+	            async:false,
+	            url:"/ajaxuser.jsp",
+	            dataType:"json",
+	            data:"table=zb_spjc&dates=create_date&sql="+sql,
+	            //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+	            error:function(){alert("数据错误，操作被取消333！");},
+	            success:function(data)
+	            {	
+	                if(data.state=="error"){alert("系统错误，操作被取消！333");return;}
+	                var message1=data.data.data;
+	                console.log(message1);
+	                spmc=message1[0]['spmc'];
+	                fpsz= message1[0]['title'] +","+ message1[0]['spmc'] +","+ message1[0]['create_date'] +","+ message1[0]['cfjf'] +","+ message1[0]['qdsl'] +","+ message1[0]['ccj'] +","+ message1[0]['spbh'];
+	            }
+	        });
+	        jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajax.jsp",
+                dataType:"json",
+                // data:"action=update&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                data:"action=insert&table=wemall_appealmanager&field=am_wqSytle,am_goodsName,am_punishTime,am_punishRecord,am_goodsNum,am_goodsPrice,am_goodsId&values="+fpsz,
+
+                success:function(data)
+                {
+
+                    if(data.code=="0"){alert("系统错误，操作被取消！");return;}
+
+                    var str='操作成功';
+                    if(str==data.msg){
+                        //window.location.href== '$!webPath/admin/xbfwsz_admin.htm';
+                        //openURL('url','$!webPath/admin/xbfwsz_admin.htm','main_workspace','xbfwsz_admin');
+                       
+                    	alert("总部通知！您的"+spmc+"存在问题，请与总部联系！");
+    	        		window.location.href='$!webPath/seller/role_appeal_manager.htm'; 
+                    }
+                }
+
+           	 }); 
+
+	}
+	
+</script>
+</head>
+<body class="seller_body">
+<div class="main">
+  <div class="user_center">
+    $!httpInclude.include("/seller/nav_head.htm")
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+      <tr> $!httpInclude.include("/seller/nav.htm")
+        <td id="centerbg" valign="top" width="80%">
+         	 <div class="buyer_position">
+	            <div class="buyer_p_box"><a href="$!webPath/seller/index.htm">栈代支持</a> > <span>商品通知</span></div>
+	          </div>
+         	 <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr class="returnthead" style="height: 90px;">
+                      <td width="80%" colspan="8" >
+                      </td>
+                    </tr>
+                    <tr id="thead" >
+                      <td width="5%"></td>
+                      <td width="75%" >内容</td>
+                      <td width="8%">时间</td>
+                      <td width="">操作</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                   <table width="100%" class="returntable importbill" border="0" cellspacing="0" cellpadding="0">
+                           <tbody id="tablesss">
+                           </tbody>
+                   </table>
+         	
+         		<!--分页开始-->
+                <div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+         	  
+         	<script>
+	var userid ="${user.id}";//当前登录人id
+	var huiYuanid ;//获取会员id
+	var faSongMess ;
+	var id;
+	jQuery(document).ready(function(){
+	  
+	  initLiaotiao();
+	});
+	//初始化聊天页面
+	function initLiaotiao()
+	{
+		$(".chatBox").hide();
+		$(".chatBox").attr("display","none");
+	}
+
+      var loading;
+      function  load(txt){
+        var opts = {
+		lines: 13, // The number of lines to draw
+		length: 6, // The length of each line
+		width: 3, // The line thickness
+		radius: 8, // The radius of the inner circle
+		corners: 1, // Corner roundness (0..1)
+		rotate: 0, // The rotation offset
+		color: '#FFF', // #rgb or #rrggbb
+		speed: 1, // Rounds per second
+		trail: 60, // Afterglow percentage
+		shadow: false, // Whether to render a shadow
+		hwaccel: false, // Whether to use hardware acceleration
+		className: 'spinner', // The CSS class to assign to the spinner
+		zIndex: 2e9, // The z-index (defaults to 2000000000)
+		top: 'auto', // Top position relative to parent in px
+		left: 'auto' // Left position relative to parent in px
+	}; 
+	   var target = document.createElement("div");
+	   document.body.appendChild(target);
+	   var spinner = new Spinner(opts).spin(target);
+	   loading=iosOverlay({
+		text: txt, 
+		spinner: spinner
+	   });
+     }
+     
+     
+        var issend = true;
+        var fypage = 0;
+        var xszf = "";
+        var rid = '${rid}';
+        var winheight = window.innerHeight;
+        var useragent = navigator.userAgent;
+        function ajaxjz() {//加载 
+           
+        }
+
+        function createReply() {
+         
+
+        }
+        function sendmsg(textContent) {
+            var time = new Date();
+            var content = textContent;
+            var fromid = '${no}';
+            var msg = {
+                "content": content,  
+                "toId":huiYuanid,   //发送人id
+                "fromid":userid,
+            };
+            if (content.length > 0) {
+            	console.log(JSON.stringify(msg));
+            	socket.send(JSON.stringify(msg));//发送消息
+            	
+             
+            } else {
+                alert("发送的内容不能为空！");
+            }
+        }
+       </script>
+	<div class="chatContainer">
+    <!-- <div class="chatBtn">
+        <i class="iconfont icon-xiaoxi1"></i>
+    </div> -->
+    <!-- <div class="chat-message-num">10</div> -->
+    <div class="chatBox" ref="chatBox" style="display: none;">
+        <div class="chatBox-head">
+            <div class="chatBox-head-one">
+                Conversations
+                <div class="chat-close" style="margin: 10px 10px 0 0;font-size: 14px">关闭</div>
+            </div>
+            <div class="chatBox-head-two">
+                <!-- <div class="chat-return">返回</div> -->
+                <div class="chat-people">
+                    <div class="ChatInfoHead">
+                        <img src="" alt="头像"/>
+                    </div>
+                    <div class="ChatInfoName">这是用户的名字，看看名字到底能有多长</div>
+                </div>
+                <div class="chat-close">关闭</div>
+            </div>
+        </div>
+        <div class="chatBox-info">
+            <div class="chatBox-list" ref="chatBoxlist">
+                <div class="chat-list-people">
+                    <div><img src="img/icon01.png" alt="头像"/></div>
+                    <div class="chat-name">
+                        <p>自酌一杯酒</p>
+                    </div>
+                    <div class="message-num">10</div>
+                </div>
+            </div>
+            <div class="chatBox-kuang" ref="chatBoxkuang">
+                <div class="chatBox-content">
+                    <div class="chatBox-content-demo" id="chatBox-content-demo">
+	
+                    </div>
+                </div>
+                <div class="chatBox-send">
+                    <div class="div-textarea" contenteditable="true"></div>
+                    <div>
+                        <button id="chat-biaoqing" class="btn-default-styles">
+                            <i class="iconfont icon-biaoqing"></i>
+                        </button>
+                        <label id="chat-tuxiang" title="发送图片" for="inputImage" class="btn-default-styles">
+                            <input type="file" onchange="selectImg(this)" accept="image/jpg,image/jpeg,image/png"
+                                   name="file" id="inputImage" class="hidden">
+                            <i class="iconfont icon-tuxiang"></i>
+                        </label>
+                        <button id="chat-fasong" onclick="" class="btn-default-styles"><i class="iconfont icon-fasong"></i>
+                        </button>
+                    </div>
+                    <div class="biaoqing-photo">
+                        <ul>
+                            <li><span class="emoji-picker-image" style="background-position: -9px -18px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -40px -18px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -71px -18px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -102px -18px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -133px -18px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -164px -18px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -9px -52px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -40px -52px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -71px -52px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -102px -52px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -133px -52px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -164px -52px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -9px -86px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -40px -86px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -71px -86px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -102px -86px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -133px -86px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -164px -86px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -9px -120px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -40px -120px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -71px -120px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -102px -120px;"></span>
+                            </li>
+                            <li><span class="emoji-picker-image" style="background-position: -133px -120px;"></span>
+                            </li>
+                            <li><span class="emoji-picker-image" style="background-position: -164px -120px;"></span>
+                            </li>
+                            <li><span class="emoji-picker-image" style="background-position: -9px -154px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -40px -154px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -71px -154px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -102px -154px;"></span>
+                            </li>
+                            <li><span class="emoji-picker-image" style="background-position: -133px -154px;"></span>
+                            </li>
+                            <li><span class="emoji-picker-image" style="background-position: -164px -154px;"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+var socket;
+
+	function init(){
+	   socket= new WebSocket("ws://127.0.0.1:8080/websocket");  //本地url + 端口
+	socket.onopen = function() { 
+	            var msg = {
+	                            "init" : "init",
+	                            "uid" :userid, //登陆人id
+	                             
+	                        };
+	                    socket.send(JSON.stringify(msg));   
+	    
+	};
+	
+	socket.onclose = function(evt) {  
+	    init();
+	}
+	socket.onerror = function(evt) {  
+	    init();
+	
+	}  
+	function encodeScript(data) {
+	    if(null == data || "" == data) {
+	        return "";
+	    }
+	    return data.replace("<", "&lt;").replace(">", "&gt;");
+	}
+	socket.onmessage = function(evt) { 
+	    //alert(evt.data); //拼接接受到的消息
+	    var sdmess = eval ("(" + evt.data + ")");
+	    console.log(sdmess);
+	    jieshoumess(sdmess);
+	};  
+	} 
+	init();
+
+	function jieshoumess(sdmess)
+	{
+		huiYuanid = sdmess.fromid;
+		var content = $(".div-textarea").html();
+        var textContent = sdmess.content.replace(/[\n\r]/g, '<br>');
+        if (textContent != "") {
+        	var today = new Date();
+	        var minutes;
+	        if(today.getMinutes()>=0&&today.getMinutes()<=9){
+	            minutes="0"+today.getMinutes();
+	        }else{
+	            minutes=today.getMinutes();
+	        }
+	        //获取当前日期
+	        var nowdate = (today.getFullYear()) + "-" + (today.getMonth() + 1) + "-" + today.getDate()+" "+today.getHours()+":"+minutes+":"+today.getSeconds();
+            $(".chatBox-content-demo").append("<div class=\"clearfloat\">" +
+                "<div class=\"author-name\"><small class=\"chat-date\">"+nowdate+"</small> </div> " +
+                "<div class=\"left\">" +
+                "<div class=\"chat-avatars\"><img src=\"$!webPath/resources/style/common/images/icon01.png\" alt=\"头像\" /></div>"+
+                "<div class=\"chat-message\"> " + textContent + " </div> " +
+                " </div> </div>");
+            //发送后清空输入框
+            $(".div-textarea").html("");
+            //聊天框默认最底部
+            $(document).ready(function () {
+                $("#chatBox-content-demo").scrollTop($("#chatBox-content-demo")[0].scrollHeight);
+            });
+        }
+        
+        $(".chatBox").show();
+        $(".chatBox-head-one").hide();
+        $(".chatBox-head-two").show();
+        $(".chatBox-list").hide();
+        $(".chatBox-kuang").show();
+	}
+</script>
+
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script>
+    screenFuc();
+    function screenFuc() {
+        var topHeight = $(".chatBox-head").innerHeight();//聊天头部高度
+        //屏幕小于768px时候,布局change
+        var winWidth = $(window).innerWidth();
+        if (winWidth <= 768) {
+            var totalHeight = $(window).height(); //页面整体高度
+            $(".chatBox-info").css("height", totalHeight - topHeight);
+            var infoHeight = $(".chatBox-info").innerHeight();//聊天头部以下高度
+            //中间内容高度
+            $(".chatBox-content").css("height", infoHeight - 46);
+            $(".chatBox-content-demo").css("height", infoHeight - 46);
+
+            $(".chatBox-list").css("height", totalHeight - topHeight);
+            $(".chatBox-kuang").css("height", totalHeight - topHeight);
+            $(".div-textarea").css("width", winWidth - 106);
+        } else {
+            $(".chatBox-info").css("height", 495);
+            $(".chatBox-content").css("height", 448);
+            $(".chatBox-content-demo").css("height", 448);
+            $(".chatBox-list").css("height", 495);
+            $(".chatBox-kuang").css("height", 495);
+            $(".div-textarea").css("width", 260);
+        }
+    }
+    (window.onresize = function () {
+        screenFuc();
+    })();
+    //未读信息数量为空时
+    var totalNum = $(".chat-message-num").html();
+    if (totalNum == "") {
+        $(".chat-message-num").css("padding", 0);
+    }
+    $(".message-num").each(function () {
+        var wdNum = $(this).html();
+        if (wdNum == "") {
+            $(this).css("padding", 0);
+        }
+    });
+
+
+    //打开/关闭聊天框
+     $(".chatBtn").click(function () {
+        $(".chatBox").toggle(10);
+    }) 
+    
+    $(".chat-close").click(function () {
+        //$(".chatBox").toggle(10);//chatBox  chatBox-head-one chatBox-head-two
+        $(".chatBox").hide();
+        $(".chatBox-head-one").hide();
+    })
+    
+    function liaotianClick(ev)
+    {
+     	huiYuanid =$(ev).parent().parent().find("input[name='user1_id']").val();
+     	if(huiYuanid != id)
+     	{
+     		$("#chatBox-content-demo").html("");
+     	}
+     	id = huiYuanid; 
+     	
+     	$(".chatBox").show();
+     	//$(".chatBox-kuang").attr("style","height: 495px; display: block;");
+         var n = $(this).index();
+         $(".chatBox-head-one").hide();
+         $(".chatBox-head-two").show();
+         $(".chatBox-list").hide();
+         $(".chatBox-kuang").show();
+       //传名字
+         $(".ChatInfoName").text($(this).children(".chat-name").children("p").eq(0).html());
+
+         //传头像
+         $(".ChatInfoHead>img").attr("src", $(this).children().eq(0).children("img").attr("src"));
+
+         //聊天框默认最底部
+         $(document).ready(function () {
+             $("#chatBox-content-demo").scrollTop($("#chatBox-content-demo")[0].scrollHeight);
+         });
+    }
+    
+    
+    //进聊天页面
+    $(".chat-list-people").each(function () {
+        $(this).click(function () {
+        	
+        	huiYuanid =$(ev).parent().parent().find("input[name='user1_id']").val();
+        	/* if(huiYuanid != id)
+        	{
+        		$("#chatBox-content-demo").html("");
+        	}
+        	id = huiYuanid; */
+        	
+        	$(".chatBox").show();
+        	//$(".chatBox-kuang").attr("style","height: 495px; display: block;");
+            var n = $(this).index();
+           $(".chatBox-head-one").hide();
+            $(".chatBox-head-two").show();
+            $(".chatBox-list").hide();
+            $(".chatBox-kuang").show();
+
+            //传名字
+            $(".ChatInfoName").text($(this).children(".chat-name").children("p").eq(0).html());
+
+            //传头像
+            $(".ChatInfoHead>img").attr("src", $(this).children().eq(0).children("img").attr("src"));
+
+            //聊天框默认最底部
+            $(document).ready(function () {
+                $("#chatBox-content-demo").scrollTop($("#chatBox-content-demo")[0].scrollHeight);
+            });
+        })
+    });
+
+    //返回列表
+    $(".chat-return").click(function () {
+        $(".chatBox-head-one").toggle(1);
+        $(".chatBox-head-two").toggle(1);
+        $(".chatBox-list").fadeToggle(1);
+        $(".chatBox-kuang").fadeToggle(1);
+    });
+
+    //      发送信息
+    $("#chat-fasong").click(function () {
+    	var content = $(".div-textarea").html();
+        var textContent = $(".div-textarea").html().replace(/[\n\r]/g, '<br>');
+        if (textContent != "") {
+        	var today = new Date();
+	        var minutes;
+	        if(today.getMinutes()>=0&&today.getMinutes()<=9){
+	            minutes="0"+today.getMinutes();
+	        }else{
+	            minutes=today.getMinutes();
+	        }
+	        //获取当前日期
+	        var nowdate = (today.getFullYear()) + "-" + (today.getMonth() + 1) + "-" + today.getDate()+" "+today.getHours()+":"+minutes+":"+today.getSeconds();
+            $(".chatBox-content-demo").append("<div class=\"clearfloat\">" +
+                "<div class=\"author-name\"><small class=\"chat-date\">"+nowdate+"</small> </div> " +
+                "<div class=\"right\"> <div class=\"chat-message\"> " + textContent + " </div> " +
+                "<div class=\"chat-avatars\"><img src=\"$!webPath/resources/style/common/images/icon01.png\" alt=\"头像\" /></div>"+
+                "</div> </div>");
+            //发送后清空输入框
+            $(".div-textarea").html("");
+            //聊天框默认最底部
+            $(document).ready(function () {
+                $("#chatBox-content-demo").scrollTop($("#chatBox-content-demo")[0].scrollHeight);
+            });
+        }
+        sendmsg(content);
+    });
+
+    //      发送表情
+    $("#chat-biaoqing").click(function () {
+        $(".biaoqing-photo").toggle();
+    });
+    $(document).click(function () {
+        $(".biaoqing-photo").css("display", "none");
+    });
+    $("#chat-biaoqing").click(function (event) {
+        event.stopPropagation();//阻止事件
+    });
+
+    $(".emoji-picker-image").each(function () {
+        $(this).click(function () {
+            var bq = $(this).parent().html();
+            $(".chatBox-content-demo").append("<div class=\"clearfloat\">" +
+                "<div class=\"author-name\"><small class=\"chat-date\">2017-12-02 14:26:58</small> </div> " +
+                "<div class=\"right\"> <div class=\"chat-message\"> " + bq + " </div> " +
+                "<div class=\"chat-avatars\"><img src=\"$!webPath/resources/style/common/images/icon01.png\" alt=\"头像\" /></div> </div> </div>");
+            //发送后关闭表情框
+            $(".biaoqing-photo").toggle();
+            //聊天框默认最底部
+            $(document).ready(function () {
+                $("#chatBox-content-demo").scrollTop($("#chatBox-content-demo")[0].scrollHeight);
+            });
+        })
+    });
+
+    //      发送图片
+    function selectImg(pic) {
+        if (!pic.files || !pic.files[0]) {
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function (evt) {
+            var images = evt.target.result;
+            $(".chatBox-content-demo").append("<div class=\"clearfloat\">" +
+                "<div class=\"author-name\"><small class=\"chat-date\">2017-12-02 14:26:58</small> </div> " +
+                "<div class=\"right\"> <div class=\"chat-message\"><img src=" + images + "></div> " +
+                "<div class=\"chat-avatars\"><img src=\"$!webPath/resources/style/common/images/icon01.png\" alt=\"头像\" /></div> </div> </div>");
+            //聊天框默认最底部
+            $(document).ready(function () {
+                $("#chatBox-content-demo").scrollTop($("#chatBox-content-demo")[0].scrollHeight);
+            });
+        };
+        reader.readAsDataURL(pic.files[0]);
+    }
+</script>
+         	  
+         	  
+         </td>
+      </tr>
+    </table>
+  </div>
+  $!httpInclude.include("/footer.htm") </div>
+</body>
+</html>

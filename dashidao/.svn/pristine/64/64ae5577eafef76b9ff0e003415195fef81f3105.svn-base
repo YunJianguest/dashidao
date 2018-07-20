@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+    <script>
+        jQuery(document).ready(function() {
+            jQuery.ajax({
+                type: "POST",
+                cache: false,
+                async: false,
+                url: "/ajax.jsp",
+                dataType: "json",
+                data: {"action": "select", "table": "zb_jichushezhi", "field": "is_deleted", "values": "0"},
+
+                success: function (data) {
+                    if (data.state == "error") {
+                        alert("系统错误，操作被取消！");
+                    }
+                    var str1 = data.data.data[0].hy_jf_gz;
+                    var strs1 = new Array(); //定义一数组
+                    strs1 = str1.split(","); //字符分割
+                    if (str1 != "") {
+                        $("#1").find("tr").eq(0).find("td").eq(1).append('实付金额  *' + '<input type="text" class="hyjf" value="' + strs1[0] + '"/>' + '=积分。');
+                        for (var i = 1; i < strs1.length - 1; i++) {
+                            $("#1").find("tr").eq(i - 1).after('<tr><td class="tw">' + '实付金额  *' + '<input type="text" class="hyjf" value="' + strs1[i] + '"/>' + '=积分。' + '</td></tr>');
+                        }
+                        $("#1").find("tr").eq(strs1.length - 2).after('<tr><td class="tw">' + '单个订单使用积分不超过 ' + '<input type="text" class="hyjf" value="' + strs1[strs1.length - 1] + '"/>' + '个。' + '</td></tr>');
+                    }
+
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest.status); // 200
+                    alert(textStatus); // parsererror
+                    alert(errorThrown); // SyntaxError: Unexpected end of input
+                }
+            });
+            $("#xiugai1").click(
+                function(){
+                    window.open('jcsz_admin_xiugai.html', 'newwindow', 'height=100, width=400, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no');
+                })
+
+        })
+
+    </script>
+    <title>基础设置</title>
+    <style>
+        body {
+            font-size:16px;
+            line-height: 1.42857143;
+            color: #333;
+            background-color: #fff;
+            font-family: "Microsoft Yahei", "Lucida Grande", Verdana, Lucida, Helvetica, Arial, 'Simsun', sans-serif;
+        }
+        input{border:none;width:60px;}
+        ul,ul li{list-style: none;padding: 0;margin: 0;border:0!important;}
+        table tr td{border-bottom: 1px solid #eee; padding: 10px 0;}
+        a{color:#333}
+        .xiugai{
+            background-color:#108ee9;
+            width:53px;
+            color: #fff;
+            text-align: center;
+            height:27px;
+            line-height: 27px;
+            text-align: center;
+
+        }
+        .title{width:20%;padding-left: 5%;}
+        .tw{width:50%;padding-left: 10%;}
+        .sj tr td{border:0!important;}
+        .seth1 {
+            border-top: 1px solid #D9D9D9;
+            height: 35px;
+            border-bottom: 1px solid #D9D9D9;
+            line-height: 35px;
+            padding-left: 40px;
+            color: #686868;
+            margin: 5px;
+            font-size:16px;
+            padding: 0px;
+            text-align: left;
+            background: #f3f3f3;
+        }
+        .ac8 a {
+            color: #999;
+            margin-left: 5px;
+            margin-right: 5px;
+            text-decoration: none;
+        }
+        .ac8 a:hover {
+            color:#ff6600;
+            background: #fff;
+        }
+        .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{background:#108EE9;color:#fff;font-size: 15px;}
+        .nav{margin: 17px 0 29px 21px;}
+        .bor{height:30px;line-height: 30px;}
+        .pagination{float: right;}
+        .disable a{border:0!important;color:#000!important;}
+        .disable a:hover{border:0!important;color:#000!important;background: #fff!important;}
+        .pagination .active a{background:#108ee9!important; }
+        .pagination li a{padding: 4px 10px!important;margin: 0 2px!important; border-radius: 4px;}
+        .nav li{margin-left:2px}
+        .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{background:#3fa4ed;color:#fff; width:100%;}
+        .nav>li>a {
+            position: relative;
+            border:1px solid #c3c3c3;
+            display: block;
+            border-top-left-radius: 8px;
+            border-top-right-radius:8px;
+            font-size: 16px!important;
+            padding: 5px 15px;
+            color:#000;
+        }
+        .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{background:#3fa4ed;color:#fff;font-size: 16px;}
+        .nav{margin: 17px 0 29px 21px;border-bottom: 1px solid #c3c3c3!important;}
+
+    </style>
+
+</head>
+
+<body>
+
+<center>
+    <div class="tabbable" style="width:100%;">
+        <div class="seth1">
+            <img src="$!webPath/resources/style/system/manage/black/img/1.png" alt="">
+            基础设置
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#1" data-toggle="tab" aria-expanded="false" style="border-right: 1px ">基础设置</a></li>
+            <li><a href="#2" data-toggle="tab">商家保证金设置</a></li>
+            <li><a href="#3" data-toggle="tab">栈代保证金设置</a></li>
+        </ul>
+        <div class="tab-content">
+            <!--基础设置-->
+            <div class="tab-pane active" id="1">
+                <table style="width:100%;margin:0!important; font-size:16px;">
+                    <tr>
+                        <td rowspan="3" valign="top" style="width:20%;" class="title"> 会员积分规则： </td>
+                        <td style="margin-left:5px" class="tw">  </td>
+                        <td><div class="xiugai" id="xiugai1">修改</div></td>
+                    </tr>
+                   <tr>
+                       <td colspan="3"> <input type="submit" value="提交"/><input value="关闭" type="button" onclick="script:window.close();"/></td>
+                   </tr>
+
+
+
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script type="javascript">
+
+    </script>
+</center>
+</body>
+</html>

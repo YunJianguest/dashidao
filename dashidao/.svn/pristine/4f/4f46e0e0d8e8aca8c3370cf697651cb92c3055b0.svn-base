@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>消保详情</title>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/two_level.css" />
+	<script   src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+</head>
+<body>
+<script>
+    function sub(){
+
+        var check="";
+        $("input[name='xbTy']").each(function(){
+            if(this.checked==true){
+                check=this.value;
+            }
+        });
+        if(check==""){
+            alert("请选择同意或者不同意");
+            return;
+        }
+        jQuery.ajax({
+            type: "POST",
+            cache: false,
+            async: false,
+            url: "/ajax.jsp",
+            dataType: "json",
+            data: "action=update&table=zb_sjxiaobaoshenhe&field=id,states&values=" + $("#shenheId").val()+"|"+check,
+            error: function () {
+                alert("数据错误，操作被取消2！");
+            },
+            success: function (data) {
+                if (data.state == "error") {
+                    alert("系统错误，操作被取消！");
+                    return;
+                } else {
+                    alert("操作成功！");
+                    location.href="$!webPath/admin/sell_consume_check.htm";
+                }
+            }
+        });
+        alert(check);
+    }
+    jQuery(document).ready(function() {
+        var id = "$!id";
+        // alert(id);
+        var shenheId = "$!shenheId";
+        // alert(shenheId);    id,states
+
+        jQuery.ajax({
+            type: "POST",
+            cache: false,
+            async: false,
+            url: "/ajax.jsp",
+            dataType: "json",
+            data: "action=select&table=dsdsj&field=id&values=" + shenheId,
+            error: function () {
+                alert("数据错误，操作被取消2！");
+            },
+            success: function (data) {
+                if (data.state == "error") {
+                    alert("系统错误，操作被取消2！");
+                    return;
+                }
+                var message = data.data.data;
+                for (var i = 0; i < message.length; i++) {
+                    $("#form1").find("tr").eq(0).find("td").eq(1).append(message[i]['businessid']);
+                    $("#form1").find("tr").eq(1).find("td").eq(1).append(message[i]['name']);
+
+
+                }
+            }
+        });
+    })
+
+</script>
+<div class="both">
+	<form id="form1" name="form1" method="post" class="form-inline">
+		<input type="hidden" id="shenheId" name="shenheId" />
+		<table width="100%">
+			<tr>
+				<td width="20%">商家：</td>
+				<td width="50%" id="bId">123</td>
+				<td width="30%"></td>
+			</tr>
+			<tr>
+				<td>商家名称：</td>
+				<td> </td>
+				<td rowspan="2"><img src="img/raw_1501246954.png" alt=""></td>
+			</tr>
+			<tr>
+				<td>商品编号：</td>
+				<td><input type="text" class="" name="" id="2" value="" placeholder="230817"/></td>
+			</tr>
+			<tr>
+				<td>风格：</td>
+				<td><input type="text" class="" name="" id="3" value="" placeholder="通勤"/></td>
+				<td rowspan="3"><img src="$!webPath/resources/style/system/manage/black/img/raw_1501422990.png" alt=""></td>
+			</tr>
+			<tr>
+				<td>厚薄：</td>
+				<td><input type="text" class="" name="" id="4" value="" placeholder="常规"/></td>
+			</tr>
+			<tr>
+				<td>材质：</td>
+				<td><input type="text" class="" name="" id="5" value="" placeholder="涤纶"/></td>
+			</tr>
+			<tr>
+				<td>适用年龄：</td>
+				<td><input type="text" class="" name="" id="6" value="" placeholder="20-40周岁"/></td>
+				<td rowspan="3"><img src="$!webPath/resources/style/system/manage/black/img/raw_1501246954.png" alt=""></td>
+			</tr>
+			<tr>
+				<td>商品规格：</td>
+				<td>颜色：<input type="text" class="" name="" id="7" value="" placeholder="月白/浅蓝/军绿"/></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>尺码：<input type="text" class="" name="" id="8" value="" placeholder="S/M/L/XL"/></td>
+			</tr>
+			<tr>
+				<td>储藏条件：</td>
+				<td><input type="text" class="" name="" id="9" value="" placeholder="常温、干燥、通风"/></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>生产日期：</td>
+				<td><input type="text" class="" name="" id="10" value="" placeholder="2017年5月23日"/></td>
+				<td>保质期：<input type="text" class="" name="" id="11" value="" placeholder="2年"/></td>
+			</tr>
+			<tr>
+				<td>有效期至：</td>
+				<td><input type="text" class="" name="" id="12" value="" placeholder="2019年5月23日"/></td>
+				<td></td>
+			</tr>
+		</table>
+		<table width="100%">
+			<tr>
+				<td width="20%">零售单位：</td>
+				<td width="50%"><input type="text" placeholder="件"></td>
+				<td width="30% "></td>
+			</tr>
+			<tr>
+				<td>零售价格：</td>
+				<td><input type="text" placeholder="30元"></td>
+				<td ></td>
+			</tr>
+			<tr>
+				<td>批发价格：</td>
+				<td><input type="text" placeholder="15元"></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>批发单位：</td>
+				<td><input type="text" placeholder="箱"></td>
+				<td><input style="background:#fff;" type="text" value="每箱20件" disabled></td>
+			</tr>
+			<tr>
+				<td>分销商起订量：</td>
+				<td><input type="text" placeholder="100"></td>
+				<td><input type="text"></td>
+			</tr>
+		</table>
+		<table width="100%">
+			<tr>
+				<td width="20%">运输包装：</td>
+				<td width="30%"><input type="text" class="" name="" id="13" value="" placeholder="100cm*50cm*50cm"/></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>储运要求：</td>
+				<td><input type="text" class="" name="" id="14" value="" placeholder="干燥防潮"/></td>
+				<td></td>
+			</tr>
+		</table>
+		<div class="view">
+			<input type="radio"  class="check" name="xbTy" value="2">同意投保</input>  <input class="refuse check" type="radio" name="xbTy" value="3">拒绝投保</input>
+
+			<div>
+				<textarea type="text" class="" name="" id="" value="" placeholder="可以留下您的理由吗？" ></textarea>
+			</div>
+		</div>
+	</form>
+	<div class="sub"><a href="#" onclick="sub();" style="color:white;">确定</a></div>
+</div>
+<!--<script>-->
+<!--$('.view span').click(function(){-->
+<!--$(this).addClass('check');-->
+<!--$(this).siblings().removeClass('check');-->
+<!--})-->
+<!--</script>-->
+</body>
+</html>

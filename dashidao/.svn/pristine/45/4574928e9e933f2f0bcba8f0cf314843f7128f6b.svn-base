@@ -1,0 +1,273 @@
+<%--
+//	使用说明
+//	1,必须为post请求方式
+// 	var strURL="action=select&table=stu&field=name,age&values=c,5&page_size=2&page_no=2";
+//	$.ajax({
+//	type:"POST",
+//	cache: false,
+//	async:false,
+//	url:"ajax.jsp",
+//	dataType:"html",
+//	data:strURL,
+//	error:function(){alert("数据错误，操作被取消！");},
+//	success:function(data)
+//	{
+//	    //if(data=="Error"){alert("系统错误，操作被取消！");return;}
+//         alert(data);
+//	}
+//	});
+//	2,不允许物理删除数据,故不提供 delete方法.
+//测试
+//1，用sqlyog或者navicat执行项目下面的sql语句
+//	SET FOREIGN_KEY_CHECKS=0;
+//	-- ----------------------------
+//			-- Table structure for stu
+//		-- ----------------------------
+//	DROP TABLE IF EXISTS `stu`;
+//	CREATE TABLE `stu` (
+//	`id` int(255) NOT NULL AUTO_INCREMENT,
+//	`name` varchar(255) NOT NULL,
+//	`age` int(200) NOT NULL,
+//	PRIMARY KEY (`id`)
+//	) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=gbk;
+//	-- ----------------------------
+//	-- Records of stu
+//	-- ----------------------------
+//	INSERT INTO `stu` VALUES ('1', 'f', '5');
+//	INSERT INTO `stu` VALUES ('2', 'c', '5');
+//	INSERT INTO `stu` VALUES ('3', 'c', '5');
+//	INSERT INTO `stu` VALUES ('4', 'c', '5');
+//	INSERT INTO `stu` VALUES ('5', '\"r\"', '5');
+//	INSERT INTO `stu` VALUES ('6', '\"r\"', '5');
+//2,将项目部署到tomcat中
+//3,将源码中的POST给成GET
+//4,在浏览器中可调试
+//示例：
+//1,http://localhost:8080/test2/ajax.jsp?action=update&table=stu&field=id,name,age&values=1,c,5
+//2,http://localhost:8080/test2/ajax.jsp?action=insert&table=stu&field=name,age&values=c,5
+//3,http://localhost:8080/test2/ajax.jsp?action=select&table=stu&field=name,age&values=c,5
+//4,http://localhost:8080/test2/ajax.jsp?action=select&table=stu&field=name,age&values=c,5&page_size=2&page_no=2
+//!5,单挑查询 http://localhost:8080/test2/ajax.jsp?action=select&table=stu&field=id&values=1;
+//源码：--%>
+
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page import="com.mysql.jdbc.Driver" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="org.json.simple.JSONArray" %>
+<%@ page import="org.json.simple.JSONObject" %>
+<%@ page import="java.io.*" %>
+<%@ page import="com.dashidao.foundation.domain.User" %>
+<%@ page import="java.net.URLEncoder" %>
+<%
+User user=(User)request.getSession().getAttribute("user");
+String moudleId = request.getParameter("moudle_id");
+System.out.println(moudleId);
+String method=request.getMethod().toUpperCase();
+Boolean bool=true;
+
+//如果需要get就写“GET”,需要post就写“POST”.
+if(null==method||"".equals(method)||!method.equals("POST")){
+	bool=false;
+}
+//是否登录
+if(user == null){
+    bool=false;
+}
+//表明是必须传的字段
+if(request.getParameter("table") == null){
+	bool=false;
+}
+//System.out.println("method:"+method+"user:"+user+"table:"+request.getParameter("table")+"1111111111111111");
+//加密的字符串如何处理,我还没有想好.
+String fields=request.getParameter("field");
+String values=request.getParameter("values");
+request.setCharacterEncoding("utf-8");
+response.setContentType("text/html;charset=utf-8"); 
+String driverName="com.mysql.jdbc.Driver";	//加载驱动程序
+String url="jdbc:mysql://192.168.1.5:3306/dashidao"; //test为数据库名称
+String dbuser="root"; //数据库账户
+String dbpwd="root"; //数据库密码
+Class.forName("com.mysql.jdbc.Driver");
+Connection conn=DriverManager.getConnection(url, dbuser, dbpwd);
+PreparedStatement pst=null;//conn.prepareStatement(sql);
+ResultSet rs;
+int i=0;
+String action=request.getParameter("action");
+int ac=0;
+if(action!=null&&action.equals("update")){ac=1;}
+if(action!=null&&action.equals("insert")){ac=2;}
+if(action!=null&&action.equals("select")){ac=3;}
+System.out.println(ac);
+PrintWriter out1=response.getWriter();
+JSONArray json = new JSONArray();
+JSONObject jo = new JSONObject();
+JSONObject jsonAll = new JSONObject();
+String sql="";
+
+System.out.println(bool);
+if(!bool){
+	jsonAll.put("state", "error");
+	out1.println(jsonAll);
+}else {
+	if(conn != null){
+		jsonAll.put("code",1);
+		jsonAll.put("msg","操作成功");
+	}else{
+		jsonAll.put("code",0);
+		jsonAll.put("msg","操作失败");
+	}
+	switch (ac) {
+		case 1:
+//		{ "code": 0, "msg": "操作成功",
+//				"data": 1 }
+			sql = "update " + request.getParameter("table") + " set ";
+			System.out.println(sql);
+			String set="";
+			System.out.println(fields.split(",").length);
+			System.out.println(values);
+			System.out.println(values.split("\\|").length);
+			for (int i1 = 0; i1 < fields.split(",").length; i1++) {
+				if (i1 != 0) {
+					set += ",";
+				}
+				set += fields.split(",")[i1] + "='" + values.split("\\|")[i1] + "'";
+			}
+			sql+=set;
+			System.out.println(set);
+			sql += " where " + fields.split(",")[0] + "=" + values.split("\\|")[0];
+			System.out.println(sql);
+			pst = conn.prepareStatement(sql);
+			i = pst.executeUpdate();
+			jsonAll.put("data",i);
+			out1.println(jsonAll);
+			break;
+		case 2:
+
+			sql = " insert into " + request.getParameter("table") + "( ";
+			for (int i1 = 0; i1 < fields.split(",").length; i1++) {
+				if (i1 != 0) {
+					sql += ",";
+				}
+				sql += fields.split(",")[i1];
+			}
+			for (int i1 = 0; i1 < values.split(",").length; i1++) {
+				if (i1 == 0) {
+					sql += ")values(";
+				}
+				if (i1 != 0) {
+					sql += ",";
+				}
+				sql += "'" + values.split(",")[i1] + "'";
+			}
+			sql += ")";
+			System.out.println(sql);
+			pst = conn.prepareStatement(sql);
+			i = pst.executeUpdate();
+			jsonAll.put("data",i);
+			out1.println(jsonAll);
+			break;
+		case 3:
+			Boolean bool2=true;
+			sql = "SELECT * FROM " + request.getParameter("table") + " where ";
+			for (int i1 = 0; i1 < fields.split(",").length; i1++) {
+				if (i1 != 0) {
+					sql += " and ";
+				}
+				sql += fields.split(",")[i1] + "='" + values.split(",")[i1] + "'";
+			}
+			//判断要不要分页
+			if (request.getParameter("page_size") != null && request.getParameter("page_no") != null) {
+				for (int i3 = 0; i3 < request.getParameter("page_size").length(); i3++) {
+					Character c = request.getParameter("page_size").charAt(i3);
+					if (!Character.isDigit(c)) {
+						bool2 = false;
+					}
+
+				}
+				for (int i3 = 0; i3 < request.getParameter("page_no").length(); i3++) {
+					Character c = request.getParameter("page_no").charAt(i3);
+					if (!Character.isDigit(c)) {
+						bool2 = false;
+					}
+
+				}
+			}else{
+			    bool = false;
+			}
+
+			System.out.println(sql);
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			int total=0;
+			while(rs.next()){total++;}
+			System.out.println(total);
+			rs.close();
+			pst.close();
+			conn.close();
+			conn=DriverManager.getConnection(url, dbuser, dbpwd);
+
+			//分页
+			 if(bool && bool2) {
+				sql += "order by id desc limit " + (Integer.parseInt(request.getParameter("page_no")) - 1) * Integer.parseInt(request.getParameter("page_size")) + "," + request.getParameter("page_size");
+			}
+			System.out.println(sql);
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			ResultSetMetaData rsmd = rs.getMetaData();
+			System.out.println(rs.wasNull());
+			JSONObject jo2 = new JSONObject();
+			while (rs.next()) {
+				System.out.println("****************");
+				jo2 = new JSONObject();
+				for (int i2 = 0; i2 < rsmd.getColumnCount(); i2++) {
+					String columnLable = rsmd.getColumnLabel(i2 + 1);
+
+					if(columnLable.indexOf("create_date") != -1){
+						jo2.put(columnLable, rs.getObject(i2 + 1).toString().substring(0,16));
+					}else{
+						jo2.put(columnLable, rs.getObject(i2 + 1));
+					}
+					System.out.println(columnLable + ":" + rs.getObject(i2 + 1));
+				}
+				json.add(jo2);
+			}
+
+//		{ "code": 0, "msg": "操作成功",
+//				"data": { "total": 9, "per_page": "10", "current_page": 1, "last_page": 1,
+//					"data":[ { "id": 16, "name": "11111111", "category_id": 2}] } }
+			jo.put("total",total);
+			System.out.println(jo);
+			String pageSize = "";
+			String pageNo = "";
+			if(request.getParameter("page_size") == null){
+				pageSize="10";
+			}else{
+			    pageSize=request.getParameter("page_size");
+			}
+			if(request.getParameter("page_no") == null){
+				pageNo="1";
+			}else{
+				pageNo=request.getParameter("page_no");
+			}
+			System.out.println(json.size());
+
+			System.out.println(Integer.parseInt(pageSize));
+			System.out.println(Integer.parseInt(pageNo));
+			System.out.println((int)Math.ceil(new Double(json.size())/Integer.parseInt(pageSize)));
+			jo.put("per_page",Integer.parseInt(pageSize));
+			jo.put("current_page",Integer.parseInt(pageNo));
+			jo.put("last_page",(int)Math.ceil(new Double(total)/Integer.parseInt(pageSize)));
+			jo.put("data",json);
+			jsonAll.put("data",jo);
+			out1.println(jsonAll);
+			System.out.println(jsonAll.toJSONString());
+			rs.close();
+			pst.close();
+			conn.close();
+			break;
+	}
+}
+// 转码:   String(request.getParameter("name").getBytes("ISO8859_1"),"GB2312");
+
+%>

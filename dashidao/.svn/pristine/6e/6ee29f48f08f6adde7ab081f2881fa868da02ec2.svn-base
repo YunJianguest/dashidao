@@ -1,0 +1,17 @@
+package com.dashidao.foundation.service;
+
+import com.dashidao.foundation.domain.SysConfig;
+
+public abstract interface ISysConfigService {
+    public abstract boolean save(SysConfig paramSysConfig);
+
+    public abstract boolean delete(SysConfig paramSysConfig);
+
+    public abstract boolean update(SysConfig paramSysConfig);
+
+    public abstract SysConfig getSysConfig();
+}
+
+
+
+

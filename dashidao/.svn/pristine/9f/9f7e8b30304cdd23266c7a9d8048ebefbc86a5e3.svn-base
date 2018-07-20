@@ -1,0 +1,345 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>$!config.title - $!{config.poweredby}</title>
+<meta name="keywords" content="$!config.keywords" />
+<meta name="description" content="$!config.description" />
+<meta name="generator" content="dashidao 1.3" />
+<meta name="author" content="$!{config.meta_author}">
+<meta name="copyright" content="$!{config.copyRight}">
+
+<link href="$!webPath/resources/style/system/manage/black/template.css"  rel="stylesheet" type="text/css"/>
+<link href="$!webPath/resources/style/system/manage/black/nav.css"  rel="stylesheet" type="text/css"/>
+<link href="$!webPath/resources/style/system/manage/black/iconfont.css"  rel="stylesheet" type="text/css"/>
+<link href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  rel="stylesheet" type="text/css"/>
+<!-- 新增js -->
+<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+<script src="$!webPath/resources/js/nav.js"></script>
+<script src="$!webPath/resources/js/jquery.shop.base.js"></script>
+
+<script>
+
+jQuery(document).ready(function(){
+    pagestyle();
+	jQuery(".webmap a").click(function(){
+	    jQuery(".webmap_box").fadeIn('normal');
+	 });
+	jQuery(".close_map").click(function(){
+	    jQuery(".webmap_box").fadeOut('normal');
+	});
+	jQuery("a[id^=complex_]").click(function(){
+	  var suffix=jQuery(this).attr("suffix");
+	  if(jQuery("#"+suffix+"info").css("display")=="block"){
+	      jQuery("#"+suffix+"info").hide();
+		  jQuery("#"+suffix+"img").attr("src","$!webPath/resources/style/system/manage/blue/images/spread.jpg");
+	   }else{
+	      jQuery("#"+suffix+"info").show();
+		  jQuery("#"+suffix+"img").attr("src","$!webPath/resources/style/system/manage/blue/images/contract.jpg");	  
+	   }
+	});
+    jQuery("#cc").click(function(){
+        jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajax.jsp",
+            dataType:"json",
+            data:"action=select&table=stu&field=name,age&values=c,5&page_size=2&page_no=2&moudle_id=1",
+            error:function(){alert("数据错误，操作被取消！");},
+            success:function(data)
+            {
+                if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                alert(data.code);
+                alert(data.msg);
+            }
+        });
+
+    })
+    
+    getXiaoXiCount();
+    $("#xiaoXiNum").html(count);
+});
+
+
+	var count =0;
+	var userid = "${user.id}";
+	//获取消息总数
+	function getXiaoXiCount()
+	{
+		var sql ="SELECT COUNT(1)  AS xxNum FROM dashidao_chatting WHERE dashidao_chatting.`type`='0' AND dashidao_chatting.`user2_id`="+userid+" order by dashidao_chatting.addTime";
+        jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajaxuser.jsp",
+            dataType:"json",
+            data:"table=zb_spjc&dates=create_date&sql="+sql,
+            error:function(){alert("数据错误，操作被取消！");},
+            success:function(data)
+            {
+                if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                var message=data.data.data;
+                count = message[0]['xxNum'];
+            }
+        });
+	}
+
+
+</script>
+<script>
+	jQuery(document).ready(function(){
+		var sql="SELECT * FROM dashidao_top_advert WHERE deleteStatus=0 and addTime=(select max(addTime) from dashidao_top_advert)";
+        jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajaxuser.jsp",
+            dataType:"json",
+            data:"table=dashidao_top_advert&dates=addTime&sql="+sql,
+            error:function(){alert();},
+            success:function(data){
+                var message = data.data.data;
+                console.log(message);
+                var path = message[0]['path'];
+                var name = message[0]['name'];
+                var url = message[0]['url'];
+                var src = "$!webPath/"+path+"/"+name;
+                $("#adv").html("");
+                $("#adv").append("<img src='"+src+"' width='100%' height='50px' onclick='advert_url("+url+")'/>");
+            }
+        });
+	});
+	
+	function advert_url(url){
+		window.location.href=url;
+	}
+</script>
+<style type="text/css">
+			
+		</style>
+</head>
+
+
+
+
+<body scroll="yes" >
+<div class="main">
+  <div class="top">
+    <div class="login"> <a href="" target="_self">首页</a> 
+	    <a href="" target="_self">规则中心</a>
+	    <a href="" target="_self">帮助</a>
+	    <span class="touxiang"></span>$!{user.userName} &nbsp;&nbsp;
+	    <span class="xiaoxi" id="xiaoxitongzhi" onclick="openURL('url','$!webPath/admin/xiaoxitongzhi_list.htm','main_workspace','set_xiaoxitongzhi')"><span id="xiaoXiNum" class="sum">3</span></span>
+	    <a href="$!webPath/admin/logout.htm" target="_self">安全退出</a>|<a href="$!webPath/admin/admin_pws.htm" target="main_workspace">修改密码</a></div>
+    <div class="logo"></div>
+  </div>
+ 	<style type="text/css">
+			#adv img{width: 100%;border-bottom:3px solid #c3c3c3; font-size: 17px; background: #f7f7f7;height: 80px;background: repeat-x;}
+		</style>
+	
+		<div id="adv"><img src="$!webPath/img/details.jpg"/></div>
+	
+<script>
+	jQuery(document).ready(function(){
+		var sql="SELECT * FROM dashidao_top_advert WHERE deleteStatus=0 and addTime=(select max(addTime) from dashidao_top_advert)";
+        jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajaxuser.jsp",
+            dataType:"json",
+            data:"table=dashidao_navigation&dates=addTime&sql="+sql,
+            error:function(){},
+            success:function(data){
+                var message = data.data.data;
+                console.log(message);
+                var path = message[0]['path'];
+                var name = message[0]['name'];
+                var url = message[0]['url'];
+                var src = "$!webPath/"+path+"/"+name;
+                $("#adv").html("");
+                $("#adv").append("<img src='"+src+"' width='100%' height='120px' onclick='advert_url("+url+")'/>");
+            }
+        });
+	});
+	
+	function advert_url(url){
+		window.location.href=url;
+	}
+</script>
+  <div class="index" id="workspace">
+    <div class="left" >
+      <div class="lefttop"></div>
+      <div class="left_ul" style="background-color: #555;"><!-- 左侧菜单 -->
+      <div>
+        
+      </div>
+        <ul class="ulleft" id="common_operation">
+        <!-- 系统设置 -->
+    		<li class="nav-item">
+            <a href="javascript:;"><i class="iconfont">&#xe660;</i><span>&nbsp;系统设置</span><i class="my-icon nav-more"></i></a>
+            <ul class="nav-itemdown">
+                <!--li><a href="javascript:void(0);" id="cc"  >$!webPath<input type="hidden" value="cc" id="c"/></a></li-->
+				 <li><a href="javascript:void(0);" id="set_site_op_q" onclick="openURL('url','$!webPath/admin/set_site.htm','main_workspace','set_site_op_q')">站点设置</a></li>
+                <li><a href="javascript:void(0);" id="jcsz_admin" onclick="openURL('url','$!webPath/admin/jcsz_admin.htm','main_workspace','jcsz_admin')">基础设置</a></li>
+                <li><a href="javascript:void(0);" class="this" id="goods_class_op" onclick="openURL('url','$!webPath/admin/goods_class_list.htm','main_workspace','goods_class_op')">类目设置</a></li>
+         	 	<li><a id="arealist_op" href="javascript:void(0);" onclick="openURL('url','$!webPath/admin/area_list.htm','main_workspace','arealist_op')">地区设置</a></li>
+          		<li><a href="javascript:void(0);" id="advert_set_op" onclick="openURL('url','$!webPath/admin/advert_list.htm','main_workspace','advert_set_op')">广告设置</a></li>
+          		<!-- <li><a href="javascript:void(0);" id="hdsz_admin" onclick="openURL('url','$!webPath/admin/hdsz_admin.htm','main_workspace','hdsz_admin')">活动设置</a></li> -->
+				<li><a href="javascript:void(0);" class="this" id="operation_base_op" onclick="openURL('url','$!webPath/admin/operation_base_set.htm','main_workspace','operation_base_op')">活动设置</a> </li>
+         		<li><a href="javascript:void(0);" id="fpsz_admin" onclick="openURL('url','$!webPath/admin/fpsz_admin.htm','main_workspace','fpsz_admin')">分配设置</a></li>
+               <!--  <li><a href="javascript:void(0);" id="goods_type_op" onclick="openURL('url','$!webPath/admin/goods_type_list.htm','main_workspace','goods_type_op')">类型管理</a></li> -->
+                <!-- <li><a href="javascript:void(0);" id="goods_spec_op" onclick="openURL('url','$!webPath/admin/goods_spec_list.htm','main_workspace','goods_spec_op')">规格管理</a></li> -->
+           		<li><a href="javascript:void(0);" id="admin_list_op" onclick="openURL('url','$!webPath/admin/admin_list.htm','main_workspace','admin_list_op')">后台权限设置</a></li>
+           		<li><a href="javascript:void(0);" id="template_list_op" onclick="openURL('url','$!webPath/admin/template_list.htm','main_workspace','template_list_op')">消息模板设置</a></li>
+           		<li><a href="javascript:void(0);" id="wuliumuban_list_op" onclick="openURL('url','$!webPath/admin/wuliumuban_list.htm','main_workspace','wuliumuban_list_op')">运费模板设置</a></li>
+           		<!-- <li><a href="javascript:void(0);" id="trans_area_op" onclick="openURL('url','$!webPath/admin/trans_area_list.htm','main_workspace','trans_area_op')">运费模板设置</a></li> -->
+           		<li><a href="javascript:void(0);" id="ptskzhh" onclick="openURL('url','$!webPath/admin/ptskzhh.htm','main_workspace','ptskzhh')">平台收款账户</a></li>
+           		<li><a href="javascript:void(0);" id="zhifu_admin" onclick="openURL('url','$!webPath/admin/zhifu_admin.htm','main_workspace','zhifu_admin')">支付方式</a></li>
+           		<li><a href="javascript:void(0);" id="xbfwsz_admin" onclick="openURL('url','$!webPath/admin/xbfwsz_admin.htm','main_workspace','xbfwsz_admin')">消保服务设置</a></li>
+           		<li><a href="javascript:void(0);" id="admin_card" onclick="openURL('url','$!webPath/admin/shoppingcard.htm','main_workspace','shoppingcard')">购物卡设置</a></li>
+           		<li><a href="javascript:void(0);" id="admin_card" onclick="openURL('url','$!webPath/admin/top_advert.htm','main_workspace','top_advert')">顶部广告设置</a></li>
+           		
+            </ul>
+        </li>
+        	<li class="nav-item">
+            <a href="javascript:;"><i class="iconfont">&#xe615;</i><span>&nbsp;基础管理</span><i class="my-icon nav-more"></i></a>
+            <ul class="nav-itemdown">
+                <li><a href="javascript:void(0);" class="this" id="member_manage_op" onclick="openURL('url','$!webPath/admin/user_list.htm','main_workspace','member_manage_op')">会员</a></li>
+          		<li><a href="javascript:void(0);" id="yk_admin"  onclick="openURL('url','$!webPath/admin/yk_admin.htm','main_workspace','yk_admin')" >云客</a></li>
+         		<li><a href="javascript:void(0);" id="store_manage_op" onclick="openURL('url','$!webPath/admin/store_list.htm','main_workspace','store_manage_op')">商家</a></li>
+         		<li><a href="javascript:void(0);" id="zhandai_admin" onclick="openURL('url','$!webPath/admin/zhandai_admin.htm','main_workspace','zhandai_admin')">栈代</a></li>
+          		<li><a  href="javascript:void(0);" id="order_list_op_q" onclick="openURL('url','$!webPath/admin/order_list.htm','main_workspace','order_list_op_q')">订单</a></li>
+         	 	<li><a  href="javascript:void(0);" id="goods_manage_op_q" onclick="openURL('url','$!webPath/admin/goods_list.htm','main_workspace','goods_manage_op_q')">商品</a></li>
+            </ul>
+            </li>
+
+            
+            
+        <li class="nav-item">
+            <a href="javascript:;"><i class="iconfont">&#xe648;</i><span>&nbsp;客户服务</span><i class="my-icon nav-more"></i></a>
+            <ul class="nav-itemdown">
+
+                <li><a href="javascript:void(0);" id="predeposit_list_op" onclick="openURL('url','$!webPath/admin/predeposit_list.htm','main_workspace','predeposit_list_op')">预存款管理</a></li>
+                <li><a href="javascript:void(0);" id="predepositlog_list_op" onclick="openURL('url','$!webPath/admin/predepositlog_list.htm','main_workspace','predepositlog_list_op')">预存款明细</a></li>
+                <li><a href="javascript:void(0);" id="consult_manage_op" onclick="openURL('url','$!webPath/admin/consult_list.htm','main_workspace','consult_manage_op')">客户消息管理</a> </li>
+          		<li><a href="javascript:void(0);" id="set_order_confirm_op" onclick="openURL('url','$!webPath/admin/set_order_confirm.htm','main_workspace','set_order_confirm_op')">售后管理</a></li>
+          		<li><a href="javascript:void(0);" id="complaint_manage_op" onclick="openURL('url','$!webPath/admin/complaint_list.htm','main_workspace','complaint_manage_op')">投诉管理</a></li>
+          		<li><a href="javascript:void(0);" id="shensu_admin" onclick="openURL('url','$!webPath/admin/shensu_admin.htm','main_workspace','shensu_admin')">申诉管理</a></li>
+          		<li><a href="javascript:void(0);"  id="evaluate_manage_op" onclick="openURL('url','$!webPath/admin/evaluate_list.htm','main_workspace','evaluate_manage_op')">评价管理</a></li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a href="javascript:;"><i class="iconfont">&#xe691;</i><span>&nbsp;审核管理</span><i class="my-icon nav-more"></i></a>
+            <ul class="nav-itemdown">
+          		<li><a  href="javascript:void(0);" id="store_manage_op" onclick="openURL('url','$!webPath/admin/store_list.htm','main_workspace','store_manage_op')">商家入驻审核</a> </li>
+            	<li><a  href="javascript:void(0);" id="goods_brand_op" onclick="openURL('url','$!webPath/admin/goods_brand_list.htm','main_workspace','goods_brand_op')">商家品牌审核</a> </li>
+                <li><a href="javascript:void(0);" id="seller_activity_check" onclick="openURL('url','$!webPath/admin/seller_activity_check.htm','main_workspace','seller_activity_check')">商家活动审核</a></li>
+
+                <li><a href="javascript:void(0);" id="seller_adjust_admin" onclick="openURL('url','$!webPath/admin/seller_adjust_admin.htm','main_workspace','seller_adjust_admin')">商家调价审核</a></li>
+
+
+                <li><a href="javascript:void(0);" id="sell_consume_check" onclick="openURL('url','$!webPath/admin/sell_consume_check.htm','main_workspace','sell_consume_check')">商家消保审核</a></li>
+            	<li><a href="javascript:void(0);" id="ontinue_check" onclick="openURL('url','$!webPath/admin/continue_check.htm','main_workspace','continue_check')">续签合同审核</a></li>
+            	<li><a href="javascript:void(0);" id="quite_check" onclick="openURL('url','$!webPath/admin/quite_check.htm','main_workspace','quite_check')">退出审核</a></li>
+            	<!-- <li><a href="javascript:void(0);" id="member_cash_check" onclick="openURL('url','$!webPath/admin/member_cash_check.htm','main_workspace','member_cash_check')">会员提现审核</a></li> -->
+            	<li><a href="javascript:void(0);" id="charges_drawback_check" onclick="openURL('url','$!webPath/admin/charges_drawback_check.htm','main_workspace','charges_drawback_check')">佣金退税审核</a></li>
+            	<li><a href="javascript:void(0);" id="end_check" onclick="openURL('url','$!webPath/admin/end_check.htm','main_workspace','end_check')">歇业审核</a></li>
+            	<li><a href="javascript:void(0);" id="certification_check" onclick="openURL('url','$!webPath/admin/certification_check.htm','main_workspace','certification_check')">实名认证审核</a></li>
+            	
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a href="javascript:;"><i class="iconfont">&#xe615;</i><span>&nbsp;运营管理</span><i class="my-icon nav-more"></i></a>
+            <ul class="nav-itemdown">
+			 <li><a href="javascript:void(0);" id="group_op" onclick="openURL('url','$!webPath/admin/group_list.htm','main_workspace','group_op')">拼团</a></li>
+		   <li><a href="javascript:void(0);" id="ztc_set" onclick="openURL('url','$!webPath/admin/ztc_set.htm','main_workspace','ztc_set')">竞价直通车</a></li>
+          <li><a href="javascript:void(0);" id="coupon_set_op" onclick="openURL('url','$!webPath/admin/coupon_list.htm','main_workspace','coupon_set_op')">优惠券管理</a></li>
+              <li><a href="javascript:void(0);" id="activity_set_op" onclick="openURL('url','$!webPath/admin/activity_list.htm','main_workspace','activity_set_op')">秒杀</a></li>
+              <li><a href="javascript:void(0);" id="bargain_set_op" onclick="openURL('url','$!webPath/admin/set_bargain.htm','main_workspace','bargain_set_op')">打折</a></li>
+              <li><a href="javascript:void(0);" id="delivery_set_op" onclick="openURL('url','$!webPath/admin/set_delivery.htm','main_workspace','delivery_set_op')">买就送</a></li>
+              <li><a href="javascript:void(0);" id="combin_set_op" onclick="openURL('url','$!webPath/admin/set_combin.htm','main_workspace','combin_set_op')">组合销售</a></li>
+                <li><a href="javascript:void(0);" id="clean_up_op" onclick="openURL('url','$!webPath/admin/clean_up.htm','main_workspace','clean_up_op')">清仓活动</a></li>
+          		<!-- <li><a href="javascript:void(0);" id="yxhd_h" onclick="openURL('url','$!webPath/admin/yxhd_h.htm','main_workspace','yxhd_h')">营销活动</a> </li>
+          		<li><a  href="javascript:void(0);" id="yxgj_h" onclick="openURL('url','$!webPath/admin/yxgj_h.htm','main_workspace','yxgj_h')">营销工具</a></li>
+          		<li><a href="javascript:void(0);" id="xcpgl_h" onclick="openURL('url','$!webPath/admin/xcpgl_h.htm','main_workspace','xcpgl_h')">宣传品管理</a></li> -->
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a href="javascript:;"><i class="iconfont">&#xe63f;</i><span>&nbsp;资金管理</span><i class="my-icon nav-more"></i></a>
+            <ul class="nav-itemdown">
+          		<li><a href="javascript:void(0);" id="zjlrlc" onclick="openURL('url','$!webPath/admin/zjlrlc.htm','main_workspace','zjlrlc')">资金流入流出</a> </li>
+          		<li><a href="javascript:void(0);" id="ptsf" onclick="openURL('url','$!webPath/admin/ptsf.htm','main_workspace','ptsf')">平台收费</a> </li>
+          		<li><a href="javascript:void(0);" id="ykgl" onclick="openURL('url','$!webPath/admin/ykgl.htm','main_workspace','ykgl')">盈亏管理</a></li>
+          		<li><a href="javascript:void(0);" id="dzzx" onclick="openURL('url','$!webPath/admin/dzzx.htm','main_workspace','dzzx')">对账中心</a></li>
+          		<li><a href="javascript:void(0);" id="yjts" onclick="openURL('url','$!webPath/admin/yjts.htm','main_workspace','yjts')">佣金退税</a></li>
+			 </ul>         
+          </li>
+
+
+        <li class="nav-item">
+            <a href="javascript:;"><i class="iconfont">&#xe632;</i><span>&nbsp;统计管理</span><i class="my-icon nav-more"></i></a>
+            <ul class="nav-itemdown">
+          		<li><a href="javascript:void(0);" id="hy" onclick="openURL('url','$!webPath/admin/hy.htm','main_workspace','hy')">会员</a> </li>
+          		<li><a  href="javascript:void(0);" id="yk" onclick="openURL('url','$!webPath/admin/yk.htm','main_workspace','yk')">云客</a> </li>
+                <li><a href="javascript:void(0);" id="sj" onclick="openURL('url','$!webPath/admin/sj.htm','main_workspace','sj')">商家</a></li>
+          		<li><a href="javascript:void(0);" id="zhandai" onclick="openURL('url','$!webPath/admin/zhandai.htm','main_workspace','zhandai')">栈代</a></li>
+          		<li><a href="javascript:void(0);" id="order" onclick="openURL('url','$!webPath/admin/order.htm','main_workspace','order')">订单</a></li>
+          		<li><a href="javascript:void(0);" id="product" onclick="openURL('url','$!webPath/admin/product.htm','main_workspace','product')"> 商品</a></li>
+         		<li><a href="javascript:void(0);" id="yingxiao" onclick="openURL('url','$!webPath/admin/yingxiao.htm','main_workspace','yingxiao')">营销活动</a></li>
+           		<li><a href="javascript:void(0);" id="shouhou" onclick="openURL('url','$!webPath/admin/shouhou.htm','main_workspace','shouhou')">售后服务</a></li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a href="javascript:;"><i class="iconfont">&#xe60b;</i><span>&nbsp;交易警察</span><i class="my-icon nav-more"></i></a>
+            <ul class="nav-itemdown">
+          		<li><a href="javascript:void(0);" id="spjc" onclick="openURL('url','$!webPath/admin/spjc.htm','main_workspace','spjc')">商品警察</a> </li>
+          		<li><a href="javascript:void(0);" id="jgjd" onclick="openURL('url','$!webPath/admin/jgjd.htm','main_workspace','jgjd')">价格监督</a></li>
+          		<li><a href="javascript:void(0);" id="fwjd" onclick="openURL('url','$!webPath/admin/fwjd.htm','main_workspace','fwjd')">法务监督</a></li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a href="javascript:;"><i class="iconfont">&#xe694;</i><span>&nbsp;资料管理</span><i class="my-icon nav-more"></i></a>
+            <ul class="nav-itemdown">
+          		<li><a href="javascript:void(0);" class="this" id="articleClass_op" onclick="openURL('url','$!webPath/admin/articleclass_list.htm','main_workspace','articleClass_op');">分类管理</a> </li>
+          		<li><a href="javascript:void(0);" id="article_op" onclick="openURL('url','$!webPath/admin/article_list.htm','main_workspace','article_op');">文章管理</a></li>
+            </ul>
+        </li>
+
+        <li class="nav-item">
+            <a href="javascript:;"><i class="iconfont">&#xe608;</i><span>&nbsp;平台管理</span><i class="my-icon nav-more"></i></a>
+            <ul class="nav-itemdown">
+			
+          		<li><a href="javascript:void(0);" class="this" id="rzgl" onclick="openURL('url','$!webPath/admin/rzgl.htm','main_workspace','rzgl');">日志管理</a></li>
+          		<li><a href="javascript:void(0);" class="this" id="zbywshh" onclick="openURL('url','$!webPath/admin/zbywshh.htm','main_workspace','zbywshh');">总部业务审核</a></li>
+                <li><a href="javascript:void(0);" id="database_add_op" onclick="openURL('url','$!webPath/admin/database_add.htm','main_workspace','database_add_op')">数据库管理</a></li>
+            </ul>
+        </li>
+        
+        
+        </ul>
+
+      </div>
+    </div>
+    <div class="content">
+    <div class="navbar"><span class="webmap"></span>
+      
+     
+      </div>
+      <iframe id="main_workspace" name="main_workspace" src="$!webPath/admin/welcome.htm" style="overflow:auto;height:550px" frameborder="0" width="100%" height="100%" scrolling="yes" onload="window.parent"></iframe>
+    </div>
+  </div>
+</div>
+
+ </span> 
+  </div>
+</div>
+$!uc_login_js
+
+</body>
+
+
+
+
+</html>

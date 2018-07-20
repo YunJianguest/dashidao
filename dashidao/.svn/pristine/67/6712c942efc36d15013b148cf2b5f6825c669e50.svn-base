@@ -1,0 +1,416 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>销售明细一览表 - $!{config.poweredby}</title>
+	<meta name="keywords" content="$!config.keywords" />
+	<meta name="description" content="$!config.description" />
+	<meta name="generator" content="$!{config.meta_generator}" />
+	<meta name="author" content="$!{config.meta_author}">
+	<meta name="copyright" content="$!{config.copyRight}">
+	#if($!config.website_ico)
+	<link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+	#end
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/zxx.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+	<link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+	<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+	<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+	<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+	<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+	<script>
+        jQuery(document).ready(function(){
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+	</script>
+</head>
+<body>
+<div class="main"> $!httpInclude.include("/poster/nav_head.htm")
+	<div class="user_center">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+			<tr> $!httpInclude.include("/poster/nav.htm?op=order")
+				<td id="centerbg" valign="top" width="80%">
+					<div class="buyer_position" style="width: 90%; background: #fff; margin-left: 5%; "  >
+						<div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代中心</a> > <span>销售一览表</span></div>
+					</div>
+
+					<div class="xiaoshou-box" >
+						<div class="xiaoshou-top"><p><i class="iconfont icon-information"></i>&nbsp;您的海参一号销售突破 10000 件。</p></div>
+						<!--<div class="xiaoshou-top2">-->
+							<!--<div class="xiaoshou-t1">-->
+								<!--<div class="xiaoshou-tu"><i class="iconfont icon-search"></i></div><input type="text" placeholder="韩版" />-->
+
+							<!--</div>-->
+						<!--</div>-->
+						<div class="ht-top"style=" width: 90%; margin-left: 5%;" >
+							<div class="ht-box" >
+								<div class="ht-tu">
+									<i class="iconfont icon-search"></i>
+									<input type="text" placeholder="韩版" style="width: 90%;" />
+								</div>
+
+							</div>
+						</div>
+
+
+						<div class="xiaoshou-mid">
+							<div class="xiaoshou-mid1"><p><span></span>销售明细</p></div>
+							<style type="text/css" >
+								.xiaoshou-mid2 ul li{ width: 20%; float: left; text-align: center;   }
+								.xiaoshou-mid2 ul li span{ display: block; width: 90%; text-align:right; padding-right: 10%; }
+								.xiaoshou-mid2 ul li i{ float: right; }
+							</style>
+							<div class="xiaoshou-mid2" style=" width: 20%;">
+								<ul>
+									<li>导出:</li>
+									<li>
+										<i class="iconfont icon-pdf"></i>
+										<span>txt</span>
+									</li>
+									<li>
+										<i class="iconfont icon-exl"></i>
+										<span>xls</span>
+									</li>
+									<li>
+										<i class="iconfont icon-form"></i>
+										<span>doc</span>
+									</li>
+								</ul>
+							</div>
+
+
+
+						</div>
+						<div class="xiaoshou-med">
+							<div class="xiaoshou-med1">
+								<ul style="100%">
+									<li style="width:6%;">行号</li>
+									<li style="width:10%;">商品编号</li>
+									<li style="width:15%;">商品名称</li>
+									<li style="width:6%;">订单类别</li>
+									<li style="width:6%;">订单号</li>
+									<li style="width:30%;">销售时间<br><i class="iconfont icon-move"></i></li>
+									<li style="width:6%;">单价<br><i class="iconfont icon-move"></i></li>
+									<li style="width:6%;">销量<br><i class="iconfont icon-move"></i></li>
+									<li style="width:9%;">销售额<br><i class="iconfont icon-move"></i></li>
+								</ul>
+							</div>
+							<div class="xiaoshou-med2">
+								<ul>
+									<li style="width:6%;">01</li>
+									<li style="width: 10%;">230018</li>
+									<li style="width: 15%;">韩版修身T恤</li>
+									<li style="width: 6%;">-</li>
+									<li style="width: 6%;">-</li>
+									<li style="width: 30%;">-</li>
+									<li style="width: 6%;">-</li>
+									<li style="width: 6%;color: #108EE9;font-weight: bold;">101</li>
+									<li style="width: 9%;color: #108EE9;font-weight: bold;">9100</li>
+									<li style="width: 4%;"><i class="iconfont icon-moreunfold"></i></li>
+								</ul>
+								<ul>
+									<li style="width:6%;">&nbsp;</li>
+									<li style="width: 10%;"> &nbsp;</li>
+									<li style="width: 15%;"> &nbsp;</li>
+									<li style="width: 6%;">会员</li>
+									<li style="width: 6%;">12303044</li>
+									<li style="width: 30%;">2017-1-1 20:30:00</li>
+									<li style="width: 6%;">100</li>
+									<li style="width: 6%;">1</li>
+									<li style="width: 9%;">100</li>
+									<li style="width: 4%;">&nbsp;</li>
+								</ul>
+								<ul>
+									<li style="width:6%;">&nbsp;</li>
+									<li style="width: 10%;"> &nbsp;</li>
+									<li style="width: 15%;"> &nbsp;</li>
+									<li style="width: 6%;">栈代</li>
+									<li style="width: 6%;">12303044</li>
+									<li style="width: 30%;">2017-1-1 20:30:00</li>
+									<li style="width: 6%;">90</li>
+									<li style="width: 6%;">100</li>
+									<li style="width: 9%;">9000</li>
+									<li style="width: 4%;">&nbsp;</li>
+								</ul>
+							</div>
+
+							<div class="xiaoshou-med3">
+								<ul>
+									<li style="width:6%;">01</li>
+									<li style="width: 10%;">230018</li>
+									<li style="width: 15%;">韩版修身T恤</li>
+									<li style="width: 6%;">-</li>
+									<li style="width: 6%;">-</li>
+									<li style="width: 30%;">-</li>
+									<li style="width: 6%;">-</li>
+									<li style="width: 6%;color: #108EE9;font-weight: bold;">101</li>
+									<li style="width: 9%;color: #108EE9;font-weight: bold;">9100</li>
+									<li style="width: 4%;"><i class="iconfont icon-moreunfold"></i></li>
+								</ul>
+								<ul>
+									<li style="width:6%;">&nbsp;</li>
+									<li style="width: 10%;"> &nbsp;</li>
+									<li style="width: 15%;"> &nbsp;</li>
+									<li style="width: 6%;">会员</li>
+									<li style="width: 6%;">12303044</li>
+									<li style="width: 30%;">2017-1-1 20:30:00</li>
+									<li style="width: 6%;">100</li>
+									<li style="width: 6%;">1</li>
+									<li style="width: 9%;">100</li>
+									<li style="width: 4%;">&nbsp;</li>
+								</ul>
+								<ul>
+									<li style="width:6%;">&nbsp;</li>
+									<li style="width: 10%;"> &nbsp;</li>
+									<li style="width: 15%;"> &nbsp;</li>
+									<li style="width: 6%;">栈代</li>
+									<li style="width: 6%;">12303044</li>
+									<li style="width: 30%;">2017-1-1 20:30:00</li>
+									<li style="width: 6%;">90</li>
+									<li style="width: 6%;">100</li>
+									<li style="width: 9%;">9000</li>
+									<li style="width: 4%;">&nbsp;</li>
+								</ul>
+								<ul>
+									<li style="width:6%;">&nbsp;</li>
+									<li style="width: 10%;"> &nbsp;</li>
+									<li style="width: 15%;"> &nbsp;</li>
+									<li style="width: 6%;">会员</li>
+									<li style="width: 6%;">12303044</li>
+									<li style="width: 30%;">2017-1-1 20:30:00</li>
+									<li style="width: 6%;">100</li>
+									<li style="width: 6%;">1</li>
+									<li style="width: 9%;">100</li>
+									<li style="width: 4%;">&nbsp;</li>
+								</ul>
+								<ul>
+									<li style="width:6%;">&nbsp;</li>
+									<li style="width: 10%;"> &nbsp;</li>
+									<li style="width: 15%;"> &nbsp;</li>
+									<li style="width: 6%;">栈代</li>
+									<li style="width: 6%;">12303044</li>
+									<li style="width: 30%;">2017-1-1 20:30:00</li>
+									<li style="width: 6%;">90</li>
+									<li style="width: 6%;">100</li>
+									<li style="width: 9%;">9000</li>
+									<li style="width: 4%;">&nbsp;</li>
+								</ul>
+							</div>
+							<div class="xiaoshou-med2">
+								<ul>
+									<li style="width:6%;">01</li>
+									<li style="width: 10%;">230018</li>
+									<li style="width: 15%;">韩版修身T恤</li>
+									<li style="width: 6%;">-</li>
+									<li style="width: 6%;">-</li>
+									<li style="width: 30%;">-</li>
+									<li style="width: 6%;">-</li>
+									<li style="width: 6%;color: #108EE9;font-weight: bold;">101</li>
+									<li style="width: 9%;color: #108EE9;font-weight: bold;">9100</li>
+									<li style="width: 4%;"><i class="iconfont icon-moreunfold"></i></li>
+								</ul>
+								<ul>
+									<li style="width:6%;">&nbsp;</li>
+									<li style="width: 10%;"> &nbsp;</li>
+									<li style="width: 15%;"> &nbsp;</li>
+									<li style="width: 6%;">会员</li>
+									<li style="width: 6%;">12303044</li>
+									<li style="width: 30%;">2017-1-1 20:30:00</li>
+									<li style="width: 6%;">100</li>
+									<li style="width: 6%;">1</li>
+									<li style="width: 9%;">100</li>
+									<li style="width: 4%;">&nbsp;</li>
+								</ul>
+								<ul>
+									<li style="width:6%;">&nbsp;</li>
+									<li style="width: 10%;"> &nbsp;</li>
+									<li style="width: 15%;"> &nbsp;</li>
+									<li style="width: 6%;">栈代</li>
+									<li style="width: 6%;">12303044</li>
+									<li style="width: 30%;">2017-1-1 20:30:00</li>
+									<li style="width: 6%;">90</li>
+									<li style="width: 6%;">100</li>
+									<li style="width: 9%;">9000</li>
+									<li style="width: 4%;">&nbsp;</li>
+								</ul>
+							</div>
+
+							<div class="xiaoshou-med3">
+								<ul>
+									<li style="width:6%;">01</li>
+									<li style="width: 10%;">230018</li>
+									<li style="width: 15%;">韩版修身T恤</li>
+									<li style="width: 6%;">-</li>
+									<li style="width: 6%;">-</li>
+									<li style="width: 30%;">-</li>
+									<li style="width: 6%;">-</li>
+									<li style="width: 6%;color: #108EE9;font-weight: bold;">101</li>
+									<li style="width: 9%;color: #108EE9;font-weight: bold;">9100</li>
+									<li style="width: 4%;"><i class="iconfont icon-moreunfold"></i></li>
+								</ul>
+								<ul>
+									<li style="width:6%;">&nbsp;</li>
+									<li style="width: 10%;"> &nbsp;</li>
+									<li style="width: 15%;"> &nbsp;</li>
+									<li style="width: 6%;">会员</li>
+									<li style="width: 6%;">12303044</li>
+									<li style="width: 30%;">2017-1-1 20:30:00</li>
+									<li style="width: 6%;">100</li>
+									<li style="width: 6%;">1</li>
+									<li style="width: 9%;">100</li>
+									<li style="width: 4%;">&nbsp;</li>
+								</ul>
+								<ul>
+									<li style="width:6%;">&nbsp;</li>
+									<li style="width: 10%;"> &nbsp;</li>
+									<li style="width: 15%;"> &nbsp;</li>
+									<li style="width: 6%;">栈代</li>
+									<li style="width: 6%;">12303044</li>
+									<li style="width: 30%;">2017-1-1 20:30:00</li>
+									<li style="width: 6%;">90</li>
+									<li style="width: 6%;">100</li>
+									<li style="width: 9%;">9000</li>
+									<li style="width: 4%;">&nbsp;</li>
+								</ul>
+								<ul>
+									<li style="width:6%;">&nbsp;</li>
+									<li style="width: 10%;"> &nbsp;</li>
+									<li style="width: 15%;"> &nbsp;</li>
+									<li style="width: 6%;">会员</li>
+									<li style="width: 6%;">12303044</li>
+									<li style="width: 30%;">2017-1-1 20:30:00</li>
+									<li style="width: 6%;">100</li>
+									<li style="width: 6%;">1</li>
+									<li style="width: 9%;">100</li>
+									<li style="width: 4%;">&nbsp;</li>
+								</ul>
+								<ul>
+									<li style="width:6%;">&nbsp;</li>
+									<li style="width: 10%;"> &nbsp;</li>
+									<li style="width: 15%;"> &nbsp;</li>
+									<li style="width: 6%;">栈代</li>
+									<li style="width: 6%;">12303044</li>
+									<li style="width: 30%;">2017-1-1 20:30:00</li>
+									<li style="width: 6%;">90</li>
+									<li style="width: 6%;">100</li>
+									<li style="width: 9%;">9000</li>
+									<li style="width: 4%;">&nbsp;</li>
+								</ul>
+							</div>
+							<div class="xiaoshou-med3">
+								<ul>
+									<li style="width:6%;">01</li>
+									<li style="width: 10%;">230018</li>
+									<li style="width: 15%;">韩版修身T恤</li>
+									<li style="width: 6%;">-</li>
+									<li style="width: 6%;">-</li>
+									<li style="width: 30%;">-</li>
+									<li style="width: 6%;">-</li>
+									<li style="width: 6%;color: #108EE9;font-weight: bold;">101</li>
+									<li style="width: 9%;color: #108EE9;font-weight: bold;">9100</li>
+									<li style="width: 4%;"><i class="iconfont icon-moreunfold"></i></li>
+								</ul>
+								<ul>
+									<li style="width:6%;">&nbsp;</li>
+									<li style="width: 10%;"> &nbsp;</li>
+									<li style="width: 15%;"> &nbsp;</li>
+									<li style="width: 6%;">会员</li>
+									<li style="width: 6%;">12303044</li>
+									<li style="width: 30%;">2017-1-1 20:30:00</li>
+									<li style="width: 6%;">100</li>
+									<li style="width: 6%;">1</li>
+									<li style="width: 9%;">100</li>
+									<li style="width: 4%;">&nbsp;</li>
+								</ul>
+								<ul>
+									<li style="width:6%;">&nbsp;</li>
+									<li style="width: 10%;"> &nbsp;</li>
+									<li style="width: 15%;"> &nbsp;</li>
+									<li style="width: 6%;">栈代</li>
+									<li style="width: 6%;">12303044</li>
+									<li style="width: 30%;">2017-1-1 20:30:00</li>
+									<li style="width: 6%;">90</li>
+									<li style="width: 6%;">100</li>
+									<li style="width: 9%;">9000</li>
+									<li style="width: 4%;">&nbsp;</li>
+								</ul>
+								<ul>
+									<li style="width:6%;">&nbsp;</li>
+									<li style="width: 10%;"> &nbsp;</li>
+									<li style="width: 15%;"> &nbsp;</li>
+									<li style="width: 6%;">会员</li>
+									<li style="width: 6%;">12303044</li>
+									<li style="width: 30%;">2017-1-1 20:30:00</li>
+									<li style="width: 6%;">100</li>
+									<li style="width: 6%;">1</li>
+									<li style="width: 9%;">100</li>
+									<li style="width: 4%;">&nbsp;</li>
+								</ul>
+								<ul>
+									<li style="width:6%;">&nbsp;</li>
+									<li style="width: 10%;"> &nbsp;</li>
+									<li style="width: 15%;"> &nbsp;</li>
+									<li style="width: 6%;">栈代</li>
+									<li style="width: 6%;">12303044</li>
+									<li style="width: 30%;">2017-1-1 20:30:00</li>
+									<li style="width: 6%;">90</li>
+									<li style="width: 6%;">100</li>
+									<li style="width: 9%;">9000</li>
+									<li style="width: 4%;">&nbsp;</li>
+								</ul>
+							</div>
+							<div class="xx-bontom">
+								<div class="xx-bontom1">Total 85 items</div>
+								<div class="xx-bontom-ul">
+									<ul>
+										<li><i class="iconfont icon-back"></i></li>
+										<li>1</li>
+										<li>2</li>
+										<li>3</li>
+										<li>4</li>
+										<li>5</li>
+										<li>…</li>
+										<li>50</li>
+										<li><i class="iconfont icon-more"></i></li>
+									</ul>
+
+								</div>
+								<div class="xx-bontom2">10/page<i class="iconfont icon-moreunfold"></i></div>
+								<div class="xx-bontom3">Goto</div>
+								<div class="xx-bontom4"><input type="text" placeholder="8"></div>
+							</div>
+
+						</div>
+
+
+
+
+
+
+
+
+
+
+
+					</div>
+
+				</td>
+			</tr>
+		</table>
+	</div>
+	$!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>vip客户管理</title>
+    <!--必选css-->
+    <link rel="stylesheet" type="text/css" href="css/css.css" >
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+</head>
+<body style="background: #f2f6f9;" >
+<!--head-->
+<div class="myer ykmyer">
+    <p >
+        <a href="myedit.html"><i class="iconfont icon-back fl" ></i></a>客户管理
+    </p>
+</div>
+
+<!-- 我关注的-->
+<!--xueyuan-->
+<div class="order my" style="margin-top: 50px;" >
+    <p>访客管理<span><a href="add_product.html" class="fr"><i class="iconfont icon-more fr"  ></i></a></span></p>
+</div>
+<div class="order my" style="margin-top: 10px;" >
+    <p>VIP邀请码（已生效）<span ><button id='copy' onclick=copy()>复制</button><textarea id="text" >5259210</textarea><a href="add_product.html" class="fr"><i class="iconfont icon-more fr"  ></i></a></span></p>
+    <p>VIP列表<span>6人<a href="add_product.html" class="fr"><i class="iconfont icon-more fr"  ></i></a></span></p>
+</div>
+<script>
+    function copy(){
+        var text=document.getElementById('text');
+        var copy=document.getElementById('copy');
+        text.select();
+        document.execCommand("copy");
+        copy.focus();
+        alert("复制成功")
+    }
+</script>
+<!--bottom-->
+<div class="bmenu">
+    <ul>
+		<li>
+			<a href="index.html">
+				<i class="iconfont icon-shouye1" ></i>
+				<span>首页</span>
+			</a>
+		</li>
+		<li>
+			<a href="add_product.html">
+				<i class="iconfont icon-fenleiorguangchangorqita" ></i>
+				<span>分类</span>
+			</a>
+		</li>
+		<li>
+			<a href="store.html">
+				<i class="iconfont icon-wxbmingxingdianpu" ></i>
+				<span>U园</span>
+			</a>
+		</li>
+		<li>
+			<a href="recommends.html">
+				<i class="iconfont icon-zan1" ></i>
+				<span>推荐</span>
+			</a>
+		</li>
+		<li>
+			<a href="me.html">
+				<i class="iconfont icon-my1" ></i>
+				<span>我的</span>
+			</a>
+		</li>
+	</ul>
+</div>
+</body>
+</html>

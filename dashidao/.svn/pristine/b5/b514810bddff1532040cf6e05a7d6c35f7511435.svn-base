@@ -1,0 +1,324 @@
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>选择商品 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+
+
+
+
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div class="main">
+    <div class="user_center">
+        $!httpInclude.include("/poster/nav_head.htm")
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/poster/nav.htm?op=refund")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="buyer_position" style="width: 99%;  background: #fff;">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代中心</a> > <span>代理商品</span></div>
+                    </div>
+                    <div class="shopadminbox choicebox">
+                        <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                            <tbody>
+                            <tr class="returnthead" >
+                                <td width="100%" colspan="7" >
+                                    <form class="form-inline" style="float: right;">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入查询内容" style="width: 200px;" >
+                                        </div>
+                                        <button type="submit" class="btn btn-default" style="border: none;  background: #3fa4ed; color: #fff;   " >查询</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <tr id="thead" >
+                                <td width="5%"></td>
+                                <td width="30%">商品信息</td>
+                                <td width="15%">出厂价</td>
+                                <td width="15%">起订数量</td>
+                                <td width="15%">存储及保质期</td>
+                                <td width="15%">操作</td>
+                                <td width="5%"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!--1-->
+                        <table width="100%" class="returntable importbill" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                            <tr class="first" >
+                                <td width="33%" >
+                            <span class="fl">
+                                韩版修身T恤<br/>
+                                <img src="$!webPath/resources/style/system/manage/black/img/11.png"/>
+                            </span>
+                                    <span class="fr">
+                                商品编号: 230817<br/>
+                                尺码：S<br/>
+                                颜色：月白
+                            </span>
+                                </td>
+                                <td width="17%">30元/件</td>
+                                <td width="16%">100箱</td>
+                                <td width="18%">
+                                    干燥防潮<br/>
+                                    保质期：永久
+                                </td>
+                                <td width="18%">
+                                    <input type="checkbox" checked />
+                                </td>
+                            </tr>
+                            <tr class="first" >
+                                <td width="33%" >
+                            <span class="fl">
+                                韩版修身T恤<br/>
+                                <img src="$!webPath/resources/style/system/manage/black/img/11.png"/>
+                            </span>
+                                    <span class="fr">
+                                商品编号: 230817<br/>
+                                尺码：S<br/>
+                                颜色：月白
+                            </span>
+                                </td>
+                                <td width="17%">30元/件</td>
+                                <td width="16%">100箱</td>
+                                <td width="18%">
+                                    干燥防潮<br/>
+                                    保质期：永久
+                                </td>
+                                <td width="18%">
+                                    <input type="checkbox" checked />
+                                </td>
+                            </tr>
+                            <tr class="first" >
+                                <td width="33%" >
+                            <span class="fl">
+                                韩版修身T恤<br/>
+                                <img src="$!webPath/resources/style/system/manage/black/img/11.png"/>
+                            </span>
+                                    <span class="fr">
+                                商品编号: 230817<br/>
+                                尺码：S<br/>
+                                颜色：月白
+                            </span>
+                                </td>
+                                <td width="17%">30元/件</td>
+                                <td width="16%">100箱</td>
+                                <td width="18%">
+                                    干燥防潮<br/>
+                                    保质期：永久
+                                </td>
+                                <td width="18%">
+                                    <input type="checkbox" checked />
+                                </td>
+                            </tr>
+                            <tr class="first" >
+                                <td width="33%" >
+                            <span class="fl">
+                                韩版修身T恤<br/>
+                                <img src="$!webPath/resources/style/system/manage/black/img/11.png"/>
+                            </span>
+                                    <span class="fr">
+                                商品编号: 230817<br/>
+                                尺码：S<br/>
+                                颜色：月白
+                            </span>
+                                </td>
+                                <td width="17%">30元/件</td>
+                                <td width="16%">100箱</td>
+                                <td width="18%">
+                                    干燥防潮<br/>
+                                    保质期：永久
+                                </td>
+                                <td width="18%">
+                                    <input type="checkbox" checked />
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!-- PageNum -->
+                        <!--分页开始-->
+                        <div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+                        <script>
+                            layui.use(['laypage', 'layer'], function(){
+                                var laypage = layui.laypage
+                                    ,layer = layui.layer;
+
+                                //总页数低于页码总数
+                                laypage.render({
+                                    elem: 'demo0'
+                                    ,count: 50 //数据总数
+                                });
+
+                                //总页数大于页码总数
+                                laypage.render({
+                                    elem: 'demo1'
+                                    ,count: 70 //数据总数
+                                    ,jump: function(obj){
+                                        console.log(obj)
+                                    }
+                                });
+
+                                //自定义样式
+                                laypage.render({
+                                    elem: 'demo2'
+                                    ,count: 100
+                                    ,theme: '#1E9FFF'
+                                });
+                                laypage.render({
+                                    elem: 'demo2-1'
+                                    ,count: 100
+                                    ,theme: '#FF5722'
+                                });
+                                laypage.render({
+                                    elem: 'demo2-2'
+                                    ,count: 100
+                                    ,theme: '#FFB800'
+                                });
+
+                                //自定义首页、尾页、上一页、下一页文本
+                                laypage.render({
+                                    elem: 'demo3'
+                                    ,count: 100
+                                    ,first: '首页'
+                                    ,last: '尾页'
+                                    ,prev: '<em>←</em>'
+                                    ,next: '<em>→</em>'
+                                });
+
+                                //不显示首页尾页
+                                laypage.render({
+                                    elem: 'demo4'
+                                    ,count: 100
+                                    ,first: false
+                                    ,last: false
+                                });
+
+                                //开启HASH
+                                laypage.render({
+                                    elem: 'demo5'
+                                    ,count: 500
+                                    ,curr: location.hash.replace('#!fenye=', '') //获取hash值为fenye的当前页
+                                    ,hash: 'fenye' //自定义hash值
+                                });
+
+                                //只显示上一页、下一页
+                                laypage.render({
+                                    elem: 'demo6'
+                                    ,count: 50
+                                    ,layout: ['prev', 'next']
+                                    ,jump: function(obj, first){
+                                        if(!first){
+                                            layer.msg('第 '+ obj.curr +' 页');
+                                        }
+                                    }
+                                });
+
+                                //完整功能
+                                laypage.render({
+                                    elem: 'demo7'
+                                    ,count: 100
+                                    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                                    ,jump: function(obj){
+                                        console.log(obj)
+                                    }
+                                });
+
+                                //自定义排版
+                                laypage.render({
+                                    elem: 'demo8'
+                                    ,count: 1000
+                                    ,layout: ['limit', 'prev', 'page', 'next']
+                                });
+                                laypage.render({
+                                    elem: 'demo9'
+                                    ,count: 1000
+                                    ,layout: ['prev', 'next', 'page']
+                                });
+                                laypage.render({
+                                    elem: 'demo10'
+                                    ,count: 1000
+                                    ,layout: ['page', 'count']
+                                });
+
+                                //自定义每页条数的选择项
+                                laypage.render({
+                                    elem: 'demo11'
+                                    ,count: 1000
+                                    ,limit: 100
+                                    ,limits: [100, 300, 500]
+                                });
+
+                                //调用分页
+                                laypage.render({
+                                    elem: 'demo20'
+                                    ,count: data.length
+                                    ,jump: function(obj){
+                                        //模拟渲染
+                                        document.getElementById('biuuu_city_list').innerHTML = function(){
+                                            var arr = []
+                                                ,thisData = data.concat().splice(obj.curr*obj.limit - obj.limit, obj.limit);
+                                            layui.each(thisData, function(index, item){
+                                                arr.push('<li>'+ item +'</li>');
+                                            });
+                                            return arr.join('');
+                                        }();
+                                    }
+                                });
+
+                            });
+                        </script>
+                        <!--分页结束-->
+                    </div>
+
+    </td>
+    </tr>
+    </table>
+</div>
+$!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>
+
+</body>
+</html>

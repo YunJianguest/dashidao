@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>歇业请假申请</title>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/two_level.css">
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+	<link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+	<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+	<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+	<link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+	<script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+	<script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+	<!--bootstrap-->
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+	<script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+	
+    <script src="$!webPath/resources/js/jquery.validate.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+	
+</head>
+<style>.d1{border: 0;  background: white;}.d2{border: 0; text-align: center; background: white;}</style>
+	<script>
+		//初始化时间控件
+	    jQuery(document).ready(function(){
+	    	//获取参数
+	        var request = new Object();
+	        request = GetRequest();
+	    	 var id = request['id'];
+	    	 ajaxGetSqxq(id);
+	    });
+		
+	    //读取路径中带过来的参数
+	    function GetRequest() 
+	    {
+	        var url = location.search; //获取url中"?"符后的字串  
+	        var theRequest = new Object();
+	        if (url.indexOf("?") != -1) {
+	            var str = url.substr(1);
+	            strs = str.split("&");
+	            for (var i = 0; i < strs.length; i++) {
+	                theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+	            }
+	        }
+	        return theRequest;
+	    }
+		
+		function ajaxGetSqxq(id)
+		{
+			 var sql="SELECT * FROM zb_xieYeShenHe where id='"+id+"'";
+		        jQuery.ajax({
+		            type:"POST",
+		            cache: false,
+		            async:false,
+		            url:"/ajaxuser.jsp",
+		            dataType:"json",
+		            data:"table=zb_xieYeShenHe&dates=create_date,create_date1,create_date2&sql="+sql,
+		            error:function(){alert("数据错误，操作被取消！");},
+		            success:function(data)
+		            {
+		                if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+		                var message=data.data.data;
+		                var states = message[0]['states'];
+		                var val="请假";//1请假 2歇业
+		                if(states ==2)
+		                {
+		                	val ="歇业";
+		                }
+		                $('#states').html(val);
+		                $('#dateSpan').html(message[0]['create_date1']+"至"+message[0]['create_date2']);
+		                $('#xy_shuoming').html(message[0]['xy_shuoming']);
+		            }
+		        });
+		}
+		
+		
+		//提交申请
+		function backOnclick()
+		{
+			 window.location.href='$!webPath/poster/sqxy.htm';
+		}
+	</script>
+
+<body>
+
+<div class="main">
+	<div class="user_center">
+		$!httpInclude.include("/poster/nav_head.htm") 
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+			<tr> $!httpInclude.include("/poster/nav.htm?op=complaint")
+				<td id="centerbg" valign="top" width="80%">
+
+					<div class="buyer_position">
+						<div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代中心</a> > <span>申请歇业详情</span></div>
+					</div>
+					<input id="id" type="hidden" value=""><input id="ddid" type="hidden" value=""><input id="username" type="hidden" value="${user.username}">
+					<div class="both drawback">
+						<table width="100%"> 
+								<tr>
+									<td width="80%" colspan="2">
+										<span id="states"></span>
+									</td>
+								</tr>
+								<tr>
+									<td>时间段：</td>
+									<td>
+										<span id="dateSpan"></span>
+									</td>
+								</tr>
+								<tr>
+									<td>说明：</td>
+									<td><span id="xy_shuoming"></span>
+									</td>
+								</tr>
+							</table>
+					</div>
+					<div class="subm" >
+						<span onclick="backOnclick();">返回</span>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+</div>
+<script>
+   
+</script>
+<!--引入上传要用的js文件-->
+<script type="text/javascript" src="/fileup/index_no1.js"></script>
+
+</body>
+
+
+
+</html>

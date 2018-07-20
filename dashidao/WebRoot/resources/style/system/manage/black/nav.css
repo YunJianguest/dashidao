@@ -1,0 +1,74 @@
+@charset "utf-8";
+
+
+/* nav */
+.nav{width: 260px;height: 100%;background: #2F3E50;transition: all .3s;}
+.nav a{display: block;overflow: hidden;padding-left: 20px;line-height: 46px;max-height: 46px;color: #ABB1B7;transition: all .3s;}
+.nav a span{margin-left: 30px;color: white}
+.nav-item{position: relative;}
+.nav-item.nav-show{border-bottom: none;}
+.nav-item ul{display: none;}
+.nav-item.nav-show ul{display: block;}
+.nav-item>a:before{content: "";position: absolute;left: 0px;width: 2px;height: 30px;background: #34A0CE;opacity:0;transition: all .3s;top:2px;}
+.nav .nav-icon{font-size: 20px;position: absolute;margin-left:-1px;}
+.nav-itemdown li span{margin-left:10px}
+.nav-itemdown a:focus{background: #3fa4ed;color:#fff;}
+/* 此处修改导航图标 可自定义iconfont 替换*/
+.icon_1::after{content: "\e62b";}
+.icon_2::after{content: "\e669";}
+.icon_3::after{content: "\e61d";}
+.icon_4::after{content: "\e85f";}
+.icon_5::after{content: "\e650";}
+.icon_6::after{content: "\e618";}
+.icon_7::after{content: "\e60b";}
+.icon_8::after{content: "\e698";}
+.icon_9::after{content: "\e6cf";}
+.icon_10::after{content: "\e600";}
+.icon_11::after{content: "\e676";}
+.icon_12::after{content: "\e620";}
+.icon_13::after{content: "\e78e";}
+.icon_14::after{content: "\e6b4";}
+.icon_15::after{content: "\e62b";}
+/*---------------------*/
+.nav-more{float:right;margin-right: 20px;font-size: 12px;transition: transform .3s;}
+.nav-itemdown .fa-fw{margin-left:18px}
+/* 此处为导航右侧箭头 如果自定义iconfont 也需要替换*/
+.nav-more::after{content: "\e621";}
+
+/*---------------------*/
+.nav-show .nav-more{transform:rotate(90deg);}
+.nav-show,.nav-item>a:hover{color: #FFF;}
+.nav-show>a:before,.nav-item>a:hover:before{opacity:1;}
+.nav-item li:hover a{color: #fff;background: #3fa4ed;}
+
+
+/* nav-mini */
+.nav-mini.nav{width: 60px;}
+.nav-mini.nav .nav-icon{/* margin-left:-2px; */}
+.nav-mini.nav .nav-item>a span{display: none;}
+.nav-mini.nav .nav-more{margin-right: -20px;}
+.nav-mini.nav .nav-item ul{position: absolute;top:0px;left:60px;width: 180px;z-index: 99;overflow: hidden;}
+.nav-mini.nav .nav-item:hover{background:#1ABC9C;}
+.nav-mini.nav .nav-item:hover .nav-item a{color:#FFF;}
+.nav-mini.nav .nav-item:hover a:before{opacity:1;}
+.nav-mini.nav .nav-item:hover ul{display: block;}
+#mini img{padding: 10px}
+
+
+
+@font-face {
+  font-family: 'iconfont';  /* project id 609925 */
+  src: url('//at.alicdn.com/t/font_609925_dbs9hdk3lgwg66r.eot');
+  src: url('//at.alicdn.com/t/font_609925_dbs9hdk3lgwg66r.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_609925_dbs9hdk3lgwg66r.woff') format('woff'),
+  url('//at.alicdn.com/t/font_609925_dbs9hdk3lgwg66r.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_609925_dbs9hdk3lgwg66r.svg#iconfont') format('svg');
+}
+.iconfont{
+  font-family:"iconfont" !important;
+  font-size:20px;font-style:normal;
+  color:;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+

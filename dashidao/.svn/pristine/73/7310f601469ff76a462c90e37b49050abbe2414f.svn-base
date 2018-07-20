@@ -1,0 +1,798 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!--link href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/template.css"  rel="stylesheet" type="text/css"/-->
+    <!--link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet-->
+
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/iconfont.css">
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="$!webPath/resources/js/jquery.js"></script>
+    <script type="text/javascript" src="$!webPath/resources/js/highcharts.js"></script>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+    <!--<script type="text/javascript" src="$!webPath/resources/js/exporting.js"></script>-->
+    <title>无标题文档</title>
+
+    <style>
+        body{
+            font-family: "Microsoft Yahei", "Lucida Grande", Verdana, Lucida, Helvetica, Arial, 'Simsun', sans-serif;
+            font-size: 16px!important;
+        }
+        input{
+            border:none;
+            width: 100px;
+        }
+        table tr td{
+            border-bottom: 1px solid #eee;padding: 10px 0;
+        }
+        ul{margin: 0;}
+        .a{
+            width: 80%;
+
+        }
+        .nav-tabs{width: 100%; margin: 10px auto;border:0;}
+
+        .nav li{margin-left:2px}
+        .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{background:#3fa4ed;color:#fff; width:100%;}
+        #font{
+            color: red;
+        }
+        #font2{
+            color:blue;
+
+        }
+        .tabbable{margin: 0 auto;}
+        .tab-content{width:100%;}
+        .table a{
+            border:1px solid #c3c3c3;
+            padding: 5px 14px;
+            border-radius: 4px;
+        }
+        .table a:hover{color:#000;background: #fff;}
+        .seth1 {
+            border-top: 1px solid #D9D9D9;
+            height: 35px;
+            border-bottom: 1px solid #D9D9D9;
+            line-height: 35px;
+            padding-left: 40px;
+            color: #686868;
+            margin: 5px;
+            font-size: 16px;
+            padding: 0px;
+            text-align: left;
+            background: #f3f3f3;
+        }
+        .nav>li>a {
+            position: relative;
+            border:1px solid #c3c3c3;
+            display: block;
+            border-top-left-radius: 8px;
+            border-top-right-radius:8px;
+            font-size: 16px!important;
+            padding: 5px 15px;
+            color:#000;
+        }
+        .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{background:#3fa4ed;color:#fff;font-size: 16px;}
+        .nav{margin: 17px 0 29px 21px;border-bottom: 1px solid #c3c3c3;}
+        .bor{height:30px;line-height: 30px;}
+        .ac9 a {
+            color: #999;
+            padding:3px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            border:1px solid #999;
+        }
+        .ac9 a:hover {
+            color:#999;
+            background: #fff;
+        }
+        .dai,.shenh{color:#3fa4ed;}
+        .agree{color:#0a7e07;}
+        .disagree{color:red;}
+        .qd{font-size:16px;border-radius: 4px;color:#fff;background:#3fa4ed;width:100px;text-align:center;margin: 10px auto;line-height:33px;}
+        .cans li{width:33.3%;float:left;list-style: none;}
+        .title{border-left: 3px  solid #3fa4ed;margin:20px 1%;}
+        .dcwb ul li{list-style:none;float:left;height: 30px;line-height: 15px;font-size: 16px;margin-right: 10px;}
+        .dcwb{float:right;}
+        .dcwb ul li i{font-size: 30px;}
+        .allmen input {
+            width: 180px;
+            height: 29px;
+            line-height:29px;
+            padding-left: 5px;
+            border: 1px solid #ccc;
+            color: #333333;
+            background: #FAFAFA none repeat scroll 0 0;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #B2B2B2 #E7E7E8 #E7E7E8 #B2B2B2;
+            border-radius: 5px;
+            margin:5px 0 0 2%;
+        }
+        .btn_search input {
+            background-color: #3fa4ed;
+            width: 62px;
+            height: 30px;
+            border: 0px;
+            color: #FFF;
+        }
+        .day{margin-left: 20px;}
+        .day input{
+            text-align: center;
+            width:40px;
+            height: 34px;
+            border: 1px solid #c3c3c3;
+            background: #fff;
+            border-radius: 4px;
+        }
+        .day .sel{
+            background-color: #3fa4ed;
+            color: #FFF;
+        }
+        .seday input{
+            text-align: center;
+            width:40px;
+            height: 34px;
+            border: 1px solid #c3c3c3;
+        }
+        .tim{color:red;}
+        .pagination{float: right;}
+        .disable a{border:0!important;color:#000!important;}
+        .disable a:hover{border:0!important;color:#000!important;background: #fff!important;}
+        .pagination .active a{background:#108ee9!important; }
+        .pagination li a{padding: 4px 10px!important;margin: 0 2px!important; border-radius: 4px;}
+        input.button {
+            border: none;
+            background: #3fa4ed;
+            color: #FFF;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        var count;
+        var sale_total=0;
+        var sale_al=0;
+        var t1;
+        var t2;
+        //价格区间变量
+        var v1= 0;
+        var v2 = 10;
+        //价格区间返回值
+        var char_tt=new Array();
+        var return_count;
+
+        //分页
+        var page_size=10;
+        var page_no=1;
+        var count1;
+        var count2;
+        var count3;
+        jQuery(document).ready(function(){
+            goods_count();
+            instData();
+            sale_ratio();
+            sale_all();
+            stack_user(page_size,page_no);
+            month_saler(page_size,page_no);
+            sale_details(page_size,page_no);
+            getCount();
+            table_column(char_tt);
+        });
+        function getDay(day){
+            var today = new Date();
+
+            var targetday_milliseconds=today.getTime() + 1000*60*60*24*day;
+
+            today.setTime(targetday_milliseconds); //注意，这行是关键代码
+
+            var tYear = today.getFullYear();
+            var tMonth = today.getMonth();
+            var tDate = today.getDate();
+            tMonth = doHandleMonth(tMonth + 1);
+            tDate = doHandleMonth(tDate);
+            return tYear+"-"+tMonth+"-"+tDate;
+        }
+        function doHandleMonth(month){
+            var m = month;
+            if(month.toString().length == 1){
+                m = "0" + month;
+            }
+            return m;
+        }
+        function GetPercent(num, total) {
+            num = parseFloat(num);
+            total = parseFloat(total);
+            if (isNaN(num) || isNaN(total)) {
+                return "-";
+            }
+            return total <= 0 ? "0%" : (Math.round(num / total * 10000) / 100.00 + "%");
+        }
+        //商品总数
+        function goods_count(){
+            var sql = "SELECT count(id) FROM `dashidao_goods` ";
+            jQuery.ajax({
+                type: "POST",
+                cache: false,
+                async: false,
+                url: "/ajaxuser.jsp",
+                dataType: "json",
+                data: "table=dashidao_goods&dates=addTime,goods_seller_time,store_recommend_time,ztc_apply_time,ztc_begin_time,combin_begin_time,combin_end_time,weixin_shop_hotTime,weixin_shop_recommendTime&sql=" + sql,
+                //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error: function () {
+                    alert("数据错误，操作被取消！");
+                },
+                success: function (data) {
+                    var mes=data.data.data;
+                    count=mes[0]['count(id)'];
+                    $('#hyzs').html(count);
+                }
+            });
+        }
+        //活跃商品占比
+        function instData(){
+            var startdate=getDay(-30);
+            var enddate=getDay(0);
+
+            var sql="SELECT * FROM `dashidao_order_details`where create_date  Between '"+startdate+"' And '"+enddate+"' GROUP BY goods_id";
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajaxuser.jsp",
+                dataType:"json",
+                data:"table=dashidao_order_details&dates=create_date&sql="+sql,
+                //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error:function(){alert("数据错误，操作被取消！");},
+                success:function(data)
+                {
+
+                    if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                    var message=data.data.data;
+                    var total=data.data.total;
+                    $('#huoyue').html(GetPercent(total,count));
+
+
+                }
+            });
+        }
+        //销售额占比-->本月
+        function sale_ratio(){
+            var startdate=getDay(-30);
+            var enddate=getDay(0);
+
+            var sql="SELECT * FROM `dashidao_order_details`where create_date  Between '"+startdate+"' And '"+enddate+" '";
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajaxuser.jsp",
+                dataType:"json",
+                data:"table=dashidao_order_details&dates=create_date&sql="+sql,
+                //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error:function(){alert("数据错误，操作被取消！");},
+                success:function(data)
+                {
+                    if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                    t1=data.data.total;
+                    var message=data.data.data;
+                    for(var i=0;i<message.length;i++){
+                        sale_total=sale_total+parseFloat(message[i]['sale_total']);
+                    }
+                }
+            });
+        }
+        //销售额总数
+        function sale_all(){
+            var sql="SELECT * FROM `dashidao_order_details`";
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajaxuser.jsp",
+                dataType:"json",
+                data:"table=dashidao_order_details&dates=create_date&sql="+sql,
+                //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error:function(){alert("数据错误，操作被取消！");},
+                success:function(data)
+                {
+                    if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                    t2=data.data.total;
+                    var message=data.data.data;
+                    for(var i=0;i<message.length;i++){
+                        sale_al=sale_al+parseFloat(message[i]['sale_total']);
+                    }
+                    $('#sale').html(GetPercent(sale_total,sale_al));
+                    $('#order').html(GetPercent(t1,t2));
+                }
+            });
+        }
+
+        //商品销量排行
+        function stack_user(page_size,page_no) {
+            //SELECT  goods_id,goods_name,SUM(sale_total) AS aa,SUM(goods_count) FROM dashidao_order_details GROUP BY goods_id ORDER BY aa ;
+            var sql="SELECT  goods_id,goods_name,SUM(sale_total) AS aa,SUM(goods_count) FROM dashidao_order_details GROUP BY goods_id ORDER BY aa";
+            jQuery.ajax({
+                type: "POST",
+                cache: false,
+                async: false,
+                url: "/ajaxuser.jsp",
+                dataType: "json",
+                data: "table=dashidao_order_details&dates=create_date&sql=" + sql+"&page_size="+page_size+"&page_no="+page_no,
+                //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error: function () {
+                    alert("数据错误，操作被取消！");
+                },
+                success: function (data) {
+                    var message = data.data.data;
+                    count1=data.data.total;
+
+
+                    $("#tabless").html('');
+                    for (var i = 0; i < message.length; i++) {
+                        var i1=i+1;
+                        $("#tabless").append("<tr>" +
+                            "<td>" + i1 + "</td>" +
+                            "<td>" + message[i]['goods_id'] + "</td>" +
+                            "<td>" + message[i]['goods_name'] + "</td>" +
+                            "<td>" + message[i]['aa'] + "</td>" +
+                            "<td>" + message[i]['SUM(goods_count)'] + "</td></tr>" );
+                    }
+
+                    $("#table_two").html('');
+                    for (var i = 0; i < message.length; i++) {
+                        var i1=i+1;
+                        $("#table_two").append("<tr>" +
+                            "<td>" + i1 + "</td>" +
+                            "<td>" + message[i]['goods_id'] + "</td>" +
+                            "<td>" + message[i]['goods_name'] + "</td>" +
+                            "<td>" + message[i]['aa'] + "</td>" +
+                            "<td>" + message[i]['SUM(goods_count)'] + "</td></tr>" );
+                    }
+                }
+            });
+        }
+
+        //月销售额
+        function month_saler(page_size,page_no){
+            // var sql="SELECT  * FROM 'dashidao_order_details'";
+            var sql="SELECT  goods_id,goods_name,goods_price,goods_count,sale_total FROM dashidao_order_details GROUP BY id ";
+            jQuery.ajax({
+                type: "POST",
+                cache: false,
+                async: false,
+                url: "/ajaxuser.jsp",
+                dataType: "json",
+                data: "table=dashidao_order_details&dates=create_date&sql="+sql+"&page_size="+page_size+"&page_no="+page_no,
+                //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error: function () {
+                    alert("数据错误，操作被取消！");
+                },
+                success: function (data) {
+                    var message = data.data.data;
+                    count2=data.data.total;
+
+                    $("#table_three").html('');
+                    for (var i = 0; i < message.length; i++) {
+                        var i1=i+1;
+                        $("#table_three").append("<tr>" +
+                            "<td>" + i1 + "</td>" +
+                            "<td>" + message[i]['goods_id'] + "</td>" +
+                            "<td>" + message[i]['goods_name'] + "</td>" +
+                            "<td>" + message[i]['goods_price'] + "</td>" +
+                            "<td>" + message[i]['goods_count'] + "</td>" +
+                            "<td>" + message[i]['sale_total'] + "</td></tr>" );
+                    }
+
+
+                }
+            });
+        }
+
+        //销售明细
+        function sale_details(page_size,page_no){
+            var sql="SELECT  a.`goods_count`,a.`goods_id`,a.`goods_name`,a.`goods_price`,a.`sale_total`,a.`user_id`,a.`create_date`,B.order_id,C.`userRole` " +
+                "FROM dashidao_order_details A INNER JOIN dashidao_orderform B ON A.`order_id`=B.id " +
+                "LEFT JOIN dashidao_user C ON A.`user_id`=C.`id` group by A.id ";
+            jQuery.ajax({
+                type: "POST",
+                cache: false,
+                async: false,
+                url: "/ajaxuser.jsp",
+                dataType: "json",
+                data: "table=dashidao_order_details&dates=create_date,birthday,lastLoginDate,loginDate,addTime,finishTime,payTime,shipTime,return_shipTime&sql="+sql+"&page_size="+page_size+"&page_no="+page_no,
+                //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error: function () {
+                    alert("数据错误，操作被取消！");
+                },
+                success: function (data) {
+
+                    var message = data.data.data;
+                    count3=data.data.total;
+
+                    $("#table_four").html('');
+                    for (var i = 0; i < message.length; i++) {
+                        var role;
+                        if(message[i]['userRole']=='POSTER'){
+                            role='栈代';
+                        }else if(message[i]['userRole']=='BUYER'){
+                            role='会员';
+                        }else if(message[i]['userRole']=='YUNKE'){
+                            role='云客';
+                        }else if(message[i]['userRole']=='SELLER'){
+                            role='商家';
+                        }
+                        var i1=i+1;
+                        $("#table_four").append("<tr>" +
+                            "<td>" + i1 + "</td>" +
+                            "<td>" + message[i]['goods_id'] + "</td>" +
+                            "<td>" + message[i]['goods_name'] + "</td>" +
+                            "<td>" + role+ "</td>" +
+                            "<td>" + message[i]['order_id'] + "</td>" +
+                            "<td>" + message[i]['create_date'] + "</td>" +
+                            "<td>" + message[i]['goods_price'] + "</td>" +
+                            "<td>" + message[i]['goods_count'] + "</td>" +
+                            "<td>" + message[i]['sale_total'] + "</td></tr>" );
+                    }
+                }
+            });
+        }
+
+        layui.use(['laypage', 'layer'], function(){
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+            //完整功能
+            laypage.render({
+                elem: 'demo7'
+                ,count:count1
+                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                ,jump: function(obj){
+                    //console.log(obj)
+                    page_no=obj.curr;
+                    page_size=obj.limit;
+                    //alert(pagelimit);
+                    stack_user(page_size,page_no);
+                    //loadajax("select","stu",pagelimit,cuur,1);
+                },
+                limits:[2, 4, 6, 8, 10],
+                limit:page_size
+            });
+        });
+        layui.use(['laypage', 'layer'], function(){
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+            //完整功能
+            laypage.render({
+                elem: 'demo_two'
+                ,count:count1
+                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                ,jump: function(obj){
+                    //console.log(obj)
+                    page_no=obj.curr;
+                    page_size=obj.limit;
+                    //alert(pagelimit);
+                    stack_user(page_size,page_no);
+                    //loadajax("select","stu",pagelimit,cuur,1);
+                },
+                limits:[2, 4, 6, 8, 10],
+                limit:page_size
+            });
+        });
+        layui.use(['laypage', 'layer'], function(){
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+            //完整功能
+            laypage.render({
+                elem: 'demo_three'
+                ,count:count2
+                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                ,jump: function(obj){
+                    //console.log(obj)
+                    page_no=obj.curr;
+                    page_size=obj.limit;
+                    //alert(pagelimit);
+                    month_saler(page_size,page_no);
+                    //loadajax("select","stu",pagelimit,cuur,1);
+                },
+                limits:[2, 4, 6, 8, 10],
+                limit:page_size
+            });
+        });
+        layui.use(['laypage', 'layer'], function(){
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+            //完整功能
+            laypage.render({
+                elem: 'demo_four'
+                ,count:count3
+                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                ,jump: function(obj){
+                    //console.log(obj)
+                    page_no=obj.curr;
+                    page_size=obj.limit;
+                    //alert(pagelimit);
+                    sale_details(page_size,page_no);
+                    //loadajax("select","stu",pagelimit,cuur,1);
+                },
+                limits:[2, 4, 6, 8, 10],
+                limit:page_size
+            });
+        });
+        //获取区间值
+
+        function getCount(){
+            for(var i =1;i<=10;i++){
+                statistics_sale(v1,v2,i);
+                v1=v1+10;
+                v2= v2+10;
+            }
+
+        }
+        function statistics_sale(start,end,i){
+            var sql="SELECT SUM(sale_total) FROM dashidao_order_details WHERE goods_price BETWEEN "+start+" AND "+end;
+            jQuery.ajax({
+                type: "POST",
+                cache: false,
+                async: false,
+                url: "/ajaxuser.jsp",
+                dataType: "json",
+                data: "table=dashidao_order_details&dates=create_date&sql=" + sql,
+                //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error: function () {
+                    alert("数据错误，操作被取消！");
+                },
+                success: function (data) {
+                    var message = data.data.data;
+                    return_count=message[0]['SUM(sale_total)'];
+                    char_tt[i-1]=return_count;
+                }
+
+            });
+
+
+        }
+
+        function table_column(char_tt){
+            $('#container').highcharts({
+                chart: {
+                },
+                title: {
+                    text: ''
+                },
+                //x轴
+                xAxis: {
+                    categories: ['0-10', '10-20', '20-30', '30-40', '40-50','50-60','60-70','70-80','80-90','90-100']
+                },
+                tooltip: {
+                    formatter: function() {
+                        var s;
+                        if (this.point.name) { // the pie chart
+                            s = ''+
+                                this.point.name +': '+ this.y +' fruits';
+                        } else {
+                            s = ''+
+                                this.x  +': '+ this.y;
+                        }
+                        return s;
+                    }
+                },
+                labels: {
+                    items: [{
+                        html: '',
+                        style: {
+                            left: '40px',
+                            top: '8px',
+                            color: 'black'
+                        }
+                    }]
+                },
+                series: [{
+                    type: 'column',
+                    name: '销量',
+                    data: char_tt
+                }]
+            });
+        }
+
+    </script>
+</head>
+
+<body>
+<div class="tabbable">
+    <div class="seth1">
+        <img src="$!webPath/resources/style/system/manage/black/img/1.png" alt="">
+        商品
+    </div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#1" data-toggle="tab">商品概况</a></li>
+        <li><a href="#2" data-toggle="tab">商品销量排行</a></li>
+        <li><a href="#3" data-toggle="tab">销售额统计</a></li>
+        <li><a href="#4" data-toggle="tab">销售明细</a></li>
+        <li><a href="#5" data-toggle="tab">月销售额</a></li>
+        <li><a href="#6" data-toggle="tab">价格统计</a></li>
+    </ul>
+    <div class="tab-content">
+        <!--数据表格-->
+        <div class="tab-pane active" id="1"style="width:99%;margin-left:1%;">
+            <table width="100%" style="font-size: 16px;text-align: center;">
+                <tr style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#3fa4ed;text-align: center">
+                    <td>商品总数</td>
+                    <td>活跃商品占比</td>
+                    <td>销售额占比</td>
+                    <td>订单数占比</td>
+                </tr>
+                <tbody  id="tablesss" >
+                <tr>
+                    <td id="hyzs">19009</td>
+                    <td id="huoyue">60%</td>
+                    <td id="sale">30%</td>
+                    <td id="order">10%</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane" id="2" >
+            <div class="title" >
+                <div class="dcwb">
+                    <ul>
+                        <li>
+                            <input type="button" value="批量导出" class="button" onclick="batch_export()">
+                        </li>
+                    </ul>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <table width="99%" style="font-size: 16px;text-align: center;margin-left: 1%;margin-top: 20px;">
+                <tr style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#3fa4ed;text-align: center">
+                    <td>排名</td>
+                    <td>商品ID</td>
+                    <td>商品名称</td>
+                    <td>商品销售额</td>
+                    <td>商品销量</td>
+                </tr>
+                <tbody id="tabless"></tbody>
+
+            </table>
+            <div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+        </div>
+        <div class="tab-pane" id="3" >
+            <!--会员消费总额平台销售总额比-->
+            <div class="title" >销售额排行榜</div>
+            <div style="margin-left: 1%;"><span>所选类别层级：1类  所选类别：食品</span><span style="padding: 5px 30px;border:1px solid #c3c3c3;border-radius: 4px;float: right;margin-right:1%;">选择分类</span>
+                <div style="clear:both;"></div>
+            </div>
+            <div class="title" >
+                <div class="dcwb">
+                    <ul>
+                        <li>
+                            <input type="button" value="批量导出" class="button" onclick="batch_export()">
+                        </li>
+                    </ul>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <table width="99%" style="font-size: 16px;text-align: center;margin-left: 1%;margin-top: 20px;">
+                <tr style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#3fa4ed;text-align: center">
+                    <td>排名</td>
+                    <td>商品ID</td>
+                    <td>商品名称</td>
+                    <td>商品销售额</td>
+                    <td>商品销量</td>
+                </tr>
+                <tbody id="table_two"></tbody>
+
+            </table>
+            <div id="demo_two" style=" text-align: center; margin-top: 30px;" ></div>
+        </div>
+        <div class="tab-pane" id="4" >
+            <!--搜索-->
+            <div>
+                <span class="allmen"><input type="month"></span>
+                <span class="day">
+                <span><input type="text" class="sel" value="7天" disabled="disabled"></span>
+                <span><input type="text"  value="30天" disabled="disabled"></span>
+                <span><input type="text"  value="90天" disabled="disabled"></span>
+                    <script>
+                        $('.day span').click(function(){
+                            $(this).children().addClass('sel');
+                            $(this).siblings().children().removeClass('sel');
+                        })
+                    </script>
+                </span>
+                <span class="seday"><input type="text">天</span>
+                <span class="allmen"><input type="date" name="startime" style="margin-right: 20px;">至<input type="date"></span>
+                <span class="allmen"><input type="text"></span>
+                <span class="btn_search"><input type="submit" value="搜索" style="cursor:pointer;background-color: #108ee9;color:#FFF"></span></div>
+            <!--图形分析-->
+            <div class="title" >销售明细</div>
+            <div class="title" >
+                <div class="dcwb">
+                    <ul>
+                        <li>
+                            <input type="button" value="批量导出" class="button" onclick="batch_export()">
+                        </li>
+                    </ul>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <table width="99%" style="font-size: 16px;text-align: center;margin-left: 1%;margin-top: 20px;">
+                <tr style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#3fa4ed;text-align: center">
+                    <td>排名</td>
+                    <td>商品ID</td>
+                    <td>商品名称</td>
+                    <td>订单类别</td>
+                    <td>订单号</td>
+                    <td>销售时间</td>
+                    <td>单价</td>
+                    <td>销量</td>
+                    <td>销售额</td>
+                </tr>
+                <tbody id="table_four">
+                </tbody>
+            </table>
+            <div id="demo_four" style=" text-align: center; margin-top: 30px;" ></div>
+        </div>
+        <div class="tab-pane" id="5" >
+            <!--搜索-->
+            <div>
+                <span class="allmen"><input type="text"></span>
+                <span class="btn_search"><input type="submit" value="搜索" style="cursor:pointer;background-color: #108ee9;color:#FFF"></span>
+                <span style="margin-left: 50px;">时间：<span class="tim">本月</span><span>上月</span></span>
+                <span class="allmen"><input type="month"></span></div>
+
+
+            <div class="title" >
+                <div class="dcwb">
+                    <ul>
+                        <li>
+                            <input type="button" value="批量导出" class="button" onclick="batch_export()">
+                        </li>
+                    </ul>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <table width="99%" style="font-size: 16px;text-align: center;margin-left: 1%;margin-top: 20px;">
+                <tr style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#3fa4ed;text-align: center">
+                    <td>行号</td>
+                    <td>商家ID</td>
+                    <td>商家名称</td>
+                    <td>单价↑↓</td>
+                    <td>销量↑↓</td>
+                    <td>销售额↑↓</td>
+                </tr>
+                <tbody id="table_three"></tbody>
+            </table>
+            <div id="demo_three" style=" text-align: center; margin-top: 30px;" ></div>
+        </div>
+        <div class="tab-pane" id="6" >
+            <div>
+                <span class="seday" style="margin-left: 1%"><input type="date" name="startime" style="margin-right: 10px;">至<input type="date" style="margin:0 10px;"></span>
+                区间数 <span class="allmen"><input type="text"></span>
+                <span class="btn_search"><input type="submit" value="搜索" style="cursor:pointer;background-color: #108ee9;color:#FFF"></span></div>
+            <div id="container" style="width:80%;height:400px;margin:20px 1%"></div>
+            <script type="text/javascript" src="$!webPath/resources/js/highcharts.js"></script>
+            <!--<script type="text/javascript" src="$!webPath/resources/js/exporting.js"></script>-->
+            <script type="text/javascript">
+
+            </script>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(".pagination li").click(function(){
+        $(this).addClass("active");
+        $(this).siblings().removeClass("active");
+    })
+</script>
+</body>
+</html>

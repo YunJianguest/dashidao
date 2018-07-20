@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>代理商品（商品管理）</title>
+    <script type="text/javascript" src="js/jquery1.42.min.js"></script>
+    <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/mcss.css" >
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+    <script src="js/jquery.page.js" type="text/javascript" ></script>
+</head>
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>选择商品 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            var id ="${id}";
+           // alert(id);
+            shangPingByid();
+        });
+        
+        function shangPingByid()
+        {
+        	var id = "${id}";
+    		var sql ="select * from zd_xuanzeshangping where id='"+id+"' order by zd_time  ";
+        	//data参数
+        	var dataStr = "table=zd_xuanzeshangping&";
+        	    dataStr +="dates=zd_shelfdate,zd_time&";
+        	    dataStr +="sql="+sql;
+             jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajaxuser.jsp",
+                dataType:"json",
+                data : dataStr,
+                error:function(){alert("数据错误，操作被取消！");},
+                success:function(data)
+                {
+                    if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                    console.log(data.data.data);
+                    var message = data.data.data;
+                     $("#zd_shangpingname").html(message[0]['zd_shangpingname']);
+            		$("#zd_shangpingid").html(message[0]['zd_shangpingid']);
+            		$("#zd_shangpingguige").html(message[0]['zd_shangpingguige']);
+            		$("#zd_chima").html(message[0]['zd_chima']);
+            		$("#zd_shopcolor").html(message[0]['zd_shopcolor']);
+            		
+            		$("#zd_lingshoudanwei").html(message[0]['zd_lingshoudanwei']);
+            		$("#zd_chuchangjia").html(message[0]['zd_chuchangjia']);
+            		$("#zd_qidingshuliang").html(message[0]['zd_qidingshuliang']);
+            		$("#zd_shelflife").html(message[0]['zd_shelflife']);
+            		//$("#zd_shelfdate").val(message[0]['zd_shelfdate']);
+            		var begin = message[0]['zd_shelfdate'];
+            		begin = begin.substring(0,10);
+            		end = end.substring(0,10);
+            		$("#zd_shelfdate").html(begin);
+                }
+            }); 
+        }
+        
+        function fanHui()
+        {
+        	 window.location.href='$!webPath/poster/choicegoods.htm';
+        }
+    </script>
+</head>
+<body>
+<div class="main"> $!httpInclude.include("/poster/nav_head.htm") 
+    <div class="user_center">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/poster/nav.htm?op=refund")
+                <td id="centerbg" valign="top" width="80%">
+                	 <div class="buyer_position" style="width: 99%;  background: #fff;">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代支持</a> > <span>商品管理</span> > <span>选择商品</span></div>
+                    </div>
+                    <div class="returntable">
+                        <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                            <tbody>
+                            <style type="text/css" >
+                                .agentbox .two li{ border-bottom: 1px solid #ccc;  }
+                            </style>
+                            <!--清仓活动-->
+                            <tr class="returnthead second clearactive agentbox" >
+                                <td width="80%" >
+                                    <form>
+                                        <div class="two">
+                                            <ul>
+                                                <li>
+                                                    <span class="fl">商品名称：：</span>
+                                                    <span class="fr" id="zd_shangpingname"></span>
+                                                    <div class="clear"></div>
+                                                </li>
+                                                <li>
+                                                    <span class="fl">商品编号：</span>
+                                                    <span class="fr" id="zd_shangpingid"></span>
+                                                    <div class="clear"></div>
+                                                </li>
+                                                <li>
+                                                    <span class="fl">商品规格：</span>
+                                                    <span class="fr" id="zd_shangpingguige"></span>
+                                                    <div class="clear"></div>
+                                                </li>
+                                                <li>
+                                                    <span class="fl">尺码：</span>
+                                                    <span class="fr" id="zd_chima"></span>
+                                                    <div class="clear"></div>
+                                                </li>
+                                                 <li>
+                                                    <span class="fl">颜色：</span>
+                                                    <span class="fr" id="zd_shopcolor"></span>
+                                                    <div class="clear"></div>
+                                                </li>
+                                                 <li>
+                                                    <span class="fl">零售单位：</span>
+                                                    <span class="fr" id="zd_lingshoudanwei"></span>
+                                                    <div class="clear"></div>
+                                                </li>
+                                                <li>
+                                                    <span class="fl">出厂价：</span>
+                                                    <span class="fr" id="zd_chuchangjia"></span>
+                                                    <div class="clear"></div>
+                                                </li>
+                                                <li>
+                                                    <span class="fl">起订数量：</span>
+                                                    <span class="fr" id="zd_qidingshuliang"></span>
+                                                    <div class="clear"></div>
+                                                </li>
+                                                <li>
+                                                    <span class="fl">存储：</span>
+                                                    <span class="fr" id="zd_shelflife"></span>
+                                                    <div class="clear"></div>
+                                                </li>
+                                                
+                                                
+                                                <li>
+                                                    <span class="fl">保质期：</span>
+                                                    <span class="fl lis" id="zd_shelfdate" style="text-align: left; "  ></span>
+                                                    <div class="clear"></div>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                </td>
+                            </tr>
+                            <tr class="returnthead second clearactive" >
+                                <td width="100%" colspan="2">
+                                    <button type="button" class="turess" onclick="fanHui();" >返回</button>
+                                </td>
+                            </tr>
+                            </form>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+
+
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>
+
+</body>
+</html>

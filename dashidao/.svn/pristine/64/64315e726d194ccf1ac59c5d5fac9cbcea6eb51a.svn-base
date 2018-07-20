@@ -1,0 +1,287 @@
+package com.dashidao.view.web.action;
+
+import com.dashidao.core.domain.virtual.SysMap;
+import com.dashidao.core.mv.JModelAndView;
+import com.dashidao.core.query.support.IPageList;
+import com.dashidao.core.security.support.SecurityUserHolder;
+import com.dashidao.core.tools.CommUtil;
+import com.dashidao.core.tools.Md5Encrypt;
+import com.dashidao.foundation.domain.*;
+import com.dashidao.foundation.domain.query.GoodsCartQueryObject;
+import com.dashidao.foundation.domain.query.GoodsClassQueryObject;
+import com.dashidao.foundation.domain.query.GoodsQueryObject;
+import com.dashidao.foundation.domain.query.StoreCartQueryObject;
+import com.dashidao.foundation.service.*;
+import com.dashidao.jwt.filter.SignFilter;
+import com.dashidao.jwt.util.ComplexOutPropertyPreFilter;
+import com.dashidao.jwt.util.DateJsonValueProcessor;
+import com.dashidao.manage.admin.tools.MsgTools;
+import com.dashidao.view.web.tools.GoodsFloorViewTools;
+import com.dashidao.view.web.tools.GoodsViewTools;
+import com.dashidao.view.web.tools.NavViewTools;
+import com.dashidao.view.web.tools.StoreViewTools;
+
+import io.jsonwebtoken.Claims;
+import net.sf.json.JSONArray;
+import net.sf.json.JsonConfig;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.math.BigDecimal;
+import java.util.*;
+
+/**
+ * 商城购物车制器
+ */
+@Controller
+public class GoodsCarViewAction {
+	@Autowired
+	private ISysConfigService configService;
+
+	@Autowired
+	private IUserConfigService userConfigService;
+
+	@Autowired
+	private IGoodsClassService goodsClassService;
+
+	@Autowired
+	private IGoodsBrandService goodsBrandService;
+
+	@Autowired
+	private IPartnerService partnerService;
+
+	@Autowired
+	private IRoleService roleService;
+
+	@Autowired
+	private IUserService userService;
+
+	@Autowired
+	private IArticleClassService articleClassService;
+
+	@Autowired
+	private IArticleService articleService;
+
+	@Autowired
+	private IAccessoryService accessoryService;
+
+	@Autowired
+	private IMessageService messageService;
+
+	@Autowired
+	private IStoreService storeService;
+
+	@Autowired
+	private IGoodsService goodsService;
+
+	@Autowired
+	private INavigationService navigationService;
+
+	@Autowired
+	private IGroupGoodsService groupGoodsService;
+
+	@Autowired
+	private IGroupService groupService;
+
+	@Autowired
+	private IGoodsFloorService goodsFloorService;
+
+	@Autowired
+	private IBargainGoodsService bargainGoodsService;
+
+	@Autowired
+	private IDeliveryGoodsService deliveryGoodsService;
+
+	@Autowired
+	private IStoreCartService storeCartService;
+
+	@Autowired
+	private IGoodsCartService goodsCartService;
+	@Autowired
+	private IAdvertService advertservice;
+
+	@Autowired
+	private NavViewTools navTools;
+
+	@Autowired
+	private GoodsViewTools goodsViewTools;
+
+	@Autowired
+	private StoreViewTools storeViewTools;
+
+	@Autowired
+	private MsgTools msgTools;
+
+	@Autowired
+	private GoodsFloorViewTools gf_tools;
+
+	// 会员购物车
+	@RequestMapping({ "/wap/buyer/goodscar.htm" })
+	public ModelAndView buyerallclass(HttpServletRequest request, HttpServletResponse response, String currentPage) {
+		ModelAndView mv = new JModelAndView("/wap/buyer/goodscar.html", this.configService.getSysConfig(),
+				this.userConfigService.getUserConfig(), 1, request, response);
+		StoreCartQueryObject gcqo = new StoreCartQueryObject(currentPage, mv, "addTime", "desc");
+		gcqo.addQuery("obj.user.id", new SysMap("user_id", SecurityUserHolder.getCurrentUser().getId()), "=");
+		IPageList pList = this.storeCartService.list(gcqo);
+		CommUtil.saveIPageList2ModelAndView("", "", "", pList, mv);
+		mv.addObject("navTools", this.navTools);
+
+		return mv;
+	}
+
+	// 云客购物车
+	@RequestMapping({ "/wap/yunke/goodscar.htm" })
+	public ModelAndView yunkeallclass(HttpServletRequest request, HttpServletResponse response, String currentPage) {
+		ModelAndView mv = new JModelAndView("/wap/buyer/goodscar.html", this.configService.getSysConfig(),
+				this.userConfigService.getUserConfig(), 1, request, response);
+		StoreCartQueryObject gcqo = new StoreCartQueryObject(currentPage, mv, "addTime", "desc");
+		gcqo.addQuery("obj.user.id", new SysMap("user_id", SecurityUserHolder.getCurrentUser().getId()), "=");
+		IPageList pList = this.storeCartService.list(gcqo);
+		CommUtil.saveIPageList2ModelAndView("", "", "", pList, mv);
+		mv.addObject("navTools", this.navTools);
+
+		return mv;
+	}
+
+	// 购物车列表
+	@RequestMapping({ "/wap/goodscar.htm" })
+	@ResponseBody
+	public void goodscar(HttpServletRequest request, HttpServletResponse response, String currentPage,
+			String storecarid) throws IOException {
+		Map params = new HashMap();
+		Claims claims = SignFilter.checkSign(request, response);
+		if (claims != null) {
+			StoreCartQueryObject gcqo = new StoreCartQueryObject(currentPage, params, "addTime", "desc");
+			gcqo.addQuery("obj.user.id", new SysMap("user_id", Long.parseLong(claims.getId())),
+					"=");
+			IPageList pList = this.storeCartService.list(gcqo);
+			JsonConfig jsonConfig = new JsonConfig();
+			jsonConfig.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor("yyyy-MM-dd hh:mm:ss"));
+			// 需要过滤的类 + 属性
+			Map<Class<?>, Set<String>> includeMap = new HashMap<Class<?>, Set<String>>();
+			Set<String> set = new HashSet<String>();
+			set.add("id");
+			set.add("store");
+			set.add("gcs");
+			set.add("sc_status");
+			includeMap.put(StoreCart.class, set);
+
+			set = new HashSet<String>();
+			set.add("store_name");
+			includeMap.put(Store.class, set);
+
+			set = new HashSet<String>();
+			set.add("goods");
+			set.add("count");
+			set.add("price");
+			includeMap.put(GoodsCart.class, set);
+
+			set = new HashSet<String>();
+			set.add("seo_keywords");
+			set.add("seo_description");
+			set.add("goods_name");
+			set.add("goods_price");
+			set.add("goods_main_photo");
+			set.add("goods_specs");
+			includeMap.put(Goods.class, set);
+
+			set = new HashSet<String>();
+			set.add("name");
+			set.add("path");
+			includeMap.put(Accessory.class, set);
+
+			set = new HashSet<String>();
+			set.add("value");
+			set.add("spec");
+			set.add("specImage");
+			set.add("sequence");
+			includeMap.put(GoodsSpecProperty.class, set);
+
+			set = new HashSet<String>();
+			set.add("name");
+			set.add("sequence");
+			set.add("type");
+			includeMap.put(GoodsSpecification.class, set);
+
+			jsonConfig.setJsonPropertyFilter(new ComplexOutPropertyPreFilter(includeMap));
+
+			JSONArray json = JSONArray.fromObject(pList.getResult(), jsonConfig);
+			SignFilter.print(request, response, json);
+
+		}
+
+	}
+
+	// 购物车添加
+	@RequestMapping({ "/wap/goodscarsave.htm" })
+	@ResponseBody
+	public void goodscarsave(HttpServletRequest request, HttpServletResponse response, String goodsid,String storeid,String count)
+			throws IOException {
+		Map params = new HashMap();
+		Claims claims = SignFilter.checkSign(request, response);
+		if (claims != null) {
+			 params.put("user_id", Long.parseLong(claims.getId()));
+			 params.put("store_id", Long.parseLong(storeid));
+             params.put("sc_status", Integer.valueOf(0));
+			 List<StoreCart> user_cart=this.storeCartService.query(
+                    "select obj from StoreCart obj where obj.user.id=:user_id and obj.sc_status=:sc_status and obj.store.id=:store_id",
+                    params, -1, -1);
+			 
+			 StoreCart storeCart=user_cart.get(0);
+			 List<GoodsCart>lsgc=storeCart.getGcs();
+			 GoodsCart goodsCart=new GoodsCart();
+			 goodsCart.setAddTime(new Date());
+			 goodsCart.setCount(Integer.parseInt(count));
+			 
+			 Goods goods=goodsService.getObjById(Long.parseLong(goodsid));
+			 goodsCart.setGoods(goods);
+			 goodsCart.setGsps(goods.getGoods_specs());
+			 goodsCart.setPrice(BigDecimal.valueOf(CommUtil.formatMoney(CommUtil.mul(goods.getGoods_price(),count))));
+			 lsgc.add(goodsCart);
+			 storeCart.setGcs(lsgc);
+			 
+			 
+			 this.goodsCartService.save(goodsCart);
+			 this.storeCartService.save(storeCart); 
+			SignFilter.print(request, response, "添加成功！");
+
+		}
+
+	}
+
+	// 购物车移除
+	@RequestMapping({ "/wap/goodscardel.htm" })
+	@ResponseBody
+	public void goodscardel(HttpServletRequest request, HttpServletResponse response, String storecarid,String goodscarid)
+			throws IOException {
+		Map params = new HashMap();
+		Claims claims = SignFilter.checkSign(request, response);
+		if (claims != null) { 
+			 StoreCart storeCart=this.storeCartService.getObjById(Long.parseLong(storecarid));
+			 List<GoodsCart>lsgc=storeCart.getGcs(); 
+			 for (GoodsCart Cart : lsgc) {
+				if (Cart.getId()==Long.parseLong(goodscarid)) {
+					lsgc.remove(Cart);
+					break;
+				}
+			 }
+			 storeCart.setGcs(lsgc); 
+			 this.storeCartService.update(storeCart); 
+			 this.goodsCartService.delete(Long.parseLong(goodscarid));
+			 
+			SignFilter.print(request, response, "删除成功！");
+
+		}
+
+	}
+}

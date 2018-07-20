@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>退换货管理 - $!{config.poweredby}</title>
+  <meta name="keywords" content="$!config.keywords" />
+  <meta name="description" content="$!config.description" />
+  <meta name="generator" content="$!{config.meta_generator}" />
+  <meta name="author" content="$!{config.meta_author}">
+  <meta name="copyright" content="$!{config.copyRight}">
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>退换货管理</title>
+  #if($!config.website_ico)
+  <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+  #end
+  <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+  <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+  <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+  <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+  <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+  <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+  <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+  <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+  <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+  <!--<script src="$!webPath/resources/js/jquery.shop.common.js"></script>-->
+  <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+  <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+  <script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+  <script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+  <script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+  <!--bootstrap-->
+  <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+  <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+  <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+  <!--layui-->
+  <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+  <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+ <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+ <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+<link href="$!webPath/resources/style/system/manage/blue/zhandai.css"  rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<div class="main">
+  <div class="user_center">
+    $!httpInclude.include("/poster/nav_head.htm")
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+      <tr> $!httpInclude.include("/poster/nav.htm?op=refund")
+        <td id="centerbg" valign="top" width="80%">
+
+          <div class="buyer_position">
+            <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代中心</a> > <span>退换货管理</span></div>
+          </div>
+
+          <div class="shopadminbox">
+            <div class="hd">
+              <ul>
+                <li>退换货</li>
+                <li>退换货记录</li>
+              </ul>
+            </div>
+            <div class="operation_tip">
+	<h3>友情提示</h3>
+	<ul>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+            <div class="bd">
+              <!--破损补寄-->
+              <ul>
+                <li>
+                  <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr class="returnthead" style="height: 90px;">
+                      <td width="80%" colspan="8" >
+                        <form class="form-inline" style="float: right;">
+                          <div class="form-group">
+                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入查询内容" style="width: 200px;" >
+                          </div>
+                          <button type="submit" class="btn btn-default" >查询</button>
+                        </form>
+                      </td>
+                      <td width="20%" colspan="2">
+                        <p><span></span><input type=checkbox checked >会员订单<span></span><input type=checkbox checked >云客订单</p>
+                      </td>
+                    </tr>
+                    <tr id="thead" >
+                      <td width="5%"></td>
+                      <td width="24%" colspan="2" >商品信息</td>
+                      <td width="12%">单价</td>
+                      <td width="10%">数量</td>
+                      <td width="11%">金额</td>
+                      <td width="11%">售后类型</td>
+                      <td width="11%">申请理由</td>
+                      <td width="11%">操作</td>
+                      <td width="5%"></td>
+                    </tr>
+                    </tbody>
+                  </table>
+
+                  <div id="xfmx"></div>
+
+
+                  <!-- PageNum -->
+                  <!--分页开始-->
+                  <div id="demo7" style="text-align: center;"></div>
+
+
+                  <!--分页结束-->
+                </li>
+              </ul>
+              <!--破损补寄记录-->
+              <ul>
+                <li>
+                  <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr class="returnthead" style="height: 90px;">
+                      <td width="80%" colspan="8" >
+                        <form class="form-inline" style="float: right;">
+                          <div class="form-group">
+                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入查询内容" style="width: 200px;" >
+                          </div>
+                          <button type="submit" class="btn btn-default" style="border: none;  background: #3fa4ed; color: #fff;   " >查询</button>
+                        </form>
+                      </td>
+                      <td width="20%" colspan="2">
+                        <p><span></span><input type=checkbox checked >会员订单<span></span><input type=checkbox checked >云客订单</p>
+                      </td>
+                    </tr>
+                    <tr id="thead" >
+                      <td width="5%"></td>
+                      <td width="24%" colspan="2" >商品信息</td>
+                      <td width="12%">单价</td>
+                      <td width="10%">数量</td>
+                      <td width="11%">金额</td>
+                      <td width="11%">售后类型</td>
+                      <td width="11%">申请理由</td>
+                      <td width="11%">操作</td>
+                      <td width="5%"></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <div id="xfmx2"></div>
+
+                  <!-- PageNum -->
+                  <!--分页开始-->
+                  <div id="demo8" style="text-align: center;"></div>
+                  <!--  <script>
+                    </script>-->
+
+                  <!--分页结束-->
+                </li>
+              </ul>
+
+            </div>
+          </div>
+          <script type="text/javascript">jQuery(".shopadminbox").slide({trigger:"click"});</script>
+
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<script>
+    //分页
+    var page_size=5;
+    var page_no=1;
+    
+    var page_size1=5;
+    var page_no1=1;
+    
+    var count=0;
+    var count1=0;
+    var id;
+    jQuery(document).ready(function(){
+    		//退换货查询及分页
+    		instOrder(page_size,page_no);
+    	    layui.use(['laypage', 'layer'], function(){
+    	        var laypage = layui.laypage
+    	            ,layer = layui.layer;
+    	        //完整功能
+    	        laypage.render({
+    	            elem: 'demo7'
+    	            ,count:count
+    	            ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+    	            ,jump: function(obj){
+    	                page_no=obj.curr;
+    	                page_size=obj.limit;
+    	                instOrder(page_size,page_no);
+    	            },
+    	            limits:[2, 4, 6, 8, 10],
+    	            limit:page_size
+    	        });
+    	    });
+    	    
+    	    //退换货记录查询及分页
+    	   instOrder1(page_size1,page_no1);
+    	   layui.use(['laypage', 'layer'], function(){
+    	        var laypage = layui.laypage
+    	            ,layer = layui.layer;
+    	        //完整功能
+    	        laypage.render({
+    	            elem: 'demo8'
+    	            ,count:count1
+    	            ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+    	            ,jump: function(obj){
+    	                page_no1=obj.curr;
+    	                page_size1=obj.limit;
+    	                instOrder1(page_size1,page_no1);
+    	            },
+    	            limits:[2, 4, 6, 8, 10],
+    	            limit:page_size1
+    	        });
+    	    });
+    });
+    
+  	//退换货的查询及分页
+	 function instOrder(page_size,page_no)
+  	{
+	        var sql="SELECT * FROM zd_tuihuanhuogl WHERE states=0 order by addTime ";
+	        jQuery.ajax({
+	            type:"POST",
+	            cache: false,
+	            async:false,
+	            url:"/ajaxuser.jsp",
+	            dataType:"json",
+	            data:"table=zd_tuihuanhuogl&dates=addTime,finishTime,zd_riqi,payTime,shipTime,return_shipTime&sql="+sql+"&page_size="+page_size+"&page_no="+page_no,
+	            error:function(){alert("数据错误，操作被取消！");},
+	            success:function(data)
+	            {
+	                if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+	                var message=data.data.data;
+	                count=data.data.total;
+	                var html="";
+	                for(var i=0;i<message.length;i++) {
+	                    id=message[i]['id'];
+	                    html+='<table width="100%" border="0"  cellspacing="0" cellpadding="0"><tbody>' +
+	                        '<tr class="tiptitles returntitle"><td width="100%" colspan="10" ><p><span>订单编号：'+message[i]['order_id']+'</span><span>日期：'+message[i]['addTime']+'</span><span>会员：'+message[i]['zd_huiyuan']+'</span></p></td></tr></tbody></table>' +
+	                        '<table width="100%" class="returntable" border="0" cellspacing="0" cellpadding="0"><tbody><tr class="first" ><td colspan="2"  width="28%" >' +
+	                        '<span class="fl">'+message[i]['zd_shopname']+'</span><span class="fr">尺码：'+message[i]['zd_chima']+'<br/>颜色：'+message[i]['zd_color']+'</span></td>' +
+	                        '<td width="12%">'+message[i]['zd_shoujia']+'</td><td width="12%">'+message[i]['zd_num']+'</td><td width="12%">'+message[i]['zd_danjia']+'元</td>' +
+	                        '<td width="12%">'+message[i]['zd_shouhouleixing']+'</td><td width="12%">'+message[i]['zd_shenqingliyou']+'</td>' +
+	                        '<td width="12%" rowspan="2" class="last" ><p><span onclick="jieShouTuiHuiSp(\''+id+'\')">接受退回商品</span></p><p><span onclick="juShouTuiHuiSp(\''+id+'\')">拒收退回商品</span></p><p><span><a href="$!webPath/poster/returnmanageDetail.htm?id='+message[i]['id']+'">查看详情</a></span></p><p><span>联系买家</span></p><p><span>申请平台介入</span></p></td></tr>' +
+	                        '<tr><td colspan="7" class="twosrow"><p>'+message[i]['zd_liaotianjilu']+'</p></td></tr></tbody></table>';
+
+	                }
+	                $('#xfmx').html(html);
+	            }
+	        });
+	    }
+	    //接受退货商品
+	    function jieShouTuiHuiSp(id){
+        jQuery.ajax({
+            type: "POST",
+            cache: false,
+            async: false,
+            url: "/ajaxuser.jsp",
+            dataType: "json",
+            data: "action=update&table=zd_tuihuanhuogl&field=id,states&values="+id+"|1",
+            error: function () {
+                alert("数据错误，操作被取消2！");
+            },
+            success: function (data) {
+                if (data.state == "error") {
+                    alert("系统错误，操作被取消！");
+                    return;
+                } else {
+                    alert("操作成功！");
+                    window.location.href='$!webPath/poster/returnmanage.htm';
+                }
+            }
+        });
+    }
+    
+    
+    //拒收 states 1 接受 2 拒收
+    function juShouTuiHuiSp(id)
+    {
+        jQuery.ajax({
+            type: "POST",
+            cache: false,
+            async: false,
+            url: "/ajaxuser.jsp",
+            dataType: "json",
+            data: "action=update&table=zd_tuihuanhuogl&field=id,states&values="+id+"|2",
+            error: function () {
+                alert("数据错误，操作被取消2！");
+            },
+            success: function (data) {
+                if (data.state == "error") {
+                    alert("系统错误，操作被取消！");
+                    return;
+                } else {
+                    alert("操作成功！");
+                    window.location.href='$!webPath/poster/returnmanage.htm';
+                }
+            }
+        });
+    }
+    
+  	//退换货记录分页
+    function instOrder1(page_size1,page_no1){
+        var sql1="SELECT * FROM zd_tuihuanhuogl WHERE states !=0 order by addTime  ";
+        jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajaxuser.jsp",
+            dataType:"json",
+            data:"table=zd_tuihuanhuogl&dates=addTime,finishTime,zd_riqi,payTime,shipTime,return_shipTime&sql="+sql1+"&page_size="+page_size1+"&page_no="+page_no1,
+            error:function(){alert("数据错误，操作被取消！");},
+            success:function(data)
+            {
+                if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                var message=data.data.data;
+                count1=data.data.total;
+                var html1="";
+                var stts;
+                var sttd;
+                for(var i=0;i<message.length;i++) {
+                    var sta=message[i]['states'];
+                    if (sta == 1) {
+                        stts = "<span style='color: green'>接收退回商品</span>";
+                    } else if (sta == 2) {
+                        stts = "<span style='color: red;'>拒收退回商品</span>";
+                    }
+                    html1 += '<table width="100%" border="0"  cellspacing="0" cellpadding="0"><tbody>' +
+                        '<tr class="tiptitles returntitle"><td width="100%" colspan="10" ><p><span>订单编号：' + message[i]['order_id'] + '</span><span>日期：' + message[i]['addTime'] + '</span><span>会员：' + message[i]['zd_huiyuan'] + '</span></p></td></tr></tbody></table>' +
+                        '<table width="100%" class="returntable" border="0" cellspacing="0" cellpadding="0"><tbody><tr class="first" ><td colspan="2"  width="28%" >' +
+                        '<span class="fl">' + message[i]['zd_shopname'] + '</span><span class="fr">尺码：' + message[i]['zd_chima'] + '<br/>颜色：' + message[i]['zd_color'] + '</span></td>' +
+                        '<td width="12%">' + message[i]['zd_shoujia'] + '</td><td width="12%">' + message[i]['zd_num'] + '</td><td width="12%">' + message[i]['zd_danjia'] + '元</td>' +
+                        '<td width="12%">' + message[i]['zd_shouhouleixing'] + '</td><td width="12%">' + message[i]['zd_shenqingliyou'] + '</td>' +
+                        '<td width="12%" rowspan="2" class="last" ><p>'+stts+'</p><p><span><a href="$!webPath/poster/returnmanageDetail.htm?id='+message[i]['id']+'">查看详情</a></span></p><p><span>联系买家</span></p><p><span>申请平台介入</span></p></td></tr>' +
+                        '<tr><td colspan="7" class="twosrow"><p>'+message[i]['zd_liaotianjilu']+'</p></td></tr></tbody></table>';
+                }
+                $('#xfmx2').html(html1);
+            }
+        });
+    }
+
+
+</script>
+</body>
+</html>
+
+
+

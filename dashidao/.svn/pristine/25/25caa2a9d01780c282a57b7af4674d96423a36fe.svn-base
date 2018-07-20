@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>资金管理详情</title>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/two_level.css">
+	<script src="$!webPath/resources/js/jquery-1.7.1.min.js"></script>
+	<!--layui-->
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+	<script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+</head>
+<body>
+<div class="both"> 
+	<table width="100%" class="twor">
+		<tr class="thead">
+			<td>商家名称</td>
+			<td>编号</td>
+			<td>科目名称</td>
+			<td>交易时间</td>
+			<td>结算金额</td>
+		</tr>
+		<tr>
+			<td>金山厂</td>
+			<td>1022011</td>
+			<td>货款金额</td>
+			<td>2017-3-22 10:22:23</td>
+			<td>+10000</td>
+		</tr>
+		<tr>
+			<td>金山厂</td>
+			<td>1022012</td>
+			<td>技术服务费</td>
+			<td>2017-3-22 10:22:23</td>
+			<td>-10000</td>
+		</tr>
+		<tr>
+				<td>金山厂</td>
+			<td>1022012</td>
+			<td>技术服务费</td>
+			<td>2017-3-22 10:22:23</td>
+			<td>-10000</td>
+		</tr>
+		<tr>
+				<td>金山厂</td>
+			<td>1022012</td>
+			<td>技术服务费</td>
+			<td>2017-3-22 10:22:23</td>
+			<td>-10000</td>
+		</tr>
+		<tr>
+			<td>金山厂</td>
+			<td>1022012</td>
+			<td>技术服务费</td>
+			<td>2017-3-22 10:22:23</td>
+			<td>-10000</td>
+		</tr>
+	</table>
+	<div class="cz"><span><a href="$!webPath/admin/dzzx.htm">返回</a></span><span><a href="">导出</a></span>
+      	<div style="clear:both;"></div>
+      </div>
+	      <div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+				<script>
+					layui.use(['laypage', 'layer'], function(){
+						var laypage = layui.laypage
+							,layer = layui.layer;
+						//完整功能
+						laypage.render({
+							elem: 'demo7'
+							,count: 100
+							,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+							,jump: function(obj){
+								console.log(obj)
+							}
+						});
+					});
+				</script>
+		</div>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>卖家品牌列表 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <!--<script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>-->
+    <!--<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>-->
+    <!--<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>-->
+
+
+
+    <!--<link rel="stylesheet" href="css/Font-Awesome-3.2.1/css/font-awesome.min.css">-->
+    <!--<script src="js/jquery-2.0.3.min.js"></script>-->
+    <!--<script src="js/bootstrap.min.js"></script>-->
+    <!--<link rel="stylesheet" href="css/01.css">-->
+
+
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css">
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+</head>
+<body>
+$!httpInclude.include("/top.htm")
+<div class="main"> $!httpInclude.include("/seller/nav_head.htm")
+    <div class="user_center">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=zhandai_dongtai")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="zddt_div1">
+                        <div class="zddt_div2">
+                            <div style="width: 10%;height: 75px;">
+                                <input type="image" src="$!webPath/resources/style/system/manage/black/img/shouhuikatongshengdanshuPSD_3397007.jpg" class="zddt_picture"/>
+                            </div>
+                            <div style="width: 40%;height: 75px;">
+                                <p style="padding-left: 10px;padding-top: 5px;">福来&nbsp;&nbsp;186&nbsp;2838&nbsp;0304</p>
+                                <p style="font-size: 14px;color: #DFDFDF">羽绒服，羊毛类共1000件，10000元（赊账）</p>
+                            </div>
+                            <div style="width: 30%;height: 75px;">
+                                <p style="padding-left: 10px;padding-top: 5px;">2017-09-12至2017-09-15</p>
+                                <p>库存充足。</p>
+                            </div>
+                            <div style="width: 20%;height: 75px;">
+                                <p style="padding-left: 10px;padding-top: 5px;color: blue;">响应时间剩余1天</p>
+                            </div>
+                        </div>
+                        <p class="zddt_line"></p>
+                        <p align="right" class="zddt_p">
+                            <input type="button" value="接单" />&nbsp;&nbsp;
+                            <input type="button" value="放弃供货"/>&nbsp;&nbsp;
+                            <input type="button" value="查看详情"/>
+                        </p>
+                    </div>
+                    <div class="zddt_div1">
+                        <div class="zddt_div2">
+                            <div style="width: 10%;height: 75px;">
+                                <input type="image" src="$!webPath/resources/style/system/manage/black/img/shouhuikatongshengdanshuPSD_3397007.jpg" class="zddt_picture"/>
+                            </div>
+                            <div style="width: 40%;height: 75px;">
+                                <p style="padding-left: 10px;padding-top: 5px;">福来&nbsp;&nbsp;186&nbsp;2838&nbsp;0304</p>
+                                <p style="font-size: 14px;color: #DFDFDF">羽绒服，羊毛类共1000件，10000元（赊账）</p>
+                            </div>
+                            <div style="width: 30%;height: 75px;">
+                                <p style="padding-left: 10px;padding-top: 5px;">2017-09-12至2017-09-15</p>
+                                <p>库存充足。</p>
+                            </div>
+                            <div style="width: 20%;height: 75px;">
+                                <p style="padding-left: 10px;padding-top: 5px;color: blue;">响应时间剩余1天</p>
+                            </div>
+                        </div>
+                        <p class="zddt_line"></p>
+                        <p align="right" class="zddt_p">
+                            <input type="button" value="接单" />&nbsp;&nbsp;
+                            <input type="button" value="放弃供货"/>&nbsp;&nbsp;
+                            <input type="button" value="查看详情"/>
+                        </p>
+                    </div>
+                    <div class="zddt_div1">
+                        <div style="width: 800px;height: 75px; display: flex;margin: 15px auto;border:none">
+                            <div style="width: 10%;height: 75px;">
+                                <input type="image" src="$!webPath/resources/style/system/manage/black/img/shouhuikatongshengdanshuPSD_3397007.jpg" class="zddt_picture"/>
+                            </div>
+                            <div style="width: 40%;height: 75px;">
+                                <p style="padding-left: 10px;padding-top: 5px;">仙人掌&nbsp;&nbsp;186&nbsp;2838&nbsp;0304</p>
+                                <p style="font-size: 14px;color: #DFDFDF">羽绒服，羊毛类共1000件，10000元（赊账）</p>
+                            </div>
+                            <div style="width: 30%;height: 75px;">
+                                <p style="padding-left: 10px;padding-top: 5px;">2017-09-12至2017-09-15</p>
+                                <p>库存充足。</p>
+                            </div>
+                            <div style="width: 20%;height: 75px;">
+                                <p style="padding-left: 10px;padding-top: 5px;color: red;">已放弃&nbsp;<i class="icon-lightbulb"></i></p>
+                            </div>
+                        </div>
+                        <p class="zddt_line"></p>
+                        <p align="right" class="zddt_p">
+                            <input type="button" value="查看详情"/>
+                        </p>
+                    </div>
+                    <div class="zddt_div1">
+                        <div style="width: 800px;height: 75px; display: flex;margin: 15px auto;border:none">
+                            <div style="width: 10%;height: 75px;">
+                                <input type="image" src="$!webPath/resources/style/system/manage/black/img/shouhuikatongshengdanshuPSD_3397007.jpg" class="zddt_picture"/>
+                            </div>
+                            <div style="width: 40%;height: 75px;">
+                                <p style="padding-left: 10px;padding-top: 5px;">仙人掌&nbsp;&nbsp;186&nbsp;2838&nbsp;0304</p>
+                                <p style="font-size: 14px;color: #DFDFDF">秋装T恤，毛衣类共800件</p>
+                            </div>
+                            <div style="width: 30%;height: 75px;">
+                                <p style="padding-left: 10px;">2017-09-12至2017-09-15</p>
+                                <p style="font-size: 14px;">秋装T恤库存不足，差200件。其余商品库存充足。</p>
+                            </div>
+                            <div style="width: 20%;height: 75px;">
+                                <p style="padding-left: 10px;padding-top: 5px;color: red;">已过期&nbsp;<i class="icon-time"></i></p>
+                            </div>
+                        </div>
+                        <p class="zddt_line"></p>
+                        <p align="right" class="zddt_p">
+                            <input type="button" value="查看详情"/>
+                        </p>
+                    </div>
+
+
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

@@ -1,0 +1,401 @@
+package com.dashidao.foundation.domain;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import com.dashidao.core.domain.IdEntity;
+
+/**
+ * @author Administrator
+ *基础设置
+ */
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Entity
+@Table(name = "zb_jichushezhi")
+public class JiChuSheZhi extends IdEntity {
+	private static final long serialVersionUID = 8026813053768023527L;
+	/**
+	 * 会员积分规则
+	 */
+	private BigDecimal zb_shifujine; //实付金额
+	private double zb_jifendixiao;//积分兑换
+	private Integer zb_dingdanshiyongjifen;//订单使用积分
+	/**
+	 * 会员升级云客标准
+	 * 
+	 */
+	private BigDecimal zb_huiyuandingdan;//商品订单数量  变成   会员申请成为云客标准  会员累计消费金额
+	/**
+	 * 云客进级条件
+	 */
+	private BigDecimal zb_hygmJinE;//会员购买金额
+	
+	private int zb_tuijianyunke;//推荐云客个数
+	/**
+	 * 云客考核标准
+	 */
+	private int zb_cjkhzq;//初级考核周期 
+	private BigDecimal zb_cjkhbz;//初级考核标准
+	private int zb_zjkhzq;//中级考核周期 
+	private BigDecimal zb_zjkhbz;//中级考核标准
+	/**
+	 * 推介云客设置
+	 */
+	private int zb_tjyksz;//推介云客设置  0-不需要购买指定商品 1-不需要购买指定商品
+	/**
+	 * 商家考核标准
+	 */
+	private Double zb_sjkbzq;//商家考核周期  更换成  商家拼团设置
+	private BigDecimal zb_sjxsJinE;//销售额
+	private Double zb_syzssj;//首页展示最短时间(暂未用)
+	private Double zb_dysj;//代言最短时间
+	
+	/**
+	 * 订单期限
+	 */
+	private BigDecimal zb_qrshqx;//自动确认会员收货期限
+	private BigDecimal zb_qxfkqx;//取消未付款订单期限
+	private BigDecimal zb_qrthsqqx;//确认退换货申请期限
+	private BigDecimal zb_qrthsshqx;//确认退换货收货期限
+	private BigDecimal zb_zdfhqx;//最大发货响应期限(取掉)
+	private BigDecimal zb_fhxq;//发货期限
+	private BigDecimal zb_wfhfk;//发货罚款
+	private BigDecimal zb_wfhjg;//未发货警告期限
+	private BigDecimal zb_jgwfhfk;//警告期限未发货罚款
+	private BigDecimal zb_wfhqx;//未发货关店期限
+	
+	private BigDecimal zb_xfzycshsj;//消费者延长确认收货时间
+	private BigDecimal zb_xfzycshsqsj;//消费者延长确认收货的申请时间
+	private int zb_xfzycshsqcs;//消费者延长确认收货的申请次数
+	private int zb_zdgdjjfhcs;//自动关店的拒绝发货次数
+	private Double zb_thhjzsj;//申请退换货的截止时间
+
+	/**
+	 * 商品警察
+	 */
+	private BigDecimal zb_spcpljg;//商品差评率警告
+	private BigDecimal zb_spcplxj;//商品差评率下架
+	
+	/**
+	 * 商家保证金设置
+	 */
+	private BigDecimal zb_htdqts;//合同到期天数
+	private BigDecimal zb_jsjinE;//结算金额
+	/**
+	 * 保证金计提方式
+	 */
+	private Double zb_sfbl;//首付比例
+	private Double zb_jtbl;//计提比例
+	
+	private BigDecimal zb_lsbzjthqx;//零售保证金退还期限
+	private BigDecimal zb_pfbzjthqx;//批订保证金退还期限
+	
+	private BigDecimal zb_lsbzj;//零售保证金
+	private BigDecimal zb_pfbzj;//批订保证金
+	
+	/**
+	 * 栈代保证金设置
+	 */
+	private BigDecimal zb_zdhtdqts;//栈代合同到期天数
+	private Double zb_sfbls;//首付比例
+	private Double zb_jtbls;//计提比例
+	
+	private Double zb_hdjgsx;//活动价格上限
+	private int zb_dcqjzcts;//单次请假最长天数
+	
+	private int zb_sppjts;//商品评价天数内  只能评价一次
+	private int zb_spischeck;//商品上架是否审核
+	
+	public int getZb_sppjts() {
+		return zb_sppjts;
+	}
+	public void setZb_sppjts(int zb_sppjts) {
+		this.zb_sppjts = zb_sppjts;
+	}
+	public int getZb_spischeck() {
+		return zb_spischeck;
+	}
+	public void setZb_spischeck(int zb_spischeck) {
+		this.zb_spischeck = zb_spischeck;
+	}
+	public BigDecimal getZb_shifujine() {
+		return zb_shifujine;
+	}
+	public void setZb_shifujine(BigDecimal zb_shifujine) {
+		this.zb_shifujine = zb_shifujine;
+	}
+	public double getZb_jifendixiao() {
+		return zb_jifendixiao;
+	}
+	public void setZb_jifendixiao(double zb_jifendixiao) {
+		this.zb_jifendixiao = zb_jifendixiao;
+	}
+
+	public Integer getZb_dingdanshiyongjifen() {
+		return zb_dingdanshiyongjifen;
+	}
+	public void setZb_dingdanshiyongjifen(Integer zb_dingdanshiyongjifen) {
+		this.zb_dingdanshiyongjifen = zb_dingdanshiyongjifen;
+	}
+	public BigDecimal getZb_hygmJinE() {
+		return zb_hygmJinE;
+	}
+	public void setZb_hygmJinE(BigDecimal zb_hygmJinE) {
+		this.zb_hygmJinE = zb_hygmJinE;
+	}
+	public BigDecimal getZb_huiyuandingdan() {
+		return zb_huiyuandingdan;
+	}
+	public void setZb_huiyuandingdan(BigDecimal zb_huiyuandingdan) {
+		this.zb_huiyuandingdan = zb_huiyuandingdan;
+	}
+	public int getZb_tuijianyunke() {
+		return zb_tuijianyunke;
+	}
+	public void setZb_tuijianyunke(int zb_tuijianyunke) {
+		this.zb_tuijianyunke = zb_tuijianyunke;
+	}
+	public int getZb_cjkhzq() {
+		return zb_cjkhzq;
+	}
+	public void setZb_cjkhzq(int zb_cjkhzq) {
+		this.zb_cjkhzq = zb_cjkhzq;
+	}
+	public BigDecimal getZb_cjkhbz() {
+		return zb_cjkhbz;
+	}
+	public void setZb_cjkhbz(BigDecimal zb_cjkhbz) {
+		this.zb_cjkhbz = zb_cjkhbz;
+	}
+	public int getZb_zjkhzq() {
+		return zb_zjkhzq;
+	}
+	public void setZb_zjkhzq(int zb_zjkhzq) {
+		this.zb_zjkhzq = zb_zjkhzq;
+	}
+	public BigDecimal getZb_zjkhbz() {
+		return zb_zjkhbz;
+	}
+	public void setZb_zjkhbz(BigDecimal zb_zjkhbz) {
+		this.zb_zjkhbz = zb_zjkhbz;
+	}
+	public Double getZb_sjkbzq() {
+		return zb_sjkbzq;
+	}
+	public void setZb_sjkbzq(Double zb_sjkbzq) {
+		this.zb_sjkbzq = zb_sjkbzq;
+	}
+	public BigDecimal getZb_sjxsJinE() {
+		return zb_sjxsJinE;
+	}
+	public void setZb_sjxsJinE(BigDecimal zb_sjxsJinE) {
+		this.zb_sjxsJinE = zb_sjxsJinE;
+	}
+	public Double getZb_syzssj() {
+		return zb_syzssj;
+	}
+	public void setZb_syzssj(Double zb_syzssj) {
+		this.zb_syzssj = zb_syzssj;
+	}
+	public BigDecimal getZb_lsbzj() {
+		return zb_lsbzj;
+	}
+	public void setZb_lsbzj(BigDecimal zb_lsbzj) {
+		this.zb_lsbzj = zb_lsbzj;
+	}
+	public BigDecimal getZb_pfbzj() {
+		return zb_pfbzj;
+	}
+	public void setZb_pfbzj(BigDecimal zb_pfbzj) {
+		this.zb_pfbzj = zb_pfbzj;
+	}
+	public Double getZb_dysj() {
+		return zb_dysj;
+	}
+	public void setZb_dysj(Double zb_dysj) {
+		this.zb_dysj = zb_dysj;
+	}
+	public BigDecimal getZb_qrshqx() {
+		return zb_qrshqx;
+	}
+	public void setZb_qrshqx(BigDecimal zb_qrshqx) {
+		this.zb_qrshqx = zb_qrshqx;
+	}
+	public BigDecimal getZb_qxfkqx() {
+		return zb_qxfkqx;
+	}
+	public void setZb_qxfkqx(BigDecimal zb_qxfkqx) {
+		this.zb_qxfkqx = zb_qxfkqx;
+	}
+	public BigDecimal getZb_qrthsqqx() {
+		return zb_qrthsqqx;
+	}
+	public void setZb_qrthsqqx(BigDecimal zb_qrthsqqx) {
+		this.zb_qrthsqqx = zb_qrthsqqx;
+	}
+	public BigDecimal getZb_qrthsshqx() {
+		return zb_qrthsshqx;
+	}
+	public void setZb_qrthsshqx(BigDecimal zb_qrthsshqx) {
+		this.zb_qrthsshqx = zb_qrthsshqx;
+	}
+	public BigDecimal getZb_zdfhqx() {
+		return zb_zdfhqx;
+	}
+	public void setZb_zdfhqx(BigDecimal zb_zdfhqx) {
+		this.zb_zdfhqx = zb_zdfhqx;
+	}
+	public BigDecimal getZb_fhxq() {
+		return zb_fhxq;
+	}
+	public void setZb_fhxq(BigDecimal zb_fhxq) {
+		this.zb_fhxq = zb_fhxq;
+	}
+	public BigDecimal getZb_wfhfk() {
+		return zb_wfhfk;
+	}
+	public void setZb_wfhfk(BigDecimal zb_wfhfk) {
+		this.zb_wfhfk = zb_wfhfk;
+	}
+	public BigDecimal getZb_wfhjg() {
+		return zb_wfhjg;
+	}
+	public void setZb_wfhjg(BigDecimal zb_wfhjg) {
+		this.zb_wfhjg = zb_wfhjg;
+	}
+	public BigDecimal getZb_jgwfhfk() {
+		return zb_jgwfhfk;
+	}
+	public void setZb_jgwfhfk(BigDecimal zb_jgwfhfk) {
+		this.zb_jgwfhfk = zb_jgwfhfk;
+	}
+	public BigDecimal getZb_wfhqx() {
+		return zb_wfhqx;
+	}
+	public void setZb_wfhqx(BigDecimal zb_wfhqx) {
+		this.zb_wfhqx = zb_wfhqx;
+	}
+	public BigDecimal getZb_spcpljg() {
+		return zb_spcpljg;
+	}
+	public void setZb_spcpljg(BigDecimal zb_spcpljg) {
+		this.zb_spcpljg = zb_spcpljg;
+	}
+	public BigDecimal getZb_spcplxj() {
+		return zb_spcplxj;
+	}
+	public void setZb_spcplxj(BigDecimal zb_spcplxj) {
+		this.zb_spcplxj = zb_spcplxj;
+	}
+	public BigDecimal getZb_htdqts() {
+		return zb_htdqts;
+	}
+	public void setZb_htdqts(BigDecimal zb_htdqts) {
+		this.zb_htdqts = zb_htdqts;
+	}
+	public BigDecimal getZb_jsjinE() {
+		return zb_jsjinE;
+	}
+	public void setZb_jsjinE(BigDecimal zb_jsjinE) {
+		this.zb_jsjinE = zb_jsjinE;
+	}
+	public BigDecimal getZb_zdhtdqts() {
+		return zb_zdhtdqts;
+	}
+	public void setZb_zdhtdqts(BigDecimal zb_zdhtdqts) {
+		this.zb_zdhtdqts = zb_zdhtdqts;
+	}
+	public int getZb_tjyksz() {
+		return zb_tjyksz;
+	}
+	public void setZb_tjyksz(int zb_tjyksz) {
+		this.zb_tjyksz = zb_tjyksz;
+	}
+	public BigDecimal getZb_xfzycshsj() {
+		return zb_xfzycshsj;
+	}
+	public void setZb_xfzycshsj(BigDecimal zb_xfzycshsj) {
+		this.zb_xfzycshsj = zb_xfzycshsj;
+	}
+	public BigDecimal getZb_xfzycshsqsj() {
+		return zb_xfzycshsqsj;
+	}
+	public void setZb_xfzycshsqsj(BigDecimal zb_xfzycshsqsj) {
+		this.zb_xfzycshsqsj = zb_xfzycshsqsj;
+	}
+	public int getZb_xfzycshsqcs() {
+		return zb_xfzycshsqcs;
+	}
+	public void setZb_xfzycshsqcs(int zb_xfzycshsqcs) {
+		this.zb_xfzycshsqcs = zb_xfzycshsqcs;
+	}
+	public int getZb_zdgdjjfhcs() {
+		return zb_zdgdjjfhcs;
+	}
+	public void setZb_zdgdjjfhcs(int zb_zdgdjjfhcs) {
+		this.zb_zdgdjjfhcs = zb_zdgdjjfhcs;
+	}
+	public Double getZb_thhjzsj() {
+		return zb_thhjzsj;
+	}
+	public void setZb_thhjzsj(Double zb_thhjzsj) {
+		this.zb_thhjzsj = zb_thhjzsj;
+	}
+	public BigDecimal getZb_lsbzjthqx() {
+		return zb_lsbzjthqx;
+	}
+	public void setZb_lsbzjthqx(BigDecimal zb_lsbzjthqx) {
+		this.zb_lsbzjthqx = zb_lsbzjthqx;
+	}
+	public BigDecimal getZb_pfbzjthqx() {
+		return zb_pfbzjthqx;
+	}
+	public void setZb_pfbzjthqx(BigDecimal zb_pfbzjthqx) {
+		this.zb_pfbzjthqx = zb_pfbzjthqx;
+	}
+	public Double getZb_hdjgsx() {
+		return zb_hdjgsx;
+	}
+	public void setZb_hdjgsx(Double zb_hdjgsx) {
+		this.zb_hdjgsx = zb_hdjgsx;
+	}
+	public int getZb_dcqjzcts() {
+		return zb_dcqjzcts;
+	}
+	public void setZb_dcqjzcts(int zb_dcqjzcts) {
+		this.zb_dcqjzcts = zb_dcqjzcts;
+	}
+	public Double getZb_sfbl() {
+		return zb_sfbl;
+	}
+	public void setZb_sfbl(Double zb_sfbl) {
+		this.zb_sfbl = zb_sfbl;
+	}
+	public Double getZb_jtbl() {
+		return zb_jtbl;
+	}
+	public void setZb_jtbl(Double zb_jtbl) {
+		this.zb_jtbl = zb_jtbl;
+	}
+	public Double getZb_sfbls() {
+		return zb_sfbls;
+	}
+	public void setZb_sfbls(Double zb_sfbls) {
+		this.zb_sfbls = zb_sfbls;
+	}
+	public Double getZb_jtbls() {
+		return zb_jtbls;
+	}
+	public void setZb_jtbls(Double zb_jtbls) {
+		this.zb_jtbls = zb_jtbls;
+	}
+
+	
+
+}

@@ -1,0 +1,333 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+li,
+p,
+hr,
+fieldset,
+form,
+input,
+select,
+textarea,
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: normal;
+}
+body,
+input,
+select,
+textarea,
+button {
+  font-size: 100%;
+  font-family: "Helvetica Neue", Helvetica, Arial, 'Microsoft Yahei' sans-serif;
+  outline: 0;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+ul,
+li {
+  list-style: none;
+}
+b,
+i {
+  font-style: normal;
+  font-weight: 400;
+}
+img {
+  border: 0;
+  width: 100%;
+  height:100%;
+}
+itemimg
+{
+  border: 0;
+  width: 200;
+  height:100%;
+}
+input,
+button,
+img,
+label {
+  vertical-align: middle;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+  -ms-touch-action: none;
+  overflow: hidden;
+}
+a {
+  text-decoration: none;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.clearfix:after {
+  clear: both;
+  content: ' ';
+  display: block;
+  font-size: 0;
+  line-height: 0;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+.relative {
+  position: relative;
+}
+.inline-block {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+html .hide {
+  display: none;
+}
+.hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+.invisible {
+  visibility: hidden;
+}
+.text-hide {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+.bold {
+  font-weight: bold;
+}
+.fs20 {
+  font-size: 2rem;
+}
+.fs22 {
+  font-size: 2.2rem;
+}
+.fs24 {
+  font-size: 2.4rem;
+}
+.fs28 {
+  font-size: 2.4rem;
+}
+.fs30 {
+  font-size: 3rem;
+}
+.fs32 {
+  font-size: 3.2rem;
+}
+.fs36 {
+  font-size: 3.6rem;
+}
+.fs40 {
+  font-size: 4rem;
+}
+.fs48 {
+  font-size: 4.8rem;
+}
+.half {
+  width: 50%;
+}
+.one-third {
+  width: 33.33%;
+}
+.red {
+  color: #c00;
+}
+.gray {
+  color: #949494;
+}
+.light {
+  color: #dfdfdf;
+}
+.white {
+  color: #fff;
+}
+.green {
+  color: #599933;
+}
+.blue {
+  color: #00bdf1;
+}
+.orange {
+  color: #f3811f;
+}
+.bg-white {
+  background-color: #fff;
+}
+.flex-layout {
+  display: -webkit-box;
+  display: -moz-box;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  width:100%;
+}
+.flex-vertical {
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+}
+.flex {
+  display: block;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+}
+.noflex {
+  -webkit-box-flex: 0 !important;
+  -mox-box-flex: 0 !important;
+  width:40px;
+  height:40px;
+}
+.cartflex {
+  -webkit-box-flex: 0 !important;
+  -mox-box-flex: 0 !important;
+}
+.fixflex {
+  -webkit-box-flex: 0 !important;
+  -mox-box-flex: 0 !important;
+}
+.goshop {
+  -webkit-box-flex: 0 !important;
+  -mox-box-flex: 0 !important;
+}
+.qb_none{display:none!important}
+@font-face {
+  font-family: 'icomoon';
+  src: url("fonts/icomoon.eot?-b28jzn");
+  src: url("fonts/icomoon.eot?#iefix-b28jzn") format('embedded-opentype'), url("fonts/icomoon.woff?-b28jzn") format('woff'), url("fonts/icomoon.ttf?-b28jzn") format('truetype'), url("fonts/icomoon.svg?-b28jzn#icomoon") format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="icon-"],
+[class*=" icon-"] {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+/* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  vertical-align: middle;
+}
+.icon-edit:before {
+  content: "\e603";
+}
+.icon-cart:before {
+  content: "\e601";
+}
+.icon-heart:before {
+  content: "\e605";
+}
+.icon-heart2:before {
+  content: "\e606";
+}
+.icon-share:before {
+  content: "\e608";
+}
+.icon-arrow-left2:before {
+  content: "\e094";
+}
+.icon-plus:before {
+  content: "\e114";
+}
+.icon-minus:before {
+  content: "\e115";
+}
+.icon-check:before {
+  content: "\e116";
+}
+.icon-cross:before {
+  content: "\e117";
+}
+.icon-arrow-left:before {
+  content: "\e60c";
+}
+.icon-arrow-down:before {
+  content: "\e60d";
+}
+.icon-arrow-up:before {
+  content: "\e60e";
+}
+.icon-arrow-right:before {
+  content: "\e60f";
+}
+.icon-ellipsis:before {
+  content: "\e600";
+}
+@media all and (min-width: 640px) {
+  html {
+    font-size: 6px;
+  }
+}
+@media all and (max-width: 639px) {
+  html {
+    font-size: 8px;
+  }
+}
+@media all and (max-width: 479px) {
+  html {
+    font-size: 6px;
+  }
+}
+@media all and (max-width: 359px) {
+  html {
+    font-size: 5px;
+  }
+}
+body {
+  background: #f1f1f1;
+  color: #272727;
+  font-size: 2.8rem;
+  -webkit-text-size-adjust: none;
+}
+a {
+  color: #00bdf1;
+}
+a span,
+a i,
+a b {
+  pointer-events: none;
+}

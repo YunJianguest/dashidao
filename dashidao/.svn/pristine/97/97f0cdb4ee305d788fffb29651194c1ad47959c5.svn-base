@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>基础设置</title>
+    <script type="text/javascript" src="$!webPath/resources/js/jquery1.42.min.js"></script>
+    <link href="$!webPath/resources/style/system/manage/blue/jcsz.css"  rel="stylesheet" type="text/css"/>
+     <style>
+		body{font-size: 14px!important;}
+		table {margin-top: 20px; width:100%;}
+		table td{height: 45px;line-height: 45px;padding-left:5%; }
+		.first{width:20%;}
+		.two{width:70%;}
+		table tr td input{width: 100px;margin: 0 20px;}
+		.ls{width:10%;}
+		span{padding: 3px 10px;border-radius: 3px;background: #108ee9;color:#fff;text-align: center;}
+		.first span{padding: 3px 10px;border-radius: 3px;background: #108ee;color:#fff;}
+		table {display: table;border-collapse: separate;border-spacing:0; border-color: grey;}
+		.con tr td{border-bottom:1px solid #c3c3c3;}
+		.search {width: 80%; margin:2% 0 0 5%; height: 30px; border-radius: 5px;border: 1px solid #c3c3c3;}
+		.seach_button{padding: 5px 15px;margin-left: 10px;}
+		.hd li{border:1px solid #c3c3c3;}
+	</style>
+</head>
+<body>
+<div class="shopadminbox">
+    <div class="hd">
+        <ul>
+            <a href="javascript:void(0)" onclick="javascript:window.location.href='$!webPath/admin/setting_admin.htm'"><li>基础设置</li></a>
+            <a href="javascript:void(0)" onclick="javascript:window.location.href='$!webPath/admin/sjbzj_admin.htm'"><li >商家保证金设置</li></a>
+            <a href="javascript:void(0)" onclick="javascript:window.location.href='$!webPath/admin/zdbzj_admin.htm'"><li class="on">栈代保证金设置</li></a>
+        </ul>
+    </div>
+    <div class="bd">
+        <!--商家保证金设置-->
+		 <ul>
+        <li>
+        <input type="hidden" id="id" value="$!obj.id">
+        	<table>
+        		<tr>
+        			<td class="first">商家保证金：</td>
+        			<td class="two">保证金退还期限：合同到期后 <input type="text" class="form-control" name="" id="zb_zdhtdqts" value="$!obj.zb_zdhtdqts" />天，系统自动退还保证金 。</td>
+        			<td class="ls"><span onclick="jcsz_save()">提交</span>
+        			
+        			</td>
+        		</tr>
+			</table>
+			<div><span class="seach_button" onclick="save()">新增</span></div>
+        	<table border="0" style="text-align: center;">
+        		<tr style="background: #DFE2F5;">
+        			<td>代理的商家数量</td>
+        			<td>栈代保证金</td>
+        		</tr>
+        		<tbody class="con">
+        		#foreach($obj in $objs)
+					<tr>
+						<td>$obj.zb_one_int_attr家</td>
+						<td>$obj.zb_one_bigDecimal_attr元</td>
+					</tr>
+				#end
+				<tr>
+						<td><input type="text" class="form-control" name="" id="zb_one_int_attr" value="" />家</td>
+						<td><input type="text" class="form-control" name="" id="zb_one_bigDecimal_attr" value="" />元</td>
+					</tr>
+        		</tbody>
+        	</table>
+        </li>
+        </ul>
+    
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+	var reg = /^(?!(0[0-9]{0,}$))[0-9]{1,}[.]{0,}[0-9]{0,}$/;
+	//正整数验证
+	var reg1 = /^[1-9]\d*$/;
+    function jcsz_save(){ 
+    	var data={
+            id:$('#id').val(),
+            zb_zdhtdqts:$('#zb_zdhtdqts').val()
+    	}
+    	jQuery.ajax({
+    	    type:"POST",
+    	    cache: false,
+    	    async:false,
+    	    url:"$!webPath/admin/setting_save_admin.htm",
+    	    dataType:"json",
+    	    data:data,
+    	    error:function(){},
+    	    success:function(data)
+    	    { 
+    	    	alert(data.data);
+    	    	
+    	    }
+    	});
+    }
+    function save(){ 
+    	if(!reg1.test($('#zb_one_int_attr').val())){
+    		alert('请输入正整数');
+    		$('#zb_one_int_attr').val('')
+    		return ;
+    	}
+    	if(!reg.test($('#zb_one_bigDecimal_attr').val())){
+    		alert('请输入金额');
+    		return ;
+    	}
+    	var data={
+            zb_one_int_attr:$('#zb_one_int_attr').val(),
+            zb_one_bigDecimal_attr:$('#zb_one_bigDecimal_attr').val(),
+            zb_type:7
+    	}
+    	jQuery.ajax({
+    	    type:"POST",
+    	    cache: false,
+    	    async:false,
+    	    url:"$!webPath/admin/settingList_save_admin.htm",
+    	    dataType:"json",
+    	    data:data,
+    	    error:function(){},
+    	    success:function(data)
+    	    { 
+    	    	alert(data.data);
+    	    	window.location.reload();
+    	    	
+    	    }
+    	});
+    }
+</script>
+</html>

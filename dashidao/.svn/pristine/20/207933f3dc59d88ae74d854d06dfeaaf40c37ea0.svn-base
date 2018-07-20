@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/bootstrap.css.map">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap.min.css.map">
+<link rel="stylesheet" href="css/bootstrap-theme.css.map">
+<link rel="stylesheet" href="css/bootstrap-theme.css">
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="css/bootstrap-theme.min.css.map">
+<link rel="stylesheet" href="css/index.css">
+<title></title>
+</head>
+
+<body id="my_represent">
+<div>
+	<div id="head" class="recom">
+	<ul>
+		<li class="back" onclick="history.go(-1)" style="border:0;width:10%;"><img src="img/arrow.png" alt=""></li>
+		<li class="title rec">添加员工</li>
+		<div style="clear:both;"></div>
+	</ul>
+	</div>
+	<div class="both employee_add">
+		<div class="employ_photo"><img src="img/raw_1495541442.jpeg" alt=""></div>
+		
+		<div class="add_message">
+			<div><input type="text" placeholder="姓名"></div>
+			<div><input type="text" placeholder="手机"></div>
+			<div><input type="text" placeholder="提成比例"></div>
+			<div><input type="text" placeholder="添加其他项目"></div>
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+	
+</div>
+</body>
+</html>

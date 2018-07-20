@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>选择商品</title>
+
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>选择商品 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+
+
+
+
+
+
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div class="main">
+    <div class="user_center">
+
+        $!httpInclude.include("/poster/nav_head.htm")
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/poster/nav.htm?op=refund")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="shopadminbox choicebox">
+                        <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                            <tbody>
+                            <tr class="returnthead" >
+                                <td width="100%" colspan="7" >
+                                    <div class="buyer_position">
+                                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代中心</a> > <span>所有订单</span></div>
+                                    </div>
+                                    <div class="shopadminbox  cleargood">
+                                        <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                                            <tbody>
+                                            <tr class="tiptitles returntitle">
+                                                <td width="100%" colspan="6" >
+                                                    <p style="font-size: 18px;  line-height: 40px; height:40px; background: #3fa4ed;">清仓活动</p>
+                                                </td>
+                                            </tr>
+                                            <!--清仓活动-->
+                                            <tr class="returnthead second clearactive" >
+                                                <td width="75%" colspan="4" >
+                                                    <form>
+                                                        <div class="two">
+                                                            <ul>
+                                                                <li>
+                                                                    <span class="fl">活动名称：</span>
+                                                                    <span class="fr" ><input type="text" class="oput" value="临期促销" style="border: 1px solid #ccc; text-indent: 2rem; border-radius: 5px;"  ></span>
+                                                                    <div class="clear"></div>
+                                                                </li>
+                                                                <li>
+                                                                    <span class="fl">打折力度：</span>
+                                                                    <span class="fl lit">
+                                              <div class="goods_sum">
+                                                    <ul class="count">
+                                                        <li><span id="num-jian" class="num-jian">-</span></li>
+                                                        <li><input type="text" class="input-num" id="input-num" value="0"  /></li>
+                                                        <li><span id="num-jia" class="num-jia"  style="padding-left: 20px;">+</span></li>
+                                                        <div class="clear"> </div>
+                                                    </ul>
+                                                </div>
+                                                <script>
+                                                    var num_jia = document.getElementById("num-jia");
+                                                    var num_jian = document.getElementById("num-jian");
+                                                    var input_num = document.getElementById("input-num");
+
+                                                    num_jia.onclick = function() {
+
+                                                        input_num.value = parseInt(input_num.value) + 0;
+                                                    }
+
+                                                    num_jian.onclick = function() {
+
+                                                        if(input_num.value <= 0) {
+                                                            input_num.value = 0;
+                                                        } else {
+
+                                                            input_num.value = parseInt(input_num.value) - 0;
+                                                        }
+
+                                                    }
+                                                    $("body").on("click", ".num-jian", function(m) {
+                                                        var obj = $(this).closest("ul").find(".input-num");
+                                                        if(obj.val() <= 0) {
+                                                            obj.val(0);
+                                                        } else {
+                                                            obj.val(parseInt(obj.val()) - 1);
+                                                        }
+                                                        obj.change();
+                                                    });
+                                                    $("body").on("click", ".num-jia", function(m) {
+                                                        var obj = $(this).closest("ul").find(".input-num");
+                                                        obj.val(parseInt(obj.val()) + 1);
+                                                        obj.change();
+                                                    });
+                                                </script>
+                                    </span>
+                                                                    <span class="fl">打折门槛：</span>
+                                                                    <span class="fl lit">
+                                         <div class="goods_sum">
+                                                    <ul class="count">
+                                                        <li><span id="num-jian" class="num-jian">-</span></li>
+                                                        <li><input type="text" class="input-num" id="input-num" value="0"  /></li>
+                                                        <li ><span id="num-jia" class="num-jia" style="padding-left: 20px;">+</span></li>
+                                                        <div class="clear"> </div>
+                                                    </ul>
+                                                </div>
+                                                <script>
+                                                    var num_jia = document.getElementById("num-jia");
+                                                    var num_jian = document.getElementById("num-jian");
+                                                    var input_num = document.getElementById("input-num");
+
+                                                    num_jia.onclick = function() {
+
+                                                        input_num.value = parseInt(input_num.value) + 0;
+                                                    }
+
+                                                    num_jian.onclick = function() {
+
+                                                        if(input_num.value <= 0) {
+                                                            input_num.value = 0;
+                                                        } else {
+
+                                                            input_num.value = parseInt(input_num.value) - 0;
+                                                        }
+
+                                                    }
+                                                    $("body").on("click", ".num-jian", function(m) {
+                                                        var obj = $(this).closest("ul").find(".input-num");
+                                                        if(obj.val() <= 0) {
+                                                            obj.val(0);
+                                                        } else {
+                                                            obj.val(parseInt(obj.val()) - 1);
+                                                        }
+                                                        obj.change();
+                                                    });
+                                                    $("body").on("click", ".num-jia", function(m) {
+                                                        var obj = $(this).closest("ul").find(".input-num");
+                                                        obj.val(parseInt(obj.val()) + 1);
+                                                        obj.change();
+                                                    });
+                                                </script>
+                                    </span>
+                                                                    <div class="clear"></div>
+                                                                </li>
+                                                                <li>
+                                                                    <span class="fl">活动时间：</span>
+                                                                    <span class="fr">
+                                                                        <div class="iDate full"  >
+                                                                            <input type="text" name="start" >
+                                                                            <button type="button" class="addOn" style="background: none; width: 100%; border: 1px solid #ccc; margin: 0px;" ></button>
+                                                                        </div>
+                                                                        <div class="iDate date">
+                                                                            <input type="text" name="end" >
+                                                                            <button type="button" class="addOn" style="background: none; width: 100%; border: 1px solid #ccc; margin: 0px;"  ></button>
+                                                                        </div>
+
+                                                                    </span>
+                                                                    <div class="clear"></div>
+                                                                </li>
+                                                                <li>
+                                                                    <span class="fl">参加商品：</span>
+                                                                    <span class="fl lit">
+                                        <input type="checkbox" checked style="margin-left: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;全部<i class="iconfont icon-add"></i>
+                                    </span>
+                                                                    <span class="fl" style="width: 180px;">参加商品数量：</span>
+                                                                    <span class="fl lit" ><input type="text" class="oput2" value="1000件" style="border: 1px solid #ccc; text-indent: 2rem; line-height: 40px; border-radius: 5px;"   ></span>
+                                                                </li>
+
+                                                            </ul>
+                                                        </div>
+                                                    </form>
+                                                </td>
+                                                <td width="25%" colspan="2">
+                                                    <button type="submit" class="turess" >确定</button>
+                                                </td>
+                                            </tr>
+                                            <tr class="one">
+                                                <td width="100%" colspan="6" >参加商品清单</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <!--1-->
+                                        <table  width="100%" class="returntable importbill" border="0" cellspacing="0" cellpadding="0" >
+                                            <tbody>
+                                            <tr  class="two" >
+                                                <td width="20%">商家名称</td>
+                                                <td width="16%">商品编号</td>
+                                                <td width="16%">商品规格</td>
+                                                <td width="16%">出厂价</td>
+                                                <td width="16%">库存</td>
+                                                <td width="16%">选择商品</td>
+                                            </tr>
+                                            <tr class="first" >
+                                                <td>海参快客鲜食辽参雪蛤银耳浸</td>
+                                                <td>TD432965050</td>
+                                                <td>185g*4</td>
+                                                <td>30元/件</td>
+                                                <td>27万件</td>
+                                                <td>
+                                                    <input type="checkbox" checked />
+                                                </td>
+                                            </tr>
+                                            <tr class="first" >
+                                                <td>海参快客鲜食辽参雪蛤银耳浸</td>
+                                                <td>TD432965050</td>
+                                                <td>185g*4</td>
+                                                <td>30元/件</td>
+                                                <td>27万件</td>
+                                                <td>
+                                                    <input type="checkbox" checked />
+                                                </td>
+                                            </tr>
+                                            <tr class="first" >
+                                                <td>海参快客鲜食辽参雪蛤银耳浸</td>
+                                                <td>TD432965050</td>
+                                                <td>185g*4</td>
+                                                <td>30元/件</td>
+                                                <td>27万件</td>
+                                                <td>
+                                                    <input type="checkbox" checked />
+                                                </td>
+                                            </tr>
+                                            <tr class="first" >
+                                                <td>海参快客鲜食辽参雪蛤银耳浸</td>
+                                                <td>TD432965050</td>
+                                                <td>185g*4</td>
+                                                <td>30元/件</td>
+                                                <td>27万件</td>
+                                                <td>
+                                                    <input type="checkbox" checked />
+                                                </td>
+                                            </tr>
+                                            <tr class="first" >
+                                                <td>海参快客鲜食辽参雪蛤银耳浸</td>
+                                                <td>TD432965050</td>
+                                                <td>185g*4</td>
+                                                <td>30元/件</td>
+                                                <td>27万件</td>
+                                                <td>
+                                                    <input type="checkbox" checked />
+                                                </td>
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+                                        <!-- PageNum -->
+                                        <div class="pageDiv"></div>
+                                    </div>
+                                    <script type="text/javascript">
+                                        $(document).ready(function(){
+                                            // date time picker
+                                            if($(".iDate.full").length>0){
+                                                $(".iDate.full").datetimepicker({
+                                                    locale: "zh-cn",
+                                                    format: "YYYY-MM-DD a hh:mm",
+                                                    dayViewHeaderFormat: "YYYY年 MMMM"
+                                                });
+                                            }
+                                            if($(".iDate.date").length>0){
+                                                $(".iDate.date").datetimepicker({
+                                                    locale:"zh-cn",
+                                                    format:"YYYY-MM-DD",
+                                                    dayViewHeaderFormat:"YYYY年 MMMM"
+                                                });
+                                            }
+                                        })
+                                        $(function(){$(".pageDiv").createPage({
+                                            pageCount:9,//总页数
+                                            current:1,//当前页
+                                            turndown:'true',//是否显示跳转框，显示为true，不现实为false,一定记得加上引号...
+                                            backFn:function(p){
+                                                console.log(p);
+                                            }
+                                        });
+                                        })
+                                    </script>
+
+
+
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>
+
+</body>
+</html>

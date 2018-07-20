@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>选择商家</title>
+    <script type="text/javascript" src="js/jquery1.42.min.js"></script>
+    <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/mcss.css" >
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+    <script src="js/jquery.page.js" type="text/javascript" ></script>
+</head>
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>选择商家 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+</head>
+<body>
+$!httpInclude.include("/top.htm")
+<div class="main"> $!httpInclude.include("/poster/nav_head.htm")
+    <div class="user_center">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/poster/nav.htm?op=refund")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="shopadminbox choicebox">
+                        <!--1-->
+                        <table style="border-collapse:separate; border-spacing:0px 10px; "  width="100%" class="returntable importbill " border="0" cellspacing="0" cellpadding="0" >
+                            <tbody>
+                            <tr class="returnthead" >
+                                <td width="100%" colspan="5" >
+                                    <form>
+                                        <div class="fl"  style="height: 40px; background:#e5e5e5; width: 80%;" >
+                                            <input type="text"  name="name" id="name" value="" placeholder="商家号" />
+                                        </div>
+                                        <div class="fr">
+                                            <button>确定</button>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </form>
+                                </td>
+                            </tr>
+                            <tr id="thead" >
+                                <td width="20%">商家账号</td>
+                                <td width="20%">用户名</td>
+                                <td width="20%">联系方式</td>
+                                <td width="20%">加盟日期</td>
+                                <td width="20%">选择商品</td>
+                            </tr>
+                            <tr class="first firstt" >
+                                <td>3200145</td>
+                                <td>名秋月</td>
+                                <td> 186 2838 0304</td>
+                                <td>2016/9/12</td>
+                                <td>
+                                    <input type="checkbox" checked />
+                                </td>
+                            </tr>
+                            <tr class="first firstt" >
+                                <td>3200145</td>
+                                <td>名秋月</td>
+                                <td> 186 2838 0304</td>
+                                <td>2016/9/12</td>
+                                <td>
+                                    <input type="checkbox" checked />
+                                </td>
+                            </tr>
+                            <tr class="first firstt" >
+                                <td>3200145</td>
+                                <td>名秋月</td>
+                                <td> 186 2838 0304</td>
+                                <td>2016/9/12</td>
+                                <td>
+                                    <input type="checkbox" checked />
+                                </td>
+                            </tr>
+                            <tr class="first firstt" >
+                                <td>3200145</td>
+                                <td>名秋月</td>
+                                <td> 186 2838 0304</td>
+                                <td>2016/9/12</td>
+                                <td>
+                                    <input type="checkbox" checked />
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                        <!-- PageNum -->
+                        <div class="pageDiv"></div>
+                    </div>
+                    <script type="text/javascript">
+                        $(function(){$(".pageDiv").createPage({
+                            pageCount:9,//总页数
+                            current:1,//当前页
+                            turndown:'true',//是否显示跳转框，显示为true，不现实为false,一定记得加上引号...
+                            backFn:function(p){
+                                console.log(p);
+                            }
+                        });
+                        })
+                    </script>
+
+
+
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>
+
+</body>
+</html>

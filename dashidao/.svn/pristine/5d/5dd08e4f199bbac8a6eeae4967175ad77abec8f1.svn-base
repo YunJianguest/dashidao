@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>投诉管理 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+</head>
+<body>
+$!httpInclude.include("/top.htm")
+<div class="main">
+    <div class="user_center">
+        $!httpInclude.include("/poster/nav_head.htm")
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/poster/nav.htm?op=refund")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="shopadminbox">
+                        <div class="hd">
+                            <ul>
+                                <li>我发起的投诉</li>
+                                <li>我收到的投诉</li>
+                            </ul>
+                        </div>
+                        <div class="bd">
+                            <!--我发起的投诉-->
+                            <ul>
+                                <li>
+                                    <table width="100%" class="shopadmin-top" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr id="topthead" >
+                                            <td width="52%" colspan="4" >
+                                                <div style="height: 40px; background:#e5e5e5; width: 100%;" >
+                                                    <input type="text"  name="name" id="name" value="" placeholder="自成" />
+                                                </div>
+                                            </td>
+                                            <td width="26%" colspan="2">
+                                                <input type=checkbox checked >服务投诉&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type=checkbox checked >物流投诉
+
+                                            </td>
+                                            <td width="22%" colspan="2">
+                                                <a href='$!webPath/poster/fqqs.htm'><button class="button" >我要投诉</button></a>
+                                            </td>
+                                        </tr>
+                                        <tr id="thead" >
+                                            <td width="13%">投诉编号</td>
+                                            <td width="13%">订单编号</td>
+                                            <td width="13%">投诉方</td>
+                                            <td width="13%">投诉原因</td>
+                                            <td width="13%">投诉状态</td>
+                                            <td width="13%">申请时间</td>
+                                            <td width="11%">类型</td>
+                                            <td width="11%">操作</td>
+                                        </tr>
+                                        <tr>
+                                            <td>020171102</td>
+                                            <td>TD020171102</td>
+                                            <td>H3124</td>
+                                            <td>赠品未发</td>
+                                            <td>协商中</td>
+                                            <td>2017-03-22 10:10:10</td>
+                                            <td>服务</td>
+                                            <td><span><a href='$!webPath/poster/tsdetails.htm'>详情</a></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>020171102</td>
+                                            <td>TD020171102</td>
+                                            <td>H3124</td>
+                                            <td>赠品未发</td>
+                                            <td>协商中</td>
+                                            <td>2017-03-22 10:10:10</td>
+                                            <td>服务</td>
+                                            <td><span>详情</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>020171102</td>
+                                            <td>TD020171102</td>
+                                            <td>H3124</td>
+                                            <td>赠品未发</td>
+                                            <td>协商中</td>
+                                            <td>2017-03-22 10:10:10</td>
+                                            <td>服务</td>
+                                            <td><span>详情</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>020171102</td>
+                                            <td>TD020171102</td>
+                                            <td>H3124</td>
+                                            <td>赠品未发</td>
+                                            <td>协商中</td>
+                                            <td>2017-03-22 10:10:10</td>
+                                            <td>服务</td>
+                                            <td><span>详情</span></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- PageNum -->
+                                    <div class="pageDiv"></div>
+                                </li>
+                            </ul>
+                            <!--活动精选-->
+                            <ul>
+                                <li>
+                                    <table width="100%" class="shopadmin-top" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr id="topthead" >
+                                            <td width="52%" colspan="4" >
+                                                <div style="height: 40px; background:#e5e5e5; width: 100%;" >
+                                                    <input type="text"  name="name" id="name" value="" placeholder="自成" />
+                                                </div>
+                                            </td>
+                                            <td width="26%" colspan="2">
+                                                <input type=checkbox checked >服务投诉&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type=checkbox checked >物流投诉
+
+                                            </td>
+                                            <td width="22%" colspan="2">
+                                                <button class="button" >我要投诉</button>
+                                            </td>
+                                        </tr>
+                                        <tr id="thead" >
+                                            <td width="13%">投诉编号</td>
+                                            <td width="13%">订单编号</td>
+                                            <td width="13%">投诉方</td>
+                                            <td width="13%">投诉原因</td>
+                                            <td width="13%">投诉状态</td>
+                                            <td width="13%">申请时间</td>
+                                            <td width="11%">类型</td>
+                                            <td width="11%">操作</td>
+                                        </tr>
+                                        <tr>
+                                            <td>020171102</td>
+                                            <td>TD020171102</td>
+                                            <td>H3124</td>
+                                            <td>赠品未发</td>
+                                            <td>协商中</td>
+                                            <td>2017-03-22 10:10:10</td>
+                                            <td>服务</td>
+                                            <td><span>详情</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>020171102</td>
+                                            <td>TD020171102</td>
+                                            <td>H3124</td>
+                                            <td>赠品未发</td>
+                                            <td>协商中</td>
+                                            <td>2017-03-22 10:10:10</td>
+                                            <td>服务</td>
+                                            <td><span>详情</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>020171102</td>
+                                            <td>TD020171102</td>
+                                            <td>H3124</td>
+                                            <td>赠品未发</td>
+                                            <td>协商中</td>
+                                            <td>2017-03-22 10:10:10</td>
+                                            <td>服务</td>
+                                            <td><span>详情</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>020171102</td>
+                                            <td>TD020171102</td>
+                                            <td>H3124</td>
+                                            <td>赠品未发</td>
+                                            <td>协商中</td>
+                                            <td>2017-03-22 10:10:10</td>
+                                            <td>服务</td>
+                                            <td><span>详情</span></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- PageNum -->
+                                    <div class="pageDiv"></div>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <script type="text/javascript">jQuery(".shopadminbox").slide({trigger:"click"});</script>
+                    <script type="text/javascript">
+                        $(function(){$(".pageDiv").createPage({
+                            pageCount:9,//总页数
+                            current:1,//当前页
+                            turndown:'true',//是否显示跳转框，显示为true，不现实为false,一定记得加上引号...
+                            backFn:function(p){
+                                console.log(p);
+                            }
+                        });
+                        })
+                    </script>
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>
+
+</body>
+</html>

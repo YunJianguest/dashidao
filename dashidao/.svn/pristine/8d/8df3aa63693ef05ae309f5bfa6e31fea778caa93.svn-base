@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<!--link href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/template.css"  rel="stylesheet" type="text/css"/-->
+	<!--link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet-->
+
+	<link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+	<script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+	<script src="$!webPath/resources/js/bootstrap.min.js"></script>
+<title>商家活动审核详情</title>
+<style>
+	.order_menu p{padding-left:60px;line-height: 32px;height: 30px;}
+	.sub{width:170px;height:40px;border-radius:7px;margin: 45px auto;background: #3F51B5;text-align: center;color:#fff;line-height: 40px;}
+</style>
+</head>
+
+<body>
+ 	<div style="width:100%;">
+	 <div style="width:90%;margin-top:50px;float:left" class="order_menu">
+	 	 <p style="text-align: left;">商家号：<span style="margin-left: 40px"> 650017</span></p>
+	 	 
+	 	 <p style="text-align: left;">用户名：<span style="margin-left: 40px"> 名秋月</span></p>
+	 	  
+	 	 
+	 	 
+	 	 <p style="text-align: left;">手机号：<span style="margin-left: 40px"> 18628380304</span></p>
+	 	 
+	 	  <p style="text-align: left;">活动类型：<span style="margin-left: 40px"> 拼团</span></p>
+	 	 
+	 	 <p style="text-align: left;">时间：<span style="margin-left: 40px">  2017年7月12日 - 2017年7月30日 <br/> </span></p>
+	 	 
+	 	 <p style="text-align: left;">活动内容：<span style="margin-left: 40px">  满3件，折80%  </span>
+	 	 </p>
+	 	 <p class="left">
+	 	 	参加商品清单
+	 	 </p>
+	 	 <br/>
+	 	 <hr class="blue" style="height:5px"/>
+	 	 <div style="margin-top: 20px;">
+		<table style="width:100%;margin-top: 20px;text-align: left">
+			<tr style="height:40px;color: #108ee9; margin-top: 20px;text-align: center;align-content: center"><th style="text-align: center;">商品名称</th><th style="text-align: center;">商品编号</th><th style="text-align: center;">商品规格</th><th style="text-align: center;">保障类型</th><th style="text-align: center;">已缴纳保证金</th></tr>
+			
+			<tr style="left: 237px;top: 310px;width: 738px;height: 30px;line-height: 20px;background-color: rgba(255, 255, 255, 1);text-align: center;"><td>韩版修身T恤</td><td>230817</td><td>尺码：S/M/L</td><td>7天无理由退货</td><td>1000元</td><td> </td></tr>
+			<tr style="left: 237px;top: 310px;width: 738px;height: 30px;line-height: 20px;background-color: rgba(255, 255, 255, 1);text-align: center;"><td rowspan="2" colspan="2" style="border-bottom: 1px solid #ccc"></td><td>颜色：月白/...</td><td></td><td></td><td> </td></tr>
+			
+			<tr style="left: 237px;top: 310px;width: 738px;height: 30px;line-height: 20px;background-color: rgba(255, 255, 255, 1);text-align: center;border-bottom: 1px solid;border-bottom-color: #ccc"><td>零售单位：件/</td><td></td><td></td> </tr>
+			<tr style="height: 30px;line-height: 20px;text-align: center"><td>大市道海参</td><td>90760987</td><td>口味：微辣</td><td>退货无忧</td><td>1000元</td><td> </td> </tr>
+			<tr style="height: 30px;line-height: 20px;"><td colspan="2" rowspan="2" style="border-bottom: 1px solid #ccc;text-align: center"></td><td align="center">零售单位：盒</td><td></td><td></td><td> </td></tr>
+			<tr style="height: 30px;line-height: 20px;border-bottom: 1px solid;border-bottom-color: #ccc"><td></td><td></td><td></td> </tr>
+		 
+			
+			<tr style="left: 237px;top: 310px;width: 738px;height: 30px;line-height: 20px;background-color: rgba(255, 255, 255, 1);text-align: center;"><td>韩版修身T恤</td><td>230817</td><td>尺码：S/M/L</td><td>7天无理由退货</td><td>1000元</td><td> </td></tr>
+			<tr style="left: 237px;top: 310px;width: 738px;height: 30px;line-height: 20px;background-color: rgba(255, 255, 255, 1);text-align: center;"><td rowspan="2" colspan="2" style="border-bottom: 1px solid #ccc"></td><td>颜色：月白/...</td><td></td><td></td><td> </td></tr>
+			
+			<tr style="left: 237px;top: 310px;width: 738px;height: 30px;line-height: 20px;background-color: rgba(255, 255, 255, 1);text-align: center;border-bottom: 1px solid;border-bottom-color: #ccc"><td>零售单位：件/</td><td></td><td></td> </tr>
+			<tr style="height: 30px;line-height: 20px;text-align: center"><td>大市道海参</td><td>90760987</td><td>口味：微辣</td><td>退货无忧</td><td>1000元</td><td> </td> </tr>
+			<tr style="height: 30px;line-height: 20px;"><td colspan="2" rowspan="2" style="border-bottom: 1px solid #ccc;text-align: center"></td><td align="center">零售单位：盒</td><td></td><td></td><td> </td></tr>
+			<tr style="height: 30px;line-height: 20px;border-bottom: 1px solid;border-bottom-color: #ccc"><td></td><td></td><td></td> </tr>
+		</table>
+	</div>	
+	 	 <div>
+			 <div class="sub">确定</div>
+	 	 	<center>
+			 <ul class="pagination">
+		<li><a href="#">&laquo;</a></li>
+		<li class="active"><a href="#">1</a></li>
+		<li class="disabled"><a href="#">2</a></li>
+		<li><a href="#">3</a></li>
+		<li><a href="#">4</a></li>
+		<li><a href="#">5</a></li>
+		<li><a href="#">&raquo;</a></li>
+	</ul>
+			</center>
+	 	 </div>
+	 	  
+	 </div>
+	 
+	 
+	</div>
+</body>
+</html>

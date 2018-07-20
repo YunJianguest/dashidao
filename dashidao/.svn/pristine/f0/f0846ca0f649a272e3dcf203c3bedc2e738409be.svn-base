@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>卖家品牌列表 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link href="$!webPath/resources/style/system/manage/black/zxx.css"  rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css">
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+    <link href="$!webPath/resources/style/system/manage/blue/zhandai.css"  rel="stylesheet" type="text/css"/>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+
+
+</head>
+<body>
+<div class="main evaluated_manager">
+    <div class="user_center" id="evalubox">
+        $!httpInclude.include("/seller/nav_head.htm")
+        $!httpInclude.include("/seller/adv.htm")
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=open_store")
+                <td id="centerbg" valign="top" width="80%" >
+                    <div class="buyer_position">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">商家支持</a> > <span>交易管理</span>  > <span>评价管理</span></div>
+                    </div>
+                    <div class="div_2">
+                            <div class="ht-top">
+                                <form class="form-inline" style="float: right;">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入查询内容" style="width: 200px; border: 1px solid #ccc; text-indent: 2rem;" >
+                                    </div>
+                                    <button type="submit" class="btn btn-default"  >查询</button>
+                                </form>
+                            </div>
+                    </div>
+                    <div class="operation_tip">
+                        <h3>友情提示</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <div class="ghs_div">
+                        <div style="width: 20%;height: 100px;">
+                            <input type="image" src="$!webPath/resources/style/system/manage/black/img/raw_1495541442.jpeg" style="padding-left: 10px;padding-top: 8px;"/>
+                        </div>
+                        <div style="width: 40%;height: 100px;">
+                            <p style="padding-left: 10px;padding-top: 20px;">
+                                云正通海鲜 <span style="background: red;padding: 2px;border-radius: 80%">1万+</span>
+                            </p>
+                            <p>唐三&nbsp;&nbsp;18165390289&nbsp;&nbsp;2017-3-1至2018-3-1</p>
+                        </div>
+                        <div style="width: 30%;height: 100px;">
+                            <p style="padding-left: 10px;padding-top: 50px;">西安市雁塔路58号&nbsp;&nbsp;<i class="icon-map-marker"></i></p>
+                        </div>
+                        <div style="width: 10%;height: 100px;">
+                            <i class="icon-pencil i_pencel_remove"></i>
+                        </div>
+                    </div>
+                    <div class="ghs_div">
+                        <div style="width: 20%;height: 100px;">
+                            <input type="image" src="$!webPath/resources/style/system/manage/black/img/raw_1495541442.jpeg" style="padding-left: 10px;padding-top: 8px;"/>
+                        </div>
+                        <div style="width: 40%;height: 100px;">
+                            <p style="padding-left: 10px;padding-top: 20px;">
+                                云正通海鲜<span style="background: red;padding: 2px;border-radius: 80%">2千+</span>
+                            </p>
+                            <p>唐三&nbsp;&nbsp;18165390289&nbsp;&nbsp;2017-3-1至2018-3-1</p>
+                        </div>
+                        <div style="width: 30%;height: 100px;">
+                            <p style="padding-left: 10px;padding-top: 50px;">西安市雁塔路58号&nbsp;&nbsp;<i class="icon-map-marker"></i></p>
+                        </div>
+                        <div style="width: 10%;height: 100px;">
+                            <i class="icon-pencil i_pencel_remove"></i>
+                        </div>
+                    </div>
+                    <div class="ghs_div">
+                        <div style="width: 20%;height: 100px;">
+                            <input type="image" src="$!webPath/resources/style/system/manage/black/img/raw_1495541442.jpeg" style="padding-left: 10px;padding-top: 8px;"/>
+                        </div>
+                        <div style="width: 40%;height: 100px;">
+                            <p style="padding-left: 10px;padding-top: 20px;">云正通海鲜</p>
+                            <p>唐三&nbsp;&nbsp;18165390289&nbsp;&nbsp;2017-3-1至2018-3-1</p>
+                        </div>
+                        <div style="width: 30%;height: 100px;">
+                            <p style="padding-left: 10px;padding-top: 50px;">西安市雁塔路58号&nbsp;&nbsp;<i class="icon-map-marker"></i></p>
+                        </div>
+                        <div style="width: 10%;height: 100px;">
+                            <i class="icon-pencil i_pencel_remove"></i>
+                        </div>
+                    </div>
+                    <div class="ghs_div">
+                        <div style="width: 20%;height: 100px;">
+                            <input type="image" src="$!webPath/resources/style/system/manage/black/img/raw_1495541442.jpeg" style="padding-left: 10px;padding-top: 8px;"/>
+                        </div>
+                        <div style="width: 40%;height: 100px;">
+                            <p style="padding-left: 10px;padding-top: 20px;">云正通海鲜</p>
+                            <p>唐三&nbsp;&nbsp;18165390289&nbsp;&nbsp;2017-3-1至2018-3-1</p>
+                        </div>
+                        <div style="width: 30%;height: 100px;">
+                            <p style="padding-left: 10px;padding-top: 50px;">西安市雁塔路58号&nbsp;&nbsp;<i class="icon-map-marker"></i></p>
+                        </div>
+                        <div style="width: 10%;height: 100px;">
+                            <i class="icon-pencil i_pencel_remove"></i>
+                            <i class="icon-remove i_pencel_remove"></i>
+                        </div>
+                    </div>
+                    <!--分页开始-->
+                    <div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+                    <script>
+                        layui.use(['laypage', 'layer'], function(){
+                            var laypage = layui.laypage
+                                ,layer = layui.layer;
+
+                            //总页数低于页码总数
+                            laypage.render({
+                                elem: 'demo0'
+                                ,count: 50 //数据总数
+                            });
+
+                            //总页数大于页码总数
+                            laypage.render({
+                                elem: 'demo1'
+                                ,count: 70 //数据总数
+                                ,jump: function(obj){
+                                    console.log(obj)
+                                }
+                            });
+
+                            //自定义样式
+                            laypage.render({
+                                elem: 'demo2'
+                                ,count: 100
+                                ,theme: '#1E9FFF'
+                            });
+                            laypage.render({
+                                elem: 'demo2-1'
+                                ,count: 100
+                                ,theme: '#FF5722'
+                            });
+                            laypage.render({
+                                elem: 'demo2-2'
+                                ,count: 100
+                                ,theme: '#FFB800'
+                            });
+
+                            //自定义首页、尾页、上一页、下一页文本
+                            laypage.render({
+                                elem: 'demo3'
+                                ,count: 100
+                                ,first: '首页'
+                                ,last: '尾页'
+                                ,prev: '<em>←</em>'
+                                ,next: '<em>→</em>'
+                            });
+
+                            //不显示首页尾页
+                            laypage.render({
+                                elem: 'demo4'
+                                ,count: 100
+                                ,first: false
+                                ,last: false
+                            });
+
+                            //开启HASH
+                            laypage.render({
+                                elem: 'demo5'
+                                ,count: 500
+                                ,curr: location.hash.replace('#!fenye=', '') //获取hash值为fenye的当前页
+                                ,hash: 'fenye' //自定义hash值
+                            });
+
+                            //只显示上一页、下一页
+                            laypage.render({
+                                elem: 'demo6'
+                                ,count: 50
+                                ,layout: ['prev', 'next']
+                                ,jump: function(obj, first){
+                                    if(!first){
+                                        layer.msg('第 '+ obj.curr +' 页');
+                                    }
+                                }
+                            });
+
+                            //完整功能
+                            laypage.render({
+                                elem: 'demo7'
+                                ,count: 100
+                                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                                ,jump: function(obj){
+                                    console.log(obj)
+                                }
+                            });
+
+                            //自定义排版
+                            laypage.render({
+                                elem: 'demo8'
+                                ,count: 1000
+                                ,layout: ['limit', 'prev', 'page', 'next']
+                            });
+                            laypage.render({
+                                elem: 'demo9'
+                                ,count: 1000
+                                ,layout: ['prev', 'next', 'page']
+                            });
+                            laypage.render({
+                                elem: 'demo10'
+                                ,count: 1000
+                                ,layout: ['page', 'count']
+                            });
+
+                            //自定义每页条数的选择项
+                            laypage.render({
+                                elem: 'demo11'
+                                ,count: 1000
+                                ,limit: 100
+                                ,limits: [100, 300, 500]
+                            });
+
+                            //调用分页
+                            laypage.render({
+                                elem: 'demo20'
+                                ,count: data.length
+                                ,jump: function(obj){
+                                    //模拟渲染
+                                    document.getElementById('biuuu_city_list').innerHTML = function(){
+                                        var arr = []
+                                            ,thisData = data.concat().splice(obj.curr*obj.limit - obj.limit, obj.limit);
+                                        layui.each(thisData, function(index, item){
+                                            arr.push('<li>'+ item +'</li>');
+                                        });
+                                        return arr.join('');
+                                    }();
+                                }
+                            });
+
+                        });
+                    </script>
+                    <!--分页结束-->
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>大市道商城后台登录</title>
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link href="$!webPath/resources/style/system/manage/blue/ydlui/css/layui.css" rel="stylesheet">
+<script src="$!webPath/resources/style/system/manage/blue/ydlui/layui.js"></script>
+<link href="$!webPath/resources/style/system/manage/blue/lui.css" rel="stylesheet" type="text/css" />
+<!-- <link href="$!webPath/resources/style/system/manage/blue/login.css" rel="stylesheet" type="text/css" /> -->
+<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+<script>
+function refreshCode(){
+	jQuery("#code_img").attr("src","$!webPath/verify.htm?d"+new Date().getTime());
+}
+function login(){
+	jQuery("#theForm").submit();
+}
+var EnterSubmit = function(evt){
+evt = window.event || evt;
+ if (evt.keyCode == 13)
+ { 
+  login();
+ }
+}
+window.document.onkeydown=EnterSubmit;
+jQuery(document).ready(function(){
+     if(top.location!=this.location)top.location=this.location;//跳出框架在主窗口登录
+	jQuery('#username').focus();	
+});
+</script>
+<body>
+<form name="theForm" id="theForm" action="$!webPath/dashidao_login.htm" method="post">
+<div class="main_body1" align="center">
+
+<div id="login_body">
+#if($!user)
+<input name="username" type="hidden" id="username" value="$!user.userName" />$!user.userName
+#else
+   <div class="layui-form-item" id="layui-form-item-acc">
+	 <label class="layui-form-label"><font size="3px;">
+				登录账户</font></label>
+		<div class="layui-input-inline">
+			<input type="text" name="username" id="username"
+				lay-verify="required" placeholder="请输入" autocomplete="off"
+				class="layui-input" autocomplete="false" />
+		</div>
+   </div>
+#end
+   <div class="layui-form-item" id="layui-form-item-pwd">
+    <label class="layui-form-label"><font size="3px;"> 登录密码</font></label>
+    <div class="layui-input-inline">
+      <input type="password" name="password" id="password" lay-verify="required" placeholder="请输入" 
+      autocomplete="off" class="layui-input" autocomplete="false" />
+  	</div>
+  </div>
+  <div class="layui-form-item" id="layui-form-item-code">
+    <label class="layui-form-label"><font size="3px;"> 验证码</font></label>
+    <div class="layui-input-inline">
+      <input type="text" name="code" id="code" lay-verify="required" placeholder="请输入" 
+      autocomplete="off" class="layui-input" style="width: 110px;" autocomplete="false" />
+      <div class="yzmimg" style="float: right; margin-top:-37px;"><img style="cursor:pointer;" src="$!webPath/verify.htm" id="code_img" onclick="refreshCode();" width="59" height="37" /></div>
+  	</div>
+  </div>
+  <div  id="layui-form-item-btn" >
+ 	 <input name="login_role" type="hidden" id="login_role" value="admin" />
+  	<button class="layui-btn layui-btn-normal" onclick="login();">立即登录</button>
+  	<button class="layui-btn layui-btn-warm" type="reset" >重置</button>
+  </div>
+</div>
+  
+  
+</div>
+</form>
+</body>
+</html>

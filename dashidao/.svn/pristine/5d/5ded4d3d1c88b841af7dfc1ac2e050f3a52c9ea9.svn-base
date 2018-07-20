@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>顶部导航列表 </title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css">
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+    <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+</head>
+
+<script>
+
+    //分页
+    var page_size=10;
+    var page_no=1;
+    var total=0;
+    jQuery(document).ready(function(){
+
+        loadajax(page_size,page_no);
+        layui.use(['laypage', 'layer'], function(){
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+            //完整功能
+            laypage.render({
+                elem: 'demo7'
+                ,count:total
+                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                ,jump: function(obj){
+                    //console.log(obj)
+                    page_no=obj.curr;
+                    page_size=obj.limit;
+                    //alert(pagelimit);
+                    loadajax(page_size,page_no);
+                    //loadajax("select","stu",pagelimit,cuur,1);
+                },
+                limits:[2, 4, 6, 8, 10],
+                limit:page_size
+            });
+        });
+    });
+
+    function loadajax(page_size,page_no){
+        var html="";
+        var sql="SELECT * FROM dashidao_top_advert WHERE deleteStatus=0 ORDER BY addTime ";
+        
+        jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajaxuser.jsp",
+            dataType:"json",
+            data:"table=dashidao_navigation&dates=addTime&sql="+sql+"&page_size="+page_size+"&page_no="+page_no,
+            error:function(){alert("数据错误，操作被取消！");},
+            success:function(data)
+            {
+            	
+                if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                total=data.data.total;
+                var message=data.data.data;
+                console.log(message);
+                for(var i=0;i<message.length;i++) {
+                	
+                    var id=message[i]['id'];//id
+                    var ap_title = message[i]['title'];//标题
+                    var ap_url = message[i]['url'];//链接地址
+                    
+                    var name = message[i]['name'];//图片
+                    var path = message[i]['path'];//位置
+                    
+                    html +="<tr>";
+                    html +="<td>"+(i+1)+"</td>";
+                    html +="<td>"+ap_title+"</td>";
+                    html +="<td>"+ap_url+"</td>";
+                    html +="<td><img width='100' height='30' src='$!webPath/"+path+"/"+name+"'/></td>";
+                   
+                    html +="<td><button onclick='update_nagivation("+id+")'>修改</button>&nbsp;&nbsp;<button onclick='delete_navigation("+id+")'>删除</button></td>";
+                    html +="<tr>";
+
+                }
+                $('#dayListTab').html(html);
+            }
+        });
+
+    }
+    
+    //删除
+    function delete_navigation(id){
+    	var msg = "确定删除吗？";
+    	if (confirm(msg)==true){
+    		alert(id);
+    		var field = "id,deleteStatus";
+    		var values = id+"|1";
+    		var action = "update";
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajaxuser.jsp",
+                dataType:"json",
+                data:"table=dashidao_top_advert&action="+action+"&field="+field+"&values="+values,
+                error:function(){alert("数据错误，操作被取消！");},
+                success:function(data){
+                    alert("删除完成");
+                    window.location.reload();
+                }
+            });
+    	}else{
+    		return false;
+    	}
+    }
+    
+    //修改
+    function update_nagivation(id){
+    	window.location.href="$!webPath/admin/top_advert_update.htm?id="+id;
+    }
+
+    //添加
+    function insert_navigation(){
+    	window.location.href="$!webPath/admin/top_advert_insert.htm";
+    }
+</script>
+<body>
+
+<div class="main">
+    <div class="user_center">
+        
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> 
+                <td id="centerbg" valign="top" width="80%"  >
+                	<div class="buyer_position">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">顶部广告列表</a></div>
+                    </div>
+                    <div class="operation_tip">
+                        <h3>友情提示</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <div class="div_2 tiptitles">
+                        <p></p>
+                    </div>
+                    <style>
+                        .table_thead th{  text-align: center; line-height: 50px; }
+                        .solid tr td{ text-align: center; height: 50px; line-height: 50px; }
+                        .tiptitles p{ }
+                    </style>
+                    <button onclick="insert_navigation()">添加</button>
+                    <div class="div_2">
+                    	
+                        <table class="table solid">
+                            <thead class="table_thead">
+                            <th>行号</th>
+                            <th>标题</th>
+                            <th>链接地址</th>
+                            <th>图片</th>
+                            <th>操作</th>
+                            </thead>
+                            <tbody id="dayListTab">
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--分页开始-->
+                    <div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+                    <!--分页结束-->
+
+
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+</div>
+</body>
+</html>

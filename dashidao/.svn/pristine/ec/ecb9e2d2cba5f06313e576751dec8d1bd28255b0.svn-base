@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<!--link href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/template.css"  rel="stylesheet" type="text/css"/-->
+	<!--link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet-->
+
+	<link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+	<script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+	<script src="$!webPath/resources/js/bootstrap.min.js"></script>
+	<title>商品详情</title>
+	<style>
+
+	</style>
+</head>
+<!--sell_consume_check.html-->
+<body>
+<center>
+	<div style="width:900px;">
+		<div style="width:600px;margin-top:50px;float:left">
+			<p style="text-align: left;">商家账号：<span style="margin-left: 40px"> 名秋月</span></p>
+			<hr style="margin-top: 0px"/>
+			<p style="text-align: left;">商品名称：<span style="margin-left: 40px"> 韩版修身T恤</span></p>
+			<hr style="margin-top: 0px"/>
+			<p style="text-align: left;">商品编号：<span style="margin-left: 40px"> 230817</span></p>
+			<hr style="margin-top: 0px"/>
+			<p style="text-align: left;">风格：<span style="margin-left: 40px"> 通勒</span></p>
+			<hr style="margin-top: 0px"/>
+			<p style="text-align: left;">厚薄：<span style="margin-left: 40px"> 常规</span></p>
+			<hr style="margin-top: 0px"/>
+			<p style="text-align: left;">材质：<span style="margin-left: 40px"> 涤纶</span></p>
+			<hr style="margin-top: 0px"/>
+			<p style="text-align: left;">适用年龄：<span style="margin-left: 40px"> 20-40周岁</span></p>
+			<hr style="margin-top: 0px"/>
+			<p style="text-align: left;">商品规格：<span style="margin-left: 40px"> 颜色：月白/浅蓝/军绿</span></p>
+			<hr style="margin-top: 0px"/>
+			<p style="text-align: left;"> <span style="margin-left: 120px">尺码：S/M/L/XL </span></p>
+			<hr style="margin-top: 0px"/>
+			<p style="text-align: left;">储藏条件：<span style="margin-left: 40px">常温,干燥，通风</span></p>
+			<hr style="margin-top: 0px"/>
+			<p style="text-align: left;">生产日期：<span style="margin-left: 40px"> 2017年5月23日</span><span style="margin-left: 150px"> 保质期：2年</span></p>
+			<hr style="margin-top: 0px"/>
+			<p style="text-align: left;">有效期至：<span style="margin-left: 40px">2019年5月23日</span></p>
+			<hr style="margin-top: 30px;height:5px;width:900px;color: darkgrey;background-color:darkgrey "/>
+			<p style="text-align: left;">零售单位：<span style="margin-left: 40px"> 件</span> </p>
+			<hr style="margin-top: 0px"/>
+			<p style="text-align: left;">零售价格：<span style="margin-left: 40px"> 30元</span>   </p>
+			<hr style="margin-top: 0px"/>
+			<p style="text-align: left;">批发价格：<span style="margin-left: 40px"> 15元</span> </p>
+			<hr style="margin-top: 0px"/>
+			<p style="text-align: left;">批发单位：<span style="margin-left: 40px"> 箱</span> </p>
+			<hr style="margin-top: 0px"/>
+			<p style="text-align: left;">栈代起订量：<span style="margin-left: 30px"> 100</span> </p>
+			<hr style="margin-top: 30px;height:5px;width:900px;color: darkgrey;background-color:darkgrey "/>
+			<p style="text-align: left;">运输包装：<span style="margin-left: 40px">  100cm*50cm*50cm</span> </p>
+			<hr style="margin-top: 0px"/>
+			<p style="text-align: left;">储运要求：<span style="margin-left: 40px"> 干燥防潮</span> </p>
+			<hr style="margin-top: 30px;height:5px;width:900px;color: darkgrey;background-color:darkgrey "/>
+
+			<p style="text-align: left;margin-top:30px">
+				<input type="radio" name="ss"/>同意投保
+				<input type="radio" name="ss"/>拒绝投保
+			</p>
+		</div>
+		<div style="width:180px;float:left;margin-top:50px">
+			<img style="width:100px;height: 100px;float: left" src="../img/服装.png;" />
+			<img style="width:100px;height: 100px;float: left" src="../img/服装.png;" />
+			<img style="width:100px;height: 100px;float: left" src="../img/服装.png;" />
+		</div>
+
+		<div style="width:400px;margin-top: 50px;text-align: center;float:left">
+			<div style="width:400px;height:100px text-align: left;float:left">
+				<textarea rows="5" cols="50" >可以留下您的理由吗？</textarea>
+			</div>
+			<div style="width:400px;height:100px;margin-top: 50px;text-align: center">
+				<input type="button" value="确定" style="background:#108ee9;color: aliceblue ;width: 100px;height: 40px;" onclick="script:location.href='../01/商家入驻审核（审核管理）.html'"/>
+			</div>
+		</div>
+	</div>
+</center>
+</body>
+</html>

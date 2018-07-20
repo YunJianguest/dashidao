@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>盈亏管理详情</title>
+</head>
+<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/iconfont.css">
+<link href="$!webPath/resources/style/system/manage/blue/tip.css"  rel="stylesheet" type="text/css"/>
+<link href="$!webPath/resources/style/system/manage/blue/headquarters.css"  rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/style.css">
+<link href="$!webPath/resources/style/system/front/default/css/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<script src="$!webPath/resources/js/jquery-1.10.2.min.js" type="text/javascript"></script> 
+<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+<script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+<body>
+<div class="surplus_header">
+	<div class="header_both">
+		<ul>
+			<li class="yil">盈利（元）：</li>
+			<li class="money">+19009.53</li>
+			<li class="details"><a href="#"><span>详情</span></a></li>
+			<li>
+				<label><input type="checkbox"/>技术服务费</label>
+				<label><input type="checkbox"/>联盟管理费</label>
+			</li>
+			<li>
+				<div>导出报表</div>
+				<div><img src="$!webPath/resources/style/system/manage/black/img/export.png" alt=""></div>
+
+			</li>
+			<div class="clear"></div>
+		</ul>
+	</div>
+</div>
+<div class="operation" style="width:98%!important;">
+	<h3>友情提示</h3>
+	<ul>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+<table  width="98%" style="font-size:16px;text-align: center;margin-left: 2%;margin-top: 20px;">
+	<tr class="tableheader">
+		<td>操作人</td>
+		<td>订单编号</td>
+		<td>角色</td>
+		<td>类型</td>
+		<td>时间</td>
+		<td>金额</td>
+	</tr>
+	<tbody  id="tablesss" >
+
+	</tbody>
+</table>
+<div id="demo7" style=" text-align: center; margin-top: 30px;" ></div> 
+<script>
+var pagelimit=10;
+var cuur=1;
+var total;
+    jQuery(document).ready(function(){
+        var mycars=new Array()
+        var cuur=1;
+        var pagelimit=10;
+        function loadajax(sql,page_size,page_no){
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajaxuser.jsp",
+                dataType:"json",
+                // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                data:"table=zb_ptsf&dates=createdate&sql="+sql+"&page_size="+page_size+"&page_no="+page_no,
+                error:function(){alert("数据错误，操作被取消！");},
+                success:function(data)
+                {
+                    if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                    total=data.data.total;
+                    mycars[0]=total;
+                    var message=data.data.data;
+                    //console.log(message);
+                    $("#tablesss").html('');
+                    var toprice=0;
+                    for(var i=0;i<message.length;i++){
+                    	toprice+=message[i]['amount'];
+                    	var lx;
+                    	var js;
+                    	if(message[i]['type']==1){
+                    		lx="技术服务费";
+                    	}else{
+                    		lx="联盟管理费";
+                    	}
+                    	if(message[i]['userRole']=="BUYER"){
+                    		js="会员";
+                    		 
+                    	}else if(message[i]['userRole']=="SELLER"){
+                    		js="商家";
+                    	}else if(message[i]['userRole']=="POSTER"){
+                    		js="栈代";
+                    	}else if(message[i]['userRole']=="YUNKE"){
+                    		js="云客";
+                    	}
+                        $("#tablesss").append("<tr>" +
+                            "<td>"+message[i]['userName']+"</td>" +
+                            "<td>"+message[i]['orderid']+"</td>" +
+                            "<td>"+js+"</td>" +
+                            "<td>"+lx+"</td>" +
+                            "<td>"+message[i]['createdate']+"</td>" +
+                            "<td>"+message[i]['amount']+"</td>" + 
+                            "</tr>");
+                       
+                    }
+                    $('.money').html(toprice);
+                }
+            });
+        }
+        loadajax("SELECT * FROM `zb_accountyk`order by createdate",pagelimit,cuur);
+        layui.use(['laypage', 'layer'], function(){
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+            //完整功能
+            laypage.render({
+                elem: 'demo7'
+                ,count:total
+                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                ,jump: function(obj){
+                    //console.log(obj)
+                    cuur=obj.curr;
+                    pagelimit=obj.limit;
+                    //alert(pagelimit);
+                   loadajax("SELECT * FROM `zb_accountyk`order by createdate",pagelimit,cuur);
+                    //loadajax("select","stu",pagelimit,cuur,1);
+                },
+                limits:[2, 4, 6, 8, 10],
+                limit:pagelimit
+            });
+        });
+    });
+    <!--分页结束-->
+</script>
+<script>
+    $(".pagination li").click(function(){
+        $(this).addClass("active");
+        $(this).siblings().removeClass("active");
+    })
+</script>
+</body>
+</html>

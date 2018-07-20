@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>实名认证</title>
+		<meta name="viewport" content="width=100%; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+		<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="js/swiper-3.4.0.jquery.min.js" ></script>
+		<link rel="stylesheet" href="css/swiper-3.2.7.min.css" />
+		<style>
+			body {min-width: 320px;max-width: 640px;margin: 0 auto;color: #333;padding: 0;font-family: "Microsoft Yahei";}
+			*{margin:0;padding: 0;}
+			ul,ol li{list-style: none;}
+			.clear{clear:both}
+			/*选项卡*/
+			.container {border: 1px solid #ccc;}
+			.swiper1 {width: 100%;}
+			.swiper1 .selected {color: #ec5566;border-bottom: 2px solid #ec5566;}
+			.swiper1 .swiper-slide {text-align: center;font-size: 16px;height: 50px;display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;-webkit-justify-content: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;-webkit-align-items: center;align-items: center;cursor: pointer;}
+			.swiper2 {width: 100%;}
+			.swiper2 .swiper-slide {height: calc(100vh - 50px);background-color: #ccc;text-align: center;box-sizing: border-box !important;overflow-x: hidden !important;}
+			.check div{width:50%!important;} 
+			/*头部*/
+			.header ul li{float: left;width:90%;text-align: center;height: 3rem;line-height:3rem ;background:#FF6600 ;color:#fff;}
+			.header .back{width: 10%!important;}
+			.header .back img{margin: 15% 0;}
+			/*个人实名认证*/
+			.person>ol>li{width:100%;}
+			.preson ol>li>ul .title{width:25%!important;padding: 0 0 0 2%;}
+			.preson ol>li>ul li{float:left;width:73%;hanging-punctuation: 3rem;line-height: 2rem;height: 3rem;}
+			.preson ol>li>ul li input{width:90%;height:80%;border:0}
+			.id_picture ul>li{width:50%!important;}
+			.sub{height:2.5rem;background:#ff6600;line-height:2.5rem;width:90%;margin:2rem 5% 0;border-radius: 25px;color: #fff;}
+			/*上传图片*/
+			.upload{display:none;}
+			.upload_photo img{width:90%;height: 6rem;margin:0 5%;}
+			.upload_photo li{height:10rem!important;}
+			.company li{width:50%!important;}
+			.company{width: 100%;}
+		</style>
+	</head>
+	<body>
+		<div class="header">
+			<ul>
+				<li class="back" onclick="history.go(-1)"><img src="image/back.png"/></li>
+				<li>实名认证</li>
+				<div class="clear"></div>
+			</ul>
+		</div>
+		<div class="container">
+			<div class="swiper-container swiper1">
+				<div class="swiper-wrapper check">
+					<div class="swiper-slide selected">个人认证</div>
+					<div class="swiper-slide">企业认证</div>
+				</div>
+			</div>
+			<!-- swiper2 -->
+			<div class="swiper-container swiper2">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide swiper-no-swiping">
+						<!--个人实名认证-->
+						<div class="preson" style="width: 100%;height: 100%;background-color: #fff;">
+							<form action="" method="get" enctype="text/plain">
+							<ol>
+								<li>
+									<ul>
+										<li class="title">真实姓名：</li>
+										<li><input type="text" name="real_name" class="certifcation" id="real_name" value="" placeholder="请填写真实姓名" /></li>
+										<div class="clear"></div>
+									</ul>
+								</li>
+								<li>
+									<ul>
+										<li class="title">身份证号：</li>
+										<li><input type="text" name="id_card" class="certifcation" id="id_card" value="" placeholder="请填写正确的身份证号"/></li>
+										<div class="clear"></div>
+									</ul>
+								</li>
+								<li style="text-align: left;padding-left:4%;line-height: 3rem;height: 3rem">上传身份证照片：</li>
+								<li class="id_picture">
+									<ul class="upload_photo">
+										<li><label for="person_header"><input type="file" name="person_header" id="person_header" value="" class="upload"/><img src="img/shenfenzheng1.jpg"/><div class="">身份证人像面</div></label></li>
+										<li><label for="emblem"><input type="file" name="emblem" id="emblem" value="" class="upload"/><img src="img/shenfenzheng2.jpg"/><div class="">身份证国徽面</div></label></li>
+										<div class="clear"></div>
+									</ul>
+								</li>
+								<!--图片上传-->
+								<script type="text/javascript">
+									$().ready(function(){
+								function getObjectURL(file) {
+								        var url = null ;
+								        if (window.createObjectURL!=undefined) { // basic
+								            url = window.createObjectURL(file) ;
+								        } else if (window.URL!=undefined) { // mozilla(firefox)
+								            url = window.URL.createObjectURL(file) ;
+								        } else if (window.webkitURL!=undefined) { // webkit or chrome
+								            url = window.webkitURL.createObjectURL(file) ;
+								        }
+								        return url ;
+								    }
+								
+								    $('#person_header').change(function() {
+								        var eImg = $(this).next("img");
+								        eImg.attr('src', getObjectURL($(this)[0].files[0])); // 或 this.files[0] this->input
+								        $(this).after(eImg);});
+								     $('#emblem').change(function() {
+								        var eImg = $(this).next("img");
+								        eImg.attr('src', getObjectURL($(this)[0].files[0])); // 或 this.files[0] this->input
+								        $(this).after(eImg);});
+								     $('#licence').change(function() {
+								        var eImg = $(this).next("img");
+								        eImg.attr('src', getObjectURL($(this)[0].files[0])); // 或 this.files[0] this->input
+								        $(this).after(eImg);});
+									})
+								</script>
+							</ol>
+							</form>
+							<div><div class="sub">提交</div></div>
+						</div>
+					</div>
+					<div class="swiper-slide swiper-no-swiping">
+							<div class="swiper-slide swiper-no-swiping">
+						<!--个人实名认证-->
+						<div class="preson" style="width: 100%;height: 100%;background-color: #fff;">
+							<form action="" method="get" enctype="text/plain">
+							<ol>
+								<li>
+									<ul>
+										<li class="title">公司名称：</li>
+										<li><input type="text" name="real_name" class="certifcation" id="real_name" value="" placeholder="请填写公司名称" /></li>
+										<div class="clear"></div>
+									</ul>
+								</li>
+								<li>
+									<ul>
+										<li class="title">营业证号码：</li>
+										<li><input type="text" name="id_card" class="certifcation" id="id_card" value="" placeholder="请填写正确的营业证号码"/></li>
+										<div class="clear"></div>
+									</ul>
+								</li>
+								<li style="text-align: left;padding-left:2%;line-height: 3rem;height: 3rem">上传营业执照照片：</li>
+								<li class="id_picture">
+									<ul class="upload_photo company">
+										<center><li><label for="licence"><input type="file" name="person_header" id="licence" value="" class="upload"/><img src="img/shenfenzheng1.jpg"/><div class="">营业执照</div></label></li></center>
+										<!--<li><label for="emblem"><input type="file" name="emblem" id="emblem" value="" class="upload"/><img src="img/shenfenzheng2.jpg"/><div class="">身份证国徽面</div></label></li>-->
+										<div class="clear"></div>
+									</ul>
+								</li>
+								<script type="text/javascript">
+								
+								</script>
+							</ol>
+							</form>
+							<div><div class="sub">提交</div></div>
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<script>
+			$(function() {
+				function setCurrentSlide(ele, index) {
+					$(".swiper1 .swiper-slide").removeClass("selected");
+					ele.addClass("selected");
+					//swiper1.initialSlide=index;
+				}
+
+				var swiper1 = new Swiper('.swiper1', {
+//					设置slider容器能够同时显示的slides数量(carousel模式)。
+//					可以设置为number或者 'auto'则自动根据slides的宽度来设定数量。
+//					loop模式下如果设置为'auto'还需要设置另外一个参数loopedSlides。
+					slidesPerView: 5.5,
+					paginationClickable: true,//此参数设置为true时，点击分页器的指示点分页器会控制Swiper切换。
+					spaceBetween: 10,//slide之间的距离（单位px）。
+					freeMode: true,//默认为false，普通模式：slide滑动时只滑动一格，并自动贴合wrapper，设置为true则变为free模式，slide会根据惯性滑动且不会贴合。
+					loop: false,//是否可循环
+					onTab: function(swiper) {
+						var n = swiper1.clickedIndex;
+					}
+				});
+				swiper1.slides.each(function(index, val) {
+					var ele = $(this);
+					ele.on("click", function() {
+						setCurrentSlide(ele, index);
+						swiper2.slideTo(index, 500, false);
+						//mySwiper.initialSlide=index;
+					});
+				});
+
+				var swiper2 = new Swiper('.swiper2', {
+					//freeModeSticky  设置为true 滑动会自动贴合  
+					direction: 'horizontal',//Slides的滑动方向，可设置水平(horizontal)或垂直(vertical)。
+					loop: false,
+//					effect : 'fade',//淡入
+					//effect : 'cube',//方块
+					//effect : 'coverflow',//3D流
+//					effect : 'flip',//3D翻转
+					autoHeight: true,//自动高度。设置为true时，wrapper和container会随着当前slide的高度而发生变化。
+					onSlideChangeEnd: function(swiper) {  //回调函数，swiper从一个slide过渡到另一个slide结束时执行。
+						var n = swiper.activeIndex;
+						setCurrentSlide($(".swiper1 .swiper-slide").eq(n), n);
+						swiper1.slideTo(n, 500, false);
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>

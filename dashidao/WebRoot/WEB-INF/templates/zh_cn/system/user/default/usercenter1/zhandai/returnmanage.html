@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>退换货管理 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+</head>
+<body>
+$!httpInclude.include("/top.htm")
+<div class="main">
+    <div class="user_center">
+        $!httpInclude.include("/poster/nav_head.htm")
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/poster/nav.htm?op=refund")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="shopadminbox">
+                        <div class="hd">
+                            <ul>
+                                <li>退换货</li>
+                                <li>退换货记录</li>
+                            </ul>
+                        </div>
+                        <div class="bd">
+                            <!--退换货-->
+                            <ul>
+                                <li>
+                                    <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="returnthead" >
+                                            <td width="60%" colspan="6" >
+                                                <div style="height: 40px; background:#e5e5e5; width: 100%;" >
+                                                    <input type="text"  name="name" id="name" value="" placeholder="自成" />
+                                                </div>
+                                            </td>
+                                            <td width="40%" colspan="4">
+                                                <p><span></span><input type=checkbox checked >会员订单<span></span><input type=checkbox checked >云客订单</p>
+                                                <p><span></span><input type=checkbox checked >退货退款<span></span><input type=checkbox >换货</p>
+                                            </td>
+                                        </tr>
+                                        <tr id="thead" >
+                                            <td width="5%"></td>
+                                            <td width="24%" colspan="2" >商品信息</td>
+                                            <td width="12%">单价</td>
+                                            <td width="10%">数量</td>
+                                            <td width="11%">金额</td>
+                                            <td width="11%">售后类型</td>
+                                            <td width="11%">申请理由</td>
+                                            <td width="11%">操作</td>
+                                            <td width="5%"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="tiptitles returntitle">
+                                            <td width="100%" colspan="10" >
+                                                <p><span>订单编号：JT320176534</span><span>日期：2017-09-13</span><span>会员：Mickson</span></p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <table width="100%" class="returntable" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+
+                                        <tr class="first" >
+                                            <td colspan="2"  width="28%" >
+                                                <span class="fl">韩版修身T恤</span>
+                                                <span class="fr">
+                                        尺码：S<br/>
+                                        颜色：月白
+                                    </span>
+                                            </td>
+                                            <td width="12%">
+                                                30元/件
+                                            </td>
+                                            <td width="12%">1</td>
+                                            <td width="12%">30元</td>
+                                            <td width="12%">退款退货</td>
+                                            <td width="12%">拍错型号</td>
+                                            <td width="12%" rowspan="2" class="last" >
+                                                <p><span>接收退回商品</span></p>
+                                                <p><span>拒收退回商品</span></p>
+                                                <p><span>查看详情</span></p>
+                                                <p><span>联系买家</span></p>
+                                                <p><span>申请平台介入</span></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="7" class="twosrow"  >
+                                                <p>2017-2-3  8:30:30  会员提出换货申请</p>
+                                                <p>2017-2-3  8:30:30  栈代同意换货</p>
+                                                <p>2017-2-3 8:30:30   会员寄出商品</p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="tiptitles returntitle">
+                                            <td width="100%" colspan="10" >
+                                                <p><span>订单编号：JT320176534</span><span>日期：2017-09-13</span><span>会员：Mickson</span></p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <table width="100%" class="returntable" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+
+                                        <tr class="first" >
+                                            <td colspan="2"  width="28%" >
+                                                <span class="fl">韩版修身T恤</span>
+                                                <span class="fr">
+                                            尺码：S<br/>
+                                            颜色：月白
+                                        </span>
+                                            </td>
+                                            <td width="12%">
+                                                30元/件
+                                            </td>
+                                            <td width="12%">1</td>
+                                            <td width="12%">30元</td>
+                                            <td width="12%">退款退货</td>
+                                            <td width="12%">拍错型号</td>
+                                            <td width="12%" rowspan="2" class="last" >
+                                                <p><span>接收退回商品</span></p>
+                                                <p><span>拒收退回商品</span></p>
+                                                <p><span>查看详情</span></p>
+                                                <p><span>联系买家</span></p>
+                                                <p><span>申请平台介入</span></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="7" class="twosrow"  >
+                                                <p>2017-2-3  8:30:30  会员提出换货申请</p>
+                                                <p>2017-2-3  8:30:30  栈代同意换货</p>
+                                                <p>2017-2-3 8:30:30   会员寄出商品</p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- PageNum -->
+                                    <div class="pageDiv"></div>
+                                </li>
+                            </ul>
+                            <!--退换货记录-->
+                            <ul>
+                                <li>
+                                    <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="returnthead" >
+                                            <td width="60%" colspan="6" >
+                                                <div style="height: 40px; background:#e5e5e5; width: 100%;" >
+                                                    <input type="text"  name="name" id="name" value="" placeholder="自成" />
+                                                </div>
+                                            </td>
+                                            <td width="40%" colspan="4">
+                                                <p><span></span><input type=checkbox checked >会员订单<span></span><input type=checkbox checked >云客订单</p>
+                                                <p><span></span><input type=checkbox checked >退货退款<span></span><input type=checkbox >换货</p>
+                                            </td>
+                                        </tr>
+                                        <tr id="thead" >
+                                            <td width="5%"></td>
+                                            <td width="24%" colspan="2" >商品信息</td>
+                                            <td width="12%">单价</td>
+                                            <td width="10%">数量</td>
+                                            <td width="11%">金额</td>
+                                            <td width="11%">售后类型</td>
+                                            <td width="11%">申请理由</td>
+                                            <td width="11%">操作</td>
+                                            <td width="5%"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!--接收-->
+                                    <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="tiptitles returntitle">
+                                            <td width="100%" colspan="10" >
+                                                <p><span>订单编号：JT320176534</span><span>日期：2017-09-13</span><span>会员：Mickson</span></p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <table width="100%" class="returntable" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="first" >
+                                            <td colspan="2"  width="28%" >
+                                                <span class="fl">韩版修身T恤</span>
+                                                <span class="fr">
+                                        尺码：S<br/>
+                                        颜色：月白
+                                    </span>
+                                            </td>
+                                            <td width="12%">
+                                                30元/件
+                                            </td>
+                                            <td width="12%">1</td>
+                                            <td width="12%">30元</td>
+                                            <td width="12%">退款退货</td>
+                                            <td width="12%">拍错型号</td>
+                                            <td width="12%" rowspan="2" class="last" >
+                                                <p class="accept">接收退回商品</p>
+                                                <p><span>查看详情</span></p>
+                                                <p><span>联系买家</span></p>
+                                                <p><span>申请平台介入</span></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="7" class="twosrow"  >
+                                                <p>2017-2-3  8:30:30  会员提出换货申请</p>
+                                                <p>2017-2-3  8:30:30  栈代同意换货</p>
+                                                <p>2017-2-3 8:30:30   会员寄出商品</p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!--拒绝-->
+                                    <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="tiptitles returntitle">
+                                            <td width="100%" colspan="10" >
+                                                <p><span>订单编号：JT320176534</span><span>日期：2017-09-13</span><span>会员：Mickson</span></p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <table width="100%" class="returntable" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="first" >
+                                            <td colspan="2"  width="28%" >
+                                                <span class="fl">韩版修身T恤</span>
+                                                <span class="fr">
+                                        尺码：S<br/>
+                                        颜色：月白
+                                    </span>
+                                            </td>
+                                            <td width="12%">
+                                                30元/件
+                                            </td>
+                                            <td width="12%">1</td>
+                                            <td width="12%">30元</td>
+                                            <td width="12%">退款退货</td>
+                                            <td width="12%">拍错型号</td>
+                                            <td width="12%" rowspan="2" class="last" >
+                                                <p class="refuse">拒收退回商品</p>
+                                                <p><span>查看详情</span></p>
+                                                <p><span>联系买家</span></p>
+                                                <p><span>申请平台介入</span></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="7" class="twosrow"  >
+                                                <p>2017-2-3  8:30:30  会员提出换货申请</p>
+                                                <p>2017-2-3  8:30:30  栈代同意换货</p>
+                                                <p>2017-2-3 8:30:30   会员寄出商品</p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <!-- PageNum -->
+                                    <div class="pageDiv"></div>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <script type="text/javascript">jQuery(".shopadminbox").slide({trigger:"click"});</script>
+                    <script type="text/javascript">
+                        $(function(){$(".pageDiv").createPage({
+                            pageCount:9,//总页数
+                            current:1,//当前页
+                            turndown:'true',//是否显示跳转框，显示为true，不现实为false,一定记得加上引号...
+                            backFn:function(p){
+                                console.log(p);
+                            }
+                        });
+                        })
+                    </script>
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>
+
+</body>
+</html>

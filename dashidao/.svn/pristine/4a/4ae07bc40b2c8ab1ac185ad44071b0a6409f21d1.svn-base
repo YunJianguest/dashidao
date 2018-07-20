@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>退款申请</title>
+
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>退款申请 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="main"> $!httpInclude.include("/poster/nav_head.htm") 
+    <div class="user_center">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/poster/nav.htm?op=refund")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="shopadminbox">
+                        <div class="hd">
+                            <ul>
+                                <li>栈代申请退款</li>
+                                <li>商家处理退款申请</li>
+                                <li>退款完毕</li>
+                            </ul>
+                        </div>
+                        <div class="bd">
+                            <!--破损补寄-->
+                            <ul>
+                                <div class="refundbox refundapplication">
+                                    <form method="post" action=""  >
+                                        <div class="fl" >
+                                            <div class="two">
+                                                <ul>
+                                                    <li>
+                                                        <span class="fl">服务类型：<font>*</font></span>
+                                                        <span class="fr">
+                                        <input type="radio" checked >仅退款<br/>
+                                        <input type="radio" >退货退款
+                                    </span>
+                                                        <div class="clear"></div>
+                                                    </li>
+                                                    <li>
+                                                        <span class="fl">货物状态：<font>*</font></span>
+                                                        <span class="fr" >
+                                                <input type="radio" checked >未收到货<br/>
+                                                <input type="radio" >已收到货
+                                    </span>
+                                                        <div class="clear"></div>
+                                                    </li>
+                                                    <li>
+                                                        <span class="fl">退款原因：<font>*</font></span>
+                                                        <span class="fr">
+                                        <select>
+                                            <option>请选择</option>
+                                             <option>请选择</option>
+                                             <option>请选择</option>
+                                        </select>
+                                    </span>
+                                                        <div class="clear"></div>
+                                                    </li>
+                                                    <li>
+                                                        <span class="fl">退款金额：<font>*</font></span>
+                                                        <span class="fr">
+                                        <input type="text" value="￥468.00"  ><br/>
+                                        最多￥468.00，全发货邮费￥0.00
+                                    </span>
+                                                        <div class="clear"></div>
+                                                    </li>
+                                                    <li>
+                                                        <span class="fl">退款说明：</span>
+                                                        <span class="fr">
+                                        <textarea>退款说明</textarea>
+                                    </span>
+                                                        <div class="clear"></div>
+                                                    </li>
+                                                    <li>
+                                                        <span class="fl">上传图片：</span>
+                                                        <span class="fr">
+                                        <div class="uploadimg">
+                                            <font>+</font>
+                                            上传凭证<br/>（最多10张）
+                                        </div>
+                                    </span>
+                                                        <div class="clear"></div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="fr">
+                                            <h2>进货单详情</h2>
+                                            <hr/>
+                                            <div class="one">
+                                                <ul>
+                                                    <li>商家：自成衣派</li>
+                                                    <li>连帽保暖卫衣</li>
+                                                    <li>白色 XL</li>
+                                                </ul>
+                                            </div>
+                                            <hr/>
+                                            <div class="two">
+                                                <ul>
+                                                    <li>
+                                                        <span class="fl">联系电话：</span>
+                                                        <span class="fr">15889761865</span>
+                                                        <div class="clear"></div>
+                                                    </li>
+                                                    <li>
+                                                        <span class="fl">订单编号：</span>
+                                                        <span class="fr blue" >25661543498756709</span>
+                                                        <div class="clear"></div>
+                                                    </li>
+                                                    <li>
+                                                        <span class="fl">单价：</span>
+                                                        <span class="fr">￥468.00*1（数量）</span>
+                                                        <div class="clear"></div>
+                                                    </li>
+                                                    <li>
+                                                        <span class="fl">邮费：</span>
+                                                        <span class="fr">￥0.00</span>
+                                                        <div class="clear"></div>
+                                                    </li>
+                                                    <li>
+                                                        <span class="fl">商品总价：</span>
+                                                        <span class="fr">￥788.00</span>
+                                                        <div class="clear"></div>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="clear"></div>
+                                        <p><button>确定</button></p>
+                                    </form>
+                                </div>
+                            </ul>
+                            <!--破损补寄记录-->
+                            <ul>
+                            </ul>
+                            <!--破损补寄记录-->
+                            <ul>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <script type="text/javascript">jQuery(".shopadminbox").slide({trigger:"click"});</script>
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>
+
+</body>
+</html>

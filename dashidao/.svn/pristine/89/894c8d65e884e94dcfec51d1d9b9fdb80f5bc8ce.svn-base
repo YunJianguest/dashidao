@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>卖家品牌列表 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+	<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+	<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+	<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css">
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <!-- <script src="$!webPath/resources/js/bootstrap.min.js"></script>-->
+	<link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+	<link href="$!webPath/resources/style/system/manage/blue/zhandai.css"  rel="stylesheet" type="text/css"/>
+   
+   
+	<style>
+        .hzhaomu li{ width: 14%; }
+        .hzhaomu2 li{ width: 14%; }
+        .ac9 a {
+            color: #999;
+            padding:4px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            border:1px solid #999;margin-left:4px;
+        }
+        .ac9 a:hover {
+            color:#999;
+            background: #fff;
+
+        }
+        /* .input{
+            border: 0;
+            text-align: center;
+            width: 50px;
+        } */
+    </style>
+	
+   </head>
+<body>
+<div class="main ele_invoice">
+    <div class="user_center">
+        $!httpInclude.include("/seller/nav_head.htm") 
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=ele_invoice")
+                <td id="centerbg" valign="top" width="100%" class="eleinbox" >
+                	<div class="buyer_position">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">商家支持</a> > <span>基础管理</span> > <span>电子发票</span></div>
+                    </div>
+                    
+                   	<div >
+                   			<form>
+                            <table style="width: 100%;" >
+                                <tr >
+                                    <td>订单编号</td>
+                                    <td><input type="text" id="bianhao"></input></td>
+                                </tr>
+                                <tr >
+                                    <td>上传发票</td>
+                                    <td><input type="file" class="picture" name="zb_tupian" id="upload" value="" placeholder="" style="display: none;"/><label for="upload"><img src="../img/raw_1501032270.png" alt="" id="imgss"></label>	</div></td>
+                                    <input type="hidden" id="up_picture"/>
+                                </tr>
+                                <tr>
+                                    <td ><input type="submit" onclick="aa()" value="提交"></input></td>
+                                </tr>
+                            </table>
+							</form>
+                        </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+<script>
+	var user_id='${user.id}';
+	
+	$(function(){
+		
+	})
+	
+	function aa(){
+		var order_id=$('#bianhao').val();
+		var url=$('#up_picture').val();
+		jQuery.ajax({
+            type: "POST",
+            cache: false,
+            async: false,
+            url:"$!webPath/seller/addEletronic.htm",
+            dataType:"json",
+            data:"user_id="+user_id+"&order_id="+order_id+"&url="+url,
+            error:function(XMLHttpRequest, textStatus, errorThrown){
+                //alert(XMLHttpRequest.status); // 200
+                //alert(textStatus); // parsererror
+                //alert(errorThrown); // SyntaxError: Unexpected end of input
+               alert("数据错误！");
+			},
+            success: function (data) {
+            	alert(data);
+            	
+            }
+		});
+	}
+</script>
+<script type="text/javascript" src="/fileup/index_no1.js"></script>
+<script>
+    //picture代表input<file类型>的class的值，up_picture代表隐藏（hidden）的input的id值，imgss代表<img>标签的id值
+    fileInput("picture","up_picture","imgss");
+   
+</script>
+
+</body>
+</html>

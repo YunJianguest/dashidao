@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>申请售后</title>
+	<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/css.css" >
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="css/zxx.css" >
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+</head>
+<style type="text/css">
+	.search i{position:absolute;top:0;left:3%;font-size: 1.5rem;}
+	.ser{width: 94%;margin:0 3%;}
+	.clear{clear:both;}
+	/*产品*/
+	.pro{width:94%;margin:.5rem 3%;border-bottom:1px solid #f5f5f5;}
+	.pro ul li{width:25%;float:left;}
+	.pro ul li div{padding-left: 2%;font-size:.92rem;}
+	.pro ul li img{width:90%;margin: 5% 5%;height: 90%;}
+	.pija{width:5rem;height: 2rem;line-height: 2rem;text-align: center;border:1px solid red;color:red;border-radius: 5px;float: right;}
+	.red{border:1px solid red!important;color:red!important;}
+	.pro .sum{float: right;}
+	.shouhou{width:94%;margin:.5rem 3%;font-size:.9rem;}
+	.shouhou i{float: right;color:#c3c3c3;}
+	.shouhou>ul>li{height: 4rem;line-height: 4rem;}
+	.shouhou>ul>li>span{margin-left:2% ;}
+	/*数量*/
+	.count {display: inline-block;}
+    .sum{height:2rem;line-height:2rem;font-size: 1rem;text-align: left;}
+    .goods_sum li .number,.kucun {display: inline-block;color: #808080;vertical-align: sub;}
+    .count .num-jian,.input-num,.num-jia {display: inline-block; width:2rem;height: 1.5rem; text-align: center;font-size: 18px;  color: #999;cursor: pointer;border: 1px solid #e6e6e6;margin: 0 .5%;}
+    .count .input-num { width:2rem;color: #333; border: 0;height:1.5rem;font-size:.8rem; }
+    .count li{height:1rem;line-height:1.5rem;font-size: 1rem;float: left;}
+    .one{color:red;font-size: 1.2rem;}.two{color:#c3c3c3;}.three{}
+   /*弹出框1*/
+    .am-share { font-size: 14px; border-radius: 0; bottom: 0; left: 0; position: fixed; text-align: center; -webkit-transform: translateY(100%); -ms-transform: translateY(100%); transform: translateY(100%); -webkit-transition: -webkit-transform 300ms; transition: transform 300ms ; width: 100%; z-index: 1110; }
+	.am-modal-active { transform: translateY(0px);  -webkit-transform: translateY(0); -ms-transform: translateY(0); transform: translateY(0) }
+	.am-modal-out { z-index: 1109; -webkit-transform: translateY(100%); -ms-transform: translateY(100%); transform: translateY(100%) }
+	.am-share-title { background-color: #f8f8f8; border-bottom: 1px solid #fff; border-top-left-radius: 2px; border-top-right-radius: 2px; color: #555; font-weight: 400; margin: 0 10px; padding: 10px 0 0; text-align: center; }
+	.am-share-title::after { border-bottom: 1px solid #dfdfdf; content: ""; display: block; height: 0; margin-top: 10px; width: 100%; }
+	.am-share-footer { margin: 10px; }
+	.am-share-footer .share_btn { color: #555;  display: block; width: 100%; background-color: #e6e6e6; border: 1px solid #e6e6e6; border-radius: 0; cursor: pointer;  font-size: 16px; font-weight: 400; line-height: 1.2; padding: 0.625em 0; text-align: center; transition: background-color 300ms ease-out 0s, border-color 300ms ease-out 0s; vertical-align: middle; white-space: nowrap;font-family:"微软雅黑";  }
+	.am-share-sns { background-color: #f8f8f8; border-radius: 0 0 2px 2px; margin: 0 10px; padding-top: 15px; height:auto; zoom:1; overflow:auto; }	
+	.am-share-sns li { margin-bottom: 15px; display: block;height: auto;  width: 100%; }
+	.am-share-sns a { color: #555; display: block; text-decoration:none; }
+	.am-share-sns span { display: block; }
+	.am-share-sns li i { background-position: center 50%; background-repeat: no-repeat; background-size: 36px 36px; background-color: #ccc; color: #fff; display: inline-block; font-size: 18px; height: 36px; line-height: 36px; margin-bottom: 5px; width: 36px; }
+	.am-share-sns .share-icon-weibo { background-image: url(); }
+	.sharebg { background-color: rgba(0, 0, 0, 0.6); bottom: 0; height: 100%; left: 0; opacity: 0; position: fixed; right: 0; top: 0; width: 100%; z-index: 1100; display:none; }
+	.sharebg-active { opacity: 1; display:block; }
+	/*弹出框2*/
+	.am-share2 { font-size: 14px; border-radius: 0; bottom: 0; left: 0; position: fixed; text-align: center; -webkit-transform: translateY(100%); -ms-transform: translateY(100%); transform: translateY(100%); -webkit-transition: -webkit-transform 300ms; transition: transform 300ms ; width: 100%; z-index: 1110; }
+	.am-modal-active2 { transform: translateY(0px);  -webkit-transform: translateY(0); -ms-transform: translateY(0); transform: translateY(0) }
+	.am-modal-out2 { z-index: 1109; -webkit-transform: translateY(100%); -ms-transform: translateY(100%); transform: translateY(100%) }
+	.am-share-title2 { background-color: #f8f8f8; border-bottom: 1px solid #fff; border-top-left-radius: 2px; border-top-right-radius: 2px; color: #555; font-weight: 400; margin: 0 10px; padding: 10px 0 0; text-align: center; }
+	.am-share-title2::after { border-bottom: 1px solid #dfdfdf; content: ""; display: block; height: 0; margin-top: 10px; width: 100%; }
+	.am-share-footer2 { margin: 10px; }
+	.am-share-footer2 .share_btn2 { color: #555;  display: block; width: 100%; background-color: #e6e6e6; border: 1px solid #e6e6e6; border-radius: 0; cursor: pointer;  font-size: 16px; font-weight: 400; line-height: 1.2; padding: 0.625em 0; text-align: center; transition: background-color 300ms ease-out 0s, border-color 300ms ease-out 0s; vertical-align: middle; white-space: nowrap;font-family:"微软雅黑";  }
+	.am-share-sns2 { background-color: #f8f8f8; border-radius: 0 0 2px 2px; margin: 0 10px; padding-top: 15px; height:auto; zoom:1; overflow:auto; }	
+	.am-share-sns2 li { margin-bottom: 15px; display: block;height: auto;  width: 100%; }
+	.am-share-sns2 a { color: #555; display: block; text-decoration:none; }
+	.am-share-sns2 span { display: block; }
+	.am-share-sns2 li i { background-position: center 50%; background-repeat: no-repeat; background-size: 36px 36px; background-color: #ccc; color: #fff; display: inline-block; font-size: 18px; height: 36px; line-height: 36px; margin-bottom: 5px; width: 36px; }
+	.am-share-sns2 .share-icon-weibo2 { background-image: url(); }
+	.sharebg2 { background-color: rgba(0, 0, 0, 0.6); bottom: 0; height: 100%; left: 0; opacity: 0; position: fixed; right: 0; top: 0; width: 100%; z-index: 1100; display:none; }
+	.sharebg-active2 { opacity: 1; display:block; }
+	/*图片上传*/
+	.upload{display:none;}
+	.upload_photo {width:6rem;height:6rem;margin-left: 5%;border: 1px dashed #c3c3c3;}
+	.upload_photo img{width:6rem;height: 6rem;}
+	.sub{width:90%;margin:1rem 5%;background: #c3c3c3;border-radius: 5px;text-align: center;color: #fff;height: 2.5rem;line-height: 2.5rem;font-size: 1.5rem;}
+	.tj{width:94%;margin:1rem 3%;background:red;color: #fff;height: 2.5rem;line-height: 2.5rem;text-align: center;border-radius: 5px;}
+</style>
+<body>
+
+    <div class="search" style="text-align: center; line-height: 2.5rem;padding-right: 3%;border-bottom: 1px solid #f5f5f5;">
+       <i class="iconfont icon-back" onclick="history.go(-1)" ></i>申请售后
+        <div class="clear"></div>
+    </div>
+		
+   <div>
+   	<div class="pro"> 
+   		<ul>
+   			<li><img src="image/goods.png"/></li>
+   			<li style="width:75%;">
+	   			<div>伊利安慕希 希腊酸奶  原味205gx12盒2提（2018年1-2月生产）</div>
+				<div style="height: 1.5rem;color: #c3c3c3;font-size: .9rem;">规格:205mlx12盒x2提<span class="sum">x1</span></div>
+				<div style="font-size: .9rem;">
+					<span>￥99.00 </span>
+					<span style="color:#c3c3c3;">/</span>
+					<span style="color: red;">收益4.95</span>
+				</div>
+   			</li>
+   			<div class="clear"></div>
+   		</ul>
+   	</div>
+   	<div class="shouhou">
+   		<ul>
+   			<li><span class="one">*</span><span class="two">售后类型：</span><span class="three leixing">仅退款</span><i class="iconfont icon-xiangxiajiantou" onclick="toshare()"></i></li>
+   			<li style="border-bottom: 1px solid #f5f5f5;"><span class="one">*</span><span class="two">售后原因：</span><span class="three yuanyin">买错/买多/不想买了</span><i class="iconfont icon-xiangxiajiantou"  onclick="toshare2()"></i></li>
+   			<li><span class="one">*</span><span class="two">售后数量:</span><span class="three">
+   				<ul class="count">
+								<li><span id="num-jian" class="num-jian">-</span></li>
+								<li><input type="text" class="input-num" id="input-num" value="0" /></li>
+								<li><span id="num-jia" class="num-jia">+</span></li>
+								<div class="clear"> </div>
+				</ul>
+					<script>
+						var num_jia = document.getElementById("num-jia");
+						var num_jian = document.getElementById("num-jian");
+						var input_num = document.getElementById("input-num");
+		
+						num_jia.onclick = function() {
+		
+							input_num.value = parseInt(input_num.value) + 0;
+						}
+		
+						num_jian.onclick = function() {
+		
+							if(input_num.value <= 0) {
+								input_num.value = 0;
+							} else {
+		
+								input_num.value = parseInt(input_num.value) - 0;
+							}
+		
+						}
+						$("body").on("click", ".num-jian", function(m) {
+							var obj = $(this).closest("ul").find(".input-num");
+							if(obj.val() <= 0) {
+								obj.val(0);
+							} else {
+								obj.val(parseInt(obj.val()) - 1);
+							}
+							obj.change();
+						});
+						$("body").on("click", ".num-jia", function(m) {
+							var obj = $(this).closest("ul").find(".input-num");
+							obj.val(parseInt(obj.val()) + 1);
+							obj.change();
+						});
+					</script>
+			</span></li>
+   			<li  style="border-bottom: 1px solid #f5f5f5;"><span class="one">*</span><span class="two">最大退款金额</span><span class="three">￥99.00</span></li>
+   			<li style="height: 4rem;width: 100%;border: 0;margin-top:1rem;"><textarea name="" rows="" cols=""placeholder="  售后说明最多200字" style="height: 4rem;width: 100%;border: 0;"></textarea></li>
+   		</ul>
+   	</div>
+<div>
+	<!--售后类型-->
+   <div class="am-share">
+  <ul class="am-share-sns">
+    <li>仅退款</li>
+    <li>退货退款</li>
+    <li>退货</li>
+    <li>12222</li>
+  </ul>
+  <!--<div class="am-share-footer"><button class="share_btn">取消</button></div>-->
+</div>
+
+   		<script type="text/javascript">
+	function toshare(){
+		$(".am-share").addClass("am-modal-active");	
+		if($(".sharebg").length>0){
+			$(".sharebg").addClass("sharebg-active");
+		}else{
+			$("body").append('<div class="sharebg"></div>');
+			$(".sharebg").addClass("sharebg-active");
+		}
+		$(".sharebg-active,.share_btn").click(function(){
+			$(".am-share").removeClass("am-modal-active");	
+			setTimeout(function(){
+				$(".sharebg-active").removeClass("sharebg-active");	
+				$(".sharebg").remove();	
+			},300);
+		})
+	}	
+	$(".am-share-sns li").click(function(){
+		$(".leixing").html($(this).html())
+		$(".am-share").removeClass("am-modal-active");	
+			setTimeout(function(){
+				$(".sharebg-active").removeClass("sharebg-active");	
+				$(".sharebg").remove();	
+			},300);
+	})
+</script>
+   	</div>
+   	
+   	<div>
+	<!--售后原因-->
+   <div class="am-share2">
+  <ul class="am-share-sns2">
+    <li>仅退款 </li>
+    <li>退货退款</li>
+    <li>退货</li>
+    <li></li>
+  </ul>
+  <!--<div class="am-share-footer"><button class="share_btn">取消</button></div>-->
+</div>
+<script type="text/javascript">
+	function toshare2(){
+		$(".am-share2").addClass("am-modal-active2");	
+		if($(".sharebg2").length>0){
+			$(".sharebg2").addClass("sharebg-active2");
+		}else{
+			$("body").append('<div class="sharebg2"></div>');
+			$(".sharebg2").addClass("sharebg-active2");
+		}
+		$(".sharebg-active2,.share_btn2").click(function(){
+			$(".am-share2").removeClass("am-modal-active2");	
+			setTimeout(function(){
+				$(".sharebg-active2").removeClass("sharebg-active2");	
+				$(".sharebg2").remove();	
+			},300);
+		})
+	}	
+	$(".am-share-sns2 li").click(function(){
+		$(".yuanyin").html($(this).html())
+		$(".am-share2").removeClass("am-modal-active2");	
+			setTimeout(function(){
+				$(".sharebg-active2").removeClass("sharebg-active2");	
+				$(".sharebg2").remove();	
+			},300);
+	})
+</script>
+   	</div>
+   	<div id="">
+   		<div class="upload_photo"><label for="person_header"><input type="file" name="person_header" id="person_header" value="" class="upload"/><img src="img/add_ac.png"/></label></div>
+   		<script type="text/javascript">
+			$().ready(function(){
+		function getObjectURL(file) {
+		        var url = null ;
+		        if (window.createObjectURL!=undefined) { // basic
+		            url = window.createObjectURL(file) ;
+		        } else if (window.URL!=undefined) { // mozilla(firefox)
+		            url = window.URL.createObjectURL(file) ;
+		        } else if (window.webkitURL!=undefined) { // webkit or chrome
+		            url = window.webkitURL.createObjectURL(file) ;
+		        }
+		        return url ;
+		    }
+		
+		    $('#person_header').change(function() {
+		        var eImg = $(this).next("img");
+		        eImg.attr('src', getObjectURL($(this)[0].files[0])); // 或 this.files[0] this->input
+		        $(this).after(eImg);});
+		     $('#emblem').change(function() {
+		        var eImg = $(this).next("img");
+		        eImg.attr('src', getObjectURL($(this)[0].files[0])); // 或 this.files[0] this->input
+		        $(this).after(eImg);});
+		     $('#licence').change(function() {
+		        var eImg = $(this).next("img");
+		        eImg.attr('src', getObjectURL($(this)[0].files[0])); // 或 this.files[0] this->input
+		        $(this).after(eImg);});
+			});
+			//
+			$(".logistics li").children("div").click(function(){
+				if($(this).hasClass('red')){
+					$(this).removeClass("red");
+				}else{
+					$(this).addClass("red");
+				}	
+			})
+	</script>
+   	</div>
+   	<div class="tj">提交订单</div>
+   </div>
+
+
+</body>
+</html>

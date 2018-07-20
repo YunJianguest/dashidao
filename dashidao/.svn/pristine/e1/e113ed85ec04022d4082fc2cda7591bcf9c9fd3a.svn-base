@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品管理</title>
+    <script type="text/javascript" src="js/jquery1.42.min.js"></script>
+    <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/css.css" >
+      <link rel="stylesheet" type="text/css" href="css/zxx.css" >
+      <link rel="stylesheet" href="iconfont/iconfont.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+</head>
+<body >
+	 <div class="myer ykmyer">
+       <p style="width: 92%;" >
+        <i class="iconfont icon-back" onclick="history.go(-1)"  ></i>商品管理
+		   <a href="add_product.html"><i class="iconfont icon-category fr"></i></a>
+    	</p>
+    </div>
+<div class="shopadminbox">
+   
+    <div class="shopadmin-top"></div>
+    <div class="hd">
+        <ul>
+            <li>云客代言</li>
+            <li>活动精选</li>
+			<li>精品推荐</li>
+        </ul>
+    </div>
+    <div class="bd">
+        <!--云客代言-->
+        <ul>
+           	<li>
+				<div class="goodcontent2">
+                  	<div class="shop-button-s">
+					<ul>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu1.jpg" class="shop-butimg1"><div class="shop-butimg2 " >抢光了</div></div></li>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu2.jpg" class="shop-butimg1">
+					<div class="shop-butimg2">抢光了</div></div></li>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu3.jpg" class="shop-butimg1"><div class="shop-butimg2 " >抢光了</div></div></li>
+
+					</ul>
+				</div>
+
+
+               </div>
+				
+               
+                
+            </li>
+        </ul>
+        <!--活动精选-->
+		 <ul>
+           	<li>
+				<div class="goodcontent2">
+                  <div class="shop-button-s">
+					<ul>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu1.jpg" class="shop-butimg1"><div class="shop-butimg2 " >抢光了</div></div></li>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu2.jpg" class="shop-butimg1">
+					<div class="shop-butimg2">抢光了</div></div></li>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu3.jpg" class="shop-butimg1"><div class="shop-butimg2 " >抢光了</div></div></li>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu4.jpg" class="shop-butimg1"><div class="shop-butimg2 " >抢光了</div></div></li>
+					</ul>
+				</div>
+				<div class="shop-button-s">
+					<ul>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu1.jpg" class="shop-butimg1"><div class="shop-butimg2 " >抢光了</div></div></li>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu2.jpg" class="shop-butimg1">
+					<div class="shop-butimg2">抢光了</div></div></li>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu3.jpg" class="shop-butimg1"><div class="shop-butimg2 " >抢光了</div></div></li>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu4.jpg" class="shop-butimg1"><div class="shop-butimg2 " >抢光了</div></div></li>
+					</ul>
+				</div>
+				<div class="shop-button-s">
+					<ul>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu1.jpg" class="shop-butimg1"><div class="shop-butimg2 " >抢光了</div></div></li>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu2.jpg" class="shop-butimg1">
+					<div class="shop-butimg2">抢光了</div></div></li>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu3.jpg" class="shop-butimg1"><div class="shop-butimg2 " >抢光了</div></div></li>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu4.jpg" class="shop-butimg1"><div class="shop-butimg2 " >抢光了</div></div></li>
+					</ul>
+				</div>
+				<div class="shop-button-s">
+					<ul>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu1.jpg" class="shop-butimg1"><div class="shop-butimg2 " >抢光了</div></div></li>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu2.jpg" class="shop-butimg1">
+					<div class="shop-butimg2">抢光了</div></div></li>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu3.jpg" class="shop-butimg1"><div class="shop-butimg2 " >抢光了</div></div></li>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu4.jpg" class="shop-butimg1"><div class="shop-butimg2 " >抢光了</div></div></li>
+					</ul>
+				</div>
+               </div>
+
+               
+                
+            </li>
+        </ul>
+        <!--精品推荐-->
+		 <ul>
+           	<li>
+				<div class="goodcontent2">
+                  <div class="shop-button-s">
+					<ul>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu1.jpg" class="shop-butimg1"><div class="shop-butimg2 " >抢光了</div></div></li>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu2.jpg" class="shop-butimg1">
+					<div class="shop-butimg2">抢光了</div></div></li>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu3.jpg" class="shop-butimg1"><div class="shop-butimg2 " >抢光了</div></div></li>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu4.jpg" class="shop-butimg1"><div class="shop-butimg2 " >抢光了</div></div></li>
+					</ul>
+				</div>
+				<div class="shop-button-s">
+					<ul>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu1.jpg" class="shop-butimg1"><div class="shop-butimg2 " >抢光了</div></div></li>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu2.jpg" class="shop-butimg1">
+					<div class="shop-butimg2">抢光了</div></div></li>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu3.jpg" class="shop-butimg1"><div class="shop-butimg2 " >抢光了</div></div></li>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu4.jpg" class="shop-butimg1"><div class="shop-butimg2 " >抢光了</div></div></li>
+					</ul>
+				</div>
+				<div class="shop-button-s">
+					<ul>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu1.jpg" class="shop-butimg1"><div class="shop-butimg2 " >抢光了</div></div></li>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu2.jpg" class="shop-butimg1">
+					<div class="shop-butimg2">抢光了</div></div></li>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu3.jpg" class="shop-butimg1"><div class="shop-butimg2 " >抢光了</div></div></li>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu4.jpg" class="shop-butimg1"><div class="shop-butimg2 " >抢光了</div></div></li>
+					</ul>
+				</div>
+				<div class="shop-button-s">
+					<ul>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu1.jpg" class="shop-butimg1"><div class="shop-butimg2 " >抢光了</div></div></li>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu2.jpg" class="shop-butimg1">
+					<div class="shop-butimg2">抢光了</div></div></li>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu3.jpg" class="shop-butimg1"><div class="shop-butimg2 " >抢光了</div></div></li>
+					<li><span><i class="iconfont icon-subtract"></i></span><div><img src="images/tu4.jpg" class="shop-butimg1"><div class="shop-butimg2 " >抢光了</div></div></li>
+					</ul>
+				</div>
+               </div>
+
+               
+                
+            </li>
+        </ul>
+          
+     
+     
+       
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">jQuery(".shopadminbox").slide({trigger:"click"});</script>
+<!--<script type="text/javascript" >
+    $(function () {
+
+        var tags = $("#price").html();
+        //len = tags.length;
+        var integral = tags.substring(0, tags.indexOf('.'));
+        var decimal = tags.substring(tags.indexOf('.')+1);
+        $("#price").html('<span class="integral">' + integral + '.<\/span>' + decimal )
+    })
+</script>-->
+</body>
+</html>

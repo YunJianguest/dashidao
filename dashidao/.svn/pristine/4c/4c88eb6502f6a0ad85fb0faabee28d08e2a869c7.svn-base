@@ -1,0 +1,433 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>卖家品牌列表 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link href="$!webPath/resources/style/system/manage/black/zxx.css"  rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+    <script src="$!webPath/resources/js/echarts.min.js"></script>
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+$!httpInclude.include("/top.htm")
+<div class="main">
+    <div class="user_center">
+        $!httpInclude.include("/seller/nav_head.htm")
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=supply_analyze")
+                <td id="centerbg" valign="top">
+                    <div class="xiaoshou-box">
+                        <div class="xiaoshou-top"><p><i class="iconfont icon-information"></i>&nbsp;您的海参一号销售突破 10000 件。</p></div>
+                        <div class="ht-top"style=" width: 90%; margin-left: 5%;" >
+                            <div class="ht-tu">
+                                <i class="iconfont icon-search"></i>
+                                <input type="text" placeholder="韩版"  />
+                            </div>
+                        </div>
+
+                        <div class="xiaoshou-mid">
+                            <div class="xiaoshou-mid1"><p><span></span>供货分析(按代理商)</p></div>
+                            <style type="text/css" >
+                                .xiaoshou-mid2 ul li{ width: 20%; float: left; text-align: center;   }
+                                .xiaoshou-mid2 ul li span{ display: block; width: 90%; text-align:right; padding-right: 10%; }
+                                .xiaoshou-mid2 ul li i{ float: right; }
+                            </style>
+                            <div class="xiaoshou-mid2" style=" width: 20%;">
+                                <ul>
+                                    <li>导出:</li>
+                                    <li>
+                                        <i class="iconfont icon-pdf"></i>
+                                        <span>txt</span>
+                                    </li>
+                                    <li>
+                                        <i class="iconfont icon-exl"></i>
+                                        <span>xls</span>
+                                    </li>
+                                    <li>
+                                        <i class="iconfont icon-form"></i>
+                                        <span>doc</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="xiaoshou-med">
+                            <div class="xiaoshou-med1">
+                                <ul style="">
+                                    <li style="width:6%;">行号</li>
+                                    <li style="width:8%;">栈代</li>
+                                    <li style="width:10%;">商品编号</li>
+                                    <li style="width:15%;">商品名称</li>
+                                    <li style="width:15%;">规格/型号</li>
+                                    <li style="width:10%;">单位<br><i class="iconfont icon-move"></i></li>
+                                    <li style="width:8%;">单价<br><i class="iconfont icon-move"></i></li>
+                                    <li style="width:10%;">供货量<br><i class="iconfont icon-move"></i></li>
+                                    <li style="width:15%;">供货金额<br><i class="iconfont icon-move"></i></li>
+
+                                </ul>
+                            </div>
+                            <div class="xiaoshou-med2">
+                                <ul>
+                                    <li style="width:6%;">01</li>
+                                    <li style="width:8%;">栈代1</li>
+                                    <li style="width:10%;">-</li>
+                                    <li style="width:15%;">-</li>
+                                    <li style="width:15%;">-</li>
+                                    <li style="width:10%;">-</li>
+                                    <li style="width:8%;">-</li>
+                                    <li style="width:10%; color: #108EE9; font-weight: bold;">9100</li>
+                                    <li style="width:15%;color: #108EE9; font-weight: bold;">100000</li>
+                                    <li style="width: 2%;"><i class="iconfont icon-moreunfold"></i></li>
+                                </ul>
+                                <ul>
+                                    <li style="width:6%;">&nbsp;</li>
+                                    <li style="width:8%;">&nbsp;</li>
+                                    <li style="width:10%;">230019</li>
+                                    <li style="width:15%;">海参一号</li>
+                                    <li style="width:15%;">养生no1</li>
+                                    <li style="width:10%;">件</i></li>
+                                    <li style="width:8%;">100</i></li>
+                                    <li style="width:10%;">100</li>
+                                    <li style="width:15%;">10000</li>
+                                </ul>
+                                <ul>
+                                    <li style="width:6%;">&nbsp;</li>
+                                    <li style="width:8%;">&nbsp;</li>
+                                    <li style="width:10%;">230019</li>
+                                    <li style="width:15%;">海参一号</li>
+                                    <li style="width:15%;">养生no1</li>
+                                    <li style="width:10%;">件</i></li>
+                                    <li style="width:8%;">100</i></li>
+                                    <li style="width:10%;">100</li>
+                                    <li style="width:15%;">10000</li>
+                                </ul>
+                            </div>
+
+                            <div class="xiaoshou-med3">
+                                <ul>
+                                    <li style="width:6%;">01</li>
+                                    <li style="width:8%;">栈代1</li>
+                                    <li style="width:10%;">-</li>
+                                    <li style="width:15%;">-</li>
+                                    <li style="width:15%;">-</li>
+                                    <li style="width:10%;">-</li>
+                                    <li style="width:8%;">-</li>
+                                    <li style="width:10%; color: #108EE9; font-weight: bold;">9100</li>
+                                    <li style="width:15%;color: #108EE9; font-weight: bold;">100000</li>
+                                    <li style="width: 2%;"><i class="iconfont icon-moreunfold"></i></li>
+                                </ul>
+                                <ul>
+                                    <li style="width:6%;">&nbsp;</li>
+                                    <li style="width:8%;">&nbsp;</li>
+                                    <li style="width:10%;">230019</li>
+                                    <li style="width:15%;">海参一号</li>
+                                    <li style="width:15%;">养生no1</li>
+                                    <li style="width:10%;">件</i></li>
+                                    <li style="width:8%;">100</i></li>
+                                    <li style="width:10%;">100</li>
+                                    <li style="width:15%;">10000</li>
+                                </ul>
+                                <ul>
+                                    <li style="width:6%;">&nbsp;</li>
+                                    <li style="width:8%;">&nbsp;</li>
+                                    <li style="width:10%;">230019</li>
+                                    <li style="width:15%;">海参一号</li>
+                                    <li style="width:15%;">养生no1</li>
+                                    <li style="width:10%;">件</i></li>
+                                    <li style="width:8%;">100</i></li>
+                                    <li style="width:10%;">100</li>
+                                    <li style="width:15%;">10000</li>
+
+                                    <ul>
+                                        <li style="width:6%;">&nbsp;</li>
+                                        <li style="width:8%;">&nbsp;</li>
+                                        <li style="width:10%;">230019</li>
+                                        <li style="width:15%;">海参一号</li>
+                                        <li style="width:15%;">养生no1</li>
+                                        <li style="width:10%;">件</i></li>
+                                        <li style="width:8%;">100</i></li>
+                                        <li style="width:10%;">100</li>
+                                        <li style="width:15%;">10000</li>
+                                    </ul>
+                                    <ul>
+                                        <li style="width:6%;">&nbsp;</li>
+                                        <li style="width:8%;">&nbsp;</li>
+                                        <li style="width:10%;">230019</li>
+                                        <li style="width:15%;">海参一号</li>
+                                        <li style="width:15%;">养生no1</li>
+                                        <li style="width:10%;">件</i></li>
+                                        <li style="width:8%;">100</i></li>
+                                        <li style="width:10%;">100</li>
+                                        <li style="width:15%;">10000</li>
+                                    </ul>
+                                </ul>
+                            </div>
+                            <div class="xiaoshou-med2">
+                                <ul>
+                                    <li style="width:6%;">01</li>
+                                    <li style="width:8%;">栈代1</li>
+                                    <li style="width:10%;">-</li>
+                                    <li style="width:15%;">-</li>
+                                    <li style="width:15%;">-</li>
+                                    <li style="width:10%;">-</li>
+                                    <li style="width:8%;">-</li>
+                                    <li style="width:10%; color: #108EE9; font-weight: bold;">9100</li>
+                                    <li style="width:15%;color: #108EE9; font-weight: bold;">100000</li>
+                                    <li style="width: 2%;"><i class="iconfont icon-moreunfold"></i></li>
+                                </ul>
+                                <ul>
+                                    <li style="width:6%;">&nbsp;</li>
+                                    <li style="width:8%;">&nbsp;</li>
+                                    <li style="width:10%;">230019</li>
+                                    <li style="width:15%;">海参一号</li>
+                                    <li style="width:15%;">养生no1</li>
+                                    <li style="width:10%;">件</i></li>
+                                    <li style="width:8%;">100</i></li>
+                                    <li style="width:10%;">100</li>
+                                    <li style="width:15%;">10000</li>
+                                </ul>
+                                <ul>
+                                    <li style="width:6%;">&nbsp;</li>
+                                    <li style="width:8%;">&nbsp;</li>
+                                    <li style="width:10%;">230019</li>
+                                    <li style="width:15%;">海参一号</li>
+                                    <li style="width:15%;">养生no1</li>
+                                    <li style="width:10%;">件</i></li>
+                                    <li style="width:8%;">100</i></li>
+                                    <li style="width:10%;">100</li>
+                                    <li style="width:15%;">10000</li>
+                                </ul>
+                            </div>
+
+                            <div class="xiaoshou-med3">
+                                <ul>
+                                    <li style="width:6%;">01</li>
+                                    <li style="width:8%;">栈代1</li>
+                                    <li style="width:10%;">-</li>
+                                    <li style="width:15%;">-</li>
+                                    <li style="width:15%;">-</li>
+                                    <li style="width:10%;">-</li>
+                                    <li style="width:8%;">-</li>
+                                    <li style="width:10%; color: #108EE9; font-weight: bold;">9100</li>
+                                    <li style="width:15%;color: #108EE9; font-weight: bold;">100000</li>
+                                    <li style="width: 2%;"><i class="iconfont icon-moreunfold"></i></li>
+                                </ul>
+                                <ul>
+                                    <li style="width:6%;">&nbsp;</li>
+                                    <li style="width:8%;">&nbsp;</li>
+                                    <li style="width:10%;">230019</li>
+                                    <li style="width:15%;">海参一号</li>
+                                    <li style="width:15%;">养生no1</li>
+                                    <li style="width:10%;">件</i></li>
+                                    <li style="width:8%;">100</i></li>
+                                    <li style="width:10%;">100</li>
+                                    <li style="width:15%;">10000</li>
+                                </ul>
+                                <ul>
+                                    <li style="width:6%;">&nbsp;</li>
+                                    <li style="width:8%;">&nbsp;</li>
+                                    <li style="width:10%;">230019</li>
+                                    <li style="width:15%;">海参一号</li>
+                                    <li style="width:15%;">养生no1</li>
+                                    <li style="width:10%;">件</i></li>
+                                    <li style="width:8%;">100</i></li>
+                                    <li style="width:10%;">100</li>
+                                    <li style="width:15%;">10000</li>
+
+                                    <ul>
+                                        <li style="width:6%;">&nbsp;</li>
+                                        <li style="width:8%;">&nbsp;</li>
+                                        <li style="width:10%;">230019</li>
+                                        <li style="width:15%;">海参一号</li>
+                                        <li style="width:15%;">养生no1</li>
+                                        <li style="width:10%;">件</i></li>
+                                        <li style="width:8%;">100</i></li>
+                                        <li style="width:10%;">100</li>
+                                        <li style="width:15%;">10000</li>
+                                    </ul>
+                                    <ul>
+                                        <li style="width:6%;">&nbsp;</li>
+                                        <li style="width:8%;">&nbsp;</li>
+                                        <li style="width:10%;">230019</li>
+                                        <li style="width:15%;">海参一号</li>
+                                        <li style="width:15%;">养生no1</li>
+                                        <li style="width:10%;">件</i></li>
+                                        <li style="width:8%;">100</i></li>
+                                        <li style="width:10%;">100</li>
+                                        <li style="width:15%;">10000</li>
+                                    </ul>
+                                </ul>
+                            </div>
+
+                            <div class="xx-bontom">
+                                <div class="xx-bontom1">Total 85 items</div>
+                                <div class="xx-bontom-ul">
+                                    <ul>
+                                        <li><i class="iconfont icon-back"></i></li>
+                                        <li>1</li>
+                                        <li>2</li>
+                                        <li>3</li>
+                                        <li>4</li>
+                                        <li>5</li>
+                                        <li>…</li>
+                                        <li>50</li>
+                                        <li><i class="iconfont icon-more"></i></li>
+                                    </ul>
+
+                                </div>
+                                <div class="xx-bontom2">10/page<i class="iconfont icon-moreunfold"></i></div>
+                                <div class="xx-bontom3">Goto</div>
+                                <div class="xx-bontom4"><input type="text" placeholder="8"></div>
+                            </div>
+                        </div>
+                        <div class="xiaoshou-mid">
+                            <div class="xiaoshou-mid1"><p><span></span>供货分析(商品)</p></div>
+                            <div class="xiaoshou-mid2" style=" width: 20%;">
+                                <ul>
+                                    <li>导出:</li>
+                                    <li>
+                                        <i class="iconfont icon-pdf"></i>
+                                        <span>txt</span>
+                                    </li>
+                                    <li>
+                                        <i class="iconfont icon-exl"></i>
+                                        <span>xls</span>
+                                    </li>
+                                    <li>
+                                        <i class="iconfont icon-form"></i>
+                                        <span>doc</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="xiaoshou-med">
+                            <div class="xiaoshou-med1">
+                                <ul style="">
+                                    <li style="width:10%;">行号</li>
+                                    <li style="width:10%;">商品编号</li>
+                                    <li style="width:15%;">商品名称</li>
+                                    <li style="width:15%;">规格/型号</li>
+                                    <li style="width:10%;">单位<br><i class="iconfont icon-move"></i></li>
+                                    <li style="width:8%;">单价<br><i class="iconfont icon-move"></i></li>
+                                    <li style="width:10%;">供货量<br><i class="iconfont icon-move"></i></li>
+                                    <li style="width:15%;">供货金额<br><i class="iconfont icon-move"></i></li>
+
+                                </ul>
+                            </div>
+                            <div class="xiaoshou-med2">
+                                <ul>
+                                    <li style="width:10%;">01</li>
+                                    <li style="width:10%;">-</li>
+                                    <li style="width:15%;">-</li>
+                                    <li style="width:15%;">-</li>
+                                    <li style="width:10%;">-</li>
+                                    <li style="width:8%;">-</li>
+                                    <li style="width:10%; color: #108EE9; font-weight: bold;">9100</li>
+                                    <li style="width:15%;color: #108EE9; font-weight: bold;">100000</li>
+                                    <li style="width: 4%;"><i class="iconfont icon-moreunfold"></i></li>
+                                </ul>
+                                <ul>
+                                    <li style="width:10%;">&nbsp;</li>
+                                    <li style="width:10%;">230019</li>
+                                    <li style="width:15%;">海参一号</li>
+                                    <li style="width:15%;">养生no1</li>
+                                    <li style="width:10%;">件</i></li>
+                                    <li style="width:8%;">100</i></li>
+                                    <li style="width:10%;">100</li>
+                                    <li style="width:15%;">10000</li>
+                                </ul>
+                                <ul>
+                                    <li style="width:10%;">&nbsp;</li>
+                                    <li style="width:10%;">230019</li>
+                                    <li style="width:15%;">海参一号</li>
+                                    <li style="width:15%;">养生no1</li>
+                                    <li style="width:10%;">件</i></li>
+                                    <li style="width:8%;">100</i></li>
+                                    <li style="width:10%;">100</li>
+                                    <li style="width:15%;">10000</li>
+                                </ul>
+                            </div>
+                            <div class="xiaoshou-med2">
+                                <ul>
+                                    <li style="width:10%;">01</li>
+                                    <li style="width:10%;">-</li>
+                                    <li style="width:15%;">-</li>
+                                    <li style="width:15%;">-</li>
+                                    <li style="width:10%;">-</li>
+                                    <li style="width:8%;">-</li>
+                                    <li style="width:10%; color: #108EE9; font-weight: bold;">9100</li>
+                                    <li style="width:15%;color: #108EE9; font-weight: bold;">100000</li>
+                                    <li style="width: 4%;"><i class="iconfont icon-moreunfold"></i></li>
+                                </ul>
+                                <ul>
+                                    <li style="width:10%;">&nbsp;</li>
+                                    <li style="width:10%;">230019</li>
+                                    <li style="width:15%;">海参一号</li>
+                                    <li style="width:15%;">养生no1</li>
+                                    <li style="width:10%;">件</i></li>
+                                    <li style="width:8%;">100</i></li>
+                                    <li style="width:10%;">100</li>
+                                    <li style="width:15%;">10000</li>
+                                </ul>
+                                <ul>
+                                    <li style="width:10%;">&nbsp;</li>
+                                    <li style="width:10%;">230019</li>
+                                    <li style="width:15%;">海参一号</li>
+                                    <li style="width:15%;">养生no1</li>
+                                    <li style="width:10%;">件</i></li>
+                                    <li style="width:8%;">100</i></li>
+                                    <li style="width:10%;">100</li>
+                                    <li style="width:15%;">10000</li>
+                                </ul>
+                            </div>
+
+
+                            <div class="xx-bontom">
+                                <div class="xx-bontom1">Total 85 items</div>
+                                <div class="xx-bontom-ul">
+                                    <ul>
+                                        <li><i class="iconfont icon-back"></i></li>
+                                        <li>1</li>
+                                        <li>2</li>
+                                        <li>3</li>
+                                        <li>4</li>
+                                        <li>5</li>
+                                        <li>…</li>
+                                        <li>50</li>
+                                        <li><i class="iconfont icon-more"></i></li>
+                                    </ul>
+
+                                </div>
+                                <div class="xx-bontom2">10/page<i class="iconfont icon-moreunfold"></i></div>
+                                <div class="xx-bontom3">Goto</div>
+                                <div class="xx-bontom4"><input type="text" placeholder="8"></div>
+                            </div>
+                        </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

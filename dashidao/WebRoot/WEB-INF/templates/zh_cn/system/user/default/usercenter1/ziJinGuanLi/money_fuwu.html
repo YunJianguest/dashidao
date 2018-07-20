@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>卖家品牌列表 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <!--<script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>-->
+    <!--<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>-->
+    <!--<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>-->
+    <!--<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>-->
+
+    <script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link href="$!webPath/resources/style/system/manage/black/bootstrap.min.css"  rel="stylesheet" type="text/css"/>
+    <link  rel="stylesheet"href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+</head>
+<body>
+$!httpInclude.include("/top.htm")
+<div class="main"> $!httpInclude.include("/seller/nav_head.htm")
+    <div class="user_center">
+        <table width="1200" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=money_fuwu")
+                <td id="centerbg" valign="top">
+                    <div class="bg_div">
+                        <div style="width: 40%">
+                            <p style="padding-left: 50px;padding-top: 20px;">总资产（元）&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 26px;">19009.53</span>
+                            </p>
+                            <p style="padding-left: 50px;">
+                                可用余额（元）&nbsp;&nbsp;&nbsp;&nbsp;<span>15700.00</span>
+                            </p>
+                        </div>
+                        <div style="width: 30%">
+                            <p style="padding-left: 50px;padding-top: 30px;">
+                                今日收入（元）&nbsp;&nbsp;&nbsp;&nbsp;<span >3093.00</span>
+                            </p>
+                            <p style="padding-left: 50px;">
+                                今日支出（元）&nbsp;&nbsp;&nbsp;&nbsp;<span>890.00</span>
+                            </p>
+                        </div>
+                        <div style="width: 30%">
+                            <p style="padding-left: 100px;padding-top: 10px;">
+                                <button type="button" class="btn btn-primary zj_button">充值</button>
+                            </p>
+                            <p style="padding-left: 100px;">
+                                <button type="button" class="btn btn-primary zj_button">提现</button>
+                            </p>
+                            <p style="padding-left: 100px;">
+                                <button type="button" class="btn btn-primary zj_button">详情</button>
+                            </p>
+                        </div>
+                    </div>
+                    <div style="width: 800px;height: 350px; display: flex;margin: 15px auto;background-color:#74B8C3 ;color: black;">
+                        <div style="width: 33.33%;border:1px solid #C7C7C7;">
+                            <p style="padding-left: 20px;padding-top: 10px;">保证金账户（元）</p>
+                            <p style="padding-left: 170px;font-size: 18px;">9930.76</p>
+                            <p style="padding-left: 20px;">可用余额（元）</p>
+                            <p style="padding-left: 170px;font-size: 18px;">8930.53</p>
+                            <p style="padding-left: 20px;" >今日收入（元）<span style="padding-left: 160px;">3090.00</span></p>
+                            <p style="padding-left: 20px;">今日支出（元）<span style="padding-left: 160px;">890.00</span></p>
+                            <p style="padding-left: 70px;padding-top: 10px;">
+                                <button type="button" class="btn btn-primary zj_button">充值</button>
+                                <button type="button" class="btn btn-primary zj_button">详情</button>
+                            </p>
+                        </div>
+                        <div style="width: 33.33%;border:1px solid #C7C7C7;">
+                            <p style="padding-left: 20px;padding-top: 10px;">代言费账户（元）</p>
+                            <p style="padding-left: 170px;font-size: 18px;">6009.00</p>
+                            <p style="padding-left: 20px;">可用余额（元）</p>
+                            <p style="padding-left: 170px;font-size: 18px;">5700.53</p>
+                            <p style="padding-left: 20px;" >今日收入（元）<span style="padding-left: 160px;">3090.00</span></p>
+                            <p style="padding-left: 20px;">今日支出（元）<span style="padding-left: 160px;">890.00</span></p>
+                            <p style="padding-left: 70px;padding-top: 10px;">
+                                <button type="button" class="btn btn-primary zj_button">充值</button>
+                                <button type="button" class="btn btn-primary zj_button">详情</button>
+                            </p>
+                        </div>
+                        <div style="width: 33.33%;border:1px solid #C7C7C7;">
+                            <p style="padding-left: 20px;padding-top: 10px;">首页展示账户（元）</p>
+                            <p style="padding-left: 170px;font-size: 18px;">9930.76</p>
+                            <p style="padding-left: 20px;">可用余额（元）</p>
+                            <p style="padding-left: 170px;font-size: 18px;">8930.53</p>
+                            <p style="padding-left: 20px;" >今日收入（元）<span style="padding-left: 160px;">3090.00</span></p>
+                            <p style="padding-left: 20px;">今日支出（元）<span style="padding-left: 160px;">890.00</span></p>
+                            <p style="padding-left: 70px;padding-top: 10px;">
+                                <button type="button" class="btn btn-primary zj_button">充值</button>
+                                <button type="button" class="btn btn-primary zj_button">详情</button>
+                            </p>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

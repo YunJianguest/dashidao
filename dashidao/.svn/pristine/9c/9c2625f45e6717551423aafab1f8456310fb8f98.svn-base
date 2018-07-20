@@ -1,0 +1,343 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+	<title>页面标题</title>
+	<link rel="stylesheet" href="css/apply.css">
+	<link rel="stylesheet" href="css/zxx.css">
+	<!--必选css-->
+	<link rel="stylesheet" type="text/css" href="css/css.css" >
+	<link rel="stylesheet" href="iconfont/iconfont.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body style=" padding-bottom: 8rem;">
+<div class="mask opacity" id="mask" > </div>
+<div class="zxxcontent" id="zxxcontent">
+	<a href="javascript:;" id="close" class="close">
+		<i class="iconfont icon-close"></i>
+	</a> <br />
+	<span><h3>——如何玩转云集微店——</h3></span>
+	<h3>a.分享商品</h3>
+	<p>云集店主在微店中分享商品或下载链接给好友、微信群、朋友圈等</p><br />
+	<h3>b.产生收益</h3>
+	<p>买家通过你的链接或云集VIP的APP进行商品购买你就会得到相对应的利润及奖励</p><br />
+	<h3>c.提现</h3>
+	<p>可将获得的收益提现至银行卡或支付宝中</p>
+	<span style="display:block;width: 98%;height: 2.5rem; line-height:2.5rem;text-align: center;"><h3>云集微店的货能保证是正品吗</h3></span>
+	<p>云集微店作为社交零售行业第一支正规军，所有的商品均直接与品牌方、授权代理商或经销商合作</p>
+</div>
+<!--头部搜索-->
+<div class="nav" style="position: fixed; top: 0px; z-index: 10000; width: 100%; background: #fff;" >
+	<table width="100%" class="nav_ta">
+		<tbody>
+		<tr class="act">
+			<td width="22%"><img src="images/logoo.png" style="width:4rem; height:4rem; " /> </td>
+			<td width="78%" colspan="3" style="color:#d24146; font-size: 2rem;  text-align: left;" >商家直供&nbsp&nbsp&nbsp正品超值</td>
+		</tr>
+		<tr class="act">
+			<td width="80%"  colspan="2" ><input type="text" class="form-control" name="name" id="name" value="" placeholder="3月月末大促" /></td>
+			<td width="10%" style="text-align: right;"><a href="buycar.html"><i class="iconfont icon-cart"></i></a></td>
+			<td width="10%" style="text-align: right; padding-top: 8px;"><a href="news.html"><i class="iconfont icon-comments" style="font-size: 2.3rem;"></i></a></td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+<div class="wrapper wrapper03 slideTxtBox" id="wrapper03" style="margin-top: 117px; ">
+	<div class="scroller hd">
+		<ul class="clearfix">
+			<li>优惠活动</li>
+			<li>美妆个护</li>
+			<li>食品饮料</li>
+			<li>服饰箱包</li>
+			<li>母婴玩具</li>
+			<li>家居生活</li>
+			<li>家居电器</li>
+			<li>蔬果生鲜</li>
+			<li>日用家纺</li>
+			<li>手机数码</li>
+			<li>生活服务</li>
+		</ul>
+	</div>
+	<div class="bd">
+		<!--今日特卖-->
+		<ul>
+			<li>
+				<!--轮播图-->
+				<div>
+					<div id="slider">
+						<ul class="slides">
+							<li><img class="responsive" src="img/raw_1493789400.png"></li>
+							<li><img class="responsive" src="img/raw_1493790035.png"></li>
+							<li><img class="responsive" src="img/raw_1493790401.png"></li>
+							<li><img class="responsive" src="img/raw_1501117339.png"></li>
+						</ul>
+						<ul class="pagination">
+							<li class="active"></li>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+				</div>
+
+				<!--打折、满减、秒杀、购物卡-->
+				<style type="text/css" >
+					.activitycheck{ margin-top: 10px; }
+					.slideTxtBox12{ width:100%; text-align:left;  }
+					.slideTxtBox12 .hd{ height:30px; width: 100%; line-height:30px;   }
+					.slideTxtBox12 .hd ul{ float:left;  width: 100%;  height:32px;   }
+					.slideTxtBox12 .hd ul li{ float:left;  width: 20%; cursor:pointer; text-align: center; border: none;  }
+					.slideTxtBox12 .hd ul li.on{ height:30px;  background:#fff; border-bottom:1px solid red;  }
+					.slideTxtBox12 .bd ul{  zoom:1; height: auto;  }
+					.slideTxtBox12 .bd li{ height: auto;   }
+				</style>
+				<div class="activitycheck" >
+					<div class="slideTxtBox12">
+						<div class="hd">
+							<ul><li>打折</li><li>满减</li><li>秒杀</li><li>购物卡</li></ul>
+						</div>
+						<div class="bd" style="margin-top: 0px;" >
+							<ul>
+								<!--活动切换按钮-->
+								<!--newsbar-->
+								<div class="newsbar tmbar ykactivity">
+									<a href="product.html">
+									<div class="img_cont" >
+										<div class="xf">
+											<span class="two trait">新品</span>
+										</div>
+										<div class="xf" style="bottom: 15px; right: 0px;">
+											<span class="two trait2" style=" width: auto; float: right;"  >代言另赚2元</span>
+										</div>
+										<img src="images/indexg.png" style="width: 100%; margin-bottom:15px;"/>
+									</div>
+										<h1 style="width: 100%;" >海参快客1盒装
+											<p>高弹透气 轻柔舒适<span class="kc fr" >库存 <font>4011</font></span></p>
+										</h1>
+										<div class="clear"></div>
+									</a>
+										<!--特卖代购-->
+										<div class="neprice">
+											<a href="product.html">
+											<!--自购 外销-->
+											<div class="tmprice tmprice1" style="width:auto" >
+												<span class="trait2 one" style="background: #c4050f;">自购</span>
+												<span class="fl" >&nbsp￥&nbsp8.00 </span>
+												<div class="clear"></div>
+												<span class="trait2 one">外销</span>
+												<span class="fl" >&nbsp￥&nbsp10.00 </span>&nbsp&nbsp/&nbsp&nbsp<span class="fr" >赚&nbsp&nbsp<font>1.5</font></span>
+										</div>
+											</a>
+											<a href=""><i class="iconfont icon-share two" style="margin-top: 30px; " ></i></a>
+											<a href="material.html"><i class="iconfont icon-pic two" style="margin-top: 30px;" ></i></a>
+											<a href=""><i class="iconfont icon-add" style="margin-top: 30px;" ></i></a>
+											<div class="clear"></div>
+										</div>
+
+								</div>
+								<div class="newsbar tmbar ykactivity">
+									<a href="product.html">
+										<div class="img_cont" >
+											<div class="xf">
+												<span class="one trait">特卖</span>
+												<span class="two trait">新品</span>
+											</div>
+											<div class="xf" style="bottom: 15px; right: 0px;">
+												<span class="two trait2" style=" width: auto; float: right;"  >代言另赚2元</span>
+											</div>
+											<img src="images/indexg.png" style="width: 100%; margin-bottom:15px;"/>
+										</div>
+										<h1 style="width: 100%;" >海参快客1盒装
+											<p>高弹透气 轻柔舒适<span class="kc fr" >库存 <font>4011</font></span></p>
+										</h1>
+										<div class="clear"></div>
+									</a>
+									<!--特卖代购-->
+									<div class="neprice">
+										<a href="product.html">
+											<!--自购 外销-->
+											<div class="tmprice tmprice1" style="width:auto" >
+												<span class="trait2 one" style="background: #c4050f;">自购</span>
+												<span class="fl" >&nbsp￥&nbsp7.00&nbsp&nbsp&nbsp</span><span class="fr" style=" float: left; text-decoration: line-through;" >&nbsp￥&nbsp8.00</span>
+												<div class="clear"></div>
+												<span class="trait2 one">外销</span>
+												<span class="fl" >&nbsp￥&nbsp9.00&nbsp&nbsp&nbsp</span><span class="fr" style=" float: left; text-decoration: line-through;" >&nbsp￥&nbsp10.00</span>&nbsp&nbsp/&nbsp&nbsp<span class="fr" >赚&nbsp&nbsp<font>1.5</font></span>
+											</div>
+										</a>
+										<a href=""><i class="iconfont icon-share two" style="margin-top: 30px; " ></i></a>
+										<a href="material.html"><i class="iconfont icon-pic two" style="margin-top: 30px;" ></i></a>
+										<a href=""><i class="iconfont icon-add" style="margin-top: 30px;" ></i></a>
+										<div class="clear"></div>
+									</div>
+
+								</div>
+								<div class="clear"></div>
+							</ul>
+							<ul>
+								222
+							</ul>
+							<ul>
+								333
+							</ul>
+							<ul>
+								444
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</li>
+		</ul>
+		<!--美妆个户-->
+		<ul>
+			<li>44</li>
+		</ul>
+		<!--食品饮料-->
+		<ul>
+			<li>55</li>
+		</ul>
+		<!--服饰箱包-->
+		<ul>
+			<li>66</li>
+		</ul>
+		<!--母婴玩具-->
+		<ul>
+			<li>77</li>
+		</ul>
+		<!--家具生活-->
+		<ul>
+			<li>88</li>
+		</ul>
+		<!--家用电器-->
+		<ul>
+			<li>99</li>
+		</ul>
+		<!--蔬果生鲜-->
+		<ul>
+			<li>1010</li>
+		</ul>
+		<!--日用家纺-->
+		<ul>
+			<li>1111</li>
+		</ul>
+		<!--手机数码-->
+		<ul>
+			<li>1212</li>
+		</ul>
+		<!--生活服务-->
+		<ul>
+			<li>131313</li>
+		</ul>
+	</div>
+</div>
+<div class="bmenu">
+	<ul>
+		<li>
+			<a href="index.html">
+				<i class="iconfont icon-shouye1" ></i>
+				<span>首页</span>
+			</a>
+		</li>
+		<li>
+			<a href="add_product.html">
+				<i class="iconfont icon-fenleiorguangchangorqita" ></i>
+				<span>分类</span>
+			</a>
+		</li>
+		<li>
+			<a href="store.html">
+				<i class="iconfont icon-wxbmingxingdianpu" ></i>
+				<span>U园</span>
+			</a>
+		</li>
+		<li>
+			<a href="recommends.html">
+				<i class="iconfont icon-zan1" ></i>
+				<span>推荐</span>
+			</a>
+		</li>
+		<li>
+			<a href="me.html">
+				<i class="iconfont icon-my1" ></i>
+				<span>我的</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/iscroll.js"></script>
+<script type="text/javascript" src="js/navbarscroll.js"></script>
+<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+<script src="js/easySlider.js"></script>
+<script type="text/javascript">
+	$(function(){
+        //选项卡
+        jQuery(".slideTxtBox").slide({trigger:"click"});
+        //选项卡2
+        jQuery(".slideTxtBox12").slide({trigger:"click"});
+        //滚动
+        $('.wrapper').navbarscroll();
+        //轮播图
+        $("#slider").easySlider( {
+            slideSpeed: 500,
+            autoSlide: true,
+            paginationSpacing: "15px",
+            paginationDiameter: "10px",
+            paginationPositionFromBottom: "0px",
+            slidesClass: ".slides",
+            controlsClass: ".controls",
+            paginationClass: ".pagination"
+        });
+     	//footer选项卡
+		$(".bmenu li").click(function () {
+				$(this).addClass('on').siblings().removeClass('on');
+        });
+	});
+</script>
+<script type="text/javascript" >
+    $(function () {
+        document.getElementsByTagName('body').height="100%";
+        $("body").css("overflow","hidden");
+        $('#close').click(function () {
+            $('.mask').hide();
+            $('.zxxcontent').hide();
+            document.getElementsByTagName('body').height="auto";
+            $("body").css("overflow","visible");
+        })
+    });
+</script>
+<script type="text/javascript">
+    function setCookie(cname,cvalue,exdays)
+    {
+        var d = new Date();
+        d.setTime(d.getTime()+(exdays*24*60*60*1000));
+        var expires = "expires="+d.toGMTString();
+        document.cookie = cname + "=" + escape(cvalue) + "; " + expires;
+    }
+
+    function getCookie(cname)
+    {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++)
+        {
+            var c = ca[i].replace(/^\s+/,"");
+            if (c.indexOf(name)==0)
+                return unescape(c.slice(name.length));
+        }
+        return "";
+    }
+
+    var mytime = getCookie("mytime");
+    if (mytime=="" || (new Date()).getTime()-mytime>1*60*1000) {
+        document.getElementById("mask").style.display = "block";
+        document.getElementById("zxxcontent").style.display = "block";
+        setCookie("mytime",(new Date()).getTime(),1);
+    }
+</script>
+
+
+</body>
+</html>

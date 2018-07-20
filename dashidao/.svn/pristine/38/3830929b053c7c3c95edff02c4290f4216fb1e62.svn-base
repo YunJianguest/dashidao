@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>合同详情</title>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/two_level.css">
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+	<link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+	<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+	<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+	<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+	<!--<script src="$!webPath/resources/js/jquery.shop.common.js"></script>-->
+	<link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+	<script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+	<script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+	<!--bootstrap-->
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+	<script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+</head>
+<style>.d1{border: 0;  background: white;}.d2{border: 0; text-align: center; background: white;}</style>
+
+<body>
+
+<div class="main">
+	<div class="user_center">
+		$!httpInclude.include("/seller/nav_head.htm")
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+			<tr> $!httpInclude.include("/seller/nav.htm?op=htxq")
+				<td id="centerbg" valign="top" width="80%">
+
+					<div class="buyer_position">
+						<div class="buyer_p_box"><a href="$!webPath/poster/index.htm">商家中心</a> > <span>合同详情</span></div>
+					</div>
+					<input id="id" type="hidden" value=""><input id="ddid" type="hidden" value=""><input type="hidden" id="username" value="${user.username}">
+					<div id="d1" class="both drawback">
+					文件来源不确定，走流程做详情
+						
+					
+						
+					</div>
+					<div class="subm" >
+						<span onclick="commit()">确定</span>
+					</div>
+					<script type="text/javascript">jQuery(".shopadminbox").slide({trigger:"click"});</script>
+
+				</td>
+			</tr>
+		</table>
+	</div>
+
+</div>
+<!-- <script>
+    var id;
+
+    jQuery(document).ready(function(){
+        var request = new Object();
+        request = GetRequest();
+        id = request['id'];
+        $('#id').val(id);
+        instOrder();
+    });
+    //读取路径中带过来的参数
+    function GetRequest() {
+        var url = location.search; //获取url中"?"符后的字串  
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+   
+		
+    function instOrder(){
+        var sql1="SELECT * FROM wemall_compactinfo where id='"+id+"'";
+        jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajaxuser.jsp",
+            dataType:"json",
+            data:"table=wemall_compactinfo&dates=yj_beginTime,ci_addTime,ci_endTime,addTime&sql="+sql1,
+            //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+            error:function(){alert("数据错误，操作被取消222！");},
+            success:function(data)
+            {
+                if(data.state=="error"){alert("系统错误，操作被取消！222");return;}
+                var message=data.data.data;
+                for(var i=0;i<message.length;i++){
+                	/* $!webPath/seller/htxq.htm */
+                    $("#d1").append("");
+                }
+
+                //alert(data.data.total);
+            }
+        });
+    }
+    
+	
+    //提交
+    function commit(){
+       
+
+    }
+</script> -->
+引入上传要用的js文件
+<script type="text/javascript" src="/fileup/index_no1.js"></script>
+<script>
+    //picture代表input<file类型>的class的值，up_picture代表隐藏（hidden）的input的id值，imgss代表<img>标签的id值
+    fileInput("picture","up_picture","imgss");
+</script>
+
+</body>
+
+
+
+</html>

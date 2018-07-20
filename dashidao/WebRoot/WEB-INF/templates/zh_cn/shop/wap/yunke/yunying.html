@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+<link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
+<title>自营商品入口</title>
+<style>
+		body{background:#fff;}
+		*{margin:0;padding: 0;}
+		ul,ol li{list-style: none;}
+		.clear{clear:both}
+		a{text-decoration: none;}
+		p{margin: 0;}
+	/*阿里字体样式*/
+		@font-face {
+		  font-family: 'iconfont';
+		  src: url('iconfont.eot');
+		  src: url('iconfont.eot?#iefix') format('embedded-opentype'),
+		  url('iconfont.woff') format('woff'),
+		  url('iconfont.ttf') format('truetype'),
+		  url('iconfont.svg#iconfont') format('svg');
+		}
+		.iconfont{
+		  font-family:"iconfont" !important;
+		  font-size:16px;font-style:normal;
+		  -webkit-font-smoothing: antialiased;
+		  -webkit-text-stroke-width: 0.2px;
+		  -moz-osx-font-smoothing: grayscale;
+		}
+	/*头部*/
+		.header ul li{float: left;width:70%;text-align: center;height:3rem;line-height:3rem ;background:#FF6600 ;color:#fff;}
+		.header .back{width: 10%!important;}
+		.header .back i{font-size: 2rem;}
+		.header .jilu {width:20%;}
+		.header .jilu i{font-size: 1.5rem;margin-left:.8rem;color:#fff;	}
+		.center{ text-align:center; margin-top:15%;}
+		#information>p{margin-left:5%;width:75%;padding-left: 2rem;height: 3rem;line-height: 3rem;text-align: right;}
+		#confirm{width:90%; height:40px; background-color:#ff6600;color:#FDFBFB; line-height:40px; text-align:center; border-radius:30px; margin:0 auto;}
+		.bottom{font-size:13px;color:#D5CCD5; text-align:center;}
+		.pass{margin-left:2rem;}
+		.user,.que{margin-left: 1rem;}
+		#information p input{height:1.5rem;}
+		#information p i{position:relative;right:1.5rem;}
+		/*公告*/
+		#adv{width:100%;height: 5rem;background: #ff6600;margin-top:5px;}
+		#adv div{height:2rem;line-height: 2rem;text-align: center;color: #fff;}
+		.title{height:2rem;line-height:2rem;width:94%;padding:0 3%;background: #f9f9f9;}
+		.title span{color:#003BB3;font-weight: 700;}
+		.zhongdian{font-size:1.3rem;}
+</style>
+</head>
+<body>
+<!--头部-->
+	<div class="header">
+			<ul>
+				<li class="back" onclick="history.go(-1)"><i class="iconfont">&#xe948;</i></li>
+				<li>自营商家入口</li>
+				<li class="jilu"><a href=""><a href=""></a><i class="iconfont">&#xe929;</i></a><i class="iconfont">&#xebbe;</i></li>
+				<div class="clear"></div>
+			</ul>
+	</div>	
+	<!--公告-->
+	<div id="adv">
+		<div>云客欢迎一切正直的、拥有优质品牌与商品的</div>
+		<div class="zhongdian">供应商朋友加入云客供应链</div>
+	</div>
+<div>
+	<div class="title"><span>|</span>完善信息</div>
+    <form action="">
+	    <div id="information">
+	    	  <p class="user">公司名称 ：<input type="text" value=""  class="phone box" placeholder="公司名称"/><i class="iconfont">&#xebca;</i></p>
+			  <p class="user">用户名 ：<input type="text" value=""  class="phone box" placeholder="用户名"/><i class="iconfont">&#xebca;</i></p>
+	          <p class="pass">手机号 ：<input type="text" value=""  class="password box" placeholder="手机号"/><i class="iconfont">&#xe80b;</i></p>
+	          <p class="que">密码：<input type="text"  value=""  class="code box" placeholder="密码"/><i class="iconfont">&#xe80b;</i></p>
+	    </div>
+    </form>
+    <br><br>
+    <div  id="confirm">提交</div>
+    <br>
+</div>	
+</body>
+</html>

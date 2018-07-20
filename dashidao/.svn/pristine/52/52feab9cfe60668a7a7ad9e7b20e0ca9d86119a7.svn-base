@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>退货</title>
+	<link href="$!webPath/resources/style/system/manage/black/iconfont.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/manage/black/two_level1.css" type="text/css" rel="stylesheet" />
+	<script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+	<script language="JavaScript">
+        jQuery(document).ready(function(){
+            var i;
+            var cuur=1;
+            var pagelimit=2;
+
+            loadajax("select","zb_xiaobaofuwu","id",GetQueryString("id"),pagelimit,cuur,1);
+        });
+        function GetQueryString(name)
+        {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return  unescape(r[2]); return null;
+        }
+        function loadajax(action,table,field,values,page_size,page_no,moudle_id){
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajax.jsp",
+                dataType:"json",
+                // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size=3"+"&page_no="+page_no+"&moudle_id		   								="+moudle_id,
+                error:function(){alert("数据错误，操作被取消！");},
+                success:function(data)
+                {
+
+                    if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+
+                    var message=data.data.data;
+                    i=message[0]['id'];
+
+                    $('#zb_name').val(message[0]['zb_name']);
+                    $('#zb_baozhengjin').val(message[0]['zb_baozhengjin']);
+                    $('#zb_shuoming').val(message[0]['zb_shuoming']);
+                    $('#imgss').attr('src','/upload/img/'+message[0]['zb_tupian']);
+                    $('#up_picture').val(message[0]['zb_tupian']);
+
+
+                }
+            });
+        }
+        function cc(){
+            if($("#up_picture").val()==null){
+                return;
+            }else if($("#up_picture").val()!=null){
+                var fpsz= i+"|"+$("#zb_name").val()+"|"+$("#zb_baozhengjin").val()+"|"+$("#zb_shuoming").val()+"|"+$("#up_picture").val();
+            }
+
+
+            //alert("action=update&table=zb_fenpeishezhinew&field=id,hy_jf_gz&values="+fpszId+"|"+hyjf);
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajax.jsp",
+                dataType:"json",
+                // data:"action=update&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                data:"action=update&table=zb_xiaobaofuwu&field=id,zb_name,zb_baozhengjin,zb_shuoming,zb_tupian&values="+fpsz,
+
+                success:function(data)
+                {
+
+                    if(data.code=="0"){alert("系统错误，操作被取消！");return;}
+                    var str='操作成功';
+                    if(str==data.msg){
+                        //window.location.href== '$!webPath/admin/xbfwsz_admin.htm';
+                        openURL('url','$!webPath/admin/xbfwsz_admin.htm','main_workspace','xbfwsz_admin');
+                        //javascript:history.back(-1);
+                        //window.history.back(-1);
+                        //location.reload();
+                    }
+                }
+            });
+
+
+        }
+        function examine(){
+            var a=document.getElementById("zb_name");
+            var b=document.getElementById("zb_baozhengjin");
+            var c=document.getElementById("zb_shuoming");
+            var d=document.getElementById("up_picture");
+            if(a.value==""){
+                alert("请输入服务名称信息!");
+                a.focus();
+                return false;
+            }
+            if(b.value==""){
+                alert("请输入服务保证金信息!");
+                b.focus();
+                return false;
+            }
+            if(c.value==""){
+                alert("请输入服务内容信息!");
+                c.focus();
+                return false;
+            }
+            if(d.value==""){
+                alert("请选择要上传的图片!");
+                d.focus();
+                return false;
+            }
+        }
+	</script>
+	<style>
+	.qd{margin:50px 35%!important;}
+	</style>
+</head>
+<body>
+<form id="form1" name="form1" method="get" class="form-inline" onSubmit="return examine()">
+	<div class="both thuo">
+		<div class="content" style="clear:both;"><span>服务名称：</span><input type="text" class="" name="zb_name" id="zb_name" value=""/>
+		</div>
+		<div class="content"><span>缴纳保证金：</span><input type="text" class="" name="zb_baozhengjin" id="zb_baozhengjin" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g, '')"/></div>
+		<div class="content text"><span>服务内容：</span><textarea style="width: 51%;height: 100px;font-size:16px;" type="text" class="" name="zb_shuoming" id="zb_shuoming" value="" ></textarea></div>
+		<div class="content uploadimg"><span>上传图标：</span><input type="file" class="picture" name="zb_tupian" id="upload" value="" placeholder="" style="display: none;"/><label for="upload"><img src="../img/raw_1501032270.png" alt="" id="imgss"></label>	</div>
+		<input type="hidden" id="up_picture"/>
+		<!--placeholder="-->
+		<!--大市道盛世第五个入股而过用户提供人人与他人沟通与人体 谷雨如图二体育体育浩特瑞诶如题偶尔图发布会科技化工很快就而化工科技规划客户认可结果忽然感觉黑客软件换个卡人格好和科技感哼哼还可让韩国热科技开个会大客户感慨地方规定 制衣"-->
+	</div>
+	<input type="submit" value="确定" class="qd" id="tianjia1" onclick="cc()">
+</form>
+<!--引入上传要用的js文件-->
+<script type="text/javascript" src="/fileup/index_no1.js"></script>
+<script>
+    //picture代表input<file类型>的class的值，up_picture代表隐藏（hidden）的input的id值，imgss代表<img>标签的id值
+    fileInput("picture","up_picture","imgss");
+</script>
+
+</body>
+</html>

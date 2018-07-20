@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+	<title>银行卡管理</title>
+
+	<link href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+	<script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+	<script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>银行卡管理 - $!{config.poweredby}</title>
+	<meta name="keywords" content="$!config.keywords" />
+	<meta name="description" content="$!config.description" />
+	<meta name="generator" content="$!{config.meta_generator}" />
+	<meta name="author" content="$!{config.meta_author}">
+	<meta name="copyright" content="$!{config.copyRight}">
+	#if($!config.website_ico)
+	<link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+	#end
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+	<link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+	<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+	<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+	<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+	<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+	<script>
+        jQuery(document).ready(function(){
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+	</script>
+</head>
+<body>
+<div class="main">
+	<div class="user_center">
+		$!httpInclude.include("/poster/nav_head.htm")
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+			<tr> $!httpInclude.include("/poster/nav.htm?op=refund")
+				<td id="centerbg" valign="top" width="80%">
+						<div class="buyer_position" style="width: 99%; background: #fff;">
+						<div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代中心</a> > <span>栈代合同</span></div>
+				</div>
+				<style>
+					.tjan{ margin: 0 auto; height: auto; margin-top: 50px; }
+					.tjan input{ text-align: center; padding: 10px 0; border-radius: 10px;  border: none; float: left; color: #fff; margin-right: 10px;  background: #3fa4ed; display: block;  }
+					.tjan2{ width: 40%; margin:50px 0 20px 20%;}
+					.tjan2 li{ float: left; margin:0 30px 50px 0;}
+					.tjan2 li input{ margin-right: 10px;}
+					.tjan2 li img{ width: 260px; }
+				</style>
+				<div class="tjan">
+					<input name="yhk"  value="取消银行卡" style="margin-left: 20%;"/>
+					<input name="yhk"  value="添加绑定" />
+					<div class="clear"></div>
+				</div>
+				<div class="tjan2">
+					<ul>
+						<li>
+							<input type="radio" />
+							<img src="$!webPath\resources\style\system\manage\black\img\jianhang.png" />
+						</li>
+						<li>
+							<input type="radio" />
+							<img src="$!webPath\resources\style\system\manage\black\img\gonghang.png" />
+						</li>
+						<li>
+							<input type="radio" />
+							<img src="$!webPath\resources\style\system\manage\black\img\nonghang.png" />
+						</li>
+						<li>
+							<input type="radio" />
+							<img src="$!webPath\resources\style\system\manage\black\img\jiaohang.png" />
+						</li>
+					</ul>
+				</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	$!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>
+
+</body>
+</html>

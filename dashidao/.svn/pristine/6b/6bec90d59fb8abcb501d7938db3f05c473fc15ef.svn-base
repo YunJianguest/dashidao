@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>商品分类列表 - $!{config.poweredby}</title>
+<meta name="keywords" content="$!config.keywords" />
+<meta name="description" content="$!config.description" />
+<meta name="generator" content="$!{config.meta_generator}" />
+<meta name="author" content="$!{config.meta_author}">
+<meta name="copyright" content="$!{config.copyRight}">
+#if($!config.website_ico)
+<link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+#end
+<link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+<link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+<link href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type="text/css" rel="stylesheet" />
+<link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+<script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+<script src="$!webPath/resources/js/jquery.validate.min.js"></script>
+  <!--bootstrap-->
+  <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+  <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+  <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+  <!--layui-->
+  <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+  <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+</head>
+<body>
+<div class="main"> 
+
+  <div class="user_center">
+    $!httpInclude.include("/seller/nav_head.htm")
+    <table width="100%"  border="0" cellspacing="0" cellpadding="0" class="user_table">
+      <tr>
+        $!httpInclude.include("/seller/nav.htm?op=usergoodsclass")
+        <td id="centerbg" valign="top" width="80%">
+        <div class="buyer_position"><div class="buyer_p_box"><a href="$!webPath/seller/index.htm">卖家中心</a> > <span>商品分类</span></div></div>
+          <div class="productmain">
+            <div class="addnewclass"  style="width:100%;"   >
+            <div class="alldel" style="width:100%;" >
+              <div class="alldel_l"> 
+              <span class="alldel_la" style="margin-left: 10px;">
+                <input name="all" type="checkbox" id="all" value="" onclick="selectAll(this);"/>
+                </span>
+                <span class="alldel_lb">
+                  <label for="all">全选</label></span>
+                <span  class="alldel_lc"><a href="javascript:void(0);" onclick="cmd('$!webPath/seller/usergoodsclass_del.htm','')" class="button_common">删除</a></span>
+                 </div>
+                  <div class="addnew">
+					<a class="button_common" href="javascript:void(0);" dialog_uri="$!webPath/seller/usergoodsclass_add.htm?currentPage=$!currentPage" dialog_title="新增分类" dialog_width="480" dialog_height="100" dialog_id="cart_address">新增分类</a>
+				</div>
+            </div>
+            </div>
+            <form action="" method="post" name="ListForm" id="ListForm">
+              <div class="operation">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" id="opertable" >
+                  <tr id="opertitle">
+                    <td class="classname">分类名称
+                      <input name="mulitId" type="hidden" id="mulitId" /></td>
+                    <td  class="sort" align="center">排序</td>
+                    <td  class="show">显示</td>
+                    <td align="center">操作</td>
+                  </tr>
+                  #foreach($obj in $objs)
+                  <tr class="opertr">
+                    <td class="classname" ><span>
+                      <input name="id" type="checkbox" id="id" value="$!obj.id" />
+                      </span><span class="classname2">#if($!obj.childs.size()>0)<img src="$!webPath/resources/style/system/front/default/images/usercenter/jian.jpg" width="14" height="14" />#else <img src="$!webPath/resources/style/system/front/default/images/usercenter/xiaji.jpg" /> #end</span><span class="classname3">$!obj.className</span><span class="classname4"><a href="javascript:void(0);" dialog_uri="$!webPath/seller/usergoodsclass_add.htm?pid=$!obj.id&currentPage=$!currentPage" dialog_title="新增分类" dialog_width="480" dialog_height="100" dialog_id="cart_address">新增下级</a></span></td>
+                    <td class="sort" align="center">$!obj.sequence</td>
+                    <td class="show"><img src="$!webPath/resources/style/system/front/default/images/usercenter/$!{obj.display}.jpg" width="16" height="14" /></td>
+                    <td class="operajt"><span class="edit"><a href="javascript:void(0);" dialog_uri="$!webPath/seller/usergoodsclass_edit.htm?id=$!obj.id&currentPage=$!currentPage" dialog_title="编辑地址" dialog_width="480" dialog_height="100" dialog_id="cart_address">编辑</a></span>
+                    #if($!obj.audit!=1)
+                    <span class="del"><a href="javascript:void(0);" onclick="if(confirm('是否确定删除商品分类?'))window.location.href='$!webPath/seller/usergoodsclass_del.htm?mulitId=$!obj.id'">删除</a></span>
+                    #end
+                    </td>
+                  </tr>
+                  #foreach($child in $obj.childs)
+                  <tr class="opertr">
+                    <td class="classname" ><span>
+                      <input name="id" type="checkbox" id="id" value="$!child.id" />
+                      </span><span class="classname2">&nbsp;</span><span class="classname5">$!child.className</span></td>
+                    <td class="sort" align="center">$!{child.sequence}</td>
+                    <td class="show"><img src="$!webPath/resources/style/system/front/default/images/usercenter/$!{child.display}.jpg" width="16" height="14" /></td>
+                    <td class="operajt"><span class="edit"><a href="javascript:void(0);" dialog_uri="$!webPath/seller/usergoodsclass_edit.htm?id=$!child.id&currentPage=$!currentPage" dialog_title="编辑地址" dialog_width="480" dialog_height="100" dialog_id="cart_address">编辑</a></span><span class="del"><a onclick="if(confirm('是否确定删除商品分类?'))window.location.href='$!webPath/seller/usergoodsclass_del.htm?mulitId=$!child.id'" href="javascript:void(0);">删除</a></span></td>
+                  </tr>
+                  #end
+                  #end
+                </table>
+              </div>
+            </form>
+          </div>
+          <!--分页开始-->
+          <div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+          <script>
+              layui.use(['laypage', 'layer'], function(){
+                  var laypage = layui.laypage
+                      ,layer = layui.layer;
+
+                  //总页数低于页码总数
+                  laypage.render({
+                      elem: 'demo0'
+                      ,count: 50 //数据总数
+                  });
+
+                  //总页数大于页码总数
+                  laypage.render({
+                      elem: 'demo1'
+                      ,count: 70 //数据总数
+                      ,jump: function(obj){
+                          console.log(obj)
+                      }
+                  });
+
+                  //自定义样式
+                  laypage.render({
+                      elem: 'demo2'
+                      ,count: 100
+                      ,theme: '#1E9FFF'
+                  });
+                  laypage.render({
+                      elem: 'demo2-1'
+                      ,count: 100
+                      ,theme: '#FF5722'
+                  });
+                  laypage.render({
+                      elem: 'demo2-2'
+                      ,count: 100
+                      ,theme: '#FFB800'
+                  });
+
+                  //自定义首页、尾页、上一页、下一页文本
+                  laypage.render({
+                      elem: 'demo3'
+                      ,count: 100
+                      ,first: '首页'
+                      ,last: '尾页'
+                      ,prev: '<em>←</em>'
+                      ,next: '<em>→</em>'
+                  });
+
+                  //不显示首页尾页
+                  laypage.render({
+                      elem: 'demo4'
+                      ,count: 100
+                      ,first: false
+                      ,last: false
+                  });
+
+                  //开启HASH
+                  laypage.render({
+                      elem: 'demo5'
+                      ,count: 500
+                      ,curr: location.hash.replace('#!fenye=', '') //获取hash值为fenye的当前页
+                      ,hash: 'fenye' //自定义hash值
+                  });
+
+                  //只显示上一页、下一页
+                  laypage.render({
+                      elem: 'demo6'
+                      ,count: 50
+                      ,layout: ['prev', 'next']
+                      ,jump: function(obj, first){
+                          if(!first){
+                              layer.msg('第 '+ obj.curr +' 页');
+                          }
+                      }
+                  });
+
+                  //完整功能
+                  laypage.render({
+                      elem: 'demo7'
+                      ,count: 100
+                      ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                      ,jump: function(obj){
+                          console.log(obj)
+                      }
+                  });
+
+                  //自定义排版
+                  laypage.render({
+                      elem: 'demo8'
+                      ,count: 1000
+                      ,layout: ['limit', 'prev', 'page', 'next']
+                  });
+                  laypage.render({
+                      elem: 'demo9'
+                      ,count: 1000
+                      ,layout: ['prev', 'next', 'page']
+                  });
+                  laypage.render({
+                      elem: 'demo10'
+                      ,count: 1000
+                      ,layout: ['page', 'count']
+                  });
+
+                  //自定义每页条数的选择项
+                  laypage.render({
+                      elem: 'demo11'
+                      ,count: 1000
+                      ,limit: 100
+                      ,limits: [100, 300, 500]
+                  });
+
+                  //调用分页
+                  laypage.render({
+                      elem: 'demo20'
+                      ,count: data.length
+                      ,jump: function(obj){
+                          //模拟渲染
+                          document.getElementById('biuuu_city_list').innerHTML = function(){
+                              var arr = []
+                                  ,thisData = data.concat().splice(obj.curr*obj.limit - obj.limit, obj.limit);
+                              layui.each(thisData, function(index, item){
+                                  arr.push('<li>'+ item +'</li>');
+                              });
+                              return arr.join('');
+                          }();
+                      }
+                  });
+
+              });
+          </script>
+          <!--分页结束-->
+        </td>
+      </tr>
+    </table>
+  </div>
+  $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

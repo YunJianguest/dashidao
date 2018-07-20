@@ -1,0 +1,95 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>破损补寄详情查看 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="$!webPath/resources/style/common/css/two_level.css" type="text/css" />
+	<script type="text/javascript" src="$!webPath/resources/js/jquery-1.7.1.min.js"></script>
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+        });
+    </script>
+</head>
+<body>
+<div class="main"> $!httpInclude.include("/poster/nav_head.htm")
+	$!httpInclude.include("/seller/adv.htm")
+	    <div class="user_center">
+	    	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+	    		<tr>$!httpInclude.include("/poster/nav.htm?op=refund")
+		    		<td id="centerbg" valign="top" width="80%">
+		    			<div class="buyer_position">
+							<div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代支持</a> > <span>客户服务</span> > <span>破损补寄管理</span></div>
+						</div>
+		    				<div class="both returns">
+							<div class="identity">会员：${map.zd_huiyuan}</div>
+		    			<table width="100%" cellspacing="0">
+							<tr class="zdthead">
+								<td width="30%">商品信息</td>
+								<td>单价</td>
+								<td>单位</td>
+								<td>数量</td>
+								<td>金额</td>
+							</tr>
+							<tr>
+								<td>${map.zd_shopname} &nbsp;&nbsp;&nbsp;&nbsp; 商品编号: ${map.zd_dingdanbianhao}</td>
+								<td  rowspan="3">${map.zd_danjia} </td>
+								<td rowspan="3">${map.zd_danwei} </td>
+								<td rowspan="3" >${map.zd_num} </td>
+								<td rowspan="3">${map.zd_shoujia}元 </td>
+							</tr>
+							<tr>
+								<td>尺码：${map.zd_chima}</td>
+							</tr>
+							<tr>
+								<td>颜色: ${map.zd_color}</td>
+							</tr>
+						</table>
+						<div class="zdseller">
+							<div class="reson">售后类型：<span class="recheck">${map.zd_shouhouleixing}</span></div>
+								<script>
+						$('.reson span').click(function(){
+							$(this).addClass('recheck');
+							$(this).siblings().removeClass('recheck');
+						})
+						</script>
+							<div>货物状态：<span>${map.states}</span></div>
+							<div>售后理由：<span>${map.zd_shenqingliyou}</span></div>
+							<div>涉及金额：<span>${map.zd_danjia}</span></div>
+							<div>售后说明：<span>${map.zd_shouhoushuoming}</span></div>
+						</div>
+						<div class="zdreturn_evolve">
+							${map.zd_liaotianjilu}
+							<!-- <div><img src="../img/raw_1501246954.png" alt=""> &nbsp;<img src="../img/raw_1501422990.png" alt=""></div> -->
+							
+						</div>
+						<div class="zdhandle"><span>&nbsp;&nbsp;&nbsp;同意&nbsp;&nbsp;&nbsp;</span><span>联系买家</span></div>
+		    		</td>
+	    		</tr>
+	    	</table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>
+
+</body>
+</html>

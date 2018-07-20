@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>栈代合同 - $!{config.poweredby}</title>
+	<meta name="keywords" content="$!config.keywords" />
+	<meta name="description" content="$!config.description" />
+	<meta name="generator" content="$!{config.meta_generator}" />
+	<meta name="author" content="$!{config.meta_author}">
+	<meta name="copyright" content="$!{config.copyRight}">
+	#if($!config.website_ico)
+	<link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+	#end
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/zxx.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+	<link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+	<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+	<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+	<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+	<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+	<script>
+        jQuery(document).ready(function(){
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+	</script>
+</head>
+<body>
+$!httpInclude.include("/top.htm")
+<div class="main">
+	<div class="user_center">
+		$!httpInclude.include("/poster/nav_head.htm")
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+			<tr> $!httpInclude.include("/poster/nav.htm?op=sub_account")
+				<td id="centerbg" valign="top" width="80%">
+					<div class="buyer_position" style="width: 99%; background: #fff;">
+						<div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代中心</a> > <span>栈代合同</span></div>
+					</div>
+
+					<div class="xx-box">
+						<div class="ht-top">
+							<div class="ht-box">
+								<div class="ht-tu">
+									<i class="iconfont icon-search"></i>
+									<input type="text" placeholder="自成" />
+								</div>
+								<div class="ht-right" style="margin-top: 10px;" >
+									<input type="button" value="申请品牌" style="border: none; border-radius:0px; background: #0A78FA; color: #fff;   " >
+								</div>
+							</div>
+						</div>
+
+						<div class="ht-top2">
+							<ul style="width: 100%;">
+								<li>代理商账号</li>
+								<li>姓名</li>
+								<li>联系方式</li>
+								<li>身份</li>
+								<li>合同签署日期</li>
+								<li>操作</li>
+							</ul>
+
+						</div>
+						<div class="ht-botton">
+
+							<div class="ht-botton1">
+								<ul>
+									<li>3200145</li>
+									<li>名秋月 </li>
+									<li> 186 2838 0304</li>
+									<li>栈代</li>
+									<li>2016/12/03</li>
+									<li>合同详情</li>
+								</ul>
+							</div>
+
+							<div class="ht-botton1">
+								<ul>
+									<li>3200145</li>
+									<li>名秋月 </li>
+									<li> 186 2838 0304</li>
+									<li>栈代</li>
+									<li>2016/12/03</li>
+									<li>合同详情</li>
+								</ul>
+							</div>
+							<div class="ht-botton1">
+								<ul>
+									<li>3200145</li>
+									<li>名秋月 </li>
+									<li> 186 2838 0304</li>
+									<li>栈代</li>
+									<li>2016/12/03</li>
+									<li>合同详情</li>
+								</ul>
+							</div>
+							<div class="ht-botton1">
+								<ul>
+									<li>3200145</li>
+									<li>名秋月 </li>
+									<li> 186 2838 0304</li>
+									<li>栈代</li>
+									<li>2016/12/03</li>
+									<li>合同详情</li>
+								</ul>
+							</div>
+							<div class="ht-botton1">
+								<ul>
+									<li>3200145</li>
+									<li>名秋月 </li>
+									<li> 186 2838 0304</li>
+									<li>栈代</li>
+									<li>2016/12/03</li>
+									<li>合同详情</li>
+								</ul>
+							</div>
+							<div class="ht-botton1">
+								<ul>
+									<li>3200145</li>
+									<li>名秋月 </li>
+									<li> 186 2838 0304</li>
+									<li>栈代</li>
+									<li>2016/12/03</li>
+									<li>合同详情</li>
+								</ul>
+							</div>
+							<div class="ht-botton1">
+								<ul>
+									<li>3200145</li>
+									<li>名秋月 </li>
+									<li> 186 2838 0304</li>
+									<li>栈代</li>
+									<li>2016/12/03</li>
+									<li>合同详情</li>
+								</ul>
+							</div>
+
+						</div>
+
+						<div class="xx-bontom">
+							<div class="xx-bontom1">Total 85 items</div>
+							<div class="xx-bontom-ul">
+								<ul>
+									<li><i class="iconfont icon-back"></i></li>
+									<li>1</li>
+									<li>2</li>
+									<li>3</li>
+									<li>4</li>
+									<li>5</li>
+									<li>…</li>
+									<li>50</li>
+									<li><i class="iconfont icon-more"></i></li>
+								</ul>
+
+							</div>
+							<div class="xx-bontom2">10/page<i class="iconfont icon-moreunfold"></i></div>
+							<div class="xx-bontom3">Goto</div>
+							<div class="xx-bontom4"><input type="text" placeholder="8"></div>
+						</div>
+
+					</div>
+
+
+
+				</td>
+			</tr>
+		</table>
+	</div>
+	$!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

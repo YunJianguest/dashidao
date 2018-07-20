@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery.validate.min.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+   	<script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+    <link href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/template.css"  rel="stylesheet" type="text/css"/>
+    
+    
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css">
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+    <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+    <style>
+        .ac9 a{border:0;}
+    </style>
+    <script>
+        function show_certification(page_size,page_no){
+        	var sql="SELECT * FROM dashidao_certification WHERE deleteStatus=0 and certification_status=2 ORDER BY addTime ";
+            
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajaxuser.jsp",
+                dataType:"json",
+                data:"table=dashidao_certification&dates=addTime&sql="+sql+"&page_size="+page_size+"&page_no="+page_no,
+                error:function(){alert("数据错误，操作被取消！");},
+                success:function(data){
+                    if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                    var message=data.data.data;
+                    console.log(message);
+                    $("#certification_table").html("");
+                	$("#certification_table").append(""
+                		+"<tr class='tableheader'>"
+                    		+"<td width='10%'>申请时间</td>"
+                    		+"<td width='5%''>真实姓名</td>"
+                    		+"<td width='10%'>身份证号码</td>"
+                    		+"<td width='15%'>身份证正面照</td>"
+                    		+"<td width='15%'>身份证反面照</td>"
+                    		+"<td width='10%'>公司名称</td>"
+                    		+"<td width='10%'>营业证号码</td>"
+                    		+"<td width='15%'>营业证照片</td>"
+                    		+"<td>操作</td>"
+                		+"</tr>"
+                	);
+                    for(var i=0;i<message.length;i++){
+                    	var addTime = message[i].addTime;//添加时间
+                    	var name = message[i].name;//真实姓名
+                    	var id_number = message[i].id_number;//身份证号码
+                    	var id_card_front = message[i].id_card_front;//身份证正面照
+                    	var id_card_reverse = message[i].id_card_reverse;//身份证反面照
+                    	var company_name = message[i].commpany_name;//公司名称
+                    	var business_license = message[i].business_license;//营业证号码
+                    	var business_phone = message[i].business_phone;//营业证照片
+                    	var certification_type = message[i].certification_type;//认证类型  0为个人  1未企业
+                    	var certification_status = message[i].certification_status;//认证状态 0为未认证 1为已认证  2为审核中
+                    	var id = message[i].id;
+                    	var src = "http://127.0.0.1:8080/"+business_phone;
+                    	var src_front = "http://127.0.0.1:8080/"+id_card_front;
+                    	var src_reverse = "http://127.0.0.1:8080/"+id_card_reverse;
+                    	
+                    	if(certification_type==0){//个人认证
+                    		$("#certification_table").append(""
+                            		+"<tr style='text-align: center;'>"
+        	                    		+"<td>"+addTime+"</td>"
+        	                    		+"<td>"+name+"</td>"
+        	                    		+"<td>"+id_number+"</td>"
+        	                    		+"<td><img width='60px' height='40px' src='"+src_front+"'/></td>"
+        	                    		+"<td><img width='60px' height='40px' src='"+src_reverse+"'/></td>"
+        	                    		+"<td>/</td>"
+        	                    		+"<td>/</td>"
+        	                    		+"<td>/</td>"
+        	                    		+"<td><input type='button' value='通过' onclick='audit_certification("+id+")'/>&nbsp;&nbsp;<input type='button' value='不通过' onclick='no_audit_certification("+id+")'/></td>"
+                            		+"</tr>");
+                    	}else{
+                    		$("#certification_table").append(""
+                            		+"<tr style='text-align: center;'>"
+        	                    		+"<td>"+addTime+"</td>"
+        	                    		+"<td>/</td>"
+        	                    		+"<td>/</td>"
+        	                    		+"<td>/</td>"
+        	                    		+"<td>/</td>"
+        	                    		+"<td>"+company_name+"</td>"
+        	                    		+"<td>"+business_license+"</td>"
+        	                    		+"<td><img width='60px' height='40px' src='"+src+"'/></td>"
+        	                    		+"<td><input type='button' value='通过' onclick='audit_certification("+id+")'/>&nbsp;&nbsp;<input type='button' value='不通过' onclick='no_audit_certification("+id+")'/></td>"
+                            		+"</tr>");
+                    	}
+                    }
+                }
+            });
+        }
+        
+     	//分页
+        var page_size=10;
+        var page_no=1;
+        var total=0;
+        jQuery(document).ready(function(){
+
+            layui.use(['laypage', 'layer'], function(){
+                var laypage = layui.laypage
+                    ,layer = layui.layer;
+                //完整功能
+                laypage.render({
+                    elem: 'demo7'
+                    ,count:total
+                    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                    ,jump: function(obj){
+                        //console.log(obj)
+                        page_no=obj.curr;
+                        page_size=obj.limit;
+                        //alert(pagelimit);
+                        show_certification(page_size,page_no);
+                        //loadajax("select","stu",pagelimit,cuur,1);
+                    },
+                    limits:[2, 4, 6, 8, 10],
+                    limit:page_size
+                });
+            });
+        });
+        
+        //通过
+        function audit_certification(id){
+        	var msg = "确定审核通过吗？";
+        	if (confirm(msg)==true){
+        		var field = "id,certification_status";
+        		var values = id+"|1";
+        		var action = "update";
+                jQuery.ajax({
+                    type:"POST",
+                    cache: false,
+                    async:false,
+                    url:"/ajaxuser.jsp",
+                    dataType:"json",
+                    data:"table=dashidao_certification&action="+action+"&field="+field+"&values="+values,
+                    error:function(){alert("数据错误，操作被取消！");},
+                    success:function(data){
+                        alert("审核完成");
+                        window.location.reload();
+                    }
+                });
+        	}else{
+        		return false;
+        	}
+        }
+        
+        //不通过
+        function no_audit_certification(id){
+        	var msg = "确定审核不通过吗？";
+        	if (confirm(msg)==true){
+        		var field = "id,certification_status";
+        		var values = id+"|0";
+        		var action = "update";
+                jQuery.ajax({
+                    type:"POST",
+                    cache: false,
+                    async:false,
+                    url:"/ajaxuser.jsp",
+                    dataType:"json",
+                    data:"table=dashidao_certification&action="+action+"&field="+field+"&values="+values,
+                    error:function(){alert("数据错误，操作被取消！");},
+                    success:function(data){
+                        alert("审核完成");
+                        window.location.reload();
+                    }
+                });
+        	}else{
+        		return false;
+        	}
+        }
+    </script>
+</head>
+<body>
+<div class="cont">
+    <h1 class="seth1">实名认证管理</h1>
+    <div class="settab"><span class="tab-one"></span> <span class="tabs"> <a href="$!webPath/admin/store_list.htm"  class="this">管理</a>     <!-- <a href="$!webPath/admin/store_gradelog_list.htm">升级申请</a> --> </span> <span class="tab-two"></span></div>
+    <div class="operation">
+        <h3>友情提示</h3>
+        <ul>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    
+
+    <form action="$!webPath/admin/store_list.htm" method="post" name="ListForm" id="ListForm">
+        <div class="leveltable">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="level_table" id="certification_table">
+                <tr class="tableheader">
+                    <td width="10%" >申请时间</td>
+                    <td width="5%">真实姓名</td>
+                    <td  width="10%">身份证号码</td>
+                    <td width="15%">身份证正面照</td>
+                    <td width="15%">身份证反面照</td>
+                    <td width="10%">公司名称</td>
+                    <td width="10%">营业证号码</td>
+                    <td width="15%">营业证照片</td>
+                    <td width="">操作</td>
+                </tr>
+            </table>
+        </div>
+        <div class="fenye">
+        	<!--分页开始-->
+            <div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+            <!--分页结束-->
+        	    
+        </div>
+    </form>
+</div>
+</body>
+</html>

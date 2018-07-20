@@ -1,0 +1,9 @@
+package com.dashidao.foundation.service;
+
+import com.dashidao.foundation.domain.Certification;
+
+public abstract interface ICertificationService {
+	public abstract Certification getObjById(Long paramLong);
+
+	public abstract boolean save(Certification paramCertification);
+}

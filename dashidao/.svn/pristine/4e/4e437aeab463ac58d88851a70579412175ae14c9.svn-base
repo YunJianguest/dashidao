@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>歇业请假申请</title>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/two_level.css">
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+	<link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+	<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+	<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+	<link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+	<script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+	<script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+	<!--bootstrap-->
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+	<script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+	
+    <script src="$!webPath/resources/js/jquery.validate.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+	
+</head>
+<style>.d1{border: 0;  background: white;}.d2{border: 0; text-align: center; background: white;}</style>
+	<script>
+		//初始化时间控件
+	    jQuery(document).ready(function(){
+	         jQuery('#create_date1').datepicker({
+	            dateFormat:"yy-mm-dd",
+	            changeMonth: true,
+	            changeYear: true
+	        });
+	        jQuery('#create_date2').datepicker({
+	            dateFormat:"yy-mm-dd",
+	            changeMonth: true,
+	            changeYear: true
+	        });  
+	        
+	    });
+		
+		//提交申请
+		function saveShenQing()
+		{
+			var create_date1 = $("#create_date1").val();//时间
+			var create_date2 = $("#create_date2").val();
+			var xy_shuoming = $("#xy_shuoming").val();//说明
+			if(create_date1 == null|| create_date1 == "" || create_date2 == null || create_date2 == "" )
+			{
+				alert("请选择时间！");
+				return;
+			}
+			var today = new Date();
+	        var minutes;
+	        if(today.getMinutes()>=0&&today.getMinutes()<=9){
+	            minutes="0"+today.getMinutes();
+	        }else{
+	            minutes=today.getMinutes();
+	        }
+	        //获取当前日期
+	        var nowdate = (today.getFullYear()) + "-" + (today.getMonth() + 1) + "-" + today.getDate()+" "+today.getHours()+":"+minutes+":"+today.getSeconds();
+			var xy_states =0;//待审核
+			var operator= "${user.id}";
+			var states =$("input[name='states']:checked").val();
+			var field ="create_date,create_date1,create_date2,xy_states,operator,states,xy_shuoming";
+			var values =nowdate+","+create_date1+","+create_date2+","+xy_states+","+operator+","+states+","+xy_shuoming;
+			console.log(values); 
+			jQuery.ajax({
+	            type:"POST",
+	            cache: false,
+	            async:false,
+	            url:"/ajax.jsp",
+	            dataType:"json",
+	            data:"action=insert&table=zb_xieYeShenHe&field="+field+"&values="+values,
+
+	            success:function(data)
+	            {
+	                if(data.code=="0"){alert("系统错误，操作被取消！");return;}
+	                var str='操作成功';
+	                if(str==data.msg){
+	                    window.location.href='$!webPath/poster/sqxy.htm';
+	                }
+	            }
+	        }); 
+			
+		}
+	</script>
+
+<body>
+
+<div class="main">
+	<div class="user_center">
+		$!httpInclude.include("/poster/nav_head.htm")
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+			<tr> $!httpInclude.include("/poster/nav.htm?op=complaint")
+				<td id="centerbg" valign="top" width="80%">
+
+					<div class="buyer_position">
+						<div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代中心</a> > <span>歇业请假申请</span></div>
+					</div>
+					<input id="id" type="hidden" value=""><input id="ddid" type="hidden" value=""><input id="username" type="hidden" value="${user.username}">
+					<div class="both drawback">
+						<table width="100%"> 
+								<tr>
+									<td width="80%" colspan="2">
+										<input type="radio" name="states" value="2" style="width:8%" checked="checked" />歇业
+										<input type="radio" name="states" value="1"  style="width:8%" />请假
+									</td>
+								</tr>
+								<tr>
+									<td>时间段：</td>
+									<td>
+										<input type="text" name="create_date1" id="create_date1" value="" style="width:15%" />
+										&nbsp;&nbsp;&nbsp; 至 &nbsp;&nbsp;
+										<input type="text" name="create_date2" id="create_date2" value="" style="width:15%" />
+									</td>
+								</tr>
+								<tr>
+									<td>说明：</td>
+									<td>
+										<textarea id="xy_shuoming" name="xy_shuoming" 
+											class="form-control" rows="3" placeholder="说明" style="width: 700px;"></textarea>
+									</td>
+								</tr>
+							</table>
+					</div>
+					<div class="subm" >
+						<span onclick="saveShenQing();">提交申请</span>
+					</div>
+					<script type="text/javascript">jQuery(".shopadminbox").slide({trigger:"click"});</script>
+
+				</td>
+			</tr>
+		</table>
+	</div>
+
+</div>
+<script>
+   
+</script>
+<!--引入上传要用的js文件-->
+<script type="text/javascript" src="/fileup/index_no1.js"></script>
+
+</body>
+
+
+
+</html>

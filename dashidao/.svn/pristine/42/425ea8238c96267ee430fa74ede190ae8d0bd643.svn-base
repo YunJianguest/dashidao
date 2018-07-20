@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>分配渠道设置</title>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/two_level2.css" type="text/css"/>
+	<script src="$!webPath/resources/js/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="$!webPath/resources/js/menu_min.js"></script>
+	<script src="$!webPath/resources/js/jquery.shop.base.js"></script>
+	<link rel="stylesheet" type="text/css" href="$!webPath/resources/style/system/manage/black/base.css"/>
+
+	<style>
+		html,body{
+			background: #fff;
+		}
+		.first{display: block;width: 100%;height: 60px!important;line-height:60px!important;font-size: 18px!important;}
+		.more_menu{ width:100%;display: block;height: 55px!important;line-height: 55px!important;}
+		.sl{float: right;margin-right:30%;}
+		.sl input{width:50px;text-align: center;}
+	</style>
+	<script type="text/javascript">
+        $(document).ready(function (){
+            $(".menu ul li").menu();
+        });
+	</script>
+
+</head>
+<body>
+<div class="both classfy">
+	<div class="tip">注：按照商品三级类目设置渠道费率，表示占商品利润的比例。<span class="list">费率列表</span></div>
+	<div class="menu">
+		<ul>
+			<li class="fir">
+				<a class="active first" href="#" style="display: block;width: 100%;height: 60px!important;line-height:60px!important;font-size: 18px!important;">
+					<img src="$!webPath/resources/style/system/manage/black/img/raw_1514797563.png" alt="">
+					<span style="margin-left: 20px;">1服装</span>
+				</a>
+				<ul style="display: block;">
+					<li>
+						<a href="#" class="second" style="display: block;width: 100%;height: 50px!important;line-height:50px!important;font-size: 16px!important;"><img src="$!webPath/resources/style/system/manage/black/img/raw_1514797462.png" alt=""><span style="margin-left: 20px;">2上衣</span></a>
+						<ul>
+							<li>
+								<a href="#" class="more_menu"><img src="$!webPath/resources/style/system/manage/black/img/raw_1514797563.png" alt="">
+									<span style="margin-left: 20px;">外套3</span>
+									<span class="sl"><span class="slsum">渠道费率为:<input type="text" value="5%">
+									</span>
+									</span>
+								</a>
+							</li>
+							<li><a href="#" class="more_menu"><img src="$!webPath/resources/style/system/manage/black/img/raw_1514797841.png" alt=""><span style="margin-left: 20px;">毛衣3</span><span class="sl"><span class="slsum">渠道费率为:<input type="text" value="5%"></span></span></a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#" class="second"><img src="$!webPath/resources/style/system/manage/black/img/raw_1514797674.png" alt=""><span style="margin-left: 20px;">裤装</span></a>
+						<ul>
+							<li></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#" class="second"><img src="$!webPath/resources/style/system/manage/black/img/raw_1514797689.png" alt=""><span style="margin-left: 20px;">裙装</span></a>
+						<ul>
+							<li></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li class="fir"><a class="active first" href="#" style="display: block;width: 100%;height: 60px!important;line-height:60px!important;font-size: 18px!important;"><img src="$!webPath/resources/style/system/manage/black/img/raw_1514797563.png" alt=""><span style="margin-left: 20px;">服装</span></a>
+				<ul style="display: block;">
+					<li><a href="#" class="second" style="display: block;width: 100%;height: 50px!important;line-height:50px!important;font-size: 16px!important;"><img src="$!webPath/resources/style/system/manage/black/img/raw_1514797462.png" alt=""><span style="margin-left: 20px;">上衣</span></a>
+						<ul>
+							<li><a href="#" class="more_menu"><img src="$!webPath/resources/style/system/manage/black/img/raw_1514797563.png" alt=""><span style="margin-left: 20px;">外套</span><span class="sl"><span class="slsum">渠道费率为:<input type="text" value="5%"></span></span></a></li>
+							<li><a href="#" class="more_menu"><img src="$!webPath/resources/style/system/manage/black/img/raw_1514797841.png" alt=""><span style="margin-left: 20px;">毛衣</span><span class="sl"><span class="slsum">渠道费率为:<input type="text" value="5%"></span></span></a></li>
+						</ul>
+					</li>
+					<li><a href="#" class="second"><img src="$!webPath/resources/style/system/manage/black/img/raw_1514797674.png" alt=""><span style="margin-left: 20px;">裤装</span></a>
+						<ul>
+							<li></li>
+						</ul>
+					</li>
+					<li><a href="#" class="second"><img src="$!webPath/resources/style/system/manage/black/img/raw_1514797689.png" alt=""><span style="margin-left: 20px;">裙装</span></a>
+						<ul>
+							<li></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li class="fir"><a class="active first" href="#" style="display: block;width: 100%;height: 60px!important;line-height:60px!important;font-size: 18px!important;"><img src="$!webPath/resources/style/system/manage/black/img/raw_1514797563.png" alt=""><span style="margin-left: 20px;">服装</span></a>
+				<ul style="display: block;">
+					<li><a href="#" class="second" style="display: block;width: 100%;height: 50px!important;line-height:50px!important;font-size: 16px!important;"><img src="$!webPath/resources/style/system/manage/black/img/raw_1514797462.png" alt=""><span style="margin-left: 20px;">上衣</span></a>
+						<ul>
+							<li><a href="#" class="more_menu"><img src="$!webPath/resources/style/system/manage/black/img/raw_1514797563.png" alt=""><span style="margin-left: 20px;">外套</span><span class="sl"><span class="slsum">渠道费率为:<input type="text" value="5%"></span></span></a></li>
+							<li><a href="#" class="more_menu"><img src="$!webPath/resources/style/system/manage/black/img/raw_1514797841.png" alt=""><span style="margin-left: 20px;">毛衣</span><span class="sl"><span class="slsum">渠道费率为:<input type="text" value="5%"></span></span></a></li>
+						</ul>
+					</li>
+					<li><a href="#" class="second"><img src="$!webPath/resources/style/system/manage/black/img/raw_1514797674.png" alt=""><span style="margin-left: 20px;">裤装</span></a>
+						<ul>
+							<li></li>
+						</ul>
+					</li>
+					<li><a href="#" class="second"><img src="$!webPath/resources/style/system/manage/black/img/raw_1514797689.png" alt=""><span style="margin-left: 20px;">裙装</span></a>
+						<ul>
+							<li></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>
+</body>
+<script>
+    $('.list').click(function(){
+        openURL('url','$!webPath/admin/sl_list.htm?a=1','main_workspace','sl_list');
+
+    });
+</script>
+</html>

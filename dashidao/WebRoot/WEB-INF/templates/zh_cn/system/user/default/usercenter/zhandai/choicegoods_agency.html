@@ -1,0 +1,202 @@
+<body>
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>代理管理 - $!{config.poweredby}</title>
+<meta name="keywords" content="$!config.keywords" />
+<meta name="description" content="$!config.description" />
+<meta name="generator" content="$!{config.meta_generator}" />
+<meta name="author" content="$!{config.meta_author}">
+<meta name="copyright" content="$!{config.copyRight}">
+#if($!config.website_ico)
+<link rel="shortcut icon"
+	href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name"
+	type="image/x-icon" />
+#end
+<link
+	href="$!webPath/resources/style/system/front/default/css/iconfont.css"
+	type="text/css" rel="stylesheet" />
+<link href="$!webPath/resources/style/system/front/default/css/mcss.css"
+	type="text/css" rel="stylesheet" />
+<link
+	href="$!webPath/resources/style/system/front/default/css/public.css"
+	type="text/css" rel="stylesheet" />
+<link href="$!webPath/resources/style/system/front/default/css/user.css"
+	type="text/css" rel="stylesheet" />
+<link href="$!webPath/resources/style/common/css/overlay.css"
+	type="text/css" rel="stylesheet" />
+<link
+	href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css"
+	type=text/css rel=stylesheet>
+<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+<!--bootstrap-->
+<link rel="stylesheet"
+	href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css"
+	type="text/css" rel="stylesheet">
+<link rel="stylesheet"
+	href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css"
+	type="text/css" rel="stylesheet">
+<script
+	src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"></script>
+<!--layui-->
+<link rel="stylesheet"
+	href="$!webPath/resources/style/system/front/default/css/layui.css"
+	type="text/css" rel="stylesheet">
+<script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+
+<script type="text/javascript">
+	var ids="";
+	//栈代代理
+	function  zddl(){
+		if(ids.length==0){
+			alert("请选择商家")
+			return;
+		}
+		alert(ids);
+		
+		var data={
+				gids:ids
+				}
+		jQuery.ajax({
+		    type:"POST",
+		    cache: false,
+		    async:false,
+		    url:"$!webPath/poster/agentcommodity_save.htm",
+		    dataType:"json",
+		    data:data,
+		    error:function(){},
+		    success:function(data)
+		    { 
+		    	alert(data.data);
+		    	window.location.href=window.location.href;
+		    }
+		});
+	}
+	function zdxz(th,id){
+		if($(th).attr("checked")=="checked"){
+			ids+=","+id;
+		}else{
+			ids.replace(","+id,"");
+		}
+		
+	}
+	</script>
+</head>
+<body>
+
+	<div class="main">
+		<div class="user_center">
+			$!httpInclude.include("/poster/nav_head.htm")
+			<table width="100%" border="0" cellspacing="0" cellpadding="0"
+				class="user_table">
+				<tr>
+					$!httpInclude.include("/poster/nav.htm?op=refund")
+					<td id="centerbg" valign="top" width="80%">
+						<div class="buyer_position" style="width: 99%; background: #fff;">
+							<div class="buyer_p_box">
+								<a href="$!webPath/poster/index.htm">栈代支持</a> > <span>商品管理</span>
+								> <span>选择商品</span>
+							</div>
+						</div>
+						<div class="shopadminbox choicebox">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+								<tbody>
+									<tr class="returnthead">
+										<td width="100%" colspan="7">
+											<form class="form-inline" style="float: right;">
+												<div class="form-group">
+													<input type="email" class="form-control"
+														id="exampleInputEmail2" placeholder="请输入查询内容"
+														style="width: 200px;">
+												</div>
+												<button type="submit" class="btn btn-default"
+													style="border: none; background: #3fa4ed; color: #fff;">查询</button>
+											</form>
+										</td>
+									</tr>
+									<link
+										href="$!webPath/resources/style/system/manage/blue/tip2.css"
+										rel="stylesheet" type="text/css" />
+									<tr class="tiptitles">
+										<td width="100%" colspan="7">
+											<div class="operation_tip" style="margin-bottom: 30px;">
+												<h3>友情提示</h3>
+												<ul>
+													<li></li>
+													<li></li>
+												</ul>
+											</div>
+										</td>
+									</tr>
+									<tr id="thead">
+										<td width="3%">&nbsp;</td>
+										<!-- <td width="15%">商品名称</td>
+										<td width="10%">品牌</td>
+										<td width="10%">分类名</td> -->
+										<td width="10%">所属商家</td>  
+										<!-- <td width="10%" align="center">查看次数</td> -->
+										<td align="center">操作</td>
+									</tr>
+									#foreach($obj in $objs)
+									<tr align="center">
+										<td align="center"><input name="checkbox" type="checkbox"
+											id="checkbox" value="$!obj.id" onclick="zdxz(this,$!obj.id)" /></td>
+										<!-- <td><label>$!obj.goods_name
+										</label></td>
+										<td>$!obj.goods_brand.name</td>
+										<td>$!obj.gc.className</td> -->
+										<td>$!obj.store_name</td>  
+										<!-- <td align="center">$!obj.id</td> -->
+										<td class="ac8" align="center">
+											<!-- <a href="javascript" >查看</a> -->
+											<!-- <a href="javascript:zddy()">打样</a>-->
+											 <a
+											href="javascript:zddl()">代理</a> 
+										</td>
+									</tr>
+									#end
+								</tbody>
+							</table>
+							<!--分页开始-->
+                                    <div id="demo1" style=" text-align: center; margin-top: 30px;" ></div>
+                                    <script>
+                                        layui.use('laypage', function(){
+                                            var laypage = layui.laypage;
+                                            laypage.render({
+                                                elem: 'demo1' //注意，这里的 test1 是 ID，不用加 # 号
+                                                ,count: '${rows}' // 数据总数，从服务端得到
+                                                ,curr:'${currentPage}' // 服务器端回传当前页
+                                                ,jump: function(obj, first){
+                                                    //obj包含了当前分页的所有参数，比如：
+                                                    console.log(obj.curr);  //得到当前页，以便向服务端请求对应页的数据。
+                                                    console.log(obj.limit); //得到每页显示的条数
+                                                    //首次不执行,使用原始的curr,后面需要自己通过回传来更新
+                                                    var curr = obj.curr;
+                                                    if(!first){
+                                                        var url = window.location.href;
+                                                        if(url.indexOf("?") >= 0){
+                                                            url = url.split("?")[0] + "?currentPage=" + obj.curr;//切割字符串的方法
+                                                        }else{
+                                                            url = url + "?currentPage=" + obj.curr;
+                                                        }
+                                                        location.href=url;
+                                                    }
+                                                }
+                                            });
+                                        });
+                                    </script>
+                                    <!--分页结束-->
+ 
+			</table>
+			
+		</div>
+		$!httpInclude.include("/footer.htm")
+	</div>
+	
+	
+</body>
+</html> 

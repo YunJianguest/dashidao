@@ -1,0 +1,34 @@
+/*Œ“µƒ”≈ª›»Ø*/
+.mydisbox{ border: none;}
+.mydisbox .hd{ height:2.5rem;  line-height:2.5rem; width: 100%; }
+.mydisbox .hd ul li{ float:left; width:40%; margin: 0 3%; text-align: center;   font-size:1rem;  cursor:pointer; color:#000000; }
+.mydisbox .hd li.on{ background: #FFF;  border-bottom:1px solid #ff0000; }
+
+.clear{ clear: both; }
+.goodcontent1{ margin-top: 10px; float: left;  width: 100%;   background: #fff;   }
+.goodcontent1 h3{ color: #818181; text-align: left;   line-height:2rem; padding-left: 1.5rem; position: relative; font-size: 1rem; font-weight: normal; }
+.goodcontent1 h3 img{ width: 1rem; height: 1rem; display: block; left: 0px; top: 0.5rem; position: absolute;  }
+.goodcontent1 h3 span{ color: #e13036; float: right; }
+.goodcontent1 .one{ padding: 1rem 0;  border-bottom: 1px solid #f6f6f6;}
+.goodcontent1 .one img{ display: block; width:22%; height:75px; float: left;   }
+.goodcontent1 .one .title{   width: 48%; float: left;  margin: 0 5%; line-height: 1.1rem;}
+.goodcontent1 .one .title h1{ color: #454545; font-size: 0.9rem; line-height: 1.2rem; font-weight: normal; text-align:left; }
+.goodcontent1 .one .title p{ color: #a0a0a0; font-size: 0.6rem; font-weight: normal; text-align:left; margin-top: 0.5rem; }
+.goodcontent1 .one .price{  width: 20%;  }
+.goodcontent1 .one .price h1{color: #454545; font-size: 0.9rem; font-weight: normal; text-align:right; }
+.goodcontent1 .one .price font{ color: #999999;  text-align:right; display: block;}
+.goodcontent1 .one .price h2{color: #000; font-size: 0.8rem; font-weight:600; text-align:right;    }
+.goodcontent1 .one .price h2 span{ color: #e6b268; padding-right: 0.2rem; font-size: 0.9rem; font-weight: normal;  }
+
+
+
+.discount-bg{
+	width: 100%;
+	height: 50rem;
+
+	
+}
+.discount-bg img{
+	width: 100%;
+	height: 100%;
+}

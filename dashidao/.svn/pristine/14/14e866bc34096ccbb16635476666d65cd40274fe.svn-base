@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>商家中心-$!{config.title}-$!{config.poweredby}</title>
+<meta name="keywords" content="$!config.keywords" />
+<meta name="description" content="$!config.description" />
+<meta name="generator" content="$!{config.meta_generator}" />
+<meta name="author" content="$!{config.meta_author}">
+<meta name="copyright" content="$!{config.copyRight}">
+#if($!config.website_ico)
+<link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+#end
+<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+  <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+  <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+  <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+  <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+  <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+  <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+  <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+  <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+  <!--<script src="$!webPath/resources/js/jquery.shop.common.js"></script>-->
+  <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+  <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+  <script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+  <script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+  <script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+  <!--bootstrap-->
+  <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+  <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+  <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+  <!--layui-->
+  <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+  <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+ <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+ <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+<link href="$!webPath/resources/style/system/manage/blue/zhandai.css"  rel="stylesheet" type="text/css"/>
+<script>
+jQuery(document).ready(function(){
+  getShangPinCount();
+  $("#tongZhiSpan").html(shangPinCount);
+  getShangPinList(page_size,page_no);
+  layui.use(['laypage', 'layer'], function(){
+      var laypage = layui.laypage
+          ,layer = layui.layer;
+      //完整功能
+      laypage.render({
+          elem: 'demo7'
+          ,count:total
+          ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+          ,jump: function(obj){
+              page_no=obj.curr;
+              page_size=obj.limit;
+              getShangPinList(page_size,page_no);
+          },
+          limits:[2, 4, 6, 8, 10],
+          limit:page_size
+      });
+  });
+  
+});
+	var shangPinCount =0;
+	var userid = "${user.id}";
+	//获取商品总数
+	function getShangPinCount()
+	{
+		var sql="SELECT COUNT(1) AS spnum FROM zb_spjc WHERE zb_spjc.`is_told`='1' AND zb_spjc.`sjh`="+userid+"  order by zb_spjc.create_date ";
+        jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajaxuser.jsp",
+            dataType:"json",
+            data:"table=zb_spjc&dates=create_date&sql="+sql,
+            error:function(){alert("数据错误，操作被取消！");},
+            success:function(data)
+            {
+                if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                var message=data.data.data;
+                shangPinCount = message[0]['spnum'];
+            }
+        });
+	}
+	var page_size =2;
+	var page_no =1;
+	var total=0;
+	//获取商品list
+	function getShangPinList(page_size,page_no)
+	{
+		var html ="";$("#tablesss").append(html);
+		var sql ="SELECT * FROM zb_spjc WHERE zb_spjc.`is_told`='1' AND zb_spjc.`sjh`="+userid+"  ORDER BY zb_spjc.create_date";
+		 jQuery.ajax({
+             type:"POST",
+             cache: false,
+             async:false,
+             url:"/ajaxuser.jsp",
+             dataType:"json",
+             data:"table=zb_spjc&dates=create_date&sql="+sql+"&page_size="+page_size+"&page_no="+page_no,
+             error:function(){alert("数据错误，操作被取消！");},
+             success:function(data)
+             {
+                 if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                 total=data.data.total;
+                 var message=data.data.data;
+                 $("#tablesss").html('');
+                 for(var i=0;i<message.length;i++){
+                	 var told = message[i]['is_told'];
+                	 html +="<tr height='80'>";
+                	 //是否招栈带 0，否 1，是
+                	 var str ="否";
+                	 var zzd = message[i]['zzd'];
+                	 if(zzd ==1)
+                	 {
+                		 str ="是";
+                	 }
+                	 html +="<td width='8%'></td>";
+                	 html +="<td width='8%' >"+message[i]['spmc']+"</td>";
+                	 html +="<td width='15%'><img src='"+"$!webPath/resources/"+message[i]['sptp']+"' alt=\"\"  /></td>";
+                	 html +="<td width='8%'>"+message[i]['spbh']+"</td>";
+                	 html +="<td width='13%'>"+message[i]['spgg1']+"<br>"+message[i]['spgg2']+"<br>"+message[i]['spgg3']+"</td>";
+                	 html +="<td width='8%'>"+message[i]['ccj']+"</td>";
+                	 html +="<td width='10%'>"+message[i]['qdsl']+"</td>";
+                	 html +="<td width='8%'>"+message[i]['bzq1']+"<br>"+message[i]['bzq2']+"</td>";
+                	 html +="<td width='5%'>"+str+"</td>";
+                	 html +="<td width=''><a href='javascript:void(0);' onclick='queRenClick(\""+message[i]['id']+"\");'>确认</a> | <a href='javascript:void(0);'>申诉</a> </td>";
+                	 html +="</tr>";
+                	 
+                	 
+                }
+                 $("#tablesss").append(html);
+             }
+         });
+	}
+
+	//确认操作
+	function queRenClick(id)
+	{
+		jQuery.ajax({
+            type: "POST",
+            cache: false,
+            async: false,
+            url: "/ajaxuser.jsp",
+            dataType: "json",
+            data: "action=update&table=zb_spjc&field=id,isqueren&values="+id+"|1",
+            error: function () {
+                alert("数据错误，操作被取消！");
+            },
+            success: function (data) {
+                if (data.state == "error") {
+                    alert("系统错误，操作被取消！");
+                    return;
+                } else {
+                    alert("操作成功！");
+                    window.location.href='$!webPath/seller/shangPinTongZhi.htm';
+                }
+            }
+        });
+	}
+</script>
+</head>
+<body class="seller_body">
+<div class="main">
+  <div class="user_center">
+    $!httpInclude.include("/seller/nav_head.htm")
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+      <tr> $!httpInclude.include("/seller/nav.htm")
+        <td id="centerbg" valign="top" width="80%">
+         	 <div class="buyer_position">
+	            <div class="buyer_p_box"><a href="$!webPath/seller/index.htm">栈代支持</a> > <span>商品通知</span></div>
+	          </div>
+         	 <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr class="returnthead" style="height: 90px;">
+                      <td width="80%" colspan="8" >
+                      </td>
+                    </tr>
+                    <tr id="thead" >
+                      <td width="5%"></td>
+                      <td width="8%" >商品名称</td>
+                      <td width="15%">商品图片</td>
+                      <td width="8%">商品编号</td>
+                      <td width="10%">商品规格</td>
+                      <td width="8%">出厂价</td>
+                      <td width="10%">起订数量</td>
+                      <td width="8%">存储及保质期</td>
+                      <td width="5%">招栈代</td>
+                      <td width="">操作</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                   <table width="100%" class="returntable importbill" border="0" cellspacing="0" cellpadding="0">
+                           <tbody id="tablesss">
+                           </tbody>
+                   </table>
+         	
+         		<!--分页开始-->
+                <div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+         	  
+         </td>
+      </tr>
+    </table>
+  </div>
+  $!httpInclude.include("/footer.htm") </div>
+</body>
+</html>

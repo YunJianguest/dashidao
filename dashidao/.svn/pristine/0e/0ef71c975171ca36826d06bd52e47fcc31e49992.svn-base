@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>开设直营店 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link href="$!webPath/resources/style/system/manage/black/zxx.css"  rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css">
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+    <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+<link href="$!webPath/resources/style/system/manage/blue/zhandai.css"  rel="stylesheet" type="text/css"/>
+    <style>
+      
+    </style>
+</head>
+<body>
+
+<div class="main">
+    <div class="user_center">
+        $!httpInclude.include("/seller/nav_head.htm") 
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=open_store")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="buyer_position">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">商家支持</a> > <span>基础管理</span>  > <span>开设直营店</span></div>
+                    </div>
+					<div class="operation_tip">
+	<h3>友情提示</h3>
+	<ul>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+                    <div class="div_2" style="background:#fff;" >
+                        <div class="ht-top"style="margin:0px; width:100%;  float: left;" >
+                            <form class="form-inline" style="float: right;">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入查询内容" style="width: 200px; border: 1px solid #ccc; text-indent: 1rem;" >
+                                </div>
+                                <button type="submit" class="btn btn-default"  >查询</button>
+                               <a href="$!webPath/seller/open_store_add.htm">添加直营店</a>
+                            </form>
+                        </div>
+                    </div>
+                    <div id="tablesss">
+
+                    </div>
+                    <div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+
+
+                    <script>
+
+                        jQuery(document).ready(function(){
+                            var total;
+                            var mycars=new Array();
+                            var cuur=1;
+                            var pagelimit=2;
+                            function loadajax(action,table,field,values,page_size,page_no,moudle_id){
+                                jQuery.ajax({
+                                    type:"POST",
+                                    cache: false,
+                                    async:false,
+                                    url:"/ajax.jsp",
+                                    dataType:"json",
+                                    // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                                    data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size=4"+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                                    error:function(){alert("数据错误，操作被取消！");},
+                                    success:function(data)
+                                    {
+                                        if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                                        total=data.data.total;
+                                        mycars[0]=total;
+                                        var message=data.data.data;
+                                        //console.log(message);
+                                        $("#tablesss").html('');
+                                        for(var i=0;i<message.length;i++){
+                                            $("#tablesss").append("<div class='ghs_div'  style='width:100%;'><div style='width: 20%;height: 100px;'><input type='image' src='$!webPath/resources/style/system/manage/black/img/raw_1495541442.jpeg' style='padding-left: 10px;padding-top: 8px;'/></div>" +
+                                                "<div style='width: 40%;height: 100px;'><p style='padding-left: 10px;padding-top: 20px;'>"+message[i]['ds_storeName']+"<span style='background: red;padding: 2px;border-radius: 80%'>1万+</span></p>" +
+                                                "<p>"+message[i]['ds_userName']+"&nbsp;&nbsp;"+message[i]['ds_phone']+"&nbsp;&nbsp;"+message[i]['create_dateds_endTime']+"至"+message[i]['create_dateds_beginTime']+"</p></div>" +
+                                                "<div style='width: 30%;height: 100px;'><p style='padding-left: 10px;padding-top: 50px;'>"+message[i]['ds_address']+"&nbsp;&nbsp;<i class='icon-map-marker'></i></p></div>" +
+                                                "<div style='width: 10%;height: 100px;' class='last'><p><span onclick='delClick(\""+message[i]['id']+"\")'>删除</span></p><p><span><a href='$!webPath/seller/open_store_edit.htm?id="+message[i]['id']+"'>修改</a></span></p><p><span><a href='$!webPath/seller/open_store_detail.htm?id="+message[i]['id']+"'>详情</a></span></p></div></div>");
+
+                                        }
+                                    }
+
+
+                                });
+                            }
+                            loadajax("select","wemall_directsale_store","states","1",pagelimit,cuur,1);
+                            layui.use(['laypage', 'layer'], function(){
+                                var laypage = layui.laypage
+                                    ,layer = layui.layer;
+                                //完整功能
+                                laypage.render({
+                                    elem: 'demo7'
+                                    ,count:total
+                                    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                                    ,jump: function(obj){
+                                        //console.log(obj)
+                                        cuur=obj.curr;
+                                        pagelimit=obj.limit;
+                                        //alert(pagelimit);
+                                        loadajax("select","wemall_directsale_store","states","1",pagelimit,cuur,1);
+                                        //loadajax("select","stu",pagelimit,cuur,1);
+                                    },
+                                    limits:[2, 4, 6, 8, 10],
+                                    limit:pagelimit
+                                });
+                            });
+                        });
+                        
+                        function delClick(id)
+                        {
+                        	jQuery.ajax({
+                                type: "POST",
+                                cache: false,
+                                async: false,
+                                url: "/ajaxuser.jsp",
+                                dataType: "json",
+                                data: "action=update&table=wemall_directsale_store&field=id,states&values="+id+"|0",
+                                error: function () {
+                                    alert("数据错误，操作被取消！");
+                                },
+                                success: function (data) {
+                                    if (data.state == "error") {
+                                        alert("系统错误，操作被取消！");
+                                        return;
+                                    } else {
+                                        alert("操作成功！");
+                                        window.location.href='$!webPath/seller/open_store.htm';
+                                    }
+                                }
+                            });
+                        }
+
+                    </script>
+                    <!--分页结束-->
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

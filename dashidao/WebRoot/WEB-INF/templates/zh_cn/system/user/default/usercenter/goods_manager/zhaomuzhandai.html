@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>栈代合同 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/zxx.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+    <link href="$!webPath/resources/style/system/manage/blue/zhandai.css"  rel="stylesheet" type="text/css"/>
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+       
+</head>
+<body>
+    <div class="main zhaomuzhandai">
+    $!httpInclude.include("/seller/nav_head.htm") 
+    <div class="user_center">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=zhaomuzhandai")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="buyer_position">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">商家支持</a> > <span>商品管理</span>  > <span>招募栈代</span></div>
+                    </div>
+                    <div class="xx-box">
+                        <div class="ht-top">
+                            <form class="form-inline" style="float: right;">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入查询内容" style="width: 200px; border: 1px solid #ccc; text-indent: 1rem;" >
+                                    <button type="submit" class="btn btn-default" >查询</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="operation_tip">
+                            <h3>友情提示</h3>
+                            <ul>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                        <button type="submit" class="btn btn-default" style="float: right;margin-top: 10px;"><a href="$!webPath/seller/tianjiazhandai.htm" style="color: white;">添加栈代</a></button>
+                        <div style="clear:both;"></div>
+                        <div class="bd">
+                            <table style="width: 100%;">
+                                <tr class="tableheader">
+                                    <td>行业许可</td>
+                                    <td>实体店铺</td>
+                                    <td>滞销品退货</td>
+                                    <td>相关支持</td>
+                                    <td>最大存货量</td>
+                                    <td>最大金额</td>
+                                    <td>最大数量</td>
+                                    <td>招募数量</td>
+                                    <td>起订量</td>
+                                    <td>栈代级别</td>
+                                    <td>返还利率</td>
+                                    <td>商品id</td>
+                                    <td>操作</td>
+                                </tr>
+                                <tbody id="tablesss">
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                        <!--分页开始-->
+                        <div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+                        <script>
+
+                            jQuery(document).ready(function(){
+                                var mycars=new Array();
+                                var cuur=1;
+                                var pagelimit=10;
+                                var total=0;
+                                function loadajax(action,table,field,values,page_size,page_no,moudle_id){
+                                    jQuery.ajax({
+                                        type:"POST",
+                                        cache: false,
+                                        async:false,
+                                        url:"/ajax.jsp",
+                                        dataType:"json",
+                                        // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                                        data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                                        error:function(){alert("数据错误，操作被取消！");},
+                                        success:function(data)
+                                        {
+                                            if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                                            total=data.data.total;
+                                            mycars[0]=total;
+                                            var message=data.data.data;
+
+                                            //console.log(message);
+                                            $("#tablesss").html('');
+                                            for(var i=0;i<message.length;i++){
+                                                //行业许可
+                                                var rec_license;
+                                                if(message[i]['rec_license']==0){
+                                                    rec_license="需要";
+                                                }else if(message[i]['rec_license']==1){
+                                                    rec_license="不需要";
+                                                }
+                                                //滞销品退货
+                                                var rec_returns;
+                                                if(message[i]['rec_returns']==0){
+                                                    rec_returns="允许";
+                                                }else if(message[i]['rec_returns']==1){
+                                                    rec_returns="不允许";
+                                                }
+                                                //最大存货量
+                                                var rec_maxStock;
+                                                if(message[i]['rec_maxStock']==0){
+                                                    rec_maxStock="限制";
+                                                }else if(message[i]['rec_maxStock']==1){
+                                                    rec_maxStock="不限制";
+                                                }
+                                                var id=message[i]['id'];
+                                                $("#tablesss").append('<tr><td>'+rec_license+'</td>' +
+                                                    '<td>'+message[i]['rec_shop']+'</td>' +
+                                                    '<td>'+rec_returns+'</td>' +
+                                                    '<td>'+message[i]['rec_support']+'</td>' +
+                                                    '<td>'+rec_maxStock+'</td>' +
+                                                    '<td>'+message[i]['rec_maxAmount']+'</td>' +
+                                                    '<td>'+message[i]['rec_maxCount']+'</td>' +
+                                                    '<td>'+message[i]['rec_zmNum']+'</td>' +
+                                                    '<td>'+message[i]['rec_startCount']+'</td>' +
+                                                    '<td>'+message[i]['rec_level']+'</td>' +
+                                                    '<td><span>满'+message[i]['count_fan']+'件</span><br/>' +
+                                                    '<span>返'+message[i]['count_sax']+'</span></td>' +
+                                                    '<td>'+message[i]['goods_id']+'</td>' +
+                                                    '<td class="ac9"><a href=$!webPath/seller/zhaomuzhandaixiangqing.htm?id='+id+'>详情</a></td></tr>');
+                                            }
+                                        }
+                                    });
+                                }
+                                loadajax("select","wemall_recruit_zhandai","states","1",pagelimit,cuur,1);
+                                layui.use(['laypage', 'layer'], function(){
+                                    var laypage = layui.laypage
+                                        ,layer = layui.layer;
+                                    //完整功能
+                                    laypage.render({
+                                        elem: 'demo7'
+                                        ,count:total
+                                        ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                                        ,jump: function(obj){
+                                            //console.log(obj)
+                                            cuur=obj.curr;
+                                            pagelimit=obj.limit;
+                                            //alert(pagelimit);
+                                            loadajax("select","wemall_recruit_zhandai","states","1",pagelimit,cuur,1);
+                                            //loadajax("select","stu",pagelimit,cuur,1);
+                                        },
+                                        limits:[2, 4, 6, 8, 10],
+                                        limit:pagelimit
+                                    });
+                                });
+                            });
+                        </script>
+                        <!--分页结束-->
+
+                    </div>
+
+
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

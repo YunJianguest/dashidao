@@ -1,0 +1,111 @@
+package com.dashidao.foundation.service.impl;
+
+import com.dashidao.core.dao.IGenericDAO;
+import com.dashidao.core.query.GenericPageList;
+import com.dashidao.core.query.PageObject;
+import com.dashidao.core.query.support.IPageList;
+import com.dashidao.core.query.support.IQueryObject;
+import com.dashidao.foundation.domain.OrderCom;
+import com.dashidao.foundation.domain.TransArea;
+import com.dashidao.foundation.service.IOrderComService;
+import com.dashidao.foundation.service.ITransAreaService;
+
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Resource;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+@Service
+@Transactional
+public class OrderComServiceImpl
+    implements IOrderComService {
+    @Resource(name = "orderComDAO")
+    private IGenericDAO<OrderCom> ordercomDAO;
+
+    public boolean save(OrderCom transArea){
+        try {
+            this.ordercomDAO.save(transArea);
+            return true;
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public OrderCom getObjById(Long id){
+    	OrderCom transArea = (OrderCom)this.ordercomDAO.get(id);
+        if (transArea != null){
+            return transArea;
+        }
+
+        return null;
+    }
+
+    public boolean delete(Long id){
+        try {
+            this.ordercomDAO.remove(id);
+            return true;
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public boolean batchDelete(List<Serializable> transAreaIds){
+        for (Serializable id : transAreaIds){
+            delete((Long)id);
+        }
+
+        return true;
+    }
+
+    public IPageList list(IQueryObject properties){
+        if (properties == null){
+            return null;
+        }
+        String query = properties.getQuery();
+        Map params = properties.getParameters();
+        GenericPageList pList = new GenericPageList(OrderCom.class, query,
+                params, this.ordercomDAO);
+        if (properties != null){
+            PageObject pageObj = properties.getPageObj();
+            if (pageObj != null)
+                pList.doList(pageObj.getCurrentPage() == null ? 0 : pageObj
+                             .getCurrentPage().intValue(), pageObj.getPageSize() == null ? 0 :
+                             pageObj.getPageSize().intValue());
+        }else{
+            pList.doList(0, -1);
+        }
+
+        return pList;
+    }
+
+    public boolean update(OrderCom transArea){
+        try {
+            this.ordercomDAO.update(transArea);
+            return true;
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public List<OrderCom> query(String query, Map params, int begin, int max){
+        return this.ordercomDAO.query(query, params, begin, max);
+    }
+
+	@Override
+	public OrderCom getObjByProperty(String paramString, Object paramObject) {
+		// TODO Auto-generated method stub
+		return (OrderCom)this.ordercomDAO.getBy(paramString, paramObject);
+	}
+}
+
+
+
+

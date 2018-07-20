@@ -1,0 +1,35 @@
+<meta charset="utf-8">
+<div class="bmenu">
+	<ul>
+		<li>
+			<a href="$!webPath/wap/buyer/index.htm">
+				<i class="iconfont icon-shouye1" ></i>
+				<span>首页</span>
+			</a>
+		</li>
+		<li>
+			<a href="$!webPath/wap/buyer/allclass.htm">
+				<i class="iconfont icon-fenleiorguangchangorqita" ></i>
+				<span>分类</span>
+			</a>
+		</li>
+		<li>
+			<a href="$!webPath/wap/buyer/store.htm">
+				<i class="iconfont icon-wxbmingxingdianpu" ></i>
+				<span>U园</span>
+			</a>
+		</li>
+		<li>
+			<a href="$!webPath/wap/buyer/goodscar.htm">
+				<i class="iconfont icon-gouwuche" ></i>
+				<span>购物车</span>
+			</a>
+		</li>
+		<li>
+			<a href="$!webPath/wap/buyer/personalcenter.htm">
+				<i class="iconfont icon-my1" ></i>
+				<span>我的</span>
+			</a>
+		</li>
+	</ul>
+</div>

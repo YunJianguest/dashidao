@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>分享店铺</title>
+    <!--必选css-->
+      <link rel="stylesheet" type="text/css" href="css/zxx.css" >
+    <link rel="stylesheet" type="text/css" href="css/css.css" >
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    
+
+</head>
+
+<body style="background:  url(images/storebg.jpg) no-repeat fixed top #242527;  padding-top:120%; background-size: 100%;" >
+<!--head-->
+<div class="myer ykmyer">
+    <p >
+        <i class="iconfont icon-back"  onclick="history.go(-1)" ></i>邀请会员
+    </p>
+</div>
+<div class="store-box">
+	<div class="store-Package">
+		超值开店礼包
+	</div>
+	<div class="store-Package2">
+		<span>点击查看详情</span>
+		
+	</div>
+	
+	<div class="store-Package">
+		常见问题FAQ
+	</div>
+	<div class="store-Package-yj">
+		<div class="store-left" style="background: url(images/store-1.jpg); no-repeat">云</div>
+		<div class="store-right">
+			<p>关于云集</p>
+			云集和微店是什么?<br />
+			云集和那些品牌合作?
+		
+		
+		</div>
+		<div class="store-left" style="background: url(images/store-2.jpg); no-repeat"><i class="iconfont icon-news_hot_light"></i></div>
+		<div class="store-right">
+			<p>云集店主的权益是什么</p>
+			除了商品销售利润,<br />
+			云集店主还能参加各种各样的销售奖励活动,
+		
+		
+		</div>
+		<div class="store-left" style="background: url(images/store-3.jpg); no-repeat"><i class="iconfont icon-gifts"></i></div>
+		<div class="store-right">
+			<p>云集开店礼包介绍</p>
+			抗水神奇三件套；<br />
+			抗老秘籍素野多肽；
+		
+		
+		</div>
+		<div class="store-left" style="background: url(images/store-4.jpg); no-repeat"><i class="iconfont icon-form"></i></div>
+		<div class="store-right">
+			<p>邀请新人开店秘籍</p>
+			不知道怎么介绍云集？<br />
+			不知道怎么邀约?
+		
+		
+		</div>
+	</div>
+</div>
+<div class="store-button">分享开店礼包</div>
+	
+
+
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+	<title>页面标题</title>
+	<link rel="stylesheet" href="$!webPath/resources/buyer/css/apply.css">
+	<!--必选css-->
+	<link rel="stylesheet" type="text/css" href="$!webPath/resources/buyer/css/csss.css" >
+	<link rel="stylesheet" href="$!webPath/resources/buyer/iconfont/iconfont.css">
+	<link rel="stylesheet" href="$!webPath/resources/buyer/css/bootstrap.css">
+</head>
+<style type="text/css">
+	.uyuan{width:80%;margin:1rem 10%;height:6rem;border-radius:4rem;line-height:5rem;font-size:2rem;background:#ff6600;text-align: center;color: #fff;font-weight: 200;}
+</style>
+<body style=" padding-bottom: 8rem;" >
+<!--头部搜索-->
+<div class="nav" style="position: fixed; top: 0px; z-index: 10000; width: 100%; background: #fff;" >
+	<table width="100%" class="nav_ta">
+		<tbody>
+		<tr class="act">
+			<td width="22%"><img src="$!webPath/resources/buyer/images/logoo.png" style="width:4rem; height:4rem; " /> </td>
+			<td width="78%" colspan="3" style="color:#d24146; font-size: 2rem;  text-align: left;" >商家直供&nbsp&nbsp&nbsp正品超值</td>
+		</tr>
+		<tr class="act">
+			<td width="80%"  colspan="2" ><input type="text" class="form-control" name="name" id="name" value="" placeholder="3月月末大促" /></td>
+			<td width="10%" style="text-align: right;"></td>
+			<td width="10%" style="text-align: right; padding-top: 8px;"><a href="news.html"><i class="iconfont icon-comments" style="font-size: 2.3rem;"></i></a></td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+<div class="wrapper wrapper03 slideTxtBox" id="wrapper03" style="margin-top: 117px; ">
+	<div class="scroller hd">
+		<ul class="clearfix">
+			<li onclick="sel()">优惠活动</li>
+			<li onclick="sel()">美妆个护</li>
+			<li onclick="sel()">食品饮料</li>
+			<li onclick="sel()">服饰箱包</li>
+			<li onclick="sel()">母婴玩具</li>
+			<li>家居生活</li>
+			<li>家居电器</li>
+			<li>蔬果生鲜</li>
+			<li>日用家纺</li>
+			<li>手机数码</li>
+			<li>生活服务</li>
+		</ul>
+	</div>
+	<div class="bd">
+		<!--今日特卖-->
+		<ul>
+			<li>
+				<!--轮播图-->
+				<div>
+					<div id="slider">
+						<ul class="slides">
+							<li><img class="responsive" src="$!webPath/resources/buyer/image/raw_1493789400.png"></li>
+							<li><img class="responsive" src="$!webPath/resources/buyer/image/raw_1493790035.png"></li>
+							<li><img class="responsive" src="$!webPath/resources/buyer/image/raw_1494472701.png"></li>
+							<li><img class="responsive" src="$!webPath/resources/buyer/image/raw_1501117339.png"></li>
+						</ul>
+						<ul class="pagination">
+							<li class="active"></li>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+				</div>
+				<a href="storeshow1.html"><div class="uyuan">去张三的<span style="font-size: 3rem;font-weight: 600;">U园</span>看一看</div></a>
+				<!--打折、满减、秒杀、购物卡-->
+			 
+		 
+
+			</li>
+		</ul>
+	 
+	</div>
+      <div class="newsbar tmbar ykactivity">
+			<a href="product.html" >
+				<div class="img_cont"  >
+					<img src="$!webPath/resources/buyer/images/indexg.png" style="width: 100%; margin-bottom:15px;"/>
+				</div>
+				<h1 style="width: 100%;" >海参快客1盒装
+				<p>高弹透气 轻柔舒适</p>
+				</h1>
+				<div class="clear"></div>
+			</a>
+			<!--特卖代购-->
+			<div class="neprice" style="width: 100%;">
+			<a href="product.html">
+			<!--自购 外销-->
+			<div class="tmprice tmprice1" style="width:100%" >
+			<span class="fl" >&nbsp￥&nbsp7.00&nbsp&nbsp</span><span class="fr">库存 <font>4011</font></span>
+			</div>
+			</a>
+
+			</div> 
+	  </div>
+</div>
+$!httpInclude.include("/buyer/foot.htm")
+<script type="text/javascript" src="$!webPath/resources/buyer/js/jquery.min.js"></script>
+<script type="text/javascript" src="$!webPath/resources/buyer/js/iscroll.js"></script>
+<script type="text/javascript" src="$!webPath/resources/buyer/js/navbarscroll.js"></script>
+<script type="text/javascript" src="$!webPath/resources/buyer/js/jquery.SuperSlide.2.1.1.js"></script>
+<script src="$!webPath/resources/buyer/js/easySlider.js"></script>
+<script type="text/javascript">
+	$(function(){
+        //选项卡
+        jQuery(".slideTxtBox").slide({trigger:"click"});
+        //选项卡2
+        jQuery(".slideTxtBox12").slide({trigger:"click"});
+        //滚动
+        $('.wrapper').navbarscroll();
+        //轮播图
+        $("#slider").easySlider( {
+            slideSpeed: 500,
+            autoSlide: true,
+            paginationSpacing: "15px",
+            paginationDiameter: "10px",
+            paginationPositionFromBottom: "0px",
+            slidesClass: ".slides",
+            controlsClass: ".controls",
+            paginationClass: ".pagination"
+        });
+     	//footer选项卡
+		$(".bmenu li").click(function () {
+				$(this).addClass('on').siblings().removeClass('on');
+        });
+	});
+	function sel(){
+		//更新数据
+	}
+</script>
+</body>
+</html>

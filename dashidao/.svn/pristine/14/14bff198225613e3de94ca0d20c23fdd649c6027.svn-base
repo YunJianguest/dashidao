@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>U园</title>
+    <!--必选css-->
+    <link rel="stylesheet" type="text/css" href="css/css.css" >
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+</head>
+<body style="background: #f2f6f9;" >
+<!--头部搜索-->
+<div class="header" >
+    <p>
+        <a href="news.html"><i class="iconfont icon-comments fl"  ></i></a>
+        <span>U&nbsp&nbsp园</span>
+        <a href="custom_service.html"><i class="iconfont icon-skip fr"  ></i></a>
+        <a href="add_product.html"><i class="iconfont icon-service fr"  ></i></a>
+    </p>
+</div>
+<!--head-->
+<div class="storeoner" >
+    <div class="dptx fl"><a href="stores_information.html"><img src="images/dztx.png"/></a></div>
+    <div class="one fl" >
+        <p>王燕茹</p>
+        <span>店铺序号：2759210</span>
+    </div>
+    <a href="storeshow.html" class="fr"><i class="iconfont icon-more fr"  ></i></a>
+    <div class="two fr">
+        <a href="storeshow.html">
+            <p>16</p>
+            <span>品牌</span>
+        </a>
+    </div>
+    <div class="two fr" >
+        <a href="storeshow.html">
+            <p >45</p>
+            <span>商品</span>
+        </a>
+    </div>
+    <div class="clear"></div>
+</div>
+<!--xueyuan-->
+<div class="order my" >
+    <p><a href="stores_information.html"><i class="iconfont icon-gerenzhongxin  fl"  ></i>信息设置<span><i class="iconfont icon-more fr"  ></i></a></span></p>
+    <p><a href="shoppingadmin.html"><i class="iconfont icon-box fl"  ></i>商品管理<span><i class="iconfont icon-more fr"  ></i></a></span></p>
+    <p><a href="coupon_select.html" ><i class="iconfont icon-trade-assurance fl"  ></i>代金券设置<span><i class="iconfont icon-more fr"  ></i></a></span></p>
+    <p><a href="fenxiang.html" ><i class="iconfont icon-supplierfeatures fl"  ></i>邀请会员<span><i class="iconfont icon-more fr"  ></i></a></span></p>
+    <p><a href="salecount.html"><i class="iconfont icon-manageorder fl"  ></i>销售统计<span><i class="iconfont icon-more fr"  ></i></a></span></p>
+    <p><a href="endorcount.html"><i class="iconfont icon-rfq1 fl"  ></i>代言商品销售统计<span><i class="iconfont icon-more fr"  ></i></a></span></p>
+</div>
+<!--xueyuan-->
+<div class="school order" >
+    <p>云客学院 <span>查看全部课程<a href="add_product.html" class="fr"><i class="iconfont icon-more fr"  ></i></a></span></p>
+    <div class="wrapper" id="wrapper02">
+        <div class="scroller">
+            <ul class="clearfix">
+                <li>
+                    <div>
+                        <a href="javascript:void(0)"><img src="images/xy1.png"></a>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <a href="javascript:void(0)"><img src="images/xy2.png"></a>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <a href="javascript:void(0)"><img src="images/xy1.png"></a>
+                    </div>
+                </li>
+                <li class="more" >
+                    <div>
+                        <a href="javascript:void(0)">查看全部课程</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!--bottom-->
+<div class="bmenu">
+    <ul>
+        <li>
+            <a href="index.html">
+                <i class="iconfont icon-all" ></i>
+                <span>首页</span>
+            </a>
+        </li>
+        <li>
+            <a href="add_product.html">
+                <i class="iconfont icon-category" ></i>
+                <span>分类</span>
+            </a>
+        </li>
+        <li>
+            <a href="store.html">
+                <i class="iconfont icon-store" ></i>
+                <span>U园</span>
+            </a>
+        </li>
+        <li>
+            <a href="recommends.html">
+                <i class="iconfont icon-hot" ></i>
+                <span>推荐</span>
+            </a>
+        </li>
+        <li>
+            <a href="me.html">
+                <i class="iconfont icon-gerenzhongxin" ></i>
+                <span>我的</span>
+            </a>
+        </li>
+    </ul>
+</div>
+</body>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/iscroll.js"></script>
+<script type="text/javascript" src="js/navbarscroll.js"></script>
+<script type="text/javascript">
+    $(function(){
+        //demo示例一到四 通过lass调取，一句可以搞定，用于页面中可能有多个导航的情况
+        $('.wrapper').navbarscroll();
+    });
+</script>
+
+</html>

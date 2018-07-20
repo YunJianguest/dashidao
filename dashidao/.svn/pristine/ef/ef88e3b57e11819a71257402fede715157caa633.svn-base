@@ -1,0 +1,337 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link href="$!webPath/resources/style/system/manage/blue/tip.css"  rel="stylesheet" type="text/css"/>
+    <link href="$!webPath/resources/style/system/manage/blue/headquarters.css"  rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/iconfont.css">
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="$!webPath/resources/js/jquery.js"></script>
+    <script type="text/javascript" src="$!webPath/resources/js/highcharts.js"></script>
+    <title>无标题文档</title>
+
+</head>
+
+<body>
+<div class="tabbable hy">
+    <div class="seth1">
+        <img src="$!webPath/resources/style/system/manage/black/img/1.png" alt="">
+        会员
+    </div>
+    <ul class="nav nav-tabs" id="set">
+        <li class="active" id="ist" onclick="upData()"><a href="#1" data-toggle="tab" >会员概况</a></li>
+        <li onclick="upData()"><a href="#2" data-toggle="tab" >会员指数</a></li>
+    </ul>
+    <div class="tab-content">
+        <!--数据表格-->
+        <div class="tab-pane active" id="1"style="width:99%;margin-left:1%;">
+            <table width="100%" style="font-size: 16px;text-align: center;">
+                <tr class="tableheader">
+                    <td>会员总数</td>
+                    <td>会员购买比</td>
+                    <td>人均消费额</td>
+                    <td>最高消费额</td>
+                    <td>最低消费额</td>
+                </tr>
+                <tr>
+                    <td id="hyzs">19009</td>
+                    <td id="bybfz">60%</td>
+                    <td id="buyAll">200</td>
+                    <td id="buyfri">900</td>
+                    <td id="buylas">20</td>
+                </tr>
+            </table>
+            <!--图形分析-->
+            <div class="title" >新增会员统计图</div>
+            <div id="container2" style="width:98%;height:300px;margin:0 1%"></div>
+            <!--会员消费总额平台销售总额比-->
+            <div class="title" >会员消费总额平台销售总额比
+                <div class="dcwb">
+                    <ul>
+                        <li>
+                            <input type="button" value="批量导出" class="button" onclick="batch_export()">
+                        </li>
+                    </ul>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+
+            <div style="clear:both;"></div>
+            <table width="99%" style="font-size: 16px;text-align: center;margin-left: 1%;">
+                <tr class="tableheader">
+                    <td>行号</td>
+                    <td>会员ID</td>
+                    <td>会员名称</td>
+                    <td>会员消费总额</td>
+                    <td>会员消费总额/平台销售总额</td>
+                </tr> 
+                <tbody  id="xfmx" style="overflow-y: scroll;">
+                </tbody>  
+
+            </table>
+        </div>
+
+        <div class="tab-pane" id="2" >
+            <!--搜索-->
+            <div class="ss">
+                <span class="allmen size4"><input type="month"></span>
+                <span class="day">
+                <span><input type="text" id="day7" class="sel" value="7天" disabled="disabled"></span>
+                <span><input type="text" id="day30" value="30天" disabled="disabled"></span>
+                <span><input type="text" id="day90" value="90天" disabled="disabled"></span>
+                    <script>
+                        $('.day span').click(function(){
+                            $(this).children().addClass('sel');
+                            $(this).siblings().children().removeClass('sel');
+                        })
+                    </script>
+                </span>
+                <span class="seday"><input type="text" id="inday">天</span>
+                <span class="allmen"><input id="startday" type="date" name="startime" style="margin-right: 20px;">至<input id="endday" type="date"></span><span class="btn_search"> <input type="submit" onclick="upData()" value="搜索" ></span></div>
+
+            <div class="operation">
+                <h3>友情提示</h3>
+                <ul>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <!--图形分析-->
+            <div class="title" >新增会员统计图</div>
+            <div id="container" style="width:98%;height:300px;margin:0 1%"></div>
+            <!--会员消费总额平台销售总额比-->
+            <div class="title" >会员消费总额平台销售总额比
+                <div class="dcwb">
+                    <ul>
+                        <li>
+                            <input type="button" value="批量导出" class="button" onclick="batch_export()">
+                        </li>
+                    </ul>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <table width="99%" style="font-size: 16px;text-align: center;margin-left: 1%;">
+                <tr class="tableheader">
+                    <td>行号</td>
+                    <td>会员ID</td>
+                    <td>会员名称</td>
+                    <td>会员消费总额</td>
+                    <td>会员消费总额/平台销售总额</td>
+                </tr>
+               <tbody  id="xsmx" style="overflow-y: scroll;">
+                </tbody>  
+
+            </table>
+        </div>
+
+
+    </div>
+</div>
+<script type="text/javascript">  
+function startEcha(v){
+	var obj="container2";
+	if($('#ist').hasClass('active')){
+		obj="container2";
+	}else{
+		obj="container";
+	} 
+	  $('#'+obj).highcharts({
+          chart: {
+          },
+          title: {
+              text: ''
+          },
+          //x轴
+          xAxis: {
+              categories: ['周一', '周二', '周三', '周四', '周五','周六','周日']
+          },
+          tooltip: {
+              formatter: function() {
+                  var s;
+                  if (this.point.name) { // the pie chart
+                      s = ''+
+                          this.point.name +': '+ this.y +' fruits';
+                  } else {
+                      s = ''+
+                          this.x  +': '+ this.y;
+                  }
+                  return s;
+              }
+          },
+          labels: {
+              items: [{
+                  html: '新增会员趋势图',
+                  style: {
+                      left: '40px',
+                      top: '8px',
+                      color: 'black'
+                  }
+              }]
+          },
+          series: [ {
+              type: 'spline',
+              name: 'Average',
+              data: v,
+              marker: {
+                  lineWidth: 2,
+                  lineColor: Highcharts.getOptions().colors[3],
+                  fillColor: 'white'
+              }
+          }, ]
+      });
+}
+
+var echaData=new Array(7);
+function instData(v){  
+	var startdate=getDay(-10000);
+	var enddate=getDay(0);
+	for(var i=0;i<7;i++){
+		if(v==i){
+			 startdate=getWeek(i)+" 00:00:00";
+			 enddate=getWeek(i)+" 24:00:00";
+			 break;
+		}
+	  }  
+	var sql="SELECT * FROM `dashidao_user`where addTime  Between '"+startdate+"' And '"+enddate+"' and dashidao_user.userRole='BUYER' ORDER BY addTime";
+    jQuery.ajax({
+          type:"POST",
+          cache: false,
+          async:false,
+          url:"/ajaxuser.jsp",
+          dataType:"json",
+          data:"table=dashidao_user&dates=lastLoginDate,loginDate,addTime,finishTime,payTime,shipTime,return_shipTime&sql="+sql+"",
+          //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+          error:function(){alert("数据错误，操作被取消！");},
+          success:function(data)
+          {
+              if(data.state=="error"){alert("系统错误，操作被取消！");return;} 
+              var message=data.data.data; 
+
+        	  if(v>=0){ 
+        		  echaData[v]=data.data.total;   
+        	  }
+        	  if(v==6){
+        		 //初始化Echac  
+        		  startEcha(echaData);
+        	  } 
+              if(v<0){
+            	  $('#hyzs').html(data.data.total);
+            	  instEcha();
+            	  instOrder(); 
+              }
+             
+          
+          }
+      });
+} 
+function instOrder(){
+	var sql="SELECT dashidao_orderform.user_id, dashidao_orderform.addTime, dashidao_orderform.totalPrice ,dashidao_user.userName FROM dashidao_orderform INNER JOIN dashidao_user ON  dashidao_orderform.user_id = dashidao_user.id  And dashidao_user.userRole='BUYER' ORDER BY dashidao_orderform.totalPrice";
+    jQuery.ajax({
+          type:"POST",
+          cache: false,
+          async:false,
+          url:"/ajaxuser.jsp",
+          dataType:"json",
+          data:"table=dashidao_orderform&dates=addTime,finishTime,payTime,shipTime,return_shipTime&sql="+sql,
+          //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+          error:function(){alert("数据错误，操作被取消！");},
+          success:function(data)
+          {
+              if(data.state=="error"){alert("系统错误，操作被取消！");return;} 
+              var message=data.data.data; 
+              //alert(data.data.total);
+              var buycount=data.data.total;
+              var buyAll=0;
+              $('#bybfz').html(GetPercent(buycount,$('#hyzs').html()));
+              var html='';
+              for(var i=0;i<message.length;i++){ 
+            	  buyAll+=message[i]['totalPrice'];   
+              } 
+              for(var i=0;i<message.length;i++){  
+            	 html+='<tr>'
+            	     +'<td>'+i+'</td>'
+            	     +'<td>'+message[i]['user_id']+'</td>'
+            	     +'<td>'+message[i]['userName']+'</td>'
+            	     +'<td>'+message[i]['totalPrice']+'</td>'
+            	     +'<td>'+GetPercent(message[i]['totalPrice'],buyAll)+'</td></tr>';  
+              } 
+              $('#xfmx').html(html);
+              $('#xsmx').html(html);
+              xsze=buyAll;
+              $('#buyAll').html(buyAll/buycount);
+              if(message[0]!=null){
+            	  $('#buyfri').html(message[0]['totalPrice']);
+              }
+              if(message[message.length-1]!=null){
+            	  $('#buylas').html(message[message.length-1]['totalPrice']); 
+              }
+               
+          
+          }
+      });
+}
+function getDay(day){    
+    var today = new Date();    
+        
+    var targetday_milliseconds=today.getTime() + 1000*60*60*24*day;            
+ 
+    today.setTime(targetday_milliseconds); //注意，这行是关键代码  
+        
+    var tYear = today.getFullYear();    
+    var tMonth = today.getMonth();    
+    var tDate = today.getDate();    
+    tMonth = doHandleMonth(tMonth + 1);    
+    tDate = doHandleMonth(tDate);    
+    return tYear+"-"+tMonth+"-"+tDate;    
+}
+function getTDay(day){
+	day=day+"00:00:00"
+	return "";
+} 
+function doHandleMonth(month){    
+    var m = month;    
+    if(month.toString().length == 1){    
+       m = "0" + month;    
+    }    
+    return m;    
+}
+function GetPercent(num, total) { 
+	num = parseFloat(num); 
+	total = parseFloat(total); 
+	if (isNaN(num) || isNaN(total)) { 
+	return "-"; 
+	} 
+	return total <= 0 ? "0%" : (Math.round(num / total * 10000) / 100.00 + "%"); 
+	} 
+//获取本周第几天的日期
+   function getWeek(i) {
+
+	var now = new Date(); 
+
+	var firstDay=new Date(now - (now .getDay() - 1 ) * 86400000);
+
+	firstDay.setDate(firstDay.getDate() + i);
+
+	mon = Number(firstDay.getMonth()) + 1; 
+
+	return now .getFullYear() + "/" + mon + "/" + firstDay.getDate(); 
+
+	}
+instData(-1);
+function instEcha(){
+	for(var i=0;i<7;i++){
+		instData(i);
+	}
+} 
+function upData(){ 
+	instEcha();
+}
+function upinsData(){};
+//instOrder();
+</script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>申请歇业 - $!{config.poweredby}</title>
+	<meta name="keywords" content="$!config.keywords" />
+	<meta name="description" content="$!config.description" />
+	<meta name="generator" content="$!{config.meta_generator}" />
+	<meta name="author" content="$!{config.meta_author}">
+	<meta name="copyright" content="$!{config.copyRight}">
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+	<title>破损补寄管理</title>
+	#if($!config.website_ico)
+	<link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+	#end
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+	<link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+	<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+	<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+	<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+	<!--<script src="$!webPath/resources/js/jquery.shop.common.js"></script>-->
+	<link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+	<script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+	<script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+	
+	<!--bootstrap-->
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+	
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+	<script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+<style>
+	.shopadminbox tr td{ line-height: 40px; height: 40px; }
+	#shouhouwu tr td{ height: 80px; line-height: 80px; }
+</style>
+	<script>
+        jQuery(document).ready(function(){
+        	loadAjax(page_size,page_no,1)
+            layui.use(['laypage', 'layer'], function(){
+                var laypage = layui.laypage
+                    ,layer = layui.layer;
+                //完整功能
+                laypage.render({
+                    elem: 'demo7'
+                    ,count:total
+                    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                    ,jump: function(obj){
+                    	page_no=obj.curr;
+                        page_size=obj.limit;
+                        loadAjax(page_size,page_no,1);
+                    },
+                    limits:[2, 4, 6, 8, 10],
+                    limit:page_size,
+                });
+            }); 
+        });
+        
+        var page_size=10;
+        var page_no =1;
+        var total =0;
+        function loadAjax(page_size,page_no,moudle_id)
+        {
+        	var html ="";
+        	var userId ="${user.id}";
+        	$("#xieYeTab").html("");
+        	var sql ="select * from zb_xieYeShenHe WHERE operator  ="+userId+" order by create_date ";
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajaxuser.jsp",
+                dataType:"json",
+                data:"table=zb_xieYeShenHe&dates=create_date,create_date1,create_date2&sql="+sql+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error:function(){alert("数据错误，操作被取消！");},
+                success:function(data)
+                {
+                    if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                    total=data.data.total;
+                    var message=data.data.data;
+                    for(var i=0;i<message.length;i++){
+                    	var lb =message[i]['states'];
+                    	var lbVal ="请假";
+                    	if(lb == 2)
+                    	{
+                    		lbVal ="歇业";
+                    	}else
+                    	{
+                    		lbVal ="未知";
+                    	}
+                    	var zt =message[i]['xy_states'];
+                    	var ztVal ="待审核";
+                    	if(zt ==1)
+                    	{
+                    		 ztVal ="已提交";
+                    	}else if(zt ==2)
+                    	{
+                    		ztVal ="已同意";
+                    	}
+                    	var create_date1 = message[i]['create_date1'];
+                    	var create_date2 = message[i]['create_date2'];
+                    	create_date1 = create_date1.substring(0,10);
+                    	create_date2 = create_date2.substring(0,10); 
+                    	html += "<tr class='first' >";
+                		html += "<td width='10%'>"+message[i]['id']+"</td>";
+                		html += "<td width='15%'>"+message[i]['create_date']+"</td>";
+                		html += "<td width='5%'>"+lbVal+"</td>";
+                		html += "<td width='30%'>"+create_date1+"至"+create_date2+"</td>";
+                		html += "<td width='15%'>"+message[i]['xy_shuoming']+"</td>";
+                		html += "<td width='5%'>"+ztVal+"</td>";
+                		html += "<td width=''><a href='$!webPath/poster/sqxydetails.htm?id="+message[i]['id']+"'>详情</a></td>";
+                		html += "</tr>";
+                		//1请假 2歇业 states
+                    }
+                    $("#xieYeTab").append(html);
+                }
+            });
+        	
+        }
+	</script>
+</head>
+<body>
+<div class="main">
+	<div class="user_center">
+		$!httpInclude.include("/poster/nav_head.htm") 
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+			<tr> $!httpInclude.include("/poster/nav.htm?op=sub_account")
+				<td id="centerbg" valign="top" width="80%">
+					<div class="buyer_position" style="width: 99%; background: #fff;">
+						<div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代中心</a> > <span>申请歇业</span></div>
+					</div>
+
+					<div class="xx-box">
+						<div class="ht-top">
+
+							<form class="form-inline " style="float: right;">
+								<div class="form-group">
+									<!-- <input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入查询内容" style="width: 200px; border: 1px solid #ccc; text-indent: 2rem;" > -->
+									<p><span><a href="$!webPath/poster/xyqjsq.htm">歇业请假申请</a></span></p>
+								</div>
+								<!-- <button type="submit" class="btn btn-default" style="border: none;  background: #3fa4ed; color: #fff;   " >查询</button> -->
+							</form>
+						</div>
+						
+
+						<table width="100%" border="0"  cellspacing="0" cellpadding="0">
+								<tbody>
+									<tr id="thead" >
+										<td width="10%" >申请ID</td>
+										<td width="15%">申请时间</td>
+										<td width="5%">类别</td>
+										<td width="30%">时间段</td>
+										<td width="15%">详情</td>
+										<td width="5%">状态</td>
+										<td width="">操作</td>
+									</tr>
+								</tbody>
+							</table>
+							<table width="100%"  class="returntable" border="0" cellspacing="0" cellpadding="0"  id="shouhouwu" >
+								<tbody id="xieYeTab">
+									
+								</tbody>
+							</table>
+						<div class="ht-botton" id="heTongDiv">
+
+						</div>
+
+						<!--分页开始-->
+						<div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+						<script>
+						</script>
+						<!--分页结束-->
+					</div>
+
+
+ 				<script type="text/javascript">jQuery(".shopadminbox").slide({trigger:"click"});</script>
+				</td>
+			</tr>
+		</table>
+	</div>
+	$!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

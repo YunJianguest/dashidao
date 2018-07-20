@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>退出审核详情</title>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/two_level.css">
+	<script   src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+</head>
+<body>
+<script>
+    function sub(){
+
+        var check="";
+        $("input[name='xbTy']").each(function(){
+            if(this.checked==true){
+                check=this.value;
+            }
+        });
+        if(check==""){
+            alert("请选择同意或者不同意");
+            return;
+        }
+
+        jQuery.ajax({
+            type: "POST",
+            cache: false,
+            async: false,
+            url: "/ajax.jsp",
+            dataType: "json",
+            data: "action=update&table=zb_quitecheck&field=id,states&values=" + $("#shenheId").val()+"|"+check,
+            error: function () {
+                alert("数据错误，操作被取消2！");
+            },
+            success: function (data) {
+                if (data.state == "error") {
+                    alert("系统错误，操作被取消！");
+                    return;
+                } else {
+                    alert("操作成功！");
+                    location.href="$!webPath/admin/quite_check.htm";
+                }
+            }
+        });
+
+    }
+    jQuery(document).ready(function() {
+        var id = "$!id";
+       // alert(id);
+        var shenheId = "$!shenheId";
+        //alert(shenheId);
+        var states = "$!states";
+        if(states!=1){
+            $("#sub").attr("style","display:none");
+        }
+        jQuery.ajax({
+            type: "POST",
+            cache: false,
+            async: false,
+            url: "/ajax.jsp",
+            dataType: "json",
+            data: "action=select&table=dsdsj&field=id&values=" + id,
+            error: function () {
+                alert("数据错误，操作被取消2！");
+            },
+            success: function (data) {
+                if (data.state == "error") {
+                    alert("系统错误，操作被取消2！");
+                    return;
+                }
+                var message = data.data.data;
+                for (var i = 0; i < message.length; i++) {
+                    //alert(message[i]['businessid']);
+                    $("#form1").find("tr").eq(0).find("td").eq(1).append(message[i]['businessid']);
+                    $("#form1").find("tr").eq(1).find("td").eq(1).append(message[i]['name']);
+
+
+                }
+            }
+        });
+    })
+
+</script>
+<div class="both">
+	<form id="form1" name="form1" method="post" class="form-inline">
+		<input type="hidden" id="shenheId" name="shenheId" value="$!shenheId" />
+		<table width="100%">
+			<tr>
+				<td width="20%">商家账号：</td>
+				<td width="50%"> </td>
+				<td width="30%"></td>
+			</tr>
+			<tr>
+				<td>用户名：</td>
+				<td></td>
+				<td rowspan="2"></td>
+			</tr>
+			<tr>
+				<td>性别：</td>
+				<td><input type="text" class="" name="" id="1" value="" placeholder="女"/></td>
+			</tr>
+			<tr>
+				<td>手机号：</td>
+				<td><input type="text" class="" name="" id="2" value="" placeholder="186 2838 0304"/></td>
+				<td rowspan="3"></td>
+			</tr>
+			<tr>
+				<td>主营：</td>
+				<td><input type="text" class="" name="" id="3" value="" placeholder="服装"/></td>
+			</tr>
+			<tr>
+				<td>发货地区：</td>
+				<td><input type="text" class="" name="" id="4" value="" placeholder="华北地区"/></td>
+			</tr>
+			<tr>
+				<td>身份信息：</td>
+				<td class="shenfen"><img src="$!webPath/resources/style/system/manage/black/img/raw_1501032270.png" alt=""><img src="$!webPath/resources/style/system/manage/black/img/raw_1501032263.png" alt=""></td>
+				<td rowspan="3"></td>
+			</tr>
+			<tr>
+				<td>合同签订日期：</td>
+				<td>颜色：<input type="text" class="" name="" id="5" value="" placeholder="2016/9/12"/></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>合同到期日期：<input type="text" class="" name="" id="6" value="" placeholder="2019/9/12"/></td>
+			</tr>
+			<tr>
+				<td>期望结束日期：</td>
+				<td><input type="text" class="" name="" id="7" value="" placeholder="2020/9/12"/></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>生产日期：</td>
+				<td><input type="text" class="" name="" id="8" value="" placeholder="2017年5月23日"/></td>
+				<td>保质期：<input type="text" class="" name="" id="9" value="" placeholder="2年"/></td>
+			</tr>
+			<tr>
+				<td colspan="3" class="expect"><input type="text" class="" name="" id="10" value="" placeholder="因个人原因，希望提前终止合同，给您带来的不便深感抱歉。"/></td>
+			</tr>
+			<tr>
+				<td>该商家综合评分：</td>
+				<td><input type="text" placeholder="9.8"></td>
+				<td></td>
+			</tr>
+		</table>
+		<div class="view">
+			<input type="radio" class="check" value="2" name="xbTy">同意终止合同</input>  <input type="radio" value="3" class="refuse check" name="xbTy">拒绝终止合同</input>
+			<div>
+				<textarea type="text" class="" name="" id="" value="" placeholder="可以留下您的理由吗？" ></textarea>
+			</div>
+		</div>
+	</form>
+	<div class="sub" id="sub"><a href="#" onclick="sub();" style="color:white;">确定</a></div>
+</div>
+<script>
+    $('.view span').click(function(){
+        $(this).addClass('check');
+        $(this).siblings().removeClass('check');
+    })
+</script>
+</body>
+</html>
+	

@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>待评价</title>
+    <script type="text/javascript" src="js/jquery1.42.min.js"></script>
+    <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/css.css" >
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+      <link rel="stylesheet" type="text/css" href="css/zxx.css" >
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<style>
+	.mywallet-re{width: 96%;height: 12.5rem; padding-left: 4%; border-bottom: 1px solid #b2b2b2; border-top: 1px solid #b2b2b2;margin-top: 5%;}
+   .mywallet-re input{border: 0;width: 100%;height: 3.8rem;font-size: 1rem!important;color: #757575!important;}
+</style>
+</head>
+<body>
+<div class="rechargebox">
+    <div class="search-1">
+        <i class="iconfont icon-back fl" onclick="history.go(-1)" style="position: absolute; font-size: 1.4rem; left: 3%;"></i>
+        	在线充值
+        <span style="float: right;">明细</span>
+        <div class="clear"></div>
+    </div>
+    <div class="hd">
+        <ul>
+        	
+            <li style="border-bottom-left-radius: 10px;border-top-left-radius: 10px;margin-left: 20%;">在线</li>
+            <li style="border-bottom-right-radius: 10px;border-top-right-radius: 10px;">购物卡</li>
+
+        </ul>
+    </div>
+    <div class="bd">
+        <!--在线-->
+        <ul>
+           	<li>
+                <div class="goodcontent1">
+                 		<div class="mywallet-m">
+				<div class="mywallet-m2">
+					<ul style="width: 100%;">
+						<li>充值金额</li>
+						<li style="border-bottom: 1px solid #b2b2b2;"><input type="text" value="请输入充值金额"></li>
+						<li>支付方式<i class="iconfont icon-xiangyoujiantou" style="float: right;font-size: 1.4rem;"></i></li>
+					</ul>
+					</div>
+				</div>
+				<div class="recharge-but">
+					<input type="button" value="提交" />
+				</div>
+                </div>
+          </li>
+        </ul>
+        <!--充值卡-->
+        <ul>	
+            <li>
+					
+               	 <div class="goodcontent1">
+               	 	   		<div class="mywallet-m">
+				<div class="mywallet-re">
+					<ul style="width: 100%;">
+						<li style="margin-top:1rem;">卡号</li>
+						<li style="border-bottom: 1px solid #b2b2b2;"><input type="text" value="请输入购物卡号"></li>
+						<li style="margin-top:1rem;">密码</li>
+						<li style=""><input type="text" value="请输入购物卡密码"></li>
+					</ul>
+
+					</div>
+				</div>
+				<div class="recharge-but">
+					<input type="button" value="提交" />
+				</div>
+                 
+                                	 	
+               	 </div>
+            </li>
+        </ul>
+
+          
+     
+     
+       
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">jQuery(".rechargebox").slide({trigger:"click"});</script>
+<!--<script type="text/javascript" >
+    $(function () {
+
+        var tags = $("#price").html();
+        //len = tags.length;
+        var integral = tags.substring(0, tags.indexOf('.'));
+        var decimal = tags.substring(tags.indexOf('.')+1);
+        $("#price").html('<span class="integral">' + integral + '.<\/span>' + decimal )
+    })
+</script>-->
+</body>
+</html>

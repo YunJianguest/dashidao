@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>确认订单</title>
+    <!--必选css-->
+      <link rel="stylesheet" type="text/css" href="css/zxx.css" >
+    <link rel="stylesheet" type="text/css" href="css/css1.css" >
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <!--弹出层 开始 -->
+		<link type="text/css" rel="stylesheet" href="css/zdialog.css" />
+		<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="js/zdialog.js"></script>
+		<!--弹出层 结束 -->
+</head>
+<style type="text/css">
+	ul li{float: left;}
+	.dizhi{margin: 5rem 3% 0 3%;width:94%;}
+	.dizhi ul li{height:10rem;}
+	.ioc{width:15%;line-height: 10rem;text-align: center;}
+	.sdd{width:85%;}
+	.sdd i{position: relative;top:-2.5rem;left:95%;}
+	.contact{margin-top:1rem;}
+	.sdd div{height:3rem;line-height: 3rem;width: 90%;}
+	.dd{height:2.5rem!important;line-height: 2.5rem!important;}
+	.pro,.yue,.peisongway{width:94%;margin: 0 3%;}
+	.pro ul li{height: 12rem;}
+	.picture img{width:90%;margin:0 5%;}
+	.picture{width:22%;line-height:12rem;}
+	.pro_detail{width:78%;}
+	.pro_detail div{height: 2.5rem;line-height: 2.5rem;padding-left: 2%;}
+	.pro_name{margin-top: 1.5rem;}
+	.guig{font-size:1.2rem;color:#C3C3C3;}
+	.price{color:red;}.sum{color:#c3c3c3;float: right;}
+	.beizhu{padding-left:5%;height: 5rem;line-height: 5rem;background: #fff;}
+	.beizhu span{color:#c3c3c3;}
+	.zhifu,.prod,.dz,.peis{width:100%;background: #fff;}
+	.zhifu{margin-top: 1rem;height: 11rem;}
+	.yue div{height:5rem;line-height: 5rem;}
+	.yue span{margin-left: 5%;}
+	.zhifmm input{width:55%;height:4rem;border: 1px solid #c3c3c3;}
+	.peis{margin-top:1rem;}
+    #tab{width:100%;}.peit{height:5rem;line-height: 4rem;padding-left: 4%;}.peit span{margin-left: 5%;}.peit .ico-more{float: right;}
+    #tab ul{list-style:none; display:;height:30px;line-height:30px;}
+    #tab ul li{background:#FFF;cursor:pointer;float:left;list-style:none height:29px; line-height:29px;padding:0px 10px; margin:0px 10px; border:1px solid #c3c3c3;border-radius: 5px; }
+    #tab ul li.on{border:1px solid red;color:red;}
+    #tab div{width:100%;}
+    .hide{display:none;}
+    #tab div p{margin: 0;height:3.5rem;line-height:3rem;padding-left: 4%;}
+    #tab div p span{float:right;color:#c3c3c3;}
+    #tab div p i{float:right;color:#c3c3c3;}
+    .rig{float: right;color:#c3c3c3;}.yhj i{float: right;color: #c3c3c3;} 
+    .yhj{background: #fff;margin-top: 1rem;padding: 0 4%;height: 4rem;line-height:4rem;}
+    .yh span{margin-right:50%;color:#fff!important;background: #6faefb;font-size: 1.2rem;padding:0 2%;}
+    .je span{float:right;}
+    .je{padding: 0 4%;background: #fff;margin-top: 1rem;border-bottom: 1px solid #c3c3c3;margin-bottom: 8rem;}
+    .ye,.yf{color:#c3c3c3;font-size:1.2rem}
+    .botto{position: fixed;bottom: 0;width:100%;z-index: 9;background: #fff;}
+    .ddz{background:#fef0d5;color:#fac66c;height: 3rem;line-height: 3rem;padding:0 4%;text-align: left;}
+    .ddz i{float: right;color:#fac66c ;}.botto ul {margin: 0!important;}
+    .botto ul li{float: left;width:30%;height: 4rem;}
+    .mon{width: 70%!important;color: ;}.tj{background:#d73b3c;color:#fff;text-align: center;}
+    .mon div{height: 2.5rem;line-height: 2.5rem;padding-left: 4%;color: red;}
+    .yyf{color: #c3c3c3!important;font-size: 1.1rem;height: 1.5rem!important;line-height: 1.5rem!important;}
+   /*发票*/
+  .am-share { font-size:1.3rem; border-radius: 0; bottom: 0; left: 0; position: fixed;-webkit-transform: translateY(100%); -ms-transform: translateY(100%); transform: translateY(100%); -webkit-transition: -webkit-transform 300ms; transition: transform 300ms ; width: 100%; z-index: 1110; }
+.am-modal-active { transform: translateY(0px);  -webkit-transform: translateY(0); -ms-transform: translateY(0); transform: translateY(0) }
+.am-modal-out { z-index: 1109; -webkit-transform: translateY(100%); -ms-transform: translateY(100%); transform: translateY(100%) }
+.am-share-title { background-color: #f8f8f8; border-bottom: 1px solid #fff; border-top-left-radius: 2px; border-top-right-radius: 2px; color: #555; font-weight: 400; margin: 0 10px; padding: 10px 0 0; text-align: center; }
+.am-share-title::after { border-bottom: 1px solid #dfdfdf; content: ""; display: block; height: 0; margin-top: 10px; width: 100%; }
+.am-share-detele {height:3.5rem;line-height:3.5rem;width: 94%;margin: 0 3%;}
+.am-share-detele .share_btn { color: #555; width:10%;border-radius: 0; cursor: pointer;  font-size: 1rem; font-weight: 400; line-height: 1.2; padding: 0.625em 0; text-align: center; transition: background-color 300ms ease-out 0s, border-color 300ms ease-out 0s; vertical-align: middle; white-space: nowrap;font-family:"微软雅黑";  }
+.am-share-sns { background-color: #f8f8f8; border-radius: 0 0 2px 2px; height:auto; zoom:1; overflow:auto; }
+.am-share-sns a { color:#0086B3;text-decoration:none; }
+.am-share-sns i {font-size: 3rem;}
+.am-share-sns .share-icon-weibo { background-image: url(); }
+.am-share-sns li i {font-size:2rem;}
+.sharebg { background-color: rgba(0, 0, 0, 0.6); bottom: 0; height: 100%; left: 0; opacity: 0; position: fixed; right: 0; top: 0; width: 100%; z-index: 1100; display:none; }
+.sharebg-active { opacity: 1; display:block; }
+.tip>ul>li{float:left;width:8%;list-style: none;line-height: 1.5rem;text-align: center;}
+.tip{width:99.5%;background: #fcf9da;color:#e17d35;height:4rem;border:1px solid #F1E38B;}
+.ico{margin-top:.8rem;}
+.fpclassfy div{width:96%;margin: 0 3%;height:3.5rem;line-height:3.5rem;}
+.fp{font-size:1.3rem;font-weight: 500;}
+.check{margin: 1.5rem 0;}
+.check span{padding:.5rem .8rem;border-radius:2rem;border:1px solid #e0e0e0;}
+.zengzhi{color:#e0e0e0 ;border-bottom:1px solid #e0e0e0;}
+.clred{border:1px solid red!important;color:red;}
+.yktip{color:#C3C3C3;}
+.confirm{width:80%;margin:2rem auto 1rem;height: 3.5rem;line-height:3.5rem;color: #fff;text-align: center;background: #f71b08;border-radius: 3rem;letter-spacing: 2px;}
+.dzpt{height:10rem!important;margin-top: 1rem!important;}
+.dzpt>div{margin: 0!important;line-height: ;}
+.sp{border-bottom:1px solid #e0e0e0;}
+.dwfp{height: 6rem!important;}
+.dwfp div{height:3rem!important;}
+.yktip input{border:0;width:75%;text-align: center;background: #f8f8f8;height: 1.5rem;}
+.danw input{width:95%;height: 2.5rem;line-height: 2.5rem;border-radius: 1rem;background: #e7e7e7;border:0!important;margin-top: .5rem;}
+.shibie{position: relative;z-index: 222;}
+.shibie input{width:95%;height: 2.5rem;line-height: 2.5rem;border-radius: 1rem;background: #e7e7e7; border:0!important;color: red;margin-top: 1rem;}
+.icon-xinxi-xianxingyuankuang{font-size: 1.5rem!important;position: relative;left: -2rem;top: .5rem;z-index: 222;}
+.neirong{line-height:1.8rem!important;}
+
+</style>
+<body style="background: #f2f6f9;height: 4rem;line-height:4rem;">
+<!--head-->
+<div class="myer ykmyer">
+    <p >
+       <i class="iconfont icon-back" onclick="history.go(-1)" ></i>确认订单
+    </p>
+</div>
+<div class="dz">
+	<div class="dizhi">
+	<ul>
+		<li class="ioc"><i class="iconfont icon-map" ></i></li>
+		<li class="sdd">
+		<div class="contact"><span>闵琼</span><span>18112345678</span></div>
+		<div class="dd">陕西省西安市未央区辛家庙街道安诚御花苑D区<a href="shdz.html"><i class="iconfont icon-xiangyoujiantou" ></i></a></div>
+		</li>
+		<div class="clear"></div>
+	</ul>
+</div>
+</div>
+<div class="prod" style="border-bottom: 1px solid #c3c3c3;">
+	<div class="pro">
+		<ul>
+			<li class="picture"><img src="image/goods.png" alt="" /></li>
+			<li class="pro_detail">
+				<div class="pro_name">趣看防蓝光防紫外线护目眼镜 &nbsp;&nbsp;&nbsp;多款可选</div>
+				<div class="guig">规格：普通款  颜色：亮黑</div>
+				<div><span class="price">￥269</span><span class="sum">x1</span></div>
+			</li>
+			<div class="clear"></div>
+		</ul>
+	</div>
+</div>
+<div class="beizhu">
+	备注：<span>不接受指定快递，特殊需求请联系卖家</span>
+</div>
+<div class="zhifu">
+	<div class="yue">
+		<div>&nbsp;&nbsp;<i class="iconfont icon-success" ></i><span>使用余额</span> <span>（￥92）</span></div>
+		<div class="zhifmm">&nbsp;&nbsp;<input type="text" placeholder="请输入支付密码" /><span><a href="yanzheng.html">修改支付密码</a></span></div>
+	</div>
+</div>
+</div><div class="yhj"><span>配送方式</span>
+  <a href="shipping_method.html"><i class="iconfont icon-xiangyoujiantou" ></i></a><span class="rig"></span></div>
+  <div class="clear"></div>
+  <div class="yhj"><span>发票</span>
+ <i class="iconfont icon-xiangyoujiantou" onClick="toshare()"></i></a></div>
+  <div class="clear"></div>
+</div><div class="yhj"><span>优惠卷</span>
+  <i class="iconfont icon-xiangyoujiantou" ></i><span class="rig">暂无可用</span></div>
+  <div class="clear"></div>
+<div class="je">
+	<div>商品金额<span>￥269</span></div>
+	 <div class="clear"></div>
+	 <div class="yf" style="border-top:1px solid #f3f3f3;">运费<span>+￥0.00</span></div>
+	 <div class="clear"></div>
+	 <div class="ye" style="border-bottom:1px solid #f3f3f3;">余额抵扣<span>-￥19.25</span></div>
+	 <div class="clear"></div>
+	 <div>总金额<span>￥269</span></div>
+	 <div class="clear"></div>
+</div>
+  <div class="botto">
+  	<div class="ddz">陕西省西安市雁塔区长安中路 <a href="shdz.html"><i class="iconfont icon-xiangyoujiantou" ></i></a></div>
+  	<div>
+  	<ul>
+  		<li class="mon">
+  			<div>总金额：￥19.75</div>
+  			<div class="yyf">（运费￥0.00）</div>
+  		</li>
+  		<li class="tj">提交订单</li>
+  	</ul>
+  	</div>
+  </div>
+  <script type="text/javascript">
+	function toshare(){
+		$(".am-share").addClass("am-modal-active");	
+		if($(".sharebg").length>0){
+			$(".sharebg").addClass("sharebg-active");
+		}else{
+			$("body").append('<div class="sharebg"></div>');
+			$(".sharebg").addClass("sharebg-active");
+		}
+		$(".sharebg-active,.share_btn").click(function(){
+			$(".am-share").removeClass("am-modal-active");	
+			setTimeout(function(){
+				$(".sharebg-active").removeClass("sharebg-active");	
+				$(".sharebg").remove();	
+			},300);
+		})
+	}	
+</script>
+<div class="am-share">
+  <div class="am-share-sns">
+  <div class="am-share-detele"><span class="fp"> 发票</span><span class="rig">发票须知&nbsp;<span class="share_btn"><i class="iconfont icon-xiaoguanbi1"></i></span></span></div>
+  <div class="tip"> 
+ 	<ul>
+	 	<li class="ico"><i class="iconfont icon-notice"></i></li>
+	 	<li style="width:84%;font-size: 1.1rem!important;text-align: left;">部分地区仅提供电子普通发票，用户可自行打印，可在我的订单-查看发票中查询或下载电子普通发票 </li>
+	 	<li class="ico"><i class="iconfont icon-xiaoguanbi1" onclick="qx()"></i></li>
+	 	<script type="text/javascript">
+	 		function qx(){
+	 			$(".tip").css({'display':'none'});
+	 		}
+	 	</script>
+	 	<div class="clear:both;"></div>
+ 	</ul>
+ </div>
+<div class="fpclassfy">
+ 	<div>发票类型</div>
+ 	<div class="check"> 
+ 	<span class="clred pt">普通发票</span>
+ 	<span class="ptdi">普通电子发票</span>
+ 	<span class="zengzhi" id="toastBtn">增值税专用发票</span>
+ 	<script>
+	   $("#toastBtn").click(function(){
+	      $.DialogByZ.Autofade({Content: "暂不支持此功能"});
+	      $(".zengzhi").css({"color":"#e0e0e0","border":"1px solid #e0e0e0!important"});
+	   })
+	</script>
+ 	<script type="text/javascript">
+ 		$('.zengzhi')
+ 	</script>
+ 	</div>
+ 	<div class="yktip lx">云客部分试点地区仅提供电子普通发票，具体以实际出具为准</div>
+ </div>
+  <div class="fpclassfy">
+ 	<div>发票抬头</div>
+ 	<div class="check"> 
+ 	<span class="clred gr">个人</span>
+ 	<span class="dwfpk">单位</span>
+ 	<script type="text/javascript">
+ 		$('.dwfpk').click(function(){
+ 			$(".dwfp").css({"display":"block"})
+ 		})
+ 		$('.gr').click(function(){
+ 			$(".dwfp").css({"display":"none"})
+ 		})
+ 	</script>
+ 	</div>
+ 	<div class="dwfp" style="display: none;">
+ 		<div class="danw"><input type="text" placeholder="  请填写单位名称"/></div>
+ 		<div class="shibie"><input type="text" value="请再此填写纳税人识别号"/><i class="iconfont 	icon-xinxi-xianxingyuankuang"></i></div>
+ 	</div>
+ 	<div class="dzpt" style="display: none;">
+ 		<div>收票人信息</div>
+ 		<div class="sp"><span>收票人手机</span><span class="yktip"><input type="text" placeholder="可通过手机号在服务平台查询"/></span></div>
+ 		<div class="sp"><span>收票人邮箱</span><span class="yktip"><input type="text" placeholder="用来接收电子发票邮箱，可选填"/></span></div>
+ 	</div>
+ 	<script type="text/javascript">
+ 		$('.ptdi').click(function(){
+ 			$('.dzpt').css({'display':'block'});
+ 			$('.lx').html('电子普通发票与纸质普通发票具备同等法律效力，可支持报销入账');
+ 		});
+ 		$('.pt').click(function(){
+ 			$('.dzpt').css({'display':'none'});
+ 			$('.lx').html('云客部分试点地区仅提供电子普通发票，具体以实际出具为准');
+ 		})
+ 	</script>
+ </div>
+ 
+  <div class="fpclassfy">
+ 	<div><span>发票内容</span><span class="yktip">发票内容选项已根据税法调整，具体请以展示为准</span></div>
+ 	<div class="check"> 
+ 	<span class="clred mx">商品明细</span>
+ 	<span class="lb">商品类别</span>
+ 	<script type="text/javascript">
+ 		$('.lb').click(function(){
+ 			$(".neirong").html('发票内容将显示本单商品所属类别（电器电子产品及配件）及价格信息<a href="">查看详情</a>');
+ 		})
+ 		$('.mx').click(function(){
+ 			$(".neirong").html('发票内容选项已根据税法调整，具体请以展示为准');
+ 		})
+ 	</script>
+ 	</div>
+ 	<div class="yktip neirong">发票内容将显示详细商品名称与价格信息</div>
+ </div>
+ <div class="confirm">确定</div>
+  </div>
+  <script type="text/javascript">
+	$('.check span').click(function(){
+		$(this).addClass("clred");
+		$(this).siblings().removeClass('clred');
+	})
+</script>
+</div>
+</div>
+</body>
+</html>

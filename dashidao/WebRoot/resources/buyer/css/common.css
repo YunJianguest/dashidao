@@ -1,0 +1,43 @@
+@charset "utf-8";
+/*common*/
+body{font-size:14px; margin:0px; background-color:#fff;}
+img{border:0px;}
+label{cursor:pointer;}
+td,th{padding:5px;}
+th{text-align:center;}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{vertical-align:middle; padding:5px;}
+h1{margin:0px; font-size:18px;}
+li,ul,p{list-style:none; padding:0px; margin:0px; list-style-type: none;}
+li{line-height:30px;}
+a{text-decoration:none; color:#000;}
+a:hover{color:#f00;}
+#menu{padding:10px 0 0 0;}
+#menu a{display:block; width:90px; float:left; text-align:center; color:#fff; height:40px; line-height:40px; border-radius:5px;transition:all .2s linear; margin:0 3px 0 3px;font-weight:bold;}
+#menu .active{background-color:#fff; color:#2098DF; }
+#menu a:hover{background-color:#fff; color:#2098DF; }
+
+
+
+#left_menu .active{background-color:#0762AB; color:#fff;}
+#left_menu a{color:#fff; text-decoration:none; display:block; padding:15px; transition:all 0.3s linear; border-bottom:1px solid #666;}
+#left_menu a:hover{background-color:#5CB85C;}
+#left_menu span{color:#fff;transition:all 0.3s linear;}
+.left_menu_item{height:40px; line-height:40px; overflow:hidden; border-bottom:1px solid #eee;}
+.left_menu_item a{background-color:#fff; display:block;color:#333;}
+.left_menu_item .active{background-color:#efefef; color:#333;}
+.left_menu_item a:hover{background-color:#5CB85C; color:#fff;}
+.left_menu a:hover{color:#fff;}
+.left_menu ul a:hover{color:#f00;}
+/*bootstrap css*/
+.nav-tabs>li>a{margin-right:0px;}
+.tab{ border-left:1px solid #ddd; border-right:1px solid #ddd; border-bottom:1px solid #ddd;border-bottom-left-radius:5px;border-bottom-right-radius:5px; padding:5px;box-shadow: 3px 3px 5px #ccc;}
+#ui-datepicker-div {z-index:100 !important;}
+/*.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{vertical-align:baseline;}*/
+.tabs_wrap{margin:10px 0 0 0; font-weight:normal;}
+.tabs.active{float:left; border-top:3px solid #FF99CC; border-right:1px solid #ccc; border-bottom:0px; background-color:#fff;  width:100px; height:40px;  line-height:40px; text-align:center;}
+.tabs{float:left; border-top:1px solid #ccc;  border-right:1px solid #ccc; border-bottom:1px solid #ccc; background-color:#fff;  width:100px; height:40px; line-height:40px; text-align:center;}
+.tabs a{display:block;}
+.tabs a:hover{text-decoration:none;}
+.tabs_box{padding:10px; border-right:1px solid #ccc;box-shadow:0px -1px 0px #ccc; border-left:1px solid #ccc; border-bottom:1px solid #ccc; background-color:#fff; clear:both;}
+.table{margin-bottom:0px;}
+.glyphicon,.fa{margin-right:5px;}

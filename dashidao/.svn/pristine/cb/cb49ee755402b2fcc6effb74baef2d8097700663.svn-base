@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+	<title>申请退出</title>
+
+	<link href="$!webPath/resources/style/system/front/default/css/01.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+	<script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+	<script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>申请退出 - $!{config.poweredby}</title>
+	<meta name="keywords" content="$!config.keywords" />
+	<meta name="description" content="$!config.description" />
+	<meta name="generator" content="$!{config.meta_generator}" />
+	<meta name="author" content="$!{config.meta_author}">
+	<meta name="copyright" content="$!{config.copyRight}">
+	#if($!config.website_ico)
+	<link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+	#end
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+	<link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+	<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+	<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+	<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+	<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+	<script>
+        jQuery(document).ready(function(){
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+	</script>
+</head>
+<body>
+<style type="text/css" >
+	.div_2{ width: 90%; }
+	#sqtc tr td{ height: 50px; line-height: 50px; }
+</style>
+<div class="main">
+	<div class="user_center">
+		$!httpInclude.include("/poster/nav_head.htm")
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+			<tr> $!httpInclude.include("/poster/nav.htm?op=refund")
+				<td id="centerbg" valign="top" width="80%">
+					<div class="buyer_position" style="width: 99%; background: #fff;">
+						<div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代中心</a> > <span>栈代合同</span></div>
+					</div>
+					<div class="div_2">
+						<table class="table" id="sqtc" >
+							<tbody>
+							<tr>
+								<td >合同截止日期：</td>
+								<td >2017-10-1</td>
+								<td>
+									<div id="d" style="width: 100px; padding:5px 15px; background-color: red; color: #fff; text-align: center; line-height: 30px; border-radius: 5px; margin-top: 5px; ">
+										合同未到期
+									</div>
+								</td>
+								<td id="font2">合同未到期时，退出合作，将会扣除您20%的保证金。</td>
+							</tr>
+							<tr>
+								<td>退出原因：</td>
+								<td align="left" colspan="3" >
+									<label><input type="checkbox" style="padding-right: 15px;" /><span style="padding-right: 15px;" ></span>合同到期，不愿意续期了</label><br>
+									<label><input type="checkbox"/><span style="padding-right: 15px;" ></span>生意不做了，准备转行</label><br>
+									<label><input type="checkbox"/><span style="padding-right: 15px;" ></span>平台服务有待完善，对平台有诸多不满</label><br>
+									<label><input type="checkbox"/><span style="padding-right: 15px;" ></span>其他</label>
+								</td>
+							</tr>
+							<tr>
+								<td>详细说明：</td>
+								<td colspan="3"><input type="text" style="width:600px;height: 300px; margin: 20px 0; "/></td>
+							</tr>
+							<tr>
+								<td colspan="4" align="center">你还有3份订单未完成，若退出申请审核通过，订单完成后将会自动退回您的保证金。</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="div_1">
+						<table class="xy_table">
+							<tbody>
+							<tr>
+								<td align="center">
+									<!--<input type="button" value="确定"/ style="background-color: #108ee9;width: 100px;height: 50px;color: white;font-size: 20px;">-->
+									<button type="button" class="button" style="width: 120px;">提交申请</button>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+
+
+
+				</td>
+			</tr>
+		</table>
+	</div>
+	$!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery.validate.min.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+   	<script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+    <link href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/template.css"  rel="stylesheet" type="text/css"/>
+    
+    
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css">
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+    <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+    <style>
+        .ac9 a{border:0;}
+    </style>
+    <script>
+        jQuery(document).ready(function(){
+
+        });
+        
+        //审核
+        function shenHeClick(id,applyId,zt)
+        {
+        	var userid = "${user.id}";
+        	jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"$!webPath/admin/yunke_audit.htm",
+                dataType:"json",
+                data:"id="+id+"&state="+zt+"&applyId="+applyId+"&userid="+userid,
+                error:function(){alert("数据错误，操作被取消！");},
+                success:function(data){
+                    alert("操作成功");
+                    window.location.reload();
+                }
+            });
+        }
+        
+    </script>
+</head>
+<body>
+<div class="cont">
+    <h1 class="seth1">会员列表轮播图</h1>
+    <div class="settab"><span class="tab-one"></span> <span class="tabs"> <a href="$!webPath/admin/top_photo_list.htm"  class="this">图片</a>     
+    	 <a href="$!webPath/admin/top_photo_add.htm">添加</a>  </span> 
+    	 <span class="tab-two"></span></div>
+    <div class="operation">
+        <h3>友情提示</h3>
+        <ul>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <form action="$!webPath/admin/yunke_auditlb.htm" method="post" name="ListForm" id="ListForm">
+        <div class="leveltable">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="level_table" id="certification_table">
+                <tr class="tableheader">
+                   			<th>行号</th>
+                            <th>标题</th>
+                            <th>链接地址</th>
+                            <th>图片</th>
+                            <th>操作</th>
+                </tr>
+	                 #foreach($!obj in $objs)
+				       <tr>
+                    	<td>$!obj.id <input type="hidden" name="id" id="id" value="$!obj.id"/></td>
+                    	<td>$!obj.title</td>
+                   	    <td>$!obj.top_url</td>
+                    	<td><img src="$!webPath/$!obj.acc.path/$!obj.acc.name" style="width:100px;height:100px;" /></td>
+                    	<td><a href="$!webPath/admin/top_photo_edit.htm?id=$!obj.id&accid=$!obj.acc.id" >修改 </a>| 
+                    		<a href="$!webPath/admin/top_photo_del.htm?mulitId=$!obj.id&accid=$!obj.acc.id&currentPage=$!currentPage">删除</a>
+                    	</td>
+			        </tr>
+			       #end
+                
+            </table>
+        </div>
+         <div class="fenye">
+	      <input type="hidden" name="currentPage" id="currentPage" value="$!currentPage" />
+	      <input name="mulitId" type="hidden" id="mulitId" />
+	      $!gotoPageHTML
+	</div>
+    </form>
+</div>
+</body>
+</html>

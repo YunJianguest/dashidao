@@ -1,0 +1,322 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>评价管理</title>
+
+	<!--<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>-->
+
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/two_level.css" />
+	#if($!config.website_ico)
+	<link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+	#end
+	<link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+	<script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="$!webPath/resources/js/jquery.SuperSlide.2.1.1.js"></script>
+	<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+	<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+	<script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+	<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+	<link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+	<link href="$!webPath/resources/style/system/manage/black/zxx.css"  rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+	<script src="$!webPath/resources/js/bootstrap.min.js"></script>
+	<!--bootstrap-->
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+	<script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+	<!--layui-->
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+	<script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+	<style>
+		.pf{background: url($!webPath/img/pf.png);
+			background-size: 100% 100%;
+			height: 20px;
+			width: 70%;
+			height: 20px!important;}
+	</style>
+</head>
+<body>
+<div class="main"> $!httpInclude.include("/seller/nav_head.htm")
+	<div class="user_center">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+			<tr> $!httpInclude.include("/seller/nav.htm?op=evaluate_manager")
+				<td id="centerbg" valign="top" width="80%">
+					<div class="buyer_position">
+						<div class="buyer_p_box"><a href="$!webPath/poster/index.htm">商家支持</a> > <span>直营店管理</span> > <span>评价管理</span></div>
+					</div>
+					<div class="both evaluate">
+						<table width="100%" >
+							<tr>
+								<td width="10%" class="stores" rowspan="3">
+									<img src="$!webPath/img/raw_1501117118.png" alt="" style="display: block;">
+									<div style="line-height: 25px;">云正通海鲜雁塔店<span style="font-size: 12px;">(90760987)</span></div>
+								</td>
+								<td style="text-align: left" class="stores_name">
+									<div style=" float: right;margin-right: 2%;background: red;width: 30px; margin-top: 15px; height: 25px;line-height: 25px;text-align: center;color: #fff;">4.9</div>
+									<div style="width: 100%; float: right;">
+										<div class="pf" style=" float: right"></div>
+										<ul class="pfw" style=" float: right">
+											<li>非常不满意</li>
+											<li>不满意</li>
+											<li>一般</li>
+											<li>满意</li>
+											<li>非常满意</li>
+											<div style="clear: both;"></div>
+										</ul>
+									</div>
+								</td>
+							</tr>
+
+						</table>
+
+						<div class="shopadminbox" style="margin-top: 30px;" >
+							<div class="hd">
+								<ul>
+									<li>好评（32190）</li>
+									<li>中评（23）</li>
+									<li>差评（12）</li>
+									<li>追评（23451）</li>
+									<div class="clear"></div>
+								</ul>
+							</div>
+							<div class="bd">
+								<!--好评-->
+								<ul>
+									<li>
+										<table width="100%">
+											<tbody>
+											<tr>
+												<td rowspan="3" width="15%" style="text-align: center">
+													<div class="user_head"><img src="img/raw_1501422990.png" alt=""></div>
+													<div class="username">z***4(匿名)</div>
+													<div class="pingj"><img src="img/xin.png" alt=""></div>
+												</td>
+												<td>峰会上肯定与京东方和国家队和岁聚合函数鸡蛋和会成为IE个我个好人卡攻击而客观和他如何加快不会hi欧佛诶我u哦IEu福偶尔玩焐热我我去玩一次v定位我哦入围殴辱 我为芙蓉王IEUR围殴u花费我还维护forIE车日哦解耦额教二级覅偶尔</td>
+											</tr>
+											<tr>
+												<td class="pl_img">
+													<img src=$!webPath/img/head.png" alt="">
+													<img src="$!webPath/img/raw_1501246954.png" alt="">
+													<img src="$!webPath/img/raw_1514799177.png" alt="">
+													<img src="$!webPath/img/raw_1514798017.png" alt="">
+												</td>
+											</tr>
+											<tr>
+												<td><span class="pl_time">2017年10月16日</span><span class="right"><a href="">有用</a>（0）</span></td>
+											</tr>
+											</tbody>
+										</table>
+										<table width="100%">
+											<tbody>
+											<tr>
+												<td rowspan="3" width="15%" style="text-align: center">
+													<div class="user_head"><img src="$!webPath/img/raw_1501422990.png" alt=""></div>
+													<div class="username">z***4(匿名)</div>
+													<div class="pingj"><img src="$!webPath/img/xin.png" alt=""></div>
+												</td>
+												<td>峰会上肯定与京东方和国家队和岁聚合函数鸡蛋和会成为IE个我个好人卡攻击而客观和他如何加快不会hi欧佛诶我u哦IEu福偶尔玩焐热我我去玩一次v定位我哦入围殴辱 我为芙蓉王IEUR围殴u花费我还维护forIE车日哦解耦额教二级覅偶尔</td>
+											</tr>
+											<tr>
+												<td class="pl_img">
+													<img src="$!webPath/img/head.png" alt="">
+													<img src="$!webPath/img/raw_1501246954.png" alt="">
+													<img src="$!webPath/img/raw_1514799177.png" alt="">
+													<img src="$!webPath/img/raw_1514798017.png" alt="">
+												</td>
+											</tr>
+											<tr>
+												<td><span class="pl_time">2017年10月16日</span><span class="right"><a href="">有用</a>（0）</span></td>
+											</tr>
+											</tbody>
+										</table>
+										<table width="100%">
+											<tbody>
+											<tr>
+												<td rowspan="3" width="15%" style="text-align: center">
+													<div class="user_head"><img src="$!webPath/img/raw_1501422990.png" alt=""></div>
+													<div class="username">z***4(匿名)</div>
+													<div class="pingj"><img src="$!webPath/img/xin.png" alt=""></div>
+												</td>
+												<td>峰会上肯定与京东方和国家队和岁聚合函数鸡蛋和会成为IE个我个好人卡攻击而客观和他如何加快不会hi欧佛诶我u哦IEu福偶尔玩焐热我我去玩一次v定位我哦入围殴辱 我为芙蓉王IEUR围殴u花费我还维护forIE车日哦解耦额教二级覅偶尔</td>
+											</tr>
+											<tr>
+												<td class="pl_img">
+													<img src="$!webPath/img/head.png" alt="">
+													<img src="$!webPath/img/raw_1501246954.png" alt="">
+													<img src="$!webPath/img/raw_1514799177.png" alt="">
+													<img src="$!webPath/img/raw_1514798017.png" alt="">
+												</td>
+											</tr>
+											<tr>
+												<td><span class="pl_time">2017年10月16日</span><span class="right"><a href="">有用</a>（0）</span></td>
+											</tr>
+											</tbody>
+										</table>
+									</li>
+								</ul>
+								<!-- 中评-->
+								<ul>
+									<li>
+										<table width="100%">
+											<tbody>
+											<tr>
+												<td rowspan="3" width="15%" style="text-align: center">
+													<div class="user_head"><img src="$!webPath/img/raw_1501422990.png" alt=""></div>
+													<div class="username">z***4(匿名)</div>
+													<div class="pingj"><img src="$!webPath/img/xin.png" alt=""></div>
+												</td>
+												<td>峰会上肯定与京东方和国家队和岁聚合函数鸡蛋和会成为IE个我个好人卡攻击而客观和他如何加快不会hi欧佛诶我u哦IEu福偶尔玩焐热我我去玩一次v定位我哦入围殴辱 我为芙蓉王IEUR围殴u花费我还维护forIE车日哦解耦额教二级覅偶尔</td>
+											</tr>
+											<tr>
+												<td class="pl_img">
+													<img src="$!webPath/img/head.png" alt="">
+													<img src="$!webPath/img/raw_1501246954.png" alt="">
+													<img src="$!webPath/img/raw_1514799177.png" alt="">
+													<img src="$!webPath/img/raw_1514798017.png" alt="">
+												</td>
+											</tr>
+											<tr>
+												<td><span class="pl_time">2017年10月16日</span><span class="right"><a href="">有用</a>（0）</span></td>
+											</tr>
+											</tbody>
+										</table>		<table width="100%">
+										<tbody>
+										<tr>
+											<td rowspan="3" width="15%" style="text-align: center">
+												<div class="user_head"><img src="$!webPath/img/raw_1501422990.png" alt=""></div>
+												<div class="username">z***4(匿名)</div>
+												<div class="pingj"><img src="$!webPath/img/xin.png" alt=""></div>
+											</td>
+											<td>峰会上肯定与京东方和国家队和岁聚合函数鸡蛋和会成为IE个我个好人卡攻击而客观和他如何加快不会hi欧佛诶我u哦IEu福偶尔玩焐热我我去玩一次v定位我哦入围殴辱 我为芙蓉王IEUR围殴u花费我还维护forIE车日哦解耦额教二级覅偶尔</td>
+										</tr>
+										<tr>
+											<td class="pl_img">
+												<img src="$!webPath/img/head.png" alt="">
+												<img src="$!webPath/img/raw_1501246954.png" alt="">
+												<img src="$!webPath/img/raw_1514799177.png" alt="">
+												<img src="$!webPath/img/raw_1514798017.png" alt="">
+											</td>
+										</tr>
+										<tr>
+											<td><span class="pl_time">2017年10月16日</span><span class="right"><a href="">有用</a>（0）</span></td>
+										</tr>
+										</tbody>
+									</table>
+									</li>
+								</ul>
+								<!--差评-->
+								<ul>
+									<li>
+										<table width="100%">
+											<tbody>
+											<tr>
+												<td rowspan="3" width="15%" style="text-align: center">
+													<div class="user_head"><img src="$!webPath/img/raw_1501422990.png" alt=""></div>
+													<div class="username">z***4(匿名)</div>
+													<div class="pingj"><img src="$!webPath/img/xin.png" alt=""></div>
+												</td>
+												<td>峰会上肯定与京东方和国家队和岁聚合函数鸡蛋和会成为IE个我个好人卡攻击而客观和他如何加快不会hi欧佛诶我u哦IEu福偶尔玩焐热我我去玩一次v定位我哦入围殴辱 我为芙蓉王IEUR围殴u花费我还维护forIE车日哦解耦额教二级覅偶尔</td>
+											</tr>
+											<tr>
+												<td class="pl_img">
+													<img src="$!webPath/img/head.png" alt="">
+													<img src="$!webPath/img/raw_1501246954.png" alt="">
+													<img src="$!webPath/img/raw_1514799177.png" alt="">
+													<img src="$!webPath/img/raw_1514798017.png" alt="">
+												</td>
+											</tr>
+											<tr>
+												<td><span class="pl_time">2017年10月16日</span><span class="right"><a href="">有用</a>（0）</span></td>
+											</tr>
+											</tbody>
+										</table>		<table width="100%">
+										<tbody>
+										<tr>
+											<td rowspan="3" width="15%" style="text-align: center">
+												<div class="user_head"><img src="$!webPath/img/raw_1501422990.png" alt=""></div>
+												<div class="username">z***4(匿名)</div>
+												<div class="pingj"><img src="$!webPath/img/xin.png" alt=""></div>
+											</td>
+											<td>峰会上肯定与京东方和国家队和岁聚合函数鸡蛋和会成为IE个我个好人卡攻击而客观和他如何加快不会hi欧佛诶我u哦IEu福偶尔玩焐热我我去玩一次v定位我哦入围殴辱 我为芙蓉王IEUR围殴u花费我还维护forIE车日哦解耦额教二级覅偶尔</td>
+										</tr>
+										<tr>
+											<td class="pl_img">
+												<img src="$!webPath/img/head.png" alt="">
+												<img src="$!webPath/img/raw_1501246954.png" alt="">
+												<img src="$!webPath/img/raw_1514799177.png" alt="">
+												<img src="$!webPath/img/raw_1514798017.png" alt="">
+											</td>
+										</tr>
+										<tr>
+											<td><span class="pl_time">2017年10月16日</span><span class="right"><a href="">有用</a>（0）</span></td>
+										</tr>
+										</tbody>
+									</table>
+									</li>
+								</ul>
+								<!--追评-->
+								<ul>
+									<li>
+										<table width="100%">
+											<tbody>
+											<tr>
+												<td rowspan="3" width="15%" style="text-align: center">
+													<div class="user_head"><img src="$!webPath/img/raw_1501422990.png" alt=""></div>
+													<div class="username">z***4(匿名)</div>
+													<div class="pingj"><img src="$!webPath/img/xin.png" alt=""></div>
+												</td>
+												<td>峰会上肯定与京东方和国家队和岁聚合函数鸡蛋和会成为IE个我个好人卡攻击而客观和他如何加快不会hi欧佛诶我u哦IEu福偶尔玩焐热我我去玩一次v定位我哦入围殴辱 我为芙蓉王IEUR围殴u花费我还维护forIE车日哦解耦额教二级覅偶尔</td>
+											</tr>
+											<tr>
+												<td class="pl_img">
+													<img src="$!webPath/img/head.png" alt="">
+													<img src="$!webPath/img/raw_1501246954.png" alt="">
+													<img src="$!webPath/img/raw_1514799177.png" alt="">
+													<img src="$!webPath/img/raw_1514798017.png" alt="">
+												</td>
+											</tr>
+											<tr>
+												<td><span class="pl_time">2017年10月16日</span><span class="right"><a href="">有用</a>（0）</span></td>
+											</tr>
+											</tbody>
+										</table>		<table width="100%">
+										<tbody>
+										<tr>
+											<td rowspan="3" width="15%" style="text-align: center">
+												<div class="user_head"><img src="$!webPath/img/raw_1501422990.png" alt=""></div>
+												<div class="username">z***4(匿名)</div>
+												<div class="pingj"><img src="$!webPath/img/xin.png" alt=""></div>
+											</td>
+											<td>峰会上肯定与京东方和国家队和岁聚合函数鸡蛋和会成为IE个我个好人卡攻击而客观和他如何加快不会hi欧佛诶我u哦IEu福偶尔玩焐热我我去玩一次v定位我哦入围殴辱 我为芙蓉王IEUR围殴u花费我还维护forIE车日哦解耦额教二级覅偶尔</td>
+										</tr>
+										<tr>
+											<td class="pl_img">
+												<img src="$!webPath/img/head.png" alt="">
+												<img src="$!webPath/img/raw_1501246954.png" alt="">
+												<img src="$!webPath/img/raw_1514799177.png" alt="">
+												<img src="$!webPath/img/raw_1514798017.png" alt="">
+											</td>
+										</tr>
+										<tr>
+											<td><span class="pl_time">2017年10月16日</span><span class="right"><a href="">有用</a>（0）</span></td>
+										</tr>
+										</tbody>
+									</table>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<script type="text/javascript">jQuery(".shopadminbox").slide({trigger:"click"});</script>
+					</div>
+
+				<td>
+			<tr>
+		</table>
+	</div>
+	<script type="text/javascript">jQuery(".shopadminbox").slide({trigger:"click"});</script>
+</div>
+</body>
+</html>

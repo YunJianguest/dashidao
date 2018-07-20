@@ -1,0 +1,311 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>卖家品牌列表 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link href="$!webPath/resources/style/system/manage/black/zxx.css"  rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+    <script src="$!webPath/resources/js/echarts.min.js"></script>
+</head>
+<body>d
+$!httpInclude.include("/top.htm")
+<div class="main"> $!httpInclude.include("/seller/nav_head.htm")
+    <div class="user_center">
+        <table width="1200" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=product_analyze")
+                <td id="centerbg" valign="top">
+                    <div style="width: 1200px;display: flex;margin: 15px auto;border: 1px solid #C4C4C4">
+
+                        <!--销售额占比饼状图-->
+                        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                        <div id="main" style="width: 600px;height:400px;"></div>
+                        <script type="text/javascript">
+                            // 基于准备好的dom，初始化echarts实例
+                            var myChart = echarts.init(document.getElementById('main'));
+
+                            // 指定图表的配置项和数据
+                            var option = {
+                                title : {
+                                    text: '销售额占比饼状图：',
+                                    x:'center'
+                                },
+                                tooltip : {
+                                    trigger: 'item',
+                                    formatter: '{b}:\n{c}%'
+                                },
+                                /*legend: {
+                                 orient: 'vertical',
+                                 left: 'left',
+                                 data: ['ck夹克','时尚衬衣','羊毛衫','am裤子','保暖手套','羽绒服']
+                                 },*/
+                                series : [
+                                    {
+                                        name: '访问来源',
+                                        type: 'pie',
+                                        radius : '55%',
+                                        center: ['50%', '60%'],
+                                        data:[
+                                            {value:488, name:'ck夹克'},
+                                            {value:244, name:'时尚衬衣'},
+                                            {value:1707, name:'羊毛衫'},
+                                            {value:122, name:'am裤子'},
+                                            {value:3902, name:'保暖手套'},
+                                            {value:2439, name:'羽绒服'}
+                                        ],
+                                        itemStyle: {
+                                            emphasis: {
+                                                shadowBlur: 10,
+                                                shadowOffsetX: 0,
+                                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                            },
+                                            normal:{
+                                                label:{
+                                                    show: true,
+                                                    formatter: '{b} : {c} ({d}%)'
+                                                },
+                                                labelLine :{show:true}
+                                            }
+                                        }
+                                    }
+                                ]
+                            };
+
+                            // 使用刚指定的配置项和数据显示图表。
+                            myChart.setOption(option);
+                        </script>
+
+                        <!--线下销量占比饼状图-->
+                        <div id="main1" style="width: 600px;height:400px;"></div>
+                        <script type="text/javascript">
+                            // 基于准备好的dom，初始化echarts实例
+                            var myChart = echarts.init(document.getElementById('main1'));
+
+                            // 指定图表的配置项和数据
+                            var option = {
+                                title : {
+                                    text: '线下销量占比饼状图：',
+                                    x:'center'
+                                },
+                                tooltip : {
+                                    trigger: 'item',
+                                    formatter: '{b}:\n{c}%'
+                                },
+                                /*legend: {
+                                 orient: 'vertical',
+                                 left: 'left',
+                                 data: ['ck夹克','时尚衬衣','羊毛衫','am裤子','保暖手套','羽绒服']
+                                 },*/
+                                series : [
+                                    {
+                                        name: '访问来源',
+                                        type: 'pie',
+                                        radius : '55%',
+                                        center: ['50%', '60%'],
+                                        data:[
+                                            {value:5575, name:'线上销售'},
+                                            {value:4425, name:'线下销售'}
+                                        ],
+                                        itemStyle: {
+                                            emphasis: {
+                                                shadowBlur: 10,
+                                                shadowOffsetX: 0,
+                                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                            },
+                                            normal:{
+                                                label:{
+                                                    show: true,
+                                                    formatter: '{b} : {c} ({d}%)'
+                                                },
+                                                labelLine :{show:true}
+                                            }
+                                        }
+                                    }
+                                ]
+                            };
+
+                            // 使用刚指定的配置项和数据显示图表。
+                            myChart.setOption(option);
+                        </script>
+                    </div>
+                    <!--商品月销量变动情况-->
+
+                    <div class="div_2">
+                        <p style="font-size: 18px;">商品月销量变动情况：</p>
+                    </div>
+                    <div class="div_2">
+                        <table class="table solid">
+                            <thead class="table_thead">
+                            <th>行号</th>
+                            <th>商品编号</th>
+                            <th>商品名称</th>
+                            <th>规格型号</th>
+                            <th>单价</th>
+                            <th>上月销量</th>
+                            <th>当月销量↑↓</th>
+                            <th>线下销量</th>
+                            <th>线下/总量↑↓</th>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>01</td>
+                                <td>230018</td>
+                                <td>韩版修身T恤</td>
+                                <td>蓝色/L</td>
+                                <td>30元</td>
+                                <td>1100</td>
+                                <td>1000<span class="font1">↓</span></td>
+                                <td>50</td>
+                                <td>4.78%</td>
+                            </tr>
+                            <tr>
+                                <td>02</td>
+                                <td>930018</td>
+                                <td>韩版修身T恤</td>
+                                <td>蓝色/L</td>
+                                <td>30元</td>
+                                <td>200</td>
+                                <td>500<span class="font2">↑</span></td>
+                                <td>100</td>
+                                <td>16.67%</td>
+                            </tr>
+                            <tr>
+                                <td>03</td>
+                                <td>230018</td>
+                                <td>韩版修身T恤</td>
+                                <td>蓝色/L</td>
+                                <td>30元</td>
+                                <td>1100</td>
+                                <td>1000<span class="font1">↓</span></td>
+                                <td>50</td>
+                                <td>4.78%</td>
+                            </tr>
+                            <tr>
+                                <td>04</td>
+                                <td>930018</td>
+                                <td>韩版修身T恤</td>
+                                <td>蓝色/L</td>
+                                <td>30元</td>
+                                <td>200</td>
+                                <td>500<span class="font2">↑</span></td>
+                                <td>100</td>
+                                <td>16.67%</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="div_2">
+                        <ul class="pagination">
+                            <li><a href="#">&laquo;</a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li class="disabled"><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">&raquo;</a></li>
+                        </ul>
+                    </div>
+                    <!--商品月销量变动情况柱状图-->
+                    <div class="div_2">
+                        <p style="font-size: 18px;">商品月销量变动情况柱状图：</p>
+                    </div>
+
+                    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                    <div id="main3" style="width: 800px;height: 400px; display: flex;margin: 15px auto;"></div>
+                    <script type="text/javascript">
+                        // 基于准备好的dom，初始化echarts实例
+                        var myChart = echarts.init(document.getElementById('main3'));
+
+                        // 指定图表的配置项和数据
+                        var option={
+                            tooltip:{
+                                trigger: 'axis',
+                                axisPointer: {
+                                    type: 'cross',
+                                    crossStyle: {
+                                        color: '#5793f3'
+                                    }
+                                }
+                            },
+                            legend: {
+                                data: ['本月销量','上月销量','线下销量','线下/线上','本月/上月']
+                            },
+                            xAxis: [{
+                                type:'category',
+                                data: ["修身T恤","短款衬衣","中山装","欧版男长裤","羊毛衫","羽绒服"],
+                                axisPointer:{
+                                    type:'shadow'
+                                }
+                            }],
+                            yAxis: [{
+                                type:'value',
+                                name:'销量',
+                                min: 0,
+                                max: 3000
+                            },{
+                                type:'value',
+                                name:'百分比',
+                                min: 0,
+                                max: 120,
+                                axisLabel: {
+                                    formatter: '{value} %'
+                                }
+                            }],
+                            series: [{
+                                name:'本月销量',
+                                type:'bar',
+                                data: [500, 2000, 2600, 1000, 1100, 2100]
+                            },{
+                                name:'上月销量',
+                                type:'bar',
+                                data: [1000, 2500, 2006, 1001, 1500, 1600]
+                            },{
+                                name:'线下/线上',
+                                type:'line',
+                                yAxisIndex: 1,
+                                itemStyle : { normal: {label : {show: true}}},
+                                data: [75, 68, 56, 84, 66, 70]
+                            },{
+                                name:'线下销量',
+                                type:'bar',
+                                data: [1500, 1200, 2606, 1801, 2500, 1600]
+                            },{
+                                name:'本月/上月',
+                                type:'line',
+                                itemStyle : { normal: {label : {show: true}}},
+                                yAxisIndex: 1,
+                                data: [99, 92, 84, 100, 91, 84]
+                            }
+                            ]
+                        };
+
+                        // 使用刚指定的配置项和数据显示图表。
+                        myChart.setOption(option);
+                    </script>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

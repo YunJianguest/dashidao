@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>成为云客</title>
+    <!--必选css-->
+     <link rel="stylesheet" type="text/css" href="css/zxx.css" >
+    <link rel="stylesheet" type="text/css" href="css/css1.css" >
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/schedule.css">
+<style type="text/css">
+	body{background: #fff;}
+	ul{margin: 0;}
+	.xiaol{margin-top:6rem ;}
+	.xiaol ul li{width:50%;height: 3.5rem;line-height:3.5rem;float: left;text-align: center;}
+	.ykmyer{border-bottom: 1px solid #f5f5f5;font-size: 1.5rem;}
+	.dangq{border-right: 1px solid #f5f5f5;}
+	.tip{width:100%;text-align: center;height: 3rem;line-height: 3rem;font-size: 1.5rem;}
+	.jindu{width: 94%; margin: 0 3%;}
+	span{color:red;}
+	#scheduleX{width: 100%!important;margin: 2rem 0;border:1px solid #f3f3f3;}
+	.apply{width:80%;margin: 1rem 10%; border-radius:20px ;background: #ff6600;color:#fff;height: 3rem;line-height: 3rem;text-align: center;}
+	.hc{padding:.7rem 3%;font-size: 1.7rem;}
+</style>
+</head>
+<body >
+<!--head-->
+<div class="myer ykmyer">
+    <p >
+       <i class="iconfont icon-back" onclick="history.go(-1)"  ></i> 成为云客
+    </p>
+</div>
+<div class="xiaol">
+	
+	<div class="tip"><span>Tip:</span>消费额达到<span>7000</span>即可升级为云客</div>
+	<ul>
+		<li class="dangq">当前消费额<span class="muq">2000</span></li>
+		<li>目标消费额 <span class="mub">7000</span></li>
+		<div class="clear"></div>
+	</ul>
+</div>
+<div class="jindu">
+ <div id="scheduleX"></div>
+ </div>
+<script src="js/schedule.js"></script>
+<script>
+    $(function () {
+    	var muq=$(".muq").html();
+    	var mub=$(".mub").html();
+        /*横向进度条*/
+        scheduleX({
+            fulfill: muq,   //选择数
+            listAll: mub,  //总数
+            speed: 25,     //动画速度，可选，默认25,越小越快
+            again: false,  //选择数改变动画是否从零开始，默认true从零开始
+            bgColor: "#fff",    //底部颜色
+            listColor: "#fe4e42",  //伸缩条颜色，默认原谅绿
+            scWidth: "400",        //进度条宽度
+            scHeight: "15"         //进度条高度
+        });
+
+    });
+
+</script>
+<div class="hc">成为云客好处：<br />1.自购省钱，外购赚钱；<br />2.不用租金即可拥有自己的店铺；</div>
+<a href="sqyk.html"><div class="apply">立即申请</div></a>
+</body>
+</html>

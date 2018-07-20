@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+<link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
+<link rel="stylesheet" type="text/css" href="css/zxx.css"/>
+<title>店铺LOGO</title>
+</head>
+<body style="position:relative;">
+<!--头部-->
+	<div class="header">
+			<ul>
+				<li class="back" onclick="history.go(-1)"><img src="image/back.png"/></li>
+				<li>修改店铺图片</li>
+				<li class="jilu"><a href="stores_information.html" >保存</a></li>
+				<div class="clear"></div>
+			</ul>
+	</div>	
+	<!--店铺-->
+	<div id="information">
+	
+		
+							<div class="dptx fl" style="float: left;margin-left: 1rem;"><img src="images/dztx.png"/></div>
+							<div class="dptx fl" style="float: left;margin-left: 1rem;"><img src="images/dztx.png"/></div>
+							<div class="dptx fl" style="float: left;margin-left: 1rem;"><img src="images/dztx.png"/></div>
+							<div class="dptx fl" style="float: left;margin-left: 1rem;"><img src="images/dztx.png"/></div>
+				
+		
+			
+			<div class="clear"></div>
+
+		
+	</div>
+	
+	<div class="file-box"> 
+			<input type="file"  class="file-btn"/>上传图片
+		</div>
+</body>
+</html>

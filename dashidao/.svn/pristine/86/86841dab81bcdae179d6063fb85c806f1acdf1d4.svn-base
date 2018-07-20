@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>服务数据看板 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <!--<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>-->
+    <!--<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>-->
+    <!--<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>-->
+    <!--<script src="$!webPath/resources/js/jquery.shop.common.js"></script>-->
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+    <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+<link href="$!webPath/resources/style/system/manage/blue/zhandai.css"  rel="stylesheet" type="text/css"/>
+    <script>
+	 var total=0;
+    var val =0;
+    var tuiKuanDingDanAll;//所有的退款订单数
+    var tuiKuanDingDanById;//退款订单
+    var dingDanSum ;//订单总数
+    
+    var tkwjSum;//退款完结
+    var tkwjByIdSum;//
+    
+    //退款完结天数
+    var tkwjday;
+    var tkwjdayById;//
+	//('45','46','47','48','49') 所有退款状态
+   jQuery(document).ready(function(){
+   	ajaxGetDingDanSum();//订单总数
+   	//所有退款订单数
+   	var zts ="('2','45','46','47','48','49')";
+   	ajaxTuiHuoORder(null,zts);
+   	tuiKuanDingDanAll = val;
+   	var userName = "${user.username}";
+   	var userId = "${user.id}";
+   	//当前登录人所有退款订单数
+   	ajaxTuiHuoORder(userId,zts);
+   	tuiKuanDingDanById = val;
+   	console.log(dingDanSum+"****"+tuiKuanDingDanAll+"***"+tuiKuanDingDanById);
+   	
+   	//退款完结率
+   	var zt ="('47')";
+   	ajaxTuiHuoORder(null,zt);
+   	tkwjSum = val;
+   	ajaxTuiHuoORder(userId,zt);
+   	tkwjByIdSum = val;
+   	console.log(dingDanSum+"****"+tkwjSum+"***"+tkwjByIdSum);
+   	
+   	//退货退货完结时长
+       ajaxGetWanJieSc(null,zt);
+       tkwjday = val;
+       ajaxGetWanJieSc(userId,zt);
+       tkwjdayById = val;
+       console.log(dingDanSum+"****"+tkwjday+"***"+tkwjdayById);
+   	tabAppend(dingDanSum,tuiKuanDingDanAll,tuiKuanDingDanById,tkwjSum,tkwjByIdSum,tkwjday,tkwjdayById);
+   	
+   	
+   	//服务综合历史
+   	loadZhiBiaoLiShi(page_size,page_no,1);
+   	 layui.use(['laypage', 'layer'], function(){
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+            //完整功能
+            laypage.render({
+                elem: 'demo8'
+                ,count:total
+                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                ,jump: function(obj){
+                	page_no=obj.curr;
+                   page_size=obj.limit;
+                    loadZhiBiaoLiShi(page_size,page_no,1);
+                },
+                limits:[2, 4, 6, 8, 10],
+                limit:page_size,
+            });
+        });
+   	
+   });
+    
+    //纠纷退款率
+    function tabAppend(dingDanSum,tuiKuanDingDanAll,tuiKuanDingDanById,tkwjSum,tkwjByIdSum,tkwjday,tkwjdayById)
+    {
+		$("#fwzbTab").html("");
+		var html ="";
+			//纠纷退款率  tuiKuanDingDanAll,tuiKuanDingDanById
+		    html += "<tr class='first' >";
+		    html += "<td width='25%'>纠纷退款率</td>";
+		    html += "<td width='25%'>"+Math.round(parseFloat((tuiKuanDingDanById/dingDanSum))*100)+"%</td>";
+		    html += "<td width='25%'>"+Math.round(parseFloat((tuiKuanDingDanAll/dingDanSum))*100)+"%</td>";
+		    var tkl ="↑";
+		    if(parseFloat(tuiKuanDingDanById/dingDanSum) < parseFloat(tuiKuanDingDanAll/dingDanSum))
+		    {
+		    	tkl ="↓";
+		    }
+		    html += "<td width='25%'>"+tkl+"</td>";
+		    html += "</tr>";
+		    //退款自主完结率  tkwjSum,tkwjByIdSum
+		    html += "<tr class='first' >";
+		    html += "<td width='25%'>退款自主完结率</td>";
+		    html += "<td width='25%'>"+Math.round(parseFloat((tkwjByIdSum/dingDanSum))*100)+"%</td>";
+		    html += "<td width='25%'>"+Math.round(parseFloat((tkwjSum/dingDanSum))*100)+"%</td>";
+		    
+		    var tkl1 ="↑";
+		    if(parseFloat(tkwjByIdSum/dingDanSum) < parseFloat(tkwjSum/dingDanSum))
+		    {
+		    	tkl1 ="↓";
+		    }
+		    html += "<td width='25%'>"+tkl1+"</td>";
+		    html += "</tr>";
+		    //退货退款自主完结时长 ,tkwjday,tkwjdayById
+		    html += "<tr class='first' >";
+		    html += "<td width='25%'>退货退款自主完结时长</td>";
+		    html += "<td width='25%'>"+Math.round(tkwjdayById)+"天</td>";
+		    html += "<td width='25%'>"+Math.round(tkwjday)+"天</td>";
+		    var tkl2 ="↑";
+		    if(parseFloat(tkwjdayById) < parseFloat(tkwjday))
+		    {
+		    	tkl2 ="↓";
+		    }
+		    html += "<td width='25%'>"+tkl2+"</td>";
+		    html += "</tr>";
+	   		$("#fwzbTab").append(html);
+    }
+   
+   //获取所有退货订单
+   function ajaxTuiHuoORder(userId,status)
+   {
+   	var tj ="";
+   	if(userId!=null && userId!="")
+       {
+   		 tj =" AND `dashidao_user`.`id`= "+userId+" ";
+       }
+   	var sql ="SELECT COUNT(1) as djnum FROM `dashidao_orderform` INNER JOIN `dashidao_user` ON `dashidao_user`.id =`dashidao_orderform`.`user_id`";
+   	    sql += " WHERE `dashidao_orderform`.`order_status` IN "+status+"  AND `dashidao_user`.`userRole` ='SELLER' "+tj+" order by `dashidao_orderform`.addTime ";
+   	    jQuery.ajax({
+           type:"POST",
+           cache: false,
+           async:false,
+           url:"/ajaxuser.jsp",
+           dataType:"json",
+           data:"table=dashidao_orderform&dates=finishTime,payTime,shipTime,return_shipTime,addTime&sql="+sql,
+           error:function(){alert("数据错误，操作被取消！");},
+           success:function(data)
+           {
+               if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+               var message = data.data.data;
+               val = message[0].djnum;
+           }
+       });
+   }
+   
+   //获取订单总数
+   function ajaxGetDingDanSum()
+   {
+   	var sql ="SELECT COUNT(1) as djsum FROM `dashidao_orderform` order by `dashidao_orderform`.addTime ";
+	    jQuery.ajax({
+           type:"POST",
+           cache: false,
+           async:false,
+           url:"/ajaxuser.jsp",
+           dataType:"json",
+           data:"table=dashidao_orderform&dates=finishTime,payTime,shipTime,return_shipTime,addTime&sql="+sql,
+           error:function(){alert("数据错误，操作被取消！");},
+           success:function(data)
+           {
+               if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+               var message = data.data.data;
+               dingDanSum = message[0].djsum;
+           }
+       });
+   }
+   
+   //退货退货完结时长c查询
+   function ajaxGetWanJieSc(userId,status)
+   {
+   	val =0;
+   	var tj ="";
+   	if(userId!=null && userId!="")
+       {
+   		 tj =" AND `dashidao_user`.`id`= "+userId+" ";
+       }
+   	var sql ="SELECT SUM(TIMESTAMPDIFF(DAY,`dashidao_orderform`.`return_shipTime`,`dashidao_orderform`.`finishTime`)) AS days FROM `dashidao_orderform` INNER JOIN `dashidao_user` ON `dashidao_user`.id =`dashidao_orderform`.`user_id`";
+   	    sql += " WHERE `dashidao_orderform`.`order_status` IN "+status+"  AND `dashidao_user`.`userRole` ='SELLER' "+tj+" order by `dashidao_orderform`.addTime ";
+	    jQuery.ajax({
+           type:"POST",
+           cache: false,
+           async:false,
+           url:"/ajaxuser.jsp",
+           dataType:"json",
+           data:"table=dashidao_orderform&dates=finishTime,payTime,shipTime,return_shipTime,addTime&sql="+sql,
+           error:function(){alert("数据错误，操作被取消！");},
+           success:function(data)
+           {
+               if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+               var message = data.data.data;
+               val = message[0].days;
+           }
+       });
+   }
+   
+   
+   
+   /*********************服务综合指标历史************************************/
+   var page_size=2;
+   var page_no =1;
+   var total =0;
+   function loadZhiBiaoLiShi(page_size,page_no,moudle_id)
+   {
+   	var html ="";
+   	$("#liShiTab").html("");
+   	var sql ="select * from wemall_fw_zongheHistory where states=0  order by addTime ";
+       jQuery.ajax({
+           type:"POST",
+           cache: false,
+           async:false,
+           url:"/ajaxuser.jsp",
+           dataType:"json",
+           data:"table=wemall_fw_zongheHistory&dates=addTime,fw_beginTime,fw_endTime&sql="+sql+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+           error:function(){alert("数据错误，操作被取消！");},
+           success:function(data)
+           {
+               if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+               total=data.data.total;
+               var message=data.data.data;
+               for(var i=0;i<message.length;i++){
+               	html += "<tr class='first' >";
+               		html += "<td width='25%'>"+message[i]['fw_beginTime']+"</td>";
+               		html += "<td width='25%'>"+message[i]['fw_endTime']+"</td>";
+               		html += "<td width='25%'>"+message[i]['fw_test']+"</td>";
+               		html += "<td width='25%'>"+message[i]['fw_testGrade']+"</td>";
+               	html += "</tr>";
+               }
+               $("#liShiTab").append(html);
+           }
+       });
+   	
+   }
+</script>
+   
+
+</head>
+<body>
+<div class="main">
+    <div class="user_center">
+        $!httpInclude.include("/seller/nav_head.htm")
+        $!httpInclude.include("/seller/adv.htm")
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=refund")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="buyer_position">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">商家支持</a> > <span>客户服务</span> > <span>服务数据看板</span></div>
+                    </div>
+
+                    <div class="shopadminbox">
+                        <div class="hd">
+                            <ul>
+                                <li>服务综合指标</li>
+                                <li>服务综合指标历史</li>
+                            </ul>
+                        </div>
+                        <div class="operation_tip">
+	<h3>友情提示</h3>
+	<ul>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+                        <div class="bd">
+                            <!--考核-->
+                            <ul>
+                                <li>
+                                    <table width="100%" class="shopadmin-top" border="0" cellspacing="0" cellpadding="0" style="margin-top: 20px;">
+                                        <tbody id="fwzbTab">
+
+                                        <tr id="thead">
+                                            <td widh="25%">指标</td>
+                                            <td widh="25%">数据</td>
+                                            <td widh="25%">同行平均水平</td>
+                                            <td widh="25%">与同行平均水平相比</td>
+                                        </tr>
+                                        <tr>
+                                            <td>纠纷退款率：</td>
+                                            <td>10%</td>
+                                            <td>5%</td>
+                                            <td>↑</td>
+                                        </tr>
+                                        <tr>
+                                            <td>仅退款自主完结时长：</td>
+                                            <td>0天</td>
+                                            <td>0天</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>退货退款自主完结时长：</td>
+                                            <td>0天</td>
+                                            <td>0天</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>退款自主完结率：</td>
+                                            <td>0%</td>
+                                            <td>0%</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>会员发货自主完结时长：</td>
+                                            <td>0天</td>
+                                            <td>0天</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>栈代发货自主完结时长：</td>
+                                            <td>0天</td>
+                                            <td>1天</td>
+                                            <td>↓</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- PageNum -->
+                                    <!--分页开始-->
+                                    <div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+                                 
+                                    <!--分页结束-->
+                                </li>
+                            </ul>
+                            <!--服务综合指标历史-->
+                            <ul>
+								<li>
+									<table width="100%" border="0"  cellspacing="0" cellpadding="0"  style="margin: 20px 0;">
+										<tbody>
+										<tr class="tiptitles returntitle">
+											<!-- <td width="100%" colspan="10" >
+												<p><span>大世道服务综合指标</span></p>
+											</td> -->
+										</tr>
+										</tbody>
+									</table>
+									<table width="100%" border="0"  cellspacing="0" cellpadding="0">
+										<tbody>
+										<tr id="thead" >
+											<td width="25%" >起始时间</td>
+											<td width="25%">截止时间</td>
+											<td width="25%">考核</td>
+											<td width="25%">考核分数</td>
+										</tr>
+										</tbody>
+									</table>
+									<table width="100%" class="returntable" border="0" cellspacing="0" cellpadding="0"  id="shouhouwu" >
+										<tbody id="liShiTab">
+										</tbody>
+									</table>
+
+									<!-- PageNum -->
+									<!--分页开始-->
+									<div id="demo8" style=" text-align: center; margin-top: 30px;" ></div>
+									<!--分页结束-->
+								</li>
+							</ul>
+                        </div>
+                    </div>
+                    <script type="text/javascript">jQuery(".shopadminbox").slide({trigger:"click"});</script>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
+
+</body>
+</html>

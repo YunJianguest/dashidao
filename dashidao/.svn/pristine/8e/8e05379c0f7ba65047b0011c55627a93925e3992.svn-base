@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>基础设置</title>
+    <script type="text/javascript" src="$!webPath/resources/js/jquery1.42.min.js"></script>
+    <link href="$!webPath/resources/style/system/manage/blue/jcsz.css"  rel="stylesheet" type="text/css"/>
+    <style>
+    	
+		body{font-size: 14px!important;}
+		table {margin-top: 20px; width:100%;}
+		table td{height: 45px;line-height: 45px;padding-left:5%; }
+		.first{width:20%;}
+		.two{width:70%;}
+		table tr td input{width: 100px;margin: 0 20px;}
+		.ls{width:10%;}
+		span{padding: 3px 10px;border-radius: 3px;background: #108ee9;color:#fff;text-align: center;}
+		.first span{padding: 3px 10px;border-radius: 3px;background: #108ee;color:#fff;}
+		.hd ul li{border:1px solid #c3c3c3;}
+		.title{vertical-align:text-top;}
+	</style>
+</head>
+<body>
+
+<div class="shopadminbox">
+    <div class="hd">
+        <ul>
+            <li class="on">基础设置</li>
+            <li onclick="javascript:window.location.href='$!webPath/admin/sjbzj_admin.htm'">商家保证金设置</li>
+            <li onclick="javascript:window.location.href='$!webPath/admin/zdbzj_admin.htm'">栈代保证金设置</li>
+        </ul>
+    </div>
+    <div class="bd">
+        <!--基础设置-->
+        <ul>
+           	<li>
+           	<input type="hidden" id="id" value="$!obj.id">
+              <table>
+              	<tr>
+              		<td   class="first">会员积分规则：	</td>
+              		<td class="two"><div>实付金额* <input type="text" class="form-control" name="" id="zb_shifujine" value="$!obj.zb_shifujine" /> =积分</div></td>
+              		<td   class="ls"><span onclick="jcsz_save()">修改</span></td>
+              	</tr>
+              	<tr>
+              		<td></td>
+              		<td><div>1积分兑<input type="text" class="form-control" name="" id="zb_jifendixiao" value="$!obj.zb_jifendixiao" /> 元。</div></td>
+              		<td></td>
+              	</tr>
+              	<tr>
+              		<td></td>
+              		<td><div>单个订单使用积分不超过<input type="text" class="form-control" name="" id="zb_dingdanshiyongjifen" value="$!obj.zb_dingdanshiyongjifen" /> 个</div></td>
+              		<td></td>
+              	</tr>
+              </table>
+              <table>
+              	<tr>
+              		<td  class="first">云客进级条件：</td>
+              		<td class="two"><div>会员购买金额达到 <input type="text" class="form-control" name="" id="zb_hygmJinE" value="$!obj.zb_hygmJinE" /> 元时，可申请成为初级云客。</div></td>
+              		<td  class="ls"></td>
+              	</tr>
+              	<tr>
+              		<td></td>
+              		<td><div>商品订单数量达到<input type="text" class="form-control" name="" id="zb_huiyuandingdan" value="$!obj.zb_huiyuandingdan" />笔后可自动升级为中级云客</div></td>
+              		<td></td>
+              	</tr>
+              	<tr>
+              		<td></td>
+              		<td><div>推荐的云客有<input type="text" class="form-control" name="" id="zb_tuijianyunke" value="$!obj.zb_tuijianyunke" /> 个达到中级以上时，可自动升级为高级云客</div></td>
+              		<td></td>
+              	</tr>
+              	<tr>
+              		<td>云客考核标准：</td>
+              		<td><div>初级云客考核周期  <input type="text" class="form-control" name="" id="zb_cjkhzq" value="$!obj.zb_cjkhzq" /> 个月。考核标准  <input type="text" class="form-control" name="" id="zb_cjkhbz" value="$!obj.zb_cjkhbz" /> 元</div></td>
+              		<td></td>
+              	</tr>
+              	<tr>
+              		<td></td>
+              		<td><div>中级云客考核周期 <input type="text" class="form-control" name="" id="zb_zjkhzq" value="$!obj.zb_zjkhzq" /> 个月。考核标准 <input type="text" class="form-control" name="" id="zb_zjkhbz" value="$!obj.zb_zjkhbz" /> 元</div></td>
+              		<td></td>
+              	</tr>
+              	<!-- <tr id="yunkeCash_list">
+              		<td>云客代金券规则：</td>
+              		<td></td>
+              		<td></td>
+              	</tr>
+              	#foreach($cash in $yunkeCash)
+              	 <tr>
+              		<td></td>
+              		<td><div>$cash.zb_one_bigDecimal_attr元，单笔订单满  $cash.zb_two_bigDecimal_attr元使用。</div></td>
+              		<td></td>
+              	</tr>
+              	#end 
+              	<tr>
+              		<td><span  onclick="yunckeCash_save()">添加</span></td>
+              		<td><div id="yunkeCash"><input type="text" class="form-control" name="" id="yunckeCash_useMoney" value="" />元，单笔订单满<input type="text" class="form-control" name="" id="yunckeCash_money" value="" /> 元使用。</div></td>
+              		<td></td>
+              	</tr> -->
+              
+              	<tr>
+              		<td valign="top"><div class="title" >云客推荐商家佣金：</div></td>
+              			
+              		<td>#foreach($store in $yunkeRecommandStore)
+              		<div>第$store.zb_one_int_attr年：$store.zb_one_bigDecimal_attr。</div>
+              		#end </td>
+              		
+              		<td></td>
+              	</tr>
+              	
+              	<tr>
+              		<td><span onclick="yunckeStore_save()">添加</span></td>
+              		<td><div>第 <input type="text" class="form-control" name="" id="yunkeStore_time" value="" /> 年：<input type="text" class="form-control" name="" id="yunkeStore_money" value="" /> 。</div></td>
+              		<td></td>
+              	</tr>
+              	<tr>
+              		<td valign="top"><div class="title">云客推荐栈代佣金：</div></td>
+              		<td>#foreach($cash in $yunkeRecommandCash)<div>第$cash.zb_one_int_attr年：$cash.zb_one_bigDecimal_attr。</div>	#end </td>
+              		<td></td>
+              	</tr>
+              
+              	<tr>
+              		<td><span onclick="yunkeRecommandCash_save()">添加</span></td>
+              		<td><div>第<input type="text" class="form-control" name="" id="yunkeRecommandCash_time" value="" />年：<input type="text" class="form-control" name="" id="yunkeRecommandCash_money" value="" />。</div></td>
+              		<td></td>
+              	</tr>
+              	<tr>
+              		<td valign="top"><div class="title">佣金扣税税率:</div></td>
+              		<td>#foreach($item in $tax)<div>$item.zb_one_bigDecimal_attr至$item.zb_two_bigDecimal_attr税率：$item.zb_three_bigDecimal_attr</div>#end </td>
+              		<td></td>
+              	</tr>
+              	
+              	<tr>
+              		<td><span onclick="tax_save()">添加</span></td>
+              		<td><div><input type="text" class="form-control" name="" id="tax_start_money" value="" />至<input type="text" class="form-control" name="" id="tax_end_money" value="" /> 税率:<input type="text" class="form-control" name="" id="tax_money" value="" /></div></td>
+              		<td></td>
+              	</tr>
+              	<tr>
+              		<td>推介云客设置：</td>
+              		<td><div><input type="checkbox" class="form-control" name="" id="zb_tjyksz" value="1" />需要购买指定商品</td>
+              		<td></td>
+              	</tr>
+              </table>
+              <table>
+              	<tr>
+              		<td  class="first">商家考核标准：</td>
+              		<td class="two"><div>考核周期 <input type="text" class="form-control" name="" id="zb_sjkbzq" value="$!obj.zb_sjkbzq" />内，销售额达到<input type="text" class="form-control" name="" id="zb_sjxsJinE" value="$!obj.zb_sjxsJinE" /> 元。</div></td>
+              		<td ></td>
+              	</tr>
+              	<tr>
+              		<td>首页展示最短时间：</td>
+              		<td><div>进行首页展示的最短时间为<input type="text" class="form-control" name="" id="zb_syzssj" value="$!obj.zb_syzssj" />。</td>
+              		<td></td>
+              	</tr>
+              	<tr>
+              		<td>代言最短时间：</td>
+              		<td><div>进行代言的最短时间为 <input type="text" class="form-control" name="" id="zb_dysj" value="$!obj.zb_dysj" /></td>
+              		<td></td>
+              	</tr>
+              </table>
+              <table>
+              	<tr>
+              		<td><div class="title">提现规则：</div></td>
+              		<td>#foreach($item in $withdrawCash)<div>提现金额$item.zb_one_bigDecimal_attr,手续费为$item.zb_two_bigDecimal_attr</div>#end </td>
+              		<td></td>
+              	</tr>
+              	
+              	<tr>
+              		<td><span onclick="withdrawCash_save()">添加</span></td>
+              		<td><div>提现金额 <input type="text" class="form-control" name="" id="withdrawCash_money" value="" />，手续费为 <input type="text" class="form-control" name="" id="withdrawCash_fee" value="" /> 。</div></td>
+              		<td></td>
+				  </tr>
+              </table>
+              <table>
+              	<tr>
+              		<td  class="first">订单期限：</td>
+              		<td class="two"><div>自动确认收货期限<input type="text" class="form-control" name="" id="zb_qrshqx" value="$!obj.zb_qrshqx" />。</div></td>
+              		<td  class="ls"></td>
+              	</tr>    
+              	<tr>
+              		<td></td>
+              		<td><div>自动取消未付款订单期限<input type="text" class="form-control" name="" id="zb_qxfkqx" value="$!obj.zb_qxfkqx" /> 。</div></td>
+              		<td></td>
+              	</tr>
+              	<tr>
+              		<td></td>
+              		<td><div>消费者延长确认收货时间<input type="text" class="form-control" name="" id="" value="" /> 。</div></td>
+              		<td></td>
+              	</tr>
+              	<tr>
+              		<td></td>
+              		<td><div>消费者延长确认收货的申请时间<input type="text" class="form-control" name="" id="" value="" /> 。</div></td>
+              		<td></td>
+              	</tr>
+              	<tr>
+              		<td></td>
+              		<td><div>消费者延长确认收货的申请次数<input type="text" class="form-control" name="" id="" value="" /> 。</div></td>
+              		<td></td>
+              	</tr>
+              	<tr>
+              		<td></td>
+              		<td><div>商家自动同意"退换货申请"期限<input type="text" class="form-control" name="" id="zb_qrthsqqx" value="$!obj.zb_qrthsqqx" /> 。</div></td>
+              		<td></td>
+              	</tr>
+              	<tr>
+              		<td></td>
+              		<td><div>商家自动确认退换货的收货期限<input type="text" class="form-control" name="" id="zb_qrthsshqx" value="$!obj.zb_qrthsshqx" /> 。</div></td>
+              		<td></td>
+              	</tr>
+              	<!-- <tr>
+              		<td></td>
+              		<td><div>最大发货响应期限<input type="text" class="form-control" name="" id="zb_zdfhqx" value="$!obj.zb_zdfhqx" /> 。</div></td>
+              		<td></td>
+              	</tr> -->
+              	<tr>
+              		<td></td>
+              		<td><div>发货期限 <input type="text" class="form-control" name="" id="zb_fhxq" value="$!obj.zb_fhxq" /> 。</div></td>
+              		<td></td>
+              	</tr>
+              	<tr>
+              		<td></td>
+              		<td><div>逾期发货罚款标准<input type="text" class="form-control" name="" id="zb_wfhfk" value="$!obj.zb_wfhfk" />  。</div></td>
+              		<td></td>
+              	</tr>
+              	<tr>
+              		<td></td>
+              		<td><div>逾期发货期限 <input type="text" class="form-control" name="" id="zb_wfhjg" value="$!obj.zb_wfhjg" />。</div></td>
+              		<td></td>
+              	</tr>
+              	<tr>
+              		<td></td>
+              		<td><div>拒绝发货罚款标准<input type="text" class="form-control" name="" id="zb_jgwfhfk" value="$!obj.zb_jgwfhfk" />  。</div></td>
+              		<td></td>
+              	</tr>
+              	<!-- <tr>
+              		<td></td>
+              		<td>无法转移发货订单，未发货关店期限  <input type="text" class="form-control" name="" id="zb_wfhqx" value="$!obj.zb_wfhqx" />  。</td>
+              		<td></td>
+              	</tr> -->
+              	<tr>
+              		<td></td>
+              		<td>自动关店的拒绝发货次数  <input type="text" class="form-control" name="" id="" value="$!obj.zb_wfhqx" />  。</td>
+              		<td></td>
+              	</tr>
+              	<tr>
+              		<td></td>
+              		<td>申请退换货的截止时间  <input type="text" class="form-control" name="" id="" value="$!obj.zb_wfhqx" />  。</td>
+              		<td></td>
+              	</tr>
+              </table>
+              <table>
+              	<tr>
+              		<td  class="first">商品警察：</td>
+              		<td class="two"><div>商品差评率超过 <input type="text" class="form-control" name="" id="zb_spcpljg" value="$!obj.zb_spcpljg" />进行警告。</div></td>
+              		<td  class="ls"></td>
+              	</tr>
+              	<tr>
+              		<td></td>
+              		<td><div>商品差评率超过  <input type="text" class="form-control" name="" id="zb_spcplxj" value="$!obj.zb_spcplxj" />  进行下架</div></td>
+              		<td></td>
+              	</tr>
+              	
+              </table>
+            </li>
+        </ul>
+</div>
+</div>
+<!-- <script type="text/javascript">jQuery(".shopadminbox").slide({trigger:"click"});</script> -->
+<script type="text/javascript">
+   $(function(){
+	   if('$!obj.zb_tjyksz'=='1'){
+		   $("#zb_tjyksz").attr("checked",true);
+	   }
+   });
+    var reg = /^(?!(0[0-9]{0,}$))[0-9]{1,}[.]{0,}[0-9]{0,}$/;
+    //正整数验证
+    var reg1 = /^[1-9]\d*$/;
+    /* function yunckeCash_save(){
+    	if(!reg.test($('#yunckeCash_useMoney').val())){
+    		alert('请输入金额');
+    		return ;
+    	}
+    	if(!reg.test($('#yunckeCash_money').val())){
+    		alert('请输入金额');
+    		return ;
+    	}
+    	var data={
+    			zb_one_bigDecimal_attr:$('#yunckeCash_useMoney').val(),
+    			zb_two_bigDecimal_attr:$('#yunckeCash_money').val(),
+    			zb_type:1
+        	}
+        	jQuery.ajax({
+        	    type:"POST",
+        	    cache: false,
+        	    async:false,
+        	    url:"$!webPath/admin/settingList_save_admin.htm",
+        	    dataType:"json",
+        	    data:data,
+        	    error:function(){},
+        	    success:function(data)
+        	    { 
+        	    	alert(data.data);
+        	    	window.location.reload();
+        	    	
+        	    }
+        	});
+    } */
+    function yunckeStore_save(){
+    	if(!reg1.test($('#yunkeStore_time').val())){
+    		alert('请输入正整数');
+    		$('#yunkeStore_time').val(1)
+    		return ;
+    	}
+    	if(!reg.test($('#yunkeStore_money').val())){
+    		alert('请输入金额');
+    		return ;
+    	}
+    	var data={
+    			zb_one_int_attr:$('#yunkeStore_time').val(),
+    			zb_one_bigDecimal_attr:$('#yunkeStore_money').val(),
+    			zb_type:2
+        	}
+        	jQuery.ajax({
+        	    type:"POST",
+        	    cache: false,
+        	    async:false,
+        	    url:"$!webPath/admin/settingList_save_admin.htm",
+        	    dataType:"json",
+        	    data:data,
+        	    error:function(){},
+        	    success:function(data)
+        	    { 
+        	    	alert(data.data);
+        	    	window.location.reload();
+        	    	
+        	    }
+        	});
+    }
+    function yunkeRecommandCash_save(){
+    	if(!reg1.test($('#yunkeRecommandCash_time').val())){
+    		alert('请输入正整数');
+    		$('#yunkeStore_time').val(1)
+    		return ;
+    	}
+    	if(!reg.test($('#yunkeRecommandCash_money').val())){
+    		alert('请输入金额');
+    		return ;
+    	}
+    	var data={
+    			zb_one_int_attr:$('#yunkeRecommandCash_time').val(),
+    			zb_one_bigDecimal_attr:$('#yunkeRecommandCash_money').val(),
+    			zb_type:3
+        	}
+        	jQuery.ajax({
+        	    type:"POST",
+        	    cache: false,
+        	    async:false,
+        	    url:"$!webPath/admin/settingList_save_admin.htm",
+        	    dataType:"json",
+        	    data:data,
+        	    error:function(){},
+        	    success:function(data)
+        	    { 
+        	    	alert(data.data);
+        	    	window.location.reload();
+        	    	
+        	    }
+        	});
+    }
+    function tax_save(){
+    	if(!reg.test($('#tax_start_money').val())){
+    		alert('请输入金额');
+    		return ;
+    	}
+    	if(!reg.test($('#tax_end_money').val())){
+    		alert('请输入金额');
+    		return ;
+    	}
+    	if(!reg.test($('#tax_money').val())){
+    		alert('请输入数字');
+    		return ;
+    	}
+    	var data={
+    			zb_one_bigDecimal_attr:$('#tax_start_money').val(),
+    			zb_two_bigDecimal_attr:$('#tax_end_money').val(),
+    			zb_three_bigDecimal_attr:$('#tax_money').val(),
+    			zb_type:4
+        	}
+        	jQuery.ajax({
+        	    type:"POST",
+        	    cache: false,
+        	    async:false,
+        	    url:"$!webPath/admin/settingList_save_admin.htm",
+        	    dataType:"json",
+        	    data:data,
+        	    error:function(){},
+        	    success:function(data)
+        	    { 
+        	    	alert(data.data);
+        	    	window.location.reload();
+        	    	
+        	    }
+        	});
+    }
+    function withdrawCash_save(){
+    	if(!reg.test($('#withdrawCash_money').val())){
+    		alert('请输入金额');
+    		return ;
+    	}
+    	if(!reg.test($('#withdrawCash_fee').val())){
+    		alert('请输入金额');
+    		return ;
+    	}
+    	var data={
+    			zb_one_bigDecimal_attr:$('#withdrawCash_money').val(),
+    			zb_two_bigDecimal_attr:$('#withdrawCash_fee').val(),
+    			zb_type:5
+        	}
+        	jQuery.ajax({
+        	    type:"POST",
+        	    cache: false,
+        	    async:false,
+        	    url:"$!webPath/admin/settingList_save_admin.htm",
+        	    dataType:"json",
+        	    data:data,
+        	    error:function(){},
+        	    success:function(data)
+        	    { 
+        	    	alert(data.data);
+        	    	window.location.reload();
+        	    	
+        	    }
+        	});
+    }
+    function jcsz_save(){
+    	var zb_tjyksz = 0;
+    	if($("input[type='checkbox']").is(':checked')){
+    		zb_tjyksz = 1;
+    	}else{
+    		zb_tjyksz = 0;
+    	}
+    	if(!reg.test($('#zb_shifujine').val())){
+    		alert('请输入金额');
+    		$('#zb_shifujine').focus();
+    		return ;
+    	}
+    	if(!reg.test($('#zb_jifendixiao').val())){
+    		alert('请输入数字');
+    		$('#zb_jifendixiao').focus();
+    		return ;
+    	}
+    	if(!reg1.test($('#zb_dingdanshiyongjifen').val())){
+    		alert('请输入整数');
+    		$('#zb_dingdanshiyongjifen').focus();
+    		return ;
+    	}
+    	
+    	if(!reg.test($('#zb_hygmJinE').val())){
+    		alert('请输入金额');
+    		$('#zb_hygmJinE').focus();
+    		return ;
+    	}
+    	if(!reg.test($('#zb_huiyuandingdan').val())){
+    		alert('请输入数字');
+    		$('#zb_huiyuandingdan').focus();
+    		return ;
+    	}
+    	if(!reg1.test($('#zb_tuijianyunke').val())){
+    		alert('请输入整数');
+    		$('#zb_tuijianyunke').focus();
+    		return ;
+    	}
+    	
+    	if(!reg1.test($('#zb_cjkhzq').val())){
+    		alert('请输入整数');
+    		$('#zb_cjkhzq').focus();
+    		return ;
+    	}
+    	if(!reg1.test($('#zb_zjkhzq').val())){
+    		alert('请输入整数');
+    		$('#zb_zjkhzq').focus();
+    		return ;
+    	}
+    	if(!reg.test($('#zb_cjkhbz').val())){
+    		alert('请输入金额');
+    		$('#zb_cjkhbz').focus();
+    		return ;
+    	}
+    	if(!reg.test($('#zb_zjkhbz').val())){
+    		alert('请输入金额');
+    		$('#zb_zjkhbz').focus();
+    		return ;
+    	}
+    	
+    	if(!reg.test($('#zb_sjkbzq').val())){
+    		alert('请输入数字');
+    		$('#zb_sjkbzq').focus();
+    		return ;
+    	}
+    	if(!reg.test($('#zb_sjxsJinE').val())){
+    		alert('请输入金额');
+    		$('#zb_sjxsJinE').focus();
+    		return ;
+    	}
+    	if(!reg.test($('#zb_syzssj').val())){
+    		alert('请输入数字');
+    		$('#zb_syzssj').focus();
+    		return ;
+    	}
+    	if(!reg.test($('#zb_dysj').val())){
+    		alert('请输入数字');
+    		$('#zb_dysj').focus();
+    		return ;
+    	}
+    	
+    	if(!reg.test($('#zb_qrshqx').val())){
+    		alert('请输入数字');
+    		$('#zb_qrshqx').focus();
+    		return ;
+    	}
+    	if(!reg.test($('#zb_qxfkqx').val())){
+    		alert('请输入数字');
+    		$('#zb_qxfkqx').focus();
+    		return ;
+    	}
+    	if(!reg.test($('#zb_qrthsqqx').val())){
+    		alert('请输入数字');
+    		$('#zb_qrthsqqx').focus();
+    		return ;
+    	}
+    	if(!reg.test($('#zb_qrthsshqx').val())){
+    		alert('请输入数字');
+    		$('#zb_qrthsshqx').focus();
+    		return ;
+    	}
+    	if(!reg.test($('#zb_zdfhqx').val())){
+    		alert('请输入数字');
+    		$('#zb_zdfhqx').focus();
+    		return ;
+    	}
+    	if(!reg.test($('#zb_fhxq').val())){
+    		alert('请输入数字');
+    		$('#zb_fhxq').focus();
+    		return ;
+    	}
+    	if(!reg.test($('#zb_wfhfk').val())){
+    		alert('请输入数字');
+    		$('#zb_wfhfk').focus();
+    		return ;
+    	}
+    	if(!reg.test($('#zb_wfhjg').val())){
+    		alert('请输入数字');
+    		$('#zb_wfhjg').focus();
+    		return ;
+    	}
+    	if(!reg.test($('#zb_jgwfhfk').val())){
+    		alert('请输入数字');
+    		$('#zb_jgwfhfk').focus();
+    		return ;
+    	}
+    	if(!reg.test($('#zb_wfhqx').val())){
+    		alert('请输入数字');
+    		$('#zb_wfhqx').focus();
+    		return ;
+    	}
+    	
+    	if(!reg.test($('#zb_spcpljg').val())){
+    		alert('请输入数字');
+    		$('#zb_spcpljg').focus();
+    		return ;
+    	}
+    	if(!reg.test($('#zb_spcplxj').val())){
+    		alert('请输入数字');
+    		$('#zb_spcplxj').focus();
+    		return ;
+    	}
+    	var data={
+            id:$('#id').val(),
+            
+    		zb_shifujine:$('#zb_shifujine').val(),
+    		zb_jifendixiao:$('#zb_jifendixiao').val(),
+    		zb_dingdanshiyongjifen:$('#zb_dingdanshiyongjifen').val(),
+    		
+    		zb_hygmJinE:$('#zb_hygmJinE').val(),
+    		zb_huiyuandingdan:$('#zb_huiyuandingdan').val(),
+    		zb_tuijianyunke:$('#zb_tuijianyunke').val(),
+    		
+    		zb_cjkhzq:$('#zb_cjkhzq').val(),
+    		zb_cjkhbz:$('#zb_cjkhbz').val(),
+    		zb_zjkhzq:$('#zb_zjkhzq').val(),
+    		zb_zjkhbz:$('#zb_zjkhbz').val(),
+    		
+    		zb_tjyksz:zb_tjyksz,
+    		
+    		zb_sjkbzq:$('#zb_sjkbzq').val(),
+    		zb_sjxsJinE:$('#zb_sjxsJinE').val(),
+    		zb_syzssj:$('#zb_syzssj').val(),
+    		zb_dysj:$('#zb_dysj').val(),
+    		
+    		zb_qrshqx:$('#zb_qrshqx').val(),
+    		zb_qxfkqx:$('#zb_qxfkqx').val(),
+    		zb_qrthsqqx:$('#zb_qrthsqqx').val(),
+    		zb_qrthsshqx:$('#zb_qrthsshqx').val(),
+    		zb_zdfhqx:$('#zb_zdfhqx').val(),
+    		zb_fhxq:$('#zb_fhxq').val(),
+    		zb_wfhfk:$('#zb_wfhfk').val(),
+    		zb_wfhjg:$('#zb_wfhjg').val(),
+    		zb_jgwfhfk:$('#zb_jgwfhfk').val(),
+    		zb_wfhqx:$('#zb_wfhqx').val(),
+    		
+    		zb_spcpljg:$('#zb_spcpljg').val(),
+    		zb_spcplxj:$('#zb_spcplxj').val()
+    	}
+    	jQuery.ajax({
+    	    type:"POST",
+    	    cache: false,
+    	    async:false,
+    	    url:"$!webPath/admin/setting_save_admin.htm",
+    	    dataType:"json",
+    	    data:data,
+    	    error:function(){},
+    	    success:function(data)
+    	    { 
+    	    	alert(data.data);
+    	    	
+    	    }
+    	});
+    }
+
+    
+</script>
+</body>
+</html>

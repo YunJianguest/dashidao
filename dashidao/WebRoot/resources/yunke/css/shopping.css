@@ -1,0 +1,69 @@
+*{margin:0;padding:0;font-family:'微软雅黑';}
+ul li{list-style: none;float:left;}
+ol li{list-style: none;}
+a{text-decoration:none;color:#000;}
+a:link{text-decoration:none;color:#000;}
+body{background:#eeeeee;}
+.nav{font-size:1.5em;color:#fff;background:#4e6be5;height: 2.5em;line-height:2.5em;text-align: center;position: fixed;top:0;width:100%;z-index: 99; }
+.nav ul .back{width:40%; }
+.title{width:90%;text-align: center;}
+.foot{position: fixed;bottom: 0;z-index: 99;width: 100%;background: #fff;}
+.foot img{width:30px;height:30px;}
+.foot ul li{width:33%;text-align: center;border-top:1px solid #c3c3c3;}
+.select img{width:20px;height: 20px;}
+.both{margin-top: 4em;}
+.favourable{color:red;font-size: .8em;}
+.stores_name{width:40%;text-align: center;}
+.stroes_head{width:25%;}
+.select{width:5%;}
+.stroes,.receipt_information{background:#fff;padding-top:.5em;}
+.stroes_head img{width:100px;height:100px;}.price_ope{width:10%;}
+.operation img{width:20px;height: 20px;}
+.price{color:red;font-size: 1.2em;}.format,.sum{color:#c3c3c3;}
+.select_sum .number{border:1px solid #000; width:40px;text-align: center;}
+.select_sum span{display:inline-block; font-size: 1.2em;}
+.right{float:right;}.right img{height:20px;width: 20px;}
+.goods{padding:2em 0 2em;background: #fff;margin:.5em auto;}
+.balance{background:red;color:#fff;text-align: center;font-size: 1.2em;}
+.active_state{font-size: .7em;}.td_r{text-align: right;}
+.payment{background: #fff;position: absolute;bottom: 3.8em;width:100%;}
+.payment td{height: 2em;line-height: 2em;}.or_payment td{height: 2em;line-height: 2em;}
+.or_payment{background: #fff;position: absolute;bottom:0;width:100%;}.quan{width:15%;text-align: center;}
+.rece_person ul li{width:50%;text-align: center;font-size: 1.2em;}.rece_address img{width:30px;height:30px;}
+.remarks{text-align: center;color:#E0A23D;height: 2em;line-height: 2em;}
+.address{font-size:1.1em;height: 3em;line-height: 3em;}hr{border: 2px solid #00acc1;margin: 0;}
+.buy_details{background:#fff;margin-top:1em;}
+.goods_both,.inv_content li{list-style: none; background:#fff;}
+.invoice{width:24%;display: inline-block;font-size: .8em;text-align: center;}
+.order{height:3em;line-height:3em;font-size: 1.2em;border-bottom:1px solid #CCC5C5;}
+.coupon{height:7em;line-height:3em;}
+.value_voucher{border:1px solid red;width: 7em;text-align: center;height:2.5em;line-height:2.5em;}
+.delivery ul li{width:50%;text-align: center;height:3.5em;line-height: 3.5em;background: #fff;font-size: 1.2em;border:1px solid #c3c3c3;}
+.way{background:#4e6be5!important;border:1px solid #c3c3c3;color: #fff;}
+.freight_risk{text-align: center;font-size: 1.2em;height:3em;line-height: 3em;color:#c3c3c3;}
+.receipt_information{border-bottom: 1px solid #c3c3c3;}
+.confirm_way{height:3em;line-height: 3em; width:90%;background: red;color:#fff;margin:2% 5%;border-radius: 25px;font-size: 1.2em;text-align: center;}
+#zit_address{width:78%;border: 0;font-size: 1.2em;}
+.ziti{display:inline-block;height: 3.5em;line-height: 3.5em;font-size: 1.2em;}
+#zit_time{font-size: 1.2em;border:0;}.revise{height: 2em;line-height: 2em;font-size: 1.2em;}.map img{width:100%;}
+.inv_delivery ul li{width:33%;text-align: center;height:3.5em;line-height: 3.5em;background: #fff;font-size: 1.2em;border:1px solid #c3c3c3;}
+.inv_content input{width:65%;float: right;height:2.5em;line-height: 2em;}
+.inv_content li{height:3em;line-height: 3em;margin-top: 1em;font-size: 1em;}
+.inv_content span{display:inline-block;text-align: center;width:30%;border:1px solid #c3c3c3;;height: 2em;line-height: 2em;font-size:.8em;margin-left: 2%;}
+.inv_con{float:right;width:75%;}
+.content{height: 5em!important;}.con{border:1px solid red!important;}
+.sub_form li{width:50%;text-align: center; margin: 5% auto;}
+.sub_form span{display:inline-block;height: 2em;line-height: 2em;text-align: center;border: 1px solid #c3c3c3;width:5em;border-radius: 15px;}
+.confirm{background: red;color:#fff;}
+.addr{font-size: 1.2em;margin-bottom: 1em;}.addr td{height: 2em;line-height: 2em;}
+.operation_addr img{height:35px;width:35px;}
+.add_address{background:red;color:#fff;text-align: center;height: 2.5em;line-height: 2.5em;font-size: 1.5em;}
+.order_money li{width:40%;font-size: 1.2em;height:3em;line-height:3em;margin:0 5%;}
+.money{text-align:right;color:red;}.sel{color:red;}
+.pay_way img{width:50px;height:50px;}
+.pay_way{font-size: 1.2em;}.state{font-size:.8em;color:#c3c3c3;}
+.pay_way td{border-bottom: 1px solid #c3c3c3;}
+.payee ul li{width:50%;height:2.5em;line-height: 2.5em;border-top:1px solid #c3c3c3;border-bottom:1px solid #c3c3c3;}
+.payee_person{text-align: right;}
+.mon{font-size:1.5em;height:2.5em;line-height: 2.5em;margin-left: 10%;}
+.zhifu{width:90%;border-radius:20px;height:2.5em;line-height: 2.5em;text-align: center;background: #f70733;color:#fff;margin: 2em 5%;;}

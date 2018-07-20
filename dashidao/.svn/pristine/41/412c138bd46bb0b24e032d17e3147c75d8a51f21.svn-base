@@ -1,0 +1,36 @@
+
+/* css 重置 */
+*{margin:0; padding:0; list-style:none; }
+body{ background:#fff; font-family:"微软雅黑"; -webkit-tap-highlight-color:transparent;}
+img{ border:0;  }
+a{ text-decoration:none; color:#333;  }
+/*index页面*/
+.fl{ float: left;}
+.fr{ float: right;}
+.clear{ clear: both; }
+a i{ color:#808080; }
+
+/*tsmanage*/
+.pageDiv{padding: 15px 20px;text-align: right;color: #ccc;clear: both;}
+.pageDiv a{display: inline-block;color: #4c4c4c;background: #f6fbf9;display: inline-block;height: 25px;	line-height: 25px;	padding: 3px 18px;border: 1px solid #ddd;	margin: 0 2px;vertical-align: middle;font-size: 14px;}
+.pageDiv a:hover{text-decoration: none;border: 1px solid #428bca;}
+.pageDiv span.current{display: inline-block;height: 25px;line-height: 25px;padding: 0 18px;margin: 0 2px;color: #ed601b;border-radius: 4px;vertical-align: middle;}
+.pageDiv span.disabled{display: inline-block;height: 25px;line-height: 25px;padding: 3px 18px;margin: 0 2px;	color: #bfbfbf;background: #f2f2f2;border: 1px solid #bfbfbf;vertical-align: middle;}
+.pageDiv span.pagecount{padding: 0 10px;font-size: 14px;color: #999999;margin-right: -30px;}
+.pageDiv span.countYe{color: #4C4C4C;font-size: 14px;margin-left: 30px;}
+.pageDiv span.countYe input{outline: none;border: 1px solid #ddd;height: 25px;padding: 3px 10px;width: 25px;margin: 0 5px;}
+.pageDiv a.turndown{padding: 3px 10px;}
+
+.shopadmin-top{border: none; }
+.shopadmin-top tr td{ height: 80px; text-align: center;  line-height: 80px;  border-bottom: 1px solid #bbbbbb; }
+.shopadmin-top tr td span{  border: 1px solid #ccc; padding: 5px 15px; border-radius:5px;   }
+#thead td{ background: #dfe2f5; color: #10a5ee; text-align: center; height: 40px; line-height: 40px;     }
+.button{ width: 100%; background: #0a78fa; height: 38px; color: #fff; border: none; }
+.shopadminbox{ border: none; width:100%; }
+.shopadminbox .hd{ height:40px;  line-height:40px; width: 100%; }
+.shopadminbox .hd ul li{ float:left; width:25%; margin:0; text-align: center; font-size:16px;  cursor:pointer; color:#000000; }
+.shopadminbox .hd li.on{ background: #108ee9; color:#fff; border-radius: 0px;   }
+.shopadminbox .bd{ margin-top: 0px; }
+#name{background:url("../image/search.png") no-repeat 2% 50%  #fff; text-indent: 3rem;  width:90%; height: 30px; border: none;border-radius:10px; float: left; margin-top: 5px; margin-left: 5%;  display: block; }
+
+

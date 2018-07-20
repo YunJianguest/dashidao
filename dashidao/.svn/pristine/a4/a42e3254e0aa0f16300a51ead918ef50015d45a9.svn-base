@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>歇业审核详情</title>
+	<script src="$!webPath/resources/js/jquery-1.7.1.min.js"></script>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/two_level.css">
+</head>
+<body>
+<div class="both">
+<form id="form1" name="form1" method="post" class="form-inline">
+
+	<table width="100%"> 
+	<tr>
+		<td width="20%">商家账号：</td>
+		<td width="50%">0892345</td>
+		<td width="30%"></td>
+	</tr>
+	<tr>
+		<td>用户名：</td>
+		<td><input type="text" class="" name="" id="" value="" placeholder="名秋月 "/></td>
+		<td rowspan="2"></td>
+	</tr>
+	<tr>
+		<td>性别：</td>
+		<td><input type="text" class="" name="" id="" value="" placeholder="女"/></td>
+	</tr>
+	<tr>
+		<td>手机号：</td>
+		<td><input type="text" class="" name="" id="" value="" placeholder="186 2838 0304"/></td>
+		<td rowspan="3"></td>
+	</tr>
+	<tr>
+		<td>歇业截止日期：</td>
+		<td><input type="text" class="" name="" id="" value="" placeholder="2018/9/12   -   2018/9/30"/></td>
+	</tr>
+	<tr>
+		<td>详情：</td>
+		<td><input type="text" class="" name="" id="" value="" placeholder="因个人原因，希望歇业。"/></td>
+	</tr>
+</table>
+	<div class="view">
+	<span></span><font>同意</font> <span class="refuse check"></span><font>拒绝</font>
+	<div>
+		<textarea type="text" class="" name="" id="" value="" placeholder="可以留下您的理由吗？" ></textarea>
+	</div>
+	</div>
+</form>
+	<div class="sub"><a href="$!webPath/admin/end_check.htm" style="color:white;">确定</a></div>
+</div>
+<script>
+$('.view span').click(function(){
+	$(this).addClass('check');
+	$(this).siblings().removeClass('check');
+})
+</script>
+</body>
+</html>
+	

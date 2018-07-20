@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<!-- saved from url=(0112)https://r.yunjiweidian.com/yunjirecruit/itemdetail.xhtml?shopId=1612590&itemId=1310&token=ZBVnmu&t=1525224924522 -->
+<html lang="zh-CN" style="font-size: 50px;">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<script type="text/javascript" src="" charset="UTF-8"></script>
+		<script type="text/javascript">
+			var contextPath = "/yunjirecruit";
+			// 	var _hmt = _hmt || [];
+			// 	(function() {
+			// 	  var hm = document.createElement("script");
+			// 	  hm.src = "//hm.baidu.com/hm.js?b75aaf220048b01481981fa14933e5a1";
+			// 	  var s = document.getElementsByTagName("script")[0];
+			// 	  s.parentNode.insertBefore(hm, s);
+			// 	})();
+		</script>
+		<title></title>
+
+		<meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta http-equiv="cleartype" content="on">
+		<link rel="stylesheet" href="css/shoucangjia.css">
+		<link rel="stylesheet" href="css/suit.css">
+		<link rel="stylesheet" href="css/base2.css">
+		<link rel="stylesheet" href="css/style2.css">
+		<script type="text/javascript" src="js/sea.js" id="seajsnode"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+		<link rel="stylesheet" href="css/sku.css">
+		<link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
+		<style>
+			body {
+				font-size: 15px;
+			}
+			
+			.de-opBtnLike a {
+				background: url(//static.yunjiweidian.com/img/d-like-normal.png) no-repeat;
+				width: 25px;
+				height: 22px;
+				background-size: 100% 100%;
+				margin: 0 auto;
+			}
+			
+			.de-opBtnLikeDis a {
+				background: url(//static.yunjiweidian.com/img/d-like-visited.png) no-repeat;
+				width: 25px;
+				height: 22px;
+				margin: 0 auto;
+				background-size: 100% 100%;
+				-moz-animation: heart_beat .5s ease-in-out;
+				-webkit-animation: heart_beat .5s ease-in-out;
+			}
+			
+			.ope-nav a {
+				min-width: 28%;
+				font-size: .3rem;
+				background: #D73B3B;
+				padding: 0;
+				height: 1rem;
+				line-height: 1rem;
+			}
+			
+			.page-prod-item .prod-name {
+				color: #212121;
+			}
+			
+			.fs28 {
+				font-size: 14px;
+			}
+			
+			.fs40 {
+				font-size: 20px;
+			}
+			
+			.fs20 {
+				font-size: 10px;
+			}
+			
+			.price.red {
+				color: #E42929;
+			}
+			
+			.itemimg {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.page-prod-item .swipeshow {
+				height: auto;
+			}
+			
+			.slides {
+				background-color: #E2E2E6;
+				border-bottom: 1px #D8D8D8 solid;
+			}
+			
+			.alert {
+				background: rgba(7, 17, 27, 0.6);
+			}
+			
+			.page-prod-item .prod-price {
+				margin-top: .1rem;
+			}
+			
+			.spacing-line:after,
+			.spacing-line:before {
+				background-color: #E6E6E6;
+			}
+			
+			.page-prod-item .shop-info h3 {
+				padding: 0;
+			}
+			
+			.page-prod-item .shop-info {
+				padding: .2rem;
+			}
+			
+			.page-prod-item .shop-info img {
+				margin-right: 1.2em;
+			}
+			
+			.spacing-line {
+				height: .2rem;
+				background: #F5F5F9;
+			}
+			
+			.item-specifications {
+				padding: 0.3rem 0.2rem;
+				background-color: #fff;
+				position: relative;
+				font-size: 0.28rem;
+			}
+			
+			.item-specifications i {
+				position: absolute;
+				right: 0.4rem;
+				top: 0.4rem;
+				width: 0.16rem;
+				height: 0.3rem;
+				background-repeat: no-repeat;
+				background-size: contain;
+				background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAkCAYAAABmMXGeAAAABGdBTUEAALGPC/xhBQAAAO9JREFUSA3V1ssRwiAQAFBQK+DuBTrL2IcWotZiI3ixgJSArAFGJh92l72EmQRI4LFw2EGpXRZr7S0+jxCC7tnAKU8GMGJX6DvnVGxftNYh/6fUh7/B59yO4BDhOzfignrvIbKnBFydHUSWIhwyDgulBdFHUaEAScAzVAJeRHvhVbQH3kS5cBPlwCiUCqNRCkxCsTAZxcAstAWXhAIDpQor0lZ+IKMtEHZLQjEgCcWCaJQColAq2EQ54CbKBVfRHnAR7QVnqARYoVJgQSVBQH9ZKl3EPvABCudWMs2c3sfcGcfxZYyJnn5TrznZ2F/9BWuBWu1JMbYHAAAAAElFTkSuQmCC');
+			}
+			
+			[v-cloak] {
+				display: none
+			}
+			/*层级页面*/
+			.am-share {border-radius: 0; bottom: 0; left: 0; position: fixed;-webkit-transform: translateY(100%); -ms-transform: translateY(100%); transform: translateY(100%); -webkit-transition: -webkit-transform 300ms; transition: transform 300ms ; width: 100%; z-index: 1110; }
+			.am-modal-active { transform: translateY(0px);  -webkit-transform: translateY(0); -ms-transform: translateY(0); transform: translateY(0) }
+			.am-modal-out { z-index: 1109; -webkit-transform: translateY(100%); -ms-transform: translateY(100%); transform: translateY(100%) }
+			.am-share-title { background-color: #f8f8f8; border-bottom: 1px solid #fff; border-top-left-radius: 2px; border-top-right-radius: 2px; color: #555; font-weight: 400; margin: 0 10px; padding: 10px 0 0;}
+			.am-share-title::after { border-bottom: 1px solid #dfdfdf; content: ""; display: block; height: 0; margin-top: 10px; width: 100%; }
+			.am-share-detele { float:right;margin:3px 5px 5px  0; background-color: #e6e6e6; }
+			.am-share-detele .share_btn { color: #555;  display: block; width:10%; border: 1px solid #e6e6e6; border-radius: 0; cursor: pointer; font-weight: 400; line-height: 1.2; padding: 0.625em 0;transition: background-color 300ms ease-out 0s, border-color 300ms ease-out 0s; vertical-align: middle; white-space: nowrap;font-family:"微软雅黑";  }
+			.am-share-sns { background-color: #f8f8f8; border-radius: 0 0 2px 2px; height:auto; zoom:1; overflow:auto; }
+			.am-share-sns li {display: block; float: left; height: auto;}
+			.am-share-sns a { color: #555; display: block; text-decoration:none; }
+			.am-share-sns span { display: block; }
+			.am-share-sns li i { background-position: center 50%; background-repeat: no-repeat; background-size: 36px 36px; background-color: #ccc; color: #fff; display: inline-block; height: 36px; line-height: 36px; margin-bottom: 5px; width: 36px; }
+			.am-share-sns .share-icon-weibo { background-image: url(); }
+			.sharebg { background-color: rgba(0, 0, 0, 0.6); bottom: 0; height: 100%; left: 0; opacity: 0; position: fixed; right: 0; top: 0; width: 100%; z-index: 1100; display:none; }
+			.sharebg-active { opacity: 1; display:block; }
+			.close {text-align: right;}
+			.close i{font-size:.4rem;}
+			.buyer{width:94%;margin: .3rem 3%;}
+			.buyer td img{height:93px;width: 93px;}
+			.tie{margin-top:.3rem;height: .5rem;line-height:.5rem;color: #c3c3c3;}
+			.guige,.shul{font-size: .25rem;}
+			.check{background:#D73B3B;color:#fff!important;}
+		</style>
+	</head>
+
+	<body>
+		<div id="app-wrap" class="app-page page-prod-item">
+			<div class="app-content">
+				<div class="swipeshow" style="width: 100%; visibility: visible;">
+					<ul class="slides" style="height: 375px; width: 1875px;">
+						<li class="slide" data-index="0" style="width: 375px; left: 0px; transition-duration: 0ms; transform: translate(-375px, 0px) translateZ(0px);"><img src="image/a0057040f9c2fa1b695881ddfcf890f2.jpg" alt="商品详情图片" class="itemimg"></li>
+						<li class="slide" data-index="1" style="width: 375px; left: -375px; transition-duration: 0ms; transform: translate(-375px, 0px) translateZ(0px);"><img src="image/6ac9400da0fd49dac598c9e26b837238.jpg" alt="商品详情图片" class="itemimg"></li>
+						<li class="slide" data-index="2" style="width: 375px; left: -750px; transition-duration: 0ms; transform: translate(-375px, 0px) translateZ(0px);"><img src="image/7e93565d17c1d624ff2039387c05170c.jpg" alt="商品详情图片" class="itemimg"></li>
+						<li class="slide" data-index="3" style="width: 375px; left: -1125px; transition-duration: 300ms; transform: translate(-375px, 0px) translateZ(0px);"><img src="image/5c31be1e9191229e6315f94736cdfcfb.jpg" alt="商品详情图片" class="itemimg"></li>
+						<li class="slide" data-index="4" style="width: 375px; left: -1500px; transition-duration: 300ms; transform: translate(0px, 0px) translateZ(0px);"><img src="image/ddf74789afa4ee8078f9c1c01bbb8a81.jpg" alt="商品详情图片" class="itemimg"></li>
+					</ul>
+					<div class="dots"><span class="dot-item"></span> <span class="dot-item"></span> <span class="dot-item"></span> <span class="dot-item"></span> <span class="dot-item active"></span></div>
+				</div>
+				<div class="prod-info">
+					<div class="bg-white" style="padding: 0px 0.8em 0.4em;">
+						<h3 class="prod-name">开启云客创业之旅，赠送开业专享礼包</h3>
+						<p class="prod-price"><span class="price red fs40">￥
+                     
+                         
+                         
+                             398.00~698.00
+                         
+                     
+			      </span> <del class="gray" style="color: rgb(154, 154, 154); font-size: 13px;">￥504.00</del></p>
+						<p class="prod-meta flex-layout"><span style="font-size: 12px; color: rgb(109, 109, 109);">库存&nbsp;19521</span> <span class="flex"></span></p>
+					</div>
+				</div>
+				<div class="spacing-line border-top-1px border-bottom-1px"></div>
+				<div class="shop-info flex-layout"><img src="image/goods.png" class="noflex">
+					<div class="flex">
+						<h3 class="fs28">张三</h3>
+						<p class="fs20" style="color: rgb(99, 99, 99);">张三的店</p>
+					</div>
+				</div>
+				<div class="spacing-line border-top-1px"></div>
+				<div id="desc-inner-container" class="custom-richtext">
+					<p><img src="image/bbe9749df06bcaad5bdbe15ddd477537.png" title="bbe9749df06bcaad5bdbe15ddd477537.png" style="float: none;"></p>
+					<p><img src="image/8ef98262fcce8b52948b0bf43c5f8169.png" title="8ef98262fcce8b52948b0bf43c5f8169.png" style="float: none;"></p>
+					<p><img src="image/24b9b377276cb52103584c86d1a9989d.png" title="24b9b377276cb52103584c86d1a9989d.png" style="float: none;"></p>
+					<p><img src="image/6158c42359bebceff2a3e0ed8b8be609.png" title="6158c42359bebceff2a3e0ed8b8be609.png" style="float: none;"></p>
+					<p><img src="image/0591ccd92dd6005b4c51f7c4db17b20c.png" title="0591ccd92dd6005b4c51f7c4db17b20c.png" style="float: none;"></p>
+					<p><img src="image/eccddf625e264c119063aa8fa9b063cd.png" title="eccddf625e264c119063aa8fa9b063cd.png" style="float: none;"></p>
+					<p><img src="image/9fa004e0680de1c00f2f04181db322da.png" title="9fa004e0680de1c00f2f04181db322da.png" style="float: none;"></p>
+					<p><img src="image/60747e78056f33add9763bdf314937cf.png" title="60747e78056f33add9763bdf314937cf.png" style="float: none;"></p>
+					<p><img src="image/85cc5322dd85b96acb042e28faae1e78.png" title="85cc5322dd85b96acb042e28faae1e78.png" style="float: none;"></p>
+					<p><img src="image/2e931c889a8fbe9a206be652204d7039.png" title="2e931c889a8fbe9a206be652204d7039.png" style="float: none;"></p>
+					<p><img src="image/dc9761e76a1a69b92d052f318423ce87.png" title="dc9761e76a1a69b92d052f318423ce87.png" style="float: none;"></p>
+					<p><br></p>
+				</div>
+			</div>
+			<div class="app-footer ope-nav">
+				<div class="flex-layout">
+					<a href="javascript:" data-ic="1310" data-index="0" class="btn-buy">
+						<div onClick="toshare()" >立即注册</div>
+					</a>
+				</div>
+			</div>
+			<div class="alert" style="display: none;">
+				<div class="alert-content">
+					<div class="alert-text"></div>
+					<div class="alert-btn border-top-1px"></div>
+				</div>
+			</div>
+			<div class="toast" style="display: none;"><i class="icon-toast" style="display: none;"></i>
+				<div></div>
+			</div>
+			<div id="sku-box">
+				<div id="sku-wrapper" class="sku-wrapper">
+					<div class="sku-content-wrapper">
+						<div class="sku-content clearfix " style="display: none;">
+							<div class="sku-main">
+								<div class="ui-rows">
+									<div class="ui-cols ui-cols-18"><img src="https://r.yunjiweidian.com/yunjirecruit/itemdetail.xhtml?shopId=1612590&amp;itemId=1310&amp;token=ZBVnmu&amp;t=1525224924522" class="sku-img"></div>
+									<div class="ui-cols">
+										<div class="sku-info-box">
+											<div class="sku-price"><span>¥0</span></div>
+											<div class="sku-other" style="display: none;"><span>库存</span><span>0</span></div>
+											<div class="sku-error">请选择规格</div>
+										</div>
+									</div>
+									<div class="ui-cols ui-cols-34"><i class="icon-sku-close"></i></div>
+								</div>
+								<div id="sku-list" class="sku-height"></div>
+								<p class="sku-type-title">数量</p>
+								<ul class="ui-rows sku-minus-add-box">
+									<li class="ui-cols ui-cols-12 sku-minus-btn disabled"><i class="icon-sku icon-sku-minus disabled"></i></li>
+									<li class="ui-cols ui-cols-12 sku-buy-num disabled">1</li>
+									<li class="ui-cols ui-cols-12 sku-add-btn disabled"><i class="icon-sku icon-sku-add disabled"></i></li>
+									<li class="ui-cols sku-xian-gou">（限购<span></span>件）</li>
+								</ul>
+							</div>
+							<div class="sku-bottom-wrapper">
+								<div class="ui-rows-m sku-rate-box" style="display: none;">
+									<div class="ui-cols sku-rate-tip"><span>进口税</span><span class="sku-rate-info">本品适用于税率NaN%</span></div>
+									<div class="ui-cols ui-cols-30 sku-error-tip">请选择规格</div>
+								</div>
+								<div class="sku-btn-box">
+									<div class="ui-rows-m">
+										<!---->
+										<!---->
+										<!---->
+										<!---->
+										<!---->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="global-mask" style="display: none;"></div>
+				</div>
+			</div>
+		</div>
+
+		<!--  alert提示 start -->
+		<script type="x/template" id="alert">
+			<transition name="alert-fade">
+				<div class="alert" v-show="showAlertFlag" @click="hideAlert">
+					<div class="alert-content">
+						<div class="alert-text" v-html="alertTip"></div>
+						<div class="alert-btn border-top-1px" @click="hideAlert">{{btnText}}</div>
+					</div>
+				</div>
+			</transition>
+		</script>
+		<!--  alert提示 end -->
+
+		<!--  toast提示 start -->
+		<script type="x/template" id="toast">
+			<transition name="toast-fade">
+				<div class="toast" v-show="showToastFlag">
+					<i class="icon-toast" :class="toastIconClass" v-show="toastIconClass != ''"></i>
+					<div v-html="toastTip"></div>
+				</div>
+			</transition>
+		</script>
+		<!--  toast提示 end -->
+		<script type="text/javascript" src="js/zepto.min.js"></script>
+		<script src="js/vue.js"></script>
+		<script src="js/utils.js"></script>
+
+		<script type="text/javascript">
+			seajs.use('//qzonestyle.gtimg.cn/qzone/qzact/common/share/share.js', function(setShareInfo) {
+				setShareInfo({
+					title: '云客给您送大礼了！',
+					summary: '~',
+					pic: '',
+					url: ''
+				});
+			});
+		</script>
+		<script>
+			var isSharePage = 'false';
+			var shopId = '1612590';
+			var itemId = '1310';
+			var mainImg = '';
+			var userId = '';
+			var ispackageItem = '1';
+			var discoverId = '';
+			var recruitUserId = '1561871';
+			var token = 'ZBVnmu';
+			var buyerPath = '';
+			var appCont = '';
+			var shoppe = '';
+			var notWeChat = '1';
+			var isDisabled = '0';
+			seajs.use('//static.yunjiweidian.com/recruit/js/17.03.28/prod-item.js');
+
+			function onBridgeReady() {
+				WeixinJSBridge.call('hideOptionMenu');
+			}
+
+			if(ispackageItem == '1') //是招募商品,禁止分享
+			{
+				if(typeof WeixinJSBridge == "undefined") {
+					if(document.addEventListener) {
+						document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+					} else if(document.attachEvent) {
+						document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+						document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+					}
+				} else {
+					onBridgeReady();
+				}
+			}
+		</script>
+		<script src="js/itemSku.js"></script>
+		<script src="js/appItem.js"></script>
+		<script type="text/javascript">
+	function toshare(){
+		$(".am-share").addClass("am-modal-active");	
+		if($(".sharebg").length>0){
+			$(".sharebg").addClass("sharebg-active");
+		}else{
+			$("body").append('<div class="sharebg"></div>');
+			$(".sharebg").addClass("sharebg-active");
+		}
+		$(".sharebg-active,.share_btn").click(function(){
+			$(".am-share").removeClass("am-modal-active");	
+			setTimeout(function(){
+				$(".sharebg-active").removeClass("sharebg-active");	
+				$(".sharebg").remove();	
+			},300);
+		})
+	}	
+</script>
+		<div class="am-share">
+	
+  <div class="am-share-sns">
+  <div class="buyer">
+  	<div class="xlb">
+  		<table width="100%">
+  			<tr>
+  				<td colspan="3" class="close"><i class="iconfont icon-cuowu1"></i>
+  				
+  				</td>
+  			</tr>
+  			<tr>
+  				<td rowspan="3" width="30%"><img src="image/2438314781f8bc79f8bd81fc71cf6e0d.jpg"/></td>
+  				<td>¥398.00</td>
+  			</tr>	
+  			<tr>
+  				<td class="kucun" style="font-size:.25rem;">库存2395</td>
+  			</tr>
+  			<tr>
+  				<td>已选择素野心水</td>
+  			</tr>
+  		</table>
+  	</div>
+  	<div class="guige">
+  		<div class="tie">规格</div>
+  		<ul class="sku-ul-list clearfix firstSkuType gge">
+  			<li class="">高姿萃白奢宠臻享礼盒</li>
+  			<li class="">张太和组合礼包</li>
+  			<li class="">雅鹿蚕丝子母被</li>
+  			<li class="">原生黄套装</li>
+  			<li class="">素野花凝玉肌</li>
+  			<li class="">素野心水</li>
+  			<li class="">鹰牌花旗参茶</li>
+  			<li class="">行李箱26寸黑</li>
+  			<li class="">行李箱26寸白</li>
+  		<div style="clear:both;"></div>
+  		</ul>
+  	</div>
+  	<div class="shul">
+  		<div class="tie">数量</div>
+  		<ul class="ui-rows sku-minus-add-box"><li class="ui-cols ui-cols-12 sku-minus-btn disabled"><i class="icon-sku icon-sku-minus disabled"></i></li> <li class="ui-cols ui-cols-12 sku-buy-num">1</li> <li class="ui-cols ui-cols-12 sku-add-btn disabled"><i class="icon-sku icon-sku-add disabled"></i></li> <li class="ui-cols sku-xian-gou" style="display: none;">（限购<span>0</span>件）</li></ul>
+  	</div>
+  	
+  </div>
+  	
+  	<div class="ui-cols border-top-1px red sku-btn-red" style="text-align: center;height: 1rem;line-height: 1rem;">确认</div>
+  	<script type="text/javascript">
+  		$('.gge li').click(function(){
+  			$(this).addClass('check');
+  			$(this).siblings().removeClass('check');
+  		});
+  		$('.sku-btn-red').click(function(){
+  			 window.location.href="order_zhifu.html";
+  		})
+  	</script>
+  </div>
+  
+</div>
+	</body>
+
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>申述管理 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+
+
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+
+
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="main">
+    <div class="user_center">
+        $!httpInclude.include("/seller/nav_head.htm")
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=refund")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="buyer_position">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代中心</a> > <span>所有订单</span></div>
+                    </div>
+
+                    <div class="shopadminbox">
+                        <div class="hd">
+                            <ul>
+                                <li>一般违规</li>
+                                <li>严重违规</li>
+                                <li>历史记分</li>
+                            </ul>
+                        </div>
+                        <div class="bd">
+                            <!--一般违规-->
+                            <ul>
+                                <li>
+                                    <table width="100%" class="shopadmin-top" border="0" cellspacing="0" cellpadding="0" style="margin-top: 20px;">
+                                        <tbody>
+                                        <tr id="thead" >
+                                            <td width="25%">违规类型</td>
+                                            <td width="30%">处罚时间</td>
+                                            <td width="15%">处罚记分</td>
+                                            <td width="15%">状态</td>
+                                            <td width="15%">操作</td>
+                                        </tr>
+                                        <tr>
+                                            <td>延迟发货</td>
+                                            <td>2017-03-22 10:10:10</td>
+                                            <td>0</td>
+                                            <td>客服介入</td>
+                                            <td>
+                                                <p style="line-height: 30px; margin: 20px 0 5px 0;" ><span><a href='$!webPath/poster/Complaintdetal.htm'>详情</a></span></p>
+                                                <p style="line-height: 30px; margin: 5px 0 20px 0;" ><span>申诉</span></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>延迟发货</td>
+                                            <td>2017-03-22 10:10:10</td>
+                                            <td>5</td>
+                                            <td>客服介入</td>
+                                            <td>
+                                                <p style="line-height: 30px; margin: 20px 0 5px 0;" ><span>详情</span></p>
+                                                <p style="line-height: 30px; margin: 5px 0 20px 0;" ><span>申诉</span></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>滥发信息</td>
+                                            <td>2017-03-22 10:10:10</td>
+                                            <td>5</td>
+                                            <td>完成处罚</td>
+                                            <td>
+                                                <p style="line-height: 30px; margin: 20px 0 5px 0;" ><span>详情</span></p>
+                                                <p style="line-height: 30px; margin: 5px 0 20px 0;" ><span>申诉</span></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>违背承诺</td>
+                                            <td>2017-03-22 10:10:10</td>
+                                            <td>10</td>
+                                            <td>完成处罚</td>
+                                            <td>
+                                                <p style="line-height: 30px; margin: 20px 0 5px 0;" ><span>详情</span></p>
+                                                <p style="line-height: 30px; margin: 5px 0 20px 0;" ><span>申诉</span></p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- PageNum -->
+                                    <!--分页开始-->
+                                    <div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+                                    <script>
+                                        layui.use(['laypage', 'layer'], function(){
+                                            var laypage = layui.laypage
+                                                ,layer = layui.layer;
+
+                                            //总页数低于页码总数
+                                            laypage.render({
+                                                elem: 'demo0'
+                                                ,count: 50 //数据总数
+                                            });
+
+                                            //总页数大于页码总数
+                                            laypage.render({
+                                                elem: 'demo1'
+                                                ,count: 70 //数据总数
+                                                ,jump: function(obj){
+                                                    console.log(obj)
+                                                }
+                                            });
+
+                                            //自定义样式
+                                            laypage.render({
+                                                elem: 'demo2'
+                                                ,count: 100
+                                                ,theme: '#1E9FFF'
+                                            });
+                                            laypage.render({
+                                                elem: 'demo2-1'
+                                                ,count: 100
+                                                ,theme: '#FF5722'
+                                            });
+                                            laypage.render({
+                                                elem: 'demo2-2'
+                                                ,count: 100
+                                                ,theme: '#FFB800'
+                                            });
+
+                                            //自定义首页、尾页、上一页、下一页文本
+                                            laypage.render({
+                                                elem: 'demo3'
+                                                ,count: 100
+                                                ,first: '首页'
+                                                ,last: '尾页'
+                                                ,prev: '<em>←</em>'
+                                                ,next: '<em>→</em>'
+                                            });
+
+                                            //不显示首页尾页
+                                            laypage.render({
+                                                elem: 'demo4'
+                                                ,count: 100
+                                                ,first: false
+                                                ,last: false
+                                            });
+
+                                            //开启HASH
+                                            laypage.render({
+                                                elem: 'demo5'
+                                                ,count: 500
+                                                ,curr: location.hash.replace('#!fenye=', '') //获取hash值为fenye的当前页
+                                                ,hash: 'fenye' //自定义hash值
+                                            });
+
+                                            //只显示上一页、下一页
+                                            laypage.render({
+                                                elem: 'demo6'
+                                                ,count: 50
+                                                ,layout: ['prev', 'next']
+                                                ,jump: function(obj, first){
+                                                    if(!first){
+                                                        layer.msg('第 '+ obj.curr +' 页');
+                                                    }
+                                                }
+                                            });
+
+                                            //完整功能
+                                            laypage.render({
+                                                elem: 'demo7'
+                                                ,count: 100
+                                                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                                                ,jump: function(obj){
+                                                    console.log(obj)
+                                                }
+                                            });
+
+                                            //自定义排版
+                                            laypage.render({
+                                                elem: 'demo8'
+                                                ,count: 1000
+                                                ,layout: ['limit', 'prev', 'page', 'next']
+                                            });
+                                            laypage.render({
+                                                elem: 'demo9'
+                                                ,count: 1000
+                                                ,layout: ['prev', 'next', 'page']
+                                            });
+                                            laypage.render({
+                                                elem: 'demo10'
+                                                ,count: 1000
+                                                ,layout: ['page', 'count']
+                                            });
+
+                                            //自定义每页条数的选择项
+                                            laypage.render({
+                                                elem: 'demo11'
+                                                ,count: 1000
+                                                ,limit: 100
+                                                ,limits: [100, 300, 500]
+                                            });
+
+                                            //调用分页
+                                            laypage.render({
+                                                elem: 'demo20'
+                                                ,count: data.length
+                                                ,jump: function(obj){
+                                                    //模拟渲染
+                                                    document.getElementById('biuuu_city_list').innerHTML = function(){
+                                                        var arr = []
+                                                            ,thisData = data.concat().splice(obj.curr*obj.limit - obj.limit, obj.limit);
+                                                        layui.each(thisData, function(index, item){
+                                                            arr.push('<li>'+ item +'</li>');
+                                                        });
+                                                        return arr.join('');
+                                                    }();
+                                                }
+                                            });
+
+                                        });
+                                    </script>
+                                    <!--分页结束-->
+                                </li>
+                            </ul>
+                            <!--严重违规-->
+                            <ul>
+                                <li>
+                                    222
+                                </li>
+                            </ul>
+                            <!--历史记分-->
+                            <ul>
+                                <li>
+                                    222
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <script type="text/javascript">jQuery(".shopadminbox").slide({trigger:"click"});</script>
+
+
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>
+
+</body>
+</html>

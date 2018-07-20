@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+<link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
+<title>店铺介绍</title>
+<style>
+		body{background:#efefef;}
+		*{margin:0;padding: 0;}
+		ul,ol li{list-style: none;}
+		.clear{clear:both}
+		a{text-decoration: none;}
+		p{margin: 0;}
+	/*头部*/
+		.header ul li{float: left;width:70%;text-align: center;height:3.2rem;line-height:3.2rem ;background:#FF6600 ;color:#fff;}
+		.header .back{width: 10%!important;}
+		.header .back img{margin: 20% 0;}
+		.header .jilu {width:20%;font-size: .9rem;}
+		.center{ text-align:center; margin-top:15%;}
+		#information>p{margin-left:5%;width:70%;padding-left: 2rem;height: 3rem;line-height: 3rem;text-align: right;}
+		#confirm{width:90%; height:40px; background-color:#ff6600;color:#FDFBFB; line-height:40px; text-align:center; border-radius:30px; margin:0 auto;}
+		.bottom{font-size:13px;color:#D5CCD5; text-align:center;}
+		.pass{margin-left:2rem;}
+		.user,.que{margin-left: 1rem;}
+		#information p input{height:1.5rem;}
+		/*公告*/
+		#adv{width:100%;height: 5rem;background: #ff6600;margin-top: 2px;}
+		.title{height:1.5rem;line-height: 1.5rem;}
+		.title span{color:#003BB3;font-weight: 700;}
+		/*字体样式*/
+		@font-face {
+		  font-family: 'iconfont';
+		  src: url('iconfont.eot');
+		  src: url('iconfont.eot?#iefix') format('embedded-opentype'),
+		  url('iconfont.woff') format('woff'),
+		  url('iconfont.ttf') format('truetype'),
+		  url('iconfont.svg#iconfont') format('svg');
+		}
+		.iconfont{
+		  font-family:"iconfont" !important;
+		  font-size:16px;font-style:normal;
+		  -webkit-font-smoothing: antialiased;
+		  -webkit-text-stroke-width: 0.2px;
+		  -moz-osx-font-smoothing: grayscale;
+		}
+		/*信息*/
+		#information{margin-top: 20px;padding 0 5%;width: 100%;}
+		#information ul li{float:left;}
+		#information>ul>li{width:90%;height: 3.2rem;line-height: 3.2rem;background: #fff;padding: 0 5%;}
+		#information>ul>li>ul>li{width:40%}
+		#information .clear{clear: both;}
+		.store_logo{height: 4.5rem!important;line-height: 4.5rem!important;margin-top:.5px;}
+		.background{height: 6rem!important;line-height: 6rem!important;margin:15px 0;}
+		.background .right img {margin-top:.8rem!important;	}
+		.jieshao ul li{border-bottom: 1px solid #c3c3c3;}
+		.right{width:100%!important;text-align: }
+		.right i{float: right;font-size: 1.5rem;}
+		.right img {margin-top:.5rem;}
+		.right input{width:100%;height: 3.1rem;float: left; border: none;}
+		.jilu a{color: white;}
+</style>
+</head>
+<body>
+<!--头部-->
+	<div class="header">
+			<ul>
+				<li class="back" onclick="history.go(-1)"><img src="image/back.png"/></li>
+				<li>店铺介绍</li>
+				<li class="jilu"><a href="stores_information.html">保存</a></li>
+				<div class="clear"></div>
+			</ul>
+	</div>	
+	<!--店铺-->
+	<div id="information">
+		<ul>
+			<li>
+				<ul>
+					<li class="right"><input type="text" name="firstname" value="王燕如"></li>
+					
+				</ul>
+			</li>
+			
+			<div class="clear"></div>
+		</ul>
+	</div>
+</body>
+</html>

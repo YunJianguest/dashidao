@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    #macro ( genericTree $somelist )
+    #foreach ( $some in $somelist )
+    <option value="$!some.id">
+        #if($!some.level>0)
+        #foreach($count in [0..$!some.level])&nbsp;#end #end $!some.className</option>
+    #genericTree($some.childs)
+    #end
+    #end
+</head>
+<link href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/template.css"  rel="stylesheet" type="text/css"/>
+<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+<script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+<script src="$!webPath/resources/js/jquery.validate.min.js"></script>
+
+<body>
+<div class="cont">
+    <h1 class="seth1">云客管理</h1>
+    <div class="settab"><span class="tab-one"></span>
+        <span class="tabs">
+       <a href="$!webPath/admin/yk_admin.htm">管理</a>
+            <!--<a href="$!webPath/admin/yk_ad.htm" #if(!$!edit)class="this"#end>新增</a>-->
+
+          <a href="$!webPath/admin/yk_edit.htm" class="this">编辑</a>
+            <!--<a href="javascript:void(0);" class="this">编辑</a>-->
+	     </span>
+
+        <span class="tab-two"></span></div>
+    <form name="theForm" id="theForm" action="$!webPath/ajax.jsp?id=$!obj.id" method="post">
+
+        <div class="setcont">
+            <input  type="hidden" id="_id" value="" />
+            <!--鼠标经过样式-->
+            <ul class="set1">
+                <li>商家名称：</li>
+                <li><span class="webname">
+        #if($!edit)$!obj.zb_shangjianame #else<input  type="text" id="truename" value="" size="40" />#end
+      </span></li>
+            </ul>
+            <ul class="set1">
+                <li>登陆密码：</li>
+                <li><span class="webname">
+        <input name="password" type="password" id="password" size="40" autocomplete="off" />
+      </span><span id="nothis"><strong class="q"></strong><strong class="w">请输入商家登陆密码</strong><strong class="c"></strong></span></li>
+            </ul>
+            <ul class="set1">
+                <li>重复密码：</li>
+                <li><span class="webname">
+        <input name="password" type="password2" id="password2" size="40" autocomplete="off" />
+      </span><span id="nothis"><strong class="q"></strong><strong class="w">请再次输入密码</strong><strong class="c"></strong></span></li>
+            </ul>
+            <ul class="set1">
+                <li><strong class="orange fontsize20">*</strong>商家邮箱</li>
+                <li><span class="webname">
+        <input  type="text" id="email" value="" size="40" />
+      </span></li>
+            </ul>
+            <script>
+                function change_state(){
+                    var recommend=jQuery("#zb_zhuangtai").val();
+                    if(recommend=="true"){
+                        jQuery("#store_recommend_img").attr("src","$!webPath/resources/style/system/manage/blue/images/no.jpg");
+                        jQuery("#zb_zhuangtai").val("false");
+                    }else{
+                        jQuery("#store_recommend_img").attr("src","$!webPath/resources/style/system/manage/$!{config.websiteCss}/images/yes.jpg");
+                        jQuery("#zb_zhuangtai").val("true");
+                    }
+                }
+            </script>
+            <ul class="set1">
+                <li style="margin-left:20px;">登陆状态</li>
+                <li style="margin-left:20px;">
+	  <span class="webSwitch">
+	  <!--<input name="integral" id="integral" type="hidden" value="$!config.integral" />-->
+          <input name="zb_zhuangtai" id="zb_zhuangtai" type="hidden" value="zb_zhuangtai" />
+          <img #if($!obj.zb_zhuangtai)src="$!webPath/resources/style/system/manage/$!{config.websiteCss}/images/yes.jpg"#else src="$!webPath/resources/style/system/manage/blue/images/no.jpg" #end name="store_recommend_img" width="61" height="23" id="store_recommend_img" style="cursor:pointer" onclick="change_state();"/>
+          <!--<img src="$!webPath/resources/style/system/manage/$!{config.websiteCss}/images/yes.jpg" width="61" height="23" style="cursor:pointer" id="integral_status" onclick="change_state();/>-->
+	  </span>
+                </li>
+            </ul>
+        </div>
+
+    </form>
+    <div class="submit">
+        <input name="save" type="button" value="提交" onclick="saveForm()" />
+    </div>
+
+</div>
+<script>
+
+    function GetRequest() {
+        var url = location.search; //获取url中"?"符后的字串  
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+    function instOrder() {
+        var request = new Object();
+        var request=GetRequest();
+        var id = request['username'];
+        /* alert(id);*/
+        var sql = "SELECT * FROM  dashidao_user  WHERE userName='"+id+"'";
+        jQuery.ajax({
+            type: "POST",
+            cache: false,
+            async: false,
+            url: "/ajaxuser.jsp",
+            dataType: "json",
+            data: "table=dashidao_user&dates=addTime,finishTime,payTime,shipTime,return_shipTime&sql="+ sql,
+            //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+            error: function () {
+                alert("数据错误，操作被取消！");
+            },
+            success:function(data)
+            {
+                if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+
+                var message=data.data.data;
+                var i=message[0]['id'];
+
+                $('#_id').val(message[0]['id']);
+                $('#truename').val(message[0]['trueName']);
+                $('#email').val(message[0]['email']);
+
+            }
+        });
+    }
+    instOrder();
+    function  saveForm(){
+        if(password.value=="" && password2.value==""){
+            /*var sql = "update dashidao_user set trueName= "+$('#truename').val()+" WHERE userName='"+$('#_id').val()+"'";*/
+
+            jQuery.ajax({
+                type: "POST",
+                cache: false,
+                async: false,
+                url: "/ajaxuser.jsp",
+                dataType: "json",
+                data: "action=update&table=dashidao_user&field=id,trueName,email,&values="+$('#_id').val()+"|"+$('#truename').val()+"|"+$('#email').val(),
+                //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error: function () {
+                    alert("数据错误，操作被取消！");
+                },
+                success:function(data)
+                {
+                    if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+
+
+                }
+            });
+
+        }else {
+            if($('#password').val()==$('#password2').val()){
+                jQuery.ajax({
+                    type: "POST",
+                    cache: false,
+                    async: false,
+                    url: "/ajaxuser.jsp",
+                    dataType: "json",
+                    data: "action=update&table=dashidao_user&field=id,trueName,email,password,&values="+$('#_id').val()+"|"+$('#truename').val()+"|"+$('#email').val()+"|"+$('#password').val(),
+                    //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                    error: function () {
+                        alert("数据错误，操作被取消！");
+                    },
+                    success:function(data)
+                    {
+                        if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                        alert('操作成功！');
+                        history.back(-1);
+
+                    }
+                });
+            }else {
+                alert('两次密码不相同!');
+                window.location.reload();
+            }
+        }
+    }
+</script>
+</body>
+</html>

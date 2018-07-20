@@ -1,0 +1,137 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+	<title>邀请明细</title>
+	<link rel="stylesheet" href="css/apply.css">
+	<!--必选css-->
+	<link rel="stylesheet" type="text/css" href="css/css.css" >
+	<link rel="stylesheet" href="iconfont/iconfont.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/moment.js"></script>
+	<script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/zxx.css" >
+</head>
+<body style="background: #f2f6f9;" >
+<div class="myer ykmyer">
+	<p><i class="iconfont icon-back fl" onclick="history.go(-1)"  ></i>代金券设置</p>
+</div>
+<style>
+.coupon{ background: #fff;  }
+.coupon tr{ height: 50px;  }
+.coupon td.one{ line-height: 50px; padding-right: 5%;  width: 25%; text-align: right;  }
+#submit	{     width: 90%;
+	border-radius: 10px;
+	font-size: 1rem;
+	height: 2.5em;
+	line-height: 2.5em;
+	margin: 1.5em auto;
+	 margin-left: 5%;
+	border: 1px solid #ff6600; background: #ff6600; color: #fff; font-size: 2rem;
+	text-align: center;  }
+.inner{ padding: 0 3%; }
+
+	.picker-switch li:nth-child(1){ float: right; }
+	.storebaner{ display: none;  }
+	.showss{padding: 40px 5%; display: blcok; }
+	.showss li{ float: left; margin-bottom: 5px; }
+    .showss input.radio{ width: 20%; width: 20px; height: 20px; margin-top: 20px; float: left; }
+    .select2{ width:70%; padding: 3px 0; border-radius: 3px; padding-left: 3%;  }
+	.showss img{ width: 80%; float: left; margin-left: 10px;}
+	#selectimg{ width: 10rem; height: 6rem; }
+</style>
+<!--头部搜索-->
+<div class="coupon" style=" margin-top: 50px;">
+	<table width="100%">
+		<tbody>
+			<tr>
+				<td class="one">选择代金券:</td>
+				<td width="70%" style="text-align: right;">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" >
+					<div class="showss" >
+						<ul>
+							<li>
+								<input type="radio" value="" class="radio"  checked  ><img src="images/1.png">
+								<div class="clear"></div>
+								<p >
+									<span class="one" >活动数量:</span>
+									<input type="text" name="num" value="" class="select2" style="mso-border-shadow:none; "  >
+								</p>
+							</li>
+							<li><input type="radio" value="" class="radio"  ><img src="images/1.png">
+								<div class="clear"></div>
+								<p >
+									<span class="one" >活动数量:</span>
+									<input type="text" name="num" value="" class="select2" style="mso-border-shadow:none; "  >
+								</p>
+							</li>
+							<li><input type="radio" value="" class="radio"   ><img src="images/1.png">
+								<div class="clear"></div>
+								<p >
+									<span class="one" >活动数量:</span>
+									<input type="text" name="num" value="" class="select2" style="mso-border-shadow:none; "  >
+								</p>
+							</li>
+						</ul>
+					</div>
+				</td>
+
+			</tr>
+
+			<tr>
+				<td colspan="2" >
+					<div class="iDate full" style="margin-left: 6.3%;" >
+						<input type="text" name="start" >
+						<button type="button" class="addOn"></button>
+					</div>
+					<div class="iDate date">
+						<input type="text" name="end" >
+						<button type="button" class="addOn"></button>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" ><button id="submit" >确定</button></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<script type="text/javascript" >
+    $("#select").click(function () {
+
+    });
+    $(".showss li img").click(function () {
+		var imgss=$(this).attr('src');
+		$("#selectimg").attr('src',imgss);
+
+    });
+</script>
+</body>
+<script type="text/javascript">
+    $(document).ready(function(){
+        // date time picker
+        if($(".iDate.full").length>0){
+            $(".iDate.full").datetimepicker({
+                locale: "zh-cn",
+                format: "YYYY-MM-DD a hh:mm",
+                dayViewHeaderFormat: "YYYY年 MMMM"
+            });
+        }
+        if($(".iDate.date").length>0){
+            $(".iDate.date").datetimepicker({
+                locale:"zh-cn",
+                format:"YYYY-MM-DD",
+                dayViewHeaderFormat:"YYYY年 MMMM"
+            });
+        }
+    })
+</script>
+</html>

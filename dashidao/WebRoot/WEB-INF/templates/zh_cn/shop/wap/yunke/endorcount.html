@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+	<title>代言商品销量统计</title>
+	<link rel="stylesheet" href="css/apply.css">
+	<!--必选css-->
+	<link rel="stylesheet" type="text/css" href="css/css.css" >
+	<link rel="stylesheet" href="iconfont/iconfont.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
+
+</head>
+<body style=" background: #f2f6f9; padding-top:45px; " >
+<!--头部搜索-->
+<div class="myer ykmyer">
+	<p >
+		<i class="iconfont icon-back"  onclick="history.go(-1)" ></i>代言商品销售统计
+	</p>
+</div>
+
+
+<div class="storeoner  ykshop yqvipshop yqviptwo">
+	<div class="dptx fl">
+		<img src="images/tu2.jpg"/></div>
+		<div class="one fl">
+			<p>海参快客</p>
+			<span>代言天数：10天</span>&nbsp;<span>销量：10个</span>
+		</div>
+		<span style=" float: right; margin-top: 18px; color: #c4050f; " >NO 1</span>
+		<div class="clear"></div>
+</div>
+<div class="storeoner  ykshop yqvipshop yqviptwo">
+	<div class="dptx fl">
+		<img src="images/tu3.jpg"/></div>
+	<div class="one fl">
+		<p>海参快客</p>
+		<span>代言天数：9天</span>&nbsp;<span>销量：10个</span>
+	</div>
+	<span style=" float: right; margin-top: 18px; color: #c4050f; " >NO 2</span>
+	<div class="clear"></div>
+</div>
+<div class="storeoner  ykshop yqvipshop yqviptwo">
+	<div class="dptx fl">
+		<img src="images/tu4.jpg"/></div>
+	<div class="one fl">
+		<p>海参快客</p>
+		<span>代言天数：8天</span>&nbsp;<span>销量：10个</span>
+	</div>
+	<span style=" float: right; margin-top: 18px; color: #c4050f; " >NO 3</span>
+	<div class="clear"></div>
+</div>
+<div class="bmenu">
+	<ul>
+		<li>
+			<a href="index.html">
+				<i class="iconfont icon-shouye1" ></i>
+				<span>首页</span>
+			</a>
+		</li>
+		<li>
+			<a href="add_product.html">
+				<i class="iconfont icon-fenleiorguangchangorqita" ></i>
+				<span>分类</span>
+			</a>
+		</li>
+		<li>
+			<a href="store.html">
+				<i class="iconfont icon-wxbmingxingdianpu" ></i>
+				<span>U园</span>
+			</a>
+		</li>
+		<li>
+			<a href="recommends.html">
+				<i class="iconfont icon-zan1" ></i>
+				<span>推荐</span>
+			</a>
+		</li>
+		<li>
+			<a href="me.html">
+				<i class="iconfont icon-my1" ></i>
+				<span>我的</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/iscroll.js"></script>
+<script type="text/javascript" src="js/navbarscroll.js"></script>
+<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+<script src="js/easySlider.js"></script>
+<script type="text/javascript">
+	$(function(){
+        //选项卡
+        jQuery(".slideTxtBox").slide({trigger:"click"});
+        //滚动
+        $('.wrapper').navbarscroll();
+        //轮播图
+        $("#slider").easySlider( {
+            slideSpeed: 500,
+            autoSlide: true,
+            paginationSpacing: "15px",
+            paginationDiameter: "10px",
+            paginationPositionFromBottom: "0px",
+            slidesClass: ".slides",
+            controlsClass: ".controls",
+            paginationClass: ".pagination"
+        });
+     	//footer选项卡
+		$(".bmenu li").click(function () {
+				$(this).addClass('on').siblings().removeClass('on');
+        });
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>卖家品牌列表 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+</head>
+<body>
+$!httpInclude.include("/top.htm")
+<div class="main"> $!httpInclude.include("/seller/nav_head.htm")
+    <div class="user_center">
+        <table width="1200" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=purchase_sell_stock_list")
+                <td id="centerbg" valign="top">
+                    <div class="div_2">
+                        <p>进销存一览表</p>
+                    </div>
+                    <div class="div_2">
+                        <table class="table solid">
+                            <thead class="table_thead">
+                            <th>行号</th>
+                            <th>商品编号</th>
+                            <th>商品名称</th>
+                            <th>订单类别</th>
+                            <th>订单号</th>
+                            <th>时间</th>
+                            <th>入库数量↑↓</th>
+                            <th>出库数量↑↓</th>
+                            <th>库存↑↓</th>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>01</td>
+                                <td>230018</td>
+                                <td>韩版修身T恤</td>
+                                <td>
+                                    <ul>
+                                        <li>-</li>
+                                        <li>会员</li>
+                                        <li>栈代</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>-</li>
+                                        <li>12304565</li>
+                                        <li>12304565</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>-</li>
+                                        <li>2017-1-1&nbsp;20:20:00</li>
+                                        <li>2017-1-1&nbsp;20:20:00</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>9200</li>
+                                        <li>100</li>
+                                        <li>-</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>100</li>
+                                        <li>-</li>
+                                        <li>100</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>9100</li>
+                                        <li>9000</li>
+                                        <li>9100</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>02</td>
+                                <td>230018</td>
+                                <td>韩版修身T恤</td>
+                                <td>
+                                    <ul>
+                                        <li>-</li>
+                                        <li>会员</li>
+                                        <li>栈代</li>
+                                        <li>会员</li>
+                                        <li>栈代</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>-</li>
+                                        <li>12304565</li>
+                                        <li>12304565</li>
+                                        <li>12304565</li>
+                                        <li>12304565</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>-</li>
+                                        <li>2017-1-1&nbsp;20:20:00</li>
+                                        <li>2017-1-1&nbsp;20:20:00</li>
+                                        <li>2017-1-1&nbsp;20:20:00</li>
+                                        <li>2017-1-1&nbsp;20:20:00</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>9100</li>
+                                        <li>-</li>
+                                        <li>100</li>
+                                        <li>-</li>
+                                        <li>90</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>101</li>
+                                        <li>1</li>
+                                        <li>-</li>
+                                        <li>1</li>
+                                        <li>-</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>9100</li>
+                                        <li>90099</li>
+                                        <li>90199</li>
+                                        <li>90198</li>
+                                        <li>91000</li>
+                                        <li>91000</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>03</td>
+                                <td>230018</td>
+                                <td>韩版修身T恤</td>
+                                <td>
+                                    <ul>
+                                        <li>-</li>
+                                        <li>会员</li>
+                                        <li>栈代</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>-</li>
+                                        <li>12304565</li>
+                                        <li>12304565</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>-</li>
+                                        <li>2017-1-1&nbsp;20:20:00</li>
+                                        <li>2017-1-1&nbsp;20:20:00</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>9200</li>
+                                        <li>100</li>
+                                        <li>-</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>100</li>
+                                        <li>-</li>
+                                        <li>100</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>9100</li>
+                                        <li>9000</li>
+                                        <li>9100</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>04</td>
+                                <td>230018</td>
+                                <td>韩版修身T恤</td>
+                                <td>
+                                    <ul>
+                                        <li>-</li>
+                                        <li>会员</li>
+                                        <li>栈代</li>
+                                        <li>会员</li>
+                                        <li>栈代</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>-</li>
+                                        <li>12304565</li>
+                                        <li>12304565</li>
+                                        <li>12304565</li>
+                                        <li>12304565</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>-</li>
+                                        <li>2017-1-1&nbsp;20:20:00</li>
+                                        <li>2017-1-1&nbsp;20:20:00</li>
+                                        <li>2017-1-1&nbsp;20:20:00</li>
+                                        <li>2017-1-1&nbsp;20:20:00</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>9100</li>
+                                        <li>-</li>
+                                        <li>100</li>
+                                        <li>-</li>
+                                        <li>90</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>101</li>
+                                        <li>1</li>
+                                        <li>-</li>
+                                        <li>1</li>
+                                        <li>-</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>9100</li>
+                                        <li>90099</li>
+                                        <li>90199</li>
+                                        <li>90198</li>
+                                        <li>91000</li>
+                                        <li>91000</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="div_2">
+                        <ul class="pagination">
+                            <li><a href="#">&laquo;</a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li class="disabled"><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">&raquo;</a></li>
+                        </ul>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

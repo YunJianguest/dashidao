@@ -1,0 +1,494 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>卖家品牌列表 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link href="$!webPath/resources/style/system/manage/black/zxx.css"  rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+    <script src="$!webPath/resources/js/echarts.min.js"></script>
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+    <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+<link href="$!webPath/resources/style/system/manage/blue/zhandai.css"  rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<div class="main">
+    <div class="user_center">
+        $!httpInclude.include("/seller/nav_head.htm") 
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=supply_analyze")
+                <td id="centerbg" valign="top">
+
+                    <div class="buyer_position">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">商家支持</a> > <span>销售分析</span> > <span>供货分析</span></div>
+                    </div>
+					<div class="operation_tip">
+	<h3>友情提示</h3>
+	<ul>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+
+                    <div class="xiaoshou-box">
+                        <div class="xiaoshou-top"><p><i class="iconfont icon-information"></i>&nbsp;您的海参一号销售突破 10000 件。</p></div>
+                        <div class="ht-top"style=" width: 90%; margin-left: 5%;" >
+                            <form class="form-inline" style="float: right;">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入查询内容" >
+                                </div>
+                                <button type="submit" class="btn btn-default" style="border: none;  background: #3fa4ed; color: #fff; " >查询</button>
+                            </form>
+                        </div>
+
+                        <div class="xiaoshou-mid">
+                            <div class="xiaoshou-mid1"><p><span></span>供货分析(按代理商)</p></div>
+                            <style type="text/css" >
+                                .xiaoshou-mid2 ul li{ width: 20%; float: left; text-align: center;   }
+                                .xiaoshou-mid2 ul li span{ display: block; width: 90%; text-align:right; padding-right: 10%; }
+                                .xiaoshou-mid2 ul li i{ float: right; }
+                            </style>
+                            <div class="xiaoshou-mid2" style=" width: 20%;">
+                                <ul>
+                                    <li>导出:</li>
+                                    <li>
+                                        <i class="iconfont icon-pdf"></i>
+                                        <span>txt</span>
+                                    </li>
+                                    <li>
+                                        <i class="iconfont icon-exl"></i>
+                                        <span>xls</span>
+                                    </li>
+                                    <li>
+                                        <i class="iconfont icon-form"></i>
+                                        <span>doc</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="xiaoshou-med">
+                            <div class="xiaoshou-med1">
+                                <table style="" class="table">
+                                    <tr>
+                                        <td style="width:6%;">行号</td>
+                                        <td style="width:8%;">栈代</td>
+                                        <td style="width:10%;">商品编号</td>
+                                        <td style="width:15%;">商品名称</td>
+                                        <td style="width:15%;">规格/型号</td>
+                                        <td style="width:8%;">单价<br><i class="iconfont icon-move"></i></td>
+                                        <td style="width:10%;">供货量<br><i class="iconfont icon-move"></i></td>
+                                        <td style="width:15%;">供货金额<br><i class="iconfont icon-move"></i></td>
+                                    </tr>
+                                    <tbody id="goods_zhandai"></tbody>
+                                </table>
+                                <!--分页开始-->
+                                <div id="demo" style=" text-align: center; margin-top: 100px;" ></div>
+
+                                <!--分页结束-->
+                            </div>
+                            <!--<div class="xiaoshou-med2">
+                                <ul>
+                                    <li style="width:6%;">01</li>
+                                    <li style="width:8%;">栈代1</li>
+                                    <li style="width:10%;">-</li>
+                                    <li style="width:15%;">-</li>
+                                    <li style="width:15%;">-</li>
+                                    <li style="width:10%;">-</li>
+                                    <li style="width:8%;">-</li>
+                                    <li style="width:10%; color: #108EE9; font-weight: bold;">9100</li>
+                                    <li style="width:15%;color: #108EE9; font-weight: bold;">100000</li>
+                                    <li style="width: 2%;"><i class="iconfont icon-moreunfold"></i></li>
+                                </ul>
+                                <ul>
+                                    <li style="width:6%;">&nbsp;</li>
+                                    <li style="width:8%;">&nbsp;</li>
+                                    <li style="width:10%;">230019</li>
+                                    <li style="width:15%;">海参一号</li>
+                                    <li style="width:15%;">养生no1</li>
+                                    <li style="width:10%;">件</i></li>
+                                    <li style="width:8%;">100</i></li>
+                                    <li style="width:10%;">100</li>
+                                    <li style="width:15%;">10000</li>
+                                </ul>
+                                <ul>
+                                    <li style="width:6%;">&nbsp;</li>
+                                    <li style="width:8%;">&nbsp;</li>
+                                    <li style="width:10%;">230019</li>
+                                    <li style="width:15%;">海参一号</li>
+                                    <li style="width:15%;">养生no1</li>
+                                    <li style="width:10%;">件</i></li>
+                                    <li style="width:8%;">100</i></li>
+                                    <li style="width:10%;">100</li>
+                                    <li style="width:15%;">10000</li>
+                                </ul>
+                            </div>
+
+                            <div class="xiaoshou-med3">
+                                <ul>
+                                    <li style="width:6%;">01</li>
+                                    <li style="width:8%;">栈代1</li>
+                                    <li style="width:10%;">-</li>
+                                    <li style="width:15%;">-</li>
+                                    <li style="width:15%;">-</li>
+                                    <li style="width:10%;">-</li>
+                                    <li style="width:8%;">-</li>
+                                    <li style="width:10%; color: #108EE9; font-weight: bold;">9100</li>
+                                    <li style="width:15%;color: #108EE9; font-weight: bold;">100000</li>
+                                    <li style="width: 2%;"><i class="iconfont icon-moreunfold"></i></li>
+                                </ul>
+                                <ul>
+                                    <li style="width:6%;">&nbsp;</li>
+                                    <li style="width:8%;">&nbsp;</li>
+                                    <li style="width:10%;">230019</li>
+                                    <li style="width:15%;">海参一号</li>
+                                    <li style="width:15%;">养生no1</li>
+                                    <li style="width:10%;">件</i></li>
+                                    <li style="width:8%;">100</i></li>
+                                    <li style="width:10%;">100</li>
+                                    <li style="width:15%;">10000</li>
+                                </ul>
+                                <ul>
+                                    <li style="width:6%;">&nbsp;</li>
+                                    <li style="width:8%;">&nbsp;</li>
+                                    <li style="width:10%;">230019</li>
+                                    <li style="width:15%;">海参一号</li>
+                                    <li style="width:15%;">养生no1</li>
+                                    <li style="width:10%;">件</i></li>
+                                    <li style="width:8%;">100</i></li>
+                                    <li style="width:10%;">100</li>
+                                    <li style="width:15%;">10000</li>
+
+                                    <ul>
+                                        <li style="width:6%;">&nbsp;</li>
+                                        <li style="width:8%;">&nbsp;</li>
+                                        <li style="width:10%;">230019</li>
+                                        <li style="width:15%;">海参一号</li>
+                                        <li style="width:15%;">养生no1</li>
+                                        <li style="width:10%;">件</i></li>
+                                        <li style="width:8%;">100</i></li>
+                                        <li style="width:10%;">100</li>
+                                        <li style="width:15%;">10000</li>
+                                    </ul>
+                                    <ul>
+                                        <li style="width:6%;">&nbsp;</li>
+                                        <li style="width:8%;">&nbsp;</li>
+                                        <li style="width:10%;">230019</li>
+                                        <li style="width:15%;">海参一号</li>
+                                        <li style="width:15%;">养生no1</li>
+                                        <li style="width:10%;">件</i></li>
+                                        <li style="width:8%;">100</i></li>
+                                        <li style="width:10%;">100</li>
+                                        <li style="width:15%;">10000</li>
+                                    </ul>
+                                </ul>
+                            </div>
+                            <div class="xiaoshou-med2">
+                                <ul>
+                                    <li style="width:6%;">01</li>
+                                    <li style="width:8%;">栈代1</li>
+                                    <li style="width:10%;">-</li>
+                                    <li style="width:15%;">-</li>
+                                    <li style="width:15%;">-</li>
+                                    <li style="width:10%;">-</li>
+                                    <li style="width:8%;">-</li>
+                                    <li style="width:10%; color: #108EE9; font-weight: bold;">9100</li>
+                                    <li style="width:15%;color: #108EE9; font-weight: bold;">100000</li>
+                                    <li style="width: 2%;"><i class="iconfont icon-moreunfold"></i></li>
+                                </ul>
+                                <ul>
+                                    <li style="width:6%;">&nbsp;</li>
+                                    <li style="width:8%;">&nbsp;</li>
+                                    <li style="width:10%;">230019</li>
+                                    <li style="width:15%;">海参一号</li>
+                                    <li style="width:15%;">养生no1</li>
+                                    <li style="width:10%;">件</i></li>
+                                    <li style="width:8%;">100</i></li>
+                                    <li style="width:10%;">100</li>
+                                    <li style="width:15%;">10000</li>
+                                </ul>
+                                <ul>
+                                    <li style="width:6%;">&nbsp;</li>
+                                    <li style="width:8%;">&nbsp;</li>
+                                    <li style="width:10%;">230019</li>
+                                    <li style="width:15%;">海参一号</li>
+                                    <li style="width:15%;">养生no1</li>
+                                    <li style="width:10%;">件</i></li>
+                                    <li style="width:8%;">100</i></li>
+                                    <li style="width:10%;">100</li>
+                                    <li style="width:15%;">10000</li>
+                                </ul>
+                            </div>
+
+                            <div class="xiaoshou-med3">
+                                <ul>
+                                    <li style="width:6%;">01</li>
+                                    <li style="width:8%;">栈代1</li>
+                                    <li style="width:10%;">-</li>
+                                    <li style="width:15%;">-</li>
+                                    <li style="width:15%;">-</li>
+                                    <li style="width:10%;">-</li>
+                                    <li style="width:8%;">-</li>
+                                    <li style="width:10%; color: #108EE9; font-weight: bold;">9100</li>
+                                    <li style="width:15%;color: #108EE9; font-weight: bold;">100000</li>
+                                    <li style="width: 2%;"><i class="iconfont icon-moreunfold"></i></li>
+                                </ul>
+                                <ul>
+                                    <li style="width:6%;">&nbsp;</li>
+                                    <li style="width:8%;">&nbsp;</li>
+                                    <li style="width:10%;">230019</li>
+                                    <li style="width:15%;">海参一号</li>
+                                    <li style="width:15%;">养生no1</li>
+                                    <li style="width:10%;">件</i></li>
+                                    <li style="width:8%;">100</i></li>
+                                    <li style="width:10%;">100</li>
+                                    <li style="width:15%;">10000</li>
+                                </ul>
+                                <ul>
+                                    <li style="width:6%;">&nbsp;</li>
+                                    <li style="width:8%;">&nbsp;</li>
+                                    <li style="width:10%;">230019</li>
+                                    <li style="width:15%;">海参一号</li>
+                                    <li style="width:15%;">养生no1</li>
+                                    <li style="width:10%;">件</i></li>
+                                    <li style="width:8%;">100</i></li>
+                                    <li style="width:10%;">100</li>
+                                    <li style="width:15%;">10000</li>
+
+                                    <ul>
+                                        <li style="width:6%;">&nbsp;</li>
+                                        <li style="width:8%;">&nbsp;</li>
+                                        <li style="width:10%;">230019</li>
+                                        <li style="width:15%;">海参一号</li>
+                                        <li style="width:15%;">养生no1</li>
+                                        <li style="width:10%;">件</i></li>
+                                        <li style="width:8%;">100</i></li>
+                                        <li style="width:10%;">100</li>
+                                        <li style="width:15%;">10000</li>
+                                    </ul>
+                                    <ul>
+                                        <li style="width:6%;">&nbsp;</li>
+                                        <li style="width:8%;">&nbsp;</li>
+                                        <li style="width:10%;">230019</li>
+                                        <li style="width:15%;">海参一号</li>
+                                        <li style="width:15%;">养生no1</li>
+                                        <li style="width:10%;">件</i></li>
+                                        <li style="width:8%;">100</i></li>
+                                        <li style="width:10%;">100</li>
+                                        <li style="width:15%;">10000</li>
+                                    </ul>
+                                </ul>
+                            </div>
+-->
+
+                        </div>
+                        <div class="xiaoshou-mid">
+                            <div class="xiaoshou-mid1"><p><span></span>供货分析(商品)</p></div>
+                            <div class="xiaoshou-mid2" style=" width: 20%;">
+                                <ul>
+                                    <li>导出:</li>
+                                    <li>
+                                        <i class="iconfont icon-pdf"></i>
+                                        <span>txt</span>
+                                    </li>
+                                    <li>
+                                        <i class="iconfont icon-exl"></i>
+                                        <span>xls</span>
+                                    </li>
+                                    <li>
+                                        <i class="iconfont icon-form"></i>
+                                        <span>doc</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="xiaoshou-med">
+                            <div class="xiaoshou-med1">
+                                <table class="table">
+                                    <tr>
+                                        <td style="width:10%;">行号</td>
+                                        <td style="width:10%;">商品编号</td>
+                                        <td style="width:15%;">商品名称</td>
+                                        <td style="width:15%;">规格/型号</td>
+                                        <td style="width:8%;">单价<br><i class="iconfont icon-move"></i></td>
+                                        <td style="width:10%;">供货量<br><i class="iconfont icon-move"></i></td>
+                                        <td style="width:15%;">供货金额<br><i class="iconfont icon-move"></i></td>
+                                    </tr>
+                                    <tbody id="tablesss">
+
+                                    </tbody>
+                                </table>
+                                <!--分页开始-->
+                                <div id="demo7" style=" text-align: center;" ></div>
+                                <!--分页结束-->
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <script>
+                        var userId='${user.id}';
+                        //分页
+                        var page_size=10;
+                        var page_no=1;
+                        var count1=0;
+                        jQuery(document).ready(function(){
+                            zhandai_analy(page_size,page_no);
+                            layui.use(['laypage', 'layer'], function(){
+                                var laypage = layui.laypage
+                                    ,layer = layui.layer;
+                                //完整功能
+                                laypage.render({
+                                    elem: 'demo'
+                                    ,count:count1
+                                    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                                    ,jump: function(obj){
+                                        //console.log(obj)
+                                        page_no=obj.curr;
+                                        page_size=obj.limit;
+                                        //alert(pagelimit);
+                                        zhandai_analy(page_size,page_no);
+                                        //loadajax("select","stu",pagelimit,cuur,1);
+                                    },
+                                    limits:[2, 4, 6, 8, 10],
+                                    limit:page_size
+                                });
+                            });
+                            goods_analy(page_size,page_no);
+                            layui.use(['laypage', 'layer'], function(){
+                                var laypage = layui.laypage
+                                    ,layer = layui.layer;
+                                //完整功能
+                                laypage.render({
+                                    elem: 'demo7'
+                                    ,count:count1
+                                    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                                    ,jump: function(obj){
+                                        //console.log(obj)
+                                        page_no=obj.curr;
+                                        page_size=obj.limit;
+                                        //alert(pagelimit);
+                                        goods_analy(page_size,page_no);
+                                        //loadajax("select","stu",pagelimit,cuur,1);
+                                    },
+                                    limits:[2, 4, 6, 8, 10],
+                                    limit:page_size
+                                });
+                            });
+                        });
+                        function zhandai_analy(page_size,page_no){
+                            var sql = "SELECT dashidao_goodscart.`goodsname`,dashidao_goodscart.`price`,dashidao_goodscart.`count`,dashidao_goodscart.`spec_info`,ZHANDAI.userName ,dashidao_goods.`goods_serial` " +
+                                "FROM dashidao_goodscart " +
+                                "LEFT JOIN( " +
+                                "SELECT dashidao_user.`userName`,dashidao_orderform.`id`,dashidao_orderform.`seller` " +
+                                "FROM dashidao_orderform  INNER JOIN dashidao_user  ON dashidao_orderform.`seller`=dashidao_user.`id` " +
+                                "WHERE dashidao_user.`userRole`='POSTER' " +
+                                ")ZHANDAI ON ZHANDAI.id=dashidao_goodscart.`of_id` " +
+                                "LEFT JOIN dashidao_goods ON dashidao_goodscart.`goods_id`=dashidao_goods.`id`"+
+                                "WHERE ZHANDAI.`seller`="+userId+" order by dashidao_goodscart.id ";
+                            jQuery.ajax({
+                                type: "POST",
+                                cache: false,
+                                async: false,
+                                url: "/ajaxuser.jsp",
+                                dataType: "json",
+                                data: "table=dashidao_goodscart&dates=addTime&sql="+sql+"&page_size="+page_size+"&page_no="+page_no,
+                                error: function () {
+                                    alert("数据错误，操作被取消！");
+                                },
+                                success: function (data) {
+                                    if (data.state == "error") {
+                                        alert("系统错误，操作被取消！");
+                                        return;
+                                    }
+                                    count1=data.data.total;
+                                    var message = data.data.data;
+                                    $("#goods_zhandai").html('');
+                                    for (var i = 0; i < message.length; i++) {
+                                        var i1=i+1;
+                                        $("#goods_zhandai").append("<tr>" +
+                                            "<td>" + i1 + "</td>" +
+                                            "<td>" + message[i]['userName'] + "</td>" +
+                                            "<td>" + message[i]['goods_serial'] + "</td>" +
+                                            "<td>" + message[i]['goodsname'] + "</td>" +
+                                            "<td>" + message[i]['spec_info'] + "</td>" +
+                                            "<td>" + message[i]['price'] + "</td>" +
+                                            "<td>" + message[i]['count'] + "</td>" +
+                                            "<td>" +parseFloat(message[i]['price'])*parseFloat(message[i]['count'])+ "</td></tr>" );
+                                    }
+                                }
+                            });
+                        }
+                        function goods_analy(page_size,page_no){
+                            var sql = "SELECT dashidao_goodscart.`goodsname`,dashidao_goodscart.`price`,dashidao_goodscart.`count`,dashidao_goodscart.`spec_info`,dashidao_goods.`goods_serial` " +
+                                "FROM dashidao_goodscart  " +
+                                "LEFT JOIN dashidao_orderform ON dashidao_orderform.id=dashidao_goodscart.`of_id` " +
+                                "LEFT JOIN dashidao_goods ON dashidao_goodscart.`goods_id`=dashidao_goods.`id` " +
+                                "WHERE dashidao_orderform.`seller`="+userId+" order by dashidao_goodscart.id ";
+                            jQuery.ajax({
+                                type: "POST",
+                                cache: false,
+                                async: false,
+                                url: "/ajaxuser.jsp",
+                                dataType: "json",
+                                data: "table=dashidao_goodscart&dates=addTime&sql="+sql+"&page_size="+page_size+"&page_no="+page_no,
+                                error: function () {
+                                    alert("数据错误，操作被取消！");
+                                },
+                                success: function (data) {
+                                    if (data.state == "error") {
+                                        alert("系统错误，操作被取消！");
+                                        return;
+                                    }
+                                    count1=data.data.total;
+                                    var message = data.data.data;
+                                    $("#tablesss").html('');
+                                    for (var i = 0; i < message.length; i++) {
+                                        var i1=i+1;
+                                        $("#tablesss").append("<tr>" +
+                                            "<td>" + i1 + "</td>" +
+                                            "<td>" + message[i]['goods_serial'] + "</td>" +
+                                            "<td>" + message[i]['goodsname'] + "</td>" +
+                                            "<td>" + message[i]['spec_info'] + "</td>" +
+                                            "<td>" + message[i]['price'] + "</td>" +
+                                            "<td>" + message[i]['count'] + "</td>" +
+                                            "<td>" +parseFloat(message[i]['price'])*parseFloat(message[i]['count'])+ "</td></tr>" );
+                                    }
+                                }
+                            });
+                        }
+                    </script>
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

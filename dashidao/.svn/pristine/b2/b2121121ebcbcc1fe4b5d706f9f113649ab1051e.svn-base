@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>破损补寄管理 - $!{config.poweredby}</title>
+	<meta name="keywords" content="$!config.keywords" />
+	<meta name="description" content="$!config.description" />
+	<meta name="generator" content="$!{config.meta_generator}" />
+	<meta name="author" content="$!{config.meta_author}">
+	<meta name="copyright" content="$!{config.copyRight}">
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+	<title>破损补寄管理</title>
+	#if($!config.website_ico)
+	<link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+	#end
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+	<link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+	<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+	<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+	<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+	<!--<script src="$!webPath/resources/js/jquery.shop.common.js"></script>-->
+	<link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+	<script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+	<script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+
+	<script>
+        jQuery(document).ready(function(){
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+	</script>
+</head>
+<style>
+	.shopadminbox tr td{ line-height: 40px; height: 40px; }
+	#centerbg .shopadminbox .hd ul li{ border: none;  }
+</style>
+<body>
+$!httpInclude.include("/top.htm")
+<div class="main">
+	<div class="user_center">
+		$!httpInclude.include("/poster/nav_head.htm")
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+			<tr> $!httpInclude.include("/poster/nav.htm?op=refund")
+				<td id="centerbg" valign="top" width="80%">
+					<div class="shopadminbox">
+						<div class="hd">
+							<ul>
+								<li>服务综合指标</li>
+								<li>服务综合指标历史</li>
+							</ul>
+						</div>
+						<div class="bd" >
+							<!--破损补寄-->
+							<ul>
+								<li>
+									<table width="100%" border="0"  cellspacing="0" cellpadding="0">
+										<tbody>
+										<tr class="tiptitles returntitle">
+											<td width="100%" colspan="10" >
+												<p><span>大世道服务综合指标</span></p>
+											</td>
+										</tr>
+										</tbody>
+									</table>
+									<table width="100%" border="0"  cellspacing="0" cellpadding="0">
+										<tbody>
+										<tr id="thead" >
+											<td width="25%" >指标</td>
+											<td width="25%">数据</td>
+											<td width="25%">同行平均水平</td>
+											<td width="25%">与同行平均水平相比</td>
+										</tr>
+										</tbody>
+									</table>
+									<table width="100%" class="returntable" border="0" cellspacing="0" cellpadding="0">
+										<tbody>
+
+										<tr class="first" >
+											<td width="25%">
+												纠纷退款率
+											</td>
+											<td width="25%">10%</td>
+											<td width="25%">5%</td>
+											<td width="25%">↑</td>
+										</tr>
+										<tr class="first" >
+											<td width="25%">
+												纠纷退款率
+											</td>
+											<td width="25%">10%</td>
+											<td width="25%">5%</td>
+											<td width="25%">↑</td>
+										</tr>
+										<tr class="first" >
+											<td width="25%">
+												纠纷退款率
+											</td>
+											<td width="25%">10%</td>
+											<td width="25%">5%</td>
+											<td width="25%">↑</td>
+										</tr>
+										<tr class="first" >
+											<td width="25%">
+												纠纷退款率
+											</td>
+											<td width="25%">10%</td>
+											<td width="25%">5%</td>
+											<td width="25%">↑</td>
+										</tr>
+										</tbody>
+									</table>
+
+									<!-- PageNum -->
+									<div class="pageDiv"></div>
+								</li>
+							</ul>
+							<!--破损补寄记录-->
+							<ul>
+								<li>
+									<table width="100%" border="0"  cellspacing="0" cellpadding="0">
+										<tbody>
+										<tr class="tiptitles returntitle">
+											<td width="100%" colspan="10" >
+												<p><span>大世道服务综合指标</span></p>
+											</td>
+										</tr>
+										</tbody>
+									</table>
+									<table width="100%" border="0"  cellspacing="0" cellpadding="0">
+										<tbody>
+										<tr id="thead" >
+											<td width="25%" >指标</td>
+											<td width="25%">数据</td>
+											<td width="25%">同行平均水平</td>
+											<td width="25%">与同行平均水平相比</td>
+										</tr>
+										</tbody>
+									</table>
+									<table width="100%" class="returntable" border="0" cellspacing="0" cellpadding="0">
+										<tbody>
+
+										<tr class="first" >
+											<td width="25%">
+												纠纷退款率
+											</td>
+											<td width="25%">10%</td>
+											<td width="25%">5%</td>
+											<td width="25%">↑</td>
+										</tr>
+										<tr class="first" >
+											<td width="25%">
+												纠纷退款率
+											</td>
+											<td width="25%">10%</td>
+											<td width="25%">5%</td>
+											<td width="25%">↑</td>
+										</tr>
+										<tr class="first" >
+											<td width="25%">
+												纠纷退款率
+											</td>
+											<td width="25%">10%</td>
+											<td width="25%">5%</td>
+											<td width="25%">↑</td>
+										</tr>
+										<tr class="first" >
+											<td width="25%">
+												纠纷退款率
+											</td>
+											<td width="25%">10%</td>
+											<td width="25%">5%</td>
+											<td width="25%">↑</td>
+										</tr>
+										</tbody>
+									</table>
+
+									<!-- PageNum -->
+									<div class="pageDiv"></div>
+								</li>
+							</ul>
+
+						</div>
+					</div>
+					<script type="text/javascript">jQuery(".shopadminbox").slide({trigger:"click"});</script>
+					<script type="text/javascript">
+                        $(function(){$(".pageDiv").createPage({
+                            pageCount:9,//总页数
+                            current:1,//当前页
+                            turndown:'true',//是否显示跳转框，显示为true，不现实为false,一定记得加上引号...
+                            backFn:function(p){
+                                console.log(p);
+                            }
+                        });
+                        })
+					</script>
+
+
+
+
+				</td>
+			</tr>
+		</table>
+	</div>
+	$!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>
+
+</body>
+</html>

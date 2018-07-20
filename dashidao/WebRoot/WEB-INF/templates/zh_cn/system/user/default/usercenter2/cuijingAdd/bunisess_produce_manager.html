@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>卖家品牌列表 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <link href="$!webPath/resources/style/system/manage/black/zxx.css"  rel="stylesheet" type="text/css"/>
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css">
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <style type="text/css">
+       .ghs_div .last{ border-bottom: none;  }
+       .ghs_div .last p{ margin: 10px 0 10px 20px; font-size: 15px;  }
+       .ghs_div .last p.accept{ color: #009688;}
+       .ghs_div .last p.refuse{ color: #e51c23;}
+       .ghs_div .last span{ background: #fff; padding: 2px 15px; font-size: 14px;   border: 1px solid #ccc; border-radius: 2px; }
+    </style>
+</head>
+<body>
+$!httpInclude.include("/top.htm")
+<div class="main">
+    <div class="user_center">
+        $!httpInclude.include("/seller/nav_head.htm")
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=zhandai_xinxi")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="div_2">
+                        <div class="ht-top"style="margin-left:55px; width: 55%; float: left;" >
+                            <div class="ht-tu">
+                                <i class="iconfont icon-search"></i>
+                                <input type="text" placeholder="韩版" style="padding: 0px; margin: 0px;height: 23px; "   />
+                            </div>
+                        </div>
+                        <div style="width:30%;text-align: right;margin-top: 19px">
+
+                            <button type="button" class="btn btn-primary">添加供货商</button>
+                        </div>
+                    </div>
+                    <div class="ghs_div">
+                        <div style="width: 20%;height: 100px;">
+                            <input type="image" src="$!webPath/resources/style/system/manage/black/img/raw_1495541442.jpeg" style="padding-left: 10px;padding-top: 8px;"/>
+                        </div>
+                        <div style="width: 40%;height: 100px;">
+                            <p style="padding-left: 10px;padding-top: 20px;">云正通海鲜</p>
+                            <p>唐三&nbsp;&nbsp;18165390289&nbsp;&nbsp;2017-3-1至2018-3-1</p>
+                        </div>
+                        <div style="width: 30%;height: 100px;">
+                            <p style="padding-left: 10px;padding-top: 50px;">西安市雁塔路58号&nbsp;&nbsp;<i class="icon-map-marker"></i></p>
+                        </div>
+                        <div style="width: 10%;height: 100px;" class="last">
+                            <p><span>删除</span></p>
+                            <p><span>修改</span></p>
+                            <p><span>详情</span></p>
+                        </div>
+                    </div>
+                    <div class="ghs_div">
+                        <div style="width: 20%;height: 100px;">
+                            <input type="image" src="$!webPath/resources/style/system/manage/black/img/raw_1495541442.jpeg" style="padding-left: 10px;padding-top: 8px;"/>
+                        </div>
+                        <div style="width: 40%;height: 100px;">
+                            <p style="padding-left: 10px;padding-top: 20px;">云正通海鲜</p>
+                            <p>唐三&nbsp;&nbsp;18165390289&nbsp;&nbsp;2017-3-1至2018-3-1</p>
+                        </div>
+                        <div style="width: 30%;height: 100px;">
+                            <p style="padding-left: 10px;padding-top: 50px;">西安市雁塔路58号&nbsp;&nbsp;<i class="icon-map-marker"></i></p>
+                        </div>
+                        <div style="width: 10%;height: 100px;" class="last">
+                            <p><span>删除</span></p>
+                            <p><span>修改</span></p>
+                            <p><span>详情</span></p>
+                        </div>
+                    </div>
+                    <div class="ghs_div">
+                        <div style="width: 20%;height: 100px;">
+                            <input type="image" src="$!webPath/resources/style/system/manage/black/img/raw_1495541442.jpeg" style="padding-left: 10px;padding-top: 8px;"/>
+                        </div>
+                        <div style="width: 40%;height: 100px;">
+                            <p style="padding-left: 10px;padding-top: 20px;">云正通海鲜</p>
+                            <p>唐三&nbsp;&nbsp;18165390289&nbsp;&nbsp;2017-3-1至2018-3-1</p>
+                        </div>
+                        <div style="width: 30%;height: 100px;">
+                            <p style="padding-left: 10px;padding-top: 50px;">西安市雁塔路58号&nbsp;&nbsp;<i class="icon-map-marker"></i></p>
+                        </div>
+                        <div style="width: 10%;height: 100px;" class="last">
+                            <p><span>删除</span></p>
+                            <p><span>修改</span></p>
+                            <p><span>详情</span></p>
+                        </div>
+                    </div>
+                    <div class="ghs_div">
+                        <div style="width: 20%;height: 100px;">
+                            <input type="image" src="$!webPath/resources/style/system/manage/black/img/raw_1495541442.jpeg" style="padding-left: 10px;padding-top: 8px;"/>
+                        </div>
+                        <div style="width: 40%;height: 100px;">
+                            <p style="padding-left: 10px;padding-top: 20px;">云正通海鲜</p>
+                            <p>唐三&nbsp;&nbsp;18165390289&nbsp;&nbsp;2017-3-1至2018-3-1</p>
+                        </div>
+                        <div style="width: 30%;height: 100px;">
+                            <p style="padding-left: 10px;padding-top: 50px;">西安市雁塔路58号&nbsp;&nbsp;<i class="icon-map-marker"></i></p>
+                        </div>
+                        <div style="width: 10%;height: 100px;" class="last">
+                            <p><span>删除</span></p>
+                            <p><span>修改</span></p>
+                            <p><span>详情</span></p>
+                        </div>
+                    </div>
+                    <div class="div_2">
+                        <ul class="pagination" style="margin-left: 30%;">
+                            <li><a href="#">&laquo;</a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li class="disabled"><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">&raquo;</a></li>
+                        </ul>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

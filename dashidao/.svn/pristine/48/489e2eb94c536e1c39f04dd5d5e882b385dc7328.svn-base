@@ -1,0 +1,199 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+	<title>页面标题</title>
+	<link rel="stylesheet" href="$!webPath/resources/buyer/css/apply.css">
+	<!--必选css-->
+	<link rel="stylesheet" type="text/css" href="$!webPath/resources/buyer/css/csss.css" >
+	<link rel="stylesheet" href="$!webPath/resources/buyer/iconfont/iconfont.css">
+	<link rel="stylesheet" href="$!webPath/resources/buyer/css/bootstrap.css">
+</head>
+<style type="text/css">
+	.uyuan{width:80%;margin:1rem 10%;height:6rem;border-radius:4rem;line-height:5rem;font-size:2rem;background:#ff6600;text-align: center;color: #fff;font-weight: 200;}
+</style>
+<body style=" padding-bottom: 8rem;" >
+<!--头部搜索-->
+<div class="nav" style="position: fixed; top: 0px; z-index: 10000; width: 100%; background: #fff;" >
+	<table width="100%" class="nav_ta">
+		<tbody>
+		<tr class="act">
+			<td width="22%"><img src="$!webPath/resources/buyer/images/logoo.png" style="width:4rem; height:4rem; " /> </td>
+			<td width="78%" colspan="3" style="color:#d24146; font-size: 2rem;  text-align: left;" >商家直供&nbsp&nbsp&nbsp正品超值</td>
+		</tr>
+		<tr class="act">
+			<td width="80%"  colspan="2" ><input type="text" class="form-control" name="name" id="name" value="" placeholder="3月月末大促" /></td>
+			<td width="10%" style="text-align: right;"></td>
+			<td width="10%" style="text-align: right; padding-top: 8px;"><a href="news.html"><i class="iconfont icon-comments" style="font-size: 2.3rem;"></i></a></td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+<div class="wrapper wrapper03 slideTxtBox" id="wrapper03" style="margin-top: 117px; ">
+	<div class="scroller hd">
+		<ul class="clearfix">
+		<li>优惠活动</li> 
+		#foreach($obj in $gcs)
+		<li>$obj.className</li> 
+		#end 
+			
+		</ul>
+	</div>
+	<div class="bd">
+		<!--今日特卖-->
+		<ul>
+			<li>
+				<!--轮播图-->
+				<div>
+					<div id="slider">
+						<ul class="slides">
+						#foreach($obj in $gg)
+		                <li><img class="responsive" src="$obj.ad_url"></li>
+		                #end 
+						</ul>
+						<ul class="pagination">
+						<li class="active"></li>
+						#foreach($obj in $gg)
+						<li></li>
+						#end  
+						</ul>
+					</div>
+				</div>
+				<a href="storeshow1.html"><div class="uyuan">去张三的<span style="font-size: 3rem;font-weight: 600;">U园</span>看一看</div></a>
+				<!--打折、满减、秒杀、购物卡-->
+				<style type="text/css" >
+					.activitycheck{ margin-top: 10px; }
+					.slideTxtBox12{ width:100%; text-align:left;  }
+					.slideTxtBox12 .hd{ height:30px; width: 100%; line-height:30px;   }
+					.slideTxtBox12 .hd ul{ float:left;  width: 100%;  height:32px;   }
+					.slideTxtBox12 .hd ul li{ float:left;  width: 20%; cursor:pointer; text-align: center; border: none;  }
+					.slideTxtBox12 .hd ul li.on{ height:30px;  background:#fff; border-bottom:1px solid red;  }
+					.slideTxtBox12 .bd ul{  zoom:1; height: auto;  }
+					.slideTxtBox12 .bd li{ height: auto;   }
+				</style>
+				<div class="activitycheck" >
+					<div class="slideTxtBox12">
+						<div class="hd">
+							<ul><li>打折</li><li>满减</li><li>秒杀</li><li>购物卡</li></ul>
+						</div>
+						<div class="bd" style="margin-top: 0px;" >
+							<ul>
+								<!--活动切换按钮-->
+								<!--newsbar-->
+								<div class="newsbar tmbar ykactivity">
+									<a href="product.html" >
+										<div class="img_cont"  >
+											<img src="$!webPath/resources/buyer/images/indexg.png" style="width: 100%; margin-bottom:15px;"/>
+										</div>
+										<h1 style="width: 100%;" >海参快客1盒装
+											<p>高弹透气 轻柔舒适</p>
+										</h1>
+										<div class="clear"></div>
+									</a>
+										<!--特卖代购-->
+										<div class="neprice" style="width: 100%;">
+											<a href="product.html">
+											<!--自购 外销-->
+												<div class="tmprice tmprice1" style="width:100%" >
+													<span class="fl" >&nbsp￥&nbsp7.00&nbsp&nbsp</span><span class="fr">库存 <font>4011</font></span>
+												</div>
+											</a>
+
+										</div>
+
+								</div>
+
+								<div class="clear"></div>
+							</ul>
+							<ul>
+								222
+							</ul>
+							<ul>
+								333
+							</ul>
+							<ul>
+								444
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</li>
+		</ul>
+		<!--美妆个户-->
+		<ul>
+			<li>44</li>
+		</ul>
+		<!--食品饮料-->
+		<ul>
+			<li>55</li>
+		</ul>
+		<!--服饰箱包-->
+		<ul>
+			<li>66</li>
+		</ul>
+		<!--母婴玩具-->
+		<ul>
+			<li>77</li>
+		</ul>
+		<!--家具生活-->
+		<ul>
+			<li>88</li>
+		</ul>
+		<!--家用电器-->
+		<ul>
+			<li>99</li>
+		</ul>
+		<!--蔬果生鲜-->
+		<ul>
+			<li>1010</li>
+		</ul>
+		<!--日用家纺-->
+		<ul>
+			<li>1111</li>
+		</ul>
+		<!--手机数码-->
+		<ul>
+			<li>1212</li>
+		</ul>
+		<!--生活服务-->
+		<ul>
+			<li>131313</li>
+		</ul>
+	</div>
+</div>
+$!httpInclude.include("/buyer/foot.htm")
+<script type="text/javascript" src="$!webPath/resources/buyer/js/jquery.min.js"></script>
+<script type="text/javascript" src="$!webPath/resources/buyer/js/iscroll.js"></script>
+<script type="text/javascript" src="$!webPath/resources/buyer/js/navbarscroll.js"></script>
+<script type="text/javascript" src="$!webPath/resources/buyer/js/jquery.SuperSlide.2.1.1.js"></script>
+<script src="$!webPath/resources/buyer/js/easySlider.js"></script>
+<script type="text/javascript">
+	$(function(){
+        //选项卡
+        jQuery(".slideTxtBox").slide({trigger:"click"});
+        //选项卡2
+        jQuery(".slideTxtBox12").slide({trigger:"click"});
+        //滚动
+        $('.wrapper').navbarscroll();
+        //轮播图
+        $("#slider").easySlider( {
+            slideSpeed: 500,
+            autoSlide: true,
+            paginationSpacing: "15px",
+            paginationDiameter: "10px",
+            paginationPositionFromBottom: "0px",
+            slidesClass: ".slides",
+            controlsClass: ".controls",
+            paginationClass: ".pagination"
+        });
+     	//footer选项卡
+		$(".bmenu li").click(function () {
+				$(this).addClass('on').siblings().removeClass('on');
+        });
+	});
+</script>
+</body>
+</html>

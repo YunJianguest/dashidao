@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link href="$!webPath/resources/style/system/manage/blue/tip.css"  rel="stylesheet" type="text/css"/>
+	<link href="$!webPath/resources/style/system/manage/blue/headquarters.css"  rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css" type="text/css"/>
+	<title>支付方式</title>
+</head>
+<body>
+<div class="zhifu_admin">
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#1" data-toggle="tab">总部平台首款账号</a></li>
+	</ul>
+	<div class="operation">
+		<h3>友情提示</h3>
+		<ul>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+<div class="content">
+	<div class="cz"><span>添加</span><span>修改</span></div>
+	<div class="zffs"><img src="$!webPath/resources/style/system/manage/black/img/raw_1508587666.png" alt="" /></div>
+	<div style="clear: both;"></div>
+	<ul>
+		<li><span class="oy">接口URL</span><span class="tw">http://zhifubao.aliyun.com/</span></li>
+		<li><span class="oy">用户名</span><span class="tw">大市道</span></li>
+		<li><span class="oy">密码</span><span class="tw">*********</span></li>
+		<li><span class="oy">访问秘钥</span><span class="tw">13sdfsdf</span></li>
+		<li><span class="oy">支付签名</span><span class="tw">ASFLJKASKJ2435FFDGFDG</span></li>
+	</ul>
+	<div class="zffs"><img src="$!webPath/resources/style/system/manage/black/img/raw_1508588005.png" alt="" /></div>
+	<ul>
+		<li><span class="oy">接口URL</span><span class="tw">http://zhifu.weixin.com/</span></li>
+		<li><span class="oy">用户名</span><span class="tw">大市道</span></li>
+		<li><span class="oy">密码</span><span class="tw">*********</span></li>
+		<li><span class="oy">访问秘钥</span><span class="tw">13sdfsdf</span></li>
+		<li><span class="oy">支付签名</span><span class="tw">ASFLJKASKJ2435FFDGFDG</span></li>
+	</ul>
+</div>
+</div>
+</body>
+</html>

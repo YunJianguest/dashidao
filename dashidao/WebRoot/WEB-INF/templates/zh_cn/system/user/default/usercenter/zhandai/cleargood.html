@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>清仓活动 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+
+   <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery.validate.min.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+    <script>
+    	//初始化时间控件
+        jQuery(document).ready(function(){
+             jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });  
+            
+        });
+    	
+    	
+    	//清仓活动
+    	function qingCanHuoDongSave()
+    	{
+    		var zd_huodongname = $("#zd_huodongname").val();
+    		var zd_dazhelidu = $("#zd_dazhelidu").val();
+    		var zd_dazhemenkan = $("#zd_dazhemenkan").val();
+    		var beginTime = $("#beginTime").val();
+    		var endTime = $("#endTime").val();
+    		var zd_canjiashuliang = $("#zd_canjiashuliang").val();
+    		if((zd_huodongname ==null || zd_huodongname=="") || (beginTime ==null || beginTime=="")  || (endTime ==null || endTime=="")
+    				 || (zd_canjiashuliang ==null || zd_canjiashuliang==""))
+    		{
+    			alert("请完善信息");
+    			return;
+    		}
+    		if(zd_dazhelidu==0 ||zd_dazhemenkan==0)
+    		{
+    			alert("善打折力度和打折门槛不能为0");
+    			return;
+    		}
+    		var ids ="";
+    		$("#tabTab").find("input[name='id']").each(function(){
+    			ids += $(this).val()+",";
+    		});
+    		ids = ids.substring(0,ids.length-1);
+    		if(ids==null || ids=="")
+    		{
+    			alert("请选择商品");return;
+    		}
+    		$("#shangPinIds").val(ids);
+    		var userid ="${user.id}";
+    		var data1 ="zd_huodongname="+zd_huodongname+"&zd_dazhelidu="+zd_dazhelidu+"&zd_dazhemenkan="+zd_dazhemenkan+"&zd_huodongday="+beginTime+"&zd_huodongdayend="+endTime;
+    		    data1 +="&zd_canjiashuliang="+zd_canjiashuliang+"&shangPinIds="+ids+"&userid="+userid;
+    		    console.log(data1);
+    		//$("#listForm").submit();
+    		 save(data1);
+    	}
+    	
+    	function save(data1)
+    	{
+    		jQuery.ajax({
+	            type:"POST",
+	            cache: false,
+	            async:false,
+	            url:"$!webPath/poster/cleargood_save.htm",
+	            dataType:"json",
+	            data:data1,
+	            success:function(data)
+	            {
+	                //if(data.code=="0"){alert("系统错误，操作被取消！");return;}
+	                window.location.href='$!webPath/poster/cleargood_list.htm';
+	            }
+	        });
+    	}
+    </script>
+</head>
+<body>
+
+<div class="main">
+    <div class="user_center">
+
+        $!httpInclude.include("/poster/nav_head.htm") 
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/poster/nav.htm?op=refund")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="shopadminbox choicebox">
+                        <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                            <tbody>
+                            <tr class="returnthead" >
+                                <td width="100%" colspan="7" >
+                                    <div class="buyer_position">
+                                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代支持</a> > <span>营销活动</span> > <span>清仓活动</span></div>
+                                    </div>
+                                    <div class="shopadminbox  cleargood" id="cleargoodDiv">
+                                        <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                                            <tbody>
+                                            <tr  class="tiptitles">
+                                                <td width="100%"  colspan="6" >
+                                                    <div class="operation_tip">
+                                                        <h3>友情提示</h3>
+                                                        <ul>
+                                                            <li></li>
+                                                            <li></li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="tiptitles returntitle">
+                                                <td width="100%" colspan="6" >
+                                                    <p style="font-size: 18px;  line-height: 40px; height:40px; background: #3fa4ed;">清仓活动</p>
+                                                </td>
+                                            </tr>
+                                            <!--清仓活动-->
+                                            <tr class="returnthead second clearactive" >
+                                                <td width="75%" colspan="4" >
+                                                    <form id="listForm" name="listForm" action="$!webPath/poster/cleargood_save.htm" method="post">
+                                                    	<input type="hidden" name="shangPinIds" id="shangPinIds" value="" />
+                                                    	<input type="hidden" name="userid" id="userid" value="${user.id}" />
+                                                        <div class="two">
+                                                            <ul>
+                                                                <li>
+                                                                    <span class="fl">活动名称：</span>
+                                                                    <span class="fr" >
+                                                                    	<input type="text" name="zd_huodongname"  id="zd_huodongname" class="oput" value="" style="border: 1px solid #ccc; text-indent: 2rem; border-radius: 5px;"  >
+                                                                    </span>
+                                                                    <div class="clear"></div>
+                                                                </li>
+                                                                <li>
+                                                                    <span class="fl">打折力度：</span>
+                                                                    <span class="fl lit">
+                                              						<div class="goods_sum">
+                                                    	<ul class="count">
+                                                        <li><span id="num-jian" class="num-jian">-</span></li>
+                                                        <li><input type="text" name="zd_dazhelidu" id="zd_dazhelidu"  class="input-num" id="input-num" value="0"  /></li>
+                                                        <li><span id="num-jia" class="num-jia"  style="padding-left: 20px;">+</span></li>
+                                                        <div class="clear"> </div>
+                                                    </ul>
+                                                </div>
+                                                <script>
+                                                    var num_jia = document.getElementById("num-jia");
+                                                    var num_jian = document.getElementById("num-jian");
+                                                    var input_num = document.getElementById("input-num");
+
+                                                    num_jia.onclick = function() {
+
+                                                        input_num.value = parseInt(input_num.value) + 0;
+                                                    }
+
+                                                    num_jian.onclick = function() {
+
+                                                        if(input_num.value <= 0) {
+                                                            input_num.value = 0;
+                                                        } else {
+
+                                                            input_num.value = parseInt(input_num.value) - 0;
+                                                        }
+
+                                                    }
+                                                    $("body").on("click", ".num-jian", function(m) {
+                                                        var obj = $(this).closest("ul").find(".input-num");
+                                                        if(obj.val() <= 0) {
+                                                            obj.val(0);
+                                                        } else {
+                                                            obj.val(parseInt(obj.val()) - 1);
+                                                        }
+                                                        obj.change();
+                                                    });
+                                                    $("body").on("click", ".num-jia", function(m) {
+                                                        var obj = $(this).closest("ul").find(".input-num");
+                                                        obj.val(parseInt(obj.val()) + 1);
+                                                        obj.change();
+                                                    });
+                                                </script>
+                                    </span>
+                                                                    <span class="fl">打折门槛：</span>
+                                                                    <span class="fl lit">
+                                         <div class="goods_sum">
+                                                    <ul class="count">
+                                                        <li><span id="num-jian" class="num-jian">-</span></li>
+                                                        <li><input type="text" name="zd_dazhemenkan" id="zd_dazhemenkan" class="input-num" id="input-num" value="0"  /></li>
+                                                        <li ><span id="num-jia" class="num-jia" style="padding-left: 20px;">+</span></li>
+                                                        <div class="clear"> </div>
+                                                    </ul>
+                                                </div>
+                                                <script>
+                                                    var num_jia = document.getElementById("num-jia");
+                                                    var num_jian = document.getElementById("num-jian");
+                                                    var input_num = document.getElementById("input-num");
+
+                                                    num_jia.onclick = function() {
+
+                                                        input_num.value = parseInt(input_num.value) + 0;
+                                                    }
+
+                                                    num_jian.onclick = function() {
+
+                                                        if(input_num.value <= 0) {
+                                                            input_num.value = 0;
+                                                        } else {
+
+                                                            input_num.value = parseInt(input_num.value) - 0;
+                                                        }
+
+                                                    }
+                                                    $("body").on("click", ".num-jian", function(m) {
+                                                        var obj = $(this).closest("ul").find(".input-num");
+                                                        if(obj.val() <= 0) {
+                                                            obj.val(0);
+                                                        } else {
+                                                            obj.val(parseInt(obj.val()) - 1);
+                                                        }
+                                                        obj.change();
+                                                    });
+                                                    $("body").on("click", ".num-jia", function(m) {
+                                                        var obj = $(this).closest("ul").find(".input-num");
+                                                        obj.val(parseInt(obj.val()) + 1);
+                                                        obj.change();
+                                                    });
+                                                </script>
+                                    </span>
+                                                                    <div class="clear"></div>
+                                                                </li>
+                                                                <li>
+                                                                    <span class="fl">活动时间：</span>
+                                                                    <span class="fr">
+                                                                        <div class="iDate full"  >
+                                                                           <input type="text" name="zd_huodongday"  id="beginTime" readonly="readonly" value="$!beginTime" class=""
+                                                                                  style=" width: 100%; border: 1px solid #ccc; margin: 0px;">
+                                                                        </div>
+                                                                        <div class="iDate date">
+                                                                           <input type="text" name="zd_huodongdayend"  id="endTime" readonly="readonly" value="$!endTime"
+                                                                                  style=" width: 100%; border: 1px solid #ccc; margin: 0px;">
+                                                                        </div>
+
+                                                                    </span>
+                                                                    <div class="clear"></div>
+                                                                </li>
+                                                                <li>
+                                                                    <span class="fl">参加商品：</span>
+                                                                    <span class="fl lit" id="checkSpan">
+								                                        <input type="checkbox" name="cjspCheck" checked="checked" style="margin-left: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;全部
+								                                        <!-- <a href="$!webPath/poster/cleargood_xz.htm"> --><i class="iconfont icon-add" onclick="xuanZeShangPin(this);" ></i><!-- </a> -->
+								                                    </span>
+                                                                    <span class="fl" style="width: 180px;">参加商品数量：</span>
+                                                                    <span class="fl lit" >
+                                                                    	<input type="text" class="oput2" value="" name="zd_canjiashuliang"  id="zd_canjiashuliang"
+                                                                    		style="border: 1px solid #ccc; text-indent: 2rem; line-height: 40px; border-radius: 5px;"   ></span>
+                                                                </li>
+
+                                                            </ul>
+                                                        </div>
+                                                    </form>
+                                                </td>
+                                                <td width="25%" colspan="2">
+                                                    <button type="button" onclick="qingCanHuoDongSave();" class="turess" >确定</button>
+                                                </td>
+                                            </tr>
+                                            <tr class="one">
+                                                <td width="100%" colspan="6" >参加商品清单</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        
+                                        <table id="listTab" width="100%" class="returntable importbill" border="0" cellspacing="0" cellpadding="0" >
+                                            <tbody>
+                                            <tr id="tabTr"  class="two" >
+                                                <td width="5%"></td>
+				                                <td width="30%">商品名称</td>
+				                                <td width="20%">商品编号</td>
+				                                <td width="20%">出厂价</td>
+				                                <td width="10%">库存</td>
+				                                <td width="">操作</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <table width="100%" class="returntable importbill" border="0" cellspacing="0" cellpadding="0">
+				                            <tbody id="tabTab">
+				                            </tbody>
+				                        </table>
+
+                                        <!-- PageNum 
+                                        <div class="pageDiv"></div>-->
+                                        <div id="pageDiv" style=" text-align: center; margin-top: 30px;" ></div>
+                                    </div>
+                                    <script type="text/javascript">
+	                                    //分页
+	                                    var page_size=10;
+	                                    var page_no=1;
+	                                    var id;
+	                                    var total =0;
+                                        $(document).ready(function(){
+                                        	
+                                        });
+                                        var istrue ;
+                                        //选择商品
+                                        function xuanZeShangPin(ev)
+                                        {
+                                        	istrue = $(ev).parent().find("input[name='cjspCheck']").is(":checked");
+                                        	//alert($(ev).parent().find("input[name='cjspCheck']").is(":checked"));
+                                        	$("#cleargoodDiv").hide();
+                                        	$("#xuanZeShangPinDiv").show();
+                                        	 loadajax(page_size,page_no,1);
+                                        }
+                                        //清空
+                                        function clearTr()
+                                        {
+                                        	$("#listTab").find(".first").each(function(){
+                                        		$(this).remove();
+                                        	});
+                                        }
+                                        
+                                    </script>
+                                    
+                                    
+                                    <div id="xuanZeShangPinDiv" style="display: none;">
+                                    	 <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+				                            <tbody>
+				                            <tr class="returnthead" >
+				                                <td width="100%" colspan="7" >
+				                                    <form class="form-inline" style="float: right;">
+				                                        <div class="form-group">
+				                                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入查询内容" style="width: 200px;" >
+				                                        </div>
+				                                        <button type="submit" class="btn btn-default" style="border: none;  background: #3fa4ed; color: #fff;   " >查询</button>
+				                                    </form>
+				                                   <button type="button" onclick="shangPinClick();" class="btn btn-default" style="border: none;  background: #3fa4ed; color: #fff;" >确定</button>
+				                                </td>
+				                            </tr>
+				                <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+				                            <tr  class="tiptitles">
+				                                <td width="100%"  colspan="7" >
+				                                    <div class="operation_tip" style="margin-bottom: 30px;" >
+				                                        <h3>友情提示</h3>
+				                                        <ul>
+				                                            <li></li>
+				                                        </ul>
+				                                    </div>
+				                                </td>
+				                            </tr>
+								           <tr id="thead" >
+				                                <td width="5%"></td>
+				                                <td width="30%">商品名称</td>
+				                                <td width="20%">商品编号</td>
+				                                <td width="15%">出厂价</td>
+				                                <td width="15%">库存</td>
+				                                <td width="">操作</td>
+				                            </tr>
+				                            </tbody>
+				                        </table>
+				                        <!--1-->
+				                        <table width="100%" class="returntable importbill" border="0" cellspacing="0" cellpadding="0">
+				                            <tbody id="tablesss">
+				                            </tbody>
+				                        </table>
+				                        <!-- PageNum -->
+				                        <!--分页开始-->
+				                        <div id="demo8" style=" text-align: center; margin-top: 30px;" ></div>
+                                    	<script>
+					                        var mycars=new Array();
+					                        var page_no1=1;
+					                        var page_size1=10;
+					                        var total1 =0;
+					                           /*  jQuery(document).ready(function(){
+					                                loadajax(page_size,page_no,1);
+					                                layui.use(['laypage', 'layer'], function(){
+					                                    var laypage = layui.laypage
+					                                        ,layer = layui.layer;
+					                                    //完整功能
+					                                    laypage.render({
+					                                        elem: 'demo8'
+					                                        ,count:total
+					                                        ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+					                                        ,jump: function(obj){
+					                                            page_no=obj.curr;
+					                                            page_size=obj.limit;
+					                                            loadajax(page_size,page_no,1);
+					                                        },
+					                                        limits:[2, 4, 6, 8, 10],
+					                                        limit:page_size
+					                                    });
+					                                });
+					                            }); */
+					                            
+					                            function loadajax(page_size1,page_no1,moudle_id){
+					                            	var html="";
+					                            	$("#tablesss").html(html);
+					                            	var sql ="select * from dashidao_goods order by addTime ";
+					                                jQuery.ajax({
+					                                    type:"POST",
+					                                    cache: false,
+					                                    async:false,
+					                                    url:"/ajaxuser.jsp",
+					                                    dataType:"json",
+					                                    //data:"table=dashidao_goods&dates=addTime,goods_seller_time,store_recommend_time,ztc_apply_time,combin_begin_time,combin_end_time,weixin_shop_hotTime,weixin_shop_recommendTime&sql="+sql+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+					                                    data:"table=dashidao_goods&dates=addTime,goods_seller_time,store_recommend_time,ztc_apply_time,combin_begin_time,combin_end_time,weixin_shop_hotTime,weixin_shop_recommendTime&sql="+sql+"&page_size="+page_size1+"&page_no="+page_no1+"&moudle_id="+moudle_id,
+					                                    //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+					                                    error:function(){alert("数据错误，操作被取消！");},
+					                                    success:function(data)
+					                                    {
+					                                    	console.log(data);
+					                                        if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+					                                        total=data.data.total;
+					                                        mycars[0]=total;
+					                                        var message=data.data.data;
+					                                        $("#tablesss").html('');
+					                                        for(var i=0;i<message.length;i++){
+					                                        	var box ="";
+					                                        	if(istrue)
+					                                        	{
+					                                        		box =" checked='checked' ";
+					                                        	}
+					                                             html+= " <tr  class='first' >";
+					                                             html+= " <td width='10%'><input type='checkbox' "+box+"  name='checkInput' id='' value='' /><input type='hidden' name='id' id='idInput' value='"+message[i]['id']+"' />";
+					                                             html+= "<input type='hidden' name='goods_name' value='"+message[i]['goods_name']+"' /> <input type='hidden' name='goods_serial' value='"+message[i]['goods_serial']+"' /> <input type='hidden' name='goods_price' value='"+message[i]['goods_price']+"' /> <input type='hidden' name='goods_inventory' value='"+message[i]['goods_inventory']+"' /> </td>";
+					                                             html+= " <td width='30%'>"+message[i]['goods_name']+"</td>";
+					                                             html+= " <td width='20%'>"+message[i]['goods_serial']+"</td>";
+					                                             html+= " <td width='22%'>"+message[i]['goods_price']+"</td>";
+					                                             html+= " <td width='15%'>"+message[i]['goods_inventory']+"</td>";
+					                                             html+= " <td width=''> </td>";
+					                                        } 
+					                                        $("#tablesss").html(html);
+					                                    }
+					                                });
+					                            }
+					                            
+					                            
+					                            var shangPinIds ="";
+					                            function shangPinClick()
+					                            {
+					                            	var shTrHtml ="";
+					                            	$("#tablesss").find("input[name='checkInput']").each(function(){
+					                            		if($(this).is(":checked"))
+					                            		{
+					                            			shangPinIds += $(this).parent().find("input[name='id']").val()+",";
+					                            			var id=$(this).parent().find("input[name='id']").val();
+					                            			var goods_name = $(this).parent().find("input[name='goods_name']").val();
+					                            			var goods_serial = $(this).parent().find("input[name='goods_serial']").val();
+					                            			var goods_price = $(this).parent().find("input[name='goods_price']").val();
+					                            			var goods_inventory = $(this).parent().find("input[name='goods_inventory']").val();
+					                            			
+					                            			shTrHtml+= " <tr  class='first' >";
+					                            			shTrHtml+= " <td width='5%'><input type='hidden' name='id' id='idInput' value='"+id+"' />";
+					                            			shTrHtml+= "<input type='hidden' name='goods_name' value='"+goods_name+"' /> <input type='hidden' name='goods_serial' value='"+goods_serial+"' /> <input type='hidden' name='goods_price' value='"+goods_price+"' /> <input type='hidden' name='goods_inventory' value='"+goods_inventory+"' /> </td>";
+					                            			shTrHtml+= " <td width='30%'>"+goods_name+"</td>";
+					                            			shTrHtml+= " <td width='20%'>"+goods_serial+"</td>";
+					                            			shTrHtml+= " <td width='15%'>"+goods_price+"</td>";
+					                            			shTrHtml+= " <td width='15%'>"+goods_inventory+"</td>";
+					                            			shTrHtml+= " <td width=''> <span onclick='removeTr(this);'>删除</span> </td>";
+					                            			/* console.log($(this).parent().parent().clone());
+					                            			shTrHtml += $(this).parent().parent().clone(); 
+					                            			var tr = $(this).parent().parent().clone(); */
+					                            			//$("#tabTr").after($(this).parent().parent().clone());
+					                            		}
+					                            	});
+					                            	shangPinIds = shangPinIds.substring(0,shangPinIds.length-1);
+					                            	$("#cleargoodDiv").show();
+		                                        	$("#xuanZeShangPinDiv").hide();
+		                                        	$("#tabTab").html(shTrHtml);
+					                            }
+					                            
+					                            //
+					                            function removeTr(ev){
+					                            	$(ev).parent().parent().remove();
+					                            }
+					                            
+					                        </script>
+                                    
+                                    
+                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    $!httpInclude.include("/footer.htm")
+    </div>
+</div>
+</body>
+</html>
+
+</body>
+</html>

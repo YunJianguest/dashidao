@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>进货管理</title>
+
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>进货管理 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+</head>
+<body>
+$!httpInclude.include("/top.htm")
+<div class="main">
+    <div class="user_center">
+        $!httpInclude.include("/seller/nav_head.htm")
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=refund")
+                <td id="centerbg" valign="top" width="80%">
+                    <div id="tab1" class="shopadminbox2">
+                        <ul id="tab11">
+                            <li class="active">待审核</li>
+                            <li>已审核</li>
+                            <li>入库清单</li>
+                        </ul>
+                        <!--待审核-->
+                        <div class="box1" style="display:block;">
+                            <div class="entrysheetbox">
+                                <table class="returntable importbill entryshtable" border="0" cellspacing="0" cellpadding="0">
+                                    <tbody>
+
+                                    <tr id="thead">
+                                        <td width="10%">时间</td>
+                                        <td width="30%">商品信息</td>
+                                        <td width="15%">单价</td>
+                                        <td width="15%">单位</td>
+                                        <td width="15%">数量</td>
+                                        <td width="15%" >金额</td>
+
+                                    </tr>
+                                    <tr class="first">
+                                        <td>
+                                            2017-09-02
+                                        </td>
+                                        <td>
+                                            <span class="fl">
+                                                <select>
+                                                   <option>韩版修身T恤</option>
+                                                   <option>韩版修身T恤2</option>
+                                                   <option>韩版修身T恤3</option>
+                                               </select>
+                                            </span>
+                                                                    <span class="fr">
+                                                商品编号: 230817<br/>
+                                                尺码：S<br/>
+                                                颜色：月白
+                                            </span>
+                                        </td>
+                                        <td>30元</td>
+                                        <td>件</td>
+                                        <td><!--数量-->
+                                            <div class="goods_sum">
+                                                <ul class="count">
+                                                    <li><span id="num-jian" class="num-jian">-</span></li>
+                                                    <li><input type="text" class="input-num" id="input-num" value="0" /></li>
+                                                    <li><span id="num-jia" class="num-jia">+</span></li>
+                                                    <div class="clear"> </div>
+                                                </ul>
+                                            </div>
+                                            <script>
+                                                var num_jia = document.getElementById("num-jia");
+                                                var num_jian = document.getElementById("num-jian");
+                                                var input_num = document.getElementById("input-num");
+
+                                                num_jia.onclick = function() {
+
+                                                    input_num.value = parseInt(input_num.value) + 0;
+                                                }
+
+                                                num_jian.onclick = function() {
+
+                                                    if(input_num.value <= 0) {
+                                                        input_num.value = 0;
+                                                    } else {
+
+                                                        input_num.value = parseInt(input_num.value) - 0;
+                                                    }
+
+                                                }
+                                                $("body").on("click", ".num-jian", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    if(obj.val() <= 0) {
+                                                        obj.val(0);
+                                                    } else {
+                                                        obj.val(parseInt(obj.val()) - 1);
+                                                    }
+                                                    obj.change();
+                                                });
+                                                $("body").on("click", ".num-jia", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    obj.val(parseInt(obj.val()) + 1);
+                                                    obj.change();
+                                                });
+                                            </script>
+                                        </td>
+                                        <td>
+                                            2700元
+                                        </td>
+
+                                    </tr>
+                                    <tr class="first">
+                                        <td>
+                                            2017-09-02
+                                        </td>
+                                        <td>
+                                            <span class="fl">
+                                                <select>
+                                                   <option>韩版修身T恤</option>
+                                                   <option>韩版修身T恤2</option>
+                                                   <option>韩版修身T恤3</option>
+                                               </select>
+                                            </span>
+                                            <span class="fr">
+                                                商品编号: 230817<br/>
+                                                尺码：S<br/>
+                                                颜色：月白
+                                            </span>
+                                        </td>
+                                        <td>30元</td>
+                                        <td>件</td>
+                                        <td><!--数量-->
+                                            <div class="goods_sum">
+                                                <ul class="count">
+                                                    <li><span id="num-jian" class="num-jian">-</span></li>
+                                                    <li><input type="text" class="input-num" id="input-num" value="0" /></li>
+                                                    <li><span id="num-jia" class="num-jia">+</span></li>
+                                                    <div class="clear"> </div>
+                                                </ul>
+                                            </div>
+                                            <script>
+                                                var num_jia = document.getElementById("num-jia");
+                                                var num_jian = document.getElementById("num-jian");
+                                                var input_num = document.getElementById("input-num");
+
+                                                num_jia.onclick = function() {
+
+                                                    input_num.value = parseInt(input_num.value) + 0;
+                                                }
+
+                                                num_jian.onclick = function() {
+
+                                                    if(input_num.value <= 0) {
+                                                        input_num.value = 0;
+                                                    } else {
+
+                                                        input_num.value = parseInt(input_num.value) - 0;
+                                                    }
+
+                                                }
+                                                $("body").on("click", ".num-jian", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    if(obj.val() <= 0) {
+                                                        obj.val(0);
+                                                    } else {
+                                                        obj.val(parseInt(obj.val()) - 1);
+                                                    }
+                                                    obj.change();
+                                                });
+                                                $("body").on("click", ".num-jia", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    obj.val(parseInt(obj.val()) + 1);
+                                                    obj.change();
+                                                });
+                                            </script>
+                                        </td>
+                                        <td>
+                                            2700元
+                                        </td>
+
+                                    </tr>
+                                    <tr class="first">
+                                        <td>
+                                            2017-09-02
+                                        </td>
+                                        <td>
+                                            <span class="fl">
+                                                <select>
+                                                   <option>韩版修身T恤</option>
+                                                   <option>韩版修身T恤2</option>
+                                                   <option>韩版修身T恤3</option>
+                                               </select>
+                                            </span>
+                                            <span class="fr">
+                                                商品编号: 230817<br/>
+                                                尺码：S<br/>
+                                                颜色：月白
+                                            </span>
+                                        </td>
+                                        <td>30元</td>
+                                        <td>件</td>
+                                        <td><!--数量-->
+                                            <div class="goods_sum">
+                                                <ul class="count">
+                                                    <li><span id="num-jian" class="num-jian">-</span></li>
+                                                    <li><input type="text" class="input-num" id="input-num" value="0" /></li>
+                                                    <li><span id="num-jia" class="num-jia">+</span></li>
+                                                    <div class="clear"> </div>
+                                                </ul>
+                                            </div>
+                                            <script>
+                                                var num_jia = document.getElementById("num-jia");
+                                                var num_jian = document.getElementById("num-jian");
+                                                var input_num = document.getElementById("input-num");
+
+                                                num_jia.onclick = function() {
+
+                                                    input_num.value = parseInt(input_num.value) + 0;
+                                                }
+
+                                                num_jian.onclick = function() {
+
+                                                    if(input_num.value <= 0) {
+                                                        input_num.value = 0;
+                                                    } else {
+
+                                                        input_num.value = parseInt(input_num.value) - 0;
+                                                    }
+
+                                                }
+                                                $("body").on("click", ".num-jian", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    if(obj.val() <= 0) {
+                                                        obj.val(0);
+                                                    } else {
+                                                        obj.val(parseInt(obj.val()) - 1);
+                                                    }
+                                                    obj.change();
+                                                });
+                                                $("body").on("click", ".num-jia", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    obj.val(parseInt(obj.val()) + 1);
+                                                    obj.change();
+                                                });
+                                            </script>
+                                        </td>
+                                        <td>
+                                            2700元
+                                        </td>
+
+                                    </tr>
+                                    <tr class="first">
+                                        <td>
+                                            2017-09-02
+                                        </td>
+                                        <td>
+                                            <span class="fl">
+                                                <select>
+                                                   <option>韩版修身T恤</option>
+                                                   <option>韩版修身T恤2</option>
+                                                   <option>韩版修身T恤3</option>
+                                               </select>
+                                            </span>
+                                            <span class="fr">
+                                                商品编号: 230817<br/>
+                                                尺码：S<br/>
+                                                颜色：月白
+                                            </span>
+                                        </td>
+                                        <td>30元</td>
+                                        <td>件</td>
+                                        <td><!--数量-->
+                                            <div class="goods_sum">
+                                                <ul class="count">
+                                                    <li><span id="num-jian" class="num-jian">-</span></li>
+                                                    <li><input type="text" class="input-num" id="input-num" value="0" /></li>
+                                                    <li><span id="num-jia" class="num-jia">+</span></li>
+                                                    <div class="clear"> </div>
+                                                </ul>
+                                            </div>
+                                            <script>
+                                                var num_jia = document.getElementById("num-jia");
+                                                var num_jian = document.getElementById("num-jian");
+                                                var input_num = document.getElementById("input-num");
+
+                                                num_jia.onclick = function() {
+
+                                                    input_num.value = parseInt(input_num.value) + 0;
+                                                }
+
+                                                num_jian.onclick = function() {
+
+                                                    if(input_num.value <= 0) {
+                                                        input_num.value = 0;
+                                                    } else {
+
+                                                        input_num.value = parseInt(input_num.value) - 0;
+                                                    }
+
+                                                }
+                                                $("body").on("click", ".num-jian", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    if(obj.val() <= 0) {
+                                                        obj.val(0);
+                                                    } else {
+                                                        obj.val(parseInt(obj.val()) - 1);
+                                                    }
+                                                    obj.change();
+                                                });
+                                                $("body").on("click", ".num-jia", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    obj.val(parseInt(obj.val()) + 1);
+                                                    obj.change();
+                                                });
+                                            </script>
+                                        </td>
+                                        <td>
+                                            2700元
+                                        </td>
+
+                                    </tr>
+                                    <tr class="first">
+                                        <td>
+                                            2017-09-02
+                                        </td>
+                                        <td>
+                                            <span class="fl">
+                                                <select>
+                                                   <option>韩版修身T恤</option>
+                                                   <option>韩版修身T恤2</option>
+                                                   <option>韩版修身T恤3</option>
+                                               </select>
+                                            </span>
+                                            <span class="fr">
+                                                商品编号: 230817<br/>
+                                                尺码：S<br/>
+                                                颜色：月白
+                                            </span>
+                                        </td>
+                                        <td>30元</td>
+                                        <td>件</td>
+                                        <td><!--数量-->
+                                            <div class="goods_sum">
+                                                <ul class="count">
+                                                    <li><span id="num-jian" class="num-jian">-</span></li>
+                                                    <li><input type="text" class="input-num" id="input-num" value="0" /></li>
+                                                    <li><span id="num-jia" class="num-jia">+</span></li>
+                                                    <div class="clear"> </div>
+                                                </ul>
+                                            </div>
+                                            <script>
+                                                var num_jia = document.getElementById("num-jia");
+                                                var num_jian = document.getElementById("num-jian");
+                                                var input_num = document.getElementById("input-num");
+
+                                                num_jia.onclick = function() {
+
+                                                    input_num.value = parseInt(input_num.value) + 0;
+                                                }
+
+                                                num_jian.onclick = function() {
+
+                                                    if(input_num.value <= 0) {
+                                                        input_num.value = 0;
+                                                    } else {
+
+                                                        input_num.value = parseInt(input_num.value) - 0;
+                                                    }
+
+                                                }
+                                                $("body").on("click", ".num-jian", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    if(obj.val() <= 0) {
+                                                        obj.val(0);
+                                                    } else {
+                                                        obj.val(parseInt(obj.val()) - 1);
+                                                    }
+                                                    obj.change();
+                                                });
+                                                $("body").on("click", ".num-jia", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    obj.val(parseInt(obj.val()) + 1);
+                                                    obj.change();
+                                                });
+                                            </script>
+                                        </td>
+                                        <td>
+                                            2700元
+                                        </td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                        <!--已审核-->
+                        <div class="box1">
+                            <div class="entrysheetbox">
+                                <table class="returntable importbill entryshtable" border="0" cellspacing="0" cellpadding="0">
+                                    <tbody>
+
+                                    <tr id="thead">
+                                        <td width="10%">时间</td>
+                                        <td width="30%">商品信息</td>
+                                        <td width="15%">单价</td>
+                                        <td width="15%">单位</td>
+                                        <td width="15%">数量</td>
+                                        <td width="15%" >金额</td>
+
+                                    </tr>
+                                    <tr class="first">
+                                        <td>
+                                            2017-09-02
+                                        </td>
+                                        <td>
+                                            <span class="fl">
+                                                <select>
+                                                   <option>韩版修身T恤</option>
+                                                   <option>韩版修身T恤2</option>
+                                                   <option>韩版修身T恤3</option>
+                                               </select>
+                                            </span>
+                                            <span class="fr">
+                                                商品编号: 230817<br/>
+                                                尺码：S<br/>
+                                                颜色：月白
+                                            </span>
+                                        </td>
+                                        <td>30元</td>
+                                        <td>件</td>
+                                        <td><!--数量-->
+                                            <div class="goods_sum">
+                                                <ul class="count">
+                                                    <li><span id="num-jian" class="num-jian">-</span></li>
+                                                    <li><input type="text" class="input-num" id="input-num" value="0" /></li>
+                                                    <li><span id="num-jia" class="num-jia">+</span></li>
+                                                    <div class="clear"> </div>
+                                                </ul>
+                                            </div>
+                                            <script>
+                                                var num_jia = document.getElementById("num-jia");
+                                                var num_jian = document.getElementById("num-jian");
+                                                var input_num = document.getElementById("input-num");
+
+                                                num_jia.onclick = function() {
+
+                                                    input_num.value = parseInt(input_num.value) + 0;
+                                                }
+
+                                                num_jian.onclick = function() {
+
+                                                    if(input_num.value <= 0) {
+                                                        input_num.value = 0;
+                                                    } else {
+
+                                                        input_num.value = parseInt(input_num.value) - 0;
+                                                    }
+
+                                                }
+                                                $("body").on("click", ".num-jian", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    if(obj.val() <= 0) {
+                                                        obj.val(0);
+                                                    } else {
+                                                        obj.val(parseInt(obj.val()) - 1);
+                                                    }
+                                                    obj.change();
+                                                });
+                                                $("body").on("click", ".num-jia", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    obj.val(parseInt(obj.val()) + 1);
+                                                    obj.change();
+                                                });
+                                            </script>
+                                        </td>
+                                        <td>
+                                            2700元
+                                        </td>
+
+                                    </tr>
+                                    <tr class="first">
+                                        <td>
+                                            2017-09-02
+                                        </td>
+                                        <td>
+                                            <span class="fl">
+                                                <select>
+                                                   <option>韩版修身T恤</option>
+                                                   <option>韩版修身T恤2</option>
+                                                   <option>韩版修身T恤3</option>
+                                               </select>
+                                            </span>
+                                            <span class="fr">
+                                                商品编号: 230817<br/>
+                                                尺码：S<br/>
+                                                颜色：月白
+                                            </span>
+                                        </td>
+                                        <td>30元</td>
+                                        <td>件</td>
+                                        <td><!--数量-->
+                                            <div class="goods_sum">
+                                                <ul class="count">
+                                                    <li><span id="num-jian" class="num-jian">-</span></li>
+                                                    <li><input type="text" class="input-num" id="input-num" value="0" /></li>
+                                                    <li><span id="num-jia" class="num-jia">+</span></li>
+                                                    <div class="clear"> </div>
+                                                </ul>
+                                            </div>
+                                            <script>
+                                                var num_jia = document.getElementById("num-jia");
+                                                var num_jian = document.getElementById("num-jian");
+                                                var input_num = document.getElementById("input-num");
+
+                                                num_jia.onclick = function() {
+
+                                                    input_num.value = parseInt(input_num.value) + 0;
+                                                }
+
+                                                num_jian.onclick = function() {
+
+                                                    if(input_num.value <= 0) {
+                                                        input_num.value = 0;
+                                                    } else {
+
+                                                        input_num.value = parseInt(input_num.value) - 0;
+                                                    }
+
+                                                }
+                                                $("body").on("click", ".num-jian", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    if(obj.val() <= 0) {
+                                                        obj.val(0);
+                                                    } else {
+                                                        obj.val(parseInt(obj.val()) - 1);
+                                                    }
+                                                    obj.change();
+                                                });
+                                                $("body").on("click", ".num-jia", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    obj.val(parseInt(obj.val()) + 1);
+                                                    obj.change();
+                                                });
+                                            </script>
+                                        </td>
+                                        <td>
+                                            2700元
+                                        </td>
+
+                                    </tr>
+                                    <tr class="first">
+                                        <td>
+                                            2017-09-02
+                                        </td>
+                                        <td>
+                                            <span class="fl">
+                                                <select>
+                                                   <option>韩版修身T恤</option>
+                                                   <option>韩版修身T恤2</option>
+                                                   <option>韩版修身T恤3</option>
+                                               </select>
+                                            </span>
+                                            <span class="fr">
+                                                商品编号: 230817<br/>
+                                                尺码：S<br/>
+                                                颜色：月白
+                                            </span>
+                                        </td>
+                                        <td>30元</td>
+                                        <td>件</td>
+                                        <td><!--数量-->
+                                            <div class="goods_sum">
+                                                <ul class="count">
+                                                    <li><span id="num-jian" class="num-jian">-</span></li>
+                                                    <li><input type="text" class="input-num" id="input-num" value="0" /></li>
+                                                    <li><span id="num-jia" class="num-jia">+</span></li>
+                                                    <div class="clear"> </div>
+                                                </ul>
+                                            </div>
+                                            <script>
+                                                var num_jia = document.getElementById("num-jia");
+                                                var num_jian = document.getElementById("num-jian");
+                                                var input_num = document.getElementById("input-num");
+
+                                                num_jia.onclick = function() {
+
+                                                    input_num.value = parseInt(input_num.value) + 0;
+                                                }
+
+                                                num_jian.onclick = function() {
+
+                                                    if(input_num.value <= 0) {
+                                                        input_num.value = 0;
+                                                    } else {
+
+                                                        input_num.value = parseInt(input_num.value) - 0;
+                                                    }
+
+                                                }
+                                                $("body").on("click", ".num-jian", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    if(obj.val() <= 0) {
+                                                        obj.val(0);
+                                                    } else {
+                                                        obj.val(parseInt(obj.val()) - 1);
+                                                    }
+                                                    obj.change();
+                                                });
+                                                $("body").on("click", ".num-jia", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    obj.val(parseInt(obj.val()) + 1);
+                                                    obj.change();
+                                                });
+                                            </script>
+                                        </td>
+                                        <td>
+                                            2700元
+                                        </td>
+
+                                    </tr>
+                                    <tr class="first">
+                                        <td>
+                                            2017-09-02
+                                        </td>
+                                        <td>
+                                            <span class="fl">
+                                                <select>
+                                                   <option>韩版修身T恤</option>
+                                                   <option>韩版修身T恤2</option>
+                                                   <option>韩版修身T恤3</option>
+                                               </select>
+                                            </span>
+                                            <span class="fr">
+                                                商品编号: 230817<br/>
+                                                尺码：S<br/>
+                                                颜色：月白
+                                            </span>
+                                        </td>
+                                        <td>30元</td>
+                                        <td>件</td>
+                                        <td><!--数量-->
+                                            <div class="goods_sum">
+                                                <ul class="count">
+                                                    <li><span id="num-jian" class="num-jian">-</span></li>
+                                                    <li><input type="text" class="input-num" id="input-num" value="0" /></li>
+                                                    <li><span id="num-jia" class="num-jia">+</span></li>
+                                                    <div class="clear"> </div>
+                                                </ul>
+                                            </div>
+                                            <script>
+                                                var num_jia = document.getElementById("num-jia");
+                                                var num_jian = document.getElementById("num-jian");
+                                                var input_num = document.getElementById("input-num");
+
+                                                num_jia.onclick = function() {
+
+                                                    input_num.value = parseInt(input_num.value) + 0;
+                                                }
+
+                                                num_jian.onclick = function() {
+
+                                                    if(input_num.value <= 0) {
+                                                        input_num.value = 0;
+                                                    } else {
+
+                                                        input_num.value = parseInt(input_num.value) - 0;
+                                                    }
+
+                                                }
+                                                $("body").on("click", ".num-jian", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    if(obj.val() <= 0) {
+                                                        obj.val(0);
+                                                    } else {
+                                                        obj.val(parseInt(obj.val()) - 1);
+                                                    }
+                                                    obj.change();
+                                                });
+                                                $("body").on("click", ".num-jia", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    obj.val(parseInt(obj.val()) + 1);
+                                                    obj.change();
+                                                });
+                                            </script>
+                                        </td>
+                                        <td>
+                                            2700元
+                                        </td>
+
+                                    </tr>
+                                    <tr class="first">
+                                        <td>
+                                            2017-09-02
+                                        </td>
+                                        <td>
+                                            <span class="fl">
+                                                <select>
+                                                   <option>韩版修身T恤</option>
+                                                   <option>韩版修身T恤2</option>
+                                                   <option>韩版修身T恤3</option>
+                                               </select>
+                                            </span>
+                                            <span class="fr">
+                                                商品编号: 230817<br/>
+                                                尺码：S<br/>
+                                                颜色：月白
+                                            </span>
+                                        </td>
+                                        <td>30元</td>
+                                        <td>件</td>
+                                        <td><!--数量-->
+                                            <div class="goods_sum">
+                                                <ul class="count">
+                                                    <li><span id="num-jian" class="num-jian">-</span></li>
+                                                    <li><input type="text" class="input-num" id="input-num" value="0" /></li>
+                                                    <li><span id="num-jia" class="num-jia">+</span></li>
+                                                    <div class="clear"> </div>
+                                                </ul>
+                                            </div>
+                                            <script>
+                                                var num_jia = document.getElementById("num-jia");
+                                                var num_jian = document.getElementById("num-jian");
+                                                var input_num = document.getElementById("input-num");
+
+                                                num_jia.onclick = function() {
+
+                                                    input_num.value = parseInt(input_num.value) + 0;
+                                                }
+
+                                                num_jian.onclick = function() {
+
+                                                    if(input_num.value <= 0) {
+                                                        input_num.value = 0;
+                                                    } else {
+
+                                                        input_num.value = parseInt(input_num.value) - 0;
+                                                    }
+
+                                                }
+                                                $("body").on("click", ".num-jian", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    if(obj.val() <= 0) {
+                                                        obj.val(0);
+                                                    } else {
+                                                        obj.val(parseInt(obj.val()) - 1);
+                                                    }
+                                                    obj.change();
+                                                });
+                                                $("body").on("click", ".num-jia", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    obj.val(parseInt(obj.val()) + 1);
+                                                    obj.change();
+                                                });
+                                            </script>
+                                        </td>
+                                        <td>
+                                            2700元
+                                        </td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                        <!--入库清单-->
+                        <div class="box1">
+                            <div class="entrysheetbox">
+                                <table class="returntable importbill entryshtable" border="0" cellspacing="0" cellpadding="0">
+                                    <tbody>
+
+                                    <tr id="thead">
+                                        <td width="10%">时间</td>
+                                        <td width="30%">商品信息</td>
+                                        <td width="15%">单价</td>
+                                        <td width="15%">单位</td>
+                                        <td width="15%">数量</td>
+                                        <td width="15%" >金额</td>
+
+                                    </tr>
+                                    <tr class="first">
+                                        <td>
+                                            2017-09-02
+                                        </td>
+                                        <td>
+                                            <span class="fl">
+                                                <select>
+                                                   <option>韩版修身T恤</option>
+                                                   <option>韩版修身T恤2</option>
+                                                   <option>韩版修身T恤3</option>
+                                               </select>
+                                            </span>
+                                            <span class="fr">
+                                                商品编号: 230817<br/>
+                                                尺码：S<br/>
+                                                颜色：月白
+                                            </span>
+                                        </td>
+                                        <td>30元</td>
+                                        <td>件</td>
+                                        <td><!--数量-->
+                                            <div class="goods_sum">
+                                                <ul class="count">
+                                                    <li><span id="num-jian" class="num-jian">-</span></li>
+                                                    <li><input type="text" class="input-num" id="input-num" value="0" /></li>
+                                                    <li><span id="num-jia" class="num-jia">+</span></li>
+                                                    <div class="clear"> </div>
+                                                </ul>
+                                            </div>
+                                            <script>
+                                                var num_jia = document.getElementById("num-jia");
+                                                var num_jian = document.getElementById("num-jian");
+                                                var input_num = document.getElementById("input-num");
+
+                                                num_jia.onclick = function() {
+
+                                                    input_num.value = parseInt(input_num.value) + 0;
+                                                }
+
+                                                num_jian.onclick = function() {
+
+                                                    if(input_num.value <= 0) {
+                                                        input_num.value = 0;
+                                                    } else {
+
+                                                        input_num.value = parseInt(input_num.value) - 0;
+                                                    }
+
+                                                }
+                                                $("body").on("click", ".num-jian", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    if(obj.val() <= 0) {
+                                                        obj.val(0);
+                                                    } else {
+                                                        obj.val(parseInt(obj.val()) - 1);
+                                                    }
+                                                    obj.change();
+                                                });
+                                                $("body").on("click", ".num-jia", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    obj.val(parseInt(obj.val()) + 1);
+                                                    obj.change();
+                                                });
+                                            </script>
+                                        </td>
+                                        <td>
+                                            2700元
+                                        </td>
+
+                                    </tr>
+                                    <tr class="first">
+                                        <td>
+                                            2017-09-02
+                                        </td>
+                                        <td>
+                                            <span class="fl">
+                                                <select>
+                                                   <option>韩版修身T恤</option>
+                                                   <option>韩版修身T恤2</option>
+                                                   <option>韩版修身T恤3</option>
+                                               </select>
+                                            </span>
+                                            <span class="fr">
+                                                商品编号: 230817<br/>
+                                                尺码：S<br/>
+                                                颜色：月白
+                                            </span>
+                                        </td>
+                                        <td>30元</td>
+                                        <td>件</td>
+                                        <td><!--数量-->
+                                            <div class="goods_sum">
+                                                <ul class="count">
+                                                    <li><span id="num-jian" class="num-jian">-</span></li>
+                                                    <li><input type="text" class="input-num" id="input-num" value="0" /></li>
+                                                    <li><span id="num-jia" class="num-jia">+</span></li>
+                                                    <div class="clear"> </div>
+                                                </ul>
+                                            </div>
+                                            <script>
+                                                var num_jia = document.getElementById("num-jia");
+                                                var num_jian = document.getElementById("num-jian");
+                                                var input_num = document.getElementById("input-num");
+
+                                                num_jia.onclick = function() {
+
+                                                    input_num.value = parseInt(input_num.value) + 0;
+                                                }
+
+                                                num_jian.onclick = function() {
+
+                                                    if(input_num.value <= 0) {
+                                                        input_num.value = 0;
+                                                    } else {
+
+                                                        input_num.value = parseInt(input_num.value) - 0;
+                                                    }
+
+                                                }
+                                                $("body").on("click", ".num-jian", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    if(obj.val() <= 0) {
+                                                        obj.val(0);
+                                                    } else {
+                                                        obj.val(parseInt(obj.val()) - 1);
+                                                    }
+                                                    obj.change();
+                                                });
+                                                $("body").on("click", ".num-jia", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    obj.val(parseInt(obj.val()) + 1);
+                                                    obj.change();
+                                                });
+                                            </script>
+                                        </td>
+                                        <td>
+                                            2700元
+                                        </td>
+
+                                    </tr>
+                                    <tr class="first">
+                                        <td>
+                                            2017-09-02
+                                        </td>
+                                        <td>
+                                            <span class="fl">
+                                                <select>
+                                                   <option>韩版修身T恤</option>
+                                                   <option>韩版修身T恤2</option>
+                                                   <option>韩版修身T恤3</option>
+                                               </select>
+                                            </span>
+                                            <span class="fr">
+                                                商品编号: 230817<br/>
+                                                尺码：S<br/>
+                                                颜色：月白
+                                            </span>
+                                        </td>
+                                        <td>30元</td>
+                                        <td>件</td>
+                                        <td><!--数量-->
+                                            <div class="goods_sum">
+                                                <ul class="count">
+                                                    <li><span id="num-jian" class="num-jian">-</span></li>
+                                                    <li><input type="text" class="input-num" id="input-num" value="0" /></li>
+                                                    <li><span id="num-jia" class="num-jia">+</span></li>
+                                                    <div class="clear"> </div>
+                                                </ul>
+                                            </div>
+                                            <script>
+                                                var num_jia = document.getElementById("num-jia");
+                                                var num_jian = document.getElementById("num-jian");
+                                                var input_num = document.getElementById("input-num");
+
+                                                num_jia.onclick = function() {
+
+                                                    input_num.value = parseInt(input_num.value) + 0;
+                                                }
+
+                                                num_jian.onclick = function() {
+
+                                                    if(input_num.value <= 0) {
+                                                        input_num.value = 0;
+                                                    } else {
+
+                                                        input_num.value = parseInt(input_num.value) - 0;
+                                                    }
+
+                                                }
+                                                $("body").on("click", ".num-jian", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    if(obj.val() <= 0) {
+                                                        obj.val(0);
+                                                    } else {
+                                                        obj.val(parseInt(obj.val()) - 1);
+                                                    }
+                                                    obj.change();
+                                                });
+                                                $("body").on("click", ".num-jia", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    obj.val(parseInt(obj.val()) + 1);
+                                                    obj.change();
+                                                });
+                                            </script>
+                                        </td>
+                                        <td>
+                                            2700元
+                                        </td>
+
+                                    </tr>
+                                    <tr class="first">
+                                        <td>
+                                            2017-09-02
+                                        </td>
+                                        <td>
+                                            <span class="fl">
+                                                <select>
+                                                   <option>韩版修身T恤</option>
+                                                   <option>韩版修身T恤2</option>
+                                                   <option>韩版修身T恤3</option>
+                                               </select>
+                                            </span>
+                                            <span class="fr">
+                                                商品编号: 230817<br/>
+                                                尺码：S<br/>
+                                                颜色：月白
+                                            </span>
+                                        </td>
+                                        <td>30元</td>
+                                        <td>件</td>
+                                        <td><!--数量-->
+                                            <div class="goods_sum">
+                                                <ul class="count">
+                                                    <li><span id="num-jian" class="num-jian">-</span></li>
+                                                    <li><input type="text" class="input-num" id="input-num" value="0" /></li>
+                                                    <li><span id="num-jia" class="num-jia">+</span></li>
+                                                    <div class="clear"> </div>
+                                                </ul>
+                                            </div>
+                                            <script>
+                                                var num_jia = document.getElementById("num-jia");
+                                                var num_jian = document.getElementById("num-jian");
+                                                var input_num = document.getElementById("input-num");
+
+                                                num_jia.onclick = function() {
+
+                                                    input_num.value = parseInt(input_num.value) + 0;
+                                                }
+
+                                                num_jian.onclick = function() {
+
+                                                    if(input_num.value <= 0) {
+                                                        input_num.value = 0;
+                                                    } else {
+
+                                                        input_num.value = parseInt(input_num.value) - 0;
+                                                    }
+
+                                                }
+                                                $("body").on("click", ".num-jian", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    if(obj.val() <= 0) {
+                                                        obj.val(0);
+                                                    } else {
+                                                        obj.val(parseInt(obj.val()) - 1);
+                                                    }
+                                                    obj.change();
+                                                });
+                                                $("body").on("click", ".num-jia", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    obj.val(parseInt(obj.val()) + 1);
+                                                    obj.change();
+                                                });
+                                            </script>
+                                        </td>
+                                        <td>
+                                            2700元
+                                        </td>
+
+                                    </tr>
+                                    <tr class="first">
+                                        <td>
+                                            2017-09-02
+                                        </td>
+                                        <td>
+                                            <span class="fl">
+                                                <select>
+                                                   <option>韩版修身T恤</option>
+                                                   <option>韩版修身T恤2</option>
+                                                   <option>韩版修身T恤3</option>
+                                               </select>
+                                            </span>
+                                            <span class="fr">
+                                                商品编号: 230817<br/>
+                                                尺码：S<br/>
+                                                颜色：月白
+                                            </span>
+                                        </td>
+                                        <td>30元</td>
+                                        <td>件</td>
+                                        <td><!--数量-->
+                                            <div class="goods_sum">
+                                                <ul class="count">
+                                                    <li><span id="num-jian" class="num-jian">-</span></li>
+                                                    <li><input type="text" class="input-num" id="input-num" value="0" /></li>
+                                                    <li><span id="num-jia" class="num-jia">+</span></li>
+                                                    <div class="clear"> </div>
+                                                </ul>
+                                            </div>
+                                            <script>
+                                                var num_jia = document.getElementById("num-jia");
+                                                var num_jian = document.getElementById("num-jian");
+                                                var input_num = document.getElementById("input-num");
+
+                                                num_jia.onclick = function() {
+
+                                                    input_num.value = parseInt(input_num.value) + 0;
+                                                }
+
+                                                num_jian.onclick = function() {
+
+                                                    if(input_num.value <= 0) {
+                                                        input_num.value = 0;
+                                                    } else {
+
+                                                        input_num.value = parseInt(input_num.value) - 0;
+                                                    }
+
+                                                }
+                                                $("body").on("click", ".num-jian", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    if(obj.val() <= 0) {
+                                                        obj.val(0);
+                                                    } else {
+                                                        obj.val(parseInt(obj.val()) - 1);
+                                                    }
+                                                    obj.change();
+                                                });
+                                                $("body").on("click", ".num-jia", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    obj.val(parseInt(obj.val()) + 1);
+                                                    obj.change();
+                                                });
+                                            </script>
+                                        </td>
+                                        <td>
+                                            2700元
+                                        </td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                    <style type="text/css">
+                        #show{width:40%; text-align: center;  height: auto; padding: 40px 0;
+                            position: fixed;
+                            z-index: 1000; background-color:rgba(210, 236, 250, 1); border-radius: 5px; display: none;  left: 30%; top:300px;    }
+                        #show i{ font-size: 2rem; color: #e51c23;  }
+                        #show p{ padding-top: 15px; color: #e51c23; }
+                        .prodcti i{ font-size: 1.8rem; margin-top: 10px;}
+                        #show2,#show3{width:40%; text-align: center;  height: auto; padding: 40px;
+                            position: fixed;
+                            z-index: 1000; background-color:rgba(210, 236, 250, 1); border-radius: 5px; display: none;  left: 30%; top:300px;    }
+                        #show2 select{ width: 50%; height: 40px; }
+                        #show2 p, #show3 p {color: #333; line-height: 40px; text-align: left;  }
+                        #show2 p.red,#show3 p.red{color: #e51c23; }
+                        #show2 button,#show3 button{ padding: 5px 30px; float: right;  margin-top: 50px; line-height: 40px; text-align: center; background:#108ee9; font-size: 16px; color: #fff; border: none; border-radius:5px;}
+                    </style>
+
+                    <!--<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>-->
+                    <script>
+                        $(function () {
+                            $(".confirmsh").click(function () {
+
+                            });
+                            $(".cuihuo").click(function () {
+                                $("#show").css({'display':'block'});
+                                setTimeout(function() {
+                                    $("#show").css({'display':'none'});
+
+                                }, 1000);
+                            });
+                            $(".refund").click(function () {
+                                $("#show2").css({'display':'block'});
+                                $('.close').click(function (){
+                                    $("#show2").css({'display':'none'});
+                                });
+                                $('.submitac').click(function (){
+                                    $("#show2").css({'display':'none'});
+                                });
+
+                            });
+
+                            $(".confirmsh").click(function () {
+                                $("#show3").css({'display':'block'});
+                                $('.close2').click(function (){
+                                    $("#show3").css({'display':'none'});
+                                });
+                                $('.submitac2').click(function (){
+                                    $("#show3").css({'display':'none'});
+                                });
+
+                            });
+
+
+                        });
+
+                        //定义函数
+                        function tab(tabID,box){
+                            $(tabID).click(function(){
+                                $(tabID).removeClass('active'); //先将所有同级去掉active
+                                $(box).hide();   //所有同级box隐藏
+                                $(this).addClass('active');   //当前li显示
+                                $(box).eq($(this).index()).show();
+                            });
+                        }
+                        $(document).ready(function(){
+                            //选项卡
+                            tab("#tab11 li",'.box1');
+                            tab("#tab22 li",'.box2');
+                            tab("#tab33 li",'.box3');
+                        });
+                    </script>
+                    <script type="text/javascript">
+                        $(function(){$(".pageDiv").createPage({
+                            pageCount:9,//总页数
+                            current:1,//当前页
+                            turndown:'true',//是否显示跳转框，显示为true，不现实为false,一定记得加上引号...
+                            backFn:function(p){
+                                console.log(p);
+                            }
+                        });
+                        })
+                    </script>
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>
+
+</body>
+</html>

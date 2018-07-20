@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>对账中心 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/zxx.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+	<link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+	<link href="$!webPath/resources/style/system/manage/blue/zhandai.css"  rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="main duizhang_center"> $!httpInclude.include("/poster/nav_head.htm") 
+    <div class="user_center">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/poster/nav.htm?op=order")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="buyer_position" style="background: #fff; width: 99%;" >
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代中心</a> > <span>对账中心</span></div>
+                    </div>
+                      <div class="operation_tip" style="margin-bottom:10px;">
+	<h3>友情提示</h3>
+	<ul>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+                    <table width="100%" class="shopadmin-top" border="0" cellspacing="0" cellpadding="0">
+					<div class="operation_tip">
+	<h3>友情提示</h3>
+	<ul>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+					
+                        <tr id="thead" >
+                            <td style="width: 11.25%;">对账单编号</td>
+                            <td  style="width: 25%;">结算周期</td>
+                            <td style="width: 7.5%;">上期余额</td>
+                            <td style="width: 7.5%;">收入</td>
+                            <td style="width: 7.5%;">支出</td>
+                            <td style="width: 12.5%;">应开票金额</td>
+                            <td style="width: 11.25%;">结算状态</td>
+                            <td style="width: 11.25%;">操作</td>
+                        </tr>
+                        <tbody id="tablesss1">
+
+
+                        </tbody>
+                    </table>
+                    <!--分页开始-->
+                    <div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+                    <script>
+                        var mycars=new Array();
+                        var cuur=1;
+                        var pagelimit=10;
+                        var userid='${user.id}';
+                        jQuery(document).ready(function(){
+                            loadajax("select","wemall_reconciliationscenter","recon_id",userid,pagelimit,cuur,1);
+                            layui.use(['laypage', 'layer'], function(){
+                                var laypage = layui.laypage
+                                    ,layer = layui.layer;
+                                //完整功能
+                                laypage.render({
+                                    elem: 'demo7'
+                                    ,count:total
+                                    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                                    ,jump: function(obj){
+                                        //console.log(obj)
+                                        cuur=obj.curr;
+                                        pagelimit=obj.limit;
+                                        //alert(pagelimit);
+                                        loadajax("select","wemall_reconciliationscenter","recon_id",userid,pagelimit,cuur,1);
+                                        //loadajax("select","stu",pagelimit,cuur,1);
+                                    },
+                                    limits:[2, 4, 6, 8, 10],
+                                    limit:pagelimit
+                                });
+                            });
+                        });
+                        function loadajax(action,table,field,values,page_size,page_no,moudle_id){
+                            jQuery.ajax({
+                                type:"POST",
+                                cache: false,
+                                async:false,
+                                url:"/ajax.jsp",
+                                dataType:"json",
+                                // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                                data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                                error:function(){alert("数据错误，操作被取消！");},
+                                success:function(data)
+                                {
+                                    if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                                    total=data.data.total;
+                                    mycars[0]=total;
+                                    var message=data.data.data;
+                                    //console.log(message);
+                                    $("#tablesss1").html('');
+                                    for(var i=0;i<message.length;i++){
+                                        var id=message[i]['id'];
+                                        if(message[i]['recon_states']=="0"){
+                                            $("#tablesss1").append("<tr><td>"+message[i]['recon_num']+"<input type='hidden' value='"+ message[i]['id']+"'/></td><td>"+message[i]['create_date1']+"-"+message[i]['create_date2']+"</td><td>"+message[i]['recon_lastBalance']+"</td><td class='ac9'>"+message[i]['recon_inNum']  +"</td><td  > "+message[i]['recon_outtNum']+" </td><td class='ac9'>"+message[i]['recon_invoiceValue']  +"</td><td class='ac9'> 商家未确认 </td><td class='ac9' onclick='confirm("+id+")'><a href=''>确认</a></br><a href='$!webPath/poster/duizhang_details.htm?id="+id+"'>查看明细</a></td></tr>");
+                                        }
+                                        if(message[i]['recon_states']=="1"){
+                                            $("#tablesss1").append("<tr><td>"+message[i]['recon_num']+"<input type='hidden' value='"+ message[i]['id']+"'/></td><td>"+message[i]['create_date1']+"-"+message[i]['create_date2']+"</td><td>"+message[i]['recon_lastBalance']+"</td><td class='ac9'>"+message[i]['recon_inNum']  +"</td><td   > "+message[i]['recon_outtNum']+" </td><td class='ac9'>"+message[i]['recon_invoiceValue']  +"</td><td class='ac9'>商家已确认</td><td class='ac9'> <a href='$!webPath/poster/duizhang_details.htm?id="+id+"'>查看明细</a></td></tr>");
+                                        }
+                                    }
+                                }
+                            });
+                        }
+                        function confirm(v){
+                            //拼接数据
+                            var data=v+"|"+1;
+                            jQuery.ajax({
+                                type:"POST",
+                                cache: false,
+                                async:false,
+                                url:"/ajax.jsp",
+                                dataType:"json",
+                                data:"action=update&table=wemall_reconciliationscenter&field=id,recon_states&values="+data,
+
+                                success:function(data)
+                                {
+                                    if(data.code=="0"){alert("系统错误，操作被取消！");return;}
+
+                                    var str='操作成功';
+                                    if(str==data.msg){
+                                        window.location.reload();
+                                    }
+                                }
+                            });
+                        }
+                    </script>
+                    <!--分页结束-->
+                    <script>
+                        $(".pagination li").click(function(){
+                            $(this).addClass("active");
+                            $(this).siblings().removeClass("active");
+                        })
+                    </script>
+
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

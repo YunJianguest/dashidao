@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>进货管理 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+
+
+
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="main">
+    <div class="user_center">
+        $!httpInclude.include("/poster/nav_head.htm")
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/poster/nav.htm?op=refund")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="buyer_position" style="width: 99%;  background: #fff;">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代中心</a> > <span>代理商品</span></div>
+                    </div>
+                    <div id="tab1" class="shopadminbox2">
+                        <ul id="tab11">
+                            <li class="active">进货单</li>
+                            <li>下单进货</li>
+                        </ul>
+                        <!--进货单-->
+                        <div class="box1" style="display:block;">
+                            <div id="tab2" class="wrap">
+                                <ul id="tab22">
+                                    <li>全部</li>
+                                    <li>待付款</li>
+                                    <li>待发货</li>
+                                    <li style="margin: 0px;" >待收货</li>
+                                </ul>
+                                <!--全部-->
+                                <div class="box2" style="display:block;">
+                                    <table width="100%"  cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="returnthead" >
+                                            <td width="100%" colspan="10" style=" height: 100px;" >
+                                                <form class="form-inline" style="float: right;">
+                                                    <div class="form-group">
+                                                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入查询内容" style="width: 200px;" >
+                                                    </div>
+                                                    <button type="submit" class="btn btn-default" style="border: none;  background: #3fa4ed; color: #fff;   " >查询</button>
+                                                </form>
+
+                                            </td>
+                                        </tr>
+                                        <tr id="thead" >
+                                            <td width="5%"></td>
+                                            <td width="24%" colspan="2" >商品信息</td>
+                                            <td width="12%">单价</td>
+                                            <td width="10%">数量</td>
+                                            <td width="11%">金额</td>
+                                            <td width="11%">总金额</td>
+                                            <td width="11%">交易状态</td>
+                                            <td width="11%">操作</td>
+                                            <td width="5%"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!--1-->
+                                    #foreach($obj in $objs)
+                                    <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="tiptitles returntitle">
+                                            <td width="100%" colspan="10" >
+                                                <p><span>订单编号：$obj.id</span><span>日期：$obj.addTime</span><span>商家：$obj.user.username</span></p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <table width="100%" class="returntable importbill" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        #foreach($ob in $obj.gcs)
+                                        <tr class="first" style="width: 70%"  >
+
+                                            <td colspan="2"  width="28%" >
+                                            <span class="fl">
+                                                $ob.goods.goods_name<br/>
+                                                <img src="$!webPath/resources/style/system/manage/black/img/11.png"/>
+                                            </span>
+                                                <span class="fr">
+                                                商品编号: $ob.goods.id<br/>
+                #foreach($sp in $ob.gsps)
+                                                $sp.spec.name：$sp.spec.type/$sp.value<br/>
+                                                  #end
+                                            </span>
+                                            </td>
+                                            <td width="12%">
+                                                $ob.goods.goods_price元/件
+                                            </td>
+                                            <td width="12%"> $ob.count</td>
+                                            <td width="12%">$ob.price元</td>
+                                            #end
+                                            <td width="12%" rowspan="2" class="last" >$obj.totalPrice元</td>
+                                            <td width="12%" rowspan="2" class="last">
+                                                #if($!obj.order_status==0)
+                                                已取消
+                                                #end
+                                                #if($!obj.order_status==10)
+                                                待付款
+
+                                                #end
+                                                #if($!obj.order_status==15)
+                                                线下支付待付款
+                                                #end
+                                                #if($!obj.order_status==16)
+                                                货到付款待发货
+                                                #end
+                                                #if($!obj.order_status==30)
+                                                已发货
+                                                #end
+                                                #if($!obj.order_status==20)
+                                                已付款
+                                                #end
+                                                #if($!obj.order_status==40)
+                                                已收货
+                                                #end
+                                                #if($!obj.order_status==45)
+                                                买家申请退货
+                                                #end
+                                                #if($!obj.order_status==46)
+                                                买家退货中
+                                                #end
+                                                #if($!obj.order_status==47)
+                                                退货完成已结束
+                                                #end
+                                                #if($!obj.order_status==48)
+                                                栈代拒绝退货
+                                                #end
+                                                #if($!obj.order_status==49)
+                                                退货失败
+                                                #end
+                                                #if($!obj.order_status==50)
+                                                已评价，已完成
+                                                #end
+                                                #if($!obj.order_status==60)
+                                                已结束
+                                                #end
+                                                #if($!obj.order_status==65)
+                                                已结束，不可评论
+                                                #end
+
+                                            </td>
+                                            <td width="12%" rowspan="2" class="last">
+                                                <p><span class="cuihuo">催货</span></p>
+                                                <p><span ><a href='$!webPath/poster/refundapplication.htm'>退款</a></span></p>
+                                                <p><span><a href='$!webPath/poster/entrysheetdetail.htm'>进货单详情</a> </span></p>
+                                            </td>
+                                        </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                    #end
+                                    <!--分页开始-->
+                                    <div id="demo1" style=" text-align: center; margin-top: 30px;" ></div>
+                                    <script>
+                                        layui.use('laypage', function(){
+                                            var laypage = layui.laypage;
+                                            laypage.render({
+                                                elem: 'demo1' //注意，这里的 test1 是 ID，不用加 # 号
+                                                ,count: '${rows}' // 数据总数，从服务端得到
+                                                ,curr:'${currentPage}' // 服务器端回传当前页
+                                                ,jump: function(obj, first){
+                                                    //obj包含了当前分页的所有参数，比如：
+                                                    console.log(obj.curr);  //得到当前页，以便向服务端请求对应页的数据。
+                                                    console.log(obj.limit); //得到每页显示的条数
+                                                    //首次不执行,使用原始的curr,后面需要自己通过回传来更新
+                                                    var curr = obj.curr;
+                                                    if(!first){
+                                                        var url = window.location.href;
+                                                        if(url.indexOf("?") >= 0){
+                                                            url = url.split("?")[0] + "?currentPage=" + obj.curr;//切割字符串的方法
+                                                        }else{
+                                                            url = url + "?currentPage=" + obj.curr;
+                                                        }
+                                                        location.href=url;
+                                                    }
+                                                }
+                                            });
+                                        });
+                                    </script>
+                                    <!--分页结束-->
+                                </div>
+                                <!--待付款-->
+                                <div class="box2">
+                                    <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="returnthead" >
+                                            <td width="100%" colspan="10" style=" height: 100px;" >
+                                                <form class="form-inline" style="float: right;">
+                                                    <div class="form-group">
+                                                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入查询内容" style="width: 200px;" >
+                                                    </div>
+                                                    <button type="submit" class="btn btn-default" style="border: none;  background: #3fa4ed; color: #fff;   " >查询</button>
+                                                </form>
+
+                                            </td>
+                                        </tr>
+                                        <tr id="thead" >
+                                            <td width="5%"></td>
+                                            <td width="24%" colspan="2" >商品信息</td>
+                                            <td width="12%">单价</td>
+                                            <td width="10%">数量</td>
+                                            <td width="11%">金额</td>
+                                            <td width="11%">总金额</td>
+                                            <td width="11%">交易状态</td>
+                                            <td width="11%">操作</td>
+                                            <td width="5%"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!--1-->
+                                    <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="tiptitles returntitle">
+                                            <td width="100%" colspan="10" >
+                                                <p><span>订单编号：JT320176534</span><span>日期：2017-09-13</span><span>商家：乐乐服饰</span></p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <table width="100%" class="returntable importbill" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="first" >
+                                            <td colspan="2"  width="28%" >
+                            <span class="fl">
+                                韩版修身T恤<br/>
+                                <img src="$!webPath/resources/style/system/manage/black/img/11.png"/>
+                            </span>
+                                                <span class="fr">
+                                商品编号: 230817<br/>
+                                尺码：S<br/>
+                                颜色：月白
+                            </span>
+                                            </td>
+                                            <td width="12%">
+                                                30元/件
+                                            </td>
+                                            <td width="12%">50</td>
+                                            <td width="12%">2700元</td>
+                                            <td width="12%" rowspan="2" class="last" >5400元</td>
+                                            <td width="12%" rowspan="2" class="last">待发货</td>
+                                            <td width="12%" rowspan="2" class="last">
+                                                <p><span>支付</span></p>
+                                                <p><span class="refund">取消</span></p>
+                                                <p><span><a href="entrysheetdetail.html">进货单详情</a> </span></p>
+                                            </td>
+                                        </tr>
+                                        <tr class="first two">
+                                            <td colspan="2"  width="28%" >
+                            <span class="fl">
+                                韩版修身T恤<br/>
+                                <img src="$!webPath/resources/style/system/manage/black/img/11.png"/>
+                            </span>
+                                                <span class="fr">
+                                商品编号: 230817<br/>
+                                尺码：S<br/>
+                                颜色：月白
+                            </span>
+                                            </td>
+                                            <td width="12%">
+                                                30元/件
+                                            </td>
+                                            <td width="12%">50</td>
+                                            <td width="12%">2700元</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!--2-->
+                                    <!--1-->
+                                    <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="tiptitles returntitle">
+                                            <td width="100%" colspan="10" >
+                                                <p><span>订单编号：JT320176534</span><span>日期：2017-09-13</span><span>商家：乐乐服饰</span></p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <table width="100%" class="returntable importbill" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="first" >
+                                            <td colspan="2"  width="28%" >
+                            <span class="fl">
+                                韩版修身T恤<br/>
+                                <img src="$!webPath/resources/style/system/manage/black/img/11.png"/>
+                            </span>
+                                                <span class="fr">
+                                商品编号: 230817<br/>
+                                尺码：S<br/>
+                                颜色：月白
+                            </span>
+                                            </td>
+                                            <td width="12%">
+                                                30元/件
+                                            </td>
+                                            <td width="12%">50</td>
+                                            <td width="12%">2700元</td>
+                                            <td width="12%" rowspan="2" class="last" >5400元</td>
+                                            <td width="12%" rowspan="2" class="last">待发货</td>
+                                            <td width="12%" rowspan="2" class="last">
+                                                <p><span>支付</span></p>
+                                                <p><span class="refund">取消</span></p>
+                                                <p><span><a href="entrysheetdetail.html">进货单详情</a> </span></p>
+                                            </td>
+                                        </tr>
+                                        <tr class="first two">
+                                            <td colspan="2"  width="28%" >
+                            <span class="fl">
+                                韩版修身T恤<br/>
+                                <img src="$!webPath/resources/style/system/manage/black/img/11.png"/>
+                            </span>
+                                                <span class="fr">
+                                商品编号: 230817<br/>
+                                尺码：S<br/>
+                                颜色：月白
+                            </span>
+                                            </td>
+                                            <td width="12%">
+                                                30元/件
+                                            </td>
+                                            <td width="12%">50</td>
+                                            <td width="12%">2700元</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- PageNum -->
+                                    <div class="pageDiv"></div>
+                                </div>
+                                <!--待发货-->
+                                <div class="box2">
+                                    <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="returnthead" >
+                                            <td width="100%" colspan="10" style=" height: 100px;" >
+                                                <form class="form-inline" style="float: right;">
+                                                    <div class="form-group">
+                                                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入查询内容" style="width: 200px;" >
+                                                    </div>
+                                                    <button type="submit" class="btn btn-default" style="border: none;  background: #3fa4ed; color: #fff;   " >查询</button>
+                                                </form>
+
+                                            </td>
+                                        </tr>
+                                        <tr id="thead" >
+                                            <td width="5%"></td>
+                                            <td width="24%" colspan="2" >商品信息</td>
+                                            <td width="12%">单价</td>
+                                            <td width="10%">数量</td>
+                                            <td width="11%">金额</td>
+                                            <td width="11%">总金额</td>
+                                            <td width="11%">交易状态</td>
+                                            <td width="11%">操作</td>
+                                            <td width="5%"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!--1-->
+                                    <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="tiptitles returntitle">
+                                            <td width="100%" colspan="10" >
+                                                <p><span>订单编号：JT320176534</span><span>日期：2017-09-13</span><span>商家：乐乐服饰</span></p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <table width="100%" class="returntable importbill" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="first" >
+                                            <td colspan="2"  width="28%" >
+                            <span class="fl">
+                                韩版修身T恤<br/>
+                                <img src="$!webPath/resources/style/system/manage/black/img/11.png"/>
+                            </span>
+                                                <span class="fr">
+                                商品编号: 230817<br/>
+                                尺码：S<br/>
+                                颜色：月白
+                            </span>
+                                            </td>
+                                            <td width="12%">
+                                                30元/件
+                                            </td>
+                                            <td width="12%">50</td>
+                                            <td width="12%">2700元</td>
+                                            <td width="12%" rowspan="2" class="last" >5400元</td>
+                                            <td width="12%" rowspan="2" class="last">待发货</td>
+                                            <td width="12%" rowspan="2" class="last">
+                                                <p><span class="cuihuo">催货</span></p>
+                                                <p><span >退款</span></p>
+                                                <p><span><a href="entrysheetdetail.html">进货单详情</a> </span></p>
+                                            </td>
+                                        </tr>
+                                        <tr class="first two">
+                                            <td colspan="2"  width="28%" >
+                            <span class="fl">
+                                韩版修身T恤<br/>
+                                <img src="$!webPath/resources/style/system/manage/black/img/11.png"/>
+                            </span>
+                                                <span class="fr">
+                                商品编号: 230817<br/>
+                                尺码：S<br/>
+                                颜色：月白
+                            </span>
+                                            </td>
+                                            <td width="12%">
+                                                30元/件
+                                            </td>
+                                            <td width="12%">50</td>
+                                            <td width="12%">2700元</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!--2-->
+                                    <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="tiptitles returntitle">
+                                            <td width="100%" colspan="10" >
+                                                <p><span>订单编号：JT320176534</span><span>日期：2017-09-13</span><span>商家：乐乐服饰</span></p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <table width="100%" class="returntable importbill" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="first" >
+                                            <td colspan="2"  width="28%" >
+                            <span class="fl">
+                                韩版修身T恤<br/>
+                                <img src="$!webPath/resources/style/system/manage/black/img/11.png"/>
+                            </span>
+                                                <span class="fr">
+                                商品编号: 230817<br/>
+                                尺码：S<br/>
+                                颜色：月白
+                            </span>
+                                            </td>
+                                            <td width="12%">
+                                                30元/件
+                                            </td>
+                                            <td width="12%">50</td>
+                                            <td width="12%">2700元</td>
+                                            <td width="12%" rowspan="2" class="last" >5400元</td>
+                                            <td width="12%" rowspan="2" class="last">待发货</td>
+                                            <td width="12%" rowspan="2" class="last">
+                                                <p><span class="cuihuo">催货</span></p>
+                                                <p><span>退款</span></p>
+                                                <p><span><a href="entrysheetdetail.html">进货单详情</a> </span></p>
+                                            </td>
+                                        </tr>
+                                        <tr class="first two">
+                                            <td colspan="2"  width="28%" >
+                            <span class="fl">
+                                韩版修身T恤<br/>
+                                <img src="$!webPath/resources/style/system/manage/black/img/11.png"/>
+                            </span>
+                                                <span class="fr">
+                                商品编号: 230817<br/>
+                                尺码：S<br/>
+                                颜色：月白
+                            </span>
+                                            </td>
+                                            <td width="12%">
+                                                30元/件
+                                            </td>
+                                            <td width="12%">50</td>
+                                            <td width="12%">2700元</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!--分页开始-->
+
+                                    <!--分页结束-->
+
+                                </div>
+                                <!--待收货-->
+                                <div class="box2">
+                                    <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="returnthead" >
+                                            <td width="100%" colspan="10" style=" height: 100px;" >
+                                                <form class="form-inline" style="float: right;">
+                                                    <div class="form-group">
+                                                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入查询内容" style="width: 200px;" >
+                                                    </div>
+                                                    <button type="submit" class="btn btn-default" style="border: none;  background: #3fa4ed; color: #fff;   " >查询</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <tr id="thead" >
+                                            <td width="5%"></td>
+                                            <td width="24%" colspan="2" >商品信息</td>
+                                            <td width="12%">单价</td>
+                                            <td width="10%">数量</td>
+                                            <td width="11%">金额</td>
+                                            <td width="11%">总金额</td>
+                                            <td width="11%">交易状态</td>
+                                            <td width="11%">操作</td>
+                                            <td width="5%"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!--1-->
+                                    <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="tiptitles returntitle">
+                                            <td width="100%" colspan="10" >
+                                                <p><span>订单编号：JT320176534</span><span>日期：2017-09-13</span><span>商家：乐乐服饰</span></p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <table width="100%" class="returntable importbill" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="first" >
+                                            <td colspan="2"  width="28%" >
+                            <span class="fl">
+                                韩版修身T恤<br/>
+                                <img src="$!webPath/resources/style/system/manage/black/img/11.png"/>
+                            </span>
+                                                <span class="fr">
+                                商品编号: 230817<br/>
+                                尺码：S<br/>
+                                颜色：月白
+                            </span>
+                                            </td>
+                                            <td width="12%">
+                                                30元/件
+                                            </td>
+                                            <td width="12%">50</td>
+                                            <td width="12%">2700元</td>
+                                            <td width="12%" rowspan="2" class="last" >5400元</td>
+                                            <td width="12%" rowspan="2" class="last">待发货</td>
+                                            <td width="12%" rowspan="2" class="last">
+                                                <p><span class="confirmsh">确认收货</span></p>
+                                                <p><span><a href="entrysheetdetail.html">进货单详情</a> </span></p>
+                                            </td>
+                                        </tr>
+                                        <tr class="first two">
+                                            <td colspan="2"  width="28%" >
+                            <span class="fl">
+                                韩版修身T恤<br/>
+                                <img src="$!webPath/resources/style/system/manage/black/img/11.png"/>
+                            </span>
+                                                <span class="fr">
+                                商品编号: 230817<br/>
+                                尺码：S<br/>
+                                颜色：月白
+                            </span>
+                                            </td>
+                                            <td width="12%">
+                                                30元/件
+                                            </td>
+                                            <td width="12%">50</td>
+                                            <td width="12%">2700元</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!--2-->
+                                    <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="tiptitles returntitle">
+                                            <td width="100%" colspan="10" >
+                                                <p><span>订单编号：JT320176534</span><span>日期：2017-09-13</span><span>商家：乐乐服饰</span></p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <table width="100%" class="returntable importbill" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr class="first" >
+                                            <td colspan="2"  width="28%" >
+                            <span class="fl">
+                                韩版修身T恤<br/>
+                                <img src="$!webPath/resources/style/system/manage/black/img/11.png"/>
+                            </span>
+                                                <span class="fr">
+                                商品编号: 230817<br/>
+                                尺码：S<br/>
+                                颜色：月白
+                            </span>
+                                            </td>
+                                            <td width="12%">
+                                                30元/件
+                                            </td>
+                                            <td width="12%">50</td>
+                                            <td width="12%">2700元</td>
+                                            <td width="12%" rowspan="2" class="last" >5400元</td>
+                                            <td width="12%" rowspan="2" class="last">待发货</td>
+                                            <td width="12%" rowspan="2" class="last">
+                                                <p><span class="confirmsh">确认收货</span></p>
+                                                <p><span><a href="entrysheetdetail.html">进货单详情</a> </span></p>
+                                            </td>
+                                        </tr>
+                                        <tr class="first two">
+                                            <td colspan="2"  width="28%" >
+                            <span class="fl">
+                                韩版修身T恤<br/>
+                                <img src="$!webPath/resources/style/system/manage/black/img/11.png"/>
+                            </span>
+                                                <span class="fr">
+                                商品编号: 230817<br/>
+                                尺码：S<br/>
+                                颜色：月白
+                            </span>
+                                            </td>
+                                            <td width="12%">
+                                                30元/件
+                                            </td>
+                                            <td width="12%">50</td>
+                                            <td width="12%">2700元</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--下单进货-->
+
+                        <div class="box1">
+                            <div class="entrysheetbox">
+                                <table class="returntable importbill entryshtable" border="0" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                    <tr id="thfirst" class="thfirst contactme">
+                                        <td width="100%" colspan="6" class="confir" style="height: 90px;"   >
+                                            <span>商家：</span>
+                                            <select style=" border:3px solid #ccc; border-radius:10px; width:200px;  text-indent: 2rem; height: 40px;  " >
+                                                <option>乐乐服饰</option>
+                                                <option>乐乐服饰</option>
+                                            </select>
+                                            <img src=""$!webPath/resources/style/system/front/default/image/lianxi.png"/>
+                                        </td>
+
+                                    </tr>
+                                    <tr id="thead">
+                                        <td width="30%">商品信息</td>
+                                        <td width="15%">单价</td>
+                                        <td width="15%">单位</td>
+                                        <td width="15%">数量</td>
+                                        <td width="15%" >金额</td>
+                                        <td width="10%"   class="last2" ><span>+</span></td>
+                                    </tr>
+                                    <tr class="first">
+                                        <td>
+                    <span class="fl">
+                        <select>
+                           <option>韩版修身T恤</option>
+                           <option>韩版修身T恤2</option>
+                           <option>韩版修身T恤3</option>
+                       </select>
+                    </span>
+                                            <span class="fr">
+                        商品编号: 230817<br/>
+                        尺码：S<br/>
+                        颜色：月白
+                    </span>
+                                        </td>
+                                        <td>30元</td>
+                                        <td>件</td>
+                                        <td><!--数量-->
+                                            <div class="goods_sum">
+                                                <ul class="count">
+                                                    <li><span id="num-jian" class="num-jian">-</span></li>
+                                                    <li><input type="text" class="input-num" id="input-num" value="0" /></li>
+                                                    <li><span id="num-jia" class="num-jia">+</span></li>
+                                                    <div class="clear"> </div>
+                                                </ul>
+                                            </div>
+                                            <script>
+                                                var num_jia = document.getElementById("num-jia");
+                                                var num_jian = document.getElementById("num-jian");
+                                                var input_num = document.getElementById("input-num");
+
+                                                num_jia.onclick = function() {
+
+                                                    input_num.value = parseInt(input_num.value) + 0;
+                                                }
+
+                                                num_jian.onclick = function() {
+
+                                                    if(input_num.value <= 0) {
+                                                        input_num.value = 0;
+                                                    } else {
+
+                                                        input_num.value = parseInt(input_num.value) - 0;
+                                                    }
+
+                                                }
+                                                $("body").on("click", ".num-jian", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    if(obj.val() <= 0) {
+                                                        obj.val(0);
+                                                    } else {
+                                                        obj.val(parseInt(obj.val()) - 1);
+                                                    }
+                                                    obj.change();
+                                                });
+                                                $("body").on("click", ".num-jia", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    obj.val(parseInt(obj.val()) + 1);
+                                                    obj.change();
+                                                });
+                                            </script>
+                                        </td>
+                                        <td>
+                                            2700元
+                                        </td>
+                                        <td class="last2 red" >
+                                            <span>×</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="first">
+                                        <td>
+                    <span class="fl">
+                        <select>
+                           <option>韩版修身T恤</option>
+                           <option>韩版修身T恤2</option>
+                           <option>韩版修身T恤3</option>
+                       </select>
+                    </span>
+                                            <span class="fr">
+                        商品编号: 230817<br/>
+                        尺码：S<br/>
+                        颜色：月白
+                    </span>
+                                        </td>
+                                        <td>30元</td>
+                                        <td>件</td>
+
+                                        <td><!--数量-->
+                                            <div class="goods_sum">
+                                                <ul class="count">
+                                                    <li><span id="num-jian" class="num-jian">-</span></li>
+                                                    <li><input type="text" class="input-num" id="input-num" value="0" /></li>
+                                                    <li><span id="num-jia" class="num-jia">+</span></li>
+                                                    <div class="clear"> </div>
+                                                </ul>
+                                            </div>
+                                            <script>
+                                                var num_jia = document.getElementById("num-jia");
+                                                var num_jian = document.getElementById("num-jian");
+                                                var input_num = document.getElementById("input-num");
+
+                                                num_jia.onclick = function() {
+
+                                                    input_num.value = parseInt(input_num.value) + 0;
+                                                }
+
+                                                num_jian.onclick = function() {
+
+                                                    if(input_num.value <= 0) {
+                                                        input_num.value = 0;
+                                                    } else {
+
+                                                        input_num.value = parseInt(input_num.value) - 0;
+                                                    }
+
+                                                }
+                                                $("body").on("click", ".num-jian", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    if(obj.val() <= 0) {
+                                                        obj.val(0);
+                                                    } else {
+                                                        obj.val(parseInt(obj.val()) - 1);
+                                                    }
+                                                    obj.change();
+                                                });
+                                                $("body").on("click", ".num-jia", function(m) {
+                                                    var obj = $(this).closest("ul").find(".input-num");
+                                                    obj.val(parseInt(obj.val()) + 1);
+                                                    obj.change();
+                                                });
+                                            </script>
+                                        </td>
+                                        <td>
+                                            2700元
+                                        </td>
+                                        <td class="last2 red" >
+                                            <span>×</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="second">
+                                        <td colspan="6">
+                                            <div class="twobox" >
+                                                合计：<span>5400</span>元
+                                            </div>
+                                            <div class="two">
+                                                <ul>
+                                                    <li>
+                                                        <span class="fl">期望送达日期：</span>
+                                                        <span class="fr" >2017/09/15</span>
+                                                        <div class="clear"></div>
+                                                    </li>
+                                                    <li>
+                                                        <span class="fl">摘要：</span>
+                                                        <span class="fr">摘要，如新潮春装1000件</span>
+                                                        <div class="clear"></div>
+                                                    </li>
+                                                    <li>
+                                                        <span class="fl">附加说明：</span>
+                                                        <span class="fr"  >补充说明</span>
+                                                        <div class="clear"></div>
+                                                    </li>
+                                                    <li>
+                                                        <span class="fl">收货人：</span>
+                                                        <span class="fr">南墙先生 联系电话：18806030603<i class="iconfont icon-survey1" ></i></span>
+                                                        <div class="clear"></div>
+                                                    </li>
+                                                    <li>
+                                                        <span class="fl">收货地址：</span>
+                                                        <span class="fr">福建厦门思明莲前软件园二期望海路<i class="iconfont icon-map" ></i></span>
+                                                        <div class="clear"></div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="clear"></div>
+                                <p><button>确定</button></p>
+                            </div>
+                        </div>
+                    </div>
+                    <style type="text/css">
+                        #show{width:40%; text-align: center;  height: auto; padding: 40px 0;
+                            position: fixed;
+                            z-index: 1000; background-color:rgba(210, 236, 250, 1); border-radius: 5px; display: none;  left: 30%; top:300px;    }
+                        #show i{ font-size: 2rem; color: #e51c23;  }
+                        #show p{ padding-top: 15px; color: #e51c23; }
+                        .prodcti i{ font-size: 1.8rem; margin-top: 10px;}
+                        #show2,#show3{width:40%; text-align: center;  height: auto; padding: 40px;
+                            position: fixed;
+                            z-index: 1000; background-color:rgba(210, 236, 250, 1); border-radius: 5px; display: none;  left: 30%; top:300px;    }
+                        #show2 select{ width: 50%; height: 40px; }
+                        #show2 p, #show3 p {color: #333; line-height: 40px; text-align: left;  }
+                        #show2 p.red,#show3 p.red{color: #e51c23; }
+                        #show2 button,#show3 button{ padding: 5px 30px; float: right;  margin-top: 50px; line-height: 40px; text-align: center; background:#3fa4ed; font-size: 16px; color: #fff; border: none; border-radius:5px;}
+                    </style>
+                    <div id="show2"  >
+                        <form>
+                            <p class="red" >您确定要取消进货单吗？取消后不可恢复。</p>
+                            <p>请选择取消进货单的理由：
+                                <select>
+                                    <option>请选择取消进货单的理由</option>
+                                    <option>下错了</option>
+                                    <option>不想进货了</option>
+                                </select>
+                            </p>
+                            <div><button class="close" type="button" >关闭</button><button style="margin-right: 20px;" type="submit"   class="submitac" >确定</button></div>
+                        </form>
+                    </div>
+                    <div id="show" >
+                        <i class="iconfont icon-success" ></i>
+                        <p>催货成功!</p>
+                    </div>
+                    <div id="show3"  >
+                        <form>
+                            <p class="red" >收到货后再确认收货哦，小心货钱两空</p>
+                            <div><button class="close2" type="button" >取消</button><button style="margin-right: 20px;" type="submit"   class="submitac2" >确定</button></div>
+                        </form>
+                    </div>
+                    <!--<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>-->
+                    <script>
+                        $(function () {
+                            $(".confirmsh").click(function () {
+
+                            });
+                            $(".cuihuo").click(function () {
+                                $("#show").css({'display':'block'});
+                                setTimeout(function() {
+                                    $("#show").css({'display':'none'});
+
+                                }, 1000);
+                            });
+                            $(".refund").click(function () {
+                                $("#show2").css({'display':'block'});
+                                $('.close').click(function (){
+                                    $("#show2").css({'display':'none'});
+                                });
+                                $('.submitac').click(function (){
+                                    $("#show2").css({'display':'none'});
+                                });
+
+                            });
+
+                            $(".confirmsh").click(function () {
+                                $("#show3").css({'display':'block'});
+                                $('.close2').click(function (){
+                                    $("#show3").css({'display':'none'});
+                                });
+                                $('.submitac2').click(function (){
+                                    $("#show3").css({'display':'none'});
+                                });
+
+                            });
+
+
+                        });
+
+                        //定义函数
+                        function tab(tabID,box){
+                            $(tabID).each(function(){
+                                $(this).click(function(){
+                                    $(tabID).removeClass('active'); //先将所有同级去掉active
+                                    $(this).addClass('active');   //当前li显示
+                                    if($(tabID).html().indexOf("进货单")>=0){
+                                        $(box).hide();   //所有同级box隐藏
+                                        $(box).eq($(this).index()).show();
+                                    }else{
+                                        var order_status=-1;
+                                        var url=window.location.href;
+                                        if( $(this).html()=="全部"){
+
+                                        }else if($(this).html().indexOf("待付款")>=0){
+                                            order_status="order_submit";
+
+                                        }else if($(this).html().indexOf("待发货")>=0){
+                                            order_status="order_tosendgoods";
+
+                                        }else if($(this).html().indexOf("待收货")>=0){
+                                            order_status="order_fotgoods";
+
+                                        }
+                                        if(url.indexOf('order_status')>=0){
+                                            url=url.substring(0,url.indexOf('order_status')+12)+"="+order_status;
+                                        }else{
+                                            if(url.indexOf('?')>=0){
+                                                url=url+"&order_status="+order_status;
+                                            }else{
+                                                url=url+"?order_status="+order_status;
+                                            }
+
+                                        }
+                                        if(order_status==-1){
+                                            url=url.replace("&order_status=-1","");
+                                            url=url.replace("order_status=-1","");
+                                        }
+                                        window.location.href=url;
+                                    }
+
+
+                                });
+                            });
+                            $(tabID).removeClass('active');
+                            $(tabID).each(function(){
+                                if($(this).html().indexOf("进货单")>=0){
+                                    $(this).addClass('active');
+                                }
+                                if('${order_status}'=="order_submit"&&$(this).html().indexOf("待付款")>=0){
+                                    $(this).addClass('active');
+                                }
+                                if('${order_status}'=="order_tosendgoods"&&$(this).html().indexOf("待发货")>=0){
+                                    $(this).addClass('active');
+                                }
+                                if('${order_status}'=="order_fotgoods"&&$(this).html().indexOf("待收货")>=0){
+                                    $(this).addClass('active');
+                                }
+                                if('${order_status}'=="all"&&$(this).html().indexOf("全部")>=0){
+                                    $(this).addClass('active');
+                                }
+                            });
+
+                        }
+                        $(document).ready(function(){
+                            //选项卡
+                            tab("#tab11 li",'.box1');
+                            tab("#tab22 li",'.box2');
+                        });
+                    </script>
+                    <script type="text/javascript">
+
+                    </script>
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+
+</body>
+</html>

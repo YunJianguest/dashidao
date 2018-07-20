@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>申请云客</title>
+    <!--必选css-->
+      <link rel="stylesheet" type="text/css" href="css/zxx.css" >
+    <link rel="stylesheet" type="text/css" href="css/css1.css" >
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript">    
+function showDT() {  
+  var currentDT = new Date();  
+  var y,m,date,day,theDateStr;  
+  y = currentDT.getFullYear(); //四位整数表示的年份  
+  m = currentDT.getMonth()+1; //月  
+  date = currentDT.getDate(); //日  
+ 
+  theDateStr = y+"年"+  m +"月"+date+"日"  
+  document.getElementById("theClock"). innerHTML =theDateStr;  
+  // setTimeout 在执行时,是在载入后延迟指定时间后,去执行一次表达式,仅执行一次  
+  window.setTimeout( showDT, 1000);  
+}  
+</script> 
+</head>
+
+<body style="background: #f2f6f9;" onload="showDT()" >
+<!--head-->
+<div class="myer ykmyer">
+    <p ><i class="iconfont icon-back" onclick="history.go(-1)"></i>申请云客
+    </p>
+</div>
+
+<div class="storeoner" style="margin-top:3.6rem;">
+    <div class="dptx fl"><a href="stores_information.html"><img src="images/dztx.png"/></a></div>
+    <div class="one fl" >
+        <p>王燕茹</p>
+        <span>注册时间：2016年7月11日</span>
+    </div>
+    <a href="storeshow.html" class="fr"><i class="iconfont icon-xiangyoujiantou fr"  ></i></a>
+
+
+    <div class="clear"></div>
+</div>
+<div class="sqyk-top">
+	<ul style="width: 100%;">
+		<li>用户账号：<span>nshnnrrr</span></li>
+		<li>用户名称：<span>微信</span></li>
+        <li>消费状况：<span style="color:#F00;">15000.00元</span></li>
+        <li>申请时间：<span id="theClock"></span></li>
+	</ul>
+
+</div>
+
+
+
+  <div class="sqyk-bot" style="text-align:center;"><input type="text" value="立即申请" /></div>
+
+
+</body>
+
+</html>

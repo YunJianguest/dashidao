@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <link href="$!webPath/resources/style/system/manage/blue/tip.css"  rel="stylesheet" type="text/css"/>
+    <link href="$!webPath/resources/style/system/manage/blue/headquarters.css"  rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css" type="text/css"/>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+        <link rel="stylesheet" type="text/css" href="$!webPath/resources/style/system/front/default/css/font_Icon/iconfont.css">
+  <link href="$!webPath/resources/style/system/front/default/css/chat.css" type="text/css" rel="stylesheet" />
+
+    <title>基础管理-栈代</title>
+</head>
+<div class="zhandai_admin">
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#1" data-toggle="tab">栈代管理</a></li>
+</ul>
+<div class="operation">
+    <h3>友情提示</h3>
+    <ul>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<div class="ss"><span class="allmen size4"><input type="text"></span><span class="btn_search"> <input type="submit" value="搜索"></span></div>
+<div class="" id="tablelist">
+    <table width="100%" class="zdtable">
+        <tbody  id="tablesss" >
+
+        </tbody>
+    </table>
+
+</div>
+<!--分页开始-->
+<div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+<script>
+
+    jQuery(document).ready(function(){
+        var mycars=new Array();
+        var messa;
+        var id;
+        var zdid;
+        var cuur=1;
+        var pagelimit=2;
+        function loadajax(action,table,field,values,page_size,page_no,moudle_id){
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajax.jsp",
+                dataType:"json",
+                // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error:function(){alert("数据错误，操作被取消！");},
+                success:function(data)
+                {
+                    if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                    total=data.data.total;
+                    mycars[0]=total;
+                    var message=data.data.data;
+                    //console.log(message);
+                    $("#tablelist").html('');
+                    for(var i=0;i<message.length;i++){
+                        var qy=message[i]['zb_zhandaizhuangtai'];
+                        zdid=message[i]['zb_zhandaiid'];
+                        id=message[i]['id'];
+                        if(qy==1){
+                            message[i]['zb_zhandaizhuangtai']="已启用";
+                            messa='禁用';
+
+                        }else {
+                            message[i]['zb_zhandaizhuangtai']="已禁用";
+                            messa='启用';
+                        }
+
+                        $("#tablelist").append("<table  width='100%' class='zdtable'>" +
+                            "<tr ><td width='10%' rowspan='2'><input type='hidden' name='id' value='"+message[i]['id']+"' /><img src='"+"$!webPath/resources/"+ message[i]['zb_tupian']+"'alt=''></td>" +
+                            "<td width='40%' class='stores_name'><i id='userName'>"+message[i]['zb_name']+"</i> <span class='sl'>"+message[i]['zb_tuijianliang']+"</span></td>" +
+                            "<td width='40%'>"+message[i]['zb_zhandaizhuangtai']+"</td>" +
+                            "<td  width='10' rowspan='2' class='cz'> <input type='button' value='聊天' class='chat-list-people' onclick='liaotianClick(this);' /> </br><input id='d1' onclick='dd("+id+")' type='button' value='"+messa+"'><br><a href=$!webPath/admin/zhandaixq.htm?id="+id+"&zd_zhandaiid="+zdid+"><input type='button' value='详情' ></a><br><a href=$!webPath/admin/tuijian_zhandai2.htm><input type='button' value='推荐'></a></td>" +
+                            "</tr>" +
+                            "<tr class='bottom'>" +
+                            "<td><span>"+message[i]['zb_dianpuname']+""+message[i]['zb_dianhua']+"</span>&nbsp;&nbsp;&nbsp;<span>"+message[i]['zb_shijian']+"</span></td>" +
+                            "<td><span>"+message[i]['zb_dianpudizhi']+"</span><span style='margin-left: 20px;'>商家："+message[i]['zb_shangjiaid']+"</span></td>" +
+                            "</tr></table>");
+
+                    }
+                }
+            });
+        }
+        loadajax("select","zb_zhandai","states","1",pagelimit,cuur,1);
+        layui.use(['laypage', 'layer'], function(){
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+            //完整功能
+            laypage.render({
+                elem: 'demo7'
+                ,count:total
+                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                ,jump: function(obj){
+                    //console.log(obj)
+                    cuur=obj.curr;
+                    pagelimit=obj.limit;
+                    loadajax("select","zb_zhandai","states","1",pagelimit,cuur,1);
+                    //loadajax("select","stu",pagelimit,cuur,1);
+                },
+                limits:[2, 4, 6, 8, 10],
+                limit:pagelimit
+            });
+        });
+
+    });
+    function dd(id) {
+        var str=$('#d1').val();
+        var fpsz;
+        if(str=='启用'){
+            fpsz=id+"|"+1;
+        }else if(str=='禁用') {
+            fpsz=id+"|"+0;
+        }
+        jQuery.ajax({
+            type: "POST",
+            cache: false,
+            async: false,
+            url: "/ajax.jsp",
+            dataType: "json",
+            // data:"action=update&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+            data: "action=update&table=zb_zhandai&field=id,zb_zhandaizhuangtai&values=" + fpsz,
+
+            success: function (data) {
+                if (data.code == "0") {
+                    alert("系统错误，操作被取消！");
+                    return;
+                }
+                var strs = '操作成功';
+                if (strs == data.msg) {
+                    //window.location.href== '$!webPath/admin/xbfwsz_admin.htm';
+                    //openURL('url','$!webPath/admin/xbfwsz_admin.htm','main_workspace','xbfwsz_admin');
+                    location.reload();
+
+                }
+
+            }
+        });
+    }
+
+</script>
+<!--分页结束-->
+<script>
+    $(".pagination li").click(function(){
+        $(this).addClass("active");
+        $(this).siblings().removeClass("active");
+    })
+</script>
+$!httpInclude.include("/admin/liaotianpage.htm")
+</div>
+</body>
+</html>

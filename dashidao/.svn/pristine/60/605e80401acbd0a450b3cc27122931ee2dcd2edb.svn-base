@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>栈代注册</title>
+<link rel="stylesheet" href="css/two_level.css">
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/default.css">
+<link rel='stylesheet prefetch' href='css/font-awesome.min.css'>
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+<style>
+	.border-left{display:inline-block;width:5px;background: #3fa4ed;height: 20px;}	
+	.regiest_tie{width: 100%;height:20px;line-height: 20px;margin: 5px 0; border-left:5px solid #3fa4ed;padding-left: 20px;font-size: 20px;}
+	.regiest_con{width: 70%;margin-left:20%;}
+	.regiest_con ul li input{width: 40%;height:35px;line-height:35px;margin-left:15px;border: 1px solid #c3c3c3;}
+	.regiest_con ul li{height:50px;line-height: 50px;}
+	.regiest_con ul li span{display: inline-block;width:20%;text-align: right;}
+	.username{background:url(img/man.png);background-position: 98% 35%;background-repeat: no-repeat;}
+	.pwd{background:url(img/password-b.png);background-position: 98% 35%;background-repeat: no-repeat;}
+	.regiest_addres{height:35px;line-height: 35px;width:12.4%;margin-left:10px;border-radius: 5px;}
+	.check{width:20px!important;height:20px!important;margin-left: 6%!important;}
+	.regiest_trade{width:40%;margin-left: 15px;height:35px;line-height: 35px;border-radius: 5px;}
+	font{margin-left:10px;}
+	.htmleaf-content{display: inline-block!important;padding: 0!important;margin-left: 15px;}
+	.checkbox label{height: 28px!important;}
+	.model-2 .checkbox input:checked + label:after{left: 44px!important;}
+	.model-2 .checkbox label:after{height:28px!important;width:28px!important;}
+	.code,.code2{width:28%!important;}
+	.recode{width: 10%!important;text-align: center;background: #3fa4ed;color:#fff;}
+	.recode{width: 10%!important;text-align: center;background: #3fa4ed;color:#fff;}
+	.agree{width:20px!important;}
+	.protocol{position: absolute;bottom:-73px;}
+	.sub {
+    background: #3fa4ed;
+    width: 300px;
+    line-height: 40px;
+    height: 40px;
+    margin: 20px auto 20px!important;
+    text-align: center;
+    color: #fff;
+}
+</style>
+<script src="js/jquery-1.7.1.min.js"></script>
+</head>
+<body>
+<div class="both">
+<form id="form1" name="form1" method="post" class="form-inline">
+<div class="regiest_tie">账号信息</div>
+<div class="regiest_con">
+	<ul>
+		<li><span>用户名：</span><input type="text" class="form-control username" name="" id="" value="" /></li>
+		<li><span>密码：</span><input type="text" class="form-control pwd" name="" id="" value="" /></li>
+		<li><span>确认码：</span><input type="text" class="form-control pwd" name="" id="" value="" /></li>
+	</ul>
+</div>
+	
+<div class="regiest_tie">公司/个人信息</div>
+	<div  class="regiest_con">
+	<ul>
+		<li><span>公司名称：</span><input type="text" class="form-control" name="" id="" value="" /></li>
+		<li><span>公司所在地：</span>
+		<select class="regiest_addres"><option>陕西省</option><option></option>111<option>111</option></select>
+		<select class="regiest_addres"><option>西安市</option><option>22</option><option>22</option></select>
+		<select class="regiest_addres"><option>雁塔区</option><option></option>33<option>33</option></select>
+		</li>
+		<li><span>公司行业：</span><select class="regiest_trade"><option>请选择公司行业</option><option></option>444<option>444</option></select></li>
+		<li><span>店铺/仓库：</span><input type="checkbox" class="check"><font>有店铺</font><input type="checkbox"  class="check"><font>有仓库</font></li>
+		<li><span>支持自提：</span>
+		<div class="htmleaf-content">
+			<section class="model-2">
+			  <div class="checkbox">
+			    <input type="checkbox"/>
+			    <label></label>
+			  </div>
+			  </section>
+		</div>
+		</li>
+	</ul>
+</div>
+<div class="regiest_tie">联系人信息</div>
+	<div class="regiest_con">
+	<ul>
+		<li><span>联系人姓名：</span><input type="text" class="form-control" name="" id="" value="" /></li>
+		<li><span>验证手机：</span><input type="text" class="form-control" name="" id="" value="" /></li>
+		<li><span>短信验证码：</span><input type="text" class="form-control code" name="" id="" value="" />
+		<input type="text" class="form-control recode" name="" id="" value="获取验证码" disabled/></li>
+		<li><span>验证码：</span><input type="text" class="form-control code2" name="" id="" value="" />
+		<input type="text" class="form-control recode" style="font-size:12px;" name="" id="" value="看不清，换一张" disabled/></li>
+		<li><span>邮箱：</span><input type="text" class="form-control" name="" id="" value="" /></li>
+	</ul>
+</div> 
+<div class="regiest_con">
+	<ul>
+		<li><span></span><input type="checkbox" class="form-control agree" name="" id="" value="" />
+		<font class="protocol">我已阅读并同意<a href="">《大市道用户注册协议》《隐私政策》</a></font>
+		</li>
+	</ul>
+	</div>
+</form>
+<div class="sub">确定</div>
+</div>
+</body>
+</html>
+	

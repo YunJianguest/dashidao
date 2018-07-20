@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title></title>
+</head>
+<link href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/template.css"  rel="stylesheet" type="text/css"/>
+<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+<script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+<script>
+    function addorsubtract(obj,id){
+        var cls=jQuery(obj).attr("cls");
+        var level=jQuery(obj).attr("level");
+        console.log(cls +"*************"+ level);
+        if(cls=="jian"){
+            jQuery.ajax({type:'POST',
+                url:'$!webPath/admin/goods_class_data.htm',
+                data:{"pid":id,"currentPage":"$!currentPage"},
+                success:function(data){
+                    jQuery("#"+id).after(data); 
+                    jQuery(obj).attr("src","$!webPath/resources/style/system/manage/blue/images/add.jpg");
+                    jQuery(obj).attr("cls","add");
+                    tipStyle();
+                }
+            });
+        }else{
+            if(level=="0_"+id){
+                jQuery("tr[level=child_"+id+"]").remove();
+            }else
+                jQuery("tr[parent="+id+"]").remove();
+            jQuery(obj).attr("src","$!webPath/resources/style/system/manage/blue/images/jian.jpg");
+            jQuery(obj).attr("cls","jian");
+        }
+        //
+    }
+   function ajax_update(id,fieldName,obj){
+        var val=jQuery(obj).val();
+        jQuery.ajax({type:'POST',
+            url:'$!webPath/admin/goods_class_ajax.htm',
+            data:{"id":id,"fieldName":fieldName,"value":val},
+            beforeSend:function(){
+
+            },
+            success:function(data){
+                if(val==""){
+                    jQuery(obj).attr("src","$!webPath/resources/style/system/manage/blue/images/"+data+".png");
+                }else{
+                    jQuery(obj).val(val);
+                }
+            }
+        });
+    }
+    jQuery(document).ready(function(){
+
+    });
+</script>
+<body>
+<div class="cont">
+  <h1 class="seth1">运费区域</h1>                                                                                                                                                                                                                                  <!--tab-two-->
+  <div class="settab"><span class="tab-one"></span> <span class="tabs"> 
+  	<a href="$!webPath/admin/wuliumuban_list.htm"  class="this">管理</a>  
+	  <a href="$!webPath/admin/wuliumuban_add.htm">新增</a> 
+  </div>
+  <div class="operation">
+    <h3>友情提示</h3>
+    <ul>
+      <li>你可以进行新增、编辑、删除运费模板设置</li>
+    </ul>
+  </div>
+  <div class="classtable">
+    <FORM name="ListForm" id="ListForm"  action="$!webPath/admin/wuliumuban_list.htm" method="post">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="class_table">
+        <tr class="tableheader">
+          <td width="38">&nbsp;</td>
+          <td width="200" align="rigth">首重重量(kg)</td>
+          <td width="200" align="rigth">首重费用(元)</td>
+          <td width="200" align="rigth">续重计价重量(kg)</td>
+          <td width="200" align="rigth">续重单价(元/kg)</td>
+          <td width="136" align="left">操作</td>
+        </tr>
+
+        #foreach($obj in $objs)
+        <tr>
+        	 <td width="38">&nbsp;</td>
+             <td align="rigth">$!obj.szzl</td>
+             <td align="rigth">$!obj.szfy</td>
+             <td>$!obj.xzjjzl</td>
+             <td>$!obj.xzdj</td>
+             <td><a href="$!webPath/admin/wuliumuban_edit.htm?id=$!obj.id&currentPage=$!currentPage">编辑</a> | 
+             	<a href="javascript:void(0);" onclick="if(confirm('删除后不可恢复，是否继续?'))window.location.href='$!webPath/admin/wuliumuban_del.htm?mulitId=$!obj.id&currentPage=$!currentPage'">删除</a>
+             	
+             	</td>
+        </tr>
+        #end
+      </table>
+      <input type="hidden" name="currentPage" id="currentPage" value="$!currentPage" />
+      <input name="mulitId" type="hidden" id="mulitId" />
+      <div class="fenye"> $!gotoPageHTML</div>
+    </FORM>
+  </div>
+</div>
+</body>
+</html>

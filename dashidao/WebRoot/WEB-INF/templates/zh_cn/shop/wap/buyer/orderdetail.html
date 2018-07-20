@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>订单详情</title>
+    <!--必选css-->
+    <link rel="stylesheet" type="text/css" href="css/css2.css" >
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+</head>
+<body style="background: #f2f6f9; padding: 40px 0 100px;" >
+<!--head-->
+<div class="myer ykmyer">
+    <p >
+        <i class="iconfont icon-back fl" onclick="history.go(-1)"  ></i>订单详情
+    </p>
+</div>
+
+<div class="over">
+    <p >
+        <i class="iconfont icon-templatedefault fl"  ></i>已完成
+    </p>
+</div>
+<!--order-->
+<div class="detaillist">
+    <ul>
+        <li style="background: none;" >
+            <a href="logisticsdetails.html" style="color: #333;" >
+                <div class="fl" style="background: url('images/nowbg.png') no-repeat 5px 15px; height:45px;"></div>
+                <div class="fr" >
+                    <p>投递并签收，签收人：他人收 王星</p>
+                    <span>2018-03-20 15：39：35</span>
+                    <i class="iconfont icon-xiangyoujiantou fr"></i>
+                </div>
+                <div class="clear"></div>
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="detaillist" style="margin-top: 10px;" >
+    <ul>
+        <li style="background: none;" >
+            <div class="fl" style="padding: 10px 0 0 3px;" ><i class="iconfont icon-map" style="font-size: 1.8rem; "  ></i></div>
+            <div class="fr" >
+                <p>王燕茹 15029016153</p>
+                <span style="font-size: 1rem; line-height: 2.2rem;" >陕西省西安市未央区明光路166号凯瑞大厦B座</span>
+            </div>
+            <div class="clear"></div>
+        </li>
+    </ul>
+</div>
+
+
+<div class="ordercont" >
+    <div class="goodcontent orderdecont">
+        <!--订单详情-->
+        <a href="orderdetails.html">
+            <h3><span><i class="iconfont icon-service"  ></i>联系客服</span></h3>
+            <div class="clear"></div>
+            <!--one-->
+            <div class="one">
+                <img src="images/good.png">
+                <div class="title fl" >
+                    <h1><span>特卖</span>华为nova 青春版全网通手机 双卡双待</h1>
+                    <p>规格：4GB+64GB 颜色：魅海蓝</p>
+                </div>
+                <div class="price fr">
+                    <h1>￥1130.00</h1>
+                    <font>×1</font>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+            <!--three-->
+            <div class="fore" style="margin: 0px;"  >
+                 <div><a href="customer_ser.html" >申请售后</a></div>
+            </div>
+            <div class="clear"></div>
+        </a>
+    </div>
+    <div class="clear"></div>
+    <div class="detailcont" >
+        <div class="three" >
+            <p ><span class="fl" >订单金额：</span><span id="price" >￥99.00</span></p>
+            <p ><span class="fl" >运费：</span><span id="price" >￥0.00</span></p>
+            <p ><span class="fl" >余额抵扣：</span><span id="price"   >-￥71.80</span></p>
+        </div>
+        <div class="three" style="border: none;" >
+            <p ><span>实付款（含运费）：</span><span id="price" style="color: #e13036; font-size: 1.6rem; " >￥71.90</span></p>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="five"><i class="iconfont icon-moreunfold" id="click" ></i></div>
+    <div class="clear"></div>
+</div>
+<style>
+    .over{background: linear-gradient(to right, #fe5f5a, #ff9180); padding: 0px 5%; padding-top: 10px; padding-bottom: 2px;  }
+    .over p{ color: #fff; line-height: 30px; height: 30px;  display: block;    }
+    .over i{ padding-right: 25px; }
+    /**/
+    .detaillist li:first-child .fr{position: relative; }
+    .detaillist li:first-child .fr i{position: absolute; top: 10px; right:0px; margin: 0px; padding: 0px; border: none; width: 20px;  float: left;  }
+    .ordercont{ background: #fff; padding-bottom: 0px;  }
+    .orderdecont{ width: 100%; padding:0 5%; margin-top: 0px; }
+    .orderdecont h1{ margin-top: 0px;}
+    .orderdecont h3 span i{font-size: 2rem; color:#ee3953; margin-right: 10px; }
+    .orderdecont .one{border: none; }
+    .orderdecont .one img{width: 5.2rem; height: 5.2rem; }
+    .ordercont .three{margin-top:20px; padding: 0px; border-bottom: 1px solid #f2f2f2; }
+    .ordercont .three p{margin-bottom: 0px; padding: 0px 5%;}
+    .ordercont .three p span{color: #333;  }
+    .ordercont .fore{ margin-top: 20px;  }
+    .detailcont{ display: none; }
+    .five{ width: 100%; padding: 5px 0 0;  text-align: center; }
+    #text{ color:#333; height: 2rem; border: none; width: 13rem;   }
+    #copy{ color: #333; border: 1px solid #b0b0b0; border-radius: 3px;  background: #fff;  padding: 0px 10px; height: 2rem; line-height: 2rem;  display: block; }
+    .orderdetai{margin-top: 10px; padding: 3% 0;}
+    .orderdetai .three{ border: 0px;}
+    .orderdetai p{ line-height: 2rem; }
+    .bmenu .fore{ padding: 5px 3%;  }
+    .bmenu .fore a{ display: block;  color: #333; }
+    .bmenu .fore div:visited{ border: none; border-color: #ccc; }
+</style>
+<div class="ordercont orderdetai" >
+        <div class="three" >
+            <p ><span class="fl" >订单编号：</span> <textarea id="text"  >YJ27591138528640114</textarea><button id='copy'  onclick="copy()">复制</button></p>
+            <p ><span class="fl" >下单时间：2018-03-18 09:29:40</span></p>
+            <p ><span class="fl" >付款时间：2018-03-18 09:30:07</span></p>
+            <p ><span class="fl" >付款类型：支付宝支付</span></p>
+            <p ><span class="fl" >订单来源：云客app</span></p>
+        </div>
+       <div class="clear"></div>
+ </div>
+
+<div class="bmenu">
+    <div class="fore" >
+        <div><a href="assess.html" >评价</a></div>
+        <div class="fr"><a href="logisticsdetails.html">查看物流</a></div>
+        <p class="clear"></p>
+    </div>
+</div>
+<script>
+    $(function () {
+       $('#click').click(function () {
+           $(".detailcont").slideToggle("slow");
+       });
+    });
+
+    function copy(){
+        var text=document.getElementById('text');
+        var copy=document.getElementById('copy');
+        text.select();
+        document.execCommand("copy");
+        copy.focus();
+        alert("复制成功")
+    }
+
+</script>
+</body>
+</html>

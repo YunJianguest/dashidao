@@ -1,0 +1,89 @@
+<script>
+jQuery(document).ready(function(){
+	//
+	jQuery(".sellul>li>a").click(function(){
+	  var child_show=jQuery(this).attr("child_show");
+	  if(child_show=="true"){
+	    jQuery(this).parent().find("ul").slideUp('normal');
+	    jQuery(this).attr("child_show","false");
+	  }else{
+	    jQuery(this).parent().find("ul").slideDown('normal');
+	    jQuery(this).attr("child_show","true");
+	  }
+	});
+	//
+	jQuery(".sellul>ul>li").removeClass("this");
+	jQuery("li[op=$!op]").addClass("this");
+});
+</script>
+
+<td width="20%" id="userbg" valign="top">
+  <div class="seller">
+    <!--栈代设置-->
+    <div class="product_manage2">
+      <div class="protitle_seller">栈代中心</div>
+      <ul class="sellul">
+	   <li ><a href="javascript:void(0);" child_show="false"><i class="iconfont icon-jifen"></i>营销活动</a>
+          <ul>
+              <li op="order"><a href='$!webPath/poster/cleargood.htm'>清仓活动</a></li>
+          </ul>
+        </li>
+		<li ><a href="javascript:void(0);" child_show="false"><i class="iconfont icon-trade-assurance"></i>交易管理</a>
+          <ul>
+            <li op="order"><a href='$!webPath/poster/order.htm'>订单管理</a></li>
+            <li op="transport"><a>物流工具</a></li>
+          </ul>
+        </li>
+        <li ><a href="javascript:void(0);" child_show="true"><i class="iconfont icon-similarproduct"></i>商品管理</a>
+          <ul>
+          <li op="order"><a href='$!webPath/poster/agentcommodity.htm'>代理商品</a></li>
+              <li op="order"><a href='$!webPath/poster/choicegoods.htm'>选择商品</a></li>
+		  <li op="order"><a href='$!webPath/poster/importbill.htm'>进货管理</a></li>
+		  <li op="order"><a href='$!webPath/poster/stockmanage.htm'>商品库存</a></li>
+		  <li op="order"><a href='$!webPath/poster/refundsale.htm'>退款售后</a></li>
+          </ul>
+        </li>
+       <li ><a href="javascript:void(0);" child_show="false"><i class="iconfont icon-gerenzhongxin"></i>客户服务</a>
+          <ul>
+            <li op="refund"><a>售后</a></li>
+            <li op="refund"><a href='$!webPath/poster/returnmanage.htm'>退换货管理</a></li>
+            <li op="refund"><a href='$!webPath/poster/breakmaili.htm'>破损补寄管理</a></li>
+			<li op="complaint"><a href='$!webPath/poster/tsmanage.htm'>投诉管理</a></li>
+            <li op="refund"><a href='$!webPath/poster/Complaintm.htm'>申诉管理</a></li>
+            <li op="refund"><a href='$!webPath/poster/maintmanag.htm'>维修管理</a></li>
+            <li op="goods_return"><a href='$!webPath/poster/shouhouwufukanban.htm'>售后服务看板</a></li>
+            
+          </ul>
+        </li>
+        <li ><a href="javascript:void(0);" child_show="false"><i class="iconfont icon-survey1"></i>基础设置</a>
+          <ul>
+            <li op="store_set"><a href='$!webPath/poster/zhandaixx.htm'>栈代信息</a></li>
+            <li op="sub_account"><a href='$!webPath/poster/zhandaiht.htm'>合同信息</a></li>
+            <li op="sub_account"><a>子账户管理</a></li>
+            <li op="sub_account"><a href='$!webPath/poster/sqtc.htm'>申请退出</a></li>
+            <li op="sub_account"><a>申请歇业</a></li>
+          </ul>
+        </li>
+        <li ><a href="javascript:void(0);" child_show="false"><i class="iconfont icon-trade"></i>资金管理</a>
+          <ul>
+            <li><a href='$!webPath/poster/yinhangka.htm'>银行卡管理</a></li>
+            <li><a >安全设置</a></li>
+            <li op="order"><a href='$!webPath/poster/zijinfuwu.htm'>资金服务</a></li>
+            <li op="order"><a href='$!webPath/poster/duizhangzhongxin.htm'>对账中心</a></li>
+          </ul>
+
+        </li>
+		 <li ><a href="javascript:void(0);" child_show="false"><i class="iconfont icon-data"></i>统计管理</a>
+        <ul>
+          <li op="order"><a href='$!webPath/poster/xiaoshoumingxi.htm'>销售明细一览表</a></li>
+          <li op="store_set"><a href='$!webPath/poster/xiaoshouribao.htm'>销售日报表</a></li>
+          <li op="store_set"><a href='$!webPath/poster/xiaoshouyuebao.htm'>销售月报表</a></li>
+        </ul>
+
+      </li>
+      </ul>
+    </div>
+    <!--栈代设置-->
+  </div>
+  $!httpInclude.include("/chatting.htm")
+</td>

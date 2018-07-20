@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>栈代信息 - $!{config.poweredby}</title>
+	<meta name="keywords" content="$!config.keywords" />
+	<meta name="description" content="$!config.description" />
+	<meta name="generator" content="$!{config.meta_generator}" />
+	<meta name="author" content="$!{config.meta_author}">
+	<meta name="copyright" content="$!{config.copyRight}">
+	#if($!config.website_ico)
+	<link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+	#end
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/zxx.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+	<link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+	<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+	<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+	<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+	<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+	<script>
+        jQuery(document).ready(function(){
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+	</script>
+</head>
+<body>
+$!httpInclude.include("/top.htm")
+<div class="main"> $!httpInclude.include("/poster/nav_head.htm")
+	<div class="user_center">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+			<tr> $!httpInclude.include("/poster/nav.htm?op=refund")
+				<td id="centerbg" width="80%"  valign="top">
+                    <div class="buyer_position"  style="width: 98%; background: #fff; ">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代中心</a> > <span>栈代信息</span></div>
+                    </div>
+                    <div class="xx-box">
+                        <div class="xx-top">
+                            <div class="xx-tu"><i class="iconfont icon-search"></i></div>
+                            <input type="text" placeholder="云正通" />
+                            <div class="xx-right">
+                                <ul>
+                                    <li><span><i class="iconfont icon-accountfilling"></i></span>请栈代加盟</li>
+                                    <li><span><i class="iconfont icon-add"></i></span>添加栈代</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="xx-botton">
+                            <ul>
+                                <li>
+                                    <div class="xx-botton-left"><img src="$!webPath/resources/img/11.png"></div>
+                                    <div class="xx-botton-left2">云正通海鲜雁塔店<span>1万+</span>
+                                        <div class="xx-botton-left3">唐三 186 2838 0304 <span>2017-3-1至 2018-3-1</span></div></div>
+                                    <div class="xx-botton-left4">西安市雁塔路58号</div>
+                                    <div class="xx-botton-left5"><i class="iconfont icon-map"></i></div>
+                                    <div class="xx-botton-left6"><i class="iconfont icon-information"></i><br><i class="iconfont icon-help"></i></div>
+                                    <div class="xx-botton-left7"><i class="iconfont icon-map"></i></div>
+                                </li>
+
+                                <li>
+                                    <div class="xx-botton-left"><img src="$!webPath/resources/img/11.png"></div>
+                                    <div class="xx-botton-left2">云正通海鲜雁塔店<span>2千+</span>
+                                        <div class="xx-botton-left3">唐三 186 2838 0304 <span>2017-3-1至 2018-3-1</span></div></div>
+                                    <div class="xx-botton-left4">西安市雁塔路58号</div>
+                                    <div class="xx-botton-left5"><i class="iconfont icon-map"></i></div>
+                                    <div class="xx-botton-left6"><i class="iconfont icon-information"></i><br><i class="iconfont icon-help"></i></div>
+                                    <div class="xx-botton-left7"><i class="iconfont icon-map"></i></div>
+                                </li>
+
+                                <li>
+                                    <div class="xx-botton-left"><img src="$!webPath/resources/img/11.png"></div>
+                                    <div class="xx-botton-left2">云正通海鲜雁塔店
+                                        <div class="xx-botton-left3">唐三 186 2838 0304 <span>2017-3-1至 2018-3-1</span></div></div>
+                                    <div class="xx-botton-left4">西安市雁塔路58号</div>
+                                    <div class="xx-botton-left5"><i class="iconfont icon-map"></i></div>
+                                    <div class="xx-botton-left6"><i class="iconfont icon-information"></i><br><i class="iconfont icon-help"></i></div>
+                                    <div class="xx-botton-left7"><i class="iconfont icon-map"></i></div>
+                                </li>
+
+                                <li>
+                                    <div class="xx-botton-left"><img src="$!webPath/resources/img/11.png"></div>
+                                    <div class="xx-botton-left2">云正通海鲜雁塔店
+                                        <div class="xx-botton-left3">唐三 186 2838 0304 <span>2017-3-1至 2018-3-1</span></div></div>
+                                    <div class="xx-botton-left4">西安市雁塔路58号</div>
+                                    <div class="xx-botton-left5"><i class="iconfont icon-wrong"></i></div>
+                                    <div class="xx-botton-left6"><i class="iconfont icon-information"></i><br><i class="iconfont icon-help"></i></div>
+                                    <div class="xx-botton-left7"><i class="iconfont icon-map"></i></div>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <div class="xx-bontom">
+                            <div class="xx-bontom1">Total 85 items</div>
+                            <div class="xx-bontom-ul">
+                                <ul>
+                                    <li><i class="iconfont icon-back"></i></li>
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                    <li>4</li>
+                                    <li>5</li>
+                                    <li>…</li>
+                                    <li>50</li>
+                                    <li><i class="iconfont icon-more"></i></li>
+                                </ul>
+
+                            </div>
+                            <div class="xx-bontom2">10/page<i class="iconfont icon-moreunfold"></i></div>
+                            <div class="xx-bontom3">Goto</div>
+                            <div class="xx-bontom4"><input type="text" placeholder="8"></div>
+                        </div>
+
+                    </div>
+
+
+
+                </td>
+			</tr>
+		</table>
+	</div>
+	$!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

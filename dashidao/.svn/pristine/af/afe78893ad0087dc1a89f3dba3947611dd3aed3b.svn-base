@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>栈代合同 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/zxx.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/two_level.css">
+
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+    <style>
+        .hzhaomu li{ width: 14%; }
+        .hzhaomu2 li{ width: 14%; }
+        .ac9 a {
+            color: #999;
+            padding:4px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            border:1px solid #999;margin-left:4px;
+        }
+        .ac9 a:hover {
+            color:#999;
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="main"> $!httpInclude.include("/seller/nav_head.htm")
+    <div class="user_center">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=sub_account")
+                <td id="centerbg" valign="top" width="80%">
+
+                    <div class="zaboth">
+                        <form id="form1" name="form1" method="post" class="form-inline">
+                            <div>
+                                <table width="100%">
+                                    <tr>
+                                        <td width="10%">行业许可：</td>
+                                        <td colspan="2">
+                                            <div class="view">
+                                                <input class="radio-inline" type="radio" name="optionsRadiosinline" id="optionsRadios3" value="option1" checked> 同意
+                                                <input class="radio-inline" type="radio" name="optionsRadiosinline" id="4" value="option1"> 不同意
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>实体店铺：</td>
+                                        <td colspan="2" class="checke">
+                                            <input type="checkbox" name="" checked >  有店铺
+                                            <input type="checkbox" name="" checked>  有仓库
+                                            <input type="checkbox" name="" checked>  不限
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>滞销品退货</td>
+                                        <td colspan="2">
+                                            <input class="radio-inline" type="radio" name="33" id="1" value="option1">  允许
+                                            <input class="radio-inline" type="radio" name="33" id="2" value="option1" checked>不允许
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>相关支持：</td>
+                                        <td colspan="2" class="checke">
+                                            <input type="checkbox" name="" checked>  提供宣传品
+                                            <input type="checkbox" name="" checked>  提供宣传稿
+                                            <input type="checkbox" name="" checked>  不限
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>最大存货量：</td>
+                                        <td colspan="2">
+                                            <input class="radio-inline" type="radio" name="11" id="44" value="option1">  限制
+                                            <input class="radio-inline" type="radio" name="11" id="55" value="option1" checked>不限制
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            <div>最大金额<input type="text" name="" class="txt"></div>
+                                            <div>最大数量<input type="text" name="" class="txt"></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>招募栈代数量：</td>
+                                        <td colspan="2"><input type="text" name="" class="txt"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>起订量：</td>
+                                        <td colspan="2"><input type="text" name="" class="txt"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>返点优惠：</td>
+                                        <td colspan="2">
+                                            <div>满<input type="text" name="" class="txt">件，返<input type="text" name="" class="txt"></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>栈代级别：</td>
+                                        <td width="217px;"><input class="radio-inline" type="radio" name="1" id="42" value="option1">  省级</td>
+                                        <td width="217px;"><input class="radio-inline" type="radio" name="1" id="235" value="option1">  市级</td>
+                                        <td width="217px;"><input class="radio-inline" type="radio" name="1" id="524" value="option1">  区县级</td>
+                                    </tr>
+                                </table>
+                                <script>
+                                    $('.view span').click(function(){
+                                        $(this).addClass('check');
+                                        $(this).siblings().removeClass('check');
+                                    })
+                                </script>
+                            </div>
+                            <div class="sp">栈代商品</div>
+                            <table width="100%;" cellpadding="0" cellspacing="0" class="sj_zhaozd">
+                                <tr class="zdthead" >
+                                    <td>商品名称</td>
+                                    <td>商品编号</td>
+                                    <td>商品规格</td>
+                                    <td>出厂价</td>
+                                    <td>起订数量</td>
+                                    <td>存储及保质期</td>
+                                    <td>合同期限</td>
+                                    <td>操作</td>
+                                </tr>
+                                <tr>
+                                    <td><div>韩版修身T恤</div><img src="img/raw_1501246954.png" alt=""></td>
+                                    <td>230817</td>
+                                    <td>
+                                        <div>尺码：S/M/L</div>
+                                        <div>颜色:月白/...</div>
+                                        <div>零售单位：件</div>
+                                    </td>
+                                    <td>30元/件</td>
+                                    <td>100箱</td>
+                                    <td>
+                                        <div>干燥防潮</div>
+                                        <div>保质期：永久</div>
+                                    </td>
+                                    <td>2017-1-1 至 2019-1-1</td>
+                                    <td class="detele"><span>删除</span></td>
+                                </tr>
+                                <tr>
+                                    <td><div>大市道海参</div><img src="img/raw_1501422990.png" alt=""></td>
+                                    <td>90760987</td>
+                                    <td>
+                                        <div>口味：微辣</div>
+                                        <div>零售单位：盒</div>
+                                    </td>
+                                    <td>200元/盒</td>
+                                    <td>50箱</td>
+                                    <td>
+                                        <div>干燥防潮</div>
+                                        <div>保质期：2年</div>
+                                        <div>有效期至：2019年3月12日</div>
+                                    </td>
+                                    <td>2017-1-1 至 2019-1-1</td>
+                                    <td class="detele"><span>删除</span></td>
+                                </tr>
+                            </table>
+                        </form>
+                        <div class="add">添加</div>
+                        <div class="qd">确定</div>
+                        <script>
+                            $('.qd').click(function(){
+                                $('#form1').submit();
+                            });
+                        </script>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

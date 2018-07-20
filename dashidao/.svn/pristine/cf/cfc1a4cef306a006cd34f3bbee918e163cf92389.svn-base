@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+		<title>任务列表</title>
+		<!--必选css-->
+		<link rel="stylesheet" type="text/css" href="css/css.css" >
+		<link rel="stylesheet" href="iconfont/iconfont.css">
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+	</head>
+	<body style="padding-top: 40px;" >
+		<div class="myer ykmyer">
+			<p >
+				<i class="iconfont icon-back fl" onclick="history.go(-1)" ></i>任务列表
+			</p>
+		</div>
+		<!--打折、满减、秒杀、购物卡-->
+		<style type="text/css" >
+			.slideTxtBox12{ width:100%; text-align:left;  }
+			.slideTxtBox12 .hd{ height:40px; width: 100%; line-height:40px; border-bottom: 1px solid #E5E5E5;   }
+			.slideTxtBox12 .hd ul{ float:left;  width: 100%;  height:32px;   }
+			.slideTxtBox12 .hd ul li{ float:left;  width: 50%; cursor:pointer; text-align: center; border: none;  }
+			.slideTxtBox12 .hd ul li.on span{ padding-bottom: 10px; border-bottom:2px solid red;  }
+			.slideTxtBox12 .bd ul{  zoom:1; height: auto;  }
+			.slideTxtBox12 .bd li{ height: auto;   }
+		</style>
+		<div class="activitycheck" >
+			<div class="slideTxtBox12">
+				<div class="hd">
+					<ul><li><span>当前</span></li><li><span>已结束</span></li></ul>
+				</div>
+				<div class="bd" style="margin-top: 0px;" >
+					<ul>
+						<div>
+							<p>任务说明</p>
+							<p>
+								考核目标：销售额<br/>
+								奖励形式：现金<br/>
+								奖励条件：按利润比例<br/>
+								任务对象：全场商品（特殊制定商品除外）<br/>
+								活动须知：全场商品（特殊制定商品除外）
+							</p>
+							<p>活动须知</p>
+							<p>
+								1、商品销售额指优惠券使用前的金额，税费不计入销售额；
+								2、仅针对店主被人
+								3、
+								4、
+								5、
+							</p>
+						</div>
+					</ul>
+					<ul>
+						222
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+		<script type="text/javascript">
+            $(function(){
+                //选项卡2
+                jQuery(".slideTxtBox12").slide({trigger:"click"});
+            });
+		</script>
+	</body>
+
+</html>

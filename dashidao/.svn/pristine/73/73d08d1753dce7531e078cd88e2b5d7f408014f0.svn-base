@@ -1,0 +1,302 @@
+package com.dashidao.manage.admin.action;
+
+import com.dashidao.core.annotation.SecurityMapping;
+import com.dashidao.core.domain.virtual.SysMap;
+import com.dashidao.core.mv.JModelAndView;
+import com.dashidao.core.query.support.IPageList;
+import com.dashidao.core.tools.CommUtil;
+import com.dashidao.core.tools.WebForm;
+import com.dashidao.foundation.domain.Accessory;
+import com.dashidao.foundation.domain.Activity;
+import com.dashidao.foundation.domain.ActivityGoods;
+import com.dashidao.foundation.domain.ChannelRate;
+import com.dashidao.foundation.domain.Goods;
+import com.dashidao.foundation.domain.GoodsBrand;
+import com.dashidao.foundation.domain.JiChuSheZhi;
+import com.dashidao.foundation.domain.Recommend;
+import com.dashidao.foundation.domain.Setting;
+import com.dashidao.foundation.domain.User;
+import com.dashidao.foundation.domain.query.ActivityGoodsQueryObject;
+import com.dashidao.foundation.domain.query.ActivityQueryObject;
+import com.dashidao.foundation.domain.query.ChannelRateQueryObject;
+import com.dashidao.foundation.domain.query.GoldRecordQueryObject;
+import com.dashidao.foundation.domain.query.JiChuSheZhiQueryObject;
+import com.dashidao.foundation.service.*;
+import com.dashidao.foundation.service.impl.GoodsTypeServiceImpl;
+import com.dashidao.jwt.config.ResponseMsg;
+import com.dashidao.jwt.filter.SignFilter;
+import com.dashidao.jwt.util.ComplexOutPropertyPreFilter;
+import com.easyjf.beans.BeanUtils;
+import com.easyjf.beans.BeanWrapper;
+
+import io.jsonwebtoken.Claims;
+import net.sf.json.JSONArray;
+import net.sf.json.JsonConfig;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.reflect.Field;
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+/**
+ * 基础设置
+ */
+@Controller
+public class JiChuSheZhiAction {
+	
+	 @Autowired
+	 private ISysConfigService configService;
+
+	 @Autowired
+	 private IUserConfigService userConfigService;
+	
+    @Autowired
+    private IJiChuSheZhiService jiChuSheZhiService;
+    
+    @Autowired
+    private ISettingService settingService;
+    
+    @Autowired
+    private IGoodsBrandService goodsBandService;
+
+    @SecurityMapping(display = false, rsequence = 0, title = "基础设置", value = "/admin/setting_admin.htm*", rtype = "admin", rname = "费率设置", rcode = "setting_admin", rgroup = "系统设置")
+    @RequestMapping({"/admin/setting_admin.htm"})
+    public ModelAndView jcsz_admin(HttpServletRequest request, HttpServletResponse response, String id,String currentPage){
+        
+        ModelAndView mv = new JModelAndView("admin/blue/dodot/flsz_admin.html",
+                this.configService.getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+        JiChuSheZhi jichushezhi = this.jiChuSheZhiService.getObjById(Long.parseLong("1"));
+        mv.addObject("obj", jichushezhi);
+        
+        JiChuSheZhiQueryObject qo = new JiChuSheZhiQueryObject(currentPage, mv, null, null);
+        //qo.addQuery("obj.addTime", new SysMap("beginTime",  CommUtil.formatDate(beginTime)), ">=");
+        
+        
+        
+        
+        
+        return mv;
+    } 
+    /**
+     * 添加 修改
+     * @param request
+     * @param response
+     * @param id
+     * @throws IOException 
+     * @throws ParseException 
+     */
+    @RequestMapping({"/admin/setting_save_admin.htm"})
+    public void save(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException{
+    	 
+    	String msString="添加失败！";
+    	
+    	String id=request.getParameter("id");
+    	
+    	String zb_shifujine=request.getParameter("zb_shifujine");
+    	String zb_jifendixiao=request.getParameter("zb_jifendixiao");
+    	String zb_dingdanshiyongjifen=request.getParameter("zb_dingdanshiyongjifen");
+    	
+    	String zb_hygmJinE=request.getParameter("zb_hygmJinE");
+    	String zb_huiyuandingdan=request.getParameter("zb_huiyuandingdan");
+    	String zb_tuijianyunke=request.getParameter("zb_tuijianyunke");
+    	
+    	String zb_cjkhzq=request.getParameter("zb_cjkhzq");
+    	String zb_cjkhbz=request.getParameter("zb_cjkhbz");
+    	String zb_zjkhzq=request.getParameter("zb_zjkhzq");
+    	String zb_zjkhbz=request.getParameter("zb_zjkhbz");
+    	
+    	String zb_sjkbzq=request.getParameter("zb_sjkbzq");
+    	String zb_sjxsJinE=request.getParameter("zb_sjxsJinE");
+    	String zb_syzssj=request.getParameter("zb_syzssj");
+    	String zb_dysj=request.getParameter("zb_dysj");
+    	
+    	String zb_qrshqx=request.getParameter("zb_qrshqx");
+    	String zb_qxfkqx=request.getParameter("zb_qxfkqx");
+    	String zb_qrthsqqx=request.getParameter("zb_qrthsqqx");
+    	String zb_qrthsshqx=request.getParameter("zb_qrthsshqx");
+    	String zb_zdfhqx=request.getParameter("zb_zdfhqx");
+    	String zb_fhxq=request.getParameter("zb_fhxq");
+    	String zb_wfhfk=request.getParameter("zb_wfhfk");
+    	String zb_wfhjg=request.getParameter("zb_wfhjg");
+    	String zb_jgwfhfk=request.getParameter("zb_jgwfhfk");
+    	String zb_wfhqx=request.getParameter("zb_wfhqx");  
+    	
+    	String zb_spcpljg=request.getParameter("zb_spcpljg");
+    	String zb_spcplxj=request.getParameter("zb_spcplxj");
+    	
+    	String zb_htdqts=request.getParameter("zb_htdqts");
+    	String zb_jsjinE=request.getParameter("zb_jsjinE");
+    	
+    	String zb_zdhtdqts=request.getParameter("zb_zdhtdqts");  
+    	
+    	JiChuSheZhi jichushezhi = new JiChuSheZhi();
+    	
+    	jichushezhi.setZb_shifujine(new BigDecimal(zb_shifujine));
+    	jichushezhi.setZb_jifendixiao(Double.parseDouble(zb_jifendixiao));
+    	jichushezhi.setZb_dingdanshiyongjifen(Integer.parseInt(zb_dingdanshiyongjifen));
+    	
+    	jichushezhi.setZb_hygmJinE(new BigDecimal(zb_hygmJinE));
+    	jichushezhi.setZb_huiyuandingdan(new BigDecimal(zb_huiyuandingdan));
+    	jichushezhi.setZb_tuijianyunke(Integer.parseInt(zb_tuijianyunke));
+    	
+    	jichushezhi.setZb_cjkhzq(Integer.parseInt(zb_cjkhzq));
+    	jichushezhi.setZb_cjkhbz(new BigDecimal(zb_cjkhbz));
+    	jichushezhi.setZb_zjkhzq(Integer.parseInt(zb_zjkhzq));
+    	jichushezhi.setZb_zjkhbz(new BigDecimal(zb_zjkhbz));
+    	
+    	jichushezhi.setZb_sjkbzq(Double.parseDouble(zb_sjkbzq));
+    	jichushezhi.setZb_sjxsJinE(new BigDecimal(zb_sjxsJinE));
+    	jichushezhi.setZb_syzssj(Double.parseDouble(zb_syzssj));
+    	jichushezhi.setZb_dysj(Double.parseDouble(zb_dysj));
+    	
+    	jichushezhi.setZb_qrshqx(new BigDecimal(zb_qrshqx));
+    	jichushezhi.setZb_qxfkqx(new BigDecimal(zb_qxfkqx));
+    	jichushezhi.setZb_qrthsqqx(new BigDecimal(zb_qrthsqqx));
+    	jichushezhi.setZb_qrthsshqx(new BigDecimal(zb_qrthsshqx));
+    	jichushezhi.setZb_zdfhqx(new BigDecimal(zb_zdfhqx));
+    	jichushezhi.setZb_fhxq(new BigDecimal(zb_fhxq));
+    	jichushezhi.setZb_wfhfk(new BigDecimal(zb_wfhfk));
+    	jichushezhi.setZb_wfhjg(new BigDecimal(zb_wfhjg));
+    	jichushezhi.setZb_jgwfhfk(new BigDecimal(zb_jgwfhfk));
+    	jichushezhi.setZb_wfhqx(new BigDecimal(zb_wfhqx));
+    	
+    	jichushezhi.setZb_spcpljg(new BigDecimal(zb_spcpljg));
+    	jichushezhi.setZb_spcplxj(new BigDecimal(zb_spcplxj));
+    	
+    	jichushezhi.setZb_htdqts(new BigDecimal(zb_htdqts));
+    	jichushezhi.setZb_jsjinE(new BigDecimal(zb_jsjinE));
+    	
+    	jichushezhi.setZb_zdhtdqts(new BigDecimal(zb_zdhtdqts));
+    	
+    	if (id.equals("")){
+    		jichushezhi.setId(Long.parseLong("1"));
+    		jiChuSheZhiService.save(jichushezhi);
+    		msString="添加成功！";
+    	}else {
+    	   jichushezhi.setId(Long.parseLong(id));
+    	   jiChuSheZhiService.update(jichushezhi);
+    	   msString="修改成功！";
+    	}
+    	PrintWriter printWriter2 = response.getWriter();
+
+		printWriter2.print(ResponseMsg.successWithData(msString));
+		printWriter2.flush();
+		printWriter2.close(); 
+    }
+    
+    
+    /**
+     * 添加 修改 列表
+     * @param request
+     * @param response
+     * @param id
+     * @throws IOException 
+     * @throws ParseException 
+     */
+    @RequestMapping({"/admin/settingList_save_admin.htm"})
+    public void saveList(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException{
+    	 
+    	String msString="添加失败！";
+    	
+    	String id=request.getParameter("id");
+    	
+    	String zb_one_int_attr=request.getParameter("zb_one_int_attr");
+    	
+    	String zb_one_bigDecimal_attr=request.getParameter("zb_one_bigDecimal_attr");
+    	String zb_two_bigDecimal_attr=request.getParameter("zb_two_bigDecimal_attr");
+    	String zb_three_bigDecimal_attr=request.getParameter("zb_three_bigDecimal_attr");
+    	String zb_four_bigDecimal_attr=request.getParameter("zb_four_bigDecimal_attr");
+    	
+    	
+    	String zb_type=request.getParameter("zb_type");
+    	
+    	String goodsType_id=request.getParameter("goodsType_id");
+    	
+    	Setting setting = new Setting();
+    	
+    	setting.setZb_one_int_attr(Integer.parseInt(zb_one_int_attr));
+    	setting.setZb_one_bigDecimal_attr(new BigDecimal(zb_one_bigDecimal_attr));
+    	setting.setZb_two_bigDecimal_attr(new BigDecimal(zb_two_bigDecimal_attr));
+    	setting.setZb_three_bigDecimal_attr(new BigDecimal(zb_three_bigDecimal_attr));
+    	setting.setZb_four_bigDecimal_attr(new BigDecimal(zb_four_bigDecimal_attr));
+    	setting.setZb_type(Integer.parseInt(zb_type));
+        
+    	setting.setGoodsBrand(this.goodsBandService.getObjById(Long.parseLong(goodsType_id)));
+    	
+    	if (id.equals("")){
+    		settingService.save(setting);
+    		msString="添加成功！";
+    	}else {
+    	   setting.setId(Long.parseLong(id));
+    	   settingService.update(setting);
+    	   msString="修改成功！";
+    	}
+    	PrintWriter printWriter2 = response.getWriter();
+
+		printWriter2.print(ResponseMsg.successWithData(msString));
+		printWriter2.flush();
+		printWriter2.close(); 
+    }
+    /**
+     *  列表
+     * @param request
+     * @param response
+     * @param id
+     * @throws IOException 
+     * @throws ParseException 
+     */
+    @RequestMapping({"/admin/showList_admin.htm"})
+    public void showList(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String type = request.getParameter("type");
+    	Map<String,Object> whereMap = new HashMap<>();
+		whereMap.put("state", 0);
+		Claims claims = SignFilter.checkSign(request, response);
+		if (claims != null) {
+//			String id = claims.getId();
+			Map params = new HashMap();
+			 params.put("zb_type", type);
+		        List<Setting> setting_list = this.settingService
+		                                 .query(
+		                                     "select obj from Setting obj where obj.zb_type =:zb_type",
+		                                     params, -1, -1);
+		        
+		        JsonConfig jsonConfig = new JsonConfig(); 
+				// 需要过滤的类 + 属性
+				Map<Class<?>, Set<String>> includeMap = new HashMap<Class<?>, Set<String>>();
+				Set<String> set = new HashSet<String>();
+				set = new HashSet<String>();
+				set.add("name");
+				includeMap.put(GoodsBrand.class, set);
+				
+				jsonConfig.setJsonPropertyFilter(new ComplexOutPropertyPreFilter(includeMap));
+				JSONArray json = JSONArray.fromObject(setting_list, jsonConfig);
+				SignFilter.printNoCheck(request, response, json);
+				
+		}
+		
+	}
+   
+}
+
+
+
+

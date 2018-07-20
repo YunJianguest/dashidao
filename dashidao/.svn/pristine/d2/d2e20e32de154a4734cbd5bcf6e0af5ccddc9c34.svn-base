@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>对账中心 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/zxx.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/two_level.css">
+    <script>
+        var userId='${user.id}';
+        var mycars=new Array();
+        var cuur=1;
+        var pagelimit=10;
+        var total=0;
+        jQuery(document).ready(function(){
+            loadajax("SELECT * FROM zb_account_details WHERE userId="+userId+" AND acId="+GetQueryString("id")+" order by id",pagelimit,cuur);
+            layui.use(['laypage', 'layer'], function(){
+                var laypage = layui.laypage
+                    ,layer = layui.layer;
+                //完整功能
+                laypage.render({
+                    elem: 'demo7'
+                    ,count:total
+                    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                    ,jump: function(obj){
+                        //console.log(obj)
+                        cuur=obj.curr;
+                        pagelimit=obj.limit;
+                        //alert(pagelimit);
+                        loadajax("SELECT * FROM zb_account_details WHERE userId="+userId+" AND acId="+GetQueryString("id")+" order by id",pagelimit,cuur);
+                        //loadajax("select","stu",pagelimit,cuur,1);
+                    },
+                    limits:[2, 4, 6, 8, 10],
+                    limit:pagelimit
+                });
+            });
+        });
+        function loadajax(sql,page_size,page_no){
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajaxuser.jsp",
+                dataType:"json",
+                // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                data:"table=zb_account_details&dates=createdate&sql="+sql+"&page_size="+page_size+"&page_no="+page_no,
+                error:function(){alert("数据错误，操作被取消！");},
+                success:function(data)
+                {
+
+                    if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                    total=data.data.total;
+                    mycars[0]=total;
+                    var message=data.data.data;
+                    //console.log(message);
+                    $("#tablesss").html('');
+                    var toprice=0;
+                    for(var i=0;i<message.length;i++){
+                        //toprice+=message[i]['amount'];
+                        var km;
+                        var js;
+                        if(message[i]['type']==1){
+                            km="贷款金额";
+                        }else if(message[i]['type']==2){
+                            km="技术服务费";
+                        }else if(message[i]['type']==3){
+                            km="平台使用费";
+                        }else if(message[i]['type']==4){
+                            km="税金补差";
+                        }else if(message[i]['type']==5){
+                            km="服务费";
+                        }else if(message[i]['type']==6){
+                            km="代言费";
+                        }else if(message[i]['type']==7){
+                            km="首页展示费";
+                        }
+
+                        $("#tablesss").append("<tr>" +
+                            "<td>"+km+"</td>" +
+                            "<td>"+message[i]['createdate']+"</td>" +
+                            "<td>"+message[i]['amount']+"</td>" +
+                            "</tr>");
+                    }
+                }
+            });
+        }
+
+
+        function GetQueryString(name)
+        {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return  unescape(r[2]); return null;
+        }
+
+    </script>
+</head>
+<body>
+<style>
+    .duizhang-box input{ line-height: 24px; font-size: 14px; }
+    .ac9 a {
+        color: #999;
+        padding:4px 20px;
+        border-radius: 4px;
+        text-decoration: none;
+        border:1px solid #999;margin-left:4px;
+    }
+    .ac9 a:hover {
+        color:#999;
+        background: #fff;
+    }
+    .shopadmin-top tr td {
+        height: 80px;
+        text-align: center;
+        line-height: 50px;
+        border-bottom: 1px solid #bbbbbb;
+    }
+</style>
+<div class="main"> $!httpInclude.include("/seller/nav_head.htm")
+    <div class="user_center">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=order")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="both">
+                        <table width="100%" class="twor">
+                            <tr class="zdthead">
+                                <td>科目名称</td>
+                                <td>交易时间</td>
+                                <td>结算金额</td>
+                            </tr>
+                           <tbody id="tablesss"></tbody>
+                        </table>
+                        <div class="cz"><span>导出</span><span onClick="history.go(-1)">返回</span>
+                            <div style="clear:both;"></div>
+                        </div>
+                        <div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

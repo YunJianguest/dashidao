@@ -1,0 +1,3 @@
+.mod-single-product__imgbox{position:relative}
+.mod-single-product__imgbox-item{float:left;border:#EDEDED 1px solid;margin-right:8px}
+.mod-single-product__imgbox-list{position:absolute;top:0;left:0;width:1000px}

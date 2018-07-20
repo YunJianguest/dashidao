@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>帮助中心</title>
+    <!--必选css-->
+    <link rel="stylesheet" type="text/css" href="css/css.css" >
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <style>
+    	.box{width:100%;height:5rem;border-bottom:1px solid #b2b2b2; line-height:5rem; background:#FFF;text-indent:2em;padding-right:3%;}
+		.bot-tom-d{width:100%;height:4rem; text-align:center; bottom:0;position:absolute;background:#33AAE3;line-height:4rem;color:#FFF;font-size:2rem;}
+    </style>
+</head>
+<body style="background: #f2f6f9; padding-bottom: 50px; " >
+<!--head-->
+<div class="myer ykmyer">
+    <p >
+        <a href="#"><i class="iconfont icon-back fl" onclick="history.go(-1)"></i></a>帮助中心
+      
+    </p>
+</div>
+
+<!--xueyuan-->
+
+<div style="margin-top:4rem;">
+
+</div>
+
+
+<!--bottom-->
+<div class="box">如何成为云客?<span><i class="iconfont icon-youjiantou flip fr"  ></i></div>
+<div class="panel" style="display: none; width:100%; padding:0 3% 0 3%;">
+<p>一寸光阴一寸金，因此，我们为您提供快捷易懂的学习内容。</p>
+<p>在这里，您可以通过一种易懂的便利的模式获得您需要的任何知识。</p>
+</div>
+<div class="box">会员成为云客的条件?<span><i class="iconfont icon-youjiantou flip2 fr"  ></i></div>
+<div class="panel2" style="display: none; width:100%; background:#FFF;padding:0 3% 0 3%;">
+<p>一寸光阴一寸金，因此，我们为您提供快捷易懂的学习内容。</p>
+<p>在这里，您可以通过一种易懂的便利的模式获得您需要的任何知识。</p>
+</div>	
+<div class="box">怎么提现?<span><i class="iconfont icon-youjiantou flip3 fr"  ></i></div>
+<div class="panel3" style="display: none; width:100%; background:#FFF; padding:0 3% 0 3%;">
+<p>一寸光阴一寸金，因此，我们为您提供快捷易懂的学习内容。</p>
+<p>在这里，您可以通过一种易懂的便利的模式获得您需要的任何知识。</p>
+</div>	
+<div class="box">代金卷如何使用?<span><i class="iconfont icon-youjiantou flip4 fr"  ></i></div>
+<div class="panel4" style="display: none; width:100%; background:#FFF; padding:0 3% 0 3%;">
+<p>一寸光阴一寸金，因此，我们为您提供快捷易懂的学习内容。</p>
+<p>在这里，您可以通过一种易懂的便利的模式获得您需要的任何知识。</p>
+</div>	
+<div class="bot-tom-d"><span>更多问题</span></div>
+
+</body>
+<script>
+jQuery(function(){
+  $(".flip").click(function(){$(".panel").slideToggle("slow");});
+});
+
+jQuery(function(){
+  $(".flip2").click(function(){$(".panel2").slideToggle("slow");});
+});
+
+jQuery(function(){
+  $(".flip3").click(function(){$(".panel3").slideToggle("slow");});
+});
+jQuery(function(){
+  $(".flip4").click(function(){$(".panel4").slideToggle("slow");});
+});
+
+</script>
+
+</html>

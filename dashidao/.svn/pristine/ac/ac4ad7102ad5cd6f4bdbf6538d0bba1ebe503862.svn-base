@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<!--link href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/template.css"  rel="stylesheet" type="text/css"/-->
+	<!--link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet-->
+
+	<link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+	<script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+	<script src="$!webPath/resources/js/bootstrap.min.js"></script>
+<title>佣金退税审核详情</title>
+
+<style>
+	.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{background:#3366FF;color:#fff}
+	.solid {border-bottom-style:solid;}
+	#font{
+		font-size: 20px;
+		
+	}
+	#font2{
+		color:red;
+		
+	}
+	table tr td{width: 500px;height: 30px;}
+	#div{
+		-moz-border-radius: 10px;
+		-webkit-border-radius: 10px;
+		border-radius: 10px;
+	}
+</style>
+</head>
+
+<body>
+<div>
+	<span class="little_title">来自&nbsp;&nbsp;jiangnan&nbsp;&nbsp;的维权</span><br>
+	<table class="yj_table solid">
+		<tbody>
+			<tr align="left">
+				<td>当前状态：</td>
+				<td id="font2">已提交退税申请</td>
+			</tr>
+			<tr align="left">
+				<td>编号：</td>
+				<td>2017110007</td>
+			</tr>
+			<tr align="left">
+				<td>维权申请时间：</td>
+				<td>2017-03-22 10：10：10</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<br></br>
+<div>
+	<span class="little_title">退税详情</span><br>
+	<table class="yj_table solid">
+		<tbody>
+			<tr align="left">
+				<td>维权人：</td>
+				<td>jiangnan</td>
+			</tr>
+			<tr align="left">
+				<td>编号：</td>
+				<td>2017110007</td>
+			</tr>
+			<tr align="left">
+				<td>扣税金额：</td>
+				<td>10000元</td>
+			</tr>
+			<tr align="left">
+				<td>退税金额：</td>
+				<td>0元</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<br></br>
+<div>
+	<span class="little_title">消息记录</span><br>
+	<table class="yj_table solid">
+		<tbody>
+			<tr align="left">
+				<td>2017-03-22 10：10：10</td>
+				<td >云客&nbsp;&nbsp;jiangnan</td>
+				<td>你好，申请退税。</td>
+			</tr>
+			<tr align="left">
+				<td>2017-03-22 10：10：10</td>
+				<td >总部&nbsp;&nbsp;我</td>
+				<td>你好，我们这边没有收到发票。</td>
+			</tr>
+			<tr align="left">
+				<td>2017-03-22 10：10：10</td>
+				<td >总部&nbsp;&nbsp;我</td>
+				<td>你好，我们收到发票。</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<br></br>
+<div>
+	<span class="little_title">消息记录</span><br>
+	<table class="yj_table" >
+		<tbody>
+			<tr align="left">
+				<td>
+					<label class="radio-inline">
+						<input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="option1" checked> 同意
+					</label>
+				</td>
+				<td >
+					<label class="radio-inline">
+						<input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="option1" checked> 不同意
+					</label>
+				</td>
+			</tr>
+			<tr align="left">
+				<td>备注：</td>
+				<td >
+					<textarea class="form-control" rows="3" placeholder="我的备注" style="width: 700px;"></textarea>
+				</td>
+			</tr>
+			<tr align="left">
+				<td>上传凭证：</td>
+				<td ><input type="file"/></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div></div>
+<div>
+	<table style="width: 800px;height: 80px; margin-top: 20px;margin-left: 20px;" >
+		<tbody>
+			<tr><td colspan="3" align="center"><input type="button" value="提交" class="button" onclick="location.href='$!webPath/admin/charges_drawback_check.htm'"></td></tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>

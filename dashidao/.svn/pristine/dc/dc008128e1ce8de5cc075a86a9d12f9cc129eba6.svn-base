@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>退货管理 - $!{config.poweredby}</title>
+<meta name="keywords" content="$!config.keywords" />
+<meta name="description" content="$!config.description" />
+<meta name="generator" content="$!{config.meta_generator}" />
+<meta name="author" content="$!{config.meta_author}">
+<meta name="copyright" content="$!{config.copyRight}">
+#if($!config.website_ico)
+<link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+#end
+<link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+<link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+<link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+<link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+
+
+  <!--bootstrap-->
+  <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+  <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+  <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+  <!--layui-->
+  <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+  <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+<script>
+jQuery(document).ready(function(){
+  jQuery('#beginTime').datepicker({
+	  dateFormat:"yy-mm-dd",
+	  changeMonth: true,
+	  changeYear: true
+  });
+  jQuery('#endTime').datepicker({
+	  dateFormat:"yy-mm-dd",
+	  changeMonth: true,
+	  changeYear: true
+  });
+});
+</script>
+</head>
+<body>
+
+<div class="main">
+  <div class="user_center">
+    $!httpInclude.include("/seller/nav_head.htm")
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+      <tr> $!httpInclude.include("/seller/nav.htm?op=goods_return")
+        <td id="centerbg" valign="top" width="80%" >
+         <div class="buyer_position" style="width: 98%; background: #fff;"><div class="buyer_p_box" ><a href="$!webPath/seller/index.htm">卖家中心</a> > <span>退货记录</span></div></div>
+        <div class="productmain" style="width: 98%;" >
+
+            <div class="ordercon">
+
+              <form>
+                <select class="form-control" style="width: 120px; float: left; margin-left: 10px;">
+                  <option value="order_id">订单编号</option>
+                  <option value="buyer_name">买家会员名</option>
+                </select>
+                <input class="form-control" type="text" placeholder="Default input" style="width: 100px; float: left; margin-left: 20px;">
+                <label class="layui-form-label" style="float: left;" >时间</label>
+                <div class="layui-input-inline" style="width: 180px; float: left;">
+                  <input type="date" name="user_date"  class="layui-input"  />
+                </div>
+                <div class="layui-form-mid" style="float: left; margin-left: 10px; " >-</div>
+                <div class="layui-input-inline" style="width: 180px; float: left;">
+                  <input type="date" name="user_date"   class="layui-input"/>
+                </div>
+                <button type="submit" class="btn btn-default" style="border: none;  background: #3fa4ed; color: #fff; height: 38px; margin-left: 20px;   " >确定</button>
+
+              </form>
+
+
+                <form action="$!webPath/seller/goods_return.htm" method="post" id="ListForm">
+              <div class="operation">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" id="opertable"  style="text-align: center;" >
+                  <tr id="opertitle">
+                    <td width="17%">退货编号</td>
+                    <td width="17%">订单编号</td>
+                    <td width="17%">买家会员名</td>
+                    <td width="16%">退货数量</td>
+                    <td width="17%">退货时间</td>
+                    <td width="16%">操作</td>
+                  </tr>
+                  #foreach($obj in $objs)
+                  <tr>
+                    <td style="color:#0DA6EB">$!obj.return_id</td>
+                    <td style="color:#068642"><a href="$!webPath/seller/order_view.htm?id=$!obj.of.id" target="_blank">$!obj.of.order_id</a></td>
+                    <td  >$!obj.of.user.userName</td>
+                    #set($count=0)
+                    #foreach($item in $obj.items)
+                      #set($count=$count+$item.count)
+                    #end
+                    <td >$!count</td>
+                    <td  >$!CommUtil.formatLongDate($!obj.addTime)</td>
+                    <td ><span class="refundsee"><a  href="javascript:void(0);" dialog_uri="$!webPath/seller/return_view.htm?id=$!obj.id" dialog_title="退货记录" dialog_width="400" dialog_height="100" dialog_id="refund_view">查看</a></span></td>
+                  </tr>
+                  #end
+                </table>
+              </div>
+              <div class="alldel">
+                <div  class="userfenye">
+                  <input name="data" type="hidden" id="data" value="$!data" />
+                  <input name="data_type" type="hidden" id="data_type" value="$!data_type" />
+<input name="beginTime" type="hidden" id="beginTime" value="$!beginTime" />
+                  <input name="endTime" type="hidden" id="endTime" value="$!endTime" />
+                  $!gotoPageFormHTML</div>
+              </div>
+              </form>
+            </div>
+          </div></td>
+      </tr>
+    </table>
+  </div>
+  $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

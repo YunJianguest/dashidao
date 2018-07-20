@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>卖家品牌列表 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link href="$!webPath/resources/style/system/manage/black/bootstrap.min.css"  rel="stylesheet" type="text/css"/>
+    <link  rel="stylesheet"href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+    <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+<link href="$!webPath/resources/style/system/manage/blue/zhandai.css"  rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="main money_fuwu">
+    <div class="user_center">
+        $!httpInclude.include("/poster/nav_head.htm") 
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/poster/nav.htm?op=money_fuwu")
+                <td id="centerbg" valign="top" width="80%" >
+                    <div class="buyer_position">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代支持</a> > <span>资金管理</span> > <span>资金服务</span></div>
+                    </div>
+                    <div class="operation_tip">
+	<h3>友情提示</h3>
+	<ul>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+                    <div class="bg_div">
+                        <div style="width: 40%">
+                            <p style="padding-left: 50px;padding-top: 20px;">总资产（元）&nbsp;&nbsp;&nbsp;&nbsp;
+                            	<span style="font-size: 26px;" id="zzc">19009.53</span>
+                            </p>
+                            <!-- <p style="padding-left: 50px;">
+                                可用余额（元）&nbsp;&nbsp;&nbsp;&nbsp;<span id="kyye">15700.00</span>
+                            </p> -->
+                        </div>
+                       <!--  <div style="width: 30%">
+                            <p style="padding-left: 50px;padding-top: 30px;">
+                                今日收入（元）&nbsp;&nbsp;&nbsp;&nbsp;<span id="jrsr">3093.00</span>
+                            </p>
+                            <p style="padding-left: 50px;">
+                                今日支出（元）&nbsp;&nbsp;&nbsp;&nbsp;<span  id="jrzc">890.00</span>
+                            </p>
+                        </div> -->
+                        <div style="width: 30%">
+                            <p style="padding-left: 100px;padding-top: 10px;">
+                                <button type="button" class="btn btn-primary zj_button">充值</button>
+                            </p>
+                            <p style="padding-left: 100px;">
+                                <button type="button" class="btn btn-primary zj_button">提现</button>
+                            </p>
+                            <p style="padding-left: 100px;">
+                                <button type="button" class="btn btn-primary zj_button">详情</button>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mf">
+                        <div style="width: 99%;border:1px solid #C7C7C7;">
+                            <p style="padding-left: 20px;padding-top: 10px;">保证金账户（元）</p>
+                            <p style="padding-left: 170px;font-size: 18px;" id="bzj">9930.76</p>
+                            <p style="padding-left: 20px;">可用余额（元）</p>
+                            <p style="padding-left: 170px;font-size: 18px;" id="bzjye"></p>
+                            <p style="padding-left: 20px;" >今日收入（元）<span id="bzjjrs" style="padding-left: 160px;">3090.00</span></p>
+                            <p style="padding-left: 20px;">今日支出（元）<span id="bzjjrz"  style="padding-left: 160px;">890.00</span></p>
+                            <p style="padding-left: 70px;padding-top: 10px;">
+                                <button type="button" class="btn btn-primary zj_button">充值</button>
+                                <button type="button" class="btn btn-primary zj_button"><a href="$!webPath/poster/zijinfuwudetail.htm">详情</a></button>
+                            </p>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+       <script type="text/javascript">
+               var zje =0;
+		       jQuery(document).ready(function(){
+		    	   getjine();
+		    	   getzhichu();
+		       });
+       		function getjine()
+       		{
+       			var userid ="${user.id}";
+       			var sql ="SELECT * FROM zd_zijinfuwu WHERE userid ="+userid+" order by creattime";
+       			jQuery.ajax({ 
+			          type:"POST",
+			          cache: false,
+			          async:false,
+			          url:"/ajaxuser.jsp",
+			          dataType:"json",
+			          data:"table=zd_zijinfuwu&dates=creattime&sql="+sql,
+			          error:function(){alert("数据错误，操作被取消！");},
+			          success:function(data)
+			          {
+			        	  var mess = data.data.data;
+			        	  zje = mess[0]['zongjine'];
+			        	  $("#zzc").html(mess[0]['zongjine']);
+			        	  $("#bzj").html(mess[0]['baozhengjine']);
+			          }
+       			});
+       		}
+       		//1、充值 2、罚款 3、被举报  4订单id
+       		function getzhichu()
+       		{
+       			var srjine=0;
+       			var zcjine =0;
+       			var userid ="${user.id}";
+       			    var sql =" SELECT zd_zijinfuwumingxi.`type`,SUM(zd_zijinfuwumingxi.`jine`) AS jine FROM zd_zijinfuwumingxi ";
+       			 		sql +=" LEFT JOIN zd_zijinfuwu ON zd_zijinfuwu.`id` = zd_zijinfuwumingxi.`zijinid` ";
+       			 		sql +=" WHERE DATE_FORMAT(zd_zijinfuwumingxi.`creattime`,'YYYY-mm-dd') = DATE_FORMAT(NOW(),'YYYY-mm-dd') ";
+	       			 	sql +=" AND zd_zijinfuwu.`userid` ='32768'";
+	       				sql +=" GROUP BY zd_zijinfuwumingxi.`type` ORDER BY zd_zijinfuwu.`creattime`";
+       			jQuery.ajax({ 
+			          type:"POST",
+			          cache: false,
+			          async:false,
+			          url:"/ajaxuser.jsp",
+			          dataType:"json",
+			          data:"table=zd_zijinfuwu&dates=creattime&sql="+sql,
+			          error:function(){alert("数据错误，操作被取消！");},
+			          success:function(data)
+			          {
+			        	  var mess = data.data.data;
+			        	  for(var i=0;i<mess.length;i++)
+			        	  {
+			        		  var type = mess[i]['type'];
+			        		  if(type ==1)
+			        		  {
+			        			  srjine += parseFloat(mess[i]['jine']);
+			        		  }else
+			        		  {
+			        			  zcjine += parseFloat(mess[i]['jine']);
+			        		  }
+			        	  }
+			        	 $("#bzjjrs").html(srjine);
+			        	 $("#bzjjrz").html(zcjine);
+			        	 var sy = parseFloat(zje) +srjine - zcjine;
+			        	 $("#bzjye").html(sy);
+			          }
+       			});
+       		}
+       
+			function getDay(day){    
+			    var today = new Date();    
+			        
+			    var targetday_milliseconds=today.getTime() + 1000*60*60*24*day;            
+			 
+			    today.setTime(targetday_milliseconds); //注意，这行是关键代码  
+			        
+			    var tYear = today.getFullYear();    
+			    var tMonth = today.getMonth();    
+			    var tDate = today.getDate();    
+			    tMonth = doHandleMonth(tMonth + 1);    
+			    tDate = doHandleMonth(tDate);    
+			    return tYear+"-"+tMonth+"-"+tDate;    
+			}
+			function doHandleMonth(month){    
+			    var m = month;    
+			    if(month.toString().length == 1){    
+			       m = "0" + month;    
+			    }    
+			    return m;    
+			}
+			//instData("SELECT * FROM `zb_account`",0);
+			//instData("SELECT * FROM `zb_accountdetail`order by createdate;",1,0);   
+			//instData("SELECT * FROM `zb_accountdetail` where createdate  Between '"+getDay(0)+"' And '"+getDay(1)+"' order by createdate;",1,1); 
+
+
+</script>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

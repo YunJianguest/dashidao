@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>日志管理详情</title>
+	<script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+	<link href="$!webPath/resources/style/system/manage/blue/tip.css"  rel="stylesheet" type="text/css"/>
+	<link href="$!webPath/resources/style/system/manage/blue/headquarters.css"  rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<script>
+    jQuery(document).ready(function() {
+        jQuery.ajax({
+            type: "POST",
+            cache: false,
+            async: false,
+            url: "/ajax.jsp",
+            dataType: "json",
+            // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+            data: "action=select&table=zb_jgjd&field=id&values="+"$!id",
+            error: function () {
+                alert("数据错误，操作被取消！");
+
+            },
+            success: function (data) {
+                if (data.state == "error") {
+                    alert("系统错误，操作被取消！");
+                    return;
+                }
+                $("#cla").append(data.data.data[0]['title']);
+                $("#info").append(data.data.data[0]['create_date2']);
+                $("#cla2").append(data.data.data[0]['info']);
+                $("#info2").append(data.data.data[0]['price']);
+                // $("#tablesss").append("<tr><td><input type='hidden' value='" + message[i]['id'] + "'/>" + message[i]['xh'] + "</td><td>" + message[i]['rzid'] + "</td><td>" + message[i]['create_date'] + "</td><td>" + message[i]['rzfl'] + "</td><td>" + message[i]['rznr'] + "<td class=\"ac9\"><a href='#' onclick='detail(this);'>查看详情</a><a href='#' onclick='suprise(1,this);'>删除</a></td>" + "</td></tr>");
+
+            }
+        });
+    })
+
+</script>
+<div class="both journal">
+	<table width="100%" cellspacing="0">
+		<tr>
+			<td width="20%" style="" class="left"></td>
+			<td width="70%" id="cla"> </td>
+		</tr>
+		<tr>
+			<td  class="left">时间:</td>
+			<td id="info"></td>
+		</tr>
+		<tr>
+			<td width="20%" style="" class="left">处罚内容:</td>
+			<td width="70%" id="cla2"> </td>
+		</tr>
+		<tr>
+			<td  class="left">处罚金额:</td>
+			<td id="info2"></td>
+		</tr>
+	</table>
+</div>
+<div id="confirm">
+	确定
+</div>
+<script type="text/javascript">
+    $('#confirm').click(function(){
+        location.href="$!webPath/admin/jgjd.htm";
+    })
+</script>
+
+</body>
+</html>

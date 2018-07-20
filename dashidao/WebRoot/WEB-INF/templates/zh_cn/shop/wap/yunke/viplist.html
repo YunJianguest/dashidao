@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+	<title>VIP列表</title>
+	<link rel="stylesheet" href="css/apply.css">
+	<!--必选css-->
+	<link rel="stylesheet" type="text/css" href="css/css.css" >
+	<link rel="stylesheet" href="iconfont/iconfont.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
+
+</head>
+<body style=" background: #f2f6f9;" >
+<!--头部搜索-->
+<div class="header" style="z-index: 1000;" >
+	<p>
+		<a href="news.html"><i class="iconfont icon-comments fl"></i></a>
+		<span>会员列表</span>
+		<a href="fenxiang.html" class="yqvip">邀请会员</a>
+	</p>
+</div>
+<div id="slider" style="margin-top: 60px;">
+	<ul class="slides">
+		<li><img class="responsive" src="img/raw_1493789400.png"></li>
+		<li><img class="responsive" src="img/raw_1493790035.png"></li>
+		<li><img class="responsive" src="img/raw_1493790401.png"></li>
+		<li><img class="responsive" src="img/raw_1501117339.png"></li>
+	</ul>
+	<ul class="pagination">
+		<li class="active"></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+<!--邀请列表-->
+<div class="storeoner  ykshop yqvipshop yqvipone">
+	<div class="dptx fl"><img src="images/dztx.png"/></div>
+	<div class="one fl">
+		<p>手机号码：150****6153</p>
+		<span><i class="iconfont icon-jewelry" ></i> 钻石店主</span>
+	</div>
+	<div class="clear"></div>
+</div>
+<div class="storeoner  ykshop yqvipshop yqviptwo">
+	<div class="dptx fl"><img src="images/tx1.png"/></div>
+	<div class="one fl">
+		<p>微信名称：简单</p>
+		<span>注册时间：2018.02.26</span>
+	</div>
+	<a href="" ><i class="iconfont icon-email fr"></i></a>
+	<div class="clear"></div>
+</div>
+<div class="storeoner  ykshop yqvipshop yqviptwo">
+	<div class="dptx fl"><img src="images/tx2.png"/></div>
+	<div class="one fl">
+		<p>微信名称：简单</p>
+		<span>注册时间：2018.02.26</span>
+	</div>
+	<a href="" ><i class="iconfont icon-email fr"></i></a>
+	<div class="clear"></div>
+</div>
+<div class="storeoner  ykshop yqvipshop yqviptwo">
+	<div class="dptx fl"><img src="images/tx3.png"/></div>
+	<div class="one fl">
+		<p>微信名称：简单</p>
+		<span>注册时间：2018.02.26</span>
+	</div>
+	<a href="" ><i class="iconfont icon-email fr"></i></a>
+	<div class="clear"></div>
+</div>
+<div class="storeoner  ykshop yqvipshop yqviptwo">
+	<div class="dptx fl"><img src="images/tx4.png"/></div>
+	<div class="one fl">
+		<p>微信名称：简单</p>
+		<span>注册时间：2018.02.26</span>
+	</div>
+	<a href="" ><i class="iconfont icon-email fr"></i></a>
+	<div class="clear"></div>
+</div>
+<div class="bmenu">
+	<ul>
+		<li>
+			<a href="index.html">
+				<i class="iconfont icon-shouye1" ></i>
+				<span>首页</span>
+			</a>
+		</li>
+		<li>
+			<a href="add_product.html">
+				<i class="iconfont icon-fenleiorguangchangorqita" ></i>
+				<span>分类</span>
+			</a>
+		</li>
+		<li>
+			<a href="store.html">
+				<i class="iconfont icon-wxbmingxingdianpu" ></i>
+				<span>U园</span>
+			</a>
+		</li>
+		<li>
+			<a href="recommends.html">
+				<i class="iconfont icon-zan1" ></i>
+				<span>推荐</span>
+			</a>
+		</li>
+		<li>
+			<a href="me.html">
+				<i class="iconfont icon-my1" ></i>
+				<span>我的</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/iscroll.js"></script>
+<script type="text/javascript" src="js/navbarscroll.js"></script>
+<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+<script src="js/easySlider.js"></script>
+<script type="text/javascript">
+	$(function(){
+        //选项卡
+        jQuery(".slideTxtBox").slide({trigger:"click"});
+        //滚动
+        $('.wrapper').navbarscroll();
+        //轮播图
+        $("#slider").easySlider( {
+            slideSpeed: 500,
+            autoSlide: true,
+            paginationSpacing: "15px",
+            paginationDiameter: "10px",
+            paginationPositionFromBottom: "0px",
+            slidesClass: ".slides",
+            controlsClass: ".controls",
+            paginationClass: ".pagination"
+        });
+     	//footer选项卡
+		$(".bmenu li").click(function () {
+				$(this).addClass('on').siblings().removeClass('on');
+        });
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>添加银行卡</title>
+	<link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/two_level3.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="$!webPath/resources/js/jquery-1.7.1.min.js"></script>
+	    <link href="$!webPath/resources/style/system/manage/black/two_level1.css" type="text/css" rel="stylesheet" />
+	<script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+	<style>
+		.qd{border:1px solid #c3c3c3;margin: 50px 35%;}
+		.user_center{margin: 0 auto;}
+		.add_bank div{border-bottom: 0!important;}
+		.add_bank>.content {
+			width: 80%;
+			margin: 20px 10%;
+		}
+		.user_center{background: #fff;}
+	</style>
+</head>
+<body>
+<div class="main">
+	<div class="user_center">
+
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+			<tr> $!httpInclude.include("/admin/nav.htm?op=refund")
+				<td id="centerbg" valign="top" width="80%">
+					<form id="form1" name="form1" method="post" class="form-inline">
+						<div class="both add_bank">
+							<div class="content" style="clear:both;"><span>购物卡名称：</span><input type="text" class="" name="zb_kahao" id="mingcheng" value="" placeholder="购物卡名称"/></div>
+							<div class="content" style="clear:both;"><span>类型：</span><input type="text" class="" name="zb_kahao" id="leixing" value="" placeholder="类型"/></div>
+							<div class="content"><span>有效期：</span><input type="date" class="" name="zb_zhanghumingcheng" id="youxiaoqi" value="" placeholder="格式为1999-1-1"/></div>
+							<div class="content" style="clear:both;"><span>面值：</span><input type="text" class="" name="zb_kahao" id="mianzhi" value="" placeholder="请输入面值"/></div>
+							<div class="content uploadimg">
+       					 <span>上传图标：</span><input type="file" class="picture" name="zb_tupian" id="upload" value="" placeholder="" style="display: none;"/><label for="upload"><img src="../img/raw_1501032270.png" alt="" id="imgss" width="300px" height="200px"></label>	</div>
+       				 <input type="hidden" id="up_picture"/>
+   								 </div>
+						</div>
+						<div><input type="button" value="确定" class="qd" id="tianjia1" onclick="cc()"></div>
+					</form>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<script>
+
+
+    function cc(){
+    	 var now = new Date();  
+         
+         var year = now.getFullYear();       //年  
+         var month = now.getMonth() + 1;     //月  
+         var day = now.getDate();            //日  
+         var mm = now.getMinutes();          //分  
+         var ss = now.getSeconds();           //秒  
+         
+         var sj= year + "-"+ month +"-"+ day;
+         
+         var zhanghao=mm+(ss*day*month+year*ss);
+         var mima=mm+(ss+day*month+year*ss);
+            
+            var fpsz= $("#mingcheng").val()+","+$("#leixing").val()+","+ zhanghao+","+  mima+","+  $("#mianzhi").val()+","+ $('#up_picture').val()+","+ $('#youxiaoqi').val()+","+sj;
+            //alert("action=update&table=zb_fenpeishezhinew&field=id,hy_jf_gz&values="+fpszId+"|"+hyjf);
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajaxuser.jsp",
+                dataType:"json",
+                // data:"action=update&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                data:"action=insert&table=dashidao_shoppingcard&field=card_name,type,Account_number,card_password,menoy,card_photo,endtime,addTime&values="+fpsz,
+                success:function(data)
+                {
+                    if(data.code=="0"){alert("系统错误，操作被取消！");return;}
+                    //alert(data.data);
+                    if(data.data=="1"){
+                        //    <li op="yinhangka_manager"><a href='$!webPath/seller/yinhangka_manager.htm'>银行卡管理</a></li>
+                        location.href='$!webPath/admin/shoppingcard.htm';
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest.status); // 200
+                    alert(textStatus); // parsererror
+                    alert(errorThrown); // SyntaxError: Unexpected end of input
+
+                }
+            });
+        }
+</script>
+<!--引入上传要用的js文件-->
+<script type="text/javascript" src="/fileup/index_no1.js"></script>
+<script>
+    //picture代表input<file类型>的class的值，up_picture代表隐藏（hidden）的input的id值，imgss代表<img>标签的id值
+    fileInput("picture","up_picture","imgss");
+</script>
+</body>
+</html>

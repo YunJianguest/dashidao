@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>地址</title>
+    <!--必选css-->
+     <link rel="stylesheet" type="text/css" href="css/zxx.css" >
+    <link rel="stylesheet" type="text/css" href="css/css1.css" >
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+</head>
+
+<body >
+<!--head-->
+<div class="myer ykmyer">
+    <p >
+       <i class="iconfont icon-back" onclick="history.go(-1)"  ></i> 收货地址管理
+    </p>
+</div>
+<div class="top-1">
+	
+	<span class="top-1span"><i class="iconfont icon-search"></i></span>
+	<input type="text" placeholder="请输入收货人姓名" />
+	<span class="top-1span2">搜索</span>
+</div> 
+<div class="xinxi-box">
+<div class="xinxi">
+	<div class="xinxi_left" style="font-size: 1.5rem; font-weight: bold;">闵琼</div>
+	<div class="xinxi-m">
+	<span style="font-size: 1.5rem;">18192151810</span><br />
+	<span class="xinxi-m-span1">陕西省西安市未央区辛家庙街道安诚御花苑D区</span>
+	
+	</div>
+	<span class="xinxi-m-span2"><i class="iconfont icon-post"></i></span>
+</div>
+
+<div class="xinxi">
+	<div class="xinxi_left" style="font-size: 1.5rem; font-weight: bold;">闵琼</div>
+	<div class="xinxi-m">
+	<span style="font-size: 1.5rem;">18192151810</span><br />
+	<span class="xinxi-m-span1">陕西省西安市未央区辛家庙街道安诚御花苑D区</span>
+	
+	</div>
+	<span class="xinxi-m-span2"><i class="iconfont icon-post"></i></span>
+</div></div>
+<div class="d_button"><a href="newdizhi.html" style="color: red;" >+新建地址</a></div>
+</body>
+</html>

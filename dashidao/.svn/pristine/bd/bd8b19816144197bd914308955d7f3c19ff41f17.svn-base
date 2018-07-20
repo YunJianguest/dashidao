@@ -1,0 +1,284 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!--link href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/template.css"  rel="stylesheet" type="text/css"/-->
+    <!--link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet-->
+
+    <!--<link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+    <style>
+        .ac9 a {
+            color: #999;
+            padding:4px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            border:1px solid #999;margin-left:4px;
+        }
+        .ac9 a:hover {
+            color:#999;
+            background: #fff;
+        }
+        body{font-size:16px;}
+    </style>
+    <title>佣金退税审核详情</title>
+
+    <script>
+        var id;
+        var userid;
+        var uesr_name;
+        jQuery(document).ready(function(){
+            //获取url中传过来的值
+            var request = new Object();
+            request = GetRequest();
+            id = request['id'];
+            userid = request['userid'];
+            //分页参数
+            var cuur=1;
+            var pagelimit=10;
+
+            loadajax();
+            loadajax1("select","zb_yongjintuishui","id",id,pagelimit,cuur,1);
+            loadajax2();
+        });
+        function GetRequest() {
+            var url = location.search; //获取url中"?"符后的字串  
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                strs = str.split("&");
+                for (var i = 0; i < strs.length; i++) {
+                    theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+                }
+            }
+            return theRequest;
+        }
+        //通过用户id查用户信息
+        function loadajax(action,table,field,values,page_size,page_no,moudle_id){
+            var sql="SELECT * FROM `dashidao_user`where id="+userid;
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajaxuser.jsp",
+                dataType:"json",
+                data:"table=dashidao_user&dates=addTime,birthday,lastLoginDate,loginDate&sql="+sql,
+                // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error:function(){alert("数据错误，操作被取消！");},
+                success:function(data)
+                {
+
+                    if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+
+                    var message=data.data.data;
+                    uesr_name=message[0]['userName'];
+                    $('#userName').val(message[0]['userName']);
+                    $('#userName1').val(message[0]['userName']);
+                }
+            });
+        }
+        //通过id查详情
+        function loadajax1(action,table,field,values,page_size,page_no,moudle_id){
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajax.jsp",
+                dataType:"json",
+                // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error:function(){alert("数据错误，操作被取消！");},
+                success:function(data)
+                {
+
+                    if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+
+                    var message=data.data.data;
+                    $('#yj_states').val(message[0]['yj_states']);
+                    $('#create_date').val(message[0]['create_date']);
+                    $('#yj_number').val(message[0]['yj_number']);
+                    $('#yj_number1').val(message[0]['yj_number']);
+                    $('#yj_ksMoney').val(message[0]['yj_ksMoney']);
+                    $('#yj_tsMoney').val(message[0]['yj_tsMoney']);
+                    $('#yj_message').val(message[0]['yj_message']);
+                    $('#imgss').attr('src','/upload/img/'+message[0]['yj_upload']);
+
+                }
+            });
+        }
+        function loadajax2(){
+            var sql="SELECT * FROM `dashidao_tiaojia_chat`where tc_tjid="+id+" ORDER BY create_date";
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajaxuser.jsp",
+                dataType:"json",
+                // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                //data:"action=insert&table=dashidao_tiaojia_chat&field=tc_adminid,tc_tjid,tc_message,create_date&values="+dat,
+                data:"table=dashidao_tiaojia_chat&dates=create_date&sql="+sql,
+                //data:"table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error:function(){alert("数据错误，操作被取消！");},
+                success:function(data)
+                {
+                    if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                    var message=data.data.data;
+                    $("#tablesss").html('');
+                    for(var i=0;i<message.length;i++){
+                        var new_name;
+                        if(message[i]['tc_userid']==null){
+                            new_name="总部 "+"我";
+                        }else if(message[i]['tc_userid']!=null){
+                            new_name="客户 "+uesr_name;
+                        }
+
+                        $("#tablesss").append("<tr align='left'><td width='20%'>"+message[i]['create_date']+"</td>" +
+                            "<td>"+new_name+"</td>" +
+                            "<td>"+message[i]['tc_message']+"</td>" +
+                            "</tr>");
+                    }
+
+                }
+            });
+        }
+        function commit() {
+            var fqsz;
+            var value=$("input[name='rd']:checked").val();
+
+            if($('#up_picture').val()==""){
+                alert("请上传凭证！")
+                return;
+            }
+
+            if(value=='同意'){
+                fpsz=id+"|"+$("#yj_tsMoney").val()+"|"+$("#yj_message").val()+"|"+"已退税"+"|"+$('#up_picture').val();
+            }else if(value=='不同意'){
+                fpsz=id+"|"+$("#yj_tsMoney").val()+"|"+$("#yj_message").val()+"|"+"已驳回，请重新提交"+"|"+$('#up_picture').val();
+            }
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajax.jsp",
+                dataType:"json",
+                // data:"action=update&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                data:"action=update&table=zb_yongjintuishui&field=id,yj_tsMoney,yj_message,yj_states,yj_upload&values="+fpsz,
+
+                success:function(data)
+                {
+
+                    if(data.code=="0"){alert("系统错误，操作被取消！");return;}
+                    var str='操作成功';
+                    if(str==data.msg){
+                        //window.location.href== '$!webPath/admin/charges_drawback_check.htm';
+                        //openURL('url','$!webPath/admin/xbfwsz_admin.htm','main_workspace','xbfwsz_admin');
+                        javascript:history.back(-1);
+                        //window.history.back(-1);
+                        //location.reload();
+                    }
+                }
+            });
+        }
+
+    </script>
+    <style>
+        .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{background:#3366FF;color:#fff}
+        #font2{
+            color:red;
+        }
+        table tr td{height:55px;line-height: 55px;}
+        .details{width:94%; margin: 0 3%;}
+        table tr td input{height: 30px;line-height: 30px;width: 80px;text-align: center;}
+    </style>
+</head>
+
+<body>
+<div class="both details">
+    <div>
+        <table class="yj_table solid" width="100%">
+            <tbody>
+            <tr><td colspan="2"><span class="little_title">来自<input type="text" id="userName"/>的退税申请</span></td></tr>
+            <tr >
+                <td width="20%">当前状态：</td>
+                <td id="font2"><input type="text" id="yj_states"/></td>
+            </tr>
+            <tr>
+                <td>编号：</td>
+                <td><input type="text" id="yj_number"/></td>
+            </tr>
+            <tr >
+                <td>维权申请时间：</td>
+                <td><input type="text" id="create_date"/></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <br></br>
+    <div>
+        <span class="little_title">退税详情</span><br>
+        <table class="yj_table solid" width="100%">
+            <tbody>
+            <tr >
+                <td  width="20%">维权人：</td>
+                <td><input type="text" id="userName1"/></td>
+            </tr>
+            <tr>
+                <td>编号：</td>
+                <td><input type="text" id="yj_number1"/></td>
+            </tr>
+            <tr >
+                <td>扣税金额：</td>
+                <td><input type="text" id="yj_ksMoney"/>元</td>
+            </tr>
+            <tr>
+                <td>退税金额：</td>
+                <td><input type="text" id="yj_tsMoney"/>元</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <br></br>
+    <div>
+        <span class="little_title">消息记录</span><br>
+        <table class="yj_table solid" width="100%">
+            <tbody id="tablesss">
+            </tbody>
+        </table>
+    </div>
+
+    <br></br>
+
+    <div>
+        <span class="little_title">审核</span><br>
+        <table class="yj_table" width="100%">
+            <tbody>
+            <tr>
+                <td  width="20%">上传凭证：</td>
+                <td ><input type="file" class="picture" name="zb_tupian" id="upload" value="" placeholder="" style="display: none;"/><label for="upload"><img src="../img/raw_1501032270.png" alt="" id="imgss" style="width: 80px;height: 80px;"></label></td>
+                <input type="hidden" id="up_picture"/>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <table style="width: 100%;height: 80px; margin-top: 20px;margin-left: 20px;" >
+            <tbody>
+            <tr><td colspan="3" align="center" class="ac9"><a href="$!webPath/admin/yjts.htm">返回</a></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--引入上传要用的js文件-->
+    <script type="text/javascript" src="/fileup/index_no1.js"></script>
+    <script>
+        //picture代表input<file类型>的class的值，up_picture代表隐藏（hidden）的input的id值，imgss代表<img>标签的id值
+        fileInput("picture","up_picture","imgss");
+    </script>
+</div>
+</body>
+</html>

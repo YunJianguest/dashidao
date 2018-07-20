@@ -1,0 +1,26 @@
+SET foreign_key_checks = 0;
+delete from dashidao_goods_spec;
+delete from dashidao_goods_ugc;
+delete from dashidao_goodscart;
+delete from dashidao_cart_gsp;
+delete from dashidao_favorite;
+delete from dashidao_goods_combin;
+delete from dashidao_group_goods;
+delete from dashidao_delivery_goods;
+delete from dashidao_dynamic;
+delete from dashidao_bargain_goods;
+delete from dashidao_goods_photo;
+delete from dashidao_activity_goods;
+delete from dashidao_evaluate;
+delete from dashidao_return_gsp;
+delete from dashidao_goods_returnitem;
+delete from dashidao_ztc_gold_log;
+delete from dashidao_goods_returnlog;
+delete from dashidao_goods_return;
+delete from dashidao_goods;
+
+delete from dashidao_order_log;
+delete from dashidao_orderform;
+delete from dashidao_payment;
+
+SET foreign_key_checks = 1;

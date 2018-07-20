@@ -1,0 +1,9 @@
+﻿.menu{width:100%;font-size:11px;margin:0 auto;overflow:hidden;}
+.menu ul li{display:block;width:100%;padding-top:2px;margin-bottom:5px;background: url(../images/zakladka.png) top left no-repeat;list-style:none;overflow:visible;}
+.menu ul li a{display:block;height:2em;line-height:2em;width:90%;margin-top:0px;padding-top:10px;padding-left:35px;font-size:2em;color:#292727;outline:none;}
+.menu ul li .active{background:url(../images/on.png) top right no-repeat;}
+.menu ul li .inactive{background:url(../images/off.png) top right no-repeat;}
+.menu ul li ul{display:none; margin-top:-4px;margin-bottom:20px;   }
+.menu ul li ul li ul{margin-bottom:5px;}
+.menu ul li ul li{display:block;background:none;font-size:12px;list-style:circle;color:#2A2929;margin-bottom:0px;margin-top:0px;padding-top:0px;padding-bottom:0px;padding-left:1px;margin-left:35px;}
+.menu ul li ul li a{background:none;font-size:1.3em;height:2em;color:#2A2929;padding-left:0px; }

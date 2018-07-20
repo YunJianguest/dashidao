@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>累计收益</title>
+    <!--必选css-->
+    <link rel="stylesheet" type="text/css" href="css/css.css" >
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+</head>
+<body style="background: #f2f6f9;" >
+<!--头部搜索-->
+<div class="myer ykmyer">
+    <p >
+        <a href="me.html"><i class="iconfont icon-back fl" ></i></a>累计收益
+    </p>
+</div>
+<!-- 我的收益-->
+<div class="mycare mygrand" style=" margin-top: 50px;" >
+    <ul>
+        <li>
+                <p>累计收益</p>
+                <span>178.04</span>
+        </li>
+        <li>
+                <p>累计税费</p>
+                <span>178.04</span>
+        </li>
+        <li>
+                <p>累计净赚</p>
+                <span>178.02</span>
+        </li>
+        <div class="clear"></div>
+    </ul>
+</div>
+<!--收益明细-->
+<style type="text/css">
+    .mygrand  li span{ color: #df3240; font-size: 2.3rem; }
+    .grand{ background: #fafafa; margin-top: 5px; padding:0 3%;  }
+    .grand li{ width: 100%; float: left; background: #fff; border-top:1px dashed #d1d1d1; padding: 10px; color: #0e0e0e; }
+    .grand li.first{ font-size: .5rem ; color: #acacac; }
+    .grand li span{ color: #d4373c; font-size: 1.4rem;}
+    /*切换效果*/
+    .slideTxtBox{ width:100%;  text-align:left; margin-bottom: 80px;  }
+    .slideTxtBox .hd{ height:40px;  line-height:38px; font-size:20px; overflow:hidden; background:#fff;  padding:0 10px;    }
+    .slideTxtBox .hd ul{ float:right;  }
+    .slideTxtBox .hd ul li{ float:left;  padding:0 5px; vertical-align:top; font-size: 1.6rem;  }
+    .slideTxtBox .hd ul li.on{ color:#B63B34; border-bottom: 2px solid red;  display:block; height:38px; line-height:38px;   }
+    .slideTxtBox .bd{margin-top: 0px; background: #fff; }
+    .slideTxtBox .bd ul{ padding:0; zoom:1; height: 300px;  background:#fff;  }
+
+</style>
+<div class="grand">
+    <ul>
+        <li class="first" >您在云客平台因销售产生的相关收入、奖励、不包括因交易、货品产生的补偿金以及退款（账户余额中可查看）</li>
+        <li>今日收益：<span>￥&nbsp71.80 </span></li>
+        <li>本月收益：<span>￥&nbsp71.80 </span></li>
+        <li>今年收益：<span>￥&nbsp71.80 </span></li>
+        <div class="clear"></div>
+    </ul>
+</div>
+<div class="slideTxtBox">
+    <div class="hd">
+        <ul><li>日收益</li><li>月收益</li><li>年收益</li></ul>
+    </div>
+    <div class="bd">
+        <ul>
+            <div id="container" style="height: 100%; margin-top: 0px;"></div>
+            <script type="text/javascript">
+                var dom = document.getElementById("container");
+                var myChart = echarts.init(dom);
+                var app = {};
+                option = null;
+                app.title = '坐标轴刻度与标签对齐';
+
+                option = {
+                    color: ['#3398DB'],
+                    tooltip : {
+                        trigger: 'axis',
+                        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                        }
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    xAxis : [
+                        {
+                            type : 'category',
+                            data : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                            axisTick: {
+                                alignWithLabel: true
+                            }
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value'
+                        }
+                    ],
+                    series : [
+                        {
+                            name:'直接访问',
+                            type:'bar',
+                            barWidth: '60%',
+                            data:[10, 52, 200, 334, 390, 330, 220]
+                        }
+                    ]
+                };
+                ;
+                if (option && typeof option === "object") {
+                    myChart.setOption(option, true);
+                }
+            </script>
+        </ul>
+        <ul>
+            <div id="container2" style="height: 100%"></div>
+            <script type="text/javascript">
+                var dom2 = document.getElementById("container2");
+                var myChart2 = echarts.init(dom2);
+                var app2 = {};
+                option2 = null;
+                app2.title = '坐标轴刻度与标签对齐';
+                option2 = {
+                    color: ['#3398DB'],
+                    tooltip : {
+                        trigger: 'axis',
+                        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                        }
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    xAxis : [
+                        {
+                            type : 'category',
+                            data : ['Mon2', 'Tue2', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                            axisTick: {
+                                alignWithLabel: true
+                            }
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value'
+                        }
+                    ],
+                    series : [
+                        {
+                            name:'直接访问',
+                            type:'bar',
+                            barWidth: '90%',
+                            data: [122, 60, 110, 80, 70, 110, 130],
+                        }
+                    ]
+                };
+                ;
+                if (option2 && typeof option2 === "object") {
+                    myChart2.setOption(option2, true);
+                }
+            </script>
+        </ul>
+        <ul>
+            <div id="container3" style="height: 100%"></div>
+            <script type="text/javascript">
+                var dom3 = document.getElementById("container3");
+                var myChart3 = echarts.init(dom3);
+                var app3 = {};
+                option3 = null;
+                app3.title = '坐标轴刻度与标签对齐';
+                option3 = {
+                    color: ['#3398DB'],
+                    tooltip : {
+                        trigger: 'axis',
+                        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                        }
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    xAxis : [
+                        {
+                            type : 'category',
+                            data : ['Mon3', 'Tue3', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                            axisTick: {
+                                alignWithLabel: true
+                            }
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value'
+                        }
+                    ],
+                    series : [
+                        {
+                            name:'直接访问',
+                            type:'bar',
+                            barWidth: '90%',
+                            data: [166	, 60, 110, 80, 70, 110, 130],
+                        }
+                    ]
+                };
+                ;
+                if (option3 && typeof option3 === "object") {
+                    myChart3.setOption(option3, true);
+                }
+            </script>
+        </ul>
+    </div>
+</div>
+<!--bottom-->
+<div class="bmenu">
+    <ul>
+		<li>
+			<a href="index.html">
+				<i class="iconfont icon-shouye1" ></i>
+				<span>首页</span>
+			</a>
+		</li>
+		<li>
+			<a href="add_product.html">
+				<i class="iconfont icon-fenleiorguangchangorqita" ></i>
+				<span>分类</span>
+			</a>
+		</li>
+		<li>
+			<a href="store.html">
+				<i class="iconfont icon-wxbmingxingdianpu" ></i>
+				<span>U园</span>
+			</a>
+		</li>
+		<li>
+			<a href="recommends.html">
+				<i class="iconfont icon-zan1" ></i>
+				<span>推荐</span>
+			</a>
+		</li>
+		<li>
+			<a href="me.html">
+				<i class="iconfont icon-my1" ></i>
+				<span>我的</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<script type="text/javascript">jQuery(".slideTxtBox").slide();</script>
+</body>
+</html>

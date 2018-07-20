@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>维护管理 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+<link href="$!webPath/resources/style/system/manage/blue/zhandai.css"  rel="stylesheet" type="text/css"/>
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div class="main">
+    <div class="user_center">
+        $!httpInclude.include("/seller/nav_head.htm")
+        $!httpInclude.include("/seller/adv.htm")
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=refund")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="buyer_position">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">商家支持</a> > <span>客户服务</span> > <span>维修管理</span></div>
+                    </div>
+                    <div class="shopadminbox">
+                        <div class="hd">
+                            <ul>
+                                <li>一键求助</li>
+                                <li>全国联保</li>
+                                <li>三年质保</li>
+                            </ul>
+                        </div>
+                        <div class="operation_tip">
+	<h3>友情提示</h3>
+	<ul>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+                        <div class="bd">
+                            <!--一键求助-->
+                            <ul>
+                                <table width="100%" class="shopadmin-top" border="0" cellspacing="0" cellpadding="0">
+
+                                    <tr class="topthead" >
+                                        <td width="100%" colspan="9"  >
+                                            <form class="form-inline" style="float: left;" >
+                                                <div class="form-group">
+                                                    <label for="exampleInputName2">用户：</label>
+                                                    <input type="text" class="form-control" id="exampleInputName2" placeholder="">
+                                                </div>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail2">主订单编号：</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="">
+                                                </div>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail2">服务类型：</label>
+                                                    <select class="form-control" style="width: 120px; margin-left: 10px;">
+                                                        <option>请选择</option>
+                                                        <option>111</option>
+                                                        <option>222</option>
+                                                    </select>
+                                                </div>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail2">分类：</label>
+                                                    <select class="form-control" style="width: 120px;margin-left: 10px;">
+                                                        <option>请选择</option>
+                                                        <option>111</option>
+                                                        <option>222</option>
+                                                    </select>
+                                                </div>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail2">时间：</label>
+                                                    <div class="layui-input-inline" style="width: 180px; ">
+                                                        <input type="date" name="user_date"  class="layui-input"  />
+                                                    </div>
+                                                </div>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <button type="submit" class="btn btn-default" style="border: none;  background: #3fa4ed; color: #fff; " >确定</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <tr id="thead" class="theads" >
+                                        <td width="10%">订单编号</td>
+                                        <td width="11%">用户nick</td>
+                                        <td width="11%">服务商</td>
+                                        <td width="11%">服务类型/分类</td>
+                                        <td width="11%">反馈日期</td>
+                                        <td width="11%">状态</td>
+                                        <td width="13%">解决方案时问/解决时长（小时）</td>
+                                        <td width="11%">完结时间/完结时长（小时）</td>
+                                        <td width="11%">操作</td>
+                                    </tr>
+                                    <tbody id="tablesss"></tbody>
+
+                                </table>
+
+                                <!--分页开始-->
+                                <div id="demo8" style=" text-align: center; margin-top: 30px;" ></div>
+
+                                <!--分页结束-->
+
+                            </ul>
+                            <!--全国联保-->
+                            <ul>
+                                <form class="form-inline" >
+                                    <table width="100%" class="shopadmin-top" border="0" cellspacing="0" cellpadding="0" style="margin-top: 20px;">
+
+                                        <tr class="toptitle"  >
+                                            <td width="100%" colspan="9">
+                                                维修进度反馈
+                                            </td>
+                                        </tr>
+                                        <tr class="topthead" >
+                                            <td width="100%" colspan="9">
+                                                <div class="form-group" style="float: left;">
+                                                    <label for="exampleInputName2">商品名称：</label>
+                                                    <input type="text" class="form-control" id="exampleInputName2" placeholder="">
+                                                </div>
+                                                <div class="form-group"  style="float: left; margin-left: 15px; ">
+                                                    <label for="exampleInputEmail2" style="float: left;">时间：</label>
+                                                    <div class="layui-input-inline" style="width: 160px; float: left; margin-top: 22px; ">
+                                                        <input type="date" name="user_date"  class="layui-input"  />
+                                                    </div>
+                                                    <div class="layui-form-mid" style="margin-left: 10px; float: left; margin-top: 20px;" >-</div>
+                                                    <div class="layui-input-inline" style="width: 160px; float: left; margin-top: 22px; ">
+                                                        <input type="date" name="user_date"  class="layui-input"  />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group"  style="float: left; margin-left: 15px;">
+                                                    <label for="exampleInputEmail2">联系人：</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100%" colspan="9" >
+                                                <div class="form-group" style="float: left;">
+                                                    <label for="exampleInputEmail2">联系电话：</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="">
+                                                </div>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <div class="form-group" style="float: left; margin-left: 15px;">
+                                                    <label for="exampleInputEmail2">父订单id：</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="">
+                                                </div>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <div class="form-group" style="margin-left: 15px; float: left;">
+                                                    <label for="exampleInputEmail2">工单状态：</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="">
+                                                </div>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <button type="submit" class="btn btn-default" style="border: none; float: left; margin-left: 15px; margin-top: 25px;  background: #3fa4ed; color: #fff; " >确定</button>
+                                            </td>
+                                        </tr>
+                                        <tr id="thead" class="theads"  >
+                                            <td width="12%">主订单id</td>
+                                            <td width="22%"  >用户nick</td>
+                                            <td width="11%">创建日期</td>
+                                            <td width="11%">工单编号</td>
+                                            <td width="11%">联系人</td>
+                                            <td width="11%">联系电话</td>
+                                            <td width="11%">工单状态</td>
+                                            <td width="11%">操作</td>
+                                        </tr>
+                                        <tbody id="tablesss2">
+                                        </tbody>
+                                    </table>
+                                </form>
+
+                                <!--分页开始-->
+                                <div id="demo9" style=" text-align: center; margin-top: 30px;" ></div>
+
+                                <!--分页结束-->
+
+                            </ul>
+                            <!--三年质保-->
+                            <ul>
+                                <form class="form-inline" >
+                                    <table width="100%" class="shopadmin-top" border="0" cellspacing="0" cellpadding="0" style="margin-top: 20px;">
+
+                                        <tr class="toptitle" >
+                                            <td width="100%" colspan="9">
+                                                维修进度反馈
+                                            </td>
+                                        </tr>
+                                        <tr class="topthead" >
+                                            <td width="100%" colspan="9">
+                                                <div class="form-group" style="float: left;">
+                                                    <label for="exampleInputName2">商品名称：</label>
+                                                    <input type="text" class="form-control" id="exampleInputName2" placeholder="">
+                                                </div>
+                                                <div class="form-group"  style="float: left; margin-left: 15px; ">
+                                                    <label for="exampleInputEmail2" style="float: left;">时间：</label>
+                                                    <div class="layui-input-inline" style="width: 160px; float: left; margin-top: 22px; ">
+                                                        <input type="date" name="user_date"  class="layui-input"  />
+                                                    </div>
+                                                    <div class="layui-form-mid" style="margin-left: 10px; float: left; margin-top: 20px;" >-</div>
+                                                    <div class="layui-input-inline" style="width: 160px; float: left; margin-top: 22px; ">
+                                                        <input type="date" name="user_date"  class="layui-input"  />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group"  style="float: left; margin-left: 15px;">
+                                                    <label for="exampleInputEmail2">联系人：</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100%" colspan="9" >
+                                                <div class="form-group" style="float: left;">
+                                                    <label for="exampleInputEmail2">联系电话：</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="">
+                                                </div>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <div class="form-group" style="float: left; margin-left: 15px;">
+                                                    <label for="exampleInputEmail2">父订单id：</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="">
+                                                </div>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <div class="form-group" style="margin-left: 15px; float: left;">
+                                                    <label for="exampleInputEmail2">工单状态：</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="">
+                                                </div>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <button type="submit" class="btn btn-default" style="border: none; float: left; margin-left: 15px; margin-top: 25px;  background: #3fa4ed; color: #fff; " >确定</button>
+                                            </td>
+                                        </tr>
+                                        <tr id="thead" class="theads"  >
+                                            <td width="13%">主订单id</td>
+                                            <td width="13%">用户nick</td>
+                                            <td width="13%">创建日期</td>
+                                            <td width="13%">工单编号</td>
+                                            <td width="12%">联系人</td>
+                                            <td width="12%">联系电话</td>
+                                            <td width="12%">工单状态</td>
+                                            <td width="12%">操作</td>
+                                        </tr>
+                                        <tbody id="tablesss3">
+
+                                        </tbody>
+                                    </table>
+                                    <!--分页开始-->
+                                    <div id="demo10" style=" text-align: center; margin-top: 30px;" ></div>
+
+                                    <!--分页结束-->
+                                </form>
+                            </ul>
+                        </div>
+                    </div>
+                    <script type="text/javascript">jQuery(".shopadminbox").slide({trigger:"click"});</script>
+                    <script type="text/javascript">
+                        $(document).ready(function(){
+                            // date time picker
+                            if($(".iDate.full").length>0){
+                                $(".iDate.full").datetimepicker({
+                                    locale: "zh-cn",
+                                    format: "YYYY-MM-DD a hh:mm",
+                                    dayViewHeaderFormat: "YYYY年 MMMM"
+                                });
+                            }
+                            if($(".iDate.date").length>0){
+                                $(".iDate.date").datetimepicker({
+                                    locale:"zh-cn",
+                                    format:"YYYY-MM-DD",
+                                    dayViewHeaderFormat:"YYYY年 MMMM"
+                                });
+                            }
+
+                        })
+                    </script>
+
+
+
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        var page_size=10;
+        var page_no=1;
+        var count1;
+        var count2;
+        var count3;
+        function loadajax(page_size,page_no){
+            var sql="SELECT * FROM zd_yijianqiuzhu ORDER BY yj_beginTime DESC";
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajaxuser.jsp",
+                dataType:"json",
+                data:"table=zd_yijianqiuzhu&dates=yj_beginTime,yj_endTime,zd_time,addTime&sql="+sql,
+                //data:"table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error:function(){alert("数据错误，操作被取消！");},
+                success:function(data)
+                {
+                    if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                    var message=data.data.data;
+                    count1=data.data.total;
+                    $("#tablesss").html('');
+                    for(var i=0;i<message.length;i++){
+                        var beginTime = (new Date(message[i]['yj_beginTime'])).getTime(); //得到开始毫秒数
+                        var endTime = (new Date(message[i]['yj_endTime'])).getTime(); //得到结束毫秒数
+                        var ne=(endTime-beginTime)/1000/60/60;
+                        var sts=message[i]['states'];
+                        var stt;
+                        if(sts==0){stt='已提交'}else if(sts==1){stt='协商中'}else if(sts==2){stt='已完结'}
+                        $("#tablesss").append("<tr><td>"+message[i]['yj_orderNum']+"</td>" +
+                            "<td>"+message[i]['yj_userId']+"</td>" +
+                            "<td>"+message[i]['yj_servicePeople']+"</td>" +
+                            "<td>"+message[i]['yj_serviceStyle']+"</td>" +
+                            "<td>"+message[i]['yj_beginTime']+"</td>" +
+                            "<td>"+stt+"</td>" +
+                            "<td>"+message[i]['yj_solveTime']+"</td>" +
+                            "<td>"+ne.toFixed(0)+"小时</td>" +
+                            "<td><span><a href='$!webPath/seller/sjseekhelp.htm?id="+message[i]['tc_tsid']+"&ddid="+message[i]['yj_orderNum']+"'>详情</a></span></td></tr>");
+                    }
+
+                }
+            });
+        }
+        layui.use(['laypage', 'layer'], function(){
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+            //完整功能
+            laypage.render({
+                elem: 'demo8'
+                ,count:count1
+                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                ,jump: function(obj){
+                    //console.log(obj)
+                    page_no=obj.curr;
+                    page_size=obj.limit;
+                    //alert(pagelimit);
+                    loadajax(page_size,page_no);
+                    //loadajax("select","stu",pagelimit,cuur,1);
+                },
+                limits:[2, 4, 6, 8, 10],
+                limit:page_size
+            });
+        });
+
+
+        function loadajax2(page_size,page_no){
+            var sql="SELECT * FROM zd_quanguolianbao ORDER BY qg_beginTime DESC";
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajaxuser.jsp",
+                dataType:"json",
+                data:"table=zd_quanguolianbao&dates=qg_beginTime,qg_endTime,zd_time,addTime&sql="+sql,
+                //data:"table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error:function(){alert("数据错误，操作被取消！");},
+                success:function(data)
+                {
+                    if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                    var message=data.data.data;
+                    count2=data.data.total;
+                    $("#tablesss2").html('');
+                    for(var i=0;i<message.length;i++){
+                        var beginTime = (new Date(message[i]['yj_beginTime'])).getTime(); //得到开始毫秒数
+                        var endTime = (new Date(message[i]['yj_endTime'])).getTime(); //得到结束毫秒数
+                        var ne=(endTime-beginTime)/1000/60/60;
+                        var sts=message[i]['states'];
+                        var stt;
+                        if(sts==0){stt='已提交'}else if(sts==1){stt='协商中'}else if(sts==2){stt='已完结'}
+                        $("#tablesss2").append("<tr>" +
+                            "<td>"+message[i]['qg_fatherId']+"</td>" +
+                            "<td>"+message[i]['qg_buyerName']+"</td>" +
+                            "<td>"+message[i]['qg_beginTime']+"</td>" +
+                            "<td>"+message[i]['qg_gdNum']+"</td>" +
+                            "<td>"+message[i]['qg_linkMen']+"</td>" +
+                            "<td>"+message[i]['qg_phone']+"</td>" +
+                            "<td>"+stt+"</td>" +
+                            "<td><span><a href='$!webPath/seller/sjguarantee.htm?id="+message[i]['qg_gdNum']+"&ddid="+message[i]['qg_fatherId']+"'>详情</a></span></td></tr>");
+                    }
+
+                }
+            });
+        }
+        layui.use(['laypage', 'layer'], function(){
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+            //完整功能
+            laypage.render({
+                elem: 'demo9'
+                ,count:count2
+                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                ,jump: function(obj){
+                    //console.log(obj)
+                    page_no=obj.curr;
+                    page_size=obj.limit;
+                    //alert(pagelimit);
+                    loadajax2(page_size,page_no);
+                    //loadajax("select","stu",pagelimit,cuur,1);
+                },
+                limits:[2, 4, 6, 8, 10],
+                limit:page_size
+            });
+        });
+
+        function loadajax3(page_size,page_no){
+            var sql="SELECT * FROM zd_sannianzhibao ORDER BY ty_beginTime DESC";
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajaxuser.jsp",
+                dataType:"json",
+                data:"table=zd_sannianzhibao&dates=ty_beginTime,ty_endTime,zd_time,addTime&sql="+sql,
+                //data:"table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error:function(){alert("数据错误，操作被取消！");},
+                success:function(data)
+                {
+                    if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                    var message=data.data.data;
+                    count3=data.data.total;
+                    $("#tablesss3").html('');
+                    for(var i=0;i<message.length;i++){
+                        var beginTime = (new Date(message[i]['yj_beginTime'])).getTime(); //得到开始毫秒数
+                        var endTime = (new Date(message[i]['yj_endTime'])).getTime(); //得到结束毫秒数
+                        var ne=(endTime-beginTime)/1000/60/60;
+                        var sts=message[i]['states'];
+                        var stt;
+                        if(sts==0){stt='已提交'}else if(sts==1){stt='协商中'}else if(sts==2){stt='已完结'}
+                        $("#tablesss3").append("<tr>" +
+                            "<td>"+message[i]['ty_orderid']+"</td>" +
+                            "<td>"+message[i]['ty_buyerName']+"</td>" +
+                            "<td>"+message[i]['ty_beginTime']+"</td>" +
+                            "<td>"+message[i]['ty_gdNum']+"</td>" +
+                            "<td>"+message[i]['ty_linkMen']+"</td>" +
+                            "<td>"+message[i]['ty_phone']+"</td>" +
+                            "<td>"+stt+"</td>" +
+                            "<td><span><a href='$!webPath/seller/sjsannianquality.htm?id="+message[i]['ty_complainNum']+"&ddid="+message[i]['ty_orderid']+"'>详情</a></span></td></tr>");
+                    }
+
+                }
+            });
+        }
+        layui.use(['laypage', 'layer'], function(){
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+            //完整功能
+            laypage.render({
+                elem: 'demo10'
+                ,count:count3
+                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                ,jump: function(obj){
+                    //console.log(obj)
+                    page_no=obj.curr;
+                    page_size=obj.limit;
+                    //alert(pagelimit);
+                    loadajax3(page_size,page_no);
+                    //loadajax("select","stu",pagelimit,cuur,1);
+                },
+                limits:[2, 4, 6, 8, 10],
+                limit:page_size
+            });
+        });
+
+
+
+        loadajax();
+        loadajax2();
+        loadajax3();
+
+    </script>
+
+</div>
+</body>
+</html>
+
+</body>
+</html>

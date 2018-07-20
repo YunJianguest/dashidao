@@ -1,0 +1,221 @@
+
+/* css 重置 */
+*{margin:0; padding:0; list-style:none; }
+body{ background:#fff; font-family:"微软雅黑"; -webkit-tap-highlight-color:transparent;}
+img{ border:0;  }
+a{ text-decoration:none; color:#333;  }
+/*index页面*/
+.fl{ float: left;}
+.fr{ float: right;}
+.clear{ clear: both; }
+a i{ color:#808080; }
+
+/*tsmanage*/
+.pageDiv{padding: 15px 20px;text-align: right;color: #ccc;clear: both;}
+.pageDiv a{display: inline-block;color: #4c4c4c;background: #f6fbf9;display: inline-block;height: 25px;	line-height: 25px;	padding: 3px 18px;border: 1px solid #ddd;	margin: 0 2px;vertical-align: middle;font-size: 14px;}
+.pageDiv a:hover{text-decoration: none;border: 1px solid #428bca;}
+.pageDiv span.current{display: inline-block;height: 25px;line-height: 25px;padding: 0 18px;margin: 0 2px;color: #ed601b;border-radius: 4px;vertical-align: middle;}
+.pageDiv span.disabled{display: inline-block;height: 25px;line-height: 25px;padding: 3px 18px;margin: 0 2px;	color: #bfbfbf;background: #f2f2f2;border: 1px solid #bfbfbf;vertical-align: middle;}
+.pageDiv span.pagecount{padding: 0 10px;font-size: 14px;color: #999999;margin-right: -30px;}
+.pageDiv span.countYe{color: #4C4C4C;font-size: 14px;margin-left: 30px;}
+.pageDiv span.countYe input{outline: none;border: 1px solid #ddd;height: 25px;padding: 3px 10px;width: 25px;margin: 0 5px;}
+.pageDiv a.turndown{padding: 3px 10px;}
+
+.shopadmin-top{border: none; }
+.shopadmin-top tr td{ height: 80px; text-align: center;  line-height: 80px;  border-bottom: 1px solid #bbbbbb; }
+.shopadmin-top tr td span{  border: 1px solid #ccc; padding: 5px 15px; border-radius:5px;   }
+#thead td{ background: #dfe2f5; color: #10a5ee; text-align: center; height: 40px; line-height: 40px;     }
+.button{ width: 100%; background: #0a78fa; height: 38px; color: #fff; border: none; }
+
+.shopadminbox{ border: none; width:100%; }
+.shopadminbox .hd{ height:40px;  line-height:40px; width: 100%; }
+.shopadminbox .hd ul li{ float:left; width:25%; margin:0; text-align: center; font-size:16px;  cursor:pointer; color:#000000; }
+.shopadminbox .hd li.on{ background: #108ee9; color:#fff; border-radius: 0px;   }
+.shopadminbox .bd{ margin-top: 0px;}
+
+#name{background:url("../image/search.png") no-repeat 2% 50%  #fff; text-indent: 3rem;  width:90%; height: 30px; border: none;border-radius:10px; float: left; margin-top: 5px; margin-left: 5%;  display: block; }
+
+/*stockmanage*/
+.shopadmin-top2 tr td{ line-height: 0px; }
+.kc a{ color:#3f51b5; line-height: 20px;}
+.kc i{ font-size: 24px;  color:#3f51b5; margin-right: 10px; }
+.tiptitles td{ height: 40px;  }
+.tiptitles p{  width: 100%;  height: 40px; line-height: 40px; background:#108ee9; color: #fff; text-align: left; text-indent: 2em; }
+#topthead td{ border-bottom: 0px; }
+td.bcq{ line-height: 10px; }
+td.bcq font{ text-align: left;  float: left; line-height: 18px; padding-bottom: 5px;  }
+td.bcq p{ height: 10px; width: 100%; background: #0f0;  margin-bottom: 10px;}
+td.bcq p span{ display: block; height: 10px; margin: 0px; border: 0px; border-radius:0px;  padding: 0px; float: left; }
+.bcq p span.green{  background: #259b24; width: 40%;   }
+.bcq p span.yellow{ background: #ffce55; width: 30%;   }
+.bcq p span.orage{ background:#fc863f; width: 20%;   }
+.bcq p span.red{background: #e51c23; width: 10%;  }
+td.bcq img{ float: left;}
+.zclick i{ font-size: 24px;}
+.zclick i.fl{ color: #259b24; margin-left: 30%; }
+.zclick i.fr{ color: #e51c23; margin-right: 30%; }
+/*storeadjus*/
+.tiptitlesd p{text-align: center; height:50px; line-height: 50px; font-size: 20px;}
+.tiptitlesd2 p span{ float: right; padding: 0px; line-height: 40px; margin-right: 40px; }
+/*商品信息*/
+.shopadmin-tops tr td{ border-bottom: 0px; }
+.shopadmin-tops tr td span{  border: none;  }
+.shopadmin-tops tr td.flt{ text-align: right; padding-right: 30px; }
+.spxx{ width: 90%; border: 1px solid #ccc; background: #f9f9f9; padding: 15px 0;   }
+.spxx li { float: left; width: 33%; height: 38px; line-height: 38px;  }
+.spxx li span{ display: block; }
+.spxx li span.fl{ width: 38%; padding-right: 2%;   padding: 0px; margin: 0px; border-radius: 0px; text-align: right;  }
+.spxx li span.fr{ width: 60%;  padding: 0px; margin: 0px; border-radius: 0px; text-align: left;   }
+.shopadmin-tops input,.shopadmin-tops select,.shopadmin-tops textarea{ width: 100%; height: 40px; line-height: 40px; text-indent: 2rem;  }
+.shopadmin-tops textarea{ height: 120px; }
+.submit2{ background: #108ee9; border:none; padding: 8px 30px; color: #fff; font-size: 18px;   }
+/*settle*/
+.settlebox{ width: 90%; padding: 0 5%; }
+.settlebox .one{ border: 1px solid #ccc; }
+.settlebox .one p{ height: 40px; line-height: 40px; text-indent: 4rem; font-size: 16px; color:#e91c60;  }
+.onecontent{ margin-top: 50px; }
+.onecontent .one p{ font-size: 14px; color: #333; background: url("../image/txc.png") no-repeat 35px 12px;   }
+.onecontent .two{ margin-top: 10px; }
+.onecontent .two p{ background: none; text-indent: 2rem; height: 50px; line-height: 50px;  }
+.onecontent .two p button.fr{ background:#108ee9; color: #fff; padding: 5px 25px; margin: 10px 30px 0 30px;  border: none;   }
+.setttable{ border-bottom: 1px solid #ccc; padding: 0 2rem; }
+.setthead td{ border-bottom: 1px solid #ccc;}
+.setttable tr td{ text-align: center; height: 50px; line-height: 50px;  }
+/*returnmanage*/
+.returntable{ padding: 0 5%; }
+.returntable tr td{ text-align: center; font-size: 14px;  }
+.returntable tr.first td{ border-bottom: 1px solid #ccc; }
+.returntable tr.first span{display: block; padding: 20px 0; }
+.returntable tr.first span.fl{ text-align: right;  padding-right: 10%; width: 40%; }
+.returntable tr.first span.fr{ text-align: left;width: 50%;}
+.returntable tr.first td.last{ border-bottom: none;  }
+.returntable tr.first td.last p{ margin: 10px 0 10px 20px; font-size: 15px;  }
+.returntable tr.first td.last p.accept{ color: #009688;}
+.returntable tr.first td.last p.refuse{ color: #e51c23;}
+.returntable tr.first td.last span{ background: #fff; padding: 0px; font-size: 14px;   border: 1px solid #ccc; border-radius: 2px; }
+.returnthead{ padding: 0 5%; }
+.returnthead p{ line-height: 30px; }
+.returnthead span{ padding-left:10%; }
+.returntitle span{padding-right:5%; }
+.twosrow{ padding: 10px 0 30px 0; }
+.twosrow p{ text-align: left; text-indent: 2rem; line-height: 30px; }
+/*breakmaili*/
+/*refunddetail*/
+.refundbox{ width: 96%; padding: 2%; }
+.refundbox div.fl{ width: 65%; font-size: 14px;  border-right:1px solid #ccc; }
+.refundbox div.fl h1{ font-size: 20px; }
+.refundbox div.fl p{ line-height: 30px; font-size: 14px; border-bottom: 1px solid #ccc; }
+.refundbox div.fl .first{ height: 50px; line-height: 50px;  }
+.refundbox div.fl .first span.red{ color: #e51c23; font-size: 15px; }
+.refundbox div.fl .first span.blue{ color: #0088ce; padding-left: 30px;}
+.refundbox div.fl .two{ border-width:1px 0px 1px 1px; text-indent: 2rem;  border-color:#ccc; border-style:solid;     }
+.refundbox hr{  margin: 15px 0; border: none; height: 1px; border-top:1px solid #ccc; }
+.xscont{ padding: 20px 0; border-bottom:1px solid #ccc;   }
+.xscont span.fl{ width: 20%; text-align: center;  }
+.refundbox div.fl div.fr{ width: 80%;  }
+.refundbox div.fl div.fr li{ line-height: 30px; }
+.refundbox div.fl div.fr li.on{ background: url("../image/write2.png") #fff no-repeat 80px center;  }
+.refundbox div.fr{ width: 32%; font-size: 14px;    }
+.refundbox div.fr h2{ font-size: 18px; font-weight: normal;    }
+.refundbox div.fr .one li{ line-height: 30px; }
+.refundbox div.fr .two li{ line-height: 20px; color: #999; }
+.refundbox div.fr .two li sapn{ display: block; }
+.refundbox div.fr .two li span.blue{ color:#0088cb;  }
+.refundbox div.fr .two li span.fl{ width:5rem; text-align: justify; }
+.refundbox div.fr .two li span.fl font{ padding-right: 1.8rem; }
+.refundbox div.fr .two li span.fr{ text-align: left; float: left;  width: 70%;}
+.refundbox p button{ margin: 80px 35% 30px; width: 30%; height: 40px; line-height: 40px; text-align: center; background:#108ee9; font-size: 16px; color: #fff; border: none; border-radius:5px;}
+
+/*importbill*/
+.shopadminbox2{ border: none; width:100%; }
+#tab11,#tab22{ height:40px;  line-height:40px; width: 100%; }
+#tab11 li,#tab22 li{ float:left; width:25%; margin:0; text-align: center; font-size:16px;  cursor:pointer; color:#000000; }
+#tab11 li.active,#tab22 li.active{ background: #108ee9; color:#fff; border-radius: 0px;   }
+.wrap{width:100%; margin:0;}
+.box1,.box2{ width:100%; display:none; border:none; margin:0; padding:0; }
+.importbill .first span.fl img{ margin-top: 20px;  }
+.importbill .first span.fr{ line-height: 30px; }
+.importbill tr.two td{ border-bottom: none;  }
+/*refundapplication*/
+.refundapplication div.fl div.two{ border: none; }
+.refundapplication .fl .two li{ margin-bottom: 10px; }
+.refundapplication .fl .two li span.fl{width: 25%;  text-align: right;  }
+.refundapplication .fl .two li span.fl font{ color: red; line-height: 30px; }
+.refundapplication .fl .two span.fr{ text-align: left; margin: 0px; padding: 0px; line-height: 30px;  text-indent: 0px;  width: 74%; }
+.refundapplication .fl .two span.fr select,.refundapplication .fl .two span.fr input[type='text']{ height: 40px; width: 50%; }
+.refundapplication .fl .two span.fr textarea{ width: 94%; height: 80px; text-align: left; padding: 2%;     }
+.uploadimg{ width: 120px; height: 120px; border: 1px solid #ccc; font-size: 14px; text-align: center; line-height: 16px;    }
+.uploadimg font{ display: block;  text-align: center; font-size: 60px; font-weight: normal; line-height: 80px;      }
+
+.contactme td.confir{text-align: left; text-indent: 6rem;    }
+.contactme td.confir span{ width: 20%; text-align: right; }
+.contactme td.confir select{ width: 80%; height: 40px;   }
+.contactme td.confir img{ float:right;  margin: 15px 20px; }
+.last2 span{ font-size: 40px; }
+.red{ color: red;  }
+
+/*transferapplication*/
+
+/*entrysheetdetail*/
+.thfirst{ height: 50px; line-height: 50px; }
+.entrysheetbox{ width: 100%;}
+.entryshtable { width: 100%;  }
+.entryshtable tr.first span.fl select{ padding: 10px; }
+/*数量*/
+.goods_sum{ width: 100%;}
+.goods_sum li{width:33%; float: left;}
+.goods_sum .count .num-jian{ text-align: right;}
+.goods_sum .count .num-jia{ text-align: left; }
+.goods_sum .count .num-jian,.goods_sum .count .num-jia {font-size: 18px;color: #999;cursor: pointer;border: none; padding:0px;}
+.goods_sum .count .input-num{display: inline-block; width:2rem; text-align: center;font-size: 18px;  color: #999;cursor: pointer;border: 1px solid #e6e6e6;margin: 0 .5%;}
+.goods_sum .count .input-num { width: 3rem;color: #333; height:2rem;font-size:.8rem; }
+.count li{height:2rem;line-height:2rem;font-size: 1rem;;}
+.goods_sum span{margin-left: 7%;}
+.second .twobox{ background: #f9f9f9; text-align: right; padding: 20px 40px;}
+.second .twobox{ margin: 30px 0; }
+.entrysheetbox p button{ margin: 80px 35% 30px; width: 30%; height: 40px; line-height: 40px; text-align: center; background:#108ee9; font-size: 16px; color: #fff; border: none; border-radius:5px;}
+.second .two li{ line-height: 50px; color: #333; }
+.second .two li sapn{ display: block; }
+.second .two li span.fl{ width:15%; text-align:right; }
+.second .two li span.fl font{ padding-right: 1.8rem;}
+.second .two li span.fr{ text-align: left; border-bottom:1px solid #ccc;   padding-left: 10px; float: left;  width: 70%;}
+.second .two li span.fr i{ font-size: 18px; padding-left: 40px;  }
+/*choicegoods*/
+.choicebox .returnthead td{ padding-bottom: 20px; }
+.choicebox .returnthead .fr{ width: 20%; }
+.choicebox .returnthead .fr button{ width: 50%; margin-left: 25%;  height: 40px; line-height: 40px; text-align: center; background:#108ee9; font-size: 16px; color: #fff; border: none; border-radius:5px;}
+.importbill .first input[type="checkbox"]{ width: 25px; height: 25px;  }
+/*agentcommodity */
+.returntable tr.first span.fl{ position: relative;  }
+.returntable tr.first span.fl font{ position: absolute; color: #fff; font-size: 14px;  bottom: 0px; right:15%; bottom: 15px; border-radius: 5px; padding: 3px 10px;  background: red; }
+/*choicebusiness*/
+.firstt td{ border-top: 1px solid #ccc; padding: 20px 0; }
+.firstt td:first-child{ border-left:1px solid #ccc;  }
+.firstt td:last-child{ border-right:1px solid #ccc;  }
+/*cleargood*/
+.cleargood .first td{ padding: 20px 0; }
+.cleargood  tr.two td{color: #10a5ee;text-align: center;height: 40px;line-height: 40px; }
+.cleargood  tr.one td{height: 40px;line-height: 40px; text-indent:5%;    text-align: left; font-size: 16px; border-bottom:3px solid #10a5ee; }
+
+.clearactive  td{ padding: 40px 0; }
+.clearactive .two{ width: 100%; }
+.clearactive .two li{ float: left; width: 100%; }
+.clearactive .two li span.fl{ width:200px;  padding-left: 0px;  }
+.clearactive .two li span.lit{ width:150px;  text-align: left;   }
+.clearactive .two li span.fr{ width: 485px; border-bottom:none; }
+.clearactive .two li span .oput{ width:100%; height: 40px; }s
+.clearactive .two li span .oput2{ width:130px; height: 40px; }
+.clearactive .two li input[type="checkbox"]{ margin: 0px; padding: 0px;   }
+.clearactive .goods_sum li{ float: left; width: 33%; }
+.clearactive .goods_sum li .num-jian{ float: left; padding-left: 20%; }
+.clearactive .icon-add{ font-size: 20px; float: right; border: 1px solid #108ee9; color: #108ee9;  width: 22px; height: 22px; line-height: 22px; margin: 13px 15px 0 0;   }
+/**maintmanag*/
+tr.topthead td{ height: 50px;   border-bottom: none; }
+tr.toptitle td{ background: #dfe2f5; height: 40px; line-height: 40px; border-bottom: none; text-align: left; text-indent:2rem;   }
+.topthead td .fl{  width: 19%; text-align: right; padding-right:1%;}
+.topthead td .fr{ width: 80%; }
+.topthead td .fr input.frinput{ width: 100%; text-indent:2em;   height: 38px; line-height: 38px; border: 1px solid #dfdfdf;  }
+.topthead td .fr select{ width: 100%; height: 38px; text-indent:2em; line-height: 38px; border: 1px solid #dfdfdf; }
+.search{ width: 120px; background: #4c8bfd; color: #fff; height: 40px; margin-bottom: 20px;  line-height: 40px; border: 2px; float: right; margin-right: 40px;    }
+.search i{ font-size:16px; padding-right: 10px; }
+.clearactive .turess{  margin: 80px 35% 30px; width: 30%; height: 40px; line-height: 40px; text-align: center; background:#108ee9; font-size: 16px; color: #fff; border: none; border-radius:5px;}

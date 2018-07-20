@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<!--link href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/template.css"  rel="stylesheet" type="text/css"/-->
+	<!--link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet-->
+	<link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+	<script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+	<script src="$!webPath/resources/js/bootstrap.min.js"></script>
+<title>资金流入流出</title>
+</head>
+<style>
+	.zj_little_font{padding-left:26%!important;}
+	.bg_div,bg_div2{width:100%!important;}
+	.btn-primary{padding: 5px 18px;background: #fff!important;color:#000;!important;}
+	.btn-primary:hover{padding: 5px 18px;background: #fff!important;color:#000;!important;}
+	.xq{padding: 5px 18px;}
+	.xq:hover{padding: 5px 18px;background: #fff!important;color:#000;!important;}
+	.bg_div3{position:relative;z-index:222;background:#C0E1F0 100%; }
+</style>
+<body>
+<div class="bg_div" style="background: #108EE9!important;font-size: 16px;">
+	<div style="width: 40%;font-size: 20px;">
+		<p class="p_font"  style="font-weight: 300;">总资产（元）&nbsp;&nbsp;&nbsp;&nbsp;<span class="s_font" style="font-weight: 500;">19009.53</span>
+		</p>
+	</div>
+	<div style="width: 30%">
+		<p style="padding-left: 100px;padding-top: 30px;">
+			今日收入（元）&nbsp;&nbsp;&nbsp;&nbsp;<span >3093.00</span>
+		</p>
+		<p style="padding-left: 100px;padding-top: 30px;">
+			今日支出（元）&nbsp;&nbsp;&nbsp;&nbsp;<span>890.00</span>
+		</p>
+	</div>
+	<div style="width: 30%">
+		<p style="padding-left: 100px;padding-top: 10px;">
+			<button type="button" class="btn btn-primary zj_button" >充值</button>
+		</p>
+		<p style="padding-left: 100px;">
+			<button type="button" class="btn btn-primary zj_button" >提现</button>
+		</p>
+		<p style="padding-left: 100px;">
+			<button type="button" class="btn btn-primary zj_button" >详情</button>
+		</p>
+	</div>
+</div>
+
+<div class="bg_div2">
+	<div class="bg_div3">
+		<p style="padding-left:20%;padding-top:20px;font-size: 20px;">
+			<strong>资金流入（元）：9930.76</strong></p>
+		<p class="zj_little_font">实付金额（元）：2350.23</p>
+		<p class="zj_little_font">储蓄金额（元）：2350.23</p>
+		<p class="zj_little_font">购卡金额（元）：8904.23</p>
+		<p class="zj_little_font">合同保证金（元）：2350.23</p>
+		<p class="zj_little_font">补差保证金（元）：8904.00</p>
+		<p class="zj_little_font">其他保证金（元）：1000.23</p>
+		<p style="position:relative;top:256px;left:46% ; z-index: 999;">
+			<button type="button" class="btn btn-primary zj_button xq" >详情</button>
+		</p>
+
+	</div>
+	<div class="bg_div3">
+		<p style="padding-left:20%;padding-top:20px;font-size: 20px;">
+			<strong>资金流出（元）：6009.76</strong></p>
+		<p class="zj_little_font">订单佣金（元）：2350.23</p>
+		<p class="zj_little_font">拓展佣金（元）：2350.23</p>
+		<p class="zj_little_font">开发佣金（元）：8904.23</p>
+		<p class="zj_little_font">伯乐佣金（元）：2350.23</p>
+		<p class="zj_little_font">供货佣金（元）：8904.00</p>
+		<p class="zj_little_font">订单奖（元）：1000.23</p>
+		<p class="zj_little_font">拓展奖（元）：1000.23</p>
+		<p class="zj_little_font">开发奖（元）：1000.23</p>
+		<p class="zj_little_font">伯乐奖（元）：1000.23</p>
+		<p class="zj_little_font">供货奖（元）：1000.23</p>
+		<p class="zj_little_font">体验店奖（元）：1000.23</p>
+		<p class="zj_little_font">货款（元）：1000.23</p>
+		<p class="zj_little_font">物流补贴（元）：1000.23</p>
+		<p style="position:relative;top:56px;left:46% ; z-index: 999;">
+			<button type="button" class="btn btn-primary zj_button xq" >详情</button>
+		</p>
+	</div>
+</div>
+</body>
+</html>

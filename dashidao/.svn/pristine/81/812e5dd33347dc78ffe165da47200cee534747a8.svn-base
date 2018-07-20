@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>退货</title>
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/two_level1.css" type="text/css" rel="stylesheet" />
+	<script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="$!webPath/resources/js/jquery-1.7.1.min.js"></script>
+</head>
+<body>
+<form id="form1" name="form1" method="get" class="form-inline">
+	<div class="both thuo">
+		<div class="content" style="clear:both;"><span>服务名称：</span><input type="text" class="" name="zb_name" id="zb_name" value="" placeholder="无忧退货"/>
+		</div>
+		<div class="content"><span>缴纳保证金：</span><input type="text" class="" name="zb_baozhengjin" id="zb_baozhengjin" value="" placeholder="1000元"/></div>
+		<div class="content text"><span>服务内容：</span><textarea style="width: 51%;height: 100px;font-size:16px;" type="text" class="" name="zb_shuoming" id="zb_shuoming" value="" placeholder="
+	大市道盛世第五个入股而过用户提供人人与他人沟通与人体 谷雨如图二体育体育浩特瑞诶如题偶尔图发布会科技化工很快就而化工科技规划客户认可结果忽然感觉黑客软件换个卡人格好和科技感哼哼还可让韩国热科技开个会大客户感慨地方规定 制衣"></textarea></div><div class="content uploadimg"><span>上传图标：</span><input type="file" class="" name="zb_tupian" id="upload" value="" placeholder="" style="display: none;"/><label for="upload"><img src="../img/raw_1501032270.png" alt=""></label>	</div>
+
+	</div>
+	<input type="submit" value="确定" class="qd" id="tianjia1" onclick="cc()">
+</form>
+
+<script>
+
+    function cc(){
+
+
+        var fpsz= $("#zb_name").val()+","+  $("#zb_baozhengjin").val()+","+  $("#zb_shuoming").val()+","+  $("#zb_tupian").val();
+
+        //alert("action=update&table=zb_fenpeishezhinew&field=id,hy_jf_gz&values="+fpszId+"|"+hyjf);
+        jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajax.jsp",
+            dataType:"json",
+            // data:"action=update&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+            data:"action=insert&table=zb_xiaobaofuwu&field=zb_name,zb_baozhengjin,zb_shuoming,zb_tupian&values="+fpsz,
+
+
+            success:function(data)
+            {
+                if(data.code=="0"){alert("系统错误，操作被取消！");return;}
+
+                //alert(data.data);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                alert(XMLHttpRequest.status); // 200
+                alert(textStatus); // parsererror
+                alert(errorThrown); // SyntaxError: Unexpected end of input
+                alert(fpsz);
+            }
+        });
+
+
+    }
+
+
+</script>
+</body>
+</html>

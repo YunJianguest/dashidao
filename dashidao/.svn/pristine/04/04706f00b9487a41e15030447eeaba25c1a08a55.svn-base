@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>资金服务 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/iconfont.css">
+<link href="$!webPath/resources/style/system/manage/blue/tip.css"  rel="stylesheet" type="text/css"/>
+<link href="$!webPath/resources/style/system/manage/blue/headquarters.css"  rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/style.css">
+<link href="$!webPath/resources/style/system/front/default/css/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<script src="$!webPath/resources/js/jquery-1.10.2.min.js" type="text/javascript"></script> 
+<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+<script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+<!--layui-->
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+	<script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+	<script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+</head>
+<body>
+<div class="main money_fuwu">
+    <div class="user_center">
+        $!httpInclude.include("/poster/nav_head.htm")
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/poster/nav.htm?op=money_fuwu")
+                <td id="centerbg" valign="top" width="80%" >
+                    <div class="buyer_position">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代支持</a> > <span>资金管理</span> > <span>资金服务</span></div>
+                    </div>
+ 	<div class="zjlrlcxq">
+
+<div class="surplus_header">
+	<div class="header_both">
+		<ul>
+			<li class="">保证金账户（元）：</li>
+			<li class="" id="bzj">19009.53</li>
+			<li class="">可用余额（元）：</li>
+			<li class="" id="syjeli">19009.53</li>
+			<li>
+				<label><input type="checkbox"/>收入</label>
+				<label><input type="checkbox"/>支出</label>
+			</li>
+			<li>
+				<div>导出报表</div>
+				<div><img src="$!webPath/resources/style/system/manage/black/img/export.png" alt=""></div>
+
+			</li>
+			<div class="clear"></div>
+		</ul>
+	</div>
+</div>
+	
+<table  width="100%" style="font-size:16px;text-align: center;margin-top: 20px;">
+	<!-- <tr class="tableheader">
+		<td>操作人</td>
+		<td>订单编号</td>
+		<td>角色</td>
+		<td>类型</td>
+		<td>时间</td>
+		<td>金额</td>
+	</tr> -->
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tbody  id="tablesss" >
+
+	</tbody>
+</table>
+<div id="demo7" style=" text-align: center; margin-top: 30px;" ></div> 
+<script>
+var page_no=1;
+var page_size=10;
+var total;
+var mycars=new Array();
+    jQuery(document).ready(function(){
+        loadajax(page_size,page_no);
+       layui.use(['laypage', 'layer'], function(){
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+            //完整功能
+            laypage.render({
+                elem: 'demo7'
+                ,count:total
+                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                ,jump: function(obj){
+                    //console.log(obj)
+                    page_no=obj.curr;
+                    page_size=obj.limit;
+                  loadajax(page_size,page_no);
+                },
+                limits:[2, 4, 6, 8, 10],
+                limit:page_size
+            });
+        }); 
+       getjine();
+    });
+    
+    var syje =0;
+    var sr=0;
+    function loadajax(page_size,page_no){
+    	var sql =" SELECT zd_zijinfuwumingxi.`type`,zd_zijinfuwumingxi.`jine`,zd_zijinfuwumingxi.`creattime` FROM zd_zijinfuwumingxi ";
+    	    sql += " LEFT JOIN zd_zijinfuwu ON zd_zijinfuwumingxi.`zijinid` = zd_zijinfuwu.`id`";
+    	    sql += " WHERE zd_zijinfuwu.`userid` ='32768' order by zd_zijinfuwumingxi.`creattime` ";
+        jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajaxuser.jsp",
+            dataType:"json",
+            data:"table=zd_zijinfuwumingxi&dates=creattime&sql="+sql+"&page_size="+page_size+"&page_no="+page_no,
+            error:function(){alert("数据错误，操作被取消！");},
+            success:function(data)
+            {
+                if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                total=data.data.total;
+                mycars[0]=total;
+                var message=data.data.data;
+                console.log(message);
+                $("#tablesss").html('');
+                var toprice=0;
+                for(var i=0;i<message.length;i++){
+                	var lx;
+                	var js;
+                	if(message[i]['type']==1){
+                		sr += parseFloat(message[i]['jine']);
+                		lx="充值";
+                	}else if(message[i]['type']==2){
+                		syje += parseFloat(message[i]['jine']);
+                		lx="罚款";
+                	}else if(message[i]['type']==3){
+                		syje += parseFloat(message[i]['jine']);
+                		lx="被举报";
+                	}else if(message[i]['type']==4){
+                		syje += parseFloat(message[i]['jine']);
+                		lx="消费";
+                	}
+                    $("#tablesss").append("<tr>" +
+                        "<td>"+lx+"</td>" +
+                        "<td>"+message[i]['creattime']+"</td>" +
+                        "<td>"+message[i]['jine']+"</td>" +
+                        "</tr>"); 
+                  
+                }
+            }
+        });
+    }
+    
+    function getjine()
+		{
+			var userid ="${user.id}";
+			var sql ="SELECT * FROM zd_zijinfuwu WHERE userid ="+userid+" order by creattime";
+			jQuery.ajax({ 
+	          type:"POST",
+	          cache: false,
+	          async:false,
+	          url:"/ajaxuser.jsp",
+	          dataType:"json",
+	          data:"table=zd_zijinfuwu&dates=creattime&sql="+sql,
+	          error:function(){alert("数据错误，操作被取消！");},
+	          success:function(data)
+	          {
+	        	  var mess = data.data.data;
+	        	  zje = mess[0]['baozhengjine'];
+	        	  $("#bzj").html(mess[0]['baozhengjine']);
+	        	  var jine = parseFloat(zje) + sr - syje;
+	        	  $("#syjeli").html(jine);
+	          }
+			});
+		}
+    
+    <!--分页结束-->
+</script>
+<script>
+    $(".pagination li").click(function(){
+        $(this).addClass("active");
+        $(this).siblings().removeClass("active");
+    })
+</script>
+</div>
+</body>
+</html>

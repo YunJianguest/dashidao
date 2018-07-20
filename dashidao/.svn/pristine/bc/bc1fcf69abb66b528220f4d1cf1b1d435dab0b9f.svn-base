@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>进货管理</title>
+
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>进货管理 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-2.0.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <!--<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>-->
+    <!--<script src="$!webPath/resources/js/jquery.shop.common.js"></script>-->
+
+
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+
+    <script>
+        jQuery(document).ready(function(){
+            var mycars=new Array();
+            var cuur=1;
+            var pagelimit=10;
+            //入库清单
+            loadajax1("select","dsdsj_storage_submit","result","1",pagelimit,cuur,1);
+            //待审核
+            loadajax3("select","dsdsj_storage_submit","states","1",pagelimit,cuur,1);
+            //已审核
+            loadajax2("select","dsdsj_storage_submit","states","0",pagelimit,cuur,1);
+            function loadajax1(action,table,field,values,page_size,page_no,moudle_id){
+                jQuery.ajax({
+                    type:"POST",
+                    cache: false,
+                    async:false,
+                    url:"/ajax.jsp",
+                    dataType:"json",
+                    // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                    data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                    error:function(){alert("数据错误，操作被取消！");},
+                    success:function(data)
+                    {
+                        if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                        total1=data.data.total;
+                        mycars[0]=total1;
+                        var message=data.data.data;
+                        //console.log(message);
+                        $("#tablesss1").html('');
+                        for(var i=0;i<message.length;i++){
+                            $("#tablesss1").append("<tr class='first'>" +
+                                "<td>"+message[i]['create_date']+"</td>" +
+                                "<td><span class='fr'>"+message[i]['goods_name']+"<br/>" +
+                                "生产日期：<br/>" +message[i]['create_date1']+
+                                "</span>" +
+                                "<span class='fr'>"+
+                                "商品编号:"+ message[i]['goods_serial']+"<br/>"+
+                                "尺码:"+message[i]['goods_size']+"<br/>"+
+                                "颜色:"+message[i]['goods_color']+
+                                +"</span></td>" +
+                                "<td>"+message[i]['goods_unit']+"</td>" +
+                                "<td>"+message[i]['goods_price']+"</td>" +
+                                "<td>"+message[i]['goods_count']+"</td>" +
+                                "<td>"+parseFloat(message[i]['goods_price'])*parseFloat(message[i]['goods_count'])+"</td>" +
+                                "</tr>");
+                        }
+                    }
+                });
+            }
+            function loadajax3(action,table,field,values,page_size,page_no,moudle_id){
+                jQuery.ajax({
+                    type:"POST",
+                    cache: false,
+                    async:false,
+                    url:"/ajax.jsp",
+                    dataType:"json",
+                    // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                    data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                    error:function(){alert("数据错误，操作被取消！");},
+                    success:function(data)
+                    {
+                        if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                        total2=data.data.total;
+                        mycars[0]=total2;
+                        var message=data.data.data;
+                        //console.log(message);
+                        $("#tablesss3").html('');
+                        for(var i=0;i<message.length;i++){
+                            $("#tablesss3").append("<tr class='first'>" +
+                                "<td>"+message[i]['create_date']+"</td>" +
+                                "<td><span class='fr'>"+message[i]['goods_name']+"<br/>" +
+                                "生产日期：<br/>" +message[i]['create_date1']+
+                                "</span>" +
+                                "<span class='fr'>"+
+                                "商品编号:"+ message[i]['goods_serial']+"<br/>"+
+                                "尺码:"+message[i]['goods_size']+"<br/>"+
+                                "颜色:"+message[i]['goods_color']+
+                                +"</span></td>" +
+                                "<td>"+message[i]['goods_unit']+"</td>" +
+                                "<td>"+message[i]['goods_price']+"</td>" +
+                                "<td>"+message[i]['goods_count']+"</td>" +
+                                "<td>"+parseFloat(message[i]['goods_price'])*parseFloat(message[i]['goods_count'])+"</td>" +
+                                "</tr>");
+                        }
+                    }
+                });
+            }
+            function loadajax2(action,table,field,values,page_size,page_no,moudle_id){
+                jQuery.ajax({
+                    type:"POST",
+                    cache: false,
+                    async:false,
+                    url:"/ajax.jsp",
+                    dataType:"json",
+                    // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                    data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                    error:function(){alert("数据错误，操作被取消！");},
+                    success:function(data)
+                    {
+                        if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                        total3=data.data.total;
+                        mycars[0]=total3;
+                        var message=data.data.data;
+                        //console.log(message);
+                        $("#tablesss2").html('');
+                        for(var i=0;i<message.length;i++){
+                            var result;
+                            if(message[i]['result']==0){
+                                result="未通过";
+                            }else if(message[i]['result']==1){
+                                result="通过";
+                            }
+
+                            $("#tablesss2").append("<tr class='first'>" +
+                                "<td>"+message[i]['create_date']+"</td>" +
+                                "<td><span class='fr'>"+message[i]['goods_name']+"<br/>" +
+                                "生产日期：<br/>" +message[i]['create_date1']+
+                                "</span>" +
+                                "<span class='fr'>"+
+                                "商品编号:"+ message[i]['goods_serial']+"<br/>"+
+                                "尺码:"+message[i]['goods_size']+"<br/>"+
+                                "颜色:"+message[i]['goods_color']+
+                                +"</span></td>" +
+                                "<td>"+message[i]['goods_unit']+"</td>" +
+                                "<td>"+message[i]['goods_price']+"</td>" +
+                                "<td>"+message[i]['goods_count']+"</td>" +
+                                "<td>"+parseFloat(message[i]['goods_price'])*parseFloat(message[i]['goods_count'])+"</td>" +
+                                "<td>"+result+"</td>" +
+                                "</tr>");
+                        }
+                    }
+                });
+            }
+            layui.use(['laypage', 'layer'], function(){
+                var laypage = layui.laypage
+                    ,layer = layui.layer;
+                //完整功能
+                laypage.render({
+                    elem: 'demo1'
+                    ,count:total1
+                    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                    ,jump: function(obj){
+                        //console.log(obj)
+                        cuur=obj.curr;
+                        pagelimit=obj.limit;
+                        //alert(pagelimit);
+                        loadajax1("select","dsdsj_storage_submit","result","1",pagelimit,cuur,1);
+                        //loadajax("select","stu",pagelimit,cuur,1);
+                    },
+                    limits:[2, 4, 6, 8, 10],
+                    limit:pagelimit
+                });
+            });
+            layui.use(['laypage', 'layer'], function(){
+                var laypage = layui.laypage
+                    ,layer = layui.layer;
+                //完整功能
+                laypage.render({
+                    elem: 'demo3'
+                    ,count:total2
+                    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                    ,jump: function(obj){
+                        //console.log(obj)
+                        cuur=obj.curr;
+                        pagelimit=obj.limit;
+                        //alert(pagelimit);
+                        loadajax3("select","dsdsj_storage_submit","states","1",pagelimit,cuur,1);
+                        //loadajax("select","stu",pagelimit,cuur,1);
+                    },
+                    limits:[2, 4, 6, 8, 10],
+                    limit:pagelimit
+                });
+            });
+            layui.use(['laypage', 'layer'], function(){
+                var laypage = layui.laypage
+                    ,layer = layui.layer;
+                //完整功能
+                laypage.render({
+                    elem: 'demo2'
+                    ,count:total3
+                    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                    ,jump: function(obj){
+                        //console.log(obj)
+                        cuur=obj.curr;
+                        pagelimit=obj.limit;
+                        //alert(pagelimit);
+                        loadajax2("select","dsdsj_storage_submit","states","0",pagelimit,cuur,1);
+                        //loadajax("select","stu",pagelimit,cuur,1);
+                    },
+                    limits:[2, 4, 6, 8, 10],
+                    limit:pagelimit
+                });
+            });
+        });
+
+
+
+
+    </script>
+    <style>
+        .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{background:#3fa4ed;color:#fff;font-size: 16px;}
+        .nav{margin: 17px 0 29px 21px;border-bottom: 1px solid #c3c3c3;}
+    </style>
+</head>
+<body>
+<style>
+    .entryshtable{ margin-top: 20px; }
+</style>
+<div class="main">
+    <div class="user_center">
+        $!httpInclude.include("/seller/nav_head.htm")
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=refund")
+                <td id="centerbg" valign="top" width="80%">
+
+                    <div class="buyer_position">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代中心</a> > <span>所有订单</span></div>
+                    </div>
+
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#1" data-toggle="tab">待审核</a></li>
+                        <li><a href="#2" data-toggle="tab">已审核</a></li>
+                        <li><a href="#3" data-toggle="tab">入库清单</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <!--待审核-->
+                        <div class="tab-pane active" id="1"style="width:99%;margin-left:1%;">
+                            <div class="entrysheetbox tab-pane active">
+                                <table class="returntable importbill entryshtable" border="0" cellspacing="0" cellpadding="0">
+
+
+                                    <tr id="thead" >
+                                        <td width="20%">时间</td>
+                                        <td width="40%">商品信息</td>
+                                        <td width="10%">单价</td>
+                                        <td width="10%">单位</td>
+                                        <td width="10%">数量</td>
+                                        <td width="10%" >金额</td>
+                                    </tr>
+                                    <tbody id="tablesss3"></tbody>
+                                </table>
+                                <div id="demo3" style=" text-align: center; margin-top: 30px;" ></div>
+                            </div>
+                        </div>
+                        <!--已审核-->
+                        <div class="tab-pane" id="2" >
+                            <div class="entrysheetbox">
+                                <table class="returntable importbill entryshtable" border="0" cellspacing="0" cellpadding="0">
+
+
+                                    <tr id="thead" >
+                                        <td width="15%">时间</td>
+                                        <td width="35%">商品信息</td>
+                                        <td width="10%">单价</td>
+                                        <td width="10%">单位</td>
+                                        <td width="10%">数量</td>
+                                        <td width="10%" >金额</td>
+                                        <td width="10%" >审核结果</td>
+                                    </tr>
+                                    <tbody id="tablesss2">
+                                    </tbody>
+                                </table>
+                                <!--分页开始-->
+                                <div id="demo2" style=" text-align: center; margin-top: 30px;" ></div>
+                            </div>
+                        </div>
+                        <!--入库清单-->
+                        <div class="tab-pane" id="3" >
+                            <div class="entrysheetbox">
+                                <table class="returntable importbill entryshtable" border="0" cellspacing="0" cellpadding="0">
+
+                                    <tr id="thead" >
+                                        <td width="20%">时间</td>
+                                        <td width="40%">商品信息</td>
+                                        <td width="10%">单价</td>
+                                        <td width="10%">单位</td>
+                                        <td width="10%">数量</td>
+                                        <td width="10%" >金额</td>
+                                    </tr>
+                                    <tbody id="tablesss1">
+                                    </tbody>
+
+                                </table>
+                                <!--分页开始-->
+                                <div id="demo1" style=" text-align: center; margin-top: 30px;" ></div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <style type="text/css">
+                        #show{width:40%; text-align: center;  height: auto; padding: 40px 0;
+                            position: fixed;
+                            z-index: 1000; background-color:rgba(210, 236, 250, 1); border-radius: 5px; display: none;  left: 30%; top:300px;    }
+                        #show i{ font-size: 2rem; color: #e51c23;  }
+                        #show p{ padding-top: 15px; color: #e51c23; }
+                        .prodcti i{ font-size: 1.8rem; margin-top: 10px;}
+                        #show2,#show3{width:40%; text-align: center;  height: auto; padding: 40px;
+                            position: fixed;
+                            z-index: 1000; background-color:rgba(210, 236, 250, 1); border-radius: 5px; display: none;  left: 30%; top:300px;    }
+                        #show2 select{ width: 50%; height: 40px; }
+                        #show2 p, #show3 p {color: #333; line-height: 40px; text-align: left;  }
+                        #show2 p.red,#show3 p.red{color: #e51c23; }
+                        #show2 button,#show3 button{ padding: 5px 30px; float: right;  margin-top: 50px; line-height: 40px; text-align: center; background:#108ee9; font-size: 16px; color: #fff; border: none; border-radius:5px;}
+                    </style>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>
+
+</body>
+</html>

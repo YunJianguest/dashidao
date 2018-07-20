@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+
+    <title>基础管理-栈代</title>
+    <style>
+        body{font-family: "Microsoft Yahei", "Lucida Grande", Verdana, Lucida, Helvetica, Arial, 'Simsun', sans-serif;
+        }
+        .search{height:50px;width:100%;background: #E5E5E5;}
+        .search input{width:98%;margin: 8px 1%;border-radius:13px;background: #fff;border:1px solid #c3c3c3;height: 30px;}
+        .zdtable td{height:40px;text-align: center;}
+        .zdtable td img{width:80px;height: 80px;border-radius: 50%;margin:0 auto ;border:1px solid #c3c3c3;}
+        .stores_name{font-size:16px;}
+        .cz input{border:1px solid #c3c3c3;border-radius: 10px;width:50px;text-align: center;margin: 3px auto; background: #ffffff}
+        .stores{border:1px solid #c3c3c3;margin-top:5px;font-size:16px;width: 98%;margin-left: 2%;}
+        .seth1 {
+            border-top: 1px solid #D9D9D9;
+            height: 35px;
+            border-bottom: 1px solid #D9D9D9;
+            line-height: 46px;
+            padding-left: 40px;
+            color: #686868;
+            margin: 5px;
+            font-size:16px;
+            padding: 0px;
+            text-align: left;
+            background: #f3f3f3;
+        }
+        .allmen input {
+            width: 180px;
+            height: 29px;
+            line-height:29px;
+            padding-left: 5px;
+            border: 1px solid #ccc;
+            color: #333333;
+            background: #FAFAFA none repeat scroll 0 0;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #B2B2B2 #E7E7E8 #E7E7E8 #B2B2B2;
+            border-radius: 5px;
+            margin:5px 0 0 2%;
+        }
+        .btn_search input {
+            background-color: #108ee9;
+            width: 62px;
+            height: 30px;
+            border: 0px;
+            color: #FFF;
+        }
+        .zdtable{
+            border:1px solid #c3c3c3;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="seth1">
+
+    <img src="$!webPath/resources/style/system/manage/black/img/1.png" alt="">
+    栈代管理
+</div>
+<div><span class="allmen"><input type="text"></span><span class="btn_search"> <input type="submit" value="搜索" style="cursor:pointer;background-color: #108ee9;color:#FFF"></span></div>
+<div class="" id="tablelist">
+    <table width="100%" class="zdtable">
+        <tbody  id="tablesss" >
+
+        </tbody>
+    </table>
+
+</div>
+
+
+<!--分页开始-->
+<div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+<script>
+
+    jQuery(document).ready(function(){
+        var mycars=new Array();
+        var messa;
+        var id;
+        var zdid;
+        var cuur=1;
+        var pagelimit=2;
+        function loadajax(action,table,field,values,page_size,page_no,moudle_id){
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajax.jsp",
+                dataType:"json",
+                // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error:function(){alert("数据错误，操作被取消！");},
+                success:function(data)
+                {
+                    if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                    total=data.data.total;
+                    mycars[0]=total;
+                    var message=data.data.data;
+                    //console.log(message);
+                    $("#tablelist").html('');
+                    for(var i=0;i<message.length;i++){
+                        var qy=message[i]['zb_zhandaizhuangtai'];
+                        zdid=message[i]['zb_zhandaiid'];
+                        id=message[i]['id'];
+                        if(qy==1){
+                            message[i]['zb_zhandaizhuangtai']="已启用";
+                            messa='禁用';
+
+                        }else {
+                            message[i]['zb_zhandaizhuangtai']="已禁用";
+                            messa='启用';
+                        }
+
+                        $("#tablelist").append("<table  width='100%' class='zdtable'>" +
+                            "<tr ><td width='10%' rowspan='2'><img src='"+"$!webPath/resources/"+ message[i]['zb_tupian']+"'alt=''></td>" +
+                            "<td width='40%' class='stores_name'>"+message[i]['zb_name']+" <span style='border-radius: 7px;padding: 1px 5px;color:#fff;background: red;font-size:16px;'>"+message[i]['zb_tuijianliang']+"</span></td>" +
+                            "<td width='40%'>"+message[i]['zb_zhandaizhuangtai']+"</td>" +
+                            "<td  width='10' rowspan='2' class='cz'><input id='d1' onclick='dd("+id+")' type='button' value='"+messa+"'><br><a href=$!webPath/admin/zhandaixq.htm?id="+id+"&zd_zhandaiid="+zdid+"><input type='button' value='详情' ></a><br><a href=$!webPath/admin/tuijian_zhandai2.htm><input type='button' value='推荐'></a></td>" +
+                            "</tr>" +
+                            "<tr class='bottom'>" +
+                            "<td><span>"+message[i]['zb_dianpuname']+""+message[i]['zb_dianhua']+"</span>&nbsp;&nbsp;&nbsp;<span>"+message[i]['zb_shijian']+"</span></td>" +
+                            "<td><span>"+message[i]['zb_dianpudizhi']+"</span><span style='margin-left: 20px;'>商家："+message[i]['zb_shangjiaid']+"</span></td>" +
+                            "</tr></table>");
+
+                    }
+                }
+            });
+        }
+        loadajax("select","zb_zhandai","states","1",pagelimit,cuur,1);
+        layui.use(['laypage', 'layer'], function(){
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+            //完整功能
+            laypage.render({
+                elem: 'demo7'
+                ,count:total
+                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                ,jump: function(obj){
+                    //console.log(obj)
+                    cuur=obj.curr;
+                    pagelimit=obj.limit;
+                    loadajax("select","zb_zhandai","states","1",pagelimit,cuur,1);
+                    //loadajax("select","stu",pagelimit,cuur,1);
+                },
+                limits:[2, 4, 6, 8, 10],
+                limit:pagelimit
+            });
+        });
+
+    });
+    function dd(id) {
+        var str=$('#d1').val();
+        var fpsz;
+        if(str=='启用'){
+            fpsz=id+"|"+1;
+        }else if(str=='禁用') {
+            fpsz=id+"|"+0;
+        }
+        jQuery.ajax({
+            type: "POST",
+            cache: false,
+            async: false,
+            url: "/ajax.jsp",
+            dataType: "json",
+            // data:"action=update&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+            data: "action=update&table=zb_zhandai&field=id,zb_zhandaizhuangtai&values=" + fpsz,
+
+            success: function (data) {
+                if (data.code == "0") {
+                    alert("系统错误，操作被取消！");
+                    return;
+                }
+                var strs = '操作成功';
+                if (strs == data.msg) {
+                    //window.location.href== '$!webPath/admin/xbfwsz_admin.htm';
+                    //openURL('url','$!webPath/admin/xbfwsz_admin.htm','main_workspace','xbfwsz_admin');
+                    location.reload();
+
+                }
+
+            }
+        });
+    }
+
+</script>
+<!--分页结束-->
+<script>
+    $(".pagination li").click(function(){
+        $(this).addClass("active");
+        $(this).siblings().removeClass("active");
+    })
+</script>
+
+
+</body>
+</html>

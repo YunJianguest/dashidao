@@ -1,0 +1,283 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>投诉详情</title>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/two_level.css">
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+	<link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+	<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+	<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+	<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+	<!--<script src="$!webPath/resources/js/jquery.shop.common.js"></script>-->
+	<link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+	<script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+	<script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+	<!--bootstrap-->
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+	<script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+</head>
+<style>.d1{border: 0;  background: white;}.d2{border: 0; text-align: center; background: white;}</style>
+
+<body>
+
+<div class="main">
+	<div class="user_center">
+		$!httpInclude.include("/poster/nav_head.htm")
+		$!httpInclude.include("/seller/adv.htm")
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+			<tr> $!httpInclude.include("/poster/nav.htm?op=complaint")
+				<td id="centerbg" valign="top" width="80%">
+
+					<div class="buyer_position">
+						<div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代中心</a> > <span>投诉详情</span></div>
+					</div>
+					<input id="id" type="hidden" value=""><input id="ddid" type="hidden" value=""><input id="username" type="hidden" value="${user.username}">
+					<div class="both drawback">
+						<div class="tip">来自 <input type="text" class="d2" id="userid1" value="" disabled> 的投诉</div>
+						<table>
+							<tr>
+								<td width="20%">当前状态：</td>
+								<td width="50%"><input class="d1" id="zt" value="" disabled></td>
+								<td width="30%"></td>
+							</tr>
+							<tr>
+								<td>投诉编号：</td>
+								<td><input class="d1" id="tsbh" value="" disabled></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>投诉申请时间：</td>
+								<td><input class="d1" id="sj" value="" disabled></td>
+								<td></td>
+							</tr>
+						</table>
+						<div class="tip">投诉详情</div>
+						<table>
+							<tr>
+								<td width="20%">投诉人：</td>
+								<td width="50%"><input type="text" class="d1" id="userid" value="" disabled></td>
+								<td width="30%"></td>
+							</tr>
+							<tr>
+								<td>订单编号：</td>
+								<td><input class="d1" id="ddbh" value="" disabled></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>商品名称：</td>
+								<td><input class="d1" id="spmc" value="" disabled></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>单价：</td>
+								<td><input class="d1" id="jg" value="" disabled></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>数量：</td>
+								<td><input class="d1" id="sl" value="" disabled></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>维权类型：</td>
+								<td><input class="d1" id="tslx" value="" disabled></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>维权说明：</td>
+								<td><input class="d1" id="tsyy" value="" disabled></td>
+								<td></td>
+							</tr>
+						</table>
+						<div class="tip">消息记录</div>
+						<table>
+							<tbody id="tablesss"></tbody>
+
+						</table>
+						<div class="tip">会话留言</div>
+						<table>
+							<tr>
+								<td colspan="3" class="beiz"><textarea id="yj_message" class="form-control" rows="3" placeholder="申诉留言" style="width: 700px;"></textarea></td>
+							</tr>
+
+						</table>
+					</div>
+					<div class="subm" >
+						<span onclick="commit();">提交申诉留言</span>
+					</div>
+					<script type="text/javascript">jQuery(".shopadminbox").slide({trigger:"click"});</script>
+
+				</td>
+			</tr>
+		</table>
+	</div>
+
+</div>
+<script>
+    var id;//投诉id
+    var ddid;//订单id
+    var tsid;//
+    var uesr_name;
+    jQuery(document).ready(function(){
+    	//获取参数
+        var request = new Object();
+        request = GetRequest();
+        id = request['id'];
+        ddid= request['ddid'];
+        tsid=request['tsid'];
+        $('#id').val(id);
+        $('#ddid').val(ddid);
+        //投诉
+        instOrder();
+    });
+    //读取路径中带过来的参数
+    function GetRequest() {
+        var url = location.search; //获取url中"?"符后的字串  
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+    function instOrder(){
+        var sql1="SELECT * FROM zd_woshoudaodetousugl where id='"+id+"'";
+        jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajaxuser.jsp",
+            dataType:"json",
+            data:"table=zd_woshoudaodetousugl&dates=addTime,finishTime,zd_riqi,payTime,shipTime,return_shipTime&sql="+sql1,
+            error:function(){alert("数据错误，操作被取消！");},
+            success:function(data)
+            {
+                if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                var message=data.data.data;
+                uesr_name=message[0]['user_id'];
+                $('#userid1').val(message[0]['user_id']);
+                $('#userid').val(message[0]['user_id']);
+                $('#zt').val(message[0]['zd_tousuzhuangtai']);
+                $('#tsbh').val(message[0]['zd_tousubianhao']);
+                $('#sj').val(message[0]['addTime']);
+                $('#ddbh').val(message[0]['zd_dingdanbianhao']);
+                $('#tslx').val(message[0]['zd_leixing']);
+                $('#tsyy').val(message[0]['zd_tousuyuanyin']);
+
+            }
+        });
+        instOrder1();
+    }
+    //商品名称
+    function instOrder1(){
+
+        var sql1="SELECT * FROM dashidao_goodscart where of_id='"+ddid+"'";
+        jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajaxuser.jsp",
+            dataType:"json",
+            data:"table=dashidao_goodscart&dates=addTime,finishTime,zd_riqi,payTime,shipTime,return_shipTime&sql="+sql1,
+            error:function(){alert("数据错误，操作被取消！");},
+            success:function(data)
+            {
+                if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                var message=data.data.data;
+                $('#spmc').val(message[0]['goodsname']);
+                $('#jg').val(message[0]['price']);
+                $('#sl').val(message[0]['count']);
+            }
+        });
+        loadajax2();
+    }
+
+
+    //通过投诉编号查询会话内容
+    function loadajax2(){
+        var sql="SELECT * FROM `dashidao_zdtousu_chat`where tc_tsid="+tsid+" ORDER BY addTime";
+        jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajaxuser.jsp",
+            dataType:"json",
+            data:"table=dashidao_zdtousu_chat&dates=addTime&sql="+sql,
+            error:function(){alert("数据错误，操作被取消！");},
+            success:function(data)
+            {
+                if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                var message=data.data.data;
+                $("#tablesss").html('');
+                for(var i=0;i<message.length;i++){
+                    var new_name;
+                    if(message[i]['tc_userid']==null){
+                        new_name="商家 "+"我";
+                    }else if(message[i]['tc_userid']!=null){
+                        new_name="客户 "+uesr_name;
+                    }
+
+                    $("#tablesss").append("<tr align='left'><td>"+message[i]['addTime']+"</td>" +
+                        "<td>"+new_name+"</td>" +
+                        "<td>"+message[i]['tc_message']+"</td>" +
+                        "</tr>");
+                }
+
+            }
+        });
+    }
+    //提交
+    function commit(){
+        var today = new Date();
+        var minutes;
+        if(today.getMinutes()>=0&&today.getMinutes()<=9){
+            minutes="0"+today.getMinutes();
+        }else{
+            minutes=today.getMinutes();
+        }
+        var nowdate = (today.getFullYear()) + "-" + (today.getMonth() + 1) + "-" + today.getDate()+" "+today.getHours()+":"+minutes+":"+today.getSeconds();
+        //取得要添加的数
+        var dat=$('#username').val()+","+tsid+","+$('#yj_message').val()+","+nowdate+","+"0";
+        jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajaxuser.jsp",
+            dataType:"json",
+            data:"action=insert&table=dashidao_zdtousu_chat&field=tc_sjid,tc_tsid,tc_message,addTime,states&values="+dat,
+            success:function(data)
+            {
+                if(data.code=="0"){alert("系统错误，操作被取消！");return;}
+                var str='操作成功';
+                if(str==data.msg){
+                	//javascript:history.back(-1);
+                    window.location.reload();
+                }
+            }
+        });
+
+    }
+</script>
+<!--引入上传要用的js文件-->
+<script type="text/javascript" src="/fileup/index_no1.js"></script>
+<script>
+    //picture代表input<file类型>的class的值，up_picture代表隐藏（hidden）的input的id值，imgss代表<img>标签的id值
+    fileInput("picture","up_picture","imgss");
+</script>
+
+</body>
+
+
+
+</html>

@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>消保详情</title>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/two_level.css">
+	<script src="$!webPath/resources/js/jquery-1.7.1.min.js"></script>
+</head>
+<body>
+<script>
+	var id=$!id;
+//   wemall_goods
+
+</script>
+<div class="both">
+<form id="form1" name="form1" method="post" class="form-inline">
+
+	<table width="100%"> 
+	<tr>
+		<td width="20%">商家：</td>
+		<td width="50%">0892345    名秋月</td>
+		<td width="30%"></td>
+	</tr>
+	<tr>
+		<td>商品名称：</td>
+		<td><input type="text" class="" name="" id="" value="" placeholder="韩版修身T恤"/></td>
+		<td rowspan="2"><img src="img/raw_1501246954.png" alt=""></td>
+	</tr>
+	<tr>
+		<td>商品编号：</td>
+		<td><input type="text" class="" name="" id="" value="" placeholder="230817"/></td>
+	</tr>
+	<tr>
+		<td>风格：</td>
+		<td><input type="text" class="" name="" id="" value="" placeholder="通勤"/></td>
+		<td rowspan="3"><img src="$!webPath/resources/style/system/manage/black/img/raw_1501422990.png" alt=""></td>
+	</tr>
+	<tr>
+		<td>厚薄：</td>
+		<td><input type="text" class="" name="" id="" value="" placeholder="常规"/></td>
+	</tr>
+	<tr>
+		<td>材质：</td>
+		<td><input type="text" class="" name="" id="" value="" placeholder="涤纶"/></td>
+	</tr>
+	<tr>
+		<td>适用年龄：</td>
+		<td><input type="text" class="" name="" id="" value="" placeholder="20-40周岁"/></td>
+		<td rowspan="3"><img src="$!webPath/resources/style/system/manage/black/img/raw_1501246954.png" alt=""></td>
+	</tr>
+	<tr>
+		<td>商品规格：</td>
+		<td>颜色：<input type="text" class="" name="" id="" value="" placeholder="月白/浅蓝/军绿"/></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>尺码：<input type="text" class="" name="" id="" value="" placeholder="S/M/L/XL"/></td>
+	</tr>
+	<tr>
+		<td>储藏条件：</td>
+		<td><input type="text" class="" name="" id="" value="" placeholder="常温、干燥、通风"/></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>生产日期：</td>
+		<td><input type="text" class="" name="" id="" value="" placeholder="2017年5月23日"/></td>
+		<td>保质期：<input type="text" class="" name="" id="" value="" placeholder="2年"/></td>
+	</tr>
+	<tr>
+		<td>有效期至：</td>
+		<td><input type="text" class="" name="" id="" value="" placeholder="2019年5月23日"/></td>
+		<td></td>
+	</tr>
+</table>
+<table width="100%">
+	<tr>
+		<td width="20%">零售单位：</td>
+		<td width="50%"><input type="text" placeholder="件"></td>
+		<td width="30% "></td>
+	</tr>
+	<tr>
+		<td>零售价格：</td>
+		<td><input type="text" placeholder="30元"></td>
+		<td ></td>
+	</tr>
+	<tr>
+		<td>批发价格：</td>
+		<td><input type="text" placeholder="15元"></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>批发单位：</td>
+		<td><input type="text" placeholder="箱"></td>
+		<td><input style="background:#fff;" type="text" value="每箱20件" disabled></td>
+	</tr>
+	<tr>
+		<td>分销商起订量：</td>
+		<td><input type="text" placeholder="100"></td>
+		<td><input type="text"></td>
+	</tr>
+</table>
+<table width="100%"> 
+	<tr>
+		<td width="20%">运输包装：</td>
+		<td width="30%"><input type="text" class="" name="" id="" value="" placeholder="100cm*50cm*50cm"/></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>储运要求：</td>
+		<td><input type="text" class="" name="" id="" value="" placeholder="干燥防潮"/></td>
+		<td></td>
+	</tr>
+	</table>
+	<div class="view">
+	<span></span><font>同意投保</font> <span class="refuse check"></span><font>拒绝投保</font>
+	<div>
+		<textarea type="text" class="" name="" id="" value="" placeholder="可以留下您的理由吗？" ></textarea>
+	</div>
+	</div>
+</form>
+<div class="sub"><a href="$!webPath/admin/sell_consume_check.htm" style="color:white;">确定</a></div>
+</div>
+<script>
+$('.view span').click(function(){
+	$(this).addClass('check');
+	$(this).siblings().removeClass('check');
+})
+</script>
+</body>
+</html>

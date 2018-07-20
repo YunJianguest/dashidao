@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>总部业务详情</title>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/two_level.css">
+	<script src="$!webPath/resources/js/jquery-1.7.1.min.js"></script>
+	<!--layui-->
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+	<script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+</head>
+<body>
+<div class="both headquarters">
+<form id="form1" name="form1" method="post" class="form-inline">
+
+	<table width="100%"> 
+	<tr>
+		<td width="20%">活动类型</td>
+		<td width="50%">拼团</td>
+		<td width="30%" class="conf"><span>确定</span></td>
+	</tr>
+	<tr>
+		<td>活动名称</td>
+		<td>双12大促</td>
+	</tr>
+	<tr>
+		<td>时间</td>
+		<td> 2017年7月12日 - 2017年7月30日</td>
+		<td rowspan="3"></td>
+	</tr>
+	<tr>
+		<td>状态</td>
+		<td>招募中</td>
+	</tr>
+	<tr>
+		<td>参加条件</td>
+		<td>商家的服务指标4.5以上方能参加</td>
+	</tr>
+	<tr>
+		<td>活动内容</td>
+		<td>满10000件，折80%</td>
+		<td rowspan="3"></td>
+	</tr>
+	<tr>
+		<td>活动介绍</td>
+		<td>拼团活动期间，满足条件的商家均可参加。</td>
+	</tr>
+
+</table>
+	<div style="height:50px;line-height:50px;border-left: 2px solid #3fa4ed;font-size: 20px; margin-bottom: 5px;">已参加商品清单</div>
+<table width="100%" class="twor">
+		<tr class="thead">
+			<td>商品名称</td>
+			<td>商品编号</td>
+			<td>商品规格</td>
+			<td>出厂价 </td>
+			<td>厂商号</td>
+		</tr>
+		<tr>
+			<td>海参快客鲜食辽参雪蛤银耳浸	</td>
+			<td>TD432965050</td>
+			<td>185g*4</td>
+			<td>30元/件</td>
+			<td>27312</td>
+		</tr>
+		<tr>
+			<td>海参快客鲜食辽参雪蛤银耳浸	</td>
+			<td>TD432965050</td>
+			<td>185g*4</td>
+			<td>30元/件</td>
+			<td>27312</td>
+		</tr>
+		<tr>
+			<td>海参快客鲜食辽参雪蛤银耳浸	</td>
+			<td>TD432965050</td>
+			<td>185g*4</td>
+			<td>30元/件</td>
+			<td>27312</td>
+		</tr>
+		<tr>
+			<td>海参快客鲜食辽参雪蛤银耳浸	</td>
+			<td>TD432965050</td>
+			<td>185g*4</td>
+			<td>30元/件</td>
+			<td>27312</td>
+		</tr>
+		<tr>	
+		    <td>海参快客鲜食辽参雪蛤银耳浸	</td>
+			<td>TD432965050</td>
+			<td>185g*4</td>
+			<td>30元/件</td>
+			<td>27312</td>
+		</tr>
+	</table>
+	   <div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+                        <script>
+                            layui.use(['laypage', 'layer'], function(){
+                                var laypage = layui.laypage
+                                    ,layer = layui.layer;
+                                //完整功能
+                                laypage.render({
+                                    elem: 'demo7'
+                                    ,count: 100
+                                    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                                    ,jump: function(obj){
+                                        console.log(obj)
+                                    }
+                                });
+                            });
+                        </script>
+   <div style="height:50px;line-height:50px;border-left:2px solid #3fa4ed;font-size: 20px; margin-bottom: 5px;">审核意见</div>
+	<div class="view">
+	<span></span>    <font>同意</font> <span class="refuse check"></span>   <font>不同意</font>
+	<div>
+		<textarea type="text" class="" name="" id="" value="" placeholder="同意修改" ></textarea>
+	</div>
+	</div>
+</form>
+<div class="sub">提交审核意见</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>代理商品 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+
+    <script type="text/javascript" src="$!webPath/resources/js/jquery1.42.min.js"></script>
+    <script type="text/javascript" src="$!webPath/resources/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script src="$!webPath/resources/js/jquery.page.js" type="text/javascript" ></script>
+
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+    <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+<link href="$!webPath/resources/style/system/manage/blue/zhandai.css"  rel="stylesheet" type="text/css"/>
+
+    <script>
+        var user_id='${user.id}';
+        jQuery(document).ready(function(){
+            var mycars=new Array();
+            var cuur=1;
+            var pagelimit=10;
+            function loadajax(action,table,field,values,page_size,page_no,moudle_id){
+                jQuery.ajax({
+                    type:"POST",
+                    cache: false,
+                    async:false,
+                    url:"/ajax.jsp",
+                    dataType:"json",
+                    // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                    data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                    error:function(){alert("数据错误，操作被取消！");},
+                    success:function(data)
+                    {
+                        if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                        total=data.data.total;
+                        mycars[0]=total;
+                        var message=data.data.data;
+                        //console.log(message);
+                        $("#tablesss").html('');
+                        for(var i=0;i<message.length;i++){
+                            var str;
+                            if(message[i]['examine_state']==1){
+                                str="待审核";
+                            }else if(message[i]['examine_state']==2){
+                                str="已通过";
+                            }else if(message[i]['examine_state']==3){
+                                str="申请失败";
+                            }
+
+                            $("#tablesss").append('<tr style="text-align: center;">'+
+                                '<td>'+message[i]['goods_id']+'</td>' +
+                                '<td>'+message[i]['zb_shangpinmingcheng']+'</td>' +
+                                '<td>'+message[i]['zb_tupian']+'</td>' +
+                                '<td>'+message[i]['zb_shangpinbianhao']+'</td>' +
+                                '<td><ul><li>尺码：'+message[i]['zb_chima']+'</li>'+
+                                '<li>颜色：'+message[i]['zb_color']+'</li>'+
+                                '<li>零售单位：'+message[i]['zb_danwei']+'</li></ul></td>' +
+                                '<td>'+message[i]['zb_muqianchuchangjia']+'</td>' +
+                                '<td>'+message[i]['zb_qiwangchuchangjia']+'</td>' +
+                                '<td>'+message[i]['storage']+'</td>' +
+                                '<td>'+message[i]['create_date']+'</td>' +
+                                '<td>'+str+'</td>' +
+                                '</tr>');
+                        }
+                    }
+                });
+            }
+            loadajax("select","zb_sjtiaojiashenhe","zb_shangjiaid",user_id,pagelimit,cuur,1);
+            layui.use(['laypage', 'layer'], function(){
+                var laypage = layui.laypage
+                    ,layer = layui.layer;
+                //完整功能
+                laypage.render({
+                    elem: 'demo7'
+                    ,count:total
+                    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                    ,jump: function(obj){
+                        //console.log(obj)
+                        cuur=obj.curr;
+                        pagelimit=obj.limit;
+                        //alert(pagelimit);
+                        loadajax("select","zb_sjtiaojiashenhe","zb_shangjiaid",user_id,pagelimit,cuur,1);
+                        //loadajax("select","stu",pagelimit,cuur,1);
+                    },
+                    limits:[2, 4, 6, 8, 10],
+                    limit:pagelimit
+                });
+            });
+        });
+        <!--分页结束-->
+    </script>
+</head>
+<body>
+
+<div class="main request_tiaojia">
+    <div class="user_center">
+        $!httpInclude.include("/seller/nav_head.htm")
+        $!httpInclude.include("/seller/adv.htm")
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=refund")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="buyer_position">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">商家支持</a> > <span>商品管理</span> > <span>调价申请</span></div>
+                    </div>
+                    <div class="shopadminbox choicebox">
+                        <table width="100%" border="0"  cellspacing="0" cellpadding="0" class="table">
+
+                            <tr class="returnthead" >
+                                <td width="100%" colspan="9" class="cz_tip" >
+                                    <form class="form-inline" style="float: right;">
+                                        <div class="form-group">
+                                            <!--<input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入查询内容" style="width: 200px;" >-->
+                                            <input type="checkbox" name="" checked>待审核
+                                            <input type="checkbox" name="" checked>已通过
+                                            <input type="checkbox" name="" checked>申请失败
+                                        </div>
+                                        <button type="submit" class="btn btn-default"><a href="$!webPath/seller/add_request_tiaojia.htm" >调价申请</a></button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <tr><td colspan="10" class="cz_tip">
+                            
+                            <div class="operation_tip">
+	<h3>友情提示</h3>
+	<ul>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+<br>
+                            
+                            </td></tr>
+                            <tr width="100%" id="thead">
+                                <td  width="8%">商品id</td>
+                                <td width="8%">商品名称</td>
+                                <td width="15%">商品图片</td>
+                                <td width="8%">商品编号</td>
+                                <td width="15%">商品规格</td>
+                                <td width="8%">目前出厂价</td>
+                                <td width="8%">期望出厂价</td>
+                                <td width="8%">库存</td>
+                                <td width="10%">起始日期</td>
+                                <td width="12%">操作</td>
+                            </tr>
+                            <tbody id="tablesss">
+                            </tbody>
+                        </table>
+
+                        <div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+
+                    </div>
+                    <script type="text/javascript">jQuery(".shopadminbox").slide({trigger:"click"});</script>
+
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>开设直营店 - $!{config.poweredby}</title>
+<meta name="keywords" content="$!config.keywords" />
+<meta name="description" content="$!config.description" />
+<meta name="generator" content="$!{config.meta_generator}" />
+<meta name="author" content="$!{config.meta_author}">
+<meta name="copyright" content="$!{config.copyRight}">
+#if($!config.website_ico)
+<link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+#end
+<link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+<link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/two_level3.css">
+<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/iconfont.css">
+<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+<script src="$!webPath/resources/js/jquery.validate.min.js"></script>
+<script src="http://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.js"></script>  
+<script src="http://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.min.js"></script>  
+	<script>
+	jQuery(document).ready(function(){
+	  
+	});
+	
+	
+	//提交
+	function subClick()
+	{
+		var ds_storeName = $("#ds_storeName").val();
+		var ds_userName = $("#ds_userName").val();
+		var ds_passWord = $("#ds_passWord").val();
+		var ds_phone = $("#ds_phone").val();
+		var ds_phoneName = $("#ds_phoneName").val();
+		var ds_address = $("#ds_address").val();
+		var ds_city = $("#ds_city").val();
+		var create_dateds_beginTime = $("#create_dateds_beginTime").val();
+		var create_dateds_endTime = $("#create_dateds_endTime").val();
+		
+		if((ds_storeName == null || ds_storeName=="") || (ds_userName=="" || ds_userName ==null)  || (ds_passWord ==null || ds_passWord=="")  || 
+				(ds_phone==null || ds_phone=="")  || (ds_phoneName==null || ds_phoneName=="")  || (ds_address =="" || ds_address==null)  || 
+				(ds_city==null || ds_city=="")  || (create_dateds_beginTime==null || create_dateds_beginTime=="")  || (create_dateds_endTime==null || create_dateds_endTime=="") )
+		{
+			alert("请完善信息");
+			return;
+		}
+		if(!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(ds_phone))){
+            alert("不是完整的11位手机号或者正确的手机号前七位");
+            return;
+        }
+		
+		var today = new Date();
+        var minutes;
+        if(today.getMinutes()>=0&&today.getMinutes()<=9){
+            minutes="0"+today.getMinutes();
+        }else{
+            minutes=today.getMinutes();
+        }
+        var passWord =md5(ds_passWord);
+        //获取当前日期
+        var nowdate = (today.getFullYear()) + "-" + (today.getMonth() + 1) + "-" + today.getDate()+" "+today.getHours()+":"+minutes+":"+today.getSeconds();
+		var states ="1";
+        var userid = "${user.id}";
+		var field ="ds_userId,ds_storeName,ds_userName,ds_passWord,ds_phone,ds_phoneName,ds_address,ds_city,create_date,states,create_dateds_beginTime,create_dateds_endTime";
+		var values =userid+","+ds_storeName+","+ds_userName+","+passWord+","+ds_phone+","+ds_phoneName+","+ds_address+","+ds_city+","+nowdate+","+states+","+create_dateds_beginTime+","+create_dateds_endTime;
+		var field1= "addTime,gold,integral,loginCount,report,sex,status,user_credit,userName,password,userRole";
+		var values1 =nowdate+",0,0,0,0,0,0,0,"+ds_userName+","+passWord+",SELLER";
+		save(field,values,field1,values1);
+	}
+	
+	function save(field,values,field1,values1)
+	{
+		jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajax.jsp",
+            dataType:"json",
+            data:"action=insert&table=wemall_directsale_store&field="+field+"&values="+values,
+
+            success:function(data)
+            {
+                if(data.code=="0"){alert("系统错误，操作被取消！");return;}
+                var str='操作成功';
+                if(str==data.msg){
+                	saveUser(field1,values1);
+                }
+            data:"table=wemall_directsale_store&dates=create_date,create_dateds_beginTime,create_dateds_endTime&action="+action+"&field="+field+"&values="+values,
+            error:function(){alert("数据错误，操作被取消！");},
+            success:function(data){
+                alert("添加完成");
+                window.location.href="http://localhost:8080/seller/open_store.htm";
+            data:"table=wemall_directsale_store&dates=create_date,create_dateds_beginTime,create_dateds_endTime&action="+action+"&field="+field+"&values="+values,
+            error:function(){alert("数据错误，操作被取消！");},
+            success:function(data){
+                alert("添加完成");
+                window.location.href="$!webPath/seller/open_store.htm";
+            }
+        }); 
+		
+	}
+	
+	function saveUser(field,values)
+	{
+		jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajax.jsp",
+            dataType:"json",
+            data:"action=insert&table=dashidao_user&field="+field+"&values="+values,
+
+            success:function(data)
+            {
+                if(data.code=="0"){alert("系统错误，操作被取消！");return;}
+                var str='操作成功';
+                if(str==data.msg){
+                	 window.location.href='$!webPath/seller/open_store.htm';
+                }
+            }
+        }); 
+		
+	}
+	
+	</script>
+</head>
+<body>
+<div class="main"> 
+    <div class="user_center">
+    	$!httpInclude.include("/seller/nav_head.htm")
+        $!httpInclude.include("/seller/adv.htm")
+      <table  width="100%"  border="0" cellspacing="0" cellpadding="0" class="user_table">
+        <tr> $!httpInclude.include("/seller/nav.htm?op=open_store")
+          <td id="centerbg" valign="top" width="80%">
+          <div class="buyer_position"><div class="buyer_p_box"><a href="$!webPath/buyer/index.htm">商家支持</a> > <span>基础管理</span> > <span>开设直营店</span></div></div>
+          <div class="productmain">
+          	<form id="form1" name="form1" method="post" class="form-inline">
+				<div class="both marketing">
+					<div class="content" style="clear:both;"><span>直营店：</span><input type="text" class="" name="ds_storeName" id="ds_storeName" value="" placeholder="直营店名称"/></div>
+					<div class="content"><span>用户名：</span><input type="text" class="" name="ds_userName" id="ds_userName" value="" placeholder="用户名"/></div>
+					<div class="content"><span>密码：</span><input type="text" class="" name="ds_passWord" id="ds_passWord" value="" placeholder="密码"/></div>
+					<div class="content"><span>手机：</span><input type="text" class="" name="ds_phone" id="ds_phone" value="" placeholder="手机"/></div>
+					<div class="content"><span>联系人：</span><input type="text" class="" name="ds_phoneName" id="ds_phoneName" value="" placeholder="联系人"/></div>
+					<div class="content"><span>地址：</span><input type="text" class="" name="ds_address" id="ds_address" value="" placeholder="直营店地址"/></div>	
+					<div class="content"><span>直营店城市：</span><input type="text" class="" name="ds_city" id="ds_city" value="" placeholder="直营店城市"/></div>			
+					<div class="content youxiao"><span>有效期：</span>
+						<input type="date" class="" style="width:30%" name="create_dateds_beginTime" id="create_dateds_beginTime" value=""/>至
+						<input type="date" class="" style="width:30%" name="create_dateds_endTime" id="create_dateds_endTime" value=""/>
+					</div>					
+				</div>
+				<div class="sub" onclick="subClick();">确定</div>
+				</form>
+              
+            </div></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

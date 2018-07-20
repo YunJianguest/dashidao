@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>直营店添加  -  $!{config.poweredby}</title>
+<meta name="keywords" content="$!config.keywords" />
+<meta name="description" content="$!config.description" />
+<meta name="generator" content="$!{config.meta_generator}" />
+<meta name="author" content="$!{config.meta_author}">
+<meta name="copyright" content="$!{config.copyRight}">
+#if($!config.website_ico)
+<link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+#end
+<link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+<link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+<link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+<link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+<script src="$!webPath/resources/js/jquery.validate.min.js"></script>
+<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+<link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+<script>
+
+	//提交
+	function save(){
+		var ds_storeName = $("#ds_storeName").val();//直营店
+		var ds_userName = $("#ds_userName").val();//用户名
+      	var ds_passWord = $("#ds_passWord").val();//密码	
+      	var ds_phone = $("#ds_phone").val();//手机
+      	var ds_phoneName = $("#ds_phoneName").val();//联系人
+      	var ds_address = $("#ds_address").val();//地址
+      	var ds_city = $("#ds_city").val();//城市
+      	var create_dateds_beginTime = $("#create_dateds_beginTime").val();//开始时间
+      	var create_dateds_endTime = $("#create_dateds_endTime").val();//结束时间
+      	
+		var now = new Date();  
+        var year = now.getFullYear();       //年  
+        var month = now.getMonth() + 1;     //月  
+        var day = now.getDate();            //日  
+        var hh = now.getHours();			//时
+        var mm = now.getMinutes();          //分  
+        var ss = now.getSeconds();           //秒  
+        var sj= year + "-"+ month +"-"+ day+" "+hh+":"+mm+":"+ss;
+   		
+        var field = "ds_storeName,ds_userName,ds_passWord,ds_phone,ds_phoneName,ds_address,ds_city,create_dateds_beginTime,create_dateds_endTime,states,create_date";
+		var values = ds_storeName+","+ds_userName+","+ds_passWord+","+ds_phone+","+ds_phoneName+","+ds_address+","+ds_city+","+create_dateds_beginTime+","+create_dateds_endTime+",1,"+sj;
+		var action = "insert";
+		jQuery.ajax({
+            type:"POST",
+            url:"/ajaxuser.jsp",
+            dataType:"json",
+            data:"table=wemall_directsale_store&dates=create_date,create_dateds_beginTime,create_dateds_endTime&action="+action+"&field="+field+"&values="+values,
+            error:function(){alert("数据错误，操作被取消！");},
+            success:function(data){
+                alert("添加完成");
+                window.location.href="$!webPath/seller/open_store.htm";
+            }
+        });
+      		
+	}
+</script>
+</head>
+<body>
+<div class="main"> $!httpInclude.include("/seller/nav_head.htm")
+  <div class="user_center">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+      <tr>  $!httpInclude.include("/seller/nav.htm?op=usergoodsbrand")
+        <td id="centerbg" valign="top">
+         <div class="buyer_position"><div class="buyer_p_box"><a href="$!webPath/seller/index.htm">商家支持</a> > <span>基础管理</span> > <span>添加直营店</span></div></div>
+        <div class="productmain">
+            
+            <div class="operation_tip">
+	<h3>友情提示</h3>
+	<ul>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+            
+            <div class="ordercon">
+              <div class="addnav">
+                <form action="$!webPath/seller/usergoodsbrand_save.htm" method="post" id="theForm" enctype="multipart/form-data">
+                 <input name="id" type="hidden" id="id"  value="$!obj.id"/>
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="addnavtable">
+                    <tr>
+                      	<td align="right" valign="top" class="modifysp" width="155">
+                      		<span>直营店：</span>
+                      	</td>
+                     	<td class="px10">
+                     		<span class="setinput">
+                        		<input type="text" class="" name="ds_storeName" id="ds_storeName" value="" placeholder="直营店名称"/>
+                      		</span>
+                      	</td>
+                    </tr>
+                    <tr>
+                      	<td align="right" valign="top" class="modifysp" width="155">
+                      		<span>用户名：</span>
+                      	</td>
+                     	<td class="px10">
+                     		<span class="setinput">
+                        		<input type="text" class="" name="ds_userName" id="ds_userName" value="" placeholder="Haier"/>
+                      		</span>
+                      	</td>
+                    </tr>
+                    <tr>
+                      	<td align="right" valign="top" class="modifysp" width="155">
+                      		<span>密码：</span>
+                      	</td>
+                     	<td class="px10">
+                     		<span class="setinput">
+                        		<input type="text" class="" name="ds_passWord" id="ds_passWord" value="" placeholder="***"/>
+                      		</span>
+                      	</td>
+                    </tr>
+                    <tr>
+                      	<td align="right" valign="top" class="modifysp" width="155">
+                      		<span>手机：</span>
+                      	</td>
+                     	<td class="px10">
+                     		<span class="setinput">
+                        		<input type="text" class="" name="ds_phone" id="ds_phone" value="" placeholder="13722223333"/>
+                      		</span>
+                      	</td>
+                    </tr>
+                    <tr>
+                      	<td align="right" valign="top" class="modifysp" width="155">
+                      		<span>联系人：</span>
+                      	</td>
+                     	<td class="px10">
+                     		<span class="setinput">
+                        		<input type="text" class="" name="ds_phoneName" id="ds_phoneName" value="" placeholder="唐三"/>
+                      		</span>
+                      	</td>
+                    </tr>
+                    <tr>
+                      	<td align="right" valign="top" class="modifysp" width="155">
+                      		<span>地址：</span>
+                      	</td>
+                     	<td class="px10">
+                     		<span class="setinput">
+                        		<input type="text" class="" name="ds_address" id="ds_address" value="" placeholder="直营店地址"/>
+                      		</span>
+                      	</td>
+                    </tr>
+                    <tr>
+                      	<td align="right" valign="top" class="modifysp" width="155">
+                      		<span>直营店城市：</span>
+                      	</td>
+                     	<td class="px10">
+                     		<span class="setinput">
+                        		<input type="text" class="" name="ds_city" id="ds_city" value="" placeholder="直营店城市"/>
+                      		</span>
+                      	</td>
+                    </tr>
+                    <tr>
+                      	<td align="right" valign="top" class="modifysp" width="155">
+                      		<span>有效期：</span>
+                      	</td>
+                     	<td class="px10">
+                     		<span class="setinput">
+                        		<input type="date" class="" name="create_dateds_beginTime" id="create_dateds_beginTime" value=""/>至
+                        		<input type="date" class="" name="create_dateds_endTime" id="create_dateds_endTime" value=""/>
+                      		</span>
+                      	</td>
+                    </tr>
+                    
+                   
+                   
+                   
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td class="px10"><span class="setsub">
+                        <input name="" type="submit"  value="提交" style="cursor:pointer;" onclick="save()"/>
+                      </span></td>
+                    </tr>
+                  </table>
+                </form>
+              </div>
+            </div>
+          </div></td>
+      </tr>
+    </table>
+  </div>
+  $!httpInclude.include("/footer.htm") </div>
+</body>
+</html>

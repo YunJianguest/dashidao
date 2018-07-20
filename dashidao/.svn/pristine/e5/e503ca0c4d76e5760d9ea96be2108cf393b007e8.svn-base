@@ -1,0 +1,273 @@
+
+/* css 重置 */
+*{margin:0; padding:0; list-style:none; }
+body{ background:#fff; font-family:"微软雅黑"; -webkit-tap-highlight-color:transparent;}
+img{ border:0;  }
+a{ text-decoration:none; color:#333;  }
+/*index页面*/
+.fl{ float: left;}
+.fr{ float: right;}
+.clear{ clear: both; }
+a i{ color:#808080; }
+.wrapper03 {position:relative; width: 100%;overflow: hidden;margin:0 auto;}
+.wrapper03 .scroller {position:absolute}
+.wrapper03 .scroller li{ color:#333; float: left; padding:0 20px; text-align: center; height: 3rem; line-height: 2rem;font-size: 1rem; }
+.wrapper03 .scroller li.cur{color:#ef2833;height:2.6rem;border-bottom:2px solid #ef2833}
+/*切换按钮*/
+.slideTxtBox{ border: none; height: auto; width:100%; }
+.slideTxtBox .bd{ margin-top: 30px;}
+.slideTxtBox .bd ul li{ height: auto; width: 100%; background:  #fff; font-family: "Adobe 楷体 Std R"; font-family: MHeiGB18030C-Medium;  }
+.slideTxtBox .bd ul{ margin: 0px; padding: 0px;}
+/*tmbar*/
+.tmbar{ width: 100%; padding: 0 3%; }
+.tmbar p{ text-align: right; color: #ec2331; font-size: 0.8rem; padding-top: 1rem;    }
+.tmbar p i{ font-size: .8rem; }
+.tmcont{ width: 30%; float: left; margin-left: 4.5%;   }
+.one{ margin-left: 0px; }
+.tmimg{position: relative; }
+.tmimg img{ width: 100%; display: block; }
+.tmimg span{position: absolute; width: 2.5rem; padding: 0 .1rem; height: 1.5rem; line-height: 1.5rem; bottom: 0px; font-size: 1.1rem;    background: #ffecf0; display: block; color: #e14d57;  }
+.tmcont .tmprice{ color: #c2c2c2; font-size: 1.5rem; margin-top: 10px;  }
+.tmcont .tmprice span{ font-size: 1rem; }
+.tmcont .tmprice .fl{ color: #1f1f1f; }
+.tmcont .tmprice .fr{ color: #e14d57; }
+.trait{ width: 2.5rem; padding: 0 .1rem; height: 2.5rem; line-height: 2.5rem; float: left; border-radius:20px;   font-size: 1.1rem; display: block;}
+.newsbar{ height: 5rem; }
+.newsbar  h1{ text-align: left; font-size: 1.6rem;   }
+.newsbar h1 p{ display: block; text-align: left; color: #9e9e9e; font-size: 1rem;  }
+
+.newsbar h1 span.one{ padding: 0px;  background: #ffecf0; color: #e14d57;}
+.newsbar h1 span.two{ background: #fff2df; color: #dd673c; margin-left: 10px;}
+
+.newsbar h1 span.kc{ color: #9b9b9b; font-size: .8rem;   }
+.neprice{ width: 100%;  line-height: 3rem; padding: 0px;  text-align: left; font-size: 1.2rem;  }
+.newsbar .tmprice{ width: 35%; float: left; }
+.newsbar .tmprice span.fr font{ font-size:1.4rem;  }
+.newsbar .neprice i{ float: right; font-size: 2rem;  }
+.newsbar .neprice i.two{ margin-left: .5rem; }
+/*foot*/
+.bmenu { width: 100%; position: fixed; bottom: 0px; left:0px; background: #fff; padding-top: .8rem;  }
+.bmenu li{width: 20%; margin: 0px;  padding: 0px; background: #fff;   text-align: center; float: left;  }
+.bmenu li span{ display: block; color:#808080;}
+.bmenu li i{ color: #808080;}
+.bmenu li.on i,.bmenu li.on span{ color: red;}
+
+.ykactivity{   float: left; height: auto; margin-top: 30px;  }
+.img_cont{ position: relative; }
+.ykactivity .xf{ position: absolute;  }
+/*旋浮窗口*/
+.xf span{ text-align: center; }
+.xf span.one{ padding: 0px;  background: #ffecf0; color: #e14d57;}
+.xf span.two{ background: #fff2df; color: #dd673c; margin-left: 2px;}
+.ykactivity h1{ background: #fff; width: 70%; float: left; margin: 0px; }
+.trait2{ width: 40px; padding: 1px 3px; height: 20px; display: block; border-radius: 2px; line-height: 20px; text-align: center; color: #fff; background: #ff0000; font-size: .6rem; }
+.onerbuy{ float: right; width: 30%; background: #fff; }
+.onerbuy .trait2{ background:#c21514; }
+.onerbuy .kc{ margin-top: 5px; color: #9e9e9e; }
+.tmprice1 .trait2{ float: left; margin-top: 5px; }
+.tmprice1 .one{ background: #9a51dd; }
+.tmprice1 .two{ background: #2be6d1; }
+.ykactivity .neprice{ margin-top: 5px; background: #fff;  }
+.tmprice1 .fr{ color: #e14d57; }
+/*appraise页面*/
+.search{ margin: 10px 0;}
+.search img{ display: block; }
+.search img.fl{width: 0.55rem; margin: 0.55rem 1.2rem; }
+.search input{ background: url("images/search.png") no-repeat #f4f4f4 18px 12px; float: left; border-radius: 0.5rem; color: #b5b5b5; line-height: 2.2rem; text-align: center;  background-size:1rem 1rem; width: 70%; display: block; border: none; height: 2.2rem; }
+.search img.fr{ width:1.6rem; margin: 0.6rem 1.2rem 0 0; }
+/*切换按钮*/
+.slideTxtBox2{ border: none;}
+.slideTxtBox2 .hd{ height:2.5rem;  line-height:2.5rem; width: 100%; }
+.slideTxtBox2 .hd ul li{ float:left; width:14%; margin: 0 3%; text-align: center;   font-size:1rem;  cursor:pointer; color:#000000; }
+.slideTxtBox2 .hd li.on{ background: #FFF;  border-bottom:1px solid #ff0000; }
+.slideTxtBox2 .bd{ margin-top: 0px; }
+.slideTxtBox2 .bd ul li{ height: auto; width: 100%; background: #f0f5f9;   }
+.slideTxtBox2 .bd ul{ margin: 0px; padding: 0px;  }
+/*容器内容*/
+.clear{ clear: both; }
+.goodcontent{ margin-top: 10px; float: left; padding:3%; width: 94%;   background: #fff;   }
+.goodcontent h3{ color: #818181; text-align: left;   line-height:2rem; padding-left: 1.5rem; position: relative; font-size: 1rem; font-weight: normal; }
+.goodcontent h3 img{ width: 1rem; height: 1rem; display: block; left: 0px; top: 0.5rem; position: absolute;  }
+.goodcontent h3 span{ color: #e13036; float: right; }
+.goodcontent .one{ padding: 1rem 0;  border-bottom: 1px solid #f6f6f6;}
+.goodcontent .one img{ display: block; width:22%; height:75px; float: left;   }
+.goodcontent .one .title{   width: 48%; float: left;  margin: 0 5%; line-height: 1.1rem;}
+.goodcontent .one .title h1{ color: #454545; font-size: 0.9rem; line-height: 1.2rem; font-weight: normal; text-align:left; }
+.goodcontent .one .title p{ color: #a0a0a0; font-size: 0.6rem; font-weight: normal; text-align:left; margin-top: 0.5rem; }
+.goodcontent .one .price{  width: 20%;  }
+.goodcontent .one .price h1{color: #454545; font-size: 0.9rem; font-weight: normal; text-align:right; }
+.goodcontent .one .price font{ color: #999999;  text-align:right; display: block;}
+.goodcontent .one .price h2{color: #000; font-size: 0.8rem; font-weight:600; text-align:right;    }
+.goodcontent .one .price h2 span{ color: #e6b268; padding-right: 0.2rem; font-size: 0.9rem; font-weight: normal;  }
+.three{ color: #707070;  padding: 0.5rem 0;  }
+.three p{ text-align: right; font-size: 0.8rem; height: 2rem;  }
+.three span{ color: #e92c32; font-weight: normal;    }
+.three span.integral{ font-size: 1.2rem;  }
+.fore div{ width: 22%; float: right; line-height: 2rem; border-radius:0.2rem;  height: 2rem; border: 1px solid #7676;  }
+.fore div.fr{ margin-right: 0.5rem; }
+.fore div a{ font-size: 0.9rem; text-align: center;  display: block;  }
+.fore div a:hover{border: 1px solid #d32a3a; color: #d32a3a;  }
+
+/*store页面*/
+/*header*/
+.header{ width: 100%; padding: 15px 3% 10px;  position: fixed; top:0; left: 0; background: #fff; }
+.header p{ text-align: center; line-height: 2rem; margin: 0px; padding: 0px;  }
+.header p span{ font-size: 1.6rem; padding-left: 15px;}
+.header p .icon-skip{ margin-left: 20px; }
+.header p i{ font-size: 2rem; }
+/*storepner*/
+.storeoner{ padding: 0 3%; margin-top: 4rem; background: #fff;  }
+.storeoner .dptx{ width: 20%;  }
+.storeoner .dptx img{ width: 5rem; height: 5rem; border-radius:10px;  }
+.storeoner .one{ width: 40%;  padding: 6px 0; }
+.storeoner .one p{ font-size: 1.5rem; color: #232323;  }
+.storeoner .one span{ font-size: .6rem; color: #a5a5a5; }
+.storeoner .two{ width: 10%; padding: 5px 0; }
+.storeoner .two p{ font-size: 1.5rem; color: #e32736;  }
+.storeoner .two span{font-size: .6rem; color: #a5a5a5;}
+.storeoner i{ font-size:2rem; margin-top: 15px;}
+/*xscount*/
+.xscount {position:relative;height: 17rem; padding-top: 1rem; width: 100%;overflow: hidden; background:#fff;}
+.xscount .scroller {position:absolute}
+.xscount .scroller ul{ margin:0;padding:0;}
+.xscount .scroller li{ background: #fff; width:26rem; height: 15rem;float: left;    }
+.xscount .scroller li .one { position: relative;   margin-left: 1rem;  width:25rem; height: 15rem; float: left;  padding: 1.5rem 0;  border-radius: 8px; background: #fa3745;  color:#000;list-style-type: none; line-height: 1rem; text-align: center}
+.xscount .scroller li .one p{ font-size: 1rem; color: #ffede9;  padding-bottom: 12px; }
+.xscount .scroller li .two p{ padding-bottom: 30px; }
+.xscount .scroller li .one span{ font-size: 2.5rem; color: #f5ffff;   }
+.xscount .scroller li .two span{ font-size: 3rem;}
+.xscount .scroller li .one h1{ width: 60%; font-size: .8px; color: #ffede9; margin-top: 10px; text-align: center; width: 80%; margin: 15px auto; border: 1px solid #fa8682; border-radius: 5px; padding: 5px 0;    }
+.xscount .scroller li .one h1 span{ color: #fea538; font-size: .8rem;  }
+.storean{ float: right; margin-top: 12px; height: 54px; width: 40px; }
+.storean span{ float:right;background: #c21514; margin-top: 4px;  font-size: .8rem;
+    padding: 3px 5px;
+    border-radius: 3px;  }
+.storean span a{ color: #fff;}
+/*云客销售*/
+.ykxscount{ padding:3%; height: 16.8rem; }
+.ykxscount a{ color: #fff; }
+.ykxscount .one { width:100%; position: relative; height: 15rem; float: left;  padding: 1.5rem 0;  border-radius: 8px; background: #fa3745;  color:#000;list-style-type: none; line-height: 1rem; text-align: center}
+.ykxscount .one p{ font-size: 1rem; color: #ffede9;  padding-bottom: 12px; }
+.ykxscount .two p{ padding-bottom: 30px; }
+.ykxscount .one span{ font-size: 2.5rem; color: #f5ffff;   }
+.ykxscount .two span{ font-size: 3rem;}
+.ykxscount .one h1{ width: 60%; font-size: .8px; color: #ffede9; margin-top: 10px; text-align: center; width: 80%; margin: 15px auto; border: 1px solid #fa8682; border-radius: 5px; padding: 5px 0;    }
+.ykxscount .one h1 span{ color: #fea538; font-size: .8rem;  }
+#sy{ width: 100%; color: #ffede9; padding-top: .5rem; position: absolute; bottom: 3px; background:none; height: 4.5rem;}
+#sy li{ width: 33.3%; float: left; background: none; position: relative; }
+#sy li span{ position: absolute; font-size:1.8rem;  height: 1.5rem; border-right:1px solid #ffede9;   top:10px; right: -0.5px;}
+#sy li p{ padding-bottom: 0px; }
+#sy li font{ font-size:1.5rem; font-weight: normal;}
+/*order*/
+.order{ width: 100%; background: #fff; margin: 8px 0; padding-bottom: 8px;   }
+.order p{ padding: 1rem 3%; text-align: left; line-height: 2rem;}
+.order p span{  float: right; color: #a5a5a5;  font-size: .5rem;}
+.order p span i{ font-size:2rem;}
+.order p a{ color: #333; }
+.order li{ position: relative; width: 25%; text-align: center; margin: 0px; padding: 0px; float: left;  }
+.order li span{ display: block; color:#808080;}
+.order li i{ color: #808080;}
+.order li font{ position: absolute; color: #fff; top: 0px; right:25px; background: #ff0000; width: 16px; height: 16px; border-radius: 8px; display: block;  font-size:1rem; font-weight: normal;}
+.glmanage{ padding-top:15px;  }
+/*school*/
+.school{ padding-bottom:2.5rem; margin-bottom: 8rem; }
+.school .wrapper {position:relative;height: 5rem; padding-left:.5rem; width: 100%;overflow: hidden;margin:0 auto;background:#fff}
+.school .wrapper .scroller {position:absolute}
+.school .wrapper .scroller li { width: 13rem;   height: 5rem;color:#333;float: left;}
+.school .wrapper .scroller li div{ width: 12rem;  }
+.school .wrapper .scroller li img{ width: 12rem;height: 5rem; display: block; border-radius: 10px; }
+.school .wrapper .scroller li a{color:#333;display:block;margin:0 .3rem}
+.school .wrapper .scroller li.more{  width: 10.3rem; }
+.school .wrapper .scroller li.more div{ background: #ccc; width: 10rem; border-radius: 10px; float: right; }
+.school .wrapper .scroller li.more a{ font-size: .8rem; color: #fff; line-height: 5rem;}
+/*storeshow页面*/
+/*header*/
+.shoper{ margin-top: 0px; padding-top: 50px;  background: url("../images/shopbg.png") no-repeat 0 0; background-size:32rem;   }
+.shopmenu{ background: #fff; text-align: center; width: 100%; float: left; padding: 20px 0; }
+.shopmenu p{ margin: 0px; padding: 0px; color: #5d5d5d; }
+.shopmenu span{ color: #e2e2e2;  }
+/*dygood*/
+.dygood{ float: left;  height: auto; padding-bottom: 1.5rem; }
+.dygood h1 span.two{ margin-right: 10px; }
+.dygood h1,.dygood .neprice{ padding: 0 3%; }
+.dygood .tmprice span.fr{ float: left; padding-right: .5rem; }
+.dygood .tmprice span.fr font{ font-size: 1.8rem; }
+.dygood .tmprice span.fl{ text-decoration: line-through; }
+.dygood .neprice .qg{border: 1px solid #232323; font-size: 0.5rem;   padding: .7rem 1.2rem .5rem;   border-radius: 3px;}
+.dygood .neprice .qg a{color: #232323; line-height: 1.2rem;   display: block; }
+/*me页面*/
+.shoper2{ padding:35px 3%;  margin-top: 41px; background: url("../images/mebg.png")  0 0; background-size:32rem; }
+.myer{text-align: center; padding:0px 3%;margin: 0px; background: #fff; position: fixed; top: 0px; width: 100%; }
+.myer p{  display: block; line-height:40px; padding: 0px; margin: 0px; }
+.myer i{ float: left;  margin: 0px; padding: 0px; font-size: 2rem; }
+.my{ padding-bottom: 0px; }
+.my i.fl{ margin-right: 10px; }
+
+   /*头部*/
+.ykmyer{ z-index: 10000;}
+.ykmyer .fr{ float: right; }
+/*云客店主*/
+.ykshop .dptx img{ border-radius: 50px;}
+.ykshop .one p{ color: #939393; margin-bottom: 5px; }
+.ykshop .one span{  background: #fff; color:#f0a667;  border: 1px solid #f0a667; padding: 3px 2px; border-radius: 3px;}
+.ykshop .one span i{ font-size: .5rem; color: #f0a667;  }
+/*我的关注*/
+.mycare{ width: 100%; background: #fff; margin: 8px 0; padding:0;   }
+.mycare li{ position: relative; width: 33.3%; text-align: center; margin: 0px; padding: 10px 0; float: left;  }
+.mycare li a{ display: block; }
+.mycare li span{ display: block; color:#808080;}
+/*可用余额*/
+.limit{ width: 100%; background: #fff; padding: 3%; margin-top: 10px;}
+.limit .one div.fl,.limit .one div.fr{ width: 50%; padding: 10px;  }
+.limit .one div.fr span.tx{ background: #fff; float: right; margin-top: 25px;  width: auto; padding: 5px 15px; border-radius: 3px; border: 1px solid #d7d7d7; }
+.limit .one div span{ color: #676767; display: block; width: 100%; }
+.limit .one div h1{ color:#e82732; font-size: 3.5rem;  margin: 0px; margin-top: 5px;  }
+.limit .two div.first{ border-right:1px solid #d7d7d7; }
+.limit .two div h1{ color: #000; font-size: 2.2rem; }
+.limit .two{ border-top: 1px solid #d7d7d7;}
+
+/*service页面*/
+.service{ position: fixed;}
+.service span{ float: left; }
+.service  .icon-share{ margin-right: 10px; }
+.goodcontent2{ width: 100%; background: none; padding:0px; margin-top:10px;  }
+.goodcontent2 .title h1{ margin-top: 0px; }
+.goodcontent2 h3{ font-size: 1.4rem; line-height:2.5rem;  padding:10px 3%; margin-top: 0px; float: left; width: 100%; background: #fff; }
+.goodcontent2 h3 i{ font-size: 2rem;}
+.goodcontent2 h3 span{ float:left; padding:0 10px; color: #222d35; }
+.goodcontent2 .one{ border-bottom: 0px;  padding: 0 3%;  float: left; width: 100%; }
+.goodcontent2 .three{ background: #fff; float: left; width: 100%; padding:0 3%; margin-top: 10px;   }
+.goodcontent2 .three p{ text-align: left; font-size: 1.7rem;  line-height: 1.4rem; height:3.8rem;  padding:15px 0; margin: 0px; }
+.goodcontent2 .three p i{ font-size:1.8rem; color: #e55517; padding:2px 10px 0 0;}
+.goodcontent2 .fore{ float: left; margin-top: 2px; background: #fff; width: 100%; padding: 10px 0; }
+.goodcontent2 .fore div.fr{  border-color:#e96822;  float: right;  height: auto; margin-right:10px; }
+.goodcontent2 .fore div.fr a{ color: #f75400; font-size: 1.4rem; padding: 3px 10px; display: block; }
+
+/*viplist*/
+.yqvip{ float: right; color: #333;  }
+.yqvipshop{ padding: 5px 3%; border-bottom: 1px solid #e2e2e2; margin: 0px; }
+.yqvipshop .one{ width: 60%;  }
+.yqvipone{ border-bottom: 0px;  }
+.yqviptwo i{ border-left:1px solid #e2e2e2;  width: 20px; margin-right: 20px; padding-left: 20px;  }
+.yqviptwo .one span{ border: 0px; color: #a0a0a0;  }
+
+/*vipmanage*/
+#text{ color:#e31e1e; height: 2rem; border: none; width: 4rem;  }
+#copy{ color: #0e0e0e; border: 1px solid #0e0e0e; background: #fff;  padding: 0px 10px; display: block; float: left; margin-right: 10px; }
+/*achiemanage*/
+.achie i{ font-size:2.4rem; padding-right: 10px;  }
+#sr{ font-size: 1.4rem; color:#333; }
+/*yqvip*/
+.ykvip{   width: 100%; float: left; margin-top: 12rem; text-align: center; }
+.ykvip h1 p.one{ font-size: 2.4rem; font-weight: 300; color: #ca160b;}
+.ykvip h1 p.two{padding-top: 60px; font-size: 1.5rem; color: #9e0500;  }
+/*h2*/
+.ykvip h2{ margin-top: 110px; color: #0e0e0e; font-size: 2.6rem;}
+.ykvip h2 span{ color: #6a6364; }
+.ykvip h3{ margin-top: 120px; width: 100%; padding: 15px 0;  background: #d73b3c; color: #fff; font-size: 1.5rem; }
+.ykvip h3 i{ font-size: 1.6rem; }
+/*yqmx*/
+.yqmx{ text-align: center; padding: 0 3%; }
+.yqmx tr{ height: 3.5rem; }
+.yqmx tr td{ font-size: 1.2rem;}
+/*totalincome*/

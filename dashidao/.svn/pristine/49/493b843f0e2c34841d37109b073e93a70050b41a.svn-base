@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>电子发票-  $!{config.poweredby}</title>
+<meta name="keywords" content="$!config.keywords" />
+<meta name="description" content="$!config.description" />
+<meta name="generator" content="$!{config.meta_generator}" />
+<meta name="author" content="$!{config.meta_author}">
+<meta name="copyright" content="$!{config.copyRight}">
+#if($!config.website_ico)
+<link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+#end
+<link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+<link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+<link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+  <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+<script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+</head>
+
+	<script>
+		//分页
+		var page_size=5;
+		var page_no=1;
+		
+		var count=0;
+		var id;
+		jQuery(document).ready(function(){
+				//售后查询及分页
+				ajaxload(page_size,page_no);
+			    layui.use(['laypage', 'layer'], function(){
+			        var laypage = layui.laypage
+			            ,layer = layui.layer;
+			        //完整功能
+			        laypage.render({
+			            elem: 'demo7'
+			            ,count:count
+			            ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+			            ,jump: function(obj){
+			                page_no=obj.curr;
+			                page_size=obj.limit;
+			                instOrder(page_size,page_no);
+			            },
+			            limits:[2, 4, 6, 8, 10],
+			            limit:page_size
+			        });
+			    });
+		});
+		
+		function ajaxload(page_size,page_no)
+		{
+			var sql="SELECT daoshidao_dianzifapiao.id,daoshidao_dianzifapiao.`fapiaobianhao`,daoshidao_dianzifapiao.`dingdanid`,daoshidao_dianzifapiao.`pictureurl`, ";
+			    sql += " dashidao_orderform.`order_id`";
+			    sql += " FROM daoshidao_dianzifapiao ";
+			    sql += " LEFT JOIN dashidao_orderform ON dashidao_orderform.`id`= daoshidao_dianzifapiao.`dingdanid`";
+			    sql += " WHERE daoshidao_dianzifapiao.`states`='0' ";
+			    sql += " ORDER BY daoshidao_dianzifapiao.`addTime`";
+	         jQuery.ajax({
+	            type:"POST",
+	            cache: false,
+	            async:false,
+	            url:"/ajaxuser.jsp",
+	            dataType:"json",
+	            data:"table=daoshidao_dianzifapiao&dates=addTime&sql="+sql+"&page_size="+page_size+"&page_no="+page_no,
+	            error:function(){alert("数据错误，操作被取消！");},
+	            success:function(data)
+	            {
+	                if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+	                var message=data.data.data;
+	                count=data.data.total;
+	                var html="";
+	                for(var i=0;i<message.length;i++) {
+	                    id=message[i]['id'];
+	                    var picUrl = message[i]['pictureurl'];
+	                   // picUrl = "$!webPath/resources/"+picUrl;
+	                    html +="<tr class='opertr'>";
+	                    html +="<td> "+message[i]['fapiaobianhao']+"</td>";
+	                    html +="<td>"+message[i]['order_id']+" </td>";
+	                    html +="<td><a href='$!webPath/seller/download.htm?pathFile="+picUrl+"' > 下载发票</a> </td>";
+	                    html +="</tr>";
+	                }
+	                $('#opertitle').after(html);
+	            }
+	        });
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>卖家品牌列表 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+	<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+	<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+	<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css">
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <!-- <script src="$!webPath/resources/js/bootstrap.min.js"></script>-->
+	<link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+	<link href="$!webPath/resources/style/system/manage/blue/zhandai.css"  rel="stylesheet" type="text/css"/>
+   
+   	<style>
+		.input_tax{
+			border:1px solid #CFCFCF;
+			outline:none;
+			border-top-style:none;
+			border-left-style:none;
+			border-right-style:none;
+			border-bottom-style:solid;
+   
+   	</style>
+		<script>
+		function fileDown()
+		{
+			jQuery.ajax({
+	            type:"POST",
+	            cache: false,
+	            async:false,
+	            url:"$!webPath/seller/download.htm",
+	            dataType:"json",
+	            data:"",
+	            error:function(){alert("数据错误，操作被取消！");},
+	            success:function(data)
+	            {
+	                if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+	                
+	            }
+	        });
+		}
+	
+	</script>
+
+<body>
+<div class="main"> $!httpInclude.include("/seller/nav_head.htm")
+  <div class="user_center">
+  <form method="post" id="ListForm">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+      <tr>  $!httpInclude.include("/seller/nav.htm?op=advert")
+        <td id="centerbg" valign="top">
+         <div class="buyer_position"><div class="buyer_p_box"><a href="$!webPath/seller/index.htm">商家支持</a> > <span>基础管理</span>  > <span>电子发票</span></div></div>
+        <div class="productmain">
+          <div class="operation_tip">
+            <h3>友情提示</h3>
+            <ul>
+              <li></li>
+              <li></li>
+            </ul>
+          </div>
+            <div class="ordercon">
+              <div class="operation">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" id="opertable" >
+                  <tr id="opertitle">
+                    <td >发票编号</td>
+                    <td >订单编号</td>
+                    <td align="left">操作</td>
+                  </tr>
+                </table>
+                
+                <div id="demo7" style="text-align: center;"></div>
+              </div>
+            </div>
+          </div></td>
+      </tr>
+    </table>
+    </form>
+  </div>
+  $!httpInclude.include("/footer.htm") </div>
+<div class="main ele_invoice">
+    <div class="user_center">
+        $!httpInclude.include("/seller/nav_head.htm") 
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=ele_invoice")
+                <td id="centerbg" valign="top" width="100%" class="eleinbox" >
+                	<div class="buyer_position">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">商家支持</a> > <span>基础管理</span> > <span>电子发票</span></div>
+                    </div>
+                    <div class="ac9"><a href="$!webPath/seller/upload_dianzifapiao.htm">上传发票</a></div>
+                   	<div class="bd">
+                            <table style="width: 100%;" class="table">
+                                <tr class="tableheader">
+                                    <td>行业许可</td>
+                                    <td>实体店铺</td>
+                                    <td>滞销品退货</td>
+                                    <td>相关支持</td>
+                                    <td>操作</td>
+                                </tr>
+                                <tbody id="tablesss">
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+
+
+
+<div class="main ele_invoice">
+    <div class="user_center">
+        $!httpInclude.include("/seller/nav_head.htm") 
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=ele_invoice")
+                <td id="centerbg" valign="top" width="100%" class="eleinbox" >
+                	<div class="buyer_position">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">商家支持</a> > <span>基础管理</span> > <span>电子发票</span></div>
+                    </div>
+                    <div class="ac9"><a href="$!webPath/seller/upload_dianzifapiao.htm">上传发票</a></div>
+                   	<div class="bd">
+                            <table style="width: 100%;" class="table">
+                                <tr class="tableheader">
+                                    <td>订单编号</td>
+                                    <td>发票图片</td>
+                                    <td>上传日期</td>  
+                                </tr>
+                                <tbody id="tablesss">
+                                  #foreach($obj in $objs)
+                                 <tr>
+                                    <td>$obj.order.id</td>
+                                    <td><img src="$!webPath/upload/img$obj.url" height="50px"/></td>
+                                    <td>$obj.addTime</td>  
+                                 </tr>
+                                 #end 
+                                </tbody>
+                            </table>
+
+                        </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div> 
+</body>
+</html>

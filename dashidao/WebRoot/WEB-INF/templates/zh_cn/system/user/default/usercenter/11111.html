@@ -1,0 +1,157 @@
+
+<div class="buyer_position">
+    <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">商家中心</a> > <span>商家订单</span></div>
+</div>
+
+
+<!--bootstrap-->
+<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+<script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+<!--layui-->
+<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+<script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+
+
+<!--分页开始-->
+<div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+<script>
+    layui.use(['laypage', 'layer'], function(){
+        var laypage = layui.laypage
+            ,layer = layui.layer;
+
+        //总页数低于页码总数
+        laypage.render({
+            elem: 'demo0'
+            ,count: 50 //数据总数
+        });
+
+        //总页数大于页码总数
+        laypage.render({
+            elem: 'demo1'
+            ,count: 70 //数据总数
+            ,jump: function(obj){
+                console.log(obj)
+            }
+        });
+
+        //自定义样式
+        laypage.render({
+            elem: 'demo2'
+            ,count: 100
+            ,theme: '#1E9FFF'
+        });
+        laypage.render({
+            elem: 'demo2-1'
+            ,count: 100
+            ,theme: '#FF5722'
+        });
+        laypage.render({
+            elem: 'demo2-2'
+            ,count: 100
+            ,theme: '#FFB800'
+        });
+
+        //自定义首页、尾页、上一页、下一页文本
+        laypage.render({
+            elem: 'demo3'
+            ,count: 100
+            ,first: '首页'
+            ,last: '尾页'
+            ,prev: '<em>←</em>'
+            ,next: '<em>→</em>'
+        });
+
+        //不显示首页尾页
+        laypage.render({
+            elem: 'demo4'
+            ,count: 100
+            ,first: false
+            ,last: false
+        });
+
+        //开启HASH
+        laypage.render({
+            elem: 'demo5'
+            ,count: 500
+            ,curr: location.hash.replace('#!fenye=', '') //获取hash值为fenye的当前页
+            ,hash: 'fenye' //自定义hash值
+        });
+
+        //只显示上一页、下一页
+        laypage.render({
+            elem: 'demo6'
+            ,count: 50
+            ,layout: ['prev', 'next']
+            ,jump: function(obj, first){
+                if(!first){
+                    layer.msg('第 '+ obj.curr +' 页');
+                }
+            }
+        });
+
+        //完整功能
+        laypage.render({
+            elem: 'demo7'
+            ,count: 100
+            ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+            ,jump: function(obj){
+                console.log(obj)
+            }
+        });
+
+        //自定义排版
+        laypage.render({
+            elem: 'demo8'
+            ,count: 1000
+            ,layout: ['limit', 'prev', 'page', 'next']
+        });
+        laypage.render({
+            elem: 'demo9'
+            ,count: 1000
+            ,layout: ['prev', 'next', 'page']
+        });
+        laypage.render({
+            elem: 'demo10'
+            ,count: 1000
+            ,layout: ['page', 'count']
+        });
+
+        //自定义每页条数的选择项
+        laypage.render({
+            elem: 'demo11'
+            ,count: 1000
+            ,limit: 100
+            ,limits: [100, 300, 500]
+        });
+
+        //调用分页
+        laypage.render({
+            elem: 'demo20'
+            ,count: data.length
+            ,jump: function(obj){
+                //模拟渲染
+                document.getElementById('biuuu_city_list').innerHTML = function(){
+                    var arr = []
+                        ,thisData = data.concat().splice(obj.curr*obj.limit - obj.limit, obj.limit);
+                    layui.each(thisData, function(index, item){
+                        arr.push('<li>'+ item +'</li>');
+                    });
+                    return arr.join('');
+                }();
+            }
+        });
+
+    });
+</script>
+<!--分页结束-->
+<form class="form-inline" style="float: right;">
+    <div class="form-group">
+        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入查询内容" style="width: 200px;" >
+    </div>
+    <button type="submit" class="btn btn-default" style="border: none;  background: #3fa4ed; color: #fff; " >查询</button>
+</form>
+<style>
+    #tab11 li{ float:left;  padding: 0 30px; background:#f7f7f7; border: 1px solid #c3c3c3; border-bottom: 0px; margin-right: 5px; float: left; border-radius:10px 10px 0 0;  text-align: center; font-size:16px;  cursor:pointer; color:#000000; }
+    #tab11 li.active{ background: #3fa4ed; color:#fff;  border-radius:10px 10px 0 0;    border-bottom: 2px solid #c3c3c3;   }
+</style>

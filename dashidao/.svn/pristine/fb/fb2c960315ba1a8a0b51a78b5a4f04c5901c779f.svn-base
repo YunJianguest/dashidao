@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>直营店修改  -  $!{config.poweredby}</title>
+<meta name="keywords" content="$!config.keywords" />
+<meta name="description" content="$!config.description" />
+<meta name="generator" content="$!{config.meta_generator}" />
+<meta name="author" content="$!{config.meta_author}">
+<meta name="copyright" content="$!{config.copyRight}">
+#if($!config.website_ico)
+<link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+#end
+<link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+<link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+<link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+<link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+<script src="$!webPath/resources/js/jquery.validate.min.js"></script>
+<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+<link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+<script>
+
+jQuery(document).ready(function(){
+	var request = new Object();
+    request = GetRequest();
+    id = request['id'];
+	var sql="SELECT * FROM wemall_directsale_store WHERE id="+id;
+    
+    jQuery.ajax({
+        type:"POST",
+        cache: false,
+        async:false,
+        url:"/ajaxuser.jsp",
+        dataType:"json",
+        data:"table=wemall_directsale_store&dates=create_date,create_dateds_beginTime,create_dateds_endTime&sql="+sql,
+        error:function(){alert("数据错误，操作被取消！");},
+        success:function(data){
+        	var message = data.data.data;
+        	console.log(message);
+        	
+        	var ds_storeName = message[0].ds_storeName;//直营店
+    		var ds_userName = message[0].ds_userName;//用户名
+          	var ds_passWord = message[0].ds_passWord;//密码	
+          	var ds_phone = message[0].ds_phone;//手机
+          	var ds_phoneName = message[0].ds_phoneName;//联系人
+          	var ds_address = message[0].ds_address;//地址
+          	var ds_city = message[0].ds_city;//城市
+          	var create_dateds_beginTime = message[0].create_dateds_beginTime;//开始时间
+          	var create_dateds_endTime = message[0].create_dateds_endTime;//结束时间
+        	
+            $("#ds_storeName").attr("value",ds_storeName);
+            $("#ds_userName").attr("value",ds_userName);
+            $("#ds_passWord").attr("value",ds_passWord);
+            $("#ds_phone").attr("value",ds_phone);
+            $("#ds_phoneName").attr("value",ds_phoneName);
+            $("#ds_address").attr("value",ds_address);
+            $("#ds_city").attr("value",ds_city);
+            $("#create_dateds_beginTime").attr("value",create_dateds_beginTime);
+            $("#create_dateds_endTime").attr("value",create_dateds_endTime);
+        }
+    });
+});
+
+	//读取路径中带过来的参数
+	function GetRequest() {
+	   var url = location.search; //获取url中"?"符后的字串  
+	   var theRequest = new Object();
+	   if (url.indexOf("?") != -1) {
+	       var str = url.substr(1);
+	       strs = str.split("&");
+	       for (var i = 0; i < strs.length; i++) {
+	           theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+	       }
+	   }
+	   return theRequest;
+	}
+	
+		
+	//提交
+	function save(){
+		var ds_storeName = $("#ds_storeName").val();//直营店
+		var ds_userName = $("#ds_userName").val();//用户名
+      	var ds_passWord = $("#ds_passWord").val();//密码	
+      	var ds_phone = $("#ds_phone").val();//手机
+      	var ds_phoneName = $("#ds_phoneName").val();//联系人
+      	var ds_address = $("#ds_address").val();//地址
+      	var ds_city = $("#ds_city").val();//城市
+      	var create_dateds_beginTime = $("#create_dateds_beginTime").val();//开始时间
+      	var create_dateds_endTime = $("#create_dateds_endTime").val();//结束时间
+      	
+   		
+        var field = "id,ds_storeName,ds_userName,ds_passWord,ds_phone,ds_phoneName,ds_address,ds_city,create_dateds_beginTime,create_dateds_endTime";
+		var values = id+"|"+ds_storeName+"|"+ds_userName+"|"+ds_passWord+"|"+ds_phone+"|"+ds_phoneName+"|"+ds_address+"|"+ds_city+"|"+create_dateds_beginTime+"|"+create_dateds_endTime;
+		var action = "update";
+		jQuery.ajax({
+            type:"POST",
+            url:"/ajaxuser.jsp",
+            dataType:"json",
+            data:"table=wemall_directsale_store&action="+action+"&field="+field+"&values="+values,
+            error:function(){alert("数据错误，操作被取消！");},
+            success:function(data){
+                alert("修改完成");
+                window.location.href="$!webPath/seller/open_store.htm";
+            }
+        });
+      		
+	}
+</script>
+</head>
+<body>
+<div class="main"> $!httpInclude.include("/seller/nav_head.htm")
+  <div class="user_center">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+      <tr>  $!httpInclude.include("/seller/nav.htm?op=usergoodsbrand")
+        <td id="centerbg" valign="top">
+         <div class="buyer_position"><div class="buyer_p_box"><a href="$!webPath/seller/index.htm">商家支持</a> > <span>基础管理</span> > <span>修改直营店</span></div></div>
+        <div class="productmain">
+            
+            <div class="operation_tip">
+	<h3>友情提示</h3>
+	<ul>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+            
+            <div class="ordercon">
+              <div class="addnav">
+                <form action="$!webPath/seller/usergoodsbrand_save.htm" method="post" id="theForm" enctype="multipart/form-data">
+                 <input name="id" type="hidden" id="id"  value="$!obj.id"/>
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="addnavtable">
+                    <tr>
+                      	<td align="right" valign="top" class="modifysp" width="155">
+                      		<span>直营店：</span>
+                      	</td>
+                     	<td class="px10">
+                     		<span class="setinput">
+                        		<input type="text" class="" name="ds_storeName" id="ds_storeName" value="" placeholder="直营店名称"/>
+                      		</span>
+                      	</td>
+                    </tr>
+                    <tr>
+                      	<td align="right" valign="top" class="modifysp" width="155">
+                      		<span>用户名：</span>
+                      	</td>
+                     	<td class="px10">
+                     		<span class="setinput">
+                        		<input type="text" class="" name="ds_userName" id="ds_userName" value="" placeholder="Haier"/>
+                      		</span>
+                      	</td>
+                    </tr>
+                    <tr>
+                      	<td align="right" valign="top" class="modifysp" width="155">
+                      		<span>密码：</span>
+                      	</td>
+                     	<td class="px10">
+                     		<span class="setinput">
+                        		<input type="text" class="" name="ds_passWord" id="ds_passWord" value="" placeholder="***"/>
+                      		</span>
+                      	</td>
+                    </tr>
+                    <tr>
+                      	<td align="right" valign="top" class="modifysp" width="155">
+                      		<span>手机：</span>
+                      	</td>
+                     	<td class="px10">
+                     		<span class="setinput">
+                        		<input type="text" class="" name="ds_phone" id="ds_phone" value="" placeholder="13722223333"/>
+                      		</span>
+                      	</td>
+                    </tr>
+                    <tr>
+                      	<td align="right" valign="top" class="modifysp" width="155">
+                      		<span>联系人：</span>
+                      	</td>
+                     	<td class="px10">
+                     		<span class="setinput">
+                        		<input type="text" class="" name="ds_phoneName" id="ds_phoneName" value="" placeholder="唐三"/>
+                      		</span>
+                      	</td>
+                    </tr>
+                    <tr>
+                      	<td align="right" valign="top" class="modifysp" width="155">
+                      		<span>地址：</span>
+                      	</td>
+                     	<td class="px10">
+                     		<span class="setinput">
+                        		<input type="text" class="" name="ds_address" id="ds_address" value="" placeholder="直营店地址"/>
+                      		</span>
+                      	</td>
+                    </tr>
+                    <tr>
+                      	<td align="right" valign="top" class="modifysp" width="155">
+                      		<span>直营店城市：</span>
+                      	</td>
+                     	<td class="px10">
+                     		<span class="setinput">
+                        		<input type="text" class="" name="ds_city" id="ds_city" value="" placeholder="直营店城市"/>
+                      		</span>
+                      	</td>
+                    </tr>
+                    <tr>
+                      	<td align="right" valign="top" class="modifysp" width="155">
+                      		<span>有效期：</span>
+                      	</td>
+                     	<td class="px10">
+                     		<span class="setinput">
+                        		<input type="date" class="" name="create_dateds_beginTime" id="create_dateds_beginTime" value=""/>至
+                        		<input type="date" class="" name="create_dateds_endTime" id="create_dateds_endTime" value=""/>
+                      		</span>
+                      	</td>
+                    </tr>
+                    
+                   
+                   
+                   
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td class="px10"><span class="setsub">
+                        <input name="" type="submit"  value="提交" style="cursor:pointer;" onclick="save()"/>
+                      </span></td>
+                    </tr>
+                  </table>
+                </form>
+              </div>
+            </div>
+          </div></td>
+      </tr>
+    </table>
+  </div>
+  $!httpInclude.include("/footer.htm") </div>
+</body>
+</html>

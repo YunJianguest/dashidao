@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+	<title>银行卡管理</title>
+
+	<link href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+	<script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+	<script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>银行卡管理 - $!{config.poweredby}</title>
+	<meta name="keywords" content="$!config.keywords" />
+	<meta name="description" content="$!config.description" />
+	<meta name="generator" content="$!{config.meta_generator}" />
+	<meta name="author" content="$!{config.meta_author}">
+	<meta name="copyright" content="$!{config.copyRight}">
+	#if($!config.website_ico)
+	<link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+	#end
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+	<link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+	<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+	<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+	<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+	<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+	<script>
+        jQuery(document).ready(function(){
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+        
+        jQuery(document).ready(function(){
+            var mycars=new Array()
+            var cuur=1;
+            var pagelimit=2;
+            function loadajax(action,table,field,values,page_size,page_no,moudle_id){
+                jQuery.ajax({
+                    type:"POST",
+                    cache: false,
+                    async:false,
+                    url:"/ajax.jsp",
+                    dataType:"json",
+                    // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                    data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size=4"+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                    error:function(){alert("数据错误，操作被取消！");},
+                    success:function(data)
+                    {
+                        if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                        total=data.data.total;
+                        mycars[0]=total;
+                        var message=data.data.data;
+                        //console.log(message);
+                        $("#ShowTheBindingBankCard").html('');
+                        for(var i=0;i<message.length;i++){
+                            $("#ShowTheBindingBankCard").append("<li style='width:100%'><input type='radio' name='BindingBankCardId' value='"+message[i]['id']+"'/><input type='hidden' value='"+message[i]['zb_zhanghumingcheng']+"'/><img src='$!webPath/resources/"+message[i]['zb_tupian']+"' /></li>");
+                        }
+                    }
+                });
+            }
+            loadajax("select","zb_pingtaishoukuan","states","1",pagelimit,cuur,1);
+            layui.use(['laypage', 'layer'], function(){
+                var laypage = layui.laypage
+                    ,layer = layui.layer;
+                //完整功能
+                laypage.render({
+                    elem: 'demo7'
+                    ,count:total
+                    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                    ,jump: function(obj){
+                        //console.log(obj)
+                        cuur=obj.curr;
+                        pagelimit=obj.limit;
+                        //alert(pagelimit);
+                        loadajax("select","zb_pingtaishoukuan","states","1",pagelimit,cuur,1);
+                        //loadajax("select","stu",pagelimit,cuur,1);
+                    },
+                    limits:[2, 4, 6, 8, 10],
+                    limit:pagelimit
+                });
+            });
+        });
+        
+        //取消绑定银行卡单机事件
+        function cc() {
+        	
+        	//获取单选按钮的值
+        	var id = $("input[name='BindingBankCardId']:checked").val();
+           
+        	//如果未选中而点击取消按钮
+        	if(id==null||id==undefined||id==""){
+        		alert("请先选择需要取消绑定的银行卡");
+        	}
+        	
+            var i = 0;
+            
+
+            var ids= id.split(",")
+            for(var i=0;i<ids.length;i++){
+                //alert("action=update&table=zb_fenpeishezhinew&field=id,hy_jf_gz&values="+fpszId+"|"+hyjf);
+                jQuery.ajax({
+                    type: "POST",
+                    cache: false,
+                    async: false,
+                    url: "/ajax.jsp",
+                    dataType: "json",
+                    // data:"action=update&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                    data: "action=update&table=zb_pingtaishoukuan&field=id,states&values=" + ids[i] + "|2",
+
+
+                    success: function (data) {
+                        if (data.code == "0") {
+                            alert("系统错误，操作被取消！");
+                            return;
+                        }else{
+                            location.href='$!webPath/poster/yinhangka.htm';
+                        }
+                        //alert(data.data);
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                        alert(XMLHttpRequest.status); // 200
+                        alert(textStatus); // parsererror
+                        alert(errorThrown); // SyntaxError: Unexpected end of input
+
+                    }
+                });
+            }
+
+        }
+	</script>
+</head>
+<body>
+<div class="main yinhangka">
+	<div class="user_center">
+		$!httpInclude.include("/poster/nav_head.htm")
+		$!httpInclude.include("/seller/adv.htm")
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+			<tr> $!httpInclude.include("/poster/nav.htm?op=refund")
+				<td id="centerbg" valign="top" width="80%">
+						<div class="buyer_position" style="width: 99%; background: #fff;">
+						<div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代中心</a> > <span>栈代合同</span></div>
+				</div>
+				<div class="operation_tip">
+	<h3>友情提示</h3>
+	<ul>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+				
+				<div class="tjan">
+					<input name="yhk"  value="取消银行卡" style="margin-left: 20%;onclick="cc()" />
+					<a href='$!webPath/seller/add_bank2.htm'><input name="yhk"  value="添加绑定" /></a>
+
+					<div class="clear"></div>
+				</div>
+				<div class="tjan2">
+					<ul id="ShowTheBindingBankCard">
+						<li>
+							<input type="radio" />
+							<img src="$!webPath\resources\style\system\manage\black\img\jianhang.png" />
+						</li>
+						
+					</ul>
+					
+				</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	$!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>
+
+</body>
+</html>

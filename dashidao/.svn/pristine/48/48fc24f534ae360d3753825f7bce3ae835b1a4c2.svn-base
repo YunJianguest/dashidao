@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>进货订单详情</title>
+
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+    <<script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+</head>
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>进货订单详情 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <link href="$!webPath/resources/style/system/front/default/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+<link href="$!webPath/resources/style/system/manage/blue/zhandai.css"  rel="stylesheet" type="text/css"/>
+    <style>
+        .input{
+            border: 0;
+            text-align: center;
+            width: 50px;
+        }
+    </style>
+    <!-- <script>
+         jQuery(document).ready(function(){
+             jQuery('#beginTime').datepicker({
+                 dateFormat:"yy-mm-dd",
+                 changeMonth: true,
+                 changeYear: true
+             });
+             jQuery('#endTime').datepicker({
+                 dateFormat:"yy-mm-dd",
+                 changeMonth: true,
+                 changeYear: true
+             });
+         });
+
+     </script>-->
+</head>
+<body>
+
+<div class="main"> $!httpInclude.include("/seller/nav_head.htm")
+    <div class="user_center">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=refund")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="buyer_position">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代中心</a> > <span>所有订单</span></div>
+                    </div>
+                    <div class="operation_tip">
+	<h3>友情提示</h3>
+	<ul>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+<br>
+                    <div class="entrysheetbox">
+
+                        <table class="returntable importbill entryshtable" border="0" cellspacing="0" cellpadding="0" id="mytable">
+
+                            <tr id="thead">
+                                <td width="14%">商品信息</td>
+                                <td width="16%">规格</td>
+                                <td width="14%">单价</td>
+                                <td width="14%">生产日期</td>
+                                <td width="14%">保质期</td>
+                                <td width="14%">数量</td>
+                                <td width="14%" >操作</td>
+                            </tr>
+                            <tbody id="hhh">
+                            </tbody>
+                            <tr class="second">
+                                <td colspan="5" style="height: 150px;">
+                                    <button  class="btn btn-default"  id="addTable">添加入库商品</button>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="clear">
+                            <button type="submit" class="btn btn-default"  onclick="submit_table()">提交入库单</button>
+                        </div>
+
+
+                        <!--<input type="button" value="增加" id="addTable"/>-->
+                        <script>
+                            //当选项改变时触发
+
+                            function selchange(v){
+                                var id=$(v).val().split(",")[0];
+                                var parent_tr = v.parentNode.parentNode.parentNode;
+                                var parent_td=parent_tr.getElementsByTagName("td");
+                                //通过id查询商品信息
+                                var sqls="SELECT * FROM dashidao_goods A WHERE A.id="+id;
+                                jQuery.ajax({
+                                    type: "POST",
+                                    cache: false,
+                                    async: false,
+                                    url: "/ajaxuser.jsp",
+                                    dataType: "json",
+                                    data: "table=dashidao_goods&dates=addTime,goods_seller_time,store_recommend_time,ztc_apply_time,ztc_begin_time,combin_begin_time,combin_end_time,weixin_shop_hotTime,weixin_shop_recommendTime&sql="+sqls,
+                                    //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                                    error: function () {
+                                        alert("数据错误，操作被取消！");
+                                    },
+                                    success: function (data) {
+                                        var message = data.data.data;
+                                        //填充商品id
+                                        //parent_td[0].children[1].children[0].value=message[0]['id'];
+                                        //填充单价
+                                        parent_td[2].children[0].value=message[0]['goods_price'];
+                                    }
+                                });
+                                //通过商品id查询商品规格信息
+                                /*  var sql2="SELECT  B.value,b.`spec_id` FROM dashidao_goods_spec  A INNER JOIN dashidao_goodsspecproperty B ON A.`spec_id`=b.`id` WHERE a.goods_id="+$(v).val();
+                                  jQuery.ajax({
+                                      type: "POST",
+                                      cache: false,
+                                      async: false,
+                                      url: "/ajaxuser.jsp",
+                                      dataType: "json",
+                                      data: "table=dashidao_goods_spec&dates=addTime&sql="+sql2,
+                                      error: function () {
+                                          alert("数据错误，操作被取消！");
+                                      },
+                                      success: function (data) {
+
+                                          var message = data.data.data;
+
+                                      }
+                                  });*/
+                            }
+
+                            var goods_price=0;
+                            var hang_num=0;
+                            jQuery(document).ready(function(){
+
+                                $("#addTable").click(function(){
+                                    //取得该商家对应的店铺id
+                                    var store_id='${user.store.id}';
+                                    var sql="SELECT * FROM dashidao_goods A WHERE A.goods_store_id="+store_id;
+                                    jQuery.ajax({
+                                        type: "POST",
+                                        cache: false,
+                                        async: false,
+                                        url: "/ajaxuser.jsp",
+                                        dataType: "json",
+                                        data: "table=dashidao_goods&dates=addTime,goods_seller_time,store_recommend_time,ztc_apply_time,ztc_begin_time,combin_begin_time,combin_end_time,weixin_shop_hotTime,weixin_shop_recommendTime&sql="+sql,
+                                        //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                                        error: function () {
+                                            alert("数据错误，操作被取消！");
+                                        },
+                                        success: function (data) {
+                                            hang_num++;
+                                            var message = data.data.data;
+                                            goods_price=message[0]['goods_price'];
+                                            var html='';
+                                            html+="<select id='option"+hang_num+"' name='option' onchange='selchange(this)' >";
+                                            for (var i = 0; i < message.length; i++) {
+                                                html+='<option  value="'+ message[i]['id']+','+message[i]['goods_name']+','+message[i]['goods_serial']+','+message[i]['goods_inventory']+'">'+ message[i]['goods_name'] +'</option>';
+                                            }
+
+                                            html+="</select>";
+                                            var htmls='<tr class=\'first\' id="new_tr"><td><span >';
+                                            htmls+=html;
+                                            htmls+='</span></td>';
+                                            htmls+='<td><span class=f1>';
+                                            htmls+='尺码：<input type="text" id="goods_size'+hang_num+'" class="input" value="'+message[0]['goods_property']+'"><br/>';
+                                            htmls+='单位：<input type="text" id="goods_unit'+hang_num+'" class="input" value="'+message[0]['goods_property']+'"><br/>';
+                                            htmls+='颜色：<input type="text" id="goods_color'+hang_num+'" class="input" value="'+message[0]['goods_property']+'"></span></td>';
+                                            htmls+='<td><input type="text" id="goods_price'+hang_num+'" class="input" value="'+message[0]['goods_price']+'"></td>';
+                                            htmls+='<td id="goods_unit"><input type="text" class="layui-input" id="test1'+hang_num+'" style="text-align: center;"></td>';
+                                            htmls+='<td id="valid_date"><input type="text" id="valid_date'+hang_num+'" placeholder="xx月/永久" style="text-align: center;"></td>';
+                                            htmls+='<td><div class=\'goods_sum\'>' +
+                                                '<ul class="count"><li><span id="num-jian'+hang_num+'"  class="num-jian">-</span></li>' +
+                                                '<li><input type="text" name="input-num" class="input-num" id="input-num'+hang_num+'" value="0" /></li>' +
+                                                '<li><span id="num-jia'+hang_num+'" class="num-jia"  >+</span></li>' +
+                                                '<div class="clear"> </div></ul></div></td>';
+                                            htmls+='<td><i class="fa fa-trash\" style="font-size:36px;" onclick="deleteRow(this)"></td></tr>';
+                                            $('#hhh').append(htmls);
+                                        }
+
+                                    });
+                                    layui.use('laydate', function(){
+                                        var laydate = layui.laydate;
+                                        //执行一个laydate实例
+                                        laydate.render({
+                                            elem: '#test1'+hang_num //指定元素
+                                        });
+                                    });
+                                    $('#num-jian'+hang_num).on("click",function(v){
+                                        var obj = $(this).closest("ul").find(".input-num");
+
+                                        if(obj.val() <= 0) {
+                                            obj.val(0);
+                                        } else {
+                                            obj.val(parseInt(obj.val()) - 1);
+                                        }
+                                        obj.change();
+
+                                        /* var  obj1=$(this).closest(".first").find("#goods_price");
+                                         var  obj2=$(this).closest(".first").find("#total_price");
+
+                                         obj2.val(obj1.val()*obj.val());*/
+
+
+                                    });
+                                    $('#num-jia'+hang_num).on("click",function(v){
+                                        var obj = $(this).closest("ul").find(".input-num");
+                                        obj.val(parseInt(obj.val()) + 1);
+                                        obj.change();
+
+                                        /* var  obj1=$(this).closest(".first").find("#goods_price");
+                                         var  obj2=$(this).closest(".first").find("#total_price");
+                                         // alert(obj1.val());
+                                         // alert(obj2.val());
+                                         obj2.val(obj1.val()*obj.val());*/
+                                    });
+
+                                    /*$('input[name="input-num"]').change(function() {
+                                        var obj = $(this).closest("ul").find(".input-num");
+                                        var  obj1=$(this).closest(".first").find("#goods_price");
+                                        var  obj2=$(this).closest(".first").find("#total_price");
+                                        obj2.val(obj1.val()*obj.val());
+                                    })*/
+                                });
+                            });
+                            //删除行
+                            function deleteRow(r){
+                                var i=r.parentNode.parentNode.rowIndex;
+                                document.getElementById("mytable").deleteRow(i);
+                            }
+                            //提交table
+                            function submit_table(){
+                                var tab = document.getElementById("mytable") ;
+                                //表格行数
+                                var rows = tab.rows.length ;
+                                for(var i=1;i<rows-1;i++){
+
+                                    var goods_id=$("#option"+i).val().split(",")[0];
+                                    var goods_name=$("#option"+i).val().split(",")[1];
+                                    //商品编号
+                                    var goods_serial=$("#option"+i).val().split(",")[2];
+                                    //商品原始库存
+                                    var goods_inventory=$("#option"+i).val().split(",")[3];
+                                    var goods_size=document.getElementById("goods_size"+i).value;
+                                    var goods_unit=document.getElementById("goods_unit"+i).value;
+                                    var goods_color=document.getElementById("goods_color"+i).value;
+                                    var goods_price=document.getElementById("goods_price"+i).value;
+                                    var product_time=document.getElementById("test1"+i).value;
+                                    if(product_time==""){
+                                        alert("请填写生产日期！");
+                                        return;
+                                    }
+                                    var valid_time=document.getElementById("valid_date"+i).value;
+                                    if(valid_time==""){
+                                        alert("请填写保质期！");
+                                        return;
+                                    }
+                                    var count=document.getElementById("input-num"+i).value;
+                                    var state=1;
+                                    //获取当前日期
+                                    var now_date = new Date();
+                                    var add_time=now_date.getFullYear()+"-"+(now_date.getMonth()+1)+"-"+now_date.getDate();
+                                    //拼接数据
+                                    var data1=goods_id+","+goods_name+","+product_time+","+count+","+add_time+","+goods_size+","+goods_color+","+goods_price+","+state+','+goods_unit+','+goods_serial+','+valid_time;
+                                    jQuery.ajax({
+                                        type:"POST",
+                                        cache: false,
+                                        async:false,
+                                        url:"/ajax.jsp",
+                                        dataType:"json",
+                                        // data:"action=update&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                                        data:"action=insert&table=dsdsj_storage_submit&field=goods_id,goods_name,create_date1,goods_count,create_date,goods_size,goods_color,goods_price,states,goods_unit,goods_serial,valid_date&values="+data1,
+
+                                        success:function(data)
+                                        {
+                                            if(data.code=="0"){alert("系统错误，操作被取消！");return;}
+                                            var str='操作成功';
+                                            if(str==data.msg){
+                                                var kucun_total=parseFloat(goods_inventory)+parseFloat(count);
+                                                var data2=goods_id+"|"+kucun_total;
+                                                //去goods表修改原始库存量
+                                                jQuery.ajax({
+                                                    type: "POST",
+                                                    cache: false,
+                                                    async: false,
+                                                    url: "/ajax.jsp",
+                                                    dataType: "json",
+                                                    // data:"action=update&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                                                    data: "action=update&table=dashidao_goods&field=id,goods_inventory&values=" + data2,
+
+                                                    success: function (data) {
+                                                        if(data.code=="0"){alert("系统错误，操作被取消！");return;}
+                                                        if(data.msg=="操作成功"){
+
+                                                        }
+                                                    }
+                                                });
+                                            }
+
+                                            //alert(data.data);
+                                        }
+
+                                    });
+
+                                }
+                                window.location.href='$!webPath/poster/goods_storage.htm';
+
+                            }
+
+                        </script>
+
+                        <!-- PageNum -->
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+/* CSS Document */
+#font1{color:darkgreen}
+#font2{color:red}
+.font3{color:blue}
+ul li{list-style:none;}
+.table{align-content: center;margin: 15px autoheight:30px;line-height:30px;}
+.table tr td{height:40px;line-height:40px;border-bottom:1px solid #c3c3c3;}
+.table_thead{background-color: #dfe2f5;}
+.solid {border-bottom-style:solid;}
+.button{background-color: #108ee9;color: white;width: 80px;height: 40px;font-size: 15px;}
+/*瀵硅处涓績鐨刡utton鎸夐挳*/
+.dzzx_button{background-color: white;color: black;}
+/*鎼滅储妗嗘牱寮�*/
+.i_search{position: relative;top: 24px;left: 10px}
+.i_search_input{padding-left: 30px}
+.i_angle_left{font-size: 28px;}
+.i_pencel_remove{position: relative;top:50px;}
+
+/*姝囦笟瀹℃牳*/
+.div_1{width:100%;margin: 0 auto}
+.div_2{width:100%;display: flex;margin: 15px auto}
+.agree{color:#3F51B5;}
+.disagree{color:#E51C23}
+.pagination li a{padding: 10px 29px!important;}
+/*姝囦笟鐢宠璇︽儏*/
+.xy_td{border-bottom:1px solid #959595; padding: 10px 0;
+		width: 500px;
+		height: 20px;}
+/*鎸夐挳鐨則able杈规*/
+.xy_table{width: 800px; margin-top: 20px;}
+/*骞冲彴鏀惰垂 璧勯噾绠＄悊涓婂眰鑳屾櫙鍥�*/
+.bg_div{height: 150px; display: flex;margin: 15px auto;border:1px solid #C7C7C7; background-color:#3fa4ed ;color: white;}
+/*浣ｉ噾閫�绋庡鏍歌鎯�*/
+.little_title{width: auto;height: 10px;font-size: 20px;}
+.yj_table{width: 800px; margin-top: 20px;margin-left: 20px;}
+/*骞冲彴鍜岃祫閲戠鐞嗭紝涓婂眰瀛椾綋鏍峰紡*/
+.p_font{padding-left: 50px;padding-top: 50px;}
+.s_font{font-size: 26px;}
+/*璧勯噾绠＄悊锛屼笅灞傝儗鏅浘鏍峰紡*/
+.bg_div2{width:100%;height: 550px; display: flex;margin: 15px auto;background-color:#C0E1F0 100% ;color: black;}
+.bg_div3{width: 49.99%;border:1px solid #C7C7C7;}
+.btn-primary {
+    color: #000!important; 
+    background-color: #fff!important;
+    border-color: #fff!important;
+}
+/*璧勯噾绠＄悊锛屼笅灞傚瓧浣撴牱寮�*/
+.zj_little_font{padding-left:100px;}
+.zj_button{background-color: white;color: black;}
+/*渚涜揣鍟嗙鐞嗕笅灞傦紝寮�璁剧洿钀ュ簵涓嬪眰div*/
+.ghs_div{width: 800px; display: flex;margin: 15px auto;border:1px solid #C7C7C7;}
+/*璐х墿璋冩嫧div*/
+.hwdb_div1{width: 800px;height:40px;display: flex;margin: 15px auto;border:1px solid #C7C7C7; background-color: #119896;}
+.hwdb_div1_p1{padding-top: 10px;padding-left: 10px;}
+/*鏍堜唬鍔ㄦ��*/
+.zddt_div1{width: 900px;height: 180px; margin: 15px auto;border:1px solid #C7C7C7}
+.zddt_div2{width: 800px;height: 75px; display: flex;margin: 15px auto;border:none}
+.zddt_picture{padding-left: 10px;padding-top: 15px;}
+.zddt_p{width: 800px; display: flex; margin-left: 650px}
+   /*鏍堜唬鍔ㄦ�佷腑鐨勭洿绾�*/
+.zddt_line{margin-top: 100px;
+    width: 900px;
+    border-bottom: 1px solid #000000;width: 800px;display: flex;margin: 15px auto;}
+
+/*
+*author锛氱櫧鐟炲崕
+*锛�1锛�2锛�3锛夐噷闈㈢殑鏍峰紡
+*/
+a:hover{background:#3366FF;color:#fff}
+.body {
+	  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	  font-size: 14px;
+	  line-height: 1.42857143;
+	  color: #333;
+	  background-color: #fff;
+	}
+.input{border:none;width:60px;}
+.ulli{list-style: none;padding: 0;margin: 0;}
+.tdborder{border-bottom: 1px solid #eee; padding: 10px 0;}
+.middle{width:550px;height:40px;background-color:#108ee9;float:right;}
+.nav-tabs{border:none}
+.navli{border:1px solid #eee;margin-left:2px}
+.apro{color:#333}
+.pth{color: #122D57;align:left;text-align: left;font-size: 14px}
+.scheck{text-align: right;margin-left: 200px}
+.icheck{background:#122D57;color: aliceblue;}
+.center{text-align: center}
+.common{margin-top: 10px;heigh:50px;line-height: 50px}
+.confirm{background:#122D57;color: aliceblue;width:100px;height:50px;font-size: 16px}
+.left{float:left}
+.middle{width:550px;height:40px;background-color:#108ee9;float:right;}
+.right{float:right}
+.swhite{color: aliceblue;line-height: 50px;height: 40px;float:left}
+.middle2{width:600px;height:40px;float:left;margin-top: 20px}
+.small{width:20px;height:20px;line-height: 30px; float:right;}
+.small2{height:40px;line-height: 30px;float:right}
+.blue{background:#108ee9}  /* 鎸夐挳钃�*/
+.grey{background:#ccc}  /* 杈规鐏�*/
+.blue2{background:#dfe2f5}  /* 琛ㄦ牸澶撮儴鑳屾櫙钃�*/
+.trb{left: 237px;top: 310px;width: 738px;height: 87px;line-height: 20px;background-color: rgba(255, 255, 255, 1);text-align: center;border: 1px solid rgba(190, 194, 201, 1);}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

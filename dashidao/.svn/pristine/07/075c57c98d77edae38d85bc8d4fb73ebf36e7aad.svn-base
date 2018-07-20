@@ -1,0 +1,10 @@
+
+<div class="footer">
+<div class="footerArea">
+  <ul>
+    <li class="hui2">Copyright 2018 All rights reserved</li>
+<!--     <li class="hui2">$!{config.poweredby} </li> -->
+    <li>$!config.codeStat</li>
+  </ul>
+</div>
+</div>

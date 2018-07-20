@@ -1,0 +1,60 @@
+*{margin:0;padding:0;font-family:'微软雅黑';}
+ul li{list-style: none;float:left;}
+a{text-decoration:none;color:#000;}
+a:link{text-decoration:none;color:#000;}
+/*img{background:rgb(255, 255, 255);}*/
+.ico{float:right;margin-top:.7em!important;}
+.ico img{width:20px;height:20px;}
+.logo,.qq,.weixin{margin:7em auto 4em!important;align:center!important;}
+.control-group{width:90%;margin:1.5em 5%;border-bottom: 1px solid #c3c3c3;font-size:1rem;}
+.control-group input{width:59%;height:3em;border:0;margin-left:2%;}
+.logo img{width:150px;height: 150px;}
+.font{color:#ff6600;}
+.regiester,.login,.footer{width:90%;margin:5%;font-size:1rem;}
+.login div{width:100%;border-radius:30px;font-size:1rem;height: 2.5em;line-height:2.5em;margin: 1.5em auto;border:1px solid #ff6600;text-align: center;}
+#repassword,.oper{float: right;}
+.re #repassword{margin-left:2%;}
+.mb_login #mobile{width:40%;margin:auto 2%;}
+#inputPassword{width:60%;margin:auto 2%;}
+.code{width:39%;border-radius:30px;font-size:.8em;height: 2em;line-height:2em;text-align: center;float:right;margin-top: 0.5em;}
+.re_passwpord input{width:60%!important;margin-left:2%;}
+.re_passwpord #mobile{width:42%!important;}
+#email_pw{float:right;margin: -5% 0;}
+#sms_pw{float:right;margin:0;}
+.confirm{margin:10% 0;}
+.code .co{float:right;}
+.co img{width: 20px;height: 20px;}
+.nav{font-size:1.2rem;color:#fff;background:#ff6600;height: 2.5em;line-height:2.5em;text-align: center;position: fixed;top:0;width:100%;z-index: 99; }
+.nav ul .back{width:20%; }
+.nav ul .title{width:60%;}
+.reback{font-size: 1rem;}
+.name{height:2em;line-height: 2em;font-size: 1rem;letter-spacing:2px;}
+.agree img{width:20px;height:20px;border-radius:5px;float: left;}
+.agree{margin: 2em auto;}
+.agree div{height:2em;line-height: 2em;float: left;color :#969296;}
+.qq img{height:150px;width:130px;}
+.qq_login{width:100%;margin:5% 0;font-size:1rem;}
+.qq_login div{width:100%;border-radius:30px;font-size:1rem;height: 2.5em;line-height:2.5em;margin: 3.5em auto;border:1px solid #ff6600;text-align: center;}
+.bk{font-size:2em;}
+.prompt{font-size:1.1em;font-family:inherit;}
+.binding ul li{width:50%;text-align: center;height: 4em;line-height: 4em;border:1px solid #c3c3c3;}
+.bind{background:#ff6600;color:#fff; }
+.ck{margin:0 0 -25px 0;color:#969296;text-align: center;}
+.view{margin: 20% auto;}
+.weixin img{height:150px;width:150px;}
+.weixin_login{width:100%;margin:5% 0;font-size:1rem;}
+.weixin_login div{width:100%;border-radius:30px;font-size:1rem;height: 2.5em;line-height:2.5em;margin: 3.5em auto;border:1px solid #ff6600;text-align: center;}
+.collect_kinds{margin-top:3.2em;border-bottom: 1px solid #c3c3c3;}
+.collect_kinds ul li{width:50%;text-align:center;height: 3em;line-height: 3em;font-size: 1rem;}
+.sel,.price{color:red;}
+hr{width:100%;height:2px;border:none;border-top:2px solid #c3c3c3;}
+.goods,.store{margin-top:1em;}
+.oper img{width:20px;height: 20px;}
+.ope img{width:20px;height: 20px;}
+.product img{margin:5% 0 0 0;width:90%;height:90%;}
+.foot{position: fixed;bottom: 0;z-index: 99;width: 100%;}
+.foot img{width:30px;height:30px;}
+.foot ul li{width:33%;text-align: center;border-top:1px solid #c3c3c3;}
+.assess img{width:20px;height: 20px;}
+.vip img{width:20px;height: 20px;}
+label{font-weight: inherit!important;}

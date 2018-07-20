@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+	<link href="$!webPath/resources/style/system/manage/blue/tip.css"  rel="stylesheet" type="text/css"/>
+	<link href="$!webPath/resources/style/system/manage/blue/headquarters.css"  rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+	<script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+	<script src="$!webPath/resources/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+	<script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+	<title></title>
+</head>
+
+<body>
+<div class="fwjd">
+<script>
+    function suprise(is_told,$this){
+        var id=$($this).parent().parent().find("input").eq(0).val();
+        //alert(id);
+        jQuery.ajax({
+            type: "POST",
+            cache: false,
+            async: false,
+            url: "/ajax.jsp",
+            dataType: "json",
+            // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+            data: "action=update&table=zb_fwjd&field=id,is_told&values="+id +"|"+ is_told,
+
+            success: function (data) {
+                if (data.state == "error") {
+                    alert("系统错误，操作被取消！");
+                    return;
+                } else {
+                    alert("操作成功！");
+                    location.href="$!webPath/admin/fwjd_details.htm?id="+id;
+                }
+
+            },
+            error: function () {
+
+                alert("数据错误，操作被取消！");
+            }
+        });
+    }
+</script>
+<div class="seth1">
+	<img src="$!webPath/resources/style/system/manage/black/img/1.png" alt="">
+	法务监督
+</div>
+<div class="ss"><span class="allmen size4"><input type="text"></span><span class="btn_search"> <input type="submit" value="搜索"></span></div>
+	<div class="operation">
+		<h3>友情提示</h3>
+		<ul>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<table width="98%" style="font-size:16px;text-align: center;margin-left: 2%;margin-top: 20px;">
+	<tr  class="tableheader">
+		<td>商家号</td>
+		<td>商品名称</td>
+		<td>商品图片</td>
+		<td>商品编号</td>
+		<td>出厂价</td>
+		<td>操作</td>
+	</tr>
+	<tbody  id="tablesss" >
+
+	</tbody>
+</table>
+	<!--分页开始-->
+<div id="demo7" style="text-align: center; margin-top: 30px;" ></div>
+<div style="display: none;">
+	<form action="$!webPath/admin/fwjdC_save.htm" method="post" id="spjcForm" name="spjcForm">
+		<input type="hidden" name="userid1" id="userid1" value="${user.id}" />
+		<input type="hidden" name="userid2" id="userid2" value="" />
+		<input type="hidden" name="spbh" id="spbh" value="" />
+		<input type="hidden" name="spmc" id="spmc" value="" />
+		<input type="hidden" name="jyid" id="jyid" value="" />
+	</form>
+
+</div>
+<script>
+	var mycars=new Array()
+	var page_no=1;
+	var page_size=10;
+	var total =0;
+    jQuery(document).ready(function(){
+        loadajax("select","zb_fwjd","is_deleted","0",page_size,page_no,1);
+        layui.use(['laypage', 'layer'], function(){
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+            //完整功能
+            laypage.render({
+                elem: 'demo7'
+                ,count:total
+                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                ,jump: function(obj){
+                    //console.log(obj)
+                    cuur=obj.curr;
+                    pagelimit=obj.limit;
+                    //alert(pagelimit);page_size
+                    loadajax("select","zb_fwjd","is_deleted","0",pagelimit,page_no,1);
+                    //loadajax("select","stu",pagelimit,cuur,1);
+                },
+                limits:[2, 4, 6, 8, 10],
+                limit:page_size
+            });
+        });
+    });
+    function loadajax(action,table,field,values,page_size,page_no,moudle_id){
+    	var sql =" SELECT DISTINCT dashidao_goods.id,dashidao_goods.goods_name,dashidao_goods.goods_store_id AS storeid,dashidao_user.id AS userid,";
+		sql +=" dashidao_accessory.name,dashidao_accessory.`path`,dashidao_goods.goods_serial,dashidao_goods.goods_price";
+		sql +="  FROM dashidao_goods";
+		sql +=" LEFT JOIN dashidao_goods_photo ON  dashidao_goods_photo.`goods_id` = dashidao_goods.`id`";
+		sql +=" LEFT JOIN dashidao_accessory ON dashidao_accessory.`id` = dashidao_goods_photo.`photo_id`";
+		sql +=" LEFT JOIN dashidao_user ON dashidao_user.store_id = dashidao_goods.goods_store_id ";
+		sql +=" WHERE dashidao_goods.`deleteStatus` ='0' order by dashidao_goods.addTime";
+        jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajaxuser.jsp",
+            dataType:"json",
+            // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+             data:"table=dashidao_goods&dates=addTime,goods_seller_time,store_recommend_time,ztc_apply_time,combin_begin_time,combin_end_time,weixin_shop_hotTime,weixin_shop_recommendTime&sql="+sql+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+            error:function(){alert("数据错误，操作被取消！");},
+            success:function(data)
+            {
+                if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                total=data.data.total;
+                mycars[0]=total;
+                var message=data.data.data;
+                //console.log(message);
+                $("#tablesss").html('');
+                for(var i=0;i<message.length;i++){
+                    //$("#tablesss").append("<tr><td>"+message[i]['sjh']+"</td><td>"+message[i]['spmc']+"</td><td><img src='"+"$!webPath/resources/"+message[i]['sptp']+"' alt=\"\"/></td><td>"+message[i]['spbh']+"</td><td>"+message[i]['spgg1']+"<br>"+message[i]['spgg2']+"<br>"+message[i]['spgg3']+"</td><td>"+message[i]['ccj']+"</td><td>"+message[i]['qdsl']+"</td><td>"+message[i]['bzq1']+"<br>"+message[i]['bzq2']+"</td><td>"+message[i]['zzd']+"<td class='ac9'><a href=''>通知商家</a></td>"+"</td></tr>");
+                    /* if(message[i]['is_told']=="0"){
+                        $("#tablesss").append("<tr><td><input type='hidden' value='"+message[i]['id']+"'/>"+message[i]['sjh']+"</td><td>"+message[i]['spmc']+"</td><td><img src='"+"$!webPath/resources/"+message[i]['sptp']+"' alt=\"\"/></td><td>"+message[i]['spbh']+"</td><td>"+message[i]['spgg1']+"<br>"+message[i]['spgg2']+"<br>"+message[i]['spgg3']+"</td><td>"+message[i]['ccj']+"</td><td>"+message[i]['qdsl']+"</td><td>"+message[i]['bzq1']+"<br>"+message[i]['bzq2']+"</td><td>"+message[i]['zzd']+"<td class='ac9'><a href='#' onclick='suprise(1,this);'>通知商家</a></td>"+"</td></tr>");
+                    }
+                    if(message[i]['is_told']=="1"){
+                        $("#tablesss").append("<tr><td>"+message[i]['sjh']+"</td><td>"+message[i]['spmc']+"</td><td><img src='"+"$!webPath/resources/"+message[i]['sptp']+"' alt=\"\"/></td><td>"+message[i]['spbh']+"</td><td>"+message[i]['spgg1']+"<br>"+message[i]['spgg2']+"<br>"+message[i]['spgg3']+"</td><td>"+message[i]['ccj']+"</td><td>"+message[i]['qdsl']+"</td><td>"+message[i]['bzq1']+"<br>"+message[i]['bzq2']+"</td><td>"+message[i]['zzd']+"<td class='ac9'><a href='#'>已通知</a></td>"+"</td></tr>");
+                    } */
+                	 $("#tablesss").append("<tr><td><input type='hidden' name='user_id' value='"+message[i]['userid']+
+                      		"' /><input type='hidden' name='bh' value='"+message[i]['goods_serial']+"' /><input type='hidden' name='mc' value='"
+                      		+message[i]['goods_name']+"' /><input type='hidden' name='id' value='"+message[i]['id'] +"'/>"+
+                      		message[i]['storeid']+"</td><td>"+message[i]['goods_name']+"</td><td><img  style='width:100px;height:100px;' src='"+"$!webPath/"+message[i]['path']+"/"+message[i]['name']+"' alt=\"\"/></td><td>"+
+                      		message[i]['goods_serial']+"</td><td>"+message[i]['goods_price']+"</td>"+
+                      		"<td class='ac9'><a href='#' onclick='tongzhi("+message[i]['id']+",this);'>通知商家</a></td>"+"</td></tr>");
+
+                }
+            }
+        });
+    }
+    
+    function tongzhi(id,ev)
+	{
+		var userid = $(ev).parent().parent().find("input[name='user_id']").val();
+		var bh = $(ev).parent().parent().find("input[name='bh']").val();
+		var mc = $(ev).parent().parent().find("input[name='mc']").val();
+		var id = $(ev).parent().parent().find("input[name='id']").val();
+		var is_told =1;
+		$("#userid2").val(userid);
+		$("#spbh").val(bh);
+		$("#spmc").val(mc);
+		$("#jyid").val(id);
+		$("#spjcForm").submit();
+	}
+</script>
+<!--分页结束-->
+<script>
+    $(".pagination li").click(function(){
+        $(this).addClass("active");
+        $(this).siblings().removeClass("active");
+    })
+</script>
+</div>
+
+</body>
+</html>

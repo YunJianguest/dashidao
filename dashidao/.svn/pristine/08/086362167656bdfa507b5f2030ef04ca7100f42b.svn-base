@@ -1,0 +1,392 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>栈代合同 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/zxx.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/two_level.css">
+    <link href="$!webPath/resources/style/system/front/default/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+<link href="$!webPath/resources/style/system/manage/blue/zhandai.css"  rel="stylesheet" type="text/css"/>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+
+        });
+        var goods_price=0;
+        var hang_num=0;
+        jQuery(document).ready(function(){
+
+            $("#addTable").click(function(){
+                //取得该商家对应的店铺id
+                var store_id='${user.store.id}';
+                var sql="SELECT * FROM dashidao_goods A WHERE A.goods_store_id="+store_id;
+                jQuery.ajax({
+                    type: "POST",
+                    cache: false,
+                    async: false,
+                    url: "/ajaxuser.jsp",
+                    dataType: "json",
+                    data: "table=dashidao_goods&dates=addTime,goods_seller_time,store_recommend_time,ztc_apply_time,ztc_begin_time,combin_begin_time,combin_end_time,weixin_shop_hotTime,weixin_shop_recommendTime&sql="+sql,
+                    //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                    error: function () {
+                        alert("数据错误，操作被取消！");
+                    },
+                    success: function (data) {
+                        hang_num++;
+                        var message = data.data.data;
+                        goods_price=message[0]['goods_price'];
+                        var html='';
+                        html+='<select id="option'+hang_num+'" onchange="selchange(this)" >';
+                        for (var i = 0; i < message.length; i++) {
+                            html+='<option  value="'+ message[i]['id']+'">'+ message[i]['goods_name'] +'</option>';
+                        }
+
+                        html+="</select>"
+                        var htmls='<tr id="new_tr"><td>';
+                        htmls+=html;
+                        htmls+='</td>';
+                        htmls+='<td><input type="text" id="goods_serical'+hang_num+'" class="input" value="'+message[0]['goods_serial']+'"></td>';
+                        htmls+='<td><input type="text" id="goods_price'+hang_num+'" class="input" value="'+message[0]['goods_price']+'"></td>';
+                        htmls+='<td ><input id="qidingliang'+hang_num+'" type="text" placeholder="0" class="input"></td>';
+                        htmls+='<td ><input id="time1'+hang_num+'" type="text" class="input-num" style="text-align: center;">'+'-'+'<input style="text-align: center;" id="time2'+hang_num+'" type="text" class="input-num" ></td>';
+                        htmls+='<td><i class="fa fa-trash\" style="font-size:36px;" onclick="deleteRow(this)"></td></tr>';
+                        $('#hhh').append(htmls);
+                    }
+
+                });
+                layui.use('laydate', function(){
+                    var laydate = layui.laydate;
+                    for(var i=1;i<=hang_num;i++) {
+                        //执行一个laydate实例
+                        laydate.render({
+                            elem: '#time1'+i, //指定元素
+                        });
+                    }
+                });
+                layui.use('laydate', function(){
+                    var laydate = layui.laydate;
+                    for(var i=1;i<=hang_num;i++) {
+                        //执行一个laydate实例
+                        laydate.render({
+                            elem: '#time2'+i, //指定元素
+                        });
+                    }
+                });
+
+            });
+        });
+        function selchange(v){
+            //alert($(v).val())
+            var parent_tr = v.parentNode.parentNode;
+            var parent_td=parent_tr.getElementsByTagName("td");
+            //通过id查询商品信息
+            var sqls="SELECT * FROM dashidao_goods A WHERE A.id="+$(v).val();
+            jQuery.ajax({
+                type: "POST",
+                cache: false,
+                async: false,
+                url: "/ajaxuser.jsp",
+                dataType: "json",
+                data: "table=dashidao_goods&dates=addTime,goods_seller_time,store_recommend_time,ztc_apply_time,ztc_begin_time,combin_begin_time,combin_end_time,weixin_shop_hotTime,weixin_shop_recommendTime&sql="+sqls,
+
+                error: function () {
+                    alert("数据错误，操作被取消！");
+                },
+                success: function (data) {
+                    var message = data.data.data;
+                    //填充商品编号
+                    parent_td[1].children[0].value=message[0]['goods_serial'];
+                    //填充单价
+                    parent_td[2].children[0].value=message[0]['goods_price'];
+                }
+            });
+
+        }
+        //删除行
+        function deleteRow(r){
+            var i=r.parentNode.parentNode.rowIndex;
+            document.getElementById("mytable").deleteRow(i);
+        }
+        
+        //判断是否需要哪种许可证
+        function xuKeZhengChange()
+        {
+        	var rec_license=$("input[name='rec_license']:checked").val();
+        	if(rec_license == 0)
+        	{
+        		$("#xkzTr").show();
+        	}else
+        	{
+        		$("#xkzTr").hide();
+        	}
+        }
+        
+        //提交table
+        function submit_table(){
+            var rec_license=$("input[name='rec_license']:checked").val();
+            var rec_shop=$("input[name='rec_shop']:checked").val();
+            var rec_returns=$("input[name='rec_returns']:checked").val();
+            var rec_support=$("input[name='rec_support']:checked").val();
+            var rec_maxStock=$("input[name='rec_maxStock']:checked").val();
+            var rec_maxAmount=$('#rec_maxAmount').val();
+            var rec_maxCount=$('#rec_maxCount').val();
+            var rec_zmNum=$('#rec_zmNum').val();
+            var rec_level=$("input[name='rec_level']:checked").val();
+
+            var count_fan=$('#count_fan').val();
+            var count_sax=$('#count_sax').val();
+
+            var rec_xukezheng =null ;//许可证
+            
+            var tab = document.getElementById("mytable") ;
+            //表格行数
+            var rows = tab.rows.length ;
+            if(rows==1){
+                alert("请添加栈代商品！")
+                return;
+            }
+            
+            if(rec_license == 0)
+            {
+            	if(rec_xukezheng == '' || rec_xukezheng == null)
+            	{
+            		alert("请输入经营许可证");
+            		return;
+            	}
+            	rec_xukezheng =$('#rec_xukezheng').val() ;//许可证
+            }
+            
+            for(var i=1;i<rows;i++){
+
+                var goods_id=$("#option"+i).val();
+                var qidingliang=document.getElementById("qidingliang"+i).value;
+                if(qidingliang==""){
+                    alert("请添加起订量！")
+                    return;
+                }
+
+                var time1=document.getElementById("time1"+i).value;
+                var time2=document.getElementById("time2"+i).value;
+                if(time1=="" || time2==""){
+                    alert("请完善合同有效日期！")
+                    return;
+                }
+                //获取当前日期
+                var now_date = new Date();
+                var create_date=now_date.getFullYear()+"-"+(now_date.getMonth()+1)+"-"+now_date.getDate();
+                //拼接数据
+                var data1=rec_license+","+rec_shop+","+rec_returns+","+rec_support+","+rec_maxStock+","+rec_maxAmount+","+rec_maxCount+","+rec_zmNum+","+rec_level+','+count_fan+','+ count_sax+','+goods_id+','+qidingliang+','+time1+','+time2+','+create_date+','+rec_xukezheng;
+                alert(data1);
+                jQuery.ajax({
+                    type:"POST",
+                    cache: false,
+                    async:false,
+                    url:"/ajax.jsp",
+                    dataType:"json",
+
+                    data:"action=insert&table=wemall_recruit_zhandai&field=rec_license,rec_shop,rec_returns,rec_support,rec_maxStock,rec_maxAmount,rec_maxCount,rec_zmNum,rec_level,count_fan,count_sax,goods_id,rec_startCount,create_date1,create_date2,create_date,rec_xukezheng&values="+data1,
+
+                    success:function(data) {
+                        if(data.code=="0"){alert("系统错误，操作被取消！");return;}
+
+                        var str='操作成功';
+                        if(str==data.msg){
+
+                        }
+                    }
+                });
+
+            }
+            alert(hhaahh);
+            javascript:history.go(-1);location.reload()
+            //window.location.href='$!webPath/seller/zhaomuzhandai.htm';
+
+        }
+
+    </script>
+    <style>
+        .hzhaomu li{ width: 14%; }
+        .hzhaomu2 li{ width: 14%; }
+        .ac9 a {
+            color: #999;
+            padding:4px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            border:1px solid #999;margin-left:4px;
+        }
+        .ac9 a:hover {
+            color:#999;
+            background: #fff;
+
+        }
+        .input{
+            border: 0;
+            text-align: center;
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="main"> $!httpInclude.include("/seller/nav_head.htm")
+	$!httpInclude.include("/seller/adv.htm")
+    <div class="user_center">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=sub_account")
+                <td id="centerbg" valign="top" width="80%">
+ 					<div class="buyer_position">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">商家支持</a> > <span>商品管理</span>  > <span>招募栈代</span></div>
+                    </div>
+                    <div class="zaboth">
+                        <form id="form1" name="form1" method="post" class="form-inline">
+                            <div>
+                                <table width="100%">
+                                    <tr>
+                                        <td width="10%">行业许可：</td>
+                                        <td colspan="2">
+                                            <div class="view">
+                                                <input class="radio-inline" type="radio" onchange="xuKeZhengChange();" name="rec_license" id="optionsRadios3" value="0" checked> 需要
+                                                <input class="radio-inline" type="radio" onchange="xuKeZhengChange();"  name="rec_license" id="4" value="1"> 不需要
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr id="xkzTr" style="">
+                                    	<td width="10%">经营许可证：</td>
+                                        <td colspan="2">
+                                            <div class="view">
+                                                <input type="text" name="rec_xukezheng" id="rec_xukezheng" class="txt">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>实体店铺：</td>
+                                        <td colspan="2" class="checke">
+                                            <input type="radio" class="radio-inline"  name="rec_shop" value="有店铺">  有店铺
+                                            <input type="radio" class="radio-inline" name="rec_shop" value="有仓库">  有仓库
+                                            <input type="radio" class="radio-inline" name="rec_shop" value="不限" checked>  不限
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>滞销品退货</td>
+                                        <td colspan="2">
+                                            <input class="radio-inline" type="radio" name="rec_returns" id="1" value="0">  允许
+                                            <input class="radio-inline" type="radio" name="rec_returns" id="2" value="1" checked>不允许
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>相关支持：</td>
+                                        <td colspan="2" class="checke">
+                                            <input type="radio" name="rec_support" class="radio-inline" value="提供宣传品">  提供宣传品
+                                            <input type="radio" name="rec_support" class="radio-inline" value="提供宣传稿">  提供宣传稿
+                                            <input type="radio" name="rec_support" class="radio-inline" value="不限" checked>  不限
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>最大存货量：</td>
+                                        <td colspan="2">
+                                            <input class="radio-inline" type="radio" name="rec_maxStock" id="44" value="0">  限制
+                                            <input class="radio-inline" type="radio" name="rec_maxStock" id="55" value="1" checked>不限制
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>最大金额:</td>
+                                        <td>
+                                            <input type="text" name="rec_maxAmount" id="rec_maxAmount" class="txt"> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>最大数量:</td>
+                                        <td>
+                                            <input type="text" name="rec_maxCount" id="rec_maxCount" class="txt"> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>招募栈代数量：</td>
+                                        <td colspan="2"><input type="text" name="rec_zmNum" id="rec_zmNum" class="txt"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>返点优惠：</td>
+                                        <td colspan="2">
+                                            <div>满<input type="text" name="" class="txt" id="count_fan">件，返<input type="text" name="" class="txt" id="count_sax">%</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>栈代级别：</td>
+                                        <td width="217px;"><input class="radio-inline" type="radio" name="rec_level" id="42" value="省级">  省级</td>
+                                        <td width="217px;"><input class="radio-inline" type="radio" name="rec_level" id="235" value="市级">  市级</td>
+                                        <td width="217px;"><input class="radio-inline" type="radio" name="rec_level" id="524" value="区县级">  区县级</td>
+                                    </tr>
+                                </table>
+                                <script>
+                                    $('.view span').click(function(){
+                                        $(this).addClass('check');
+                                        $(this).siblings().removeClass('check');
+                                    })
+                                </script>
+                            </div>
+                            <div class="sp">栈代商品</div>
+                            <table width="100%;" cellpadding="0" cellspacing="0" class="sj_zhaozd" id="mytable">
+                                <tr class="zdthead" >
+                                    <td>商品名称</td>
+                                    <td>商品编号</td>
+                                    <td>出厂价</td>
+                                    <td>起订数量</td>
+                                    <td>合同期限</td>
+                                    <td>操作</td>
+                                </tr>
+                                <tbody id="hhh">
+                                </tbody>
+
+                            </table>
+                        </form>
+                        <div class="add" id="addTable">添加</div>
+                        <div class="qd" onclick="submit_table()">确定</div>
+                        <script>
+                            $('.qd').click(function(){
+                                $('#form1').submit();
+                            });
+                        </script>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

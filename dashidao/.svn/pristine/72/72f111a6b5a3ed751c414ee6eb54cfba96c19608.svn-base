@@ -1,0 +1,77 @@
+<div class="header">
+  <div class="logo"><img src="$!webPath/resources/style/system/front/default/images/sjlogo.png" style="height:auto;" alt="" width="80%" ></div>
+  <div class="information">
+    <ul>
+      <li><a href="$!webPath/admin/index.htm">首页</a></li>
+      <li><a href="#">规则中心</a></li>
+      <li><a href="$!webPath/seller/index.htm">商家支持</a>
+        <ul>
+          <li><a href="#">商家中心</a></li>
+          <li><a href="#">商家订单</a></li>
+          <li><a href="#">商家商品</a></li>
+        </ul>
+      </li>
+      <li><a href="$!webPath/poster/index.htm">栈代支持</a>
+        <ul>
+          <li><a href="#">栈代中心</a></li>
+          <li><a href="#">栈代订单</a></li>
+          <li><a href="#">栈代商品</a></li>
+        </ul>
+      </li>
+      <li><a href="#">帮助</a></li>
+      <li><a href="#"><img src="$!webPath/resources/style/system/front/default/images/head.jpeg" alt="" style="width: 50px;height: 50px;border-radius: 50%;"></a></li>
+      <li><a href="#">Jackson</a></li>
+      <li><a href="$!webPath/seller/shangPinTongZhi.htm"><i class="iconfont icon-comments"></i><span id="tongZhiSpan"></span></a></li>
+      <li>退出</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+	jQuery(document).ready(function(){
+		  getShangPinCount();
+		  $("#tongZhiSpan").html(shangPinCount);
+		  
+	});
+
+	var shangPinCount =0;
+	var userid = "${user.id}";
+	//获取商品总数
+	function getShangPinCount()
+	{
+		var sql ="SELECT COUNT(1)  AS spnum FROM dashidao_chatting WHERE dashidao_chatting.`type`='1' AND dashidao_chatting.`user2_id`="+userid+" order by dashidao_chatting.addTime";
+	    jQuery.ajax({
+	        type:"POST",
+	        cache: false,
+	        async:false,
+	        url:"/ajaxuser.jsp",
+	        dataType:"json",
+	        data:"table=zb_spjc&dates=create_date&sql="+sql,
+	        error:function(){alert("数据错误，操作被取消！");},
+	        success:function(data)
+	        {
+	            if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+	            var message=data.data.data;
+	            shangPinCount = message[0]['spnum'];
+	        }
+	    });
+	}
+</script>
+
+<style>
+
+
+  .header {height: 120px;border-bottom:3px solid #c3c3c3; font-size: 17px; background: #f7f7f7;}
+  .header ul li{list-style: none;float: left; padding: 0 20px;height: 30px;  line-height: 30px; position: relative; }
+  .header ul li a:hover{ background: none;}
+  .header ul li ul{ display: none; position: absolute; width: 100%; left: 0px;  }
+  .header ul li ul li{padding: 0 20px;height: 40px;  line-height: 40px;  }
+  .header ul li:hover ul{ display: block; background: #f7f7f7;  }
+  .header i{font-size: 20px;}
+  .header .logo{height: auto; margin: 30px 0 0 40px; float: left;  }
+  .header div{float:left;}
+  .header a{color:#000;text-decoration: none;}
+  .header a:active{border-bottom: 1px solid red;}
+  .header .information{float:right; margin: 45px 40px 0 0;}
+  .header span{background: red;padding:0 5px;border-radius:8px;font-size: 12px;position: relative;top:-14px;right:7px;color:#fff;}
+</style>

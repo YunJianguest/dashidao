@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>税率列表</title>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/two_level2.css" type="text/css" />
+	<script src="$!webPath/resources/js/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="$!webPath/resources/js/menu_min.js"></script>
+	<script src="$!webPath/resources/js/jquery.shop.base.js"></script>
+</head>
+<body>
+<div class="both sl_list">
+<div class="tip">注：按照商品三级类目设置渠道费率，表示占商品利润的比例。<span class="sl"><span class="list">修改</span></span></div>
+<table width="80%">
+	<tr>
+		<td>生效时间</td>
+		<td>渠道费率</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>2017/7/12--2017/8/12</td>
+		<td>5%</td>
+		<td>生效中</td>
+	</tr>
+	<tr>
+		<td>2017/6/12--2017/7/12</td>
+		<td>5%</td>
+		<td>已过期</td>
+	</tr>
+	<tr>
+		<td>2018/7/12--2018/8/12</td>
+		<td>5%</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>2018/10/12--2018/12/12</td>
+		<td>5%</td>
+		<td></td>
+	</tr>
+</table>
+<div class="qd">确定</div>
+</div>
+</body>
+</html>

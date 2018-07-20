@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>库存管理 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+
+
+
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+
+</head>
+<body style=" background: #f7f7f7;">
+
+<div class="main" >
+    <div class="user_center">
+        $!httpInclude.include("/poster/nav_head.htm")
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/poster/nav.htm?op=refund")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="buyer_position" style="width: 99%;  background: #fff;">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代中心</a> > <span>代理商品</span></div>
+                    </div>
+                    <div class="shopadminbox" style="margin-top: 20px;" >
+                        <div class="hd">
+                            <ul>
+                                <li>有效期商品</li>
+                                <li>提货卡库存</li>
+                                <li>临期库存</li>
+                                <li>退换货库存</li>
+                            </ul>
+                        </div>
+                        <div class="bd">
+                            <!--有效期商品-->
+                            <ul>
+                                <li>
+                                    <table width="100%" class="shopadmin-top" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr id="topthead" >
+                                            <td width="60%" colspan="8" >
+                                                <form class="form-inline" style="float: right;">
+                                                    <div class="form-group">
+                                                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入查询内容" style="width: 200px;" >
+                                                    </div>
+                                                    <button type="submit" class="btn btn-default" style="border: none;  background: #3fa4ed; color: #fff;   " >查询</button>
+                                                </form>
+                                            </td>
+                                            <td width="10%" colspan="1" class="kc">
+                                                <a href='$!webPath/poster/storeadjuslist.htm'><i class="iconfont icon-copy"></i>库存调整</a>
+                                            </td>
+                                            <td width="10%" colspan="1" class="kc">
+                                                <a href=""><i class="iconfont icon-rfq"></i>导出Excel</a>
+                                            </td>
+                                        </tr>
+                                        <tr class="tiptitles">
+                                            <td width="100%" colspan="10" >
+                                                <p>103件,5030元</p>
+                                            </td>
+                                        </tr>
+                                        <tr id="thead" >
+                                            <td width="10%">行号</td>
+                                            <td width="10%">商品编号</td>
+                                            <td width="10%">商品名称</td>
+                                            <td width="10%">规格型号</td>
+                                            <td width="10%">单价</td>
+                                            <td width="10%">销量</td>
+                                            <td width="10%">预供货量</td>
+                                            <td width="10%">库存</td>
+                                            <td width="10%">保存期至</td>
+                                            <td width="10%">是否发货</td>
+                                        </tr>
+                                        <tr>
+                                            <td>01</td>
+                                            <td>230018</td>
+                                            <td>韩版修身T恤</td>
+                                            <td>蓝色/L</td>
+                                            <td>30元</td>
+                                            <td>2000</td>
+                                            <td>2000</td>
+                                            <td>3000</td>
+                                            <td>2017-12-31</td>
+                                            <td>
+                                                <p style="line-height: 30px; margin: 20px 0 5px 0;" ><span>发&nbsp;&nbsp;&nbsp;货</span></p>
+                                                <p style="line-height: 30px; margin: 5px 0 20px 0;" ><span>不发货</span></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>02</td>
+                                            <td>230018</td>
+                                            <td>韩版修身T恤</td>
+                                            <td>蓝色/L</td>
+                                            <td>30元</td>
+                                            <td>2000</td>
+                                            <td>2000</td>
+                                            <td>3000</td>
+                                            <td>2017-12-31</td>
+                                            <td>
+                                                <p style="line-height: 30px; margin: 20px 0 5px 0;" ><span>发&nbsp;&nbsp;&nbsp;货</span></p>
+                                                <p style="line-height: 30px; margin: 5px 0 20px 0;" ><span>不发货</span></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>03</td>
+                                            <td>230018</td>
+                                            <td>韩版修身T恤</td>
+                                            <td>蓝色/L</td>
+                                            <td>30元</td>
+                                            <td>2000</td>
+                                            <td>2000</td>
+                                            <td>3000</td>
+                                            <td>2017-12-31</td>
+                                            <td>
+                                                <p style="line-height: 30px; margin: 20px 0 5px 0;" ><span>发&nbsp;&nbsp;&nbsp;货</span></p>
+                                                <p style="line-height: 30px; margin: 5px 0 20px 0;" ><span>不发货</span></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>04</td>
+                                            <td>230018</td>
+                                            <td>韩版修身T恤</td>
+                                            <td>蓝色/L</td>
+                                            <td>30元</td>
+                                            <td>2000</td>
+                                            <td>2000</td>
+                                            <td>3000</td>
+                                            <td>2017-12-31 10:10:10</td>
+                                            <td>
+                                                <p style="line-height: 30px; margin: 20px 0 5px 0;" ><span>发&nbsp;&nbsp;&nbsp;货</span></p>
+                                                <p style="line-height: 30px; margin: 5px 0 20px 0;" ><span>不发货</span></p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- PageNum -->
+                                    <div class="pageDiv"></div>
+                                </li>
+                            </ul>
+                            <!--提货卡库存-->
+                            <ul>
+                                <li>
+                                    <table width="100%" class="shopadmin-top" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr id="topthead" >
+                                            <td width="60%" colspan="6" >
+                                                <div style="height: 40px; background:#e5e5e5; width: 100%;" >
+                                                    <input type="text"  name="name" id="name" value="" placeholder="自成" />
+                                                </div>
+                                            </td>
+                                            <td width="20%" colspan="2" class="kc">
+                                                <a href=""><i class="iconfont icon-copy"></i>库存调整</a>
+                                            </td>
+                                            <td width="20%" colspan="2" class="kc">
+                                                <a href=""><i class="iconfont icon-rfq"></i>导出Excel</a>
+                                            </td>
+                                        </tr>
+                                        <tr class="tiptitles">
+                                            <td width="100%" colspan="10" >
+                                                <p>103件,5030元</p>
+                                            </td>
+                                        </tr>
+                                        <tr id="thead" >
+                                            <td width="11%">行号</td>
+                                            <td width="12%">商品编号</td>
+                                            <td width="11%">商品名称</td>
+                                            <td width="11%">规格型号</td>
+                                            <td width="11%">单价</td>
+                                            <td width="11%">提货卡号</td>
+                                            <td width="11%">总量</td>
+                                            <td width="11%">销量</td>
+                                            <td width="11%">提货卡库存</td>
+                                        </tr>
+                                        <tr>
+                                            <td>01</td>
+                                            <td>230018</td>
+                                            <td>韩版修身T恤</td>
+                                            <td>蓝色/L</td>
+                                            <td>30元</td>
+                                            <td>342423-3425233</td>
+                                            <td>8000</td>
+                                            <td>5000</td>
+                                            <td>3000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>01</td>
+                                            <td>230018</td>
+                                            <td>韩版修身T恤</td>
+                                            <td>蓝色/L</td>
+                                            <td>30元</td>
+                                            <td>342423-3425233</td>
+                                            <td>8000</td>
+                                            <td>5000</td>
+                                            <td>3000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>01</td>
+                                            <td>230018</td>
+                                            <td>韩版修身T恤</td>
+                                            <td>蓝色/L</td>
+                                            <td>30元</td>
+                                            <td>342423-3425233</td>
+                                            <td>8000</td>
+                                            <td>5000</td>
+                                            <td>3000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>01</td>
+                                            <td>230018</td>
+                                            <td>韩版修身T恤</td>
+                                            <td>蓝色/L</td>
+                                            <td>30元</td>
+                                            <td>342423-3425233</td>
+                                            <td>8000</td>
+                                            <td>5000</td>
+                                            <td>3000</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="pageDiv"></div>
+                                </li>
+                            </ul>
+                            <!--临期库存-->
+                            <ul>
+                                <li>
+                                    <table width="100%" class="shopadmin-top shopadmin-top2" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr id="topthead" >
+                                            <td width="60%" colspan="6" >
+                                                <div style="height: 40px; background:#e5e5e5; width: 100%;" >
+                                                    <input type="text"  name="name" id="name" value="" placeholder="自成" />
+                                                </div>
+                                            </td>
+                                            <td width="20%" colspan="2" class="kc">
+                                                <a href=""><i class="iconfont icon-copy"></i>库存调整</a>
+                                            </td>
+                                            <td width="20%" colspan="2" class="kc">
+                                                <a href=""><i class="iconfont icon-rfq"></i>导出Excel</a>
+                                            </td>
+                                        </tr>
+                                        <tr class="tiptitles">
+                                            <td width="100%" colspan="10" >
+                                                <p>103件,5030元</p>
+                                            </td>
+                                        </tr>
+                                        <tr id="thead" >
+                                            <td width="9%">行号</td>
+                                            <td width="9%">商品编号</td>
+                                            <td width="9%">商品名称</td>
+                                            <td width="9%">规格型号</td>
+                                            <td width="9%">单价</td>
+                                            <td width="9%">销量</td>
+                                            <td width="9%">预供货量</td>
+                                            <td width="9%">库存</td>
+                                            <td width="19%">保存期至</td>
+                                            <td width="9%">是否参与临期促销</td>
+                                        </tr>
+                                        <tr>
+                                            <td>01</td>
+                                            <td>230018</td>
+                                            <td>韩版修身T恤</td>
+                                            <td>蓝色/L</td>
+                                            <td>30元</td>
+                                            <td>2000</td>
+                                            <td>2000</td>
+                                            <td>3000</td>
+                                            <td class="bcq" >
+                                                <font>2017-12-31</font>
+                                                <div class="clear"></div>
+                                                <p>
+                                                    <span class="green"></span>
+                                                    <span class="yellow" ></span>
+                                                    <span class="orage"></span>
+                                                    <span class="red"></span>
+                                                </p>
+                                                <img src="image/top.png" style=" margin-left: 20%;" />
+                                            </td>
+                                            <td class="zclick">
+
+                                                <img src="image/write.png">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>02</td>
+                                            <td>230018</td>
+                                            <td>韩版修身T恤</td>
+                                            <td>蓝色/L</td>
+                                            <td>30元</td>
+                                            <td>2000</td>
+                                            <td>2000</td>
+                                            <td>3000</td>
+                                            <td class="bcq" >
+                                                <font>2017-12-31</font>
+                                                <div class="clear"></div>
+                                                <p>
+                                                    <span class="green"></span>
+                                                    <span class="yellow" ></span>
+                                                    <span class="orage"></span>
+                                                    <span class="red"></span>
+                                                </p>
+                                                <img src="image/top.png" style=" margin-left: 50%;"/>
+                                            </td>
+                                            <td class="zclick" >
+                                                <img src="image/wrong.png">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>03</td>
+                                            <td>230018</td>
+                                            <td>韩版修身T恤</td>
+                                            <td>蓝色/L</td>
+                                            <td>30元</td>
+                                            <td>2000</td>
+                                            <td>2000</td>
+                                            <td>3000</td>
+                                            <td class="bcq" >
+                                                <font>2017-12-31</font>
+                                                <div class="clear"></div>
+                                                <p>
+                                                    <span class="green"></span>
+                                                    <span class="yellow" ></span>
+                                                    <span class="orage"></span>
+                                                    <span class="red"></span>
+                                                </p>
+                                                <img src="image/top.png" style=" margin-left: 60%;"/>
+                                            </td>
+                                            <td class="zclick" >
+                                                <i class="iconfont icon-good fl" ></i>
+                                                <i class="iconfont icon-bad fr" ></i>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>04</td>
+                                            <td>230018</td>
+                                            <td>韩版修身T恤</td>
+                                            <td>蓝色/L</td>
+                                            <td>30元</td>
+                                            <td>2000</td>
+                                            <td>2000</td>
+                                            <td>3000</td>
+                                            <td class="bcq" >
+                                                <font>2017-12-31</font>
+                                                <div class="clear"></div>
+                                                <p>
+                                                    <span class="green"></span>
+                                                    <span class="yellow" ></span>
+                                                    <span class="orage"></span>
+                                                    <span class="red"></span>
+                                                </p>
+                                                <img src="image/top.png" style=" margin-left: 70%;"/>
+                                            </td>
+                                            <td class="zclick" >
+                                                <i class="iconfont icon-good fl" ></i>
+                                                <i class="iconfont icon-bad fr" ></i>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- PageNum -->
+                                    <div class="pageDiv"></div>
+                                </li>
+                            </ul>
+                            <!--退换货库存-->
+                            <ul>
+                                <li>
+                                    <table width="100%" class="shopadmin-top" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr id="topthead" >
+                                            <td width="60%" colspan="4" >
+                                                <div style="height: 40px; background:#e5e5e5; width: 100%;" >
+                                                    <input type="text"  name="name" id="name" value="" placeholder="自成" />
+                                                </div>
+                                            </td>
+                                            <td width="20%" colspan="2" class="kc">
+                                                <a href=""><i class="iconfont icon-copy"></i>库存调整</a>
+                                            </td>
+                                            <td width="20%" colspan="2" class="kc">
+                                                <a href=""><i class="iconfont icon-rfq"></i>导出Excel</a>
+                                            </td>
+                                        </tr>
+                                        <tr class="tiptitles">
+                                            <td width="100%" colspan="10" >
+                                                <p>103件,5030元</p>
+                                            </td>
+                                        </tr>
+                                        <tr id="thead" >
+                                            <td width="13%">行号</td>
+                                            <td width="13%">商品编号</td>
+                                            <td width="13%">商品名称</td>
+                                            <td width="13%">规格型号</td>
+                                            <td width="13%">单价</td>
+                                            <td width="13%">销量</td>
+                                            <td width="11%">保质期至</td>
+                                            <td width="11%">退换货库存</td>
+                                        </tr>
+                                        <tr>
+                                            <td>01</td>
+                                            <td>230018</td>
+                                            <td>韩版修身T恤</td>
+                                            <td>蓝色/L</td>
+                                            <td>30元</td>
+                                            <td>2000</td>
+                                            <td>2018-1-1</td>
+                                            <td>3000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>02</td>
+                                            <td>230018</td>
+                                            <td>韩版修身T恤</td>
+                                            <td>蓝色/L</td>
+                                            <td>30元</td>
+                                            <td>2000</td>
+                                            <td>2018-1-1</td>
+                                            <td>3000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>03</td>
+                                            <td>230018</td>
+                                            <td>韩版修身T恤</td>
+                                            <td>蓝色/L</td>
+                                            <td>30元</td>
+                                            <td>2000</td>
+                                            <td>2018-1-1</td>
+                                            <td>3000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>04</td>
+                                            <td>230018</td>
+                                            <td>韩版修身T恤</td>
+                                            <td>蓝色/L</td>
+                                            <td>30元</td>
+                                            <td>2000</td>
+                                            <td>2018-1-1</td>
+                                            <td>3000</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- PageNum -->
+                                    <div class="pageDiv"></div>
+                                    <table width="100%" class="shopadmin-top" border="0" cellspacing="0" cellpadding="0" style="margin-top: 30px;" >
+                                        <tbody>
+                                        <tr class="tiptitles">
+                                            <td width="100%" colspan="10" >
+                                                <p>103件,5030元</p>
+                                            </td>
+                                        </tr>
+                                        <tr id="thead" >
+                                            <td width="13%">行号</td>
+                                            <td width="13%">商品编号</td>
+                                            <td width="13%">商品名称</td>
+                                            <td width="13%">规格型号</td>
+                                            <td width="13%">单价</td>
+                                            <td width="13%">销量</td>
+                                            <td width="11%">保质期至</td>
+                                            <td width="11%">退换货库存</td>
+                                        </tr>
+                                        <tr>
+                                            <td>01</td>
+                                            <td>230018</td>
+                                            <td>韩版修身T恤</td>
+                                            <td>蓝色/L</td>
+                                            <td>30元</td>
+                                            <td>2000</td>
+                                            <td>2018-1-1</td>
+                                            <td>3000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>02</td>
+                                            <td>230018</td>
+                                            <td>韩版修身T恤</td>
+                                            <td>蓝色/L</td>
+                                            <td>30元</td>
+                                            <td>2000</td>
+                                            <td>2018-1-1</td>
+                                            <td>3000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>03</td>
+                                            <td>230018</td>
+                                            <td>韩版修身T恤</td>
+                                            <td>蓝色/L</td>
+                                            <td>30元</td>
+                                            <td>2000</td>
+                                            <td>2018-1-1</td>
+                                            <td>3000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>04</td>
+                                            <td>230018</td>
+                                            <td>韩版修身T恤</td>
+                                            <td>蓝色/L</td>
+                                            <td>30元</td>
+                                            <td>2000</td>
+                                            <td>2018-1-1</td>
+                                            <td>3000</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- PageNum -->
+                                    <div class="pageDiv"></div>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <script type="text/javascript">jQuery(".shopadminbox").slide({trigger:"click"});</script>
+                    <script type="text/javascript">
+                        $(function(){$(".pageDiv").createPage({
+                            pageCount:9,//总页数
+                            current:1,//当前页
+                            turndown:'true',//是否显示跳转框，显示为true，不现实为false,一定记得加上引号...
+                            backFn:function(p){
+                                console.log(p);
+                            }
+                        });
+                        })
+                    </script>
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>
+
+</body>
+</html>

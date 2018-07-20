@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>代理商品 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-2.0.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+
+    <script type="text/javascript" src="$!webPath/resources/js/jquery1.42.min.js"></script>
+    <script type="text/javascript" src="$!webPath/resources/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script src="$!webPath/resources/js/jquery.page.js" type="text/javascript" ></script>
+
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+
+    <link href="$!webPath/resources/style/system/manage/black/two_level.css" type="text/css" rel="stylesheet" />
+    <script>
+        jQuery(document).ready(function(){
+            goods_info();
+            layui.use('laydate', function(){
+                var laydate = layui.laydate;
+                //执行一个laydate实例
+                laydate.render({
+                    elem: '#create_date1', //指定元素
+                    type: 'datetime'
+                });
+            });
+            layui.use('laydate', function(){
+                var laydate = layui.laydate;
+                //执行一个laydate实例
+                laydate.render({
+                    elem: '#create_date2', //指定元素
+                    type: 'datetime'
+                });
+            });
+        });
+        function goods_info(){
+            var store_id='${user.store.id}';
+            var sql="SELECT * FROM dashidao_goods A WHERE A.goods_store_id="+store_id;
+            jQuery.ajax({
+                type: "POST",
+                cache: false,
+                async: false,
+                url: "/ajaxuser.jsp",
+                dataType: "json",
+                data: "table=dashidao_goods&dates=addTime,goods_seller_time,store_recommend_time,ztc_apply_time,ztc_begin_time,combin_begin_time,combin_end_time,weixin_shop_hotTime,weixin_shop_recommendTime&sql="+sql,
+                //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error: function () {
+                    alert("数据错误，操作被取消！");
+                },
+                success: function (data) {
+
+                    var message = data.data.data;
+                    $('#goods_num').val(message[0]['goods_serial']);
+                    var html='';
+                    html+="<select id='option' name='option' onchange='selchange(this)' >";
+                    for (var i = 0; i < message.length; i++) {
+                        html+='<option  value="'+ message[i]['id']+','+message[i]['goods_name']+','+message[i]['goods_serial']+'">'+ message[i]['goods_name'] +'</option>';
+                    }
+
+                    html+="</select>"
+
+                    $('#goods_infomation').html(html);
+
+                }
+
+            });
+        }
+        //当选项改变时触发
+        function selchange(v){
+            var id=$(v).val().split(",")[0];
+
+            //通过id查询商品信息
+            var sqls="SELECT * FROM dashidao_goods A WHERE A.id="+id;
+            jQuery.ajax({
+                type: "POST",
+                cache: false,
+                async: false,
+                url: "/ajaxuser.jsp",
+                dataType: "json",
+                data: "table=dashidao_goods&dates=addTime,goods_seller_time,store_recommend_time,ztc_apply_time,ztc_begin_time,combin_begin_time,combin_end_time,weixin_shop_hotTime,weixin_shop_recommendTime&sql="+sqls,
+                //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error: function () {
+                    alert("数据错误，操作被取消！");
+                },
+                success: function (data) {
+                    var message = data.data.data;
+                    //填充商品编号
+                    $('#goods_num').val(message[0]['goods_serial']);
+
+                }
+            });
+        }
+
+        //提交新增
+        function add_pick_upCard(){
+            var goods_id=$("#option").val().split(",")[0];
+            var goods_name=$("#option").val().split(",")[1];
+            var goods_serial=$("#option").val().split(",")[2];
+            var card_num=$('#card_num1').val()+'-'+$('#card_num2').val();
+
+            var sale_price=$('#sale_price').val();
+            var card_count=$('#card_count').val();
+            var create_date1=$('#create_date1').val();
+            var create_date2=$('#create_date2').val();
+            var hava_gift=$('#hava_gift').val();
+
+            var data=goods_id+','+goods_name+','+goods_serial+','+card_num+','+sale_price+','+card_count+','+card_count+','+create_date1+','+create_date2+','+hava_gift;
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajax.jsp",
+                dataType:"json",
+                // data:"action=update&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                data:"action=insert&table=dsdsj_pickup_card_manager&field=goods_id,goods_name,goods_number,card_number,card_price,count,less,create_date1,create_date2,hava_gift&values="+data,
+
+                success:function(data)
+                {
+                    if(data.code=="0"){alert("系统错误，操作被取消！");return;}
+
+                    var str='操作成功';
+                    if(str==data.msg){
+                        alert(111);
+                        window.location.href='$!webPath/seller/tihuoka_manager.htm';
+                    }
+
+                    //alert(data.data);
+                }
+
+            });
+        }
+    </script>
+</head>
+<body>
+
+<div class="main">
+    <div class="user_center">
+        $!httpInclude.include("/seller/nav_head.htm")
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=refund")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="both pick_up_card">
+                        <form class="form1">
+                            <div><span class="star">*</span>您的提货卡剩余1000张。</div>
+                            <div><input type="text" class="form-control" name="" id="" value="" placeholder="搜索"/> </div>
+                            <div>
+                                <div><span class="line">|</span>提货卡</div>
+                                <div>
+                                    <table width="100%">
+                                        <tr>
+                                            <td>提货卡号：</td>
+                                            <td><input type="text" id="card_num1"></td>
+                                            <td>至</td>
+                                            <td><input type="text" id="card_num2"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>售价：</td>
+                                            <td><input type="text" id="sale_price"></td>
+                                            <td>数量：</td>
+                                            <td><input type="text" id="card_count"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>有效期：</td>
+                                            <td><input type="text" class="layui-input" id="create_date1"></td>
+                                            <td>至</td>
+                                            <td><input type="text"  class="layui-input" id="create_date2"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>赠品：</td>
+                                            <td><input type="text" id="hava_gift"></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div>
+                                    <table width="100%">
+                                        <tr>
+                                            <td>使用商品：</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+
+                                        </tr>
+                                        <tr>
+                                            <td id="goods_infomation">
+                                            </td>
+                                            <td>商品编号</td>
+                                            <td ><input id="goods_num" type="text"></td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                                <div class="qd" onclick="add_pick_upCard()">提交提货卡</div>
+                            </div>
+                        </form>
+                    </div>
+
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>
+
+</body>
+</html>

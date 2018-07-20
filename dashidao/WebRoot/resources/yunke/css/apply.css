@@ -1,0 +1,40 @@
+*{margin:0;padding:0;font-family:'微软雅黑';}
+ul li{list-style: none;float:left;}
+ol li{list-style: none;}
+a{text-decoration:none;color:#000;}
+a:link{text-decoration:none;color:#000;}
+.act img{width:25px;height: 25px;}
+.nav{background:#4e6be5;}
+.nav ul .back{width:40%;color:aliceblue;font-size:1.5em;height: 2.5em;line-height:2.5em;text-align: center;}
+.foot{position: fixed;bottom: 0;z-index: 99;width: 100%;background: #fff;}
+.foot img{width:30px;height:30px;}
+.foot ul li{width:33%;text-align: center;border-top:1px solid #c3c3c3;}
+.act input{background:#fff url(../img/search.png) 2% 50% no-repeat;padding-left:10%;}
+.head{height:45px;width:45px;background: #fff;border-radius:50%;}
+.head img{width:100%;height:100%;border-radius:50%;}
+.head_coll{position: fixed;top: 0; z-index: 999;width: 100%;}
+.font_white{text-align: center;color:#fff;}
+.nav_ta{margin: 1em 5%;width: 90%;}
+.form-control{width:100%;}.bg{font-size: 1.1em;text-align: center;height: 2em;line-height: 2em;}
+.xiaoxi img{margin-left: 45%}.cooperate,.collect{width:20%;}
+.collect img{width:40px;height: 40px;margin-left: 20%;}
+.cooperate img{width:40px;height: 40px; margin-left: 20%;} 
+ #slider{width: 100%; }
+.slides li{width: 100%;}
+.slides li img{height:12em;width:100%;}
+.active{border:2px solid #444444;}
+.pagination{position: absolute;left: 50%;bottom: 20px!important;margin: 0px 0px 0px -30px;}
+.menu img{width:80px;height: 80px;}
+.menu li{width:33%;text-align: center;font-size: 1.2em;}
+.action{width:100%;height:2em;line-height:2em;text-align: center;background:#f0f0f2;font-size: 1.2em;}
+.ac{height: 10em;}.ac img{width:100%;height: 100%;}
+.represent{width:100%; height: 12em;}.represent img{width:100%;height: 100%;}
+.recommend img{width:100%;height: 100%;}
+.hot li{width:48%;margin:.5em 1% }.hot img{width:100%;height:12em;}
+.hot div{height: 2em;line-height: 2em;}.buy_per{color:#c3c3c3;}
+.price,.buy_per{font-size: .5em;}.name{font-size: 1em;}.price,.sel,.pri{color:red!important;}.eva_name{font-size: 1.2em;font-weight:bold;}
+.body{margin-bottom:3.5em;}.tip{color:#db9542;}.con,.tip{font-size: 1em;height: 3em;line-height: 3em;border-radius: 5px; }.con{background:#f0f0f2;margin-left: 3%;width:25%;text-align: center;}.logistics{margin:1em auto;}
+.logistics img{width:40px;height: 40px;}
+.news img{width:40px;height: 40px;}.coll{border-radius:15px;}.pro_photo{width:100%;height: 17em;}.pro_photo img{width:100%;height: 100%;}
+.time{font-size:.8em;color:#c3c3c3;}.detail{color:#c3c3c3;}.menu_coll ul li{width:20%;text-align: center;}
+.product ul li{width:50%;}.term ol li{width:30%;margin:5% 10%;background: #fff;height:2em;line-height:2em;text-align: center;}.jingxuan{background:#CC3E31!important;color:#fff;}.action_nav li{width:25%;border:1px solid #fff;font-size:1em;background: #EBEBEB;}.action_nav li img{width:30%;margin: 0 35%;}

@@ -1,0 +1,557 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>卖家品牌列表 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link href="$!webPath/resources/style/system/manage/black/zxx.css"  rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+    <script src="$!webPath/resources/js/echarts.min.js"></script>
+    <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+    
+</head>
+<script>
+    var userId='${user.id}';
+    jQuery(document).ready(function(){
+        select_all();
+
+    });
+    function select_all() {
+        var sql = "SELECT * FROM dashidao_order_details WHERE user_id=" + userId;
+        jQuery.ajax({
+            type: "POST",
+            cache: false,
+            async: false,
+            url: "/ajaxuser.jsp",
+            dataType: "json",
+            // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+            data: "table=dashidao_order_details&dates=create_date&sql=" + sql,
+            error: function () {
+                alert("数据错误，操作被取消！");
+            },
+            success: function (data) {
+                if (data.state == "error") {
+                    alert("系统错误，操作被取消！");
+                    return;
+                }
+
+                var message = data.data.data;
+                //console.log(message);
+
+
+            }
+        });
+    }
+</script>
+<body>
+
+<div class="main"> $!httpInclude.include("/seller/nav_head.htm")
+    <div class="user_center">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=product_analyze")
+                <td id="centerbg" valign="top" width="80%" >
+                    <div class="buyer_position">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">商家中心</a> > <span>商家订单</span></div>
+                    </div>
+						<div class="operation_tip">
+	<h3>友情提示</h3>
+	<ul>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+                    <div style="width:100%;display: flex;margin: 15px auto;border: 1px solid #C4C4C4">
+
+                        <!--销售额占比饼状图-->
+                        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                        <div id="main" style="width: 600px;height:400px;"></div>
+                        <script type="text/javascript">
+                            var userId='${user.id}';
+                            var storeId='${user.store.id}';
+                            var total;
+                            var chat_tt=new Array();
+                            var chat_cc=new Array();
+                            var obj1={};
+                            var obj2={};
+                            //商品名称数组
+                            var chat_name=new Array();
+                            var char_total_nowMonth=new Array();
+                            //var message;
+                            jQuery(document).ready(function(){
+                                select_all();
+                                bintu(chat_tt);
+                                onLine_outLine();
+                                bintu_line(chat_cc);
+                                //now_month();
+                                //month_saler(chat_name,char_total_nowMonth);
+                            });
+                            //销售额占比饼状图
+                            function bintu(chat_tt){
+                                // 基于准备好的dom，初始化echarts实例
+                                var myChart = echarts.init(document.getElementById('main'));
+
+                                // 指定图表的配置项和数据
+                                var option = {
+                                    title : {
+                                        text: '销售额占比饼状图：',
+                                        x:'center'
+                                    },
+                                    tooltip : {
+                                        trigger: 'item',
+                                        formatter: '{b}:\n{c}%'
+                                    },
+                                    series : [
+                                        {
+                                            name: '访问来源',
+                                            type: 'pie',
+                                            radius : '55%',
+                                            center: ['50%', '60%'],
+                                            data:chat_tt,
+                                            itemStyle: {
+                                                emphasis: {
+                                                    shadowBlur: 10,
+                                                    shadowOffsetX: 0,
+                                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                                },
+                                                normal:{
+                                                    label:{
+                                                        show: true,
+                                                        formatter: '{b} : {c} ({d}%)'
+                                                    },
+                                                    labelLine :{show:true}
+                                                }
+                                            }
+                                        }
+                                    ]
+                                };
+
+                                // 使用刚指定的配置项和数据显示图表。
+                                myChart.setOption(option);
+
+                            }
+                            //查询商品名称和销售总额
+                            function select_all() {
+                                var sql = "SELECT a.goods_name as name,a.sale_total as value FROM dashidao_order_details a WHERE user_id=" + userId;
+                                jQuery.ajax({
+                                    type: "POST",
+                                    cache: false,
+                                    async: false,
+                                    url: "/ajaxuser.jsp",
+                                    dataType: "json",
+                                    // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                                    data: "table=dashidao_order_details&dates=create_date&sql=" + sql,
+                                    error: function () {
+                                        alert("数据错误，操作被取消！");
+                                    },
+                                    success: function (data) {
+
+                                        if (data.state == "error") {
+                                            alert("系统错误，操作被取消！");
+                                            return;
+                                        }
+
+                                        var  message = data.data.data;
+                                        for(var i=0;i<message.length;i++){
+                                            chat_tt[i]=message[i];
+
+                                        }
+                                    }
+                                });
+                            }
+                            //线上线下占比饼状图
+                            function onLine_outLine(){
+                                var sql = "SELECT A.`order_type`, A.`totalPrice` FROM dashidao_orderform A WHERE A.store_id=" + storeId;
+                                jQuery.ajax({
+                                    type: "POST",
+                                    cache: false,
+                                    async: false,
+                                    url: "/ajaxuser.jsp",
+                                    dataType: "json",
+                                    // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                                    data: "table=dashidao_order_details&dates=create_date&sql=" + sql,
+                                    error: function () {
+                                        alert("数据错误，操作被取消！");
+                                    },
+                                    success: function (data) {
+
+                                        if (data.state == "error") {
+                                            alert("系统错误，操作被取消！");
+                                            return;
+                                        }
+                                        var online=0;
+                                        var outline=0;
+                                        var  message = data.data.data;
+                                        for(var i=0;i<message.length;i++){
+                                            if(message[i]['order_type']=="wap" || message[i]['order_type']=="web" || message[i]['order_type']=="pc"){
+                                                online=online+parseFloat(message[i]['totalPrice']);
+                                            }else{
+                                                outline=outline+parseFloat(message[i]['totalPrice']);
+                                            }
+                                        }
+                                        obj1.name="线上销售";
+                                        obj1.value=online;
+                                        obj2.name="线下销售";
+                                        obj2.value=outline;
+                                        chat_cc[0]=obj1;
+                                        chat_cc[1]=obj2;
+
+
+                                    }
+                                });
+                            }
+                            function bintu_line(chat_cc){
+                                // 基于准备好的dom，初始化echarts实例
+                                var myChart = echarts.init(document.getElementById('main1'));
+
+                                // 指定图表的配置项和数据
+                                var option = {
+                                    title : {
+                                        text: '线下销量占比饼状图：',
+                                        x:'center'
+                                    },
+                                    tooltip : {
+                                        trigger: 'item',
+                                        formatter: '{b}:\n{c}%'
+                                    },
+                                    series : [
+                                        {
+                                            name: '访问来源',
+                                            type: 'pie',
+                                            radius : '55%',
+                                            center: ['50%', '60%'],
+                                            data:chat_cc,
+                                            itemStyle: {
+                                                emphasis: {
+                                                    shadowBlur: 10,
+                                                    shadowOffsetX: 0,
+                                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                                },
+                                                normal:{
+                                                    label:{
+                                                        show: true,
+                                                        formatter: '{b} : {c} ({d}%)'
+                                                    },
+                                                    labelLine :{show:true}
+                                                }
+                                            }
+                                        }
+                                    ]
+                                };
+
+                                // 使用刚指定的配置项和数据显示图表。
+                                myChart.setOption(option);
+                            }
+
+                            //月销量变动情况
+                            /*function month_saler(chat_name,char_total_nowMonth){
+                                // 基于准备好的dom，初始化echarts实例
+                                var myChart = echarts.init(document.getElementById('main3'));
+
+                                // 指定图表的配置项和数据
+                                var option={
+                                    tooltip:{
+                                        trigger: 'axis',
+                                        axisPointer: {
+                                            type: 'cross',
+                                            crossStyle: {
+                                                color: '#5793f3'
+                                            }
+                                        }
+                                    },
+                                    legend: {
+                                        data: ['本月销量']
+                                    },
+                                    xAxis: [{
+                                        type:'category',
+                                        data: chat_name,
+                                        axisPointer:{
+                                            type:'shadow'
+                                        }
+                                    }],
+                                    yAxis: [{
+                                        type:'value',
+                                        name:'销量',
+                                        min: 0,
+                                        max: 3000
+                                    },{
+                                        type:'value',
+                                        name:'百分比',
+                                        min: 0,
+                                        max: 120,
+                                        axisLabel: {
+                                            formatter: '{value} %'
+                                        }
+                                    }],
+                                    series: [{
+                                        name:'本月销量',
+                                        type:'bar',
+                                        data: char_total_nowMonth
+                                    }
+                                    ]
+                                };
+
+                                // 使用刚指定的配置项和数据显示图表。
+                                myChart.setOption(option);
+                            }*/
+                            //商品月销量变动情况
+                            //月销量变动sql
+                            //SELECT b.`goodsname`,b.`price`,b.`count`,b.`spec_info`,c.`goods_serial`,d.`userRole` FROM dashidao_goodscart B INNER JOIN  dashidao_orderform A ON b.`of_id`=a.`id` LEFT JOIN dashidao_goods C ON b.`goods_id`=c.`id` LEFT JOIN dashidao_user D ON A.`user_id`=D.`id` WHERE A.seller=32768
+                            function now_month(){
+                                var date=new Date();
+                                var time=date.getFullYear()+"-"+(date.getMonth()+1);
+                                var beginTime=time+"-01 00:00:00";
+                                var endTime=time+"-31 23:59:59";
+                                var sql = "SELECT * FROM dashidao_order_details a WHERE user_id=" + userId +" and create_date between '"+beginTime+"' and '"+endTime+ "' order by a.id ";
+                                jQuery.ajax({
+                                    type: "POST",
+                                    cache: false,
+                                    async: false,
+                                    url: "/ajaxuser.jsp",
+                                    dataType: "json",
+                                    // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                                    data: "table=dashidao_order_details&dates=create_date&sql=" + sql,
+                                    error: function () {
+                                        alert("数据错误，操作被取消！");
+                                    },
+                                    success: function (data) {
+                                        if (data.state == "error") {
+                                            alert("系统错误，操作被取消！");
+                                            return;
+                                        }
+                                        total=data.data.total;
+                                        mycars[0]=total;
+                                        var message=data.data.data;
+                                        //console.log(message);
+                                        $("#tablesss").html('');
+
+                                        for(var i=0;i<message.length;i++){
+                                            var i1=i+1;
+                                            $("#tablesss").append("<tr>" +
+                                                "<td>"+i1+"</td>" +
+                                                "<td>"+message[i]['goods_id']+"</td>" +
+                                                "<td>"+message[i]['goods_name']+"</td>" +
+                                                "<td>"+message[i]['goods_price']+"</td>" +
+                                                "<td>"+message[i]['goods_count']+"</td>" +
+                                                "<td>"+message[i]['sale_total']+"</td>" +
+                                                "</tr>");
+                                        }
+
+                                    }
+                                });
+                            }
+                            //上月销售额
+                            // function last_month(){
+                            //     var date=new Date();
+                            //     var time=date.getFullYear()+"-"+date.getMonth();
+                            //     var beginTime=time+"-01 00:00:00";
+                            //     var endTime=time+"-31 23:59:59";
+                            //     var sql = "SELECT a.goods_name as name,a.sale_total as value FROM dashidao_order_details a WHERE user_id=" + userId +" and create_date between '"+beginTime+"' and '"+endTime+ "' order by a.id ";
+                            //     jQuery.ajax({
+                            //         type: "POST",
+                            //         cache: false,
+                            //         async: false,
+                            //         url: "/ajaxuser.jsp",
+                            //         dataType: "json",
+                            //         // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                            //         data: "table=dashidao_order_details&dates=create_date&sql=" + sql,
+                            //         error: function () {
+                            //             alert("数据错误，操作被取消！");
+                            //         },
+                            //         success: function (data) {
+                            //             if (data.state == "error") {
+                            //                 alert("系统错误，操作被取消！");
+                            //                 return;
+                            //             }
+                            //
+                            //             var  message2 = data.data.data;
+                            //             for(var i=0;i<message2.length;i++){
+                            //                 chat_name[i]=message2[i]['name'];
+                            //                 char_total_nowMonth[i]=message2[i]['value'];
+                            //             }
+                            //             alert(chat_name);
+                            //             alert(char_total_nowMonth);
+                            //         }
+                            //     });
+                            // }
+
+                            //
+                        </script>
+
+                        <!--线下销量占比饼状图-->
+                        <div id="main1" style="width: 600px;height:400px;"></div>
+
+                    </div>
+                    <!--商品月销量变动情况-->
+
+
+                   <!-- <div class="div_2">
+                        <p style="font-size: 18px;">商品月销量变动情况：</p>
+                    </div>
+                    <div class="div_2">
+                        <table class="table solid">
+                            <thead class="table_thead">
+                            <th>行号</th>
+                            <th>商品编号</th>
+                            <th>商品名称</th>
+                            <th>规格型号</th>
+                            <th>单价</th>
+                            <th>上月销量</th>
+                            <th>当月销量↑↓</th>
+                            <th>线下销量</th>
+                            <th>线下/总量↑↓</th>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>01</td>
+                                <td>230018</td>
+                                <td>韩版修身T恤</td>
+                                <td>蓝色/L</td>
+                                <td>30元</td>
+                                <td>1100</td>
+                                <td>1000<span class="font1">↓</span></td>
+                                <td>50</td>
+                                <td>4.78%</td>
+                            </tr>
+                            <tr>
+                                <td>02</td>
+                                <td>930018</td>
+                                <td>韩版修身T恤</td>
+                                <td>蓝色/L</td>
+                                <td>30元</td>
+                                <td>200</td>
+                                <td>500<span class="font2">↑</span></td>
+                                <td>100</td>
+                                <td>16.67%</td>
+                            </tr>
+                            <tr>
+                                <td>03</td>
+                                <td>230018</td>
+                                <td>韩版修身T恤</td>
+                                <td>蓝色/L</td>
+                                <td>30元</td>
+                                <td>1100</td>
+                                <td>1000<span class="font1">↓</span></td>
+                                <td>50</td>
+                                <td>4.78%</td>
+                            </tr>
+                            <tr>
+                                <td>04</td>
+                                <td>930018</td>
+                                <td>韩版修身T恤</td>
+                                <td>蓝色/L</td>
+                                <td>30元</td>
+                                <td>200</td>
+                                <td>500<span class="font2">↑</span></td>
+                                <td>100</td>
+                                <td>16.67%</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="div_2">
+                        <ul class="pagination">
+                            <li><a href="#">&laquo;</a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li class="disabled"><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">&raquo;</a></li>
+                        </ul>
+                    </div>-->
+
+
+                    <!--商品月销量变动情况柱状图-->
+                    <!-- <div class="div_2">
+                         <p style="font-size: 18px;">商品月销量变动情况柱状图：</p>
+                     </div>-->
+
+                    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                    <!-- <div id="main3" style="width: 800px;height: 400px; display: flex;margin: 15px auto;"></div>-->
+                    <!-- <script type="text/javascript">
+                                             // 基于准备好的dom，初始化echarts实例
+                                             var myChart = echarts.init(document.getElementById('main3'));
+
+                                             // 指定图表的配置项和数据
+                                             var option={
+                                                 tooltip:{
+                                                     trigger: 'axis',
+                                                     axisPointer: {
+                                                         type: 'cross',
+                                                         crossStyle: {
+                                                             color: '#5793f3'
+                                                         }
+                                                     }
+                                                 },
+                                                 legend: {
+                                                     data: ['本月销量','上月销量','本月/上月']
+                                                 },
+                                                 xAxis: [{
+                                                     type:'category',
+                                                     data: ["修身T恤","短款衬衣","中山装","欧版男长裤","羊毛衫","羽绒服"],
+                                                     axisPointer:{
+                                                         type:'shadow'
+                                                     }
+                                                 }],
+                                                 yAxis: [{
+                                                     type:'value',
+                                                     name:'销量',
+                                                     min: 0,
+                                                     max: 3000
+                                                 },{
+                                                     type:'value',
+                                                     name:'百分比',
+                                                     min: 0,
+                                                     max: 120,
+                                                     axisLabel: {
+                                                         formatter: '{value} %'
+                                                     }
+                                                 }],
+                                                 series: [{
+                                                     name:'本月销量',
+                                                     type:'bar',
+                                                     data: [500, 2000, 2600, 1000, 1100, 2100]
+                                                 },{
+                                                     name:'上月销量',
+                                                     type:'bar',
+                                                     data: [1000, 2500, 2006, 1001, 1500, 1600]
+                                                 },{
+                                                     name:'本月/上月',
+                                                     type:'line',
+                                                     itemStyle : { normal: {label : {show: true}}},
+                                                     yAxisIndex: 1,
+                                                     data: [99, 92, 84, 100, 91, 84]
+                                                 }
+                                                 ]
+                                             };
+
+                                             // 使用刚指定的配置项和数据显示图表。
+                                             myChart.setOption(option);
+                                         </script>-->
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

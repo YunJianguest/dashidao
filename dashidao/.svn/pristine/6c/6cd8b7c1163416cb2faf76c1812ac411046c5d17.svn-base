@@ -1,0 +1,201 @@
+package com.dashidao.view.web.action;
+
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.dashidao.core.domain.virtual.SysMap;
+import com.dashidao.core.query.support.IPageList;
+import com.dashidao.foundation.domain.ChongZhiJiLu;
+import com.dashidao.foundation.domain.CouponInfo;
+import com.dashidao.foundation.domain.JiChuSheZhi;
+import com.dashidao.foundation.domain.XiaoFeiJiLu;
+import com.dashidao.foundation.domain.query.ChongZhiJiLuQueryObject;
+import com.dashidao.foundation.domain.query.JiChuSheZhiQueryObject;
+import com.dashidao.foundation.domain.query.XiaoFeiJiLuQueryObject;
+import com.dashidao.foundation.service.IChongZhiJiLuService;
+import com.dashidao.foundation.service.IJiChuSheZhiService;
+import com.dashidao.foundation.service.ISysConfigService;
+import com.dashidao.foundation.service.IUserConfigService;
+import com.dashidao.foundation.service.IXiaoFeiJiLuService;
+import com.dashidao.jwt.filter.SignFilter;
+import com.dashidao.jwt.util.ComplexOutPropertyPreFilter;
+import com.dashidao.jwt.util.DateJsonValueProcessor;
+
+import io.jsonwebtoken.Claims;
+import net.sf.json.JSONArray;
+import net.sf.json.JsonConfig;
+
+/**
+ * 消费记录和充值
+ * @author Administrator
+ *
+ */
+@Controller
+public class ConsumeViewAciton {
+	 	@Autowired
+	    private ISysConfigService configService;
+
+	    @Autowired
+	    private IUserConfigService userConfigService;
+	    @Autowired
+	    private IXiaoFeiJiLuService xiaoFeiJiLuService;
+	    @Autowired
+	    private IChongZhiJiLuService chongZhiJiLuService;
+	    @Autowired
+	    private IJiChuSheZhiService jiChuSheZhiService;
+	    
+	    /**
+	     * 消费记录
+	     * @param request
+	     * @param response
+	     * @param currentPage
+	     * @throws IOException
+	     */
+	    @RequestMapping({ "/wap/xiaoFeiJiLu_list.htm" })
+	    @ResponseBody
+	    public void xiaoFeiJiLu_list(HttpServletRequest request, HttpServletResponse response,String currentPage) throws IOException 
+	    {
+	    	Map params = new HashMap();
+	    	Claims claims = SignFilter.checkSign(request, response);
+			if (claims != null) {
+				String id = claims.getId();
+				XiaoFeiJiLuQueryObject qo = new XiaoFeiJiLuQueryObject(currentPage, params,"addTime", "desc");
+				qo.addQuery("obj.orderForm.user.id", new SysMap("user_id", Long.parseLong(id)), "=");
+				IPageList pList = this.xiaoFeiJiLuService.list(qo);
+				JsonConfig jsonConfig = new JsonConfig();
+				jsonConfig.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor("yyyy-MM-dd hh:mm:ss"));
+				// 需要过滤的类 + 属性
+				Map<Class<?>, Set<String>> includeMap = new HashMap<Class<?>, Set<String>>();
+				Set<String> set = new HashSet<String>();
+				set.add("xiaofeiname");
+				set.add("addTime");
+				set.add("order_bh");
+				set.add("jineE");
+				includeMap.put(XiaoFeiJiLu.class, set);
+				jsonConfig.setJsonPropertyFilter(new ComplexOutPropertyPreFilter(includeMap));
+				JSONArray json = JSONArray.fromObject(pList.getResult(), jsonConfig);
+				SignFilter.printNoCheck(request, response, json);
+				System.out.println(json);
+				
+			}
+	    }
+	    
+	    /**
+	     * 充值记录
+	     * @param request
+	     * @param response
+	     * @param currentPage
+	     * @throws IOException
+	     */
+	    @RequestMapping({ "/wap/chongZhiJiLu_list.htm" })
+	    @ResponseBody
+	    public void chongZhiJiLu_list(HttpServletRequest request, HttpServletResponse response,String currentPage) throws IOException 
+	    {
+	    	Map params = new HashMap();
+	    	Claims claims = SignFilter.checkSign(request, response);
+			if (claims != null) {
+				String id = claims.getId();
+				ChongZhiJiLuQueryObject qo = new ChongZhiJiLuQueryObject(currentPage, params,"addTime", "desc");
+				qo.addQuery("obj.user.id", new SysMap("user_id", Long.parseLong(id)), "=");
+				IPageList pList = this.chongZhiJiLuService.list(qo);
+				
+				JsonConfig jsonConfig = new JsonConfig();
+				jsonConfig.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor("yyyy-MM-dd hh:mm:ss"));
+				// 需要过滤的类 + 属性
+				Map<Class<?>, Set<String>> includeMap = new HashMap<Class<?>, Set<String>>();
+				Set<String> set = new HashSet<String>();
+				set.add("cz_type");
+				set.add("zf_type");
+				set.add("addTime");
+				set.add("cz_jinE");
+				includeMap.put(ChongZhiJiLu.class, set);
+				jsonConfig.setJsonPropertyFilter(new ComplexOutPropertyPreFilter(includeMap));
+				JSONArray json = JSONArray.fromObject(pList.getResult(), jsonConfig);
+				SignFilter.printNoCheck(request, response, json);
+				System.out.println(json);
+			}
+	    }
+	    
+	    /**
+	     * 会员升级云客累计消费金额标准
+	     * @param request
+	     * @param response
+	     * @param currentPage
+	     * @throws IOException
+	     */
+	    @RequestMapping({ "/wap/jiChuSheZhi_yunKe.htm" })
+	    @ResponseBody
+	    public void jiChuSheZhi_yunKe(HttpServletRequest request, HttpServletResponse response,String currentPage) throws IOException 
+	    {
+	    	Map params = new HashMap();
+	    	Claims claims = SignFilter.checkSign(request, response);
+			if (claims != null) {
+				String id = claims.getId();
+				JiChuSheZhiQueryObject qo = new JiChuSheZhiQueryObject(currentPage, params,"addTime", "desc");
+				IPageList pList = this.jiChuSheZhiService.list(qo);
+				
+				JsonConfig jsonConfig = new JsonConfig();
+				jsonConfig.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor("yyyy-MM-dd hh:mm:ss"));
+				// 需要过滤的类 + 属性
+				Map<Class<?>, Set<String>> includeMap = new HashMap<Class<?>, Set<String>>();
+				Set<String> set = new HashSet<String>();
+				set.add("zb_jifendixiao");
+				includeMap.put(JiChuSheZhi.class, set);
+				jsonConfig.setJsonPropertyFilter(new ComplexOutPropertyPreFilter(includeMap));
+				JSONArray json = JSONArray.fromObject(pList.getResult(), jsonConfig);
+				SignFilter.printNoCheck(request, response, json);
+				System.out.println(json);
+			}
+	    }
+	    
+	    /**
+	     * 消费总金额
+	     * @param request
+	     * @param response
+	     * @param currentPage
+	     * @throws IOException
+	     */
+	    @RequestMapping({ "/wap/xiaoFeiZongE.htm" })
+	    @ResponseBody
+	    public void xiaoFeiZongE(HttpServletRequest request, HttpServletResponse response,String currentPage) throws IOException 
+	    {
+	    	Map params = new HashMap();
+	    	params.put("state", 0);
+	    	BigDecimal zongJinE= new BigDecimal("0");
+	    	Claims claims = SignFilter.checkSign(request, response);
+			if (claims != null) {
+				String id = claims.getId();
+				XiaoFeiJiLuQueryObject qo = new XiaoFeiJiLuQueryObject(currentPage, params,"addTime", "desc");
+				qo.addQuery("obj.orderForm.user.id", new SysMap("user_id", Long.parseLong(id)), "=");
+				IPageList pList = this.xiaoFeiJiLuService.list(qo);
+				for(int i=0;i<pList.getResult().size();i++) 
+				{
+					XiaoFeiJiLu entity = (XiaoFeiJiLu)pList.getResult().get(i);
+					BigDecimal jineE= entity.getJineE();
+					zongJinE = zongJinE.add(jineE);
+				}
+				params.put("state", 1);
+				params.put("zongJinE", zongJinE);
+			}
+			JSONArray json = JSONArray.fromObject(params);
+			SignFilter.printNoCheck(request, response, params);
+			System.out.println(json);
+	    	
+	    }
+	    
+	    
+
+}

@@ -1,0 +1,80 @@
+package com.dashidao.foundation.domain;
+
+import com.dashidao.core.domain.IdEntity;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.util.Date;
+
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Entity
+@Table(name = "zd_qingcanghuodong")
+public class Qingcanghuodong extends IdEntity
+{
+    private String zd_huodongname;//清仓活动名称
+    private String zd_dazhelidu;//打折力度
+    private String zd_dazhemenkan;//打折门槛
+    private Date zd_huodongday;//活动日期
+    private String zd_canjiashangping;//参加商品
+    private String zd_canjiashuliang;//参加商品数量
+    private String states;//状态
+
+
+    public String getZd_huodongname() {
+        return zd_huodongname;
+    }
+
+    public String getZd_dazhelidu() {
+        return zd_dazhelidu;
+    }
+
+    public String getZd_dazhemenkan() {
+        return zd_dazhemenkan;
+    }
+
+    public Date getZd_huodongday() {
+        return zd_huodongday;
+    }
+
+    public String getZd_canjiashangping() {
+        return zd_canjiashangping;
+    }
+
+    public String getZd_canjiashuliang() {
+        return zd_canjiashuliang;
+    }
+
+    public String getStates() {
+        return states;
+    }
+
+    public void setZd_huodongname(String zd_huodongname) {
+        this.zd_huodongname = zd_huodongname;
+    }
+
+    public void setZd_dazhelidu(String zd_dazhelidu) {
+        this.zd_dazhelidu = zd_dazhelidu;
+    }
+
+    public void setZd_dazhemenkan(String zd_dazhemenkan) {
+        this.zd_dazhemenkan = zd_dazhemenkan;
+    }
+
+    public void setZd_huodongday(Date zd_huodongday) {
+        this.zd_huodongday = zd_huodongday;
+    }
+
+    public void setZd_canjiashangping(String zd_canjiashangping) {
+        this.zd_canjiashangping = zd_canjiashangping;
+    }
+
+    public void setZd_canjiashuliang(String zd_canjiashuliang) {
+        this.zd_canjiashuliang = zd_canjiashuliang;
+    }
+
+    public void setStates(String states) {
+        this.states = states;
+    }
+}

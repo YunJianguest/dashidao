@@ -1,0 +1,331 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>购物车</title>
+<script type="text/javascript" src="$!webPath/resources/buyer/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="$!webPath/resources/buyer/js/shopping.js"></script>
+<link type="text/css" rel="stylesheet" href="$!webPath/resources/buyer/css/base.css" />
+<link type="text/css" rel="stylesheet" href="$!webPath/resources/buyer/css/module.css"  />
+<link type="text/css" rel="stylesheet" href="$!webPath/resources/buyer/css/ykindex.css"  />
+	<link rel="stylesheet" href="$!webPath/resources/buyer/iconfont/iconfont.css">
+</head>
+<body>
+<style type="text/css">
+		*{margin:0;padding:0;font-family: "微软雅黑";}
+		ul li{list-style: none;}
+		.clear{clear: both;}
+		.head{background:#ff6600;}
+		.head ul li{line-height: 3rem;height:3rem;font-size:1rem;float: left;width:85%;text-align: center;color: #fff;font-family: "微软雅黑";}
+		.head .title_name .title_text{margin-left:17%;}
+		.head .manage{width:15%!important;}
+		.yuanjia{text-decoration:line-through;color:#E5E5E5;}
+		.shop-brief{width:80%;overflow: hidden;}
+		/*编辑*/
+		.head .manager{display:none;}
+		.head .manager li{width:60%;float: left;color:#000;font-size: .8rem;height: 2.7rem;line-height: 2.7rem;}
+		.head .manager .clear_tool{width:40%;}
+		.head .manager .clear_tool img {position: relative;top: 4px;}
+		.head .manager li span{display:inline-block;border:1px solid #ff6600;border-radius: 20px;width:6rem;line-height: 1.5rem;height: 1.5rem;color:#ff6600 ;}
+		.head .manager li .detele{margin-left: 1rem;border:1px solid #FF3300;color:#FF3300;width:5rem;}
+		/*选择*/
+		.shop-info input.check{position: absolute;top: 45%;left: 10px;}
+		/*合计*/
+		.count{color:#ff6600;font-size: 1rem;}
+		/*规格选择  弹框*/
+		.action .specifications img{width:20px;float: right;margin:5% 2%;}
+		/*产品规格*/
+		.standard{background:#fff;width:100%;}
+		.standard .goods_check{width:90%;margin:5%;border-bottom: 1px solid #c3c3c3;}
+		.standard .goods_check .goods_gui{color:#C3C3C3;height: 2.3rem;line-height: 2.3rem;}
+		.standard .close{float: right;}
+		.standard .goods_check .goods_picture{position:relative;top:-2rem;width:100px;width:100px;border-radius:5px;border:1px solid #EEECE4;background: #fff;}
+		.standard .goods_check .goods_picture img{width:90%;height: 90%;margin:5%;}
+		.goods_check>ul{width:100%;}
+		/*关闭*/
+		.share_btn img{width:30px;height: 30px;}
+		/*颜色*/
+		.standard{margin-top: 2rem;}
+		.standard .goods_color ul li{width:25%;background:#F7F7FA;border-radius:10px;margin-left: 3%;height:2.5rem;line-height: 2.5rem;text-align: center;}
+		.goods_color .color{height:2rem;line-height:2rem;font-size: 1rem;text-align: left;}
+		.goods_color span{margin-left: 4%;}
+		/*尺寸*/
+		.standard  .goods_size ul li{width:15%;background:#F7F7FA;border-radius:10px;margin-left: 3%;height:2.5rem;line-height: 2.5rem;text-align: center;margin-bottom:1.5rem;}
+		.goods_size .size{height:2rem;line-height:2rem;font-size: 1rem;text-align: left;}
+		.goods_size span{margin-left: 4%;}
+		.goods_size ul{border-bottom:1px solid #c3c3c3;}
+		/*数量*/
+		.goods_sum .sum{height:2rem;line-height:2rem;font-size: 1rem;text-align: left;}
+		.goods_sum>ul>li{width:50%;margin: 1.5rem 0;}
+	    .goods_sum li .number,.kucun {display: inline-block;color: #808080;vertical-align: sub;}
+	    .goods_sum .count .num-jian,.input-num,.num-jia {display: inline-block; width:2rem; text-align: center;font-size: 18px;  color: #999;cursor: pointer;border: 1px solid #e6e6e6;margin: 0 .5%;}
+	    .goods_sum .count .input-num { width: 3rem;color: #333; border-left: 0; border-right: 0;height:2rem;font-size:.8rem; }
+	    .count li{height:2rem;line-height:2rem;font-size: 1rem;;}
+	    .goods_sum span{margin-left: 7%;}
+	    /*购买*/
+		.buy_goods ul li{width:50%;height:2.5rem;line-height: 2.5rem;font-size: 1rem;text-align: center;border-top:1px solid #c3c3c3;}
+		.buy_goods .buy{background:#FF0000;color:#fff;}
+	</style>
+<!--头部开始-->
+<div class="header">
+	<div class="head">
+			<!--导航-->
+			<div>
+				<ul>
+					<li class="title_name"><i class="iconfont icon-back fl" onclick="history.go(-1)" style="position: absolute; font-size: 1.4rem; left: 3%; "></i><span class="title_text">购物车<span class="count_goods"></span></span></li>
+					<li class="manage">编辑</li>
+					<div class="clear"></div>
+				</ul>
+				<script>
+					$(".manage").click(function(){
+					if($(".manage").html()=="编辑"){
+						$(".manager").css({"display":"block"});	
+						$(".manage").html("完成");
+					}else{
+						$(".manage").html("编辑");
+						$(".manager").css({"display":"none"});	
+					}
+					});
+				</script>
+			</div>
+			<div>
+				<!--管理-->
+			<ul class="manager">
+				<li class="clear_tool"><img src="image/clear.png" alt="" />清理工具</li>
+				<li><span>移入收藏夹</span><span class="detele">删除</span>
+				</li>
+			</ul>
+		</div>
+		</div>
+		
+</div>
+<!--头部结束-->
+<div class="shopping">
+	
+	<div class="shop-group-item">
+		<div class="shop-name">
+			<input type="checkbox" class="check goods-check shopCheck">
+			<h4><a href="#">苹果专卖店</a></h4>
+			<div class="coupons"><span>领券</span><em></div>
+		</div>
+		<ul>
+			<li>
+				<div class="shop-info">
+					<input type="checkbox" class="check goods-check goodsCheck">
+					<div class="shop-info-img"><a href="#"><img src="$!webPath/resources/buyer/image/computer.jpg" /></a></div>
+					<div class="shop-info-text">
+						<h4>Apple MacBook Pro 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存/Retina屏 MF839CH/A)</h4>
+						<div class="shop-brief"><span>重量:3.3kg</span><span>颜色:标配版</span><span>版本:13.3英寸</span><span>重量:3.3kg</span></div>
+						<div class="shop-price">
+							<div class="shop-pices">￥<b class="price">100.00</b><b class="yuanjia">￥100.00</b></div>
+							<div class="shop-arithmetic">
+								<a href="javascript:;" class="minus">-</a>
+								<span class="num" >1</span>
+								<a href="javascript:;" class="plus">+</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+				<div class="shop-info">
+					<input type="checkbox" class="check goods-check goodsCheck">
+					<div class="shop-info-img"><a href="#"><img src="$!webPath/resources/buyer/image/computer.jpg" /></a></div>
+					<div class="shop-info-text">
+						<h4>Apple MacBook Pro 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存/Retina屏 MF839CH/A)</h4>
+						<div class="shop-brief"><span>重量:3.3kg</span><span>颜色:标配版</span><span>版本:13.3英寸</span></div>
+						<div class="shop-price">
+							<div class="shop-pices">￥<b class="price">100.00</b><b class="yuanjia">￥100.00</b></div>
+							<div class="shop-arithmetic">
+								<a href="javascript:;" class="minus">-</a>
+								<span class="num" >1</span>
+								<a href="javascript:;" class="plus">+</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="shop-info">
+					<input type="checkbox" class="check goods-check goodsCheck">
+					<div class="shop-info-img"><a href="#"><img src="$!webPath/resources/buyer/image/computer.jpg" /></a></div>
+					<div class="shop-info-text">
+						<h4>Apple MacBook Pro 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存/Retina屏 MF839CH/A)</h4>
+						<div class="shop-brief"><span>重量:3.3kg</span><span>颜色:标配版</span><span>版本:13.3英寸</span></div>
+						<div class="shop-price">
+							<div class="shop-pices">￥<b class="price">100.00</b><b class="yuanjia">￥100.00</b></div>
+							<div class="shop-arithmetic">
+								<a href="javascript:;" class="minus">-</a>
+								<span class="num" >1</span>
+								<a href="javascript:;" class="plus">+</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<div class="shopPrice">本店总计：￥<span class="shop-total-amount ShopTotal">0.00</span></div>
+	</div>
+	
+	<div class="shop-group-item">
+		<div class="shop-name">
+			<input type="checkbox" class="check goods-check shopCheck">
+			<h4><a href="#">苹果专卖店</a></h4>
+			<div class="coupons"><span>领券</span><em></em></div>
+		</div>
+		<ul>
+			<li>
+				<div class="shop-info">
+					<input type="checkbox" class="check goods-check goodsCheck">
+					<div class="shop-info-img"><a href="#"><img src="$!webPath/resources/buyer/image/computer.jpg" /></a></div>
+					<div class="shop-info-text">
+						<h4>Apple MacBook Pro 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存/Retina屏 MF839CH/A)</h4>
+						<div class="shop-brief"><span>重量:3.3kg</span><span>颜色:标配版</span><span>版本:13.3英寸</span></div>
+						<div class="shop-price">
+							<div class="shop-pices">￥<b class="price">100.00</b><b class="yuanjia">￥100.00</b></div>
+							<div class="shop-arithmetic">
+								<a href="javascript:;" class="minus">-</a>
+								<span class="num" >1</span>
+								<a href="javascript:;" class="plus">+</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="shop-info">
+					<input type="checkbox" class="check goods-check goodsCheck">
+					<div class="shop-info-img"><a href="#"><img src="$!webPath/resources/buyer/image/computer.jpg" /></a></div>
+					<div class="shop-info-text">
+						<h4>Apple MacBook Pro 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存/Retina屏 MF839CH/A)</h4>
+						<div class="shop-brief"><span>重量:3.3kg</span><span>颜色:标配版</span><span>版本:13.3英寸</span></div>
+						<div class="shop-price">
+							<div class="shop-pices">￥<b class="price">100.00</b><b class="yuanjia">￥100.00</b></div>
+							<div class="shop-arithmetic">
+								<a href="javascript:;" class="minus">-</a>
+								<span class="num" >1</span>
+								<a href="javascript:;" class="plus">+</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<div class="shopPrice">本店总计：￥<span class="shop-total-amount ShopTotal">0.00</span></div>
+	</div>	
+</div>
+<div class="am-share2">
+			<div class="standard am-share">
+				<div class="goods_check">
+					<ul>
+						<li>
+							<ul>
+								<li class="goods_picture"><img src="$!webPath/resources/buyer/image/goods.png" /></li>
+								<li>
+									<div class="goods_gui">&nbsp&nbsp;￥96.00</div>
+									<div class="goods_gui">&nbsp;&nbsp;库存770</div>
+									<div class="goods_gui">&nbsp;&nbsp;请选择规格</div>
+								</li>
+								<div class="clear"></div>
+							</ul>
+						</li>
+		
+						<li class="close"><button class="share_btn"><i class="iconfont icon-close fl" style="font-size: 2rem;"></i></button></li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+				<!--颜色-->
+				<div class="goods_color">
+					<div class="color"><span>颜色</span></div>
+					<ul id="goods_color">
+						<li>白海蓝-女</li>
+						<li>白果绿-女</li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+				<script>
+					$("#goods_color li").click(
+						function() {
+							$(this).css({
+								"background": "red",
+								"color": "#fff"
+							});
+							$(this).siblings().css({
+								"background": "#F7F7FA",
+								"color": "black"
+							});
+						});
+				</script>
+				<!--尺码-->
+				<div class="goods_size">
+					<div class="size"><span>尺寸</span></div>
+					<ul id="goods_size">
+						<li>M</li>
+						<li>S</li>
+						<li>L</li>
+						<li>XL</li>
+						<li>XXL</li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+				<script>
+					$("#goods_size li").click(
+						function() {
+							$(this).css({
+								"background": "red",
+								"color": "#fff"
+							});
+							$(this).siblings().css({
+								"background": "#F7F7FA",
+								"color": "black"
+							});
+						});
+				</script>
+			
+				<div class="buy_goods">
+					<ul>
+						<li class="shopping cart" style="width:100%;background: red;color:#fff;">确定</li>
+						<!--<li class="buy">立即购买</li><--></-->
+						<div class="clear"></div>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+<div class="payment-bar">
+	<div class="all-checkbox"><input type="checkbox" class="check goods-check" id="AllCheck">全选</div>
+	<div class="shop-total">
+		<span>合计：<span class="count">￥<b class="total" id="AllTotal">0.00</b></span></span>
+	</div>
+	<a href="#" class="settlement">结算</a>
+</div>
+<!--商品数量-->
+<script>
+	$(".shop-brief").click(function(){
+					$(".am-share2").addClass("am-modal-active");
+					if($(".sharebg").length > 0) {
+						$(".sharebg").addClass("sharebg-active");
+						//				
+					} else {
+						$("body").append('<div class="sharebg"></div>');
+						$(".sharebg").addClass("sharebg-active");
+					}
+			
+					$(".sharebg-active,.share_btn").click(function() {
+						$(".am-share2").removeClass("am-modal-active");
+						setTimeout(function() {
+							$(".sharebg-active").removeClass("sharebg-active");
+							$(".sharebg").remove();
+						}, 300);
+					})
+	})
+	$(document).ready(function(){ 
+	var count=$(".shop-info").length;
+		$(".count_goods").html("("+count+")")
+		}); 
+
+</script>
+</body>
+</html>
+

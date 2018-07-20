@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>分配设置-总部业务</title>
+		<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/two_level.css">
+	<script src="$!webPath/resources/js/jquery-1.10.2.min.js"></script>
+	<!--layui-->
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+	<script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+	</head>
+	<style>
+		body{
+			font-family: "Microsoft Yahei", "Lucida Grande", Verdana, Lucida, Helvetica, Arial, 'Simsun', sans-serif;
+			font-size: 16px;
+		}
+		input{
+			border:none;
+			width: 100px;
+		}
+		table tr td{
+			padding: 13px 0;
+		}
+		.confirm{width:100px;height: 30px;line-height: 30px;border-radius: 4px;background: #3fa4ed ;text-align: center;color:#fff;margin-top: 0!important;}
+		.cont{padding-left: 15%;}
+		.cont input{
+			border: 1px solid #eee;
+			text-align: center;
+			margin: 0 5px;}
+			.seth1 {
+			border-top: 1px solid #D9D9D9;
+			height: 35px;
+			border-bottom: 1px solid #D9D9D9;
+			line-height: 35px;
+			padding-left: 40px;
+			color: #686868;
+			margin: 5px;
+			font-size:16px;
+			padding: 0px;
+			text-align: left;
+			background: #f3f3f3;
+		}
+		.table_distr{width: 96%;margin: 0 auto;}
+		.view span{margin-left: 10%;}
+		.view textarea{margin-left: 3%;}
+	</style>
+	<body>
+		
+		<div class="table_distr">
+			<div class="seth1">
+		<img src="$!webPath/resources/style/system/manage/black/img/1.png" alt="">
+		分配设置
+	</div>
+			<table width="100%">
+				<tr>
+					<td width="10%"></td>
+					<td width="40%"></td>
+					<td style="text-align: left;"><div class="confirm" onclick="subc();">确定</div></td>
+				</tr>
+				<tr>
+					<td  style="text-align: center;">分配设置：</td>
+					<td class="cont">技术服务费率为商品利润的<input type='text' value='1' id='js' />%。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="cont">平台管理费率为商品利润的<input type='text' value='1' id='ptgl' />%</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="cont">订单奖激励系数为商品利润的<input type='text' value='1' id='ddjl' />%。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="cont">激励时间为<input type='text' value='1' id='dd_jlsjs' /> 到  <input type='text' value='1' id='dd_jlsje' /></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="cont">拓展奖激励系数为商品利润的<input type='text' value='1' id='tzjl' />%。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="cont">激励时间为<input type='text' value='1' id='tz_jlsjs' />到 <input type='text' value='1' id='tz_jlsje' />。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="cont">开发奖激励系数为商品利润的<input type='text' value='1' id='kfjl' />%。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="cont">激励时间为<input type='text' value='1' id='kfjl_jlsjs' />到<input type='text' value='1' id='kfjl_jlsje' />。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="cont">伯乐奖激励系数为商品利润的<input type='text' value='1' id='bljl' />%。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="cont">激励时间为<input type='text' value='1' id='bl_sjs' />到 <input type='text' value='1' id='bl_sje' />。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="cont">供货奖激励系数为商品利润的<input type='text' value='1' id='ghjl' />%。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="cont">激励时间为<input type='text' value='1' id='gh_sjs' />到 <input type='text' value='1' id='gh_sje' />。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="cont">体验店奖激励系数为商品利润的<input type='text' value='1' id='tydjl' />%。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="cont">激励时间为<input type='text' value='1' id='tyd_sjs' />到 <input type='text' value='1' id='tyd_sje' />。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td ></td>
+					<td style="text-align: left;"><div class="confirm">渠道费率设置</div></td>
+				</tr>
+			</table>
+			<div style="height:50px;line-height:50px;border-left:2px solid #3fa4ed;font-size: 20px; margin-bottom: 5px;">审核意见</div>
+	<div class="view">
+	<span></span>    <font>同意</font> <span class="refuse check"></span><font>不同意</font>
+	<div>
+		<textarea type="text" class="" name="" id="shyj" value="" placeholder="同意修改" ></textarea>
+	</div>
+	</div> 
+	<script type="text/javascript">
+	
+    jQuery(document).ready(function(){
+        var mycars=new Array();
+        var cuur=1;
+        var pagelimit=2;
+        function loadajax(action,table,field,values,page_size,page_no,moudle_id){
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajax.jsp",
+                dataType:"json",
+                // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size=3"+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error:function(){alert("数据错误，操作被取消！");},
+                success:function(data)
+                {
+                    if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                    total=data.data.total;
+                    mycars[0]=total;
+                    var message=data.data.data;
+                    //console.log(message); 
+                    $('#js').val(message[0]['zb_jishufuwu']);
+                    $('#ptgl').val(message[0]['zb_pingtaiguanli']);
+                    $('#ddjl').val(message[0]['zb_dingdanjiangli']);
+                    $('#dd_jlsjs').val(message[0]['zb_kaishi1']);
+                    $('#dd_jlsje').val(message[0]['zb_jieshu1']);
+                    $('#tzjl').val(message[0]['zb_tuozhanjiang']);
+                    
+                    $('#tz_jlsjs').val(message[0]['zb_kaishi2']);
+                    $('#tz_jlsje').val(message[0]['zb_jieshu2']);
+                    $('#kfjl').val(message[0]['zb_kaifajiang']);
+                    $('#kfjl_jlsjs').val(message[0]['zb_kaishi3']);
+                    $('#kfjl_jlsje').val(message[0]['zb_jieshu3']);
+                    $('#bljl').val(message[0]['zb_bolejiang']);
+                    $('#bl_sjs').val(message[0]['zb_kaishi4']);
+                    $('#bl_sje').val(message[0]['zb_jieshu4']);
+                    $('#ghjl').val(message[0]['zb_gonghuojiang']);
+                    $('#gh_sjs').val(message[0]['zb_kaishi5']);
+                    $('#gh_sje').val(message[0]['zb_jieshu5']);
+                    $('#tydjl').val(message[0]['zb_tiyanjiang']);
+                    $('#tyd_sjs').val(message[0]['zb_kaishi6']);
+                    $('#tyd_sje').val(message[0]['zb_jieshu6']);
+                    
+                    
+                }
+            });
+        }
+        loadajax("select","zb_fenpeishezhinew","states","1",pagelimit,cuur,1);
+        
+
+    });
+	
+	$('.view span').click(function(){
+		$(this).addClass('check');
+		$(this).siblings('span').removeClass('check');
+	})
+	function subc(){ 
+		if($('#shyj').val()==""){
+			//alert('请输入审核意见');
+			//return;
+		}
+		var state;
+		if($('.refuse').hasClass('check')){
+			state="不同意";
+			
+		}else{
+			state="同意";
+		}
+		
+		   jQuery.ajax({
+               type:"POST",
+               cache: false,
+               async:false,
+               url:"/ajax.jsp",
+               dataType:"json",
+               // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+               data:"action=update&table=zb_yewushenhe&field=id,zb_state,zb_yijian&values=${id}|已审核|"+state,
+               error:function(){alert("数据错误，操作被取消！");},
+               success:function(data)
+               {
+                   if(data.state=="error"){alert("系统错误，操作被取消！");return;} 
+                   alert("操作成功");
+                   window.history.go(-1);
+                   
+                   
+               }
+           });
+	}
+</script>
+		</div>
+	</body>
+</html>

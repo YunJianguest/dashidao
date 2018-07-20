@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>卖家品牌列表1111 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <script src="$!webPath/resources/js/jquery.SuperSlide.2.1.1.js"></script>
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link href="$!webPath/resources/style/system/manage/black/zxx.css"  rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css">
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+    <link href="$!webPath/resources/style/system/manage/blue/zhandai.css"  rel="stylesheet" type="text/css"/>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+	<link href="$!webPath/resources/style/system/manage/black/two_level.css" type="text/css" rel="stylesheet" />
+	<style>
+        .hzhaomu li{ width: 14%; }
+        .hzhaomu2 li{ width: 14%; }
+        .ac9 a {
+            color: #999;
+            padding:4px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            border:1px solid #999;margin-left:4px;
+        }
+        .ac9 a:hover {
+            color:#999;
+            background: #fff;
+
+        }
+        .input{
+            border: 0;
+            text-align: center;
+            width: 50px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="main evaluated_manager">
+    <div class="user_center" id="evalubox">
+        $!httpInclude.include("/seller/nav_head.htm")
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=open_store")
+                <td id="centerbg" valign="top" width="80%" >
+                    <div class="both evaluate">
+	<table width="100%" >
+			<tr id="tabless">
+				<td width="10%" class="stores" rowspan="3">
+				<img src="img/raw_1501117118.png" alt="" style="display: block;">
+				<div style="line-height: 25px;">云正通海鲜雁塔店<span style="font-size: 12px;">(90760987)</span></div>
+				</td>
+				<td style="text-align: left" class="stores_name">
+				<div style=" float: right;margin-right: 2%;background: red;width: 30px; margin-top: 15px; height: 25px;line-height: 25px;text-align: center;color: #fff;">4.9</div>
+				<div style="width: 100%; float: right;">
+				<div class="pf" style=" float: right"></div>
+				<ul class="pfw" style=" float: right">
+					<li>非常不满意</li>
+					<li>不满意</li>
+					<li>一般</li>
+					<li>满意</li>
+					<li>非常满意</li>
+					<div style="clear: both;"></div>
+				</ul>
+				</div>
+				</td>	
+			</tr>
+			
+	</table>
+	
+<div class="shopadminbox" style="margin-top: 30px;" >
+    
+    <div class="bd" id="tabless2">
+	
+    </div>
+    <div class='bd' >
+    	<table>
+   		<tbody id="tabless3">
+   		</tbody>
+   		</table>
+    </div>
+    
+	</div>
+	<script type="text/javascript">jQuery(".shopadminbox").slide({trigger:"click"});</script>
+	</div>
+                
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+<script>
+	var store_id="${user.store.id}";
+	var currentPage=10;
+	$(function(){
+		alert(GetQueryString("id"));
+		sel_orderCom();
+	});
+	function GetQueryString(name)
+	{
+	    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	    var r = window.location.search.substr(1).match(reg);
+	    if(r!=null)return  unescape(r[2]); return null;
+	}
+	
+	function sel_orderCom(){
+		alert(2);
+		jQuery.ajax({  
+			url:"$!webPath/seller/sel_evaluateById.htm",
+            dataType:"json",
+            data:"currentPage="+currentPage+"&id="+GetQueryString("id"),
+            error:function(XMLHttpRequest, textStatus, errorThrown){
+                //alert(XMLHttpRequest.status); // 200
+                //alert(textStatus); // parsererror
+                //alert(errorThrown); // SyntaxError: Unexpected end of input
+               alert("数据错误！");
+			},
+            success:function(data)
+            {
+            	alert(data);
+            	var mess=data.data;
+            	
+            	goods_id=mess[0].goods.id;
+            	orderForm_id=mess[0].orderForm.id;
+            	parent_id=mess[0].id;
+            	
+            	
+            	$("#tabless").html('');
+            	
+           		$("#tabless").append("<td width='10%' class='stores' rowspan='3'>"+
+								"<img src='$!webPath/"+mess[0].goods.goods_main_photo.path+"/"+mess[0].goods.goods_main_photo.name+"' style='display: block;'>"+
+								"</td>"+
+								"<td style='text-align: left' class='stores_name'>"+
+								"<div style='width: 100%; float: right;'>"+
+								"<span>"+mess[0].goods.goods_name+"</span>"+
+								"</div>"+
+								"</td>"+
+								"<td><ul><li>"+mess[0].goods.seo_description+"</li><li>单价￥"+mess[0].goods.goods_price+"</li></ul></td>"+
+								"<td><div style=' float: right;margin-right: 2%;background: red;width: 30px; margin-top: 15px; height: 25px;line-height: 25px;text-align: center;color: #fff;'>4.9</div></td>");
+           		
+           		 $("#tabless2").html('');
+           		$("#tabless2").append("<td width='10%' class='stores' >"+
+						"<span><img src='$!webPath/resources/style/common/images/bag.jpg' style='display: block;'></span><br/>"+
+						"<span>"+mess[0].user.userName+"</span></td>"+
+						"<td style='text-align: left' class='stores_name'><span>"+mess[0].content+"</span><br/><span>"+mess[0].addTime+"</span></td>"+
+						"<td class='ac9'><a href='$!webPath/seller/evaluate_huifu.htm?id="+mess[0].id+"'>回复</a></td>");
+           		
+           	 $("#tabless3").html('');
+           	 for(var i=0;i<mess[0].lschild.length;i++){
+           		$("#tabless3").append("<tr><td class='stores'>"+
+						"<span><img src='$!webPath/resources/style/common/images/bag.jpg' style='display: block;'></span><br/>"+
+						"<span>"+mess[0].lschild[i].user.userName+"</span></td>"+
+						"<td style='text-align: left' class='stores_name'><span>"+mess[0].lschild[i].content+"</span><br/><span>"+mess[0].lschild[i].addTime+"</span></td>"+
+						"<td class='ac9'><a href='$!webPath/seller/evaluate_huifu.htm?id="+mess[0].lschild[i].id+"'>回复</a></td></tr>");
+           	 }
+        		
+           		
+            } 
+     	});
+	}
+</script>
+
+</html>

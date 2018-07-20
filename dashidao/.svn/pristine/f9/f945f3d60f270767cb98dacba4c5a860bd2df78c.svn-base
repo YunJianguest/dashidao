@@ -1,0 +1,248 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+	<link href="$!webPath/resources/style/system/manage/blue/tip.css"  rel="stylesheet" type="text/css"/>
+	<link href="$!webPath/resources/style/system/manage/blue/headquarters.css"  rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+	<script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+	<script src="$!webPath/resources/js/bootstrap.min.js"></script>	
+	<link href="$!webPath/resources/style/system/manage/blue/tip.css"  rel="stylesheet" type="text/css"/>
+<title>资金流入流出</title>
+</head>
+<body>
+<div class="zjlrlc"	>
+<div class="operation">
+	<h3>友情提示</h3>
+	<ul>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+<div class="bg_div">
+
+	<div style="width: 40%;font-size: 20px;">
+		<p class="p_font"  style="font-weight: 300;">总资产（元）&nbsp;&nbsp;&nbsp;&nbsp;<span class="s_font" style="font-weight: 500;" id="zzc">19009.53</span>
+		</p>
+	</div>
+	<div style="width: 30%">
+		<p style="padding-left: 100px;padding-top: 30px;">
+			今日收入（元）&nbsp;&nbsp;&nbsp;&nbsp;<span id="jrsr">3093.00</span>
+		</p>
+		<p style="padding-left: 100px;padding-top: 30px;">
+			今日支出（元）&nbsp;&nbsp;&nbsp;&nbsp;<span id="jrzc">890.00</span>
+		</p>
+	</div>
+	<div style="width: 30%">
+		<p style="padding-left: 100px;padding-top: 10px;">
+			<button type="button" class="btn btn-primary zj_button" >充值</button>
+		</p>
+		<p style="padding-left: 100px;">
+			<button type="button" class="btn btn-primary zj_button" >提现</button>
+		</p>
+		<p style="padding-left: 100px;">
+			<button type="button" class="btn btn-primary zj_button" >详情</button>
+		</p>
+	</div>
+</div>
+<div class="bg_div2">
+	<div class="bg_div3">
+		<p style="padding-left:20%;padding-top:20px;font-size: 20px;">
+			<strong id="zjlr1">资金流入（元）：9930.76</strong></p>
+	    <div id="zjlr">
+
+	    </div>
+
+
+	</div>
+	<div class="bg_div3">
+		<p style="padding-left:20%;padding-top:20px;font-size: 20px;">
+			<strong id="zjlc1">资金流出（元）：6009.76</strong></p>
+			 <div id="zjlc">
+
+
+			 </div>
+
+	</div>
+</div>
+<script type="text/javascript">
+function instData(sql,v,t){  
+    jQuery.ajax({ 
+          type:"POST",
+          cache: false,
+          async:false,
+          url:"/ajaxuser.jsp",
+          dataType:"json",
+          data:"table=zb_account&dates=update,createdate&sql="+sql,
+          //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+          error:function(){alert("数据错误，操作被取消！");},
+          success:function(data)
+          {
+              if(data.state=="error"){alert("系统错误，操作被取消！");return;} 
+              var message=data.data.data; 
+              //console.log(message);
+              $("#all").html('');
+              var html="";
+              
+              var zje=0;
+              var cxje=0;
+              var gkje=0;
+              var htbzj=0;
+              var bcbzj=0;
+              var qtbzj=0;
+              
+              
+              var ddyj=0;
+              var tzyj=0;
+              var kfyj=0;
+              var blyj=0;
+              
+              var ghyj=0;
+              var ddj=0;
+              var tzj=0;
+              var kfj=0;
+              var blj=0;
+              
+              var ghj=0;
+              var tydj=0;
+              var dk=0;
+              var wlbt=0;
+              
+              if(v==1){
+            	  for(var i=0;i<message.length;i++){
+                      var type=message[i]['type'];
+                      if(type==1){
+                    	  zje+=parseFloat(message[i]['amount']);
+                      }
+                      if(type==2){
+                    	  cxje+=parseFloat(message[i]['amount']);
+                      }
+                      if(type==3){
+                    	  gkje+=parseFloat(message[i]['amount']); 
+                      }
+                      if(type==4){
+                    	  htbzj+=parseFloat(message[i]['amount']); 
+                      }
+                      if(type==5){
+                    	  bcbzj+=parseFloat(message[i]['amount']); 
+                      }
+                      if(type==6){
+                    	  qtbzj+=parseFloat(message[i]['amount']); 
+                      }
+                      if(type==7){
+                    	  ddyj+=parseFloat(message[i]['amount']); 
+                      }
+                      if(type==8){
+                    	  tzyj+=parseFloat(message[i]['amount']); 
+                      }
+                      if(type==9){
+                    	  kfyj+=parseFloat(message[i]['amount']); 
+                      }
+                      
+                      if(type==10){
+                    	  blyj+=parseFloat(message[i]['amount']); 
+                      }
+                      if(type==11){
+                    	  ghyj+=parseFloat(message[i]['amount']); 
+                      }
+                      
+                      if(type==12){
+                    	  ddj+=parseFloat(message[i]['amount']); 
+                      }
+                      if(type==13){
+                    	  tzj+=parseFloat(message[i]['amount']); 
+                      }
+                      if(type==14){
+                    	  kfj+=parseFloat(message[i]['amount']); 
+                      }
+                      if(type==15){
+                    	  blj+=parseFloat(message[i]['amount']); 
+                      }
+                      if(type==16){
+                    	  ghj+=parseFloat(message[i]['amount']); 
+                      }
+                      if(type==17){
+                    	  tydj+=parseFloat(message[i]['amount']); 
+                      }
+                      if(type==18){
+                    	  dk+=parseFloat(message[i]['amount']); 
+                      }
+                      if(type==19){
+                    	  wlbt+=parseFloat(message[i]['amount']); 
+                      }
+                      
+                    }
+            	  var html1="";
+            	   html1+='<p class="zj_little_font">实付金额（元）：'+zje+'</p>'
+            	        +'<p class="zj_little_font">实付金额（元）：'+cxje+'</p>'
+            	        +'<p class="zj_little_font">实付金额（元）：'+gkje+'</p>'
+            	        +'<p class="zj_little_font">实付金额（元）：'+htbzj+'</p>'
+            	        +'<p class="zj_little_font">实付金额（元）：'+bcbzj+'</p>'
+            	        +'<p class="zj_little_font">实付金额（元）：'+qtbzj+'</p>'
+            	        +'<p style="position:relative;top:10px;left:46% ; z-index: 999;">'
+            	        +'<button type="button" class="btn btn-primary zj_button xq" onclick="window.location.href=\'$!webPath/admin/zjlrlcxq.htm\'" >详情</button></p>';
+		
+            	    $('#zjlr').html(html1);
+            	    $('#zjlr1').html("资金流入（元）："+(zje+cxje+gkje+htbzj+htbzj+bcbzj+qtbzj));
+            	    html1="";
+            	    html1+='<p class="zj_little_font">实付金额（元）：'+ddyj+'</p>'
+        	        +'<p class="zj_little_font">实付金额（元）：'+tzyj+'</p>'
+        	        +'<p class="zj_little_font">实付金额（元）：'+kfyj+'</p>'
+        	        +'<p class="zj_little_font">实付金额（元）：'+blyj+'</p>'
+        	        +'<p class="zj_little_font">实付金额（元）：'+ghyj+'</p>'
+        	        +'<p class="zj_little_font">实付金额（元）：'+ddj+'</p>'
+        	        +'<p class="zj_little_font">实付金额（元）：'+tzj+'</p>'
+        	        +'<p class="zj_little_font">实付金额（元）：'+kfj+'</p>'
+        	        +'<p class="zj_little_font">实付金额（元）：'+blj+'</p>'
+        	        +'<p class="zj_little_font">实付金额（元）：'+ghj+'</p>'
+        	        +'<p class="zj_little_font">实付金额（元）：'+tydj+'</p>'
+        	        +'<p class="zj_little_font">实付金额（元）：'+dk+'</p>'
+        	        +'<p class="zj_little_font">实付金额（元）：'+wlbt+'</p>'
+        	        +'<p style="position:relative;top:10px;left:46% ; z-index: 999;">'
+        	        +'<button type="button" class="btn btn-primary zj_button xq" onclick="window.location.href=\'$!webPath/admin/zjlrlcxq.htm\'">详情</button></p>';
+            	    $('#zjlc').html(html1);
+            	    $('#zjlc1').html("资金流入（元）："+(ddyj+tzyj+kfyj+blyj+ghyj+ddj+tzj+kfj+blj+ghj+tydj+dk+wlbt));
+            	    $('#zzc').html(ddyj+tzyj+kfyj+blyj+ghyj+ddj+tzj+kfj+blj+ghj+tydj+dk+wlbt+zje+cxje+gkje+htbzj+htbzj+bcbzj+qtbzj);            	  
+            	    if(t==0){
+            	    	 $('#jrsr').html(zje+cxje+gkje+htbzj+htbzj+bcbzj+qtbzj);
+            	    	 $('#jrzc').html(ddyj+tzyj+kfyj+blyj+ghyj+ddj+tzj+kfj+blj+ghj+tydj+dk+wlbt);
+            	    }
+                    
+              }
+             
+          }
+      });
+}
+function getDay(day){    
+    var today = new Date();    
+        
+    var targetday_milliseconds=today.getTime() + 1000*60*60*24*day;            
+ 
+    today.setTime(targetday_milliseconds); //注意，这行是关键代码  
+        
+    var tYear = today.getFullYear();    
+    var tMonth = today.getMonth();    
+    var tDate = today.getDate();    
+    tMonth = doHandleMonth(tMonth + 1);    
+    tDate = doHandleMonth(tDate);    
+    return tYear+"-"+tMonth+"-"+tDate;    
+}
+function doHandleMonth(month){    
+    var m = month;    
+    if(month.toString().length == 1){    
+       m = "0" + month;    
+    }    
+    return m;    
+}
+//instData("SELECT * FROM `zb_account`",0);
+instData("SELECT * FROM `zb_accountdetail`order by createdate;",1,0);   
+instData("SELECT * FROM `zb_accountdetail` where createdate  Between '"+getDay(0)+"' And '"+getDay(1)+"' order by createdate;",1,1); 
+
+
+</script>
+</div>
+</body>
+</html>

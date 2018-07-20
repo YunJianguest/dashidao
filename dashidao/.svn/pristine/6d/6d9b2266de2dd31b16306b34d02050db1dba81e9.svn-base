@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>栈代合同 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/zxx.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <link href="$!webPath/resources/style/system/manage/black/two_level.css" type="text/css" rel="stylesheet" />
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+
+            /* jQuery('#beginTime').datepicker({
+                  dateFormat:"yy-mm-dd",
+                  changeMonth: true,
+                  changeYear: true
+              });
+              jQuery('#endTime').datepicker({
+                  dateFormat:"yy-mm-dd",
+                  changeMonth: true,
+                  changeYear: true
+              });*/
+            select_byId();
+            layui.use('laydate', function(){
+                var laydate = layui.laydate;
+                //执行一个laydate实例
+                laydate.render({
+                    elem: '#create_date1',//指定元素
+                    type: 'datetime'
+                });
+
+            });
+            layui.use('laydate', function(){
+                var laydate = layui.laydate;
+                //执行一个laydate实例
+                laydate.render({
+                    elem: '#create_date2',
+                    type: 'datetime'//指定元素
+                });
+
+            });
+        });
+        function select_byId(){
+            var sql="select * from dsdsj_pickup_card_manager where id = "+GetQueryString("id");
+            jQuery.ajax({
+                type: "POST",
+                cache: false,
+                async: false,
+                url: "/ajaxuser.jsp",
+                dataType: "json",
+                data: "table=dsdsj_pickup_card_manager&dates=create_date1,create_date2&sql="+sql,
+                error: function () {
+                    alert("数据错误，操作被取消！");
+                },
+                success: function (data) {
+                    var message=data.data.data;
+                    var card_num=message[0]['card_number'];
+                    //填充卡号
+                    $('#card_number1').val(card_num.split("-")[0]);
+                    $('#card_number2').val(card_num.split("-")[1]);
+                    //填充价格
+                    $('#card_price').val(message[0]['card_price']);
+                    //填充数量
+                    $('#count').val(message[0]['count']);
+                    //有效期
+                    $('#create_date1').val(message[0]['create_date1']);
+                    $('#create_date2').val(message[0]['create_date2']);
+                    //有无赠品
+                    $('#hava_gift').val(message[0]['hava_gift']);
+                    //商品信息
+                    $('#goods_name').val(message[0]['goods_name']);
+                    $('#goods_number').val(message[0]['goods_number']);
+
+                }
+            });
+
+        }
+        //修改日期
+        function change_time(){
+            var time1=$('#create_date1').val();
+            var time2=$('#create_date2').val();
+            var data=GetQueryString("id")+'|'+time1+'|'+time2;
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajax.jsp",
+                dataType:"json",
+                data:"action=update&table=dsdsj_pickup_card_manager&field=id,create_date1,create_date2&values="+data,
+
+                success:function(data)
+                {
+                    if(data.code=="0"){alert("系统错误，操作被取消！");return;}
+
+                    var str='操作成功';
+                    if(str==data.msg){
+                        window.location.href='$!webPath/seller/tihuoka_manager.htm';
+                    }
+                }
+
+            });
+        }
+        function GetQueryString(name)
+        {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return  unescape(r[2]); return null;
+        }
+
+    </script>
+</head>
+<body>
+
+<div class="main">
+    <div class="user_center">
+        $!httpInclude.include("/seller/nav_head.htm") 
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=sub_account")
+                <td id="centerbg" valign="top" width="80%">
+
+                    <div class="both pick_up_card">
+                        <form class="form1">
+                            <div><span class="star">*</span>您的提货卡剩余1000张。</div>
+                            <div><input type="text" class="form-control" name="" id="" value="" placeholder="搜索"/> </div>
+                            <div>
+                                <div><span class="line">|</span>提货卡</div>
+                                <div>
+                                    <table width="100%">
+                                        <tr>
+                                            <td>提货卡号：</td>
+                                            <td><input type="text" id="card_number1" disabled></td>
+                                            <td>至</td>
+                                            <td><input type="text" id="card_number2" disabled></td>
+                                        </tr>
+                                        <tr>
+                                            <td>售价：</td>
+                                            <td><input type="text" id="card_price" disabled></td>
+                                            <td>数量：</td>
+                                            <td><input type="text" id="count" disabled></td>
+                                        </tr>
+                                        <tr>
+                                            <td>有效期：</td>
+                                            <td><input type="text" id="create_date1" class="layui-input"></td>
+                                            <td>至</td>
+                                            <td><input type="text" id="create_date2" class="layui-input"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>赠品：</td>
+                                            <td><input type="text" id="hava_gift" disabled></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div>
+                                    <table width="100%">
+                                        <tr>
+                                            <td>使用商品：</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>商品名称：</td>
+                                            <td>
+                                                <input type="text" id="goods_name" disabled>
+                                            </td>
+                                            <td>商品编号：</td>
+                                            <td>
+                                                <input type="text" id="goods_number" disabled>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                                <div class="qd" onclick="change_time()">提交提货卡</div>
+                            </div>
+                        </form>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

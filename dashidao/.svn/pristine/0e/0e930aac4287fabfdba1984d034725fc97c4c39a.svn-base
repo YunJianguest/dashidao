@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>盈亏管理详情</title>
+</head>
+<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/iconfont.css">
+<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/style.css">
+<link href="$!webPath/resources/style/system/front/default/css/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<script src="$!webPath/resources/js/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="$!webPath/resources/style/system/front/default/css/bootstrap-3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="$!webPath/resources/js/bootstrap-paginator.js" type="text/javascript"></script>
+<style>
+	.table_content ul li{height: 50px;}
+	.ac9 a {
+		color: #999;
+		padding:3px 20px;
+		border-radius: 4px;
+		text-decoration: none;
+		border:1px solid #999;
+	}
+	.ac9 a:hover {
+		color:#999;
+		background: #fff;
+	}
+	td input {
+		border-radius: 5px;
+		padding: 3px 22px;
+		border: 1px solid #BBBBBB;
+		background: #fff;
+	}
+	table tr td {
+		border-bottom: 1px solid #eee;
+		padding: 10px 0;
+	}
+	td img{width:84px; height: 84px;}
+	.pagination{float: right;}
+	.disable a{border:0!important;color:#000!important;}
+	.disable a:hover{border:0!important;color:#000!important;background: #fff!important;}
+	.pagination .active a{background:#108ee9!important; }
+	.pagination li a{padding: 4px 10px!important;margin: 0 2px!important; border-radius: 4px;}
+</style>
+<body>
+<div class="surplus_header">
+	<div class="header_both">
+		<ul>
+			<li class="yil">平台收费（元）：</li>
+			<li class="money">+19009.53</li>
+			<li class="details"><a href="#"><span>详情</span></a></li>
+			<li>
+				<label><input type="checkbox"/>技术服务费</label>
+				<label><input type="checkbox"/>联盟管理费</label>
+			</li>
+			<li>
+				<div>导出报表</div>
+				<div><img src="$!webPath/resources/style/system/manage/black/img/export.png" alt=""></div>
+
+			</li>
+			<div class="clear"></div>
+		</ul>
+	</div>
+</div>
+<table width="98%" style="font-size:16px;text-align: center;margin-left: 2%;margin-top: 20px;">
+	<tr style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#FFF;text-align: center">
+		<td>操作人</td>
+		<td>订单编号</td>
+		<td>角色</td>
+		<td>类型</td>
+		<td>时间</td>
+		<td>金额</td>
+	</tr>
+	<tr>
+		<td>乐乐服装店</td>
+		<td>JT320176534</td>
+		<td>会员</td>
+		<td>激励基金</td>
+		<td>2017-3-22 10:22:23</td>
+		<td>+10000</td>
+	</tr>
+	<tr>
+		<td>美丽阳光</td>
+		<td>JT320176534</td>
+		<td>云客</td>
+		<td>返利基金</td>
+		<td>2017-3-22 10:22:23</td>
+		<td>-3000</td>
+	</tr>
+	<tr>
+		<td>海参旗舰店</td>
+		<td>JT320176534</td>
+		<td>云客</td>
+		<td>物流基金</td>
+		<td>2017-3-22 10:22:23</td>
+		<td>-1000</td>
+	</tr>
+</table>
+<ul class="pagination">
+	<li><a href="#">首页</a></li>
+	<li class="disable"><a href="">第</a></li>
+	<li class="active"><a href="#">1</a></li>
+	<li><a href="#">2</a></li>
+	<li><a href="#">上一页</a></li>
+	<li><a href="#">尾页</a></li>
+</ul>
+<script>
+    $(".pagination li").click(function(){
+        $(this).addClass("active");
+        $(this).siblings().removeClass("active");
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+	<script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+	<script src="$!webPath/resources/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+	<script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+	<title>商家调价审核</title>
+	<style>
+		body {
+			font-size:16px;
+			line-height: 1.42857143;
+			color: #333;
+			background-color: #fff;
+			font-family: "Microsoft Yahei", "Lucida Grande", Verdana, Lucida, Helvetica, Arial, 'Simsun', sans-serif;
+		}
+		td input {
+			border-radius: 5px;
+			padding: 3px 22px;
+			border: 1px solid #BBBBBB;
+			background: #fff;
+		}
+		table tr td {
+			border-bottom: 1px solid #eee;
+			padding: 10px 0;
+		}
+		.seth1 {
+			border-top: 1px solid #D9D9D9;
+			height: 35px;
+			border-bottom: 1px solid #D9D9D9;
+			line-height: 35px;
+			padding-left: 40px;
+			color: #686868;
+			margin: 5px;
+			font-size:16px;
+			padding: 0px;
+			text-align: left;
+			background: #f3f3f3;
+		}
+		.allmen input {
+			width: 180px;
+			height: 29px;
+			line-height:29px;
+			padding-left: 5px;
+			border: 1px solid #ccc;
+			color: #333333;
+			background: #FAFAFA none repeat scroll 0 0;
+			border-style: solid;
+			border-width: 1px;
+			border-color: #B2B2B2 #E7E7E8 #E7E7E8 #B2B2B2;
+			border-radius: 5px;
+			margin:5px 0 0 2%;
+		}
+		.btn_search input {
+			background-color: #108ee9;
+			width: 62px;
+			height: 30px;
+			border: 0px;
+			color: #FFF;
+		}
+		.ac9 a {
+			color: #999;
+			padding:3px 20px;
+			border-radius: 4px;
+			text-decoration: none;
+			border:1px solid #999;
+		}
+		.ac9 a:hover {
+			color:#999;
+			background: #fff;
+		}
+		td img{width:84px; height: 84px;}
+		.pagination{float: right;}
+		.disable a{border:0!important;color:#000!important;}
+		.disable a:hover{border:0!important;color:#000!important;background: #fff!important;}
+		.pagination .active a{background:#108ee9!important; }
+		.pagination li a{padding: 4px 10px!important;margin: 0 2px!important; border-radius: 4px;}
+
+		.pagination{float: right;}
+		.disable a{border:0!important;color:#000!important;}
+		.disable a:hover{border:0!important;color:#000!important;background: #fff!important;}
+		.pagination .active a{background:#108ee9!important; }
+		.pagination li a{padding: 4px 10px!important;margin: 0 2px!important; border-radius: 4px;}
+	</style>
+</head>
+
+<body>
+<!--<center>
+	 <div style="width:100%;height:60px;background-color:#ccc;margin-top: 50px ">
+	 	<input style="width:90%;height:40px;line-height: 40px;margin-top: 10px" value="商家账号"/>
+
+	 </div>
+
+	<div style="margin-top: 50px;">
+		<table style="width:100%;margin-top: 20px;text-align: center">
+			<tr style="height:40px;background-color: #dfe2f5 ;color: #108ee9; margin-top: 20px;text-align: center;align-content: center"><th style="text-align: center;">商家</th><th style="text-align: center;">商品名称</th><th style="text-align: center;">商品编号</th><th style="text-align: center;">商品规格</th><th style="text-align: center;">保障类型</th><th style="text-align: center;">已缴纳保证金</th><th style="text-align: center;">操作</th></tr>
+
+			<tr style="left: 237px;top: 310px;width: 738px;height: 30px;line-height: 20px;background-color: rgba(255, 255, 255, 1);text-align: center;"><td rowspan="6" style="border-right: 1px solid #ccc;border-bottom: 1px solid #ccc;">大市道一号厂<br/>456732208</td><td>韩版修身T恤</td><td>230817</td><td>尺码：S/M/L</td><td>7天无理由退货</td><td>1000元</td><td> </td></tr>
+			<tr style="left: 237px;top: 310px;width: 738px;height: 30px;line-height: 20px;background-color: rgba(255, 255, 255, 1);text-align: center;"><td rowspan="2" colspan="2" style="border-bottom: 1px solid #ccc"></td><td>颜色：月白/...</td><td></td><td></td><td> </td></tr>
+
+			<tr style="left: 237px;top: 310px;width: 738px;height: 30px;line-height: 20px;background-color: rgba(255, 255, 255, 1);text-align: center;border-bottom: 1px solid;border-bottom-color: #ccc"><td>零售单位：件/</td><td></td><td></td><td><input type="button" value="商品详情"   onclick="location.href='$!webPath/admin/good_detail_admin.htm'"/></td></tr>
+			<tr style="height: 30px;line-height: 20px;"><td>大市道海参</td><td>90760987</td><td>口味：微辣</td><td>退货无忧</td><td>1000元</td><td> </td> </tr>
+			<tr style="height: 30px;line-height: 20px;"><td colspan="2" rowspan="2" style="border-bottom: 1px solid #ccc"></td><td>零售单位：盒</td><td></td><td></td><td> </td></tr>
+			<tr style="height: 30px;line-height: 20px;border-bottom: 1px solid;border-bottom-color: #ccc"><td></td><td></td><td></td><td><input type="button" value="商品详情"  /></td></tr>
+
+
+			<tr style="left: 237px;top: 310px;width: 738px;height: 30px;line-height: 20px;background-color: rgba(255, 255, 255, 1);text-align: center;"><td rowspan="6" style="border-right: 1px solid #ccc;border-bottom: 1px solid #ccc;">大市道一号厂<br/>456732208</td><td>韩版修身T恤</td><td>230817</td><td>尺码：S/M/L</td><td>7天无理由退货</td><td>1000元</td><td> </td></tr>
+			<tr style="left: 237px;top: 310px;width: 738px;height: 30px;line-height: 20px;background-color: rgba(255, 255, 255, 1);text-align: center;"><td rowspan="2" colspan="2" style="border-bottom: 1px solid #ccc"></td><td>颜色：月白/...</td><td></td><td></td><td> </td></tr>
+
+			<tr style="left: 237px;top: 310px;width: 738px;height: 30px;line-height: 20px;background-color: rgba(255, 255, 255, 1);text-align: center;border-bottom: 1px solid;border-bottom-color: #ccc"><td>零售单位：件/</td><td></td><td></td><td><input type="button" value="商品详情"  /></td></tr>
+			<tr style="height: 30px;line-height: 20px;"><td>大市道海参</td><td>90760987</td><td>口味：微辣</td><td>退货无忧</td><td>1000元</td><td> </td> </tr>
+			<tr style="height: 30px;line-height: 20px;"><td colspan="2" rowspan="2" style="border-bottom: 1px solid #ccc"></td><td>零售单位：盒</td><td></td><td></td><td> </td></tr>
+			<tr style="height: 30px;line-height: 20px;border-bottom: 1px solid;border-bottom-color: #ccc"><td></td><td></td><td></td><td><input type="button" value="商品详情"  /></td></tr>
+
+
+
+
+		</table>
+		<center>
+			<ul class="pagination">
+				<li><a href="#">&laquo;</a></li>
+				<li class="active"><a href="#">1</a></li>
+				<li class="disabled"><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li><a href="#">&raquo;</a></li>
+			</ul>
+		</center>
+	</div>
+
+</center>-->
+<div class="seth1">
+	<img src="$!webPath/resources/style/system/manage/black/img/1.png" alt="">
+	商品警察
+</div>
+<div><span class="allmen"><input type="text"></span><span class="btn_search"> <input type="submit" value="搜索" style="cursor:pointer;background-color: #108ee9;color:#FFF"></span></div>
+<table width="98%" style="font-size:16px;text-align: center;margin-left: 2%;margin-top: 20px;">
+	<tr style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#FFF;text-align: center">
+		<td>商家号</td>
+		<td>商品名称</td>
+		<td>商品图片</td>
+		<td>商品编号</td>
+		<td>商品规格</td>
+		<td>出厂价</td>
+		<td>起订数量</td>
+		<td>存储及保质期</td>
+		<td>招栈代</td>
+		<td>操作</td>
+	</tr>
+	<tbody  id="tablesss" >
+	<tr>
+		<td>083751	</td>
+		<td>韩版修身T恤</td>
+		<td><img src="$!webPath/resources/style/system/manage/black/img/raw_1495541437.jpeg" alt=""></td>
+		<td>230817</td>
+		<td>尺码：S/M/L <br>颜色:月白/... <br>零售单位：件</td>
+		<td>30元/件</td>
+		<td>100箱</td>
+		<td>干燥防潮 <br>保质期：永久</td>
+		<td>是</td>
+		<td class="ac9"><a href="">通知商家</a></td>
+	</tr>
+	<tr>
+		<td>456732208</td>
+		<td>韩版修身T恤</td>
+		<td><img src="$!webPath/resources/style/system/manage/black/img/raw_1501246954.png" alt=""></td>
+		<td>230817</td>
+		<td>尺码：S/M/L <br>颜色:月白/... <br>零售单位：件</td>
+		<td>30元/件</td>
+		<td>100箱</td>
+		<td>干燥防潮 <br>保质期：永久</td>
+		<td>是</td>
+		<td class="ac9"><a href="">通知商家</a></td>
+	</tr>
+	<tr><td>456732208</td>
+		<td>韩版修身T恤</td>
+		<td><img src="$!webPath/resources/style/system/manage/black/img/raw_1495541437.jpeg" alt=""></td>
+		<td>230817</td>
+		<td>尺码：S/M/L <br>颜色:月白/... <br>零售单位：件</td>
+		<td>30元/件</td>
+		<td>100箱</td>
+		<td>干燥防潮 <br>保质期：永久</td>
+		<td>否</td>
+		<td class="ac9">已通知</td>
+	</tr>
+	<tr>
+		<td>456732208</td>
+		<td>韩版修身T恤</td>
+		<td><img src="$!webPath/resources/style/system/manage/black/img/raw_1501117118.png" alt=""></td>
+		<td>230817</td>
+		<td>尺码：S/M/L <br>颜色:月白/... <br>零售单位：件</td>
+		<td>30元/件</td>
+		<td>100箱</td>
+		<td>干燥防潮 <br>保质期：永久</td>
+		<td>否</td>
+		<td class="ac9">已通知</td>
+	</tr>
+	</tbody>
+</table>
+
+
+<!--分页开始-->
+<div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+<script>
+    jQuery(document).ready(function(){
+        var mycars=new Array()
+        var cuur=1;
+        var pagelimit=2;
+        function loadajax(action,table,field,values,page_size,page_no,moudle_id){
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajax.jsp",
+                dataType:"json",
+                // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error:function(){alert("数据错误，操作被取消！");},
+                success:function(data)
+                {
+                    if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                    total=data.data.total;
+                    mycars[0]=total;
+                    var message=data.data.data;
+                    //console.log(message);
+                    $("#tablesss").html('');
+                    for(var i=0;i<message.length;i++){
+                        $("#tablesss").append("<tr><td>"+message[i]['sjh']+"</td><td>"+message[i]['spmc']+"</td><td><img src='"+"$!webPath/resources/"+message[i]['sptp']+"' alt=\"\"/></td><td>"+message[i]['spbh']+"</td><td>"+message[i]['spgg1']+"<br>"+message[i]['spgg2']+"<br>"+message[i]['spgg3']+"</td><td>"+message[i]['ccj']+"</td><td>"+message[i]['qdsl']+"</td><td>"+message[i]['bzq1']+"<br>"+message[i]['bzq2']+"</td><td>"+message[i]['zzd']+"<td class='ac9'><a href=''>通知商家</a></td>"+"</td></tr>");
+                    }
+                }
+            });
+        }
+        loadajax("select","zb_spjc","is_deleted","0",pagelimit,cuur,1);
+        layui.use(['laypage', 'layer'], function(){
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+            //完整功能
+            laypage.render({
+                elem: 'demo7'
+                ,count:total
+                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                ,jump: function(obj){
+                    //console.log(obj)
+                    cuur=obj.curr;
+                    pagelimit=obj.limit;
+                    //alert(pagelimit);
+                    loadajax("select","zb_spjc","is_deleted","0",pagelimit,cuur,1);
+                    //loadajax("select","stu",pagelimit,cuur,1);
+                },
+                limits:[2, 4, 6, 8, 10],
+                limit:pagelimit
+            });
+        });
+    });
+</script>
+<!--分页结束-->
+<script>
+    $(".pagination li").click(function(){
+        $(this).addClass("active");
+        $(this).siblings().removeClass("active");
+    })
+</script>
+</body>
+</html>

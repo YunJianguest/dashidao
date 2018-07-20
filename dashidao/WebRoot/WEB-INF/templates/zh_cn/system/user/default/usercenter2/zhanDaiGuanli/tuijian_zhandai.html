@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>卖家品牌列表 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+
+
+    <link href="$!webPath/resources/style/system/manage/black/zxx.css"  rel="stylesheet" type="text/css"/>
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+$!httpInclude.include("/top.htm")
+<div class="main"> $!httpInclude.include("/seller/nav_head.htm")
+    <div class="user_center">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=tuijian_zhandai")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="tuijian-box" style="width:1000px;">
+                        <div class="tuijian-top"><span></span>&nbsp;栈代加盟我的二维码和链接</div>
+
+                        <div class="tuijian-m1"><img src="$!webPath/resources/style/system/manage/black/img/tuijian1.png"><input type="button" value="保存二维码"></div>
+
+                        <div class="tuijian-m2"><input type="text" value="https://pro.modao.cc/app/0dfe940493e2922c80be6b1154127b05f0cd9e14#screen=s5711725cca24590b838aa0" class="tuijian-input1"><input type="button" value="复制链接" class="tuijian-input2"></div>
+
+                        <div class="tuijian-bottom">
+                            通过复制下面的代码将原型插入到网站或博客中:
+                            <div class="tuijian-bottom2">
+                                file:///D:/Users/Administrator/Desktop/zxx/tuijianzd.htmlfile:///D:/Users/Administrator/Desktop/zxx/tuijianzd.htmlfile:///D:/Users/Administrator/Desktop/zxx/tuijianzd.htmlfile:///D:/Users/Administrator/Desktop/zxx/tuijianzd.htmlfile:///D:/Users/Administrator/Desktop/zxx/tuijianzd.html
+
+
+                            </div>
+                            <input type="button" value="保存二维码">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

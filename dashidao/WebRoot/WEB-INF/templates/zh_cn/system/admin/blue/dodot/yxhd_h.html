@@ -1,0 +1,275 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!--link href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/template.css"  rel="stylesheet" type="text/css"/-->
+    <!--link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet-->
+
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+    <title>无标题文档</title>
+
+    <style>
+        body{
+            font-family: "Microsoft Yahei", "Lucida Grande", Verdana, Lucida, Helvetica, Arial, 'Simsun', sans-serif;
+        }
+        table tr td{
+            border-bottom: 1px solid #eee;padding: 10px 0;
+        }
+        ul{margin: 0;}
+        .a{
+            width: 80%;
+
+        }
+
+        #font{
+            color: red;
+        }
+        #font2{
+            color:blue;
+
+        }
+        .tabbable{margin: 0 auto;}
+        .tab-content{width:100%;}
+        .table a{
+            border:1px solid #c3c3c3;
+            padding: 5px 14px;
+            border-radius: 4px;
+        }
+        .table a:hover{color:#000;background: #fff;}
+        .seth1 {
+            border-top: 1px solid #D9D9D9;
+            height: 35px;
+            border-bottom: 1px solid #D9D9D9;
+            line-height: 35px;
+            padding-left: 40px;
+            color: #686868;
+            margin: 5px;
+            font-size:16px;
+            padding: 0px;
+            text-align: left;
+            background: #f3f3f3;
+        }
+
+        .bor{height:30px;line-height: 30px;}
+        .ac9 a {
+            color: #999;
+            padding:4px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            border:1px solid #999;margin-left:4px;
+        }
+        .ac9 a:hover {
+            color:#999;
+            background: #fff;
+        }
+        .flsz a{font-size:15px;border-radius: 4px;color:#fff;background:#108EE9;padding: 5px 15px;text-decoration: none;float: right;}
+        .dai,.shenh{color:#108EE9;}
+        .agree{color:#0a7e07;}
+        .disagree{color:red;}
+        .allmen input {
+            width: 180px;
+            height: 29px;
+            line-height:29px;
+            padding-left: 5px;
+            border: 1px solid #ccc;
+            color: #333333;
+            background: #FAFAFA none repeat scroll 0 0;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #B2B2B2 #E7E7E8 #E7E7E8 #B2B2B2;
+            border-radius: 5px;
+            margin:5px 0 0 2%;
+        }
+        .btn_search input {
+            background-color: #108ee9;
+            width: 72px;
+            height: 30px;
+            border: 0px;
+            color: #FFF;
+        }
+        .hd input{margin-left: 5px;}
+        .nav li{margin-left:2px}
+        .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{background:#3fa4ed;color:#fff; width:100%;}
+        .nav>li>a {
+            position: relative;
+            border:1px solid #c3c3c3;
+            display: block;
+            border-top-left-radius: 8px;
+            border-top-right-radius:8px;
+            font-size: 16px!important;
+            padding: 5px 15px;
+            color:#000;
+        }
+        .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{background:#3fa4ed;color:#fff;font-size: 16px;}
+        .nav{margin: 17px 0 29px 21px;border-bottom: 1px solid #c3c3c3!important;}
+
+    </style>
+</head>
+
+<body>
+<div class="tabbable">
+    <div class="seth1">
+        <img src="$!webPath/resources/style/system/manage/black/img/1.png" alt="">
+        营销活动
+    </div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#1" data-toggle="tab">平台活动</a></li>
+        <li><a href="#2" data-toggle="tab">待审核</a></li>
+        <li><a href="#3" data-toggle="tab">已审核</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="1"style="width:99%;margin-left:1%;margin-top:20px; ">
+            <div><span class="allmen"><input type="text"></span><span class="btn_search"> <input type="submit" value="发起活动" style="cursor:pointer;background-color: #108ee9;color:#FFF"></span><span class="hd">
+            <input type="checkbox" checked>拼团
+            <input type="checkbox" checked>秒杀
+            <input type="checkbox" checked>大促
+            <input type="checkbox" checked>充值优惠
+            <input type="checkbox" checked>预售活动
+            <input type="checkbox" checked>厂促
+            <input type="checkbox" checked>红包
+            <input type="checkbox" checked>渠促
+            <input type="checkbox" checked>购物卡优惠
+        </span>
+            </div>
+            <table width="100%" style="font-size:16px;text-align: center;margin-top: 20px;">
+                <tr style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#FFF;text-align: center">
+                    <td>行号</td>
+                    <td>类型</td>
+                    <td>活动名称</td>
+                    <td>时间</td>
+                    <td>状态</td>
+                    <td>操作</td>
+                </tr>
+                <tr>
+                    <td>01</td>
+                    <td>拼团</td>
+                    <td>双十二大促</td>
+                    <td> 2017年7月12日 - 2017年7月30日</td>
+                    <td>招募中</td>
+                    <td class="ac9"><a href="">取消活动</a><a href="">查看详情</a><a href="">修改</a></td>
+                </tr>
+                <tr>
+                    <td>02</td>
+                    <td>秒杀</td>
+                    <td>双十二大促</td>
+                    <td> 2017年7月12日 - 2017年7月30日</td>
+                    <td>招募中</td>
+                    <td class="ac9"><a href="">取消活动</a><a href="">查看详情</a><a href="">修改</a></td>
+                </tr>
+                <tr>
+                    <td>03</td>
+                    <td>渠促</td>
+                    <td>双十二大促</td>
+                    <td> 2017年7月12日 - 2017年7月30日</td>
+                    <td>已过期</td>
+                    <td class="ac9"><a href="">取消活动</a><a href="">查看详情</a><a href="">修改</a></td>
+                </tr>
+                <tr>
+                    <td>04</td>
+                    <td>拼团</td>
+                    <td>双十二大促</td>
+                    <td> 2017年7月12日 - 2017年7月30日</td>
+                    <td>招募中</td>
+                    <td class="ac9"><a href="">取消活动</a><a href="">查看详情</a><a href="">修改</a></td>
+                </tr>
+                <tr>
+                    <td>05</td>
+                    <td>拼团</td>
+                    <td>双十二大促</td>
+                    <td> 2017年7月12日 - 2017年7月30日</td>
+                    <td>招募中</td>
+                    <td class="ac9"><a href="">取消活动</a><a href="">查看详情</a><a href="">修改</a></td>
+                </tr>
+            </table>
+            <div class="flsz" style="margin-top:10px;"><a href="">渠道费率设置</a></div>
+        </div>
+        <div class="tab-pane" id="2">
+            <table width="100%" style="font-size:16px;text-align: center;">
+                <tr style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#FFF;text-align: center">
+                    <td width="10%">行号</td>
+                    <td width="10%">申请人ID</td>
+                    <td width="10%">申请人</td>
+                    <td width="30%">提交时间</td>
+                    <td width="10%">状态</td>
+                    <td width="10%">意见</td>
+                    <td width="20%">操作</td>
+                </tr>
+                <tr>
+                    <td>01</td>
+                    <td>230020</td>
+                    <td>Jack</td>
+                    <td>2017-2-5 4:9:5</td>
+                    <td class="dai">待审核</td>
+                    <td class="dai">-</td>
+                    <td class="ac9"><a href="">详情</a></td>
+                </tr>
+                <tr>
+                    <td>01</td>
+                    <td>230020</td>
+                    <td>Jack</td>
+                    <td>2017-2-5 4:9:5</td>
+                    <td class="dai">待审核</td>
+                    <td class="dai">-</td>
+                    <td class="ac9"><a href="">详情</a></td>
+                </tr>
+                <tr>
+                    <td>01</td>
+                    <td>230020</td>
+                    <td>Jack</td>
+                    <td>2017-2-5 4:9:5</td>
+                    <td class="dai">待审核</td>
+                    <td class="dai">-</td>
+                    <td class="ac9"><a href="">详情</a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="tab-pane" id="3">
+            <table width="100%" style="font-size:16px;text-align: center;">
+                <tr style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#FFF;text-align: center">
+                    <td width="10%">行号</td>
+                    <td width="10%">申请人ID</td>
+                    <td width="10%">申请人</td>
+                    <td width="30%">提交时间</td>
+                    <td width="10%">状态</td>
+                    <td width="10%">意见</td>
+                    <td width="20%">操作</td>
+                </tr>
+                <tr>
+                    <td>01</td>
+                    <td>230020</td>
+                    <td>Jack</td>
+                    <td>2017-2-5 4:9:5</td>
+                    <td class="shenh">已审核</td>
+                    <td class="agree">同意</td>
+                    <td class="ac8"><a href="">编辑</a>|<a href="">删除</a></td>
+                </tr>
+                <tr>
+                    <td>01</td>
+                    <td>230020</td>
+                    <td>Jack</td>
+                    <td>2017-2-5 4:9:5</td>
+                    <td class="shenh">已审核</td>
+                    <td class="disagree"> 不同意</td>
+                    <td class="ac8"><a href="">编辑</a>|<a href="">删除</a></td>
+                </tr>
+                <tr>
+                    <td>01</td>
+                    <td>230020</td>
+                    <td>Jack</td>
+                    <td>2017-2-5 4:9:5</td>
+                    <td class="shenh">已审核</td>
+                    <td class="agree">同意</td>
+                    <td class="ac8"><a href="">编辑</a>|<a href="">删除</a></td>
+                </tr>
+
+            </table>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

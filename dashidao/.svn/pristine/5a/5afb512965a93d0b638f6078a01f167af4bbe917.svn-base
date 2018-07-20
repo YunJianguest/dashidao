@@ -1,0 +1,742 @@
+package com.dashidao.view.web.action;
+
+import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.dashidao.core.domain.virtual.SysMap;
+import com.dashidao.core.mv.JModelAndView;
+import com.dashidao.core.query.support.IPageList;
+import com.dashidao.core.security.support.SecurityUserHolder;
+import com.dashidao.core.tools.CommUtil;
+import com.dashidao.foundation.domain.Accessory;
+import com.dashidao.foundation.domain.Consult;
+import com.dashidao.foundation.domain.DeliveryGoods;
+import com.dashidao.foundation.domain.Goods;
+import com.dashidao.foundation.domain.GoodsBrand;
+import com.dashidao.foundation.domain.GoodsCart;
+import com.dashidao.foundation.domain.GoodsClass;
+import com.dashidao.foundation.domain.GoodsSpecProperty;
+import com.dashidao.foundation.domain.GoodsSpecification;
+import com.dashidao.foundation.domain.GoodsType;
+import com.dashidao.foundation.domain.OrderCom;
+import com.dashidao.foundation.domain.Store;
+import com.dashidao.foundation.domain.User;
+import com.dashidao.foundation.domain.query.GoodsClassQueryObject;
+import com.dashidao.foundation.domain.query.GoodsQueryObject;
+import com.dashidao.foundation.domain.query.OrderComQueryObject;
+import com.dashidao.foundation.service.IAccessoryService;
+import com.dashidao.foundation.service.IAdvertService;
+import com.dashidao.foundation.service.IArticleClassService;
+import com.dashidao.foundation.service.IArticleService;
+import com.dashidao.foundation.service.IBargainGoodsService;
+import com.dashidao.foundation.service.IDeliveryGoodsService;
+import com.dashidao.foundation.service.IGoodsBrandService;
+import com.dashidao.foundation.service.IGoodsCartService;
+import com.dashidao.foundation.service.IGoodsClassService;
+import com.dashidao.foundation.service.IGoodsFloorService;
+import com.dashidao.foundation.service.IGoodsService;
+import com.dashidao.foundation.service.IGroupGoodsService;
+import com.dashidao.foundation.service.IGroupService;
+import com.dashidao.foundation.service.IMessageService;
+import com.dashidao.foundation.service.INavigationService;
+import com.dashidao.foundation.service.IOrderComService;
+import com.dashidao.foundation.service.IPartnerService;
+import com.dashidao.foundation.service.IRoleService;
+import com.dashidao.foundation.service.IStoreCartService;
+import com.dashidao.foundation.service.IStoreService;
+import com.dashidao.foundation.service.ISysConfigService;
+import com.dashidao.foundation.service.IUserConfigService;
+import com.dashidao.foundation.service.IUserService;
+import com.dashidao.jwt.filter.SignFilter;
+import com.dashidao.jwt.util.ComplexOutPropertyPreFilter;
+import com.dashidao.jwt.util.DateJsonValueProcessor;
+import com.dashidao.manage.admin.tools.MsgTools;
+import com.dashidao.view.web.tools.GoodsFloorViewTools;
+import com.dashidao.view.web.tools.GoodsViewTools;
+import com.dashidao.view.web.tools.NavViewTools;
+import com.dashidao.view.web.tools.StoreViewTools;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JsonConfig;
+
+/**
+ * 商城分类控制器
+ */
+@Controller
+public class GoodsClassViewAction {
+    @Autowired
+    private ISysConfigService configService;
+
+    @Autowired
+    private IUserConfigService userConfigService;
+
+    @Autowired
+    private IGoodsClassService goodsClassService;
+
+    @Autowired
+    private IGoodsBrandService goodsBrandService;
+
+    @Autowired
+    private IPartnerService partnerService;
+
+    @Autowired
+    private IRoleService roleService;
+    
+    @Autowired
+    private IOrderComService orderCom;
+    @Autowired
+    private IUserService userService;
+
+    @Autowired
+    private IArticleClassService articleClassService;
+
+    @Autowired
+    private IArticleService articleService;
+
+    @Autowired
+    private IAccessoryService accessoryService;
+
+    @Autowired
+    private IMessageService messageService;
+
+    @Autowired
+    private IStoreService storeService;
+
+    @Autowired
+    private IGoodsService goodsService;
+
+    @Autowired
+    private INavigationService navigationService;
+
+    @Autowired
+    private IGroupGoodsService groupGoodsService;
+
+    @Autowired
+    private IGroupService groupService;
+
+    @Autowired
+    private IGoodsFloorService goodsFloorService;
+
+    @Autowired
+    private IBargainGoodsService bargainGoodsService;
+
+    @Autowired
+    private IDeliveryGoodsService deliveryGoodsService;
+
+    @Autowired
+    private IStoreCartService storeCartService;
+
+    @Autowired
+    private IGoodsCartService goodsCartService;
+    @Autowired
+    private IAdvertService advertservice;
+
+    @Autowired
+    private NavViewTools navTools;
+
+    @Autowired
+    private GoodsViewTools goodsViewTools;
+
+    @Autowired
+    private StoreViewTools storeViewTools;
+
+    @Autowired
+    private MsgTools msgTools;
+
+    @Autowired
+    private GoodsFloorViewTools gf_tools;
+    
+    @Autowired
+    private IOrderComService orderComService;
+    
+    //分类列表(会员)
+    @RequestMapping({ "/wap/buyer/allclass.htm" })
+    public ModelAndView buyerallclass(HttpServletRequest request, HttpServletResponse response,String currentPage){
+        ModelAndView mv = new JModelAndView("/wap/buyer/allclass.html", this.configService.getSysConfig(), this.userConfigService.getUserConfig(), 1, request, response);
+       
+        mv.addObject("navTools", this.navTools);
+        GoodsClassQueryObject gcqo =new GoodsClassQueryObject(currentPage, mv,
+                "addTime", "desc");
+        
+        IPageList pList = this.goodsClassService.list(gcqo);
+        CommUtil.saveIPageList2ModelAndView("", "", "", pList, mv);
+        mv.addObject("navTools", this.navTools);
+
+        return mv;
+    }
+    //商品列表(会员)
+    @RequestMapping({ "/wap/buyer/selclass.htm" })
+    public ModelAndView buyerselclass(HttpServletRequest request, HttpServletResponse response,String currentPage,String className){
+        ModelAndView mv = new JModelAndView("/wap/buyer/selclass.html", this.configService.getSysConfig(), this.userConfigService.getUserConfig(), 1, request, response);
+        GoodsQueryObject gcqo =new GoodsQueryObject(currentPage, mv,
+                "addTime", "desc");
+        gcqo.addQuery("obj.GoodsClass.id",
+                new SysMap("gc_id",
+                		className), "="); 
+        IPageList pList = this.goodsService.list(gcqo);
+        CommUtil.saveIPageList2ModelAndView("", "", "", pList, mv);
+        mv.addObject("navTools", this.navTools);
+
+        return mv;
+    }
+    
+    
+    //分类列表（云客）
+    @RequestMapping({ "/wap/yunke/allclass.htm" })
+    public ModelAndView yunkeallclass(HttpServletRequest request, HttpServletResponse response,String currentPage){
+        ModelAndView mv = new JModelAndView("/wap/yunke/allclass.html", this.configService.getSysConfig(), this.userConfigService.getUserConfig(), 1, request, response);
+
+        mv.addObject("navTools", this.navTools);
+        GoodsClassQueryObject gcqo =new GoodsClassQueryObject(currentPage, mv,
+                "addTime", "desc");
+        gcqo.addQuery("obj.user.id",
+                new SysMap("user_id",
+                           SecurityUserHolder.getCurrentUser().getId()), "="); 
+        IPageList pList = this.goodsClassService.list(gcqo);
+        CommUtil.saveIPageList2ModelAndView("", "", "", pList, mv);
+        mv.addObject("navTools", this.navTools);
+
+        return mv;
+    }
+    //商品列表（云客）
+    @RequestMapping({ "/wap/yunke/selclass.htm" })
+    public ModelAndView yunkeselclass(HttpServletRequest request, HttpServletResponse response,String currentPage,String className){
+    	  ModelAndView mv = new JModelAndView("/wap/buyer/selclass.html", this.configService.getSysConfig(), this.userConfigService.getUserConfig(), 1, request, response);
+          GoodsQueryObject gcqo =new GoodsQueryObject(currentPage, mv,
+                  "addTime", "desc");
+          gcqo.addQuery("obj.GoodsClass.id",
+                  new SysMap("gc_id",
+                  		className), "="); 
+          IPageList pList = this.goodsService.list(gcqo);
+          CommUtil.saveIPageList2ModelAndView("", "", "", pList, mv);
+          mv.addObject("navTools", this.navTools);
+
+        return mv;
+    }
+    //分类列表
+    @RequestMapping({ "/wap/allclass.htm" })
+    @ResponseBody
+    public void allclass(HttpServletRequest request, HttpServletResponse response,String currentPage) throws IOException{
+    	Map params = new HashMap();
+        GoodsClassQueryObject gcqo =new GoodsClassQueryObject(currentPage, params,
+                "addTime", "desc"); 
+        List pList = this.goodsClassService.query(
+				"select obj from GoodsClass obj where obj.parent.id is null order by obj.sequence asc",
+				params, 0, 15);
+        
+        JsonConfig jsonConfig = new JsonConfig();
+		jsonConfig.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor("yyyy-MM-dd hh:mm:ss"));
+		// 需要过滤的类 + 属性
+		Map<Class<?>, Set<String>> includeMap = new HashMap<Class<?>, Set<String>>();
+		Set<String> set = new HashSet<String>();
+		set.add("id");
+		set.add("className");
+		set.add("childs");
+		set.add("sequence");
+		set.add("level");
+		set.add("display");
+		set.add("icon_type");
+		set.add("icon_sys");
+		includeMap.put(GoodsClass.class, set); 
+		jsonConfig.setJsonPropertyFilter(new ComplexOutPropertyPreFilter(includeMap));
+
+		JSONArray json = JSONArray.fromObject(pList, jsonConfig);
+		SignFilter.print(request, response, json);
+        
+ 
+    }
+    
+    //一级分类列表
+    @RequestMapping({ "/wap/firstclass.htm" })
+    @ResponseBody
+    public void firstclass(HttpServletRequest request, HttpServletResponse response,String currentPage) throws IOException{
+    	
+    	Map params = new HashMap();
+        //GoodsClassQueryObject gcqo =new GoodsClassQueryObject(currentPage, params,
+                //"addTime", "desc"); 
+        //gcqo.addQuery("obj.parent.id", new SysMap("parent_id",null), "is");
+        //gcqo.addQuery("obj.display", new SysMap("display",true), "=");
+        //IPageList pList = this.goodsClassService.list(gcqo);
+		params.put("display", Boolean.valueOf(true));
+        List pList = this.goodsClassService.query(
+				"select obj from GoodsClass obj where obj.parent.id is null and obj.display=:display ",
+				params, 0, 15);
+        JsonConfig jsonConfig = new JsonConfig();
+		jsonConfig.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor("yyyy-MM-dd hh:mm:ss"));
+		// 需要过滤的类 + 属性
+		Map<Class<?>, Set<String>> includeMap = new HashMap<Class<?>, Set<String>>();
+		Set<String> set = new HashSet<String>();
+		set.add("id");
+		set.add("className");
+		set.add("childs");
+		set.add("sequence");
+		set.add("level");
+		set.add("display");
+		set.add("icon_type");
+		set.add("icon_sys");
+		set.add("icon_acc");
+		includeMap.put(GoodsClass.class, set); 
+		
+		set = new HashSet<String>();
+		set.add("path");
+		set.add("size");
+		set.add("width");
+		set.add("height");
+		set.add("name");
+		includeMap.put(Accessory.class, set);
+		
+		jsonConfig.setJsonPropertyFilter(new ComplexOutPropertyPreFilter(includeMap));
+
+		JSONArray json = JSONArray.fromObject(pList, jsonConfig);
+		SignFilter.printNoCheck(request, response, json);
+       
+ 
+    }
+    //根据id查询一级分类
+    @RequestMapping({ "/wap/sel_firstById.htm" })
+    @ResponseBody
+    public void sel_firstById(HttpServletRequest request, HttpServletResponse response,String currentPage,String fid) throws IOException{
+    	Map params = new HashMap();
+        GoodsClassQueryObject gcqo =new GoodsClassQueryObject(currentPage, params,
+                "addTime", "desc"); 
+        gcqo.addQuery("obj.id", new SysMap("id",Long.parseLong(fid)), "=");
+        gcqo.addQuery("obj.display", new SysMap("display",true), "=");
+        IPageList pList = this.goodsClassService.list(gcqo); 
+        
+        JsonConfig jsonConfig = new JsonConfig();
+		jsonConfig.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor("yyyy-MM-dd hh:mm:ss"));
+		// 需要过滤的类 + 属性
+		Map<Class<?>, Set<String>> includeMap = new HashMap<Class<?>, Set<String>>();
+		Set<String> set = new HashSet<String>();
+		set.add("id");
+		set.add("className");
+		//set.add("childs");
+		//set.add("sequence");
+		//set.add("level");
+		//set.add("display");
+		//set.add("icon_type");
+		//set.add("icon_sys");
+		includeMap.put(GoodsClass.class, set); 
+		jsonConfig.setJsonPropertyFilter(new ComplexOutPropertyPreFilter(includeMap));
+
+		JSONArray json = JSONArray.fromObject(pList.getResult(), jsonConfig);
+		SignFilter.print(request, response, json);
+ 
+    }
+   //根据一级分类获取二级分类列表
+    @RequestMapping({ "/wap/secondclass.htm" })
+    @ResponseBody
+    public void secondclass(HttpServletRequest request, HttpServletResponse response,String currentPage,String fid) throws IOException{
+    	Map params = new HashMap();
+        GoodsClassQueryObject gcqo =new GoodsClassQueryObject(currentPage, params,
+                "addTime", "desc"); 
+        gcqo.addQuery("obj.parent.id", new SysMap("parent_id",Long.parseLong(fid)), "=");
+        gcqo.addQuery("obj.display", new SysMap("display",true), "=");
+        IPageList pList = this.goodsClassService.list(gcqo); 
+        
+        JsonConfig jsonConfig = new JsonConfig();
+		jsonConfig.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor("yyyy-MM-dd hh:mm:ss"));
+		// 需要过滤的类 + 属性
+		Map<Class<?>, Set<String>> includeMap = new HashMap<Class<?>, Set<String>>();
+		Set<String> set = new HashSet<String>();
+		set.add("id");
+		set.add("className");
+		set.add("childs");
+		set.add("sequence");
+		set.add("level");
+		set.add("display");
+		set.add("icon_type");
+		set.add("icon_sys");
+		set.add("icon_acc");
+		includeMap.put(GoodsClass.class, set); 
+		
+		set = new HashSet<String>();
+		set.add("path");
+		set.add("size");
+		set.add("width");
+		set.add("height");
+		set.add("name");
+		includeMap.put(Accessory.class, set);
+		
+		jsonConfig.setJsonPropertyFilter(new ComplexOutPropertyPreFilter(includeMap));
+
+		JSONArray json = JSONArray.fromObject(pList.getResult(), jsonConfig);
+		SignFilter.printNoCheck(request, response, json);
+        
+ 
+    }
+    
+   //商品列表
+    @RequestMapping({ "/wap/allgoods.htm" })
+    @ResponseBody
+    public void allgoods(HttpServletRequest request, HttpServletResponse response,String currentPage,String classid) throws IOException{
+    	Map params = new HashMap();
+    	System.out.println(classid);
+    	GoodsQueryObject gcqo =new GoodsQueryObject(currentPage, params,
+                "addTime", "desc"); 
+       gcqo.addQuery("obj.gc.id",
+                 new SysMap("gc_id",
+                		 Long.parseLong(classid)), "="); 
+        IPageList pList = this.goodsService.list(gcqo); 
+        
+        JsonConfig jsonConfig = new JsonConfig();
+		jsonConfig.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor("yyyy-MM-dd hh:mm:ss"));
+		// 需要过滤的类 + 属性
+		Map<Class<?>, Set<String>> includeMap = new HashMap<Class<?>, Set<String>>();
+		Set<String> set = new HashSet<String>();
+		set.add("id");
+		set.add("seo_keywords");
+		set.add("seo_description");
+		set.add("goods_name");
+		set.add("goods_price");
+		set.add("goods_inventory");
+		set.add("goods_weight");
+		set.add("goods_click");
+		set.add("goods_main_photo");
+		includeMap.put(Goods.class, set); 
+		
+		set = new HashSet<String>();
+		set.add("name");
+		set.add("path");
+		set.add("ext");
+		includeMap.put(Accessory.class, set);
+		
+		jsonConfig.setJsonPropertyFilter(new ComplexOutPropertyPreFilter(includeMap));
+
+		JSONArray json = JSONArray.fromObject(pList.getResult(), jsonConfig);
+		SignFilter.printNoCheck(request, response, json);
+        System.out.println(json);
+ 
+    }
+    
+  //店铺推荐商品
+    @RequestMapping({ "/wap/store_tuijian_goods.htm" })
+    @ResponseBody
+    public void store_tuijian_goods(HttpServletRequest request, HttpServletResponse response,String currentPage,String store_id) throws IOException{
+    	Map params = new HashMap();
+    	
+        params.put("id",Long.parseLong(store_id));
+    	List pList = this.goodsService.query(
+				"SELECT obj FROM Goods obj where obj.goods_store.id=:id and obj.goods_recommend is true ",
+				params, -1, -1);
+    	
+        JsonConfig jsonConfig = new JsonConfig();
+		jsonConfig.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor("yyyy-MM-dd hh:mm:ss"));
+		// 需要过滤的类 + 属性
+		Map<Class<?>, Set<String>> includeMap = new HashMap<Class<?>, Set<String>>();
+		Set<String> set = new HashSet<String>();
+		set.add("id");
+		set.add("seo_keywords");
+		set.add("seo_description");
+		set.add("goods_name");
+		set.add("goods_price");
+		set.add("goods_inventory");
+		set.add("goods_weight");
+		set.add("goods_click");
+		set.add("goods_main_photo");
+		includeMap.put(Goods.class, set); 
+		
+		set = new HashSet<String>();
+		set.add("name");
+		set.add("path");
+		set.add("ext");
+		includeMap.put(Accessory.class, set);
+		
+		jsonConfig.setJsonPropertyFilter(new ComplexOutPropertyPreFilter(includeMap));
+
+		JSONArray json = JSONArray.fromObject(pList, jsonConfig);
+		SignFilter.printNoCheck(request, response, json);
+        System.out.println(json);
+ 
+    }
+    
+    //通过商品id查相关的评价
+    @RequestMapping({ "/wap/select_evaluate.htm" })
+    @ResponseBody
+    public void select_evaluate(HttpServletRequest request, HttpServletResponse response,String goods_id,String currentPage) throws IOException{
+    	
+    	Map params = new HashMap();
+    	params.put("goods_id", Long.parseLong(goods_id));
+    	List pList = this.orderCom.query(
+			"SELECT obj  FROM OrderCom obj  where obj.goods.id = :goods_id ",
+			params, 0, 15);
+    	
+    	//OrderComQueryObject ofqo = new OrderComQueryObject(currentPage, params, "addTime", "desc");
+		//ofqo.addQuery("obj.goods.id", new SysMap("goods_id", Long.parseLong(goods_id)), "=");
+
+		//IPageList pList = this.orderComService.list(ofqo); 
+    	
+        JsonConfig jsonConfig = new JsonConfig();
+		jsonConfig.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor("yyyy-MM-dd hh:mm:ss"));
+		// 需要过滤的类 + 属性
+		Map<Class<?>, Set<String>> includeMap = new HashMap<Class<?>, Set<String>>();
+		Set<String> set = new HashSet<String>();
+		set.add("id");
+		set.add("goods");
+		set.add("user");
+		set.add("content");
+		includeMap.put(OrderCom.class, set); 
+		
+		set = new HashSet<String>();
+		set.add("id");
+		set.add("seo_keywords");
+		set.add("seo_description");
+		set.add("goods_name");
+		set.add("goods_price");
+		set.add("goods_inventory");
+		set.add("goods_weight");
+		set.add("goods_click");
+		set.add("goods_main_photo");
+		includeMap.put(Goods.class, set); 
+		
+		set = new HashSet<String>();
+		set.add("userName");
+		set.add("photo");
+		includeMap.put(User.class, set);
+		
+		set = new HashSet<String>();
+		set.add("name");
+		set.add("path");
+		set.add("ext");
+		includeMap.put(Accessory.class, set);
+		
+		jsonConfig.setJsonPropertyFilter(new ComplexOutPropertyPreFilter(includeMap));
+
+		JSONArray json = JSONArray.fromObject(pList, jsonConfig);
+		SignFilter.printNoCheck(request, response, json);
+        System.out.println(json);
+ 
+    }
+    
+    //大家都在卖商品
+    @RequestMapping({ "/wap/all_saler.htm" })
+    @ResponseBody
+    public void all_saler(HttpServletRequest request, HttpServletResponse response,String currentPage) throws IOException{
+    	Map params = new HashMap();
+    	
+    	List pList = this.goodsService.query(
+				"SELECT obj  FROM GoodsCart obj  order by obj.count desc",
+				params, -1, -1);
+        JsonConfig jsonConfig = new JsonConfig();
+		jsonConfig.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor("yyyy-MM-dd hh:mm:ss"));
+		// 需要过滤的类 + 属性
+		Map<Class<?>, Set<String>> includeMap = new HashMap<Class<?>, Set<String>>();
+		Set<String> set = new HashSet<String>();
+		set.add("id");
+		set.add("goods");
+		set.add("count");
+		includeMap.put(GoodsCart.class, set); 
+		
+		set = new HashSet<String>();
+		set.add("id");
+		set.add("seo_keywords");
+		set.add("seo_description");
+		set.add("goods_name");
+		set.add("goods_price");
+		set.add("goods_inventory");
+		set.add("goods_weight");
+		set.add("goods_click");
+		set.add("goods_main_photo");
+		includeMap.put(Goods.class, set); 
+		
+		set = new HashSet<String>();
+		set.add("name");
+		set.add("path");
+		set.add("ext");
+		includeMap.put(Accessory.class, set);
+		
+		jsonConfig.setJsonPropertyFilter(new ComplexOutPropertyPreFilter(includeMap));
+
+		JSONArray json = JSONArray.fromObject(pList, jsonConfig);
+		SignFilter.printNoCheck(request, response, json);
+        System.out.println(json);
+ 
+    }
+    
+     //商品详情
+     @RequestMapping({ "/wap/goodsdetail.htm" })
+     @ResponseBody
+     public void goodsdetail(HttpServletRequest request, HttpServletResponse response,String id) throws IOException{
+     	Map params = new HashMap();
+      
+        Goods goods= this.goodsService.getObjById(CommUtil.null2Long(id)); 
+         
+        JsonConfig jsonConfig = new JsonConfig();
+ 		jsonConfig.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor("yyyy-MM-dd hh:mm:ss"));
+ 		// 需要过滤的类 + 属性
+ 		Map<Class<?>, Set<String>> includeMap = new HashMap<Class<?>, Set<String>>();
+ 		Set<String> set = new HashSet<String>();
+ 		set.add("id");
+ 		set.add("seo_keywords");
+ 		set.add("seo_description");
+ 		set.add("goods_name");
+ 		set.add("goods_price");
+ 		set.add("goods_inventory");
+ 		set.add("goods_weight");
+ 		set.add("goods_click");
+ 		set.add("store_recommend");
+ 		set.add("goods_details");
+ 		set.add("goods_recommend");
+ 		set.add("goods_collect");
+ 		set.add("goods_store");
+ 		set.add("goods_status");
+ 		set.add("goods_main_photo");
+ 		set.add("goods_photos");
+ 		set.add("goods_specs");
+ 		set.add("goods_brand");
+ 		set.add("consults");
+ 		set.add("evaluates");
+ 		set.add("dg");
+ 		set.add("gc");
+ 		set.add("goods_volume");
+ 		set.add("buyer_know");
+ 		set.add("guige_canshu");
+ 		includeMap.put(Goods.class, set);
+ 		
+ 		set = new HashSet<String>();
+ 		set.add("id");
+		set.add("className");
+		set.add("goodsType");
+		includeMap.put(GoodsClass.class, set);
+		
+		set = new HashSet<String>();
+		set.add("id");
+		set.add("store_name");
+		includeMap.put(Store.class, set);
+		
+		set = new HashSet<String>();
+		set.add("name");
+		set.add("path");
+		includeMap.put(Accessory.class, set);
+		
+		set = new HashSet<String>();
+		set.add("name");
+		set.add("gss");
+		set.add("properties");
+		includeMap.put(GoodsType.class, set);
+		
+		set = new HashSet<String>();
+		set.add("id");
+		set.add("value");
+		//set.add("spec");
+		set.add("specImage");
+		set.add("sequence");
+		includeMap.put(GoodsSpecProperty.class, set);
+		
+		set = new HashSet<String>();
+		set.add("id");
+		set.add("name");
+		set.add("sequence");
+		set.add("type");
+		set.add("properties");
+		includeMap.put(GoodsSpecification.class, set);
+		
+		set = new HashSet<String>();
+		set.add("name");
+		set.add("recommend"); 
+		includeMap.put(GoodsBrand.class, set);
+		
+		set = new HashSet<String>();
+		set.add("consult_content");
+		set.add("reply"); 
+		set.add("consult_reply"); 
+		set.add("reply_time"); 
+		set.add("reply_user"); 
+		includeMap.put(Consult.class, set);
+		
+		set = new HashSet<String>();
+		set.add("userName");
+		set.add("address");
+		includeMap.put(User.class, set);
+		
+		/*set = new HashSet<String>();
+		set.add("user");
+		set.add("content");
+		set.add("description_evaluate");
+		set.add("service_evaluate");
+		set.add("ship_evaluate");
+		set.add("evaluate_seller_val");
+		set.add("evaluate_info");
+		set.add("evaluate_user");
+		set.add("evaluate_seller_user");
+		set.add("evaluate_seller_time");
+		set.add("evaluate_seller_info");
+		set.add("evaluate_status");
+		set.add("evaluate_admin_info");
+		includeMap.put(OrderCom.class, set);*/
+		
+		set = new HashSet<String>(); 
+		set.add("d_end_time");
+		set.add("d_begin_time");
+		set.add("d_refuse_time");
+		set.add("d_audit_time");
+		set.add("d_admin_user");
+		set.add("d_status");
+		includeMap.put(DeliveryGoods.class, set);
+
+ 		jsonConfig.setJsonPropertyFilter(new ComplexOutPropertyPreFilter(includeMap));
+
+ 		JSONArray json = JSONArray.fromObject(goods, jsonConfig);
+ 		SignFilter.print(request, response, json);
+        System.out.println(json);
+  
+     }
+     
+     //店铺商品列表
+     @RequestMapping({ "/wap/storegoods.htm" })
+     @ResponseBody
+     public void storegoods(HttpServletRequest request, HttpServletResponse response,String currentPage,String storeid) throws IOException{
+     	Map params = new HashMap(); 
+     	Store store=storeService.getObjById(Long.parseLong(storeid));
+     	if (store!=null) {
+     	    JsonConfig jsonConfig = new JsonConfig();
+     		jsonConfig.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor("yyyy-MM-dd hh:mm:ss"));
+     		// 需要过滤的类 +属性
+     		Map<Class<?>, Set<String>> includeMap = new HashMap<Class<?>, Set<String>>();
+     		Set<String> set = new HashSet<String>();
+     		
+     		
+     		set.add("store_name");
+     		set.add("store_ower");
+     		set.add("store_ower_card");
+     		set.add("store_telephone");
+     		set.add("store_qq");
+     		set.add("store_ww");
+     		set.add("store_address");
+     		set.add("store_logo");
+     		set.add("goods_list");
+     		includeMap.put(Store.class, set); 
+     		
+     		new HashSet<String>();
+     		set.add("id");
+     		set.add("seo_keywords");
+     		set.add("seo_description");
+     		set.add("goods_name");
+     		set.add("goods_price");
+     		set.add("goods_inventory");
+     		set.add("goods_weight");
+     		set.add("goods_click");
+     		includeMap.put(Goods.class, set);  
+     	
+     		jsonConfig.setJsonPropertyFilter(new ComplexOutPropertyPreFilter(includeMap)); 
+     		JSONArray json = JSONArray.fromObject(store, jsonConfig); 
+     		SignFilter.print(request, response, json);
+			
+		} 
+  
+     }
+}

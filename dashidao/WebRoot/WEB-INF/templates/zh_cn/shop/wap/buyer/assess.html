@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>评价</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="js/starScore.js"></script>
+<link rel="stylesheet" type="text/css" href="iconfont/iconfont.css">
+</head>
+<style type="text/css">
+* { padding: 0; margin: 0; }
+.clear{clear: both;}
+/*头部*/
+.header ul li{float: left;width:90%;text-align: center;height: 3rem;line-height:3rem ;list-style: none;border-bottom: 1px solid #f5f5f5;font-size: 1.2rem;}
+.header .back{width: 10%!important;}
+.header .back img{margin: 15% 0;}
+.header i{font-size: 1.8rem;}
+/*弹框*/
+.am-share { font-size: 14px; border-radius: 0; bottom: 0; left: 0; position: fixed; text-align: center; -webkit-transform: translateY(100%); -ms-transform: translateY(100%); transform: translateY(100%); -webkit-transition: -webkit-transform 300ms; transition: transform 300ms ; width: 100%; z-index: 1110; }
+.am-modal-active { transform: translateY(0px);  -webkit-transform: translateY(0); -ms-transform: translateY(0); transform: translateY(0) }
+.am-modal-out { z-index: 1109; -webkit-transform: translateY(100%); -ms-transform: translateY(100%); transform: translateY(100%) }
+.am-share-title { background-color: #f8f8f8; border-bottom: 1px solid #fff; border-top-left-radius: 2px; border-top-right-radius: 2px; color: #555; font-weight: 400;padding: 10px 0 0; text-align: center; }
+.am-share-title::after { border-bottom: 1px solid #dfdfdf; content: ""; display: block; height: 0; margin-top: 10px; width: 100%; }
+.am-share-footer { margin: 10px; }
+.am-share-footer .share_btn { color: #555;  display: block; width: 100%; background-color: #e6e6e6; border: 1px solid #e6e6e6; border-radius: 0; cursor: pointer;  font-size: 16px; font-weight: 400; line-height: 1.2; padding: 0.625em 0; text-align: center; transition: background-color 300ms ease-out 0s, border-color 300ms ease-out 0s; vertical-align: middle; white-space: nowrap;font-family:"微软雅黑";  }
+.am-share-sns { background-color: #f8f8f8; border-radius: 0 0 2px 2px;padding-top: 15px; height:auto; zoom:1; overflow:auto; }
+/*.am-share-sns li { margin-bottom: 15px; display: block; float: left; height: auto;  width: 25%; }*/
+.am-share-sns a { color: #555; display: block; text-decoration:none; }
+.am-share-sns span { display: block; }
+.am-share-sns li i { background-position: center 50%; background-repeat: no-repeat; background-size: 36px 36px; background-color: #ccc; color: #fff; display: inline-block; font-size: 18px; height: 36px; line-height: 36px; margin-bottom: 5px; width: 36px; }
+.am-share-sns .share-icon-weibo { background-image: url(); }
+.sharebg { background-color: rgba(0, 0, 0, 0.6); bottom: 0; height: 100%; left: 0; opacity: 0; position: fixed; right: 0; top: 0; width: 100%; z-index: 1100; display:none; }
+.sharebg-active { opacity: 1; display:block; }
+.am-share i{position: absolute;top: 0rem;right: 0rem;font-size: 2rem;}
+/*星星*/
+a {text-decoration: none; cursor: pointer; color:#333333; font-size:14px;}
+a:hover {text-decoration: none;}
+.clearfix::after{display:block; content:''; height:0;overflow:hidden; clear:both;} 
+/*星星样式*/
+.content{width:100%;border-bottom:1px solid #c3c3c3;height: 4.4rem;}
+.title{font-size:14px;background:#dfdfdf;}
+.block{width:100%;line-height:21px;}
+/*.block .star_score{float:left;}*/
+.star_list{height:21px;line-height:21px;}
+.block p,.block .attitude{ line-height:21px; display:inline-block;}
+.block p span{ color:#C00; font-size:16px; font-family:Georgia, "Times New Roman", Times, serif;display: inline;}
+.star_score {background:url(images/stark2.png);width:160px;height:21px;position:relative;margin: 0 auto; }
+.star_score a{height:21px; display:block; text-indent:-999em;position:absolute;left:0;}
+.star_score a:hover{ background:url(images/stars2.png);left:0;}
+.star_score a.clibg{background:url(images/stars2.png);left:0;}
+#starttwo .star_score {background:url(images/starky.png);}
+#starttwo .star_score a:hover{ background:url(images/starsy.png);left:0;}
+#starttwo .star_score a.clibg{ background:url(images/starsy.png);left:0;}
+/*文字评论*/
+.comment ul li{float:left;width:80%;list-style: none;}
+.comment ul li div{border:1px solid #c3c3c3;color:#c3c3c3;border-radius: 5px;float: left;padding: 0 2%;margin:3% 3%;height: 2rem;line-height: 2rem;}
+.title_con{width:20%!important;line-height:3rem;}
+/*图片上传*/
+.upload{display:none;}
+.upload_photo {width:6rem;height:6rem;margin-left: 5%;}
+.upload_photo img{width:6rem;height: 5rem;}
+.sub{width:90%;margin:1rem 5%;background: #c3c3c3;border-radius: 5px;text-align: center;color: #fff;height: 2.5rem;line-height: 2.5rem;font-size: 1.5rem;}
+/*产品*/
+.pro{width:94%;margin:.5rem 3%;}
+.pro ul li{width:20%;float:left;}
+.pro ul li div{padding-left: 2%;height: 3rem;line-height: 1.5rem;}
+.pro ul li img{width:100%;}
+.pija{width:5rem;height: 2rem;line-height: 2rem;text-align: center;border:1px solid red;color:red;border-radius: 5px;float: right;}
+.red{border:1px solid red!important;color:red!important;}
+</style>
+<body>
+	<div class="header">
+			<ul>
+				<li class="back" onclick="history.go(-1)"><i class="iconfont icon-back"></i></li>
+				<li>评价</li>
+				<div class="clear"></div>
+			</ul>
+		</div>
+<script type="text/javascript">
+	function toshare(){
+		$(".am-share").addClass("am-modal-active");	
+		if($(".sharebg").length>0){
+			$(".sharebg").addClass("sharebg-active");
+		}else{
+			$("body").append('<div class="sharebg"></div>');
+			$(".sharebg").addClass("sharebg-active");
+		}
+		$(".sharebg-active,.share_btn").click(function(){
+			$(".am-share").removeClass("am-modal-active");	
+			setTimeout(function(){
+				$(".sharebg-active").removeClass("sharebg-active");	
+				$(".sharebg").remove();	
+			},300);
+		})
+	}	
+</script>
+<div class="pro">
+	<ul>
+		<li><img src="image/goods.png"/></li>
+		<li style="width:80%;">
+			<div>伊利安慕希 希腊酸奶  原味205gx12盒2提（2018年1-2月生产）</div>
+			<div style="height: 1.5rem;color: #c3c3c3;font-size: .95rem;">规格:205mlx12盒x2提</div>
+		</li>
+		
+	<div class="clear"></div>
+	</ul>
+	<div class="pija" onclick="toshare()">评价</div>
+	<div class="clear"></div>
+</div>
+<!--<span onClick="toshare()" style="border:dotted 1px #ddd;display:block;width:100px;text-align:center;margin:20px auto 0 auto;cursor:pointer;height:60px;line-height:60px;">点击分享到</span>-->
+<div class="am-share">
+  <div class="am-share-title">评价</div><i class="iconfont icon-close share_btn" ></i>
+  <div class="am-share-sns">
+  <!--星级评价-->
+  <div class="">
+	  <div class="content">
+	    <div id="startone"  class="block clearfix" >
+	          <div class="star_score"></div>
+	          <p>您的评分:<span class="fenshu"></span> 分</p>
+	          <div class="attitude" style="display: block;	"></div>
+	    </div>
+	  </div>
+    <script>
+	     scoreFun($("#startone"))
+	     //显示分数
+	      $(".show_number li p").each(function(index, element) {
+	        var num=$(this).attr("tip");
+	        var www=num*2*16;//
+	        $(this).css("width",www);
+	        $(this).parent(".atar_Show").siblings("span").text(num+"分");
+	    });
+    </script>
+  </div>
+  <!--文字评论-->
+  	<div class="comment">
+  		<!--物流-->
+  		<ul class="logistics">
+  			<li class="title_con">物流</li>
+  			<li>
+  				<div>包装精美</div>
+	  			<div>发货快</div>
+	  			<div>派件迅速</div>
+	  			<div>配送员热情</div>
+  			</li>
+  		<!--商品-->
+  			<li class="title_con">商品</li>
+  			<li>
+  				<div>质量好</div>
+	  			<div>特好用</div>
+  			</li>
+  		<!--体验-->
+  			<li class="title_con">体验</li>
+  			<li>
+  				<div>使用流畅</div>
+	  			<div>加载快</div>
+  			</li>
+  		<!--服务-->
+  			<li class="title_con">服务</li>
+  			<li>
+  				<div>服务态度好</div>
+	  			<div>响应时间快</div>
+  			</li>
+  			<div class="clear"></div>
+  		</ul>
+  	</div>
+  	<!--照片-->
+  	<div class="upload_photo"><label for="person_header"><input type="file" name="person_header" id="person_header" value="" class="upload"/><img src="image/logo.png"/><div class=""></div></label>	<div>添加照片</div></div>
+  	<script type="text/javascript">
+			$().ready(function(){
+		function getObjectURL(file) {
+		        var url = null ;
+		        if (window.createObjectURL!=undefined) { // basic
+		            url = window.createObjectURL(file) ;
+		        } else if (window.URL!=undefined) { // mozilla(firefox)
+		            url = window.URL.createObjectURL(file) ;
+		        } else if (window.webkitURL!=undefined) { // webkit or chrome
+		            url = window.webkitURL.createObjectURL(file) ;
+		        }
+		        return url ;
+		    }
+		
+		    $('#person_header').change(function() {
+		        var eImg = $(this).next("img");
+		        eImg.attr('src', getObjectURL($(this)[0].files[0])); // 或 this.files[0] this->input
+		        $(this).after(eImg);});
+		     $('#emblem').change(function() {
+		        var eImg = $(this).next("img");
+		        eImg.attr('src', getObjectURL($(this)[0].files[0])); // 或 this.files[0] this->input
+		        $(this).after(eImg);});
+		     $('#licence').change(function() {
+		        var eImg = $(this).next("img");
+		        eImg.attr('src', getObjectURL($(this)[0].files[0])); // 或 this.files[0] this->input
+		        $(this).after(eImg);});
+			});
+			//
+			$(".logistics li").children("div").click(function(){
+				if($(this).hasClass('red')){
+					$(this).removeClass("red");
+				}else{
+					$(this).addClass("red");
+				}	
+			})
+	</script>
+	<div class="sub">提交</div>
+  </div>
+</div>
+</body>
+</html>

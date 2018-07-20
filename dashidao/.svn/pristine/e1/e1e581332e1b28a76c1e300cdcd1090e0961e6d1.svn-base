@@ -1,0 +1,282 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>栈代合同 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/zxx.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-2.0.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <!--<script src="$!webPath/resources/js/jquery.shop.common.js"></script>-->
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/two_level.css">
+
+    <script>
+        var mycars=new Array()
+        var cuur=1;
+        var pagelimit=10;
+        var goods_id;
+        jQuery(document).ready(function(){
+            //alert(GetQueryString("id"));
+            console.log(GetQueryString("id"));
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            loadajax("select","wemall_recruit_zhandai","id",GetQueryString("id"),pagelimit,cuur,1);
+        });
+        function GetQueryString(name)
+        {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return  unescape(r[2]); return null;
+        }
+        function loadajax(action,table,field,values,page_size,page_no,moudle_id){
+            //var str=new Array();
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajax.jsp",
+                dataType:"json",
+                // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error:function(){alert("数据错误，操作被取消！");},
+                success:function(data)
+                {
+                    if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                    var message=data.data.data;
+                    //填充
+                    for(var i=0;i<message.length;i++){
+                        goods_id=message[i]['goods_id'];
+                        var rec_license;
+                        if(message[i]['rec_license']==0){
+                            rec_license="需要";
+                        }else if(message[i]['rec_license']==1){
+                            rec_license="不需要";
+                        }
+                        //滞销品退货
+                        var rec_returns;
+                        if(message[i]['rec_returns']==0){
+                            rec_returns="允许";
+                        }else if(message[i]['rec_returns']==1){
+                            rec_returns="不允许";
+                        }
+                        //最大存货量
+                        var rec_maxStock;
+                        if(message[i]['rec_maxStock']==0){
+                            rec_maxStock="限制";
+                        }else if(message[i]['rec_maxStock']==1){
+                            rec_maxStock="不限制";
+                        }
+                        $("#rec_license").val(rec_license);
+                        $("#rec_shop").val(message[i]['rec_shop']);
+                        $("#rec_returns").val(rec_returns);
+                        $("#rec_support").val(message[i]['rec_support']);
+                        $("#rec_maxStock").val(rec_maxStock);
+                        $("#rec_maxAmount").val(message[i]['rec_maxAmount']);
+                        $("#rec_maxCount").val(message[i]['rec_maxCount']+"件");
+                        $("#rec_zmNum").val(message[i]['rec_zmNum']+"%");
+                        $("#count_fan").val(message[i]['count_fan']);
+                        $("#count_sax").val(message[i]['count_sax']);
+                        $("#rec_level").val(message[i]['rec_level']);
+
+                        $("#create_date1").val(message[i]['create_date1']);
+                        $("#create_date2").val(message[i]['create_date2']);
+                    }
+
+                }
+            });
+        }
+
+    </script>
+    <style>
+        .hzhaomu li{ width: 14%; }
+        .hzhaomu2 li{ width: 14%; }
+        .ac9 a {
+            color: #999;
+            padding:4px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            border:1px solid #999;margin-left:4px;
+        }
+        .ac9 a:hover {
+            color:#999;
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="main"> $!httpInclude.include("/seller/nav_head.htm")
+	$!httpInclude.include("/seller/adv.htm")
+    <div class="user_center">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=sub_account")
+                <td id="centerbg" valign="top" width="80%">
+                	 <div class="buyer_position">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">商家支持</a> > <span>商品管理</span>  > <span>招募栈代</span></div>
+                    </div>
+                    <div>
+                        <form id="form1" name="form1" method="post" >
+                            <table width="100%">
+                                <tr>
+                                    <td width="10%">行业许可：</td>
+                                    <td>
+                                        <input type="text" name="rec_license" id="rec_license">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>实体店铺：</td>
+                                    <td>
+                                        <input type="text" name="rec_shop" id="rec_shop">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>滞销品退货:</td>
+                                    <td>
+                                        <input type="text" name="rec_returns" id="rec_returns">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>相关支持：</td>
+                                    <td>
+                                        <input type="text" name="rec_support" id="rec_support">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>最大存货量：</td>
+                                    <td>
+                                        <input type="text" name="rec_maxStock" id="rec_maxStock">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>最大金额:</td>
+                                    <td>
+                                        <input type="text" name="rec_maxAmount" id="rec_maxAmount">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>最大数量:</td>
+                                    <td>
+                                        <input type="text" name="rec_maxCount" id="rec_maxCount">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>招募栈代数量：</td>
+                                    <td>
+                                        <input type="text" name="rec_zmNum" id="rec_zmNum">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>返点优惠：</td>
+                                    <td>
+                                        <span>满<input type="text" name="count_fan" id="count_fan">件，返<input type="text" name="count_fan" id="count_sax">%</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>栈代级别：</td>
+                                    <td>
+                                        <input type="text" name="rec_level" id="rec_level">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>合同有效期：</td>
+                                    <td>
+                                        <span><input type="text" name="create_date1" id="create_date1">-<input type="text" name="create_date2" id="create_date2"></span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- <div class="sj_zzd">
+                                 <div class="content" style="clear:both;"><span>行业许可：</span><input type="text" class="" name="rec_num" id="rec_num" disabled/></div>
+                                 <div class="content"><span>实体店铺：</span><input type="text" class="" name="rec_userName" id="rec_userName" value="" disabled/></div>
+                                 <div class="content"><span>联系方式：</span><input type="text" class="" name="rec_phone" id="rec_phone" value=""disabled/></div>
+                                 <div class="content"><span>主体资格：</span><input type="text" class="" name="rec_main" id="rec_main" value="" disabled/></div>
+                                 <div class="content"><span>实体店铺：</span><input type="text" class="" name="rec_shop" id="rec_shop" value="" disabled/></div>
+                                 <div class="content"><span>起订量：</span><input type="text" class="" name="rec_begin_count" id="rec_begin_count" value="" placeholder="1000件"/></div>
+                                 <div class="content youh"><span>返点优惠：</span>满<input type="text" class="" name="rec_count" id="rec_count" value=""/>，返<input type="text"  class="" name="rec_rebate" id="rec_rebate" value=""></div>
+                                 <div class="content jb"><span>栈代级别：</span><input type="text" class="" name="rec_agentLevel" id="rec_agentLevel" value="" disabled/><input type="text" class="" name="" id="" value="" placeholder="河南，陕西，湖南，湖北" disabled/></div>
+                                 <div class="content"><span>栈代日期：</span><input type="text" class="" name="create_date1" id="create_date1" value="" placeholder="2016/9/12" disabled/></div>
+                             </div>-->
+                        </form>
+                        <div class="sp">栈代商品</div>
+                        <table width="100%;" cellpadding="0" cellspacing="0" class="sj_zhaozd">
+                            <tr class="zdthead" >
+                                <td>商品名称</td>
+                                <td>商品编号</td>
+                                <td>商品规格</td>
+                                <td>出厂价</td>
+                                <td>起订数量</td>
+                                <td>存储及保质期</td>
+                                <td>合同期限</td>
+                            </tr>
+                            <tr>
+                                <td><div>韩版修身T恤</div><img src="$!webPath/resources/style/system/manage/black/img/raw_1501246954.png" alt=""></td>
+                                <td>230817</td>
+                                <td>
+                                    <div>尺码：S/M/L</div>
+                                    <div>颜色:月白/...</div>
+                                    <div>零售单位：件</div>
+                                </td>
+                                <td>30元/件</td>
+                                <td>100箱</td>
+                                <td>
+                                    <div>干燥防潮</div>
+                                    <div>保质期：永久</div>
+                                </td>
+                                <td>2017-1-1 至 2019-1-1</td>
+                            </tr>
+                            <tr>
+                                <td><div>大市道海参</div><img src="$!webPath/resources/style/system/manage/black/img/raw_1501422990.png" alt=""></td>
+                                <td>90760987</td>
+                                <td>
+                                    <div>口味：微辣</div>
+                                    <div>零售单位：盒</div>
+                                </td>
+                                <td>200元/盒</td>
+                                <td>50箱</td>
+                                <td>
+                                    <div>干燥防潮</div>
+                                    <div>保质期：2年</div>
+                                    <div>有效期至：2019年3月12日</div>
+                                </td>
+                                <td>2017-1-1 至 2019-1-1</td>
+                            </tr>
+                        </table>
+                        <div class="qd"><a href="$!webPath/seller/zhaomuzhandai.htm" style="color: white;">确定</a></div>
+                    </div>
+
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

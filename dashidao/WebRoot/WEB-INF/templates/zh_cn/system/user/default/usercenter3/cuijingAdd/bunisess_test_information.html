@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>申述管理 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <!--<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>-->
+    <!--<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>-->
+    <!--<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>-->
+    <!--<script src="$!webPath/resources/js/jquery.shop.common.js"></script>-->
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+
+</head>
+<body>
+$!httpInclude.include("/top.htm")
+<div class="main">
+    <div class="user_center">
+        $!httpInclude.include("/seller/nav_head.htm")
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=refund")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="shopadminbox">
+                        <div class="hd">
+                            <ul>
+                                <li>考核</li>
+                                <li>考核历史</li>
+                            </ul>
+                        </div>
+                        <div class="bd">
+                            <!--考核-->
+                            <ul>
+                                <li>
+                                    <table width="100%" class="shopadmin-top" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+
+                                            <tr id="thead">
+                                                <td widh="25%">指标</td>
+                                                <td widh="25%">数据</td>
+                                                <td widh="25%">同行平均水平</td>
+                                                <td widh="25%">与同行平均水平相比</td>
+                                            </tr>
+                                            <tr>
+                                                <td>纠纷退款率：</td>
+                                                <td>10%</td>
+                                                <td>5%</td>
+                                                <td>↑</td>
+                                            </tr>
+                                            <tr>
+                                                <td>仅退款自主完结时长：</td>
+                                                <td>0天</td>
+                                                <td>0天</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr>
+                                                <td>退货退款自主完结时长：</td>
+                                                <td>0天</td>
+                                                <td>0天</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr>
+                                                <td>退款自主完结率：</td>
+                                                <td>0%</td>
+                                                <td>0%</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr>
+                                                <td>会员发货自主完结时长：</td>
+                                                <td>0天</td>
+                                                <td>0天</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr>
+                                                <td>栈代发货自主完结时长：</td>
+                                                <td>0天</td>
+                                                <td>1天</td>
+                                                <td>↓</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- PageNum -->
+                                    <div class="pageDiv"></div>
+                                </li>
+                            </ul>
+                            <!--严重违规-->
+                            <ul>
+                                <li>
+                                    222
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <script type="text/javascript">jQuery(".shopadminbox").slide({trigger:"click"});</script>
+                    <script type="text/javascript">
+                        $(function(){$(".pageDiv").createPage({
+                            pageCount:9,//总页数
+                            current:1,//当前页
+                            turndown:'true',//是否显示跳转框，显示为true，不现实为false,一定记得加上引号...
+                            backFn:function(p){
+                                console.log(p);
+                            }
+                        });
+                        })
+                    </script>
+
+
+
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>
+
+</body>
+</html>

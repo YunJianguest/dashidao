@@ -1,0 +1,269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>商家中心-$!{config.title}-$!{config.poweredby}</title>
+<meta name="keywords" content="$!config.keywords" />
+<meta name="description" content="$!config.description" />
+<meta name="generator" content="$!{config.meta_generator}" />
+<meta name="author" content="$!{config.meta_author}">
+<meta name="copyright" content="$!{config.copyRight}">
+#if($!config.website_ico)
+<link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+#end
+<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+  <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+  <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+  <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+  <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+  <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+  <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+  <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+  <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+  <!--<script src="$!webPath/resources/js/jquery.shop.common.js"></script>-->
+  <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+  <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+  <script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+  <script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+  <script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+  <!--bootstrap-->
+  <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+  <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+  <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+  <!--layui-->
+  <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+  <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+ <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+ <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+<link href="$!webPath/resources/style/system/manage/blue/zhandai.css"  rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="$!webPath/resources/style/system/front/default/css/font_Icon/iconfont.css">
+<link href="$!webPath/resources/style/system/front/default/css/chat.css" type="text/css" rel="stylesheet" />
+<script>
+jQuery(document).ready(function(){
+  getShangPinCount();
+  $("#tongZhiSpan").html(shangPinCount);
+  getShangPinList(page_size,page_no);
+  layui.use(['laypage', 'layer'], function(){
+      var laypage = layui.laypage
+          ,layer = layui.layer;
+      //完整功能
+      laypage.render({
+          elem: 'demo7'
+          ,count:total
+          ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+          ,jump: function(obj){
+              page_no=obj.curr;
+              page_size=obj.limit;
+              getShangPinList(page_size,page_no);
+          },
+          limits:[2, 4, 6, 8, 10],
+          limit:page_size
+      });
+  });
+  
+});
+	var shangPinCount =0;
+	var userid = "${user.id}";
+	//获取商品总数
+	function getShangPinCount()
+	{
+		var sql ="SELECT COUNT(1)  AS spnum FROM dashidao_chatting WHERE dashidao_chatting.`type`='1' AND dashidao_chatting.`user2_id`="+userid+" order by dashidao_chatting.addTime";
+		//var sql="SELECT COUNT(1) AS spnum FROM zb_spjc WHERE zb_spjc.`is_told`='1' AND zb_spjc.`sjh`="+userid+"  order by zb_spjc.create_date ";
+        jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajaxuser.jsp",
+            dataType:"json",
+            data:"table=zb_spjc&dates=create_date&sql="+sql,
+            error:function(){alert("数据错误，操作被取消！");},
+            success:function(data)
+            {
+                if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                var message=data.data.data;
+                shangPinCount = message[0]['spnum'];
+            }
+        });
+	}
+	var page_size =10;
+	var page_no =1;
+	var total=0;
+	//获取商品list
+	function getShangPinList(page_size,page_no)
+	{
+		var html ="";$("#tablesss").append(html);
+		var sql=" SELECT dashidao_chatting.`addTime`,dashidao_chatting.`user1_id`,dashidao_chatting.`user2_id`,dashidao_user.userName,";
+		    sql +=" dashidao_chattinglog.`content`,dashidao_chattinglog.`mark` FROM dashidao_chatting ";
+		    sql +=" LEFT JOIN dashidao_chattinglog ON dashidao_chattinglog.`chatting_id` = dashidao_chatting.`id` ";
+		    sql +=" LEFT JOIN dashidao_user ON dashidao_user.id = dashidao_chatting.`user1_id`";
+		    sql +=" WHERE dashidao_chatting.`type`='1' AND dashidao_chatting.`user2_id`="+userid;
+		    sql +=" ORDER BY dashidao_chatting.`addTime`";
+		//var sql ="SELECT * FROM zb_spjc WHERE zb_spjc.`is_told`='1' AND zb_spjc.`sjh`="+userid+"  ORDER BY zb_spjc.create_date";
+		 jQuery.ajax({
+             type:"POST",
+             cache: false,
+             async:false,
+             url:"/ajaxuser.jsp",
+             dataType:"json",
+             data:"table=dashidao_chatting&dates=addTime&sql="+sql+"&page_size="+page_size+"&page_no="+page_no,
+             error:function(){alert("数据错误，操作被取消！");},
+             success:function(data)
+             {
+                 if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                 total=data.data.total;
+                 var message=data.data.data;
+                 $("#tablesss").html('');
+                 for(var i=0;i<message.length;i++){
+                	 //var told = message[i]['is_told'];
+                	 var content = message[i]['content'];
+                	 var id = content.substring(content.length-1,content.length);
+                	 content = content.substring(0,content.lastIndexOf(","));
+                	 html +="<tr height='80'><input type='hidden' name='id' value='"+message[i]['user1_id']+"' /> <input type='hidden' name='userName' value='"+message[i]['userName']+"' />";
+                	// html +="<td width='8%'></td>";
+                	 html +="<td width='80%' style='align:left;'>"+content+"</td>";
+                	 html +="<td width='10%'>"+message[i]['addTime']+"</td>";
+                	 html +="<td width=''><a href='javascript:void(0);' class='chat-list-people' onclick='liaotianClick(this);'>聊天</a>|<a href='javascript:void(0);' onclick='queRenClick(\""+id+"\");'>确认</a> | <a onclick='shenshu(\""+id+"\");'>申诉</a> </td>";
+                	 html +="</tr>";
+                }
+                 $("#tablesss").append(html);
+             }
+         });
+	}
+
+	//确认操作
+	function queRenClick(id)
+	{
+		jQuery.ajax({
+            type: "POST",
+            cache: false,
+            async: false,
+            url: "/ajaxuser.jsp",
+            dataType: "json",
+            data: "action=update&table=zb_spjc&field=id,isqueren&values="+id+"|1",
+            error: function () {
+                alert("数据错误，操作被取消！");
+            },
+            success: function (data) {
+                if (data.state == "error") {
+                    alert("系统错误，操作被取消！");
+                    return;
+                } else {
+                    alert("操作成功！");
+                    window.location.href='$!webPath/seller/shangPinTongZhi.htm';
+                }
+            }
+        });
+	}
+	
+	//申诉
+	function shenshu(id)
+	{		var fpsz;
+			var spmc;
+	        var sql="SELECT * FROM zb_spjc WHERE  id='"+id+"' order by create_date";
+	        jQuery.ajax({
+	            type:"POST",
+	            cache: false,
+	            async:false,
+	            url:"/ajaxuser.jsp",
+	            dataType:"json",
+	            data:"table=zb_spjc&dates=create_date&sql="+sql,
+	            //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+	            error:function(){alert("数据错误，操作被取消333！");},
+	            success:function(data)
+	            {	
+	                if(data.state=="error"){alert("系统错误，操作被取消！333");return;}
+	                var message1=data.data.data;
+	                console.log(message1);
+	                spmc=message1[0]['spmc'];
+	                fpsz= message1[0]['title'] +","+ message1[0]['spmc'] +","+ message1[0]['create_date'] +","+ message1[0]['cfjf'] +","+ message1[0]['qdsl'] +","+ message1[0]['ccj'] +","+ message1[0]['spbh'];
+	            }
+	        });
+	        jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajax.jsp",
+                dataType:"json",
+                // data:"action=update&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                data:"action=insert&table=wemall_appealmanager&field=am_wqSytle,am_goodsName,am_punishTime,am_punishRecord,am_goodsNum,am_goodsPrice,am_goodsId&values="+fpsz,
+
+                success:function(data)
+                {
+
+                    if(data.code=="0"){alert("系统错误，操作被取消！");return;}
+
+                    var str='操作成功';
+                    if(str==data.msg){
+                        //window.location.href== '$!webPath/admin/xbfwsz_admin.htm';
+                        //openURL('url','$!webPath/admin/xbfwsz_admin.htm','main_workspace','xbfwsz_admin');
+                       
+                    	alert("总部通知！您的"+spmc+"存在问题，请与总部联系！");
+    	        		window.location.href='$!webPath/seller/role_appeal_manager.htm'; 
+                    }
+                }
+
+           	 }); 
+
+	}
+	
+</script>
+</head>
+<body class="seller_body">
+<div class="main">
+  <div class="user_center">
+    $!httpInclude.include("/seller/nav_head.htm")
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+      <tr> $!httpInclude.include("/seller/nav.htm")
+        <td id="centerbg" valign="top" width="80%">
+         	 <div class="buyer_position">
+	            <div class="buyer_p_box"><a href="$!webPath/seller/index.htm">栈代支持</a> > <span>商品通知</span></div>
+	          </div>
+         	 <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr class="returnthead" style="height: 90px;">
+                      <td width="80%" colspan="8" >
+                      </td>
+                    </tr>
+                    <tr id="thead" >
+                      <td width="5%"></td>
+                      <td width="75%" >内容</td>
+                      <td width="8%">时间</td>
+                      <td width="">操作</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                   <table width="100%" class="returntable importbill" border="0" cellspacing="0" cellpadding="0">
+                           <tbody id="tablesss">
+                           </tbody>
+                   </table>
+         	
+         		<!--分页开始-->
+                <div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+         	  
+         	<script>
+				/* var userid ="${user.id}";//当前登录人id
+				var huiYuanid ;//获取会员id
+				var faSongMess ;
+				var id; */
+				jQuery(document).ready(function(){
+				  
+				  //initLiaotiao();
+				});
+				//初始化聊天页面
+				function initLiaotiao()
+				{
+					$(".chatBox").hide();
+					$(".chatBox").attr("display","none");
+				}
+       </script>
+	
+		$!httpInclude.include("/admin/liaotianpage.htm")
+         	  
+         	  
+         </td>
+      </tr>
+    </table>
+  </div>
+  $!httpInclude.include("/footer.htm") </div>
+</body>
+</html>

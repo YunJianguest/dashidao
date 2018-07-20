@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>店铺展示</title>
+    <!--必选css-->
+    <link rel="stylesheet" type="text/css" href="$!webPath/resources/buyer/css/csss.css" >
+    <link rel="stylesheet" href="$!webPath/resources/buyer/iconfont/iconfont.css">
+    <link rel="stylesheet" href="$!webPath/resources/buyer/css/bootstrap.css">
+    <script type="text/javascript" src="$!webPath/resources/buyer/js/jquery1.42.min.js"></script>
+    <script type="text/javascript" src="$!webPath/resources/buyer/js/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+<body >
+	<style>
+		.trait{position: relative;top:28px;left:15px;}
+		.newsbar div span.one {
+    padding: 0px;
+    background: #ffecf0;
+    color: #e14d57;
+}
+.newsbar div span.two {
+    background: #fff2df;
+    color: #dd673c;
+    margin-left: 10px;
+}
+ .storean{ float: right; margin-top: 12px; height: 54px; width: 60px; }
+	.storean span{ float:right;background: #c21514; margin-top: 23px;  font-size: .8rem;padding: 3px 5px;border-radius: 3px;  }
+	.storean span a{ color: #fff;}
+	</style>
+<!--头部搜索-->
+<!--head-->
+<div class="storeoner shoper" >
+    <div class="dptx fl"><a href="stores_information.html"><img src="$!webPath/resources/buyer/images/dztx.png"/></a></div>
+    <div class="one fl" >
+        <p>王燕茹的U园</p>
+        <span>店铺序号：2759210</span>
+    </div>
+	<div class="storean" >
+		<span><a href="custom_service.html" >联系客服</a></span>
+	</div>
+    <div class="clear"></div>
+</div>
+<!--店主代言-->
+<div class="shopmenu" >
+    <p>店主代言</p>
+    <span>・&nbsp;SHOPKEEPER&nbsp;・</span>
+</div>
+<div class="newsbar dygood">
+	<div><span class="one trait">特卖</span>
+        <span class="two trait">新品</span></div>
+    <img src="$!webPath/resources/buyer/images/indexg.png" style="width: 94%;margin: 0 3%;"/>
+    <h1>新品 双星密恋小白鞋 </h1>
+    <div class="neprice">
+        <div class="tmprice fl" >
+            <span class="fr" >￥<font>4.59</font></span><span class="fl" >￥71.80 </span>
+        </div>
+        <div class="qg fr">
+            <a href="">立即抢购</a>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<div class="newsbar dygood">
+<div id="">
+<span class="one trait">特卖</span>
+        <span class="two trait">新品</span>	
+</div>
+    <img src="$!webPath/resources/buyer/images/indexg.png" style="width: 94%;margin: 0 3%;"/>
+    <h1>新品 双星密恋小白鞋
+    </h1>
+    <div class="neprice">
+        <div class="tmprice fl" >
+            <span class="fr" >￥<font>4.59</font></span><span class="fl" >￥71.80 </span>
+        </div>
+        <div class="qg fr">
+            <a href="">立即抢购</a>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<div class="newsbar dygood">
+	<div id="">
+<span class="one trait">特卖</span>
+        <span class="two trait">新品</span>	
+</div>
+    <img src="$!webPath/resources/buyer/images/indexg.png" style="width: 94%;margin: 0 3%;"/>
+    <h1>新品 双星密恋小白鞋
+    </h1>
+    <div class="neprice">
+        <div class="tmprice fl" >
+            <span class="fr" >￥<font>4.59</font></span><span class="fl" >￥71.80 </span>
+        </div>
+        <div class="qg fr">
+            <a href="">立即抢购</a>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+<!--精品活动-->
+<div class="shopmenu" >
+    <p>精品活动</p>
+    <span>・&nbsp;ACTIVITIES&nbsp;・</span>
+</div>
+<!--轮播开始-->
+<style type="text/css">
+    /* css 重置 */
+    /* 本例子css */
+    .slideBox11{ width:100%; height:230px; overflow:hidden; position:relative; border:1px solid #ddd;  }
+    .slideBox11 .bd{ position:relative; height:100%; z-index:0;   }
+    .slideBox11 .bd li{ zoom:1; vertical-align:middle; }
+    .slideBox11 .bd img{ width:450px; height:230px; display:block;  }
+    /* 下面是前/后按钮代码，如果不需要删除即可 */
+    .slideBox11 .prev,
+    .slideBox11 .next{ position:absolute; left:3%; top:50%; margin-top:-25px; display:block; width:32px; height:40px; background:url(images/slider-arrow.png) -110px 5px no-repeat; filter:alpha(opacity=50);opacity:0.5;   }
+    .slideBox11 .next{ left:auto; right:3%; background-position:8px 5px; }
+    .slideBox11 .prev:hover,
+    .slideBox11 .next:hover{ filter:alpha(opacity=100);opacity:1;  }
+    .slideBox11 .prevStop{ display:none;  }
+    .slideBox11 .nextStop{ display:none;  }
+
+</style>
+<div id="slideBox11" class="slideBox11">
+
+    <div class="bd">
+        <ul>
+            <li><a href="#" target="_blank"><img src="$!webPath/resources/buyer/images/pic1.jpg" /></a></li>
+            <li><a href="#" target="_blank"><img src="$!webPath/resources/buyer/images/pic2.jpg" /></a></li>
+            <li><a href="#" target="_blank"><img src="$!webPath/resources/buyer/images/pic3.jpg" /></a></li>
+        </ul>
+    </div>
+    <!-- 下面是前/后按钮代码，如果不需要删除即可 -->
+    <a class="prev" href="javascript:void(0)"></a>
+    <a class="next" href="javascript:void(0)"></a>
+</div>
+<!--轮播结束-->
+<!--店主推荐-->
+<div class="shopmenu" >
+    <p>店主推荐</p>
+    <span>・&nbsp;RECOMMEND&nbsp;・</span>
+</div>
+<div class="newsbar dygood">
+	<div id="">
+<span class="one trait">特卖</span>
+        <span class="two trait">新品</span>	
+</div>
+    <img src="$!webPath/resources/buyer/images/indexg.png" style="width: 94%;margin: 0 3%;"/>
+    <h1>新品 双星密恋小白鞋
+    </h1>
+    <div class="neprice">
+        <div class="tmprice fl" >
+            <span class="fr" >￥<font>4.59</font></span><span class="fl" >￥71.80 </span>
+        </div>
+        <div class="qg fr">
+            <a href="">立即抢购</a>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<div class="newsbar dygood">
+	<div id="">
+<span class="one trait">特卖</span>
+        <span class="two trait">新品</span>	
+</div>
+    <img src="$!webPath/resources/buyer/images/indexg.png" style="width: 94%;margin: 0 3%;"/>
+    <h1>新品 双星密恋小白鞋
+    </h1>
+    <div class="neprice">
+        <div class="tmprice fl" >
+            <span class="fr" >￥<font>4.59</font></span><span class="fl" >￥71.80 </span>
+        </div>
+        <div class="qg fr">
+            <a href="">立即抢购</a>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<div class="newsbar dygood">
+	<div id="">
+<span class="one trait">特卖</span>
+        <span class="two trait">新品</span>	
+</div>
+    <img src="$!webPath/resources/buyer/images/indexg.png" style="width: 94%;margin: 0 3%;"/>
+    <h1>新品 双星密恋小白鞋
+    </h1>
+    <div class="neprice">
+        <div class="tmprice fl" >
+            <span class="fr" >￥<font>4.59</font></span><span class="fl" >￥71.80 </span>
+        </div>
+        <div class="qg fr">
+            <a href="">立即抢购</a>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<br /><br /><br />
+<!--bottom-->
+$!httpInclude.include("/buyer/foot.htm") 
+</body>
+
+<script type="text/javascript">
+    $(function(){
+        //demo示例一到四 通过lass调取，一句可以搞定，用于页面中可能有多个导航的情况
+        jQuery(".slideBox11").slide({mainCell:".bd ul",autoPlay:true});
+    });
+</script>
+
+</html>

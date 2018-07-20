@@ -1,0 +1,383 @@
+package com.dashidao.view.web.action;
+
+import com.dashidao.core.annotation.SecurityMapping;
+import com.dashidao.core.domain.virtual.SysMap;
+import com.dashidao.core.mv.JModelAndView;
+import com.dashidao.core.query.support.IPageList;
+import com.dashidao.core.security.support.SecurityUserHolder;
+import com.dashidao.core.tools.CommUtil;
+import com.dashidao.core.tools.Md5Encrypt;
+import com.dashidao.core.tools.WebForm;
+import com.dashidao.foundation.domain.*;
+import com.dashidao.foundation.domain.query.OrderFormQueryObject;
+import com.dashidao.foundation.domain.query.UserQueryObject;
+import com.dashidao.foundation.service.*;
+import com.dashidao.jwt.filter.SignFilter;
+import com.dashidao.jwt.util.ComplexOutPropertyPreFilter;
+import com.dashidao.jwt.util.DateJsonValueProcessor;
+import com.dashidao.manage.admin.tools.StoreTools;
+
+import io.jsonwebtoken.Claims;
+import net.sf.json.JSONArray;
+import net.sf.json.JsonConfig;
+
+import org.nutz.json.Json;
+import org.nutz.json.JsonFormat;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+/**
+ * 会员管理控制器
+ */
+@Controller
+public class UserViewAction {
+    @Autowired
+    private ISysConfigService configService;
+
+    @Autowired
+    private IUserConfigService userConfigService;
+
+    @Autowired
+    private IUserService userService;
+
+    @Autowired
+    private IRoleService roleService;
+
+    @Autowired
+    private IStoreGradeService storeGradeService;
+
+    @Autowired
+    private IMessageService messageService;
+
+    @Autowired
+    private IAlbumService albumService;
+
+    @Autowired
+    private IPredepositService predepositService;
+
+    @Autowired
+    private IEvaluateService evaluateService;
+
+    @Autowired
+    private IGoodsCartService goodsCartService;
+
+    @Autowired
+    private IOrderFormService orderFormService;
+
+    @Autowired
+    private IOrderFormLogService orderFormLogService;
+
+    @Autowired
+    private IGoodsService goodsService;
+
+    @Autowired
+    private StoreTools storeTools;
+    
+    @Autowired
+    private IAccessoryService accessoryService; 
+    
+    
+    /***
+     * 我的信息
+     * @param request
+     * @param response
+     */
+    @RequestMapping({"/wap/own_info.htm"})
+    @ResponseBody
+    public void own_info(HttpServletRequest request, HttpServletResponse response)throws Exception{
+		Claims claims = SignFilter.checkSign(request, response);
+		if (claims != null) {
+			String id = claims.getId();
+			User user = this.userService.getObjById(Long.parseLong(id));
+			SignFilter.printNoCheck(request, response, user);
+		}
+        
+    }
+
+    
+    /***
+     * 会员列表
+     * @param request
+     * @param response
+     * @param currentPage
+     * @param userRole  用户类型 YUNKE：云客
+     */
+    @RequestMapping({"/wap/user_list.htm"})
+    @ResponseBody
+    public void user_list(HttpServletRequest request, HttpServletResponse response)throws Exception{
+        
+    	String currentPage = request.getParameter("currentPage");
+    	String userRole = request.getParameter("userRole");
+		Map params = new HashMap();
+		Map<String,Object> whereMap = new HashMap<>();
+		whereMap.put("state", 0);
+		Claims claims = SignFilter.checkSign(request, response);
+		if (claims != null) {
+			String id = claims.getId();
+			 //params.put("user_id", Long.parseLong(id));
+			  params.put("parent_id", Long.parseLong(id));
+			  params.put("userRole", userRole);
+		      List<User> user_list = this.userService
+		                                 .query(
+		                                     "select obj from Use obj where obj.parent_id =:parent_id and obj.userRole=:userRole",
+		                                     params, -1, -1);
+		     if(user_list.size()>0){
+		    	 whereMap.put("list", user_list);
+		    	 whereMap.put("state", 1);
+		     } 
+			 SignFilter.printNoCheck(request, response, whereMap);
+		}
+        
+    }
+
+    /**
+     * 邀请会员
+     * @param request
+     * @param response
+     */
+    @RequestMapping({"/wap/invite_member.htm"})
+    @ResponseBody
+    public void invite_member(HttpServletRequest request, HttpServletResponse response){
+        
+    }
+    
+    /**
+     * 个人资料修改
+     * @param request
+     * @param response
+     * @param id 用户id
+     * @param photoid 用户图像id
+     * @throws IOException
+     */
+    @RequestMapping({ "/wap/userUpdate.htm" })
+    @ResponseBody
+    public  void  userUpdate(HttpServletRequest request, HttpServletResponse response,String id,String photoid) throws IOException {
+    	WebForm wf = new WebForm();
+    	Map params = new HashMap();
+    	params.put("state", "0");
+    	String up_picture = request.getParameter("up_picture");
+    	User user=null;
+    	if(id!=null && !"".equals(id)) 
+    	{
+    		User entity = this.userService.getObjById(Long.parseLong(id)); 
+    		user = (User) wf.toPo(request, entity);
+    		if(up_picture!=null && !"".equals(up_picture)) 
+    		{
+    			Accessory photo = new Accessory();
+    			if(photoid!=null && !"".equals(photoid)) 
+    			{
+    				photo = this.accessoryService.getObjById(Long.parseLong(photoid));
+    				photo.setPath("upload/img");
+    				photo.setName(up_picture);
+    				photo.setAddTime(new Date());
+    				photo.setDeleteStatus(false);
+    				this.accessoryService.update(photo);
+    			}else 
+    			{
+    				photo.setPath("upload/img");
+    				photo.setName(up_picture);
+    				photo.setAddTime(new Date());
+    				photo.setDeleteStatus(false);
+    				this.accessoryService.save(photo);
+    			}
+    			user.setPhoto(photo);
+    		}
+    		
+    		boolean b=this.userService.update(user);
+    		if(b) 
+    		{
+    			params.put("state", "1");
+    		}
+    	}
+    	JSONArray json = JSONArray.fromObject(params);
+		SignFilter.printNoCheck(request, response, params);
+		System.out.println(json);
+    	
+    }
+    
+    /**
+     * 支付密码设置
+     * @param request
+     * @param response
+     * @param id 用户id
+     * @throws IOException
+     */
+    @RequestMapping({ "/wap/zhiFuPassWord_sheZhi.htm" })
+    @ResponseBody
+    public void zhiFuPassWord_sheZhi(HttpServletRequest request, HttpServletResponse response,String id) throws IOException 
+    {
+    	Map params = new HashMap();
+    	params.put("state", "0");
+    	User user=null;
+    	String password = request.getParameter("password");//支付密码
+    	if(id!=null && !"".equals(id)) 
+    	{
+    		user = this.userService.getObjById(Long.parseLong(id));
+			if((password != null) && (!password.equals(""))){
+		         user.setZfpassword(Md5Encrypt.md5(password).toLowerCase());
+		     }
+			 boolean b = this.userService.update(user);
+			 if(b) 
+			 {
+				 params.put("state", "1");
+			 }
+    	}
+    	JSONArray json = JSONArray.fromObject(params);
+		SignFilter.printNoCheck(request, response, params);
+		System.out.println(json);
+    }
+    
+    /**
+     * 验证输入的原密码是否正确
+     * @param request
+     * @param response
+     * @param id
+     * @throws IOException
+     */
+    @RequestMapping({ "/wap/checkPassword.htm" })
+    @ResponseBody
+    public void checkPassword(HttpServletRequest request, HttpServletResponse response,String id) throws IOException 
+    {
+    	Map params = new HashMap();
+    	params.put("state", "0");
+    	String zfpassword = request.getParameter("zfpassword");//支付密码
+    	if(id!=null && !"".equals(id)) 
+    	{
+    		User user = this.userService.getObjById(Long.parseLong(id));
+    		String passw = user.getZfpassword();//原密码
+    		String zfpasw = Md5Encrypt.md5(zfpassword).toLowerCase();//新密码
+    		if(passw!=null && !"".equals(passw)) 
+    		{
+    			if(passw.equals(zfpasw)) 
+    			{
+    				params.put("state", "1");
+    			}
+    		}else 
+    		{
+    			params.put("state", "1");
+    		}
+    	}
+    	JSONArray json = JSONArray.fromObject(params);
+		SignFilter.printNoCheck(request, response, params);
+		System.out.println(json);
+    }
+    
+    /**
+     * 员工保存
+     * @param request
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping({ "/wap/employees_save.htm" })
+    @ResponseBody
+    public void employees_save(HttpServletRequest request, HttpServletResponse response) throws IOException 
+    {
+    	Map params = new HashMap();
+    	params.put("state", "0");
+    	Claims claims = SignFilter.checkSign(request, response);
+    	if (claims != null) {
+    		String id = claims.getId();
+    		String name = request.getParameter("name");
+    		String telphone = request.getParameter("telphone");
+    		String emplayees_push = request.getParameter("emplayees_push");
+    		String up_picture_front = request.getParameter("up_picture_front");
+    		//编号 ： 时间 + 序号
+            SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+            String dateStr = df.format(new Date());
+            List<User> listc= this.userService.query("select obj from User obj ", null, -1, -1);
+            String bh = dateStr + listc.size();
+    		User user = new User();
+    		user.setAddTime(new Date());
+    		user.setDeleteStatus(false);
+    		user.setUserRole("YUNKE");
+    		user.setTrueName(name);
+    		user.setUserName(telphone);
+    		user.setPassword( Md5Encrypt.md5("123456").toLowerCase());
+    		user.setUserbianhao(bh);
+    		user.setTelephone(telphone);
+    		user.setEmplayees_push(emplayees_push);
+    		User parent = this.userService.getObjById(Long.parseLong(id));//父节点
+    		user.setParent(parent);
+    		boolean b= true;
+    		if(up_picture_front!=null && !"".equals(up_picture_front)) 
+    		{
+    			Accessory acc = new Accessory();
+    			acc.setAddTime(new Date());
+				acc.setDeleteStatus(false);
+				acc.setName(up_picture_front);
+				acc.setPath("upload/img");
+				acc.setUser(this.userService.getObjById(Long.parseLong(id)));
+				b=this.accessoryService.save(acc);
+				user.setPhoto(acc);
+    		}
+    		b = this.userService.save(user);
+    		if(b) 
+    		{
+    			params.put("state", "1");
+    		}
+    	}
+    	JSONArray json = JSONArray.fromObject(params);
+		SignFilter.printNoCheck(request, response, params);
+		System.out.println(json);
+    	
+    }
+    
+    /**
+     * 员工管理   根据登录用户  获取员工列表
+     * @param request
+     * @param response
+     * @param id
+     * @param photoid
+     * @throws IOException
+     */
+    @RequestMapping({ "/wap/employees_list.htm" })
+    @ResponseBody
+    public  void  employees_list(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    	Map params = new HashMap();
+    	
+    	Claims claims = SignFilter.checkSign(request, response);
+    	if (claims != null) {	
+    		Long user_id = Long.parseLong(claims.get("jti").toString());
+    		params.put("parent_id", user_id);
+    		params.put("userRole", "YUNKE");
+    		List<User> user_list = this.userService.query(
+                        "select obj from User obj where obj.parent.id =:parent_id and obj.userRole=:userRole",
+                        params, -1, -1);
+    		
+    		JsonConfig jsonConfig = new JsonConfig();
+			jsonConfig.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor("yyyy-MM-dd hh:mm:ss"));
+			Map<Class<?>, Set<String>> includeMap = new HashMap<Class<?>, Set<String>>();
+			Set<String> set = new HashSet<String>();
+			set.add("trueName");
+			set.add("telephone");
+			set.add("emplayees_push");
+			set.add("photo");
+			includeMap.put(User.class, set);
+			
+			set = new HashSet<String>();
+			set.add("name");
+			set.add("path");
+			includeMap.put(Accessory.class, set);
+			
+			jsonConfig.setJsonPropertyFilter(new ComplexOutPropertyPreFilter(includeMap));
+
+			JSONArray json = JSONArray.fromObject(user_list, jsonConfig);
+			SignFilter.print(request, response, json);
+    		
+		}
+    }
+    
+}
+
+
+
+

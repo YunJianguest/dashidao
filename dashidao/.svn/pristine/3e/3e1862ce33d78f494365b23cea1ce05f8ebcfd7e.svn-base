@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>发起诉讼</title>
+    <script src="$!webPath/resources/js/jquery-1.10.2.min.js"></script>
+    <link href="$!webPath/resources/style/system/manager/black/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/style.css" type="text/css" rel="stylesheet" />
+
+    <script>
+        jQuery(document).ready(function(){
+
+            var request = new Object();
+            request = GetRequest();
+            var id = request['id'];
+            var name = request['name'];
+            alert(id);alert(name);
+        });
+
+        function GetRequest() {
+            var url = location.search; //获取url中"?"符后的字串  
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                strs = str.split("&");
+                for (var i = 0; i < strs.length; i++) {
+                    theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+                }
+            }
+            return theRequest;
+        }
+
+
+    </script>
+
+</head>
+<body>
+<div class="from">
+    <div class="derw_title">账号信息</div>
+    <div style="width:80%;margin: 0 10%;">
+        <ul>
+            <li class="one">用户名：</li>
+            <li class="two" ><input type="text" value="" placeholder="请输入用户名"></li>
+            <li class="one">密码：</li>
+            <li class="two"><input type="password" value="" placeholder="请输入登陆密码"></li>
+            <li class="one">确认密码：</li>
+            <li class="two"><input type="password" value="" placeholder="请输入登陆密码"></li>
+        </ul>
+        <div class="clear"></div>
+
+    </div>
+</div>
+<div class="draw_detail">
+    <div class="derw_title">公司/个人信息</div>
+    <div style="width:80%;margin: 0 10%;">
+        <ul>
+            <li class="one">公司名称：</li>
+            <li class="two" ><input type="text" value="" placeholder="请输入公司名称"></li>
+            <li class="one">公司所在地：</li>
+            <li class="two">
+                <select>
+                    <option>陕西省</option>
+                    <option>山西省</option>
+                    <option>湖南省</option>
+                </select>
+                <i class="iconfont icon-search" ></i>
+            </li>
+            <li class="one">公司行业：</li>
+            <li class="two">
+                <select>
+                    <option>请选择公司行业</option>
+                    <option>石油化工</option>
+                    <option>机械</option>
+                </select>
+                <i class="iconfont icon-search" ></i>
+            </li>
+            <li class="one">商家/仓库：</li>
+            <li class="two" ><input type="checkbox" value="有商家" >有商家<input type="checkbox" value="有仓库" >有仓库</li>
+            <li class="one">支持自提：</li>
+            <li class="two">
+                <div class="htmleaf-content">
+                    <section class="model-2">
+                        <div class="checkbox">
+                            <input type="checkbox"/>
+                            <label></label>
+                        </div></section>
+                </div>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="draw_detail">
+    <div class="derw_title">联系人信息</div>
+    <div style="width:80%;margin: 0 10%;">
+        <ul>
+            <li class="one">联系人姓名：</li>
+            <li class="two" ><input type="text" value="" placeholder="请输入联系人姓名"></li>
+            <li class="one">验证手机：</li>
+            <li class="two" ><input type="text" value="" placeholder="请输入短信验证码"></li>
+            <li class="one">短信验证码：</li>
+            <li class="two" ><input type="text" value="" placeholder="请输入验证码"></li>
+            <li class="one">邮箱：</li>
+            <li class="two" ><input type="text" value="" placeholder="请输入邮箱"></li>
+
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<div class="sub">立即注册</div>
+</body>
+</html>

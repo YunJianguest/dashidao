@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<!--link href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/template.css"  rel="stylesheet" type="text/css"/-->
+	<!--link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet-->
+	 
+	<script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+	<script src="$!webPath/resources/js/bootstrap.min.js"></script> 
+	<!--link href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/template.css"  rel="stylesheet" type="text/css"/-->
+	<!--link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet-->
+
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/iconfont.css">
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/style.css">
+<title>盈亏管理</title>
+</head>
+
+<body>
+<div class="surplus_header">
+	<div class="header_both">
+		<ul>
+			<li class="yil">盈利（元）：</li>
+			<li class="money">+7000.00</li>
+			<li class="details"><a href="#"><span>详情</span></a></li>
+			<li>
+				<div>导出报表</div>
+				<div><img src="$!webPath/resources/style/system/manage/black/img/export.png" alt=""></div>
+			</li>
+			<div class="clear"></div>
+		</ul>
+	</div>
+</div>
+<div class="both">
+	<ul>
+		<li class="shouru">
+			<div ><span>收入（元）：</span ><span class="shouru_sum"></span ></div>
+			<ol id="fljj">
+				<li>激励基金（元）：2350.23</li>
+				<li>返利基金（元）：3090.00</li>
+				<li>物流基金（元）：8904.00</li>
+			</ol>
+		<a href="#"><div class="xiang" onclick="window.location.href='$!webPath/admin/ykglxq.htm'">详情</div></a>
+		</li>
+		<li class="zhichu shouru">
+			<div><span>支出（元）：</span><span id="zhc">6090.00</span></div>
+			<ol id="zc">
+				<li>订单奖（元）：2350.23  </li>
+				<li>拓展奖（元）：1000.00</li>
+				<li>开发奖（元）：1000.00</li>
+				<li>伯乐奖（元）：1000.00</li>
+				<li>供货奖（元）：1000.00</li>
+				<li>体验店奖（元）：1000.00</li>
+				<li>物流补贴（元）：1000.00</li>
+				<li>会员卡购物返利优惠（元）：1000.00</li>
+				<li>会员其他返利优惠（元）：1000.00</li>
+			</ol>
+		<a href="#"><div class="xiang" onclick="window.location.href='$!webPath/admin/ykglxq.htm'">详情</div></a>
+		</li>
+		<div class="clear"></div>
+	</ul>
+	
+</div>
+<script type="text/javascript">
+function instData(sql,v){  
+    jQuery.ajax({ 
+          type:"POST",
+          cache: false,
+          async:false,
+          url:"/ajaxuser.jsp",
+          dataType:"json",
+          data:"table=zb_account&dates=update,createdate&sql="+sql,
+          //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+          error:function(){alert("数据错误，操作被取消！");},
+          success:function(data)
+          {
+              if(data.state=="error"){alert("系统错误，操作被取消！");return;} 
+              var message=data.data.data; 
+              //console.log(message);
+              $("#all").html('');
+              var html="";
+              
+              var jljj=0;
+              var fljj=0;
+              var wljj=0; 
+              
+              
+              var ddj=0;
+              var tzj=0;
+              var kfj=0;
+              var blj=0;
+              
+              var ghj=0;
+              var tyjj=0;
+              var wlbt=0;
+              var hykfl=0;
+              var hyqtfl=0;
+              
+             
+              if(v==1){
+            	  for(var i=0;i<message.length;i++){
+                      var type=message[i]['type'];
+                      if(type==1){
+                    	  jljj+=parseFloat(message[i]['amount']);
+                      }
+                      if(type==2){
+                    	  fljj+=parseFloat(message[i]['amount']);
+                      }
+                      if(type==3){
+                    	  wljj+=parseFloat(message[i]['amount']); 
+                      }
+                      if(type==4){
+                    	  ddj+=parseFloat(message[i]['amount']); 
+                      }
+                      if(type==5){
+                    	  tzj+=parseFloat(message[i]['amount']); 
+                      }
+                      if(type==6){
+                    	  kfj+=parseFloat(message[i]['amount']); 
+                      }
+                      if(type==7){
+                    	  blj+=parseFloat(message[i]['amount']); 
+                      }
+                      if(type==8){
+                    	  ghj+=parseFloat(message[i]['amount']); 
+                      }
+                      if(type==9){
+                    	  tyjj+=parseFloat(message[i]['amount']); 
+                      }
+                      
+                      if(type==10){
+                    	  wlbt+=parseFloat(message[i]['amount']); 
+                      }
+                      if(type==11){
+                    	  hykfl+=parseFloat(message[i]['amount']); 
+                      }
+                      
+                      if(type==12){
+                    	  hyqtfl+=parseFloat(message[i]['amount']); 
+                      }
+                    
+                      
+                    }
+            	  var html1="";
+            	   html1+='<li>激励基金（元）：'+jljj+'</li>'
+            	        +'<li>返利基金（元）：'+fljj+'</li>'
+            	        +'<li>物流基金（元）：'+wljj+'</li>';
+		
+            	    $('#fljj').html(html1);
+            	    $('.shouru_sum').html(jljj+wljj+fljj);
+            	    html1="";
+            	    html1+='<li>订单奖（元）：'+ddj+' </li>'
+            	        +'<li>拓展奖（元）：'+tzj+'  </li>'
+            	        +'<li>开发奖（元）：'+kfj+'  </li>'
+            	        +'<li>伯乐奖（元）：'+blj+'  </li>'
+            	        +'<li>供货奖（元）：'+ghj+'  </li>'
+            	        +'<li>体验店奖（元）：'+tyjj+'  </li>'
+            	        +'<li>物流补贴（元）：'+wlbt+'  </li>'
+            	        +'<li>会员卡购物返利优惠（元）：'+hykfl+'  </li>'
+            	        +'<li>会员其他返利优惠（元）：'+hyqtfl+'  </li>';
+            	        
+            	    $('#zc').html(html1);
+            	    $('#zhc').html(ddj+tzj+kfj+blj+ghj+tyjj+wlbt+hykfl+hyqtfl);
+            	    $(".money").html((jljj+fljj+wljj)-(ddj+tzj+kfj+blj+ghj+tyjj+wlbt+hykfl+hyqtfl));
+            	   
+                    
+              }
+             
+          }
+      });
+}
+//instData("SELECT * FROM `zb_account` where userId=1;",0);
+instData("SELECT * FROM `zb_accountyk` where userId=1 order by createdate;",1);
+</script>
+</body>
+</html>

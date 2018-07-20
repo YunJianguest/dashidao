@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>歇业审核详情</title>
+	<script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/two_level.css">
+</head>
+<script>
+    jQuery(document).ready(function(){
+        var request = new Object();
+        var request=GetRequest();
+        var id = request['id'];
+        var name = request['xy_states'];
+        var mycars=new Array();
+        var i;
+        var cuur=1;
+        var pagelimit=10;
+        loadajax("select","zb_xieyeshenhe","id",id,pagelimit,cuur,1);
+
+
+
+    });
+    function GetRequest() {
+        var url = location.search; //获取url中"?"符后的字串  
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+    function loadajax(action,table,field,values,page_size,page_no,moudle_id){
+        jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajax.jsp",
+            dataType:"json",
+            // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+            data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size=3"+"&page_no="+page_no+"&moudle_id		   								="+moudle_id,
+            error:function(){alert("数据错误，操作被取消！");},
+            success:function(data)
+            {
+                if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+
+                var message=data.data.data;
+
+                $('#shenheId').val(message[0]['id']);
+                $('#xy_id').val(message[0]['xy_id']);
+                $('#xy_name').val(message[0]['xy_name']);
+                var sex =message[0]['xy_sex'];
+                var sexStr ="女";
+                if(sex =="1")
+                {
+                	sexStr ="男";
+                }else
+                {
+                	sexStr ="保密";
+                }
+                $('#xy_sex').val(sexStr);
+                $('#xy_phone').val(message[0]['xy_phone']);
+                $('#create_date2').val(message[0]['create_date2']);
+                $('#create_date1').val(message[0]['create_date1']);
+            }
+        });
+    }
+
+    function sub(){
+
+        var check="";
+        $("input[name='xbTy']").each(function(){
+            if(this.checked==true){
+                check=this.value;
+            }
+        });
+        if(check==""){
+            alert("请选择同意或者不同意");
+            return;
+        }
+
+        jQuery.ajax({
+            type: "POST",
+            cache: false,
+            async: false,
+            url: "/ajax.jsp",
+            dataType: "json",
+            data: "action=update&table=zb_xieyeshenhe&field=id,xy_states&values="+ $("#shenheId").val()+"|"+check,
+            error: function () {
+                alert("数据错误，操作被取消2！");
+            },
+            success: function (data) {
+                if (data.state == "error") {
+                    alert("系统错误，操作被取消！");
+                    return;
+                } else {
+                    alert("操作成功！");
+                    location.href="$!webPath/admin/end_check.htm";
+                }
+            }
+        });
+
+    }
+
+</script>
+<body>
+<div class="both">
+	<form id="form1" name="form1" method="post" class="form-inline">
+		<input type="hidden" id="shenheId" name="shenheId" value="" />
+		<table width="100%">
+			<tr>
+				<td width="20%">商家账号：</td>
+				<td width="50%"><input type="text" class="" name="xy_id" id="xy_id" value="" placeholder=""/></td>
+				<td width="30%"></td>
+			</tr>
+			<tr>
+				<td>用户名：</td>
+				<td><input type="text" class="" name="xy_name" id="xy_name" value="" placeholder="名秋月 "/></td>
+				<td rowspan="2"></td>
+			</tr>
+			<tr>
+				<td>性别：</td>
+				<td><input type="text" class="" name="xy_sex" id="xy_sex" value="" placeholder="女"/></td>
+			</tr>
+			<tr>
+				<td>手机号：</td>
+				<td><input type="text" class="" name="xy_phone" id="xy_phone" value="" placeholder="186 2838 0304"/></td>
+				<td rowspan="3"></td>
+			</tr>
+			<tr>
+				<td>歇业截止日期：</td>
+				<td><input style="width: 25%; " type="text" class="" name="create_date1" id="create_date1" value="" placeholder=""/>-<input style="width: 20%;text-align: center;" type="text" class="" name="create_date2" id="create_date2" value="" placeholder=""/></td>
+			</tr>
+			<tr>
+				<td>详情：</td>
+				<td><input type="text" class="" name="" id="" value="" placeholder="因个人原因，希望歇业。"/></td>
+			</tr>
+		</table>
+		<div class="view">
+			<input type="radio" class="check" value="1" name="xbTy">同意</input>  <input type="radio" value="2" class="refuse check" name="xbTy">拒绝</input>
+			<div>
+				<textarea type="text" class="" name="" id="" value="" placeholder="可以留下您的理由吗？" ></textarea>
+			</div>
+		</div>
+	</form>
+	<div class="sub" ><a href="#" onclick="sub()"  style="color:white;">确定</a></div>
+</div>
+<script>
+    $('.view span').click(function(){
+        $(this).addClass('check');
+        $(this).siblings().removeClass('check');
+    })
+</script>
+</body>
+</html>
+	

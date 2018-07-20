@@ -1,0 +1,1082 @@
+<!doctype html>
+<html style="overflow:scroll">
+<head>
+    <meta charset="utf-8">
+
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+    <script src="$!webPath/resources/js/nav.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.base.js"></script>
+    <!--分页开始-->
+
+    <script>
+        function editssss(){
+            var hyjfid=$("#hyjfId").val();
+            var hyjf="";
+            var c=0;
+            //会员积分gz
+            $(".hyjf").each(function(){
+                if (c!=0){
+                    hyjf+=",";
+                }
+                hyjf+=$(this).val();
+                c++;
+            });
+            // alert(hyjf);
+            c=0;
+            //云客晋级条件
+            var ykjjtj="";
+            $("input[class='ykjjtj']").each(function(){
+                if (c!=0){
+                    ykjjtj+=",";
+                }
+                ykjjtj+=$(this).val();
+                c++;
+            });
+            //  alert(ykjjtj);
+            c=0;
+            var ykkhbz="";
+            //云客考核标准
+            $("input[class='ykkhbz']").each(function(){
+                if (c!=0){
+                    ykkhbz+=",";
+                }
+                ykkhbz+=$(this).val();
+                c++;
+            });
+            // alert(ykkhbz);
+            c=0;
+            var ykdjjgz="";
+            //云客代金卷规则
+            $("input[class='ykdjjgz']").each(function(){
+                if (c!=0){
+                    ykdjjgz+=",";
+                }
+                ykdjjgz+=$(this).val();
+                c++;
+            });
+            //  alert(ykdjjgz);
+            c=0;
+            var yktjsjyj="";
+            //云客推荐商家佣金
+            $("input[class='yktjsjyj']").each(function(){
+                if (c!=0){
+                    yktjsjyj+=",";
+                }
+                yktjsjyj+=$(this).val();
+                c++;
+            });
+            // alert(yktjsjyj);
+
+            c=0;
+            var yktjzdyj="";
+            //云客推荐栈带佣金
+            $("input[class='yktjzdyj']").each(function(){
+                if (c!=0){
+                    yktjzdyj+=",";
+                }
+                yktjzdyj+=$(this).val();
+                c++;
+            });
+            // alert(yktjzdyj);
+            c=0;
+            var yjtssl="";
+            //佣金退税税率
+            $("input[class='yjtssl']").each(function(){
+                if (c!=0){
+                    yjtssl+=",";
+                }
+                yjtssl+=$(this).val();
+                c++;
+            });
+            // alert(yjtssl);
+            c=0;
+            var txje="";
+            //提现规则
+            $("input[class='txje']").each(function(){
+                if (c!=0){
+                    txje+=",";
+                }
+                txje+=$(this).val();
+                c++;
+            });
+            // alert(txje);
+            //alert("action=update&table=zb_jichushezhi&field=id,hy_jf_gz,yk_jj_tj,yk_kh_bz,yk_djj_gz,yk_tjsj_yj,yk_tjzd_yj,yj_ts_sl,zb_txgz,zb_sjkhbz,zb_zhanshimintime,zb_daiyanmintime,zb_huiyuanshouhuotime,zb_quxiaoweifukuan,zb_querentuihuanhuosq,zb_tuihuanhuoshouhuo,zb_maxfahuoxiangying,zb_fahuoqixian,zb_fahuoqixianweifahuo,zb_weifahuojinggao,zb_jinggaoweifahuo,zb_weifahuoguandian,zb_shangpingchaping,zb_shangpingchapinggao&values="+hyjfid+"|"+hyjf+"|"+ykjjtj+"|"+ykkhbz+"|"+ykdjjgz+"|"+yktjsjyj+"|"+yktjzdyj+"|"+yjtssl+"|"+txje+"|"+$("#sjkhbz1").val()+","+$("#sjkhbz2").val()+"|"+$(".syzszdsj").find("input").eq(0).val()+"|"+$(".dyzdsj").find("input").eq(0).val()+"|"+$(".ddqx").find("input").eq(0).val()+"|"+$(".zdqxwfkddqx").find("input").eq(0).val()+"|"+ $(".zdqrthhsqqx").find("input").eq(0).val()+"|"+ $(".zdqrthhshqx").find("input").eq(0).val()+"|"+ $(".zdfhxyqx").find("input").eq(0).val()+"|"+ $(".fhqx").find("input").eq(0).val()+"|"+ $(".fhqxwfh").find("input").eq(0).val()+"|"+ $(".wfzyjgqx").find("input").eq(0).val()+"|"+ $(".jgqxfk").find("input").eq(0).val()+"|"+ $(".wfzywfh").find("input").eq(0).val()+"|"+	$(".spjc1").find("input").eq(0).val()+"|"+ $(".spjc2").find("input").eq(0).val() );
+            //alert("action=update&table=zb_jichushezhi&field=id,hy_jf_gz&values="+hyjfid+"|"+hyjf);
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajax.jsp",
+                dataType:"json",
+                data:"action=update&table=zb_jichushezhi&field=id,hy_jf_gz,yk_jj_tj,yk_kh_bz,yk_djj_gz,yk_tjsj_yj,yk_tjzd_yj,yj_ts_sl,zb_txgz,zb_sjkhbz,zb_zhanshimintime,zb_daiyanmintime,zb_huiyuanshouhuotime,zb_quxiaoweifukuan,zb_querentuihuanhuosq,zb_tuihuanhuoshouhuo,zb_maxfahuoxiangying,zb_fahuoqixian,zb_fahuoqixianweifahuo,zb_weifahuojinggao,zb_jinggaoweifahuo,zb_weifahuoguandian,zb_shangpingchaping,zb_shangpingchapinggao&values="+hyjfid+"|"+hyjf+"|"+ykjjtj+"|"+ykkhbz+"|"+ykdjjgz+"|"+yktjsjyj+"|"+yktjzdyj+"|"+yjtssl+"|"+txje+"|"+$("#sjkhbz1").val()+","+$("#sjkhbz2").val()+"|"+$(".syzszdsj").find("input").eq(0).val()+"|"+$(".dyzdsj").find("input").eq(0).val()+"|"+$(".ddqx").find("input").eq(0).val()+"|"+$(".zdqxwfkddqx").find("input").eq(0).val()+"|"+ $(".zdqrthhsqqx").find("input").eq(0).val()+"|"+ $(".zdqrthhshqx").find("input").eq(0).val()+"|"+ $(".zdfhxyqx").find("input").eq(0).val()+"|"+ $(".fhqx").find("input").eq(0).val()+"|"+ $(".fhqxwfh").find("input").eq(0).val()+"|"+ $(".wfzyjgqx").find("input").eq(0).val()+"|"+ $(".jgqxfk").find("input").eq(0).val()+"|"+ $(".wfzywfh").find("input").eq(0).val()+"|"+	$(".spjc1").find("input").eq(0).val()+"|"+ $(".spjc2").find("input").eq(0).val() ,
+                success:function(data)
+                {
+                    if(data.code=="0"){alert("系统错误，操作被取消！");return;}else{alert("操作成功！");}
+                    //alert(data.data);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest.status); // 200
+                    alert(textStatus); // parsererror
+                    alert(errorThrown); // SyntaxError: Unexpected end of input
+                }
+            });
+        }
+
+        function sc1($this){
+            var rowsize=$("tr.ykdjjgz").size()-1;
+            $(".ykdjjgztitle").attr("rowspan",rowsize);
+            $($this).parent().parent().remove();
+        }
+        function sc2($this){
+            var rowsize=$("tr.tjsjyj").size()-1;
+            $(".tjsjyjtitle").attr("rowspan",rowsize);
+            $($this).parent().parent().remove();
+        }
+        function sc3($this){
+            var rowsize=$("tr.tjzdyj").size()-1;
+            $(".tjzdyjtitle").attr("rowspan",rowsize);
+            $($this).parent().parent().remove();
+        }
+        function sc4($this){
+            var rowsize=$("tr.yjtssl").size()-1;
+            $(".yjtssltitle").attr("rowspan",rowsize);
+            $($this).parent().parent().remove();
+        }
+        function sc5($this){
+            var rowsize=$("tr.txgz").size()-1;
+            $(".txgztitle").attr("rowspan",rowsize);
+            $($this).parent().parent().remove();
+        }
+        function surprise($this) {
+            var table = $($this).parent().parent().parent().parent().find("input").eq(0).val();
+            if (table == "dsdzb_business_bond_setting") {
+                var id = $($this).parent().parent().find("input").eq(0).val();
+                var brand = $($this).parent().parent().find("input").eq(1).val();
+                var brand_owner = $($this).parent().parent().find("input").eq(2).val();
+                var brand_agent_one = $($this).parent().parent().find("input").eq(3).val();
+                var brand_agent_two = $($this).parent().parent().find("input").eq(4).val();
+                var brand_agent_three = $($this).parent().parent().find("input").eq(5).val();
+
+                var field = "id" + "," + "brand" + "," + "brand_owner" + "," + "brand_agent_one" + "," + "brand_agent_two" + "," + "brand_agent_three";
+                var values = id + "|" + brand + "|" + brand_owner + "|" + brand_agent_one + "|" + brand_agent_two + "|" + brand_agent_three;
+                jQuery.ajax({
+                    type: "POST",
+                    cache: false,
+                    async: false,
+                    url: "/ajax.jsp",
+                    dataType: "json",
+                    // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                    data: "action=update&table=dsdzb_business_bond_setting&field=" + field + "+&values=" + values,
+
+                    success: function (data) {
+                        if (data.state == "error") {
+                            alert("系统错误，操作被取消！");
+                            return;
+                        } else {
+                            alert("操作成功！");
+                            location.reload();
+                        }
+
+                    },
+                    error: function () {
+                        alert("数据错误，操作被取消！");
+                    }
+                });
+            }
+            if (table == "dsdzb_stack_bond_setting") {
+
+                var id = $($this).parent().parent().find("input").eq(0).val();
+                var agent_number = $($this).parent().parent().find("input").eq(1).val();
+                var stack_bond = $($this).parent().parent().find("input").eq(2).val();
+
+                if (table == "dsdzb_stack_bond_setting") {
+                    var field = "id" + "," + "agent_number" + "," + "stack_bond";
+                    var values = id + "|" + agent_number + "|" + stack_bond ;
+                    jQuery.ajax({
+                        type: "POST",
+                        cache: false,
+                        async: false,
+                        url: "/ajax.jsp",
+                        dataType: "json",
+                        // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                        data: "action=update&table=dsdzb_stack_bond_setting&field=" + field + "+&values=" + values,
+
+                        success: function (data) {
+                            if (data.state == "error") {
+                                alert("系统错误，操作被取消！");
+                                return;
+                            } else {
+                                alert("操作成功！");
+                                location.reload();
+                            }
+
+                        },
+                        error: function () {
+                            alert("数据错误，操作被取消！");
+                        }
+                    });
+                }
+
+            }
+
+        }
+        function surprise2($this) {
+            var table = $($this).parent().parent().parent().parent().find("input").eq(0).val();
+            if (table == "dsdzb_business_bond_setting") {
+
+                var id = $($this).parent().parent().find("input").eq(0).val();
+                var field = "id" + "," + "states";
+                var values = id + "|" + "1" ;
+                jQuery.ajax({
+                    type: "POST",
+                    cache: false,
+                    async: false,
+                    url: "/ajax.jsp",
+                    dataType: "json",
+                    // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                    data: "action=update&table=dsdzb_business_bond_setting&field=" + field + "+&values=" + values,
+
+                    success: function (data) {
+                        if (data.state == "error") {
+                            alert("系统错误，操作被取消！");
+                            return;
+                        } else {
+                            alert("操作成功！");
+                            location.reload();
+                        }
+
+                    },
+                    error: function () {
+                        alert("数据错误，操作被取消！");
+                    }
+                });
+            }
+            if (table == "dsdzb_stack_bond_setting") {
+
+                var id = $($this).parent().parent().find("input").eq(0).val();
+
+
+                if (table == "dsdzb_stack_bond_setting") {
+                    var field = "id" + "," + "states" ;
+                    var values = id + "|" + "1" ;
+                    jQuery.ajax({
+                        type: "POST",
+                        cache: false,
+                        async: false,
+                        url: "/ajax.jsp",
+                        dataType: "json",
+                        // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                        data: "action=update&table=dsdzb_stack_bond_setting&field=" + field + "+&values=" + values,
+
+                        success: function (data) {
+                            if (data.state == "error") {
+                                alert("系统错误，操作被取消！");
+                                return;
+                            } else {
+                                alert("操作成功！");
+                                location.reload();
+                            }
+
+                        },
+                        error: function () {
+                            alert("数据错误，操作被取消！");
+                        }
+                    });
+                }
+
+            }
+
+        }
+
+        jQuery(document).ready(function() {
+            // alert($(".sjbzjlb").size());
+            var mycars = new Array();
+            var cuur = 1;
+            var pagelimit = 10;
+
+            function loadajax(action, table, field, values, page_size, page_no, moudle_id) {
+                jQuery.ajax({
+                    type: "POST",
+                    cache: false,
+                    async: false,
+                    url: "/ajax.jsp",
+                    dataType: "json",
+                    // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                    data: "action=" + action + "&table=" + table + "&field=" + field + "&values=" + values + "&page_size=" + page_size + "&page_no=" + page_no + "&moudle_id=" + moudle_id,
+                    error: function () {
+                        alert("数据错误，操作被取消2！");
+                    },
+                    success: function (data) {
+                        if (data.state == "error") {
+                            alert("系统错误，操作被取消2！");
+                            return;
+                        }
+                        total = data.data.total;
+                        mycars[0] = total;
+                        var message = data.data.data;
+                        //console.log(message);
+                        $("#tablesss1").html('');
+                        for (var i = 0; i < message.length; i++) {
+                            $("#tablesss1").append("<tr><td><input type='hidden' value='" + message[i]['id'] + "'/><input type='text' value='" + message[i]['brand'] + "'/></td><td><input type='text' value='" + message[i]['brand_owner'] + "'/></td><td><input type='text' value='" + message[i]['brand_agent_one'] + "'/></td><td><input type='text' value='" + message[i]['brand_agent_two'] + "'/></td><td><input type='text' value='" + message[i]['brand_agent_three'] + "'/></td>" + "<td  ><span class='sjbzjlb'  onclick='surprise(this)'>修改</span>|<span onclick='surprise2(this)'>删除</span></td></tr>");
+
+
+                        }
+                    }
+                });
+            }
+
+            loadajax("select", "dsdzb_business_bond_setting", "states", "0", pagelimit, cuur, 1);
+            layui.use(['laypage', 'layer'], function () {
+                var laypage = layui.laypage
+                    , layer = layui.layer;
+                //完整功能
+                laypage.render({
+                    elem: 'demo7'
+                    , count: total
+                    , layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                    , jump: function (obj) {
+                        //console.log(obj)
+                        cuur = obj.curr;
+                        pagelimit = obj.limit;
+                        //alert(pagelimit);
+                        loadajax("select", "dsdzb_business_bond_setting", "states", "0", pagelimit, cuur, 1);
+                        //loadajax("select","stu",pagelimit,cuur,1);
+                    },
+                    limits: [10, 20, 30, 50, 100],
+                    limit: pagelimit
+                });
+            });
+
+        });
+    </script>
+    <!--分页结束-->
+    <script>
+
+        jQuery(document).ready(function() {
+            jQuery.ajax({
+                type: "POST",
+                cache: false,
+                async: false,
+                url: "/ajax.jsp",
+                dataType: "json",
+                data: {"action": "select", "table": "zb_jichushezhi", "field": "is_deleted", "values": "0"},
+
+                success: function (data) {
+                    if (data.state == "error") {
+                        alert("系统错误，操作被取消！");
+                    }
+                    $("#hyjfId").val(data.data.data[0].id);
+                    var str1="";
+                    str1 = data.data.data[0].hy_jf_gz;
+                    var strs1 = new Array(); //定义一数组
+                    strs1 = str1.split(","); //字符分割
+                    if (str1 != "") {
+                        $("#1").find("tr[class='hyjfgz']").eq(0).find("td").eq(1).append('实付金额  *' + '<input type="text" class="hyjf" value="' + strs1[0] + '"/>' +'%'+ '=积分。');
+                        for (var i = 1; i < strs1.length - 1; i++) {
+                            $("#1").find("tr[class='hyjfgz']").eq(i - 1).after('<tr class="hyjfgz"><td class="tw">' + '实付金额  *' + '<input type="text" class="hyjf" value="'  + strs1[i] + '"/>' +'%'+ '=积分。' + '</td></tr>');
+                        }
+                        $("#1").find("tr[class='hyjfgz']").eq(strs1.length - 2).after('<tr class="   hyjfgz"><td class="tw">' + '单个订单使用积分不超过 ' + '<input type="text" class="hyjf" value="' + strs1[strs1.length - 1] + '"/>' + '个。' + '</td></tr>');
+                    }
+                    var str2 = data.data.data[0].yk_jj_tj;
+                    var strs2 = new Array(); //定义一数组
+                    strs2 = str2.split(","); //字符分割
+                    if (str2 != "") {
+                        $("#1").find("tr[class='ykjjtj']").eq(0).find("td").eq(1).append('会员购买金额达到' + '<input type="hidden" class="ykjjtj"  value="' + strs2[0] + '"/>'+ '<input   type="text"  class="ykjjtj"   value="' + strs2[1] + '"/>' + '元时,可申请成为中级云客。');
+                        // for (var i = 1; i < strs2.length - 1; i++) {
+                        $("#1").find("tr[class='ykjjtj']").eq(0).after('<tr class="ykjjtj"><td class="tw"> '+ '商品订单数量达到' + '<input type="text"  class="ykjjtj"  value="' + strs2[2] + '"/>' + '笔后可自动升级为高级云客。' + '</td></tr>');
+                        //}
+                        //$("#1").find("tr[class='ykjjtj']").eq(strs1.length - 2).after('<tr class="ykjjtj"><td class="tw">' + '推荐的云客有 ' + '<input type="text"  class="ykjjtj"  value="' + strs2[2] + '"/>' + '个达到中级以上时，可自动升级为高级云客。' + '</td></tr>');
+                    }
+                    var str3 = data.data.data[0].yk_kh_bz;
+                    var strs3 = new Array(); //定义一数组
+                    strs3 = str3.split(","); //字符分割
+                    if (str3 != "") {
+                        $("#1").find("tr[class='ykkhbz']").eq(0).find("td").eq(1).append('初级云客  考核周期' + '<input type="text" class="ykkhbz"  value="' + strs3[0] + '"/>' + '个月。考核标准'+ '<input type="text"  class="ykkhbz"  value="' + strs3[1] + '"'+'/>'+ '元');
+                        $("#1").find("tr[class='ykkhbz']").eq(0).after('<tr class="ykkhbz"><td class="tw">' + '中级云客  考核周期' + '<input type="text" class="ykkhbz" value="' + strs3[2] + '"/>' + '个月。考核标准' + '<input type="text" class="ykkhbz" value="' + strs3[3] + '"/> 元' + '</td></tr>');
+                    }
+
+                    var str4 = data.data.data[0].yk_djj_gz;
+                    var strs4 = new Array(); //定义一数组
+                    strs4 = str4.split(","); //字符分割
+                    var rows=strs4.length/2;
+                    $(".ykdjjgztitle").attr("rowspan",rows);
+                    // alert(strs4.length/2);
+                    //alert($(".ykdjjgztitle").attr("rowspan"));
+
+                    if (str4 != "") {
+                        $("#1").find("tr[class='ykdjjgz']").eq(0).find("td").eq(1).append( '<input type="text" class="ykdjjgz"  value="' + strs4[0] + '"/>' + '元，单笔订单满'+ '<input type="text"  class="ykdjjgz"  value="' + strs4[1] + '"/>' + '元使用。');
+                        $("#1").find("tr[class='ykdjjgz']").eq(0).find("td").eq(1).after( '<td  > <div  class="xiugai ykdjjgztj" style="float:left;margin-left: 0px">添加</div> </td>');
+                        for (var i = 2; i < strs4.length - 2; i=i+2) {
+                            // alert(11111111111111111+i+"111111111111111");
+                            $("#1").find("tr[class='ykdjjgz']").eq(i/2-1).after('<tr class="ykdjjgz"><td class="tw">' + '<input type="text"  class="ykdjjgz"  value="' + strs4[i] + '"/>' + '元，单笔订单满'+ '<input type="text" class="ykdjjgz"  value="' + strs4[i+1] + '"/>' + '元使用。' + '</td><td> <div class="xiugai ykdjjgzsc"  style="float:left;">删除</div></td></tr>');
+                        }
+
+                        // alert(222222222222222+"2222222222222222222");
+                        $("#1").find("tr[class='ykdjjgz']").eq((strs4.length-4)/2).after('<tr class="ykdjjgz"><td class="tw">' + '<input type="text" class="ykdjjgz"   value="' + strs4[strs4.length - 2] + '"/>' + '元，单笔订单满'+ '<input type="text"  class="ykdjjgz"  value="' + strs4[strs4.length - 1] + '"/>' + '元使用。' + '</td><td> <div class="xiugai ykdjjgzsc"  style="float:left;">删除</div></td></tr>');
+
+                    }
+
+                    //  tjsjyj  tjzdyj  zb_tjsj_yj   zb_tjzd_yj
+                    var str5 = data.data.data[0].yk_tjsj_yj;
+                    var strs5 = new Array(); //定义一数组
+                    strs5 = str5.split(","); //字符分割
+                    //alert(strs5.length/2);
+                    $("#tjsjyjtitle").attr("rowspan",strs5.length/2);
+                    if (str5 != "") {   //
+                        $("#1").find("tr[class='tjsjyj']").eq(0).find("td").eq(1).append( '第'+'<input type="text" class="yktjsjyj"  value="' + strs5[0] + '"/>'+'年：'+'<input type="text" class="yktjsjyj"  value="' + strs5[1] + '"/>'  + '%。');
+                        $("#1").find("tr[class='tjsjyj']").eq(0).find("td").eq(1).after( '<td ><div class="xiugai tjsjyjtj"  style="float:left">添加</div>  </td>');
+                        for (var i = 2; i < strs5.length ; i=i+2) {
+                            //<td><div class="xiugai tjsjyjtj" id="xiugai2" style="float:left">添加</div> <div class="xiugai tjsjyjsc" id="shanchu"'+tianjia+ ' style="float:left;margin-left:5px">删除</div></td>
+                            $("#1").find("tr[class='tjsjyj']").eq(i/2-1).after('<tr class="tjsjyj"><td class="tw">第' +'<input type="text" class="yktjsjyj"  value="' + strs5[i] + '"/>'+'年：'+'<input type="text" class="yktjsjyj"  value="' + strs5[i+1] + '"/>'  + '%。' + '</td><td>  <div class="xiugai tjsjyjsc" id="shanchu"  style="float:left;">删除</div></td></tr>');
+                        }
+                        // $("#1").find("tr[class='tjsjyj']").eq(strs5.length-1).after('<tr class="tjsjyj"><td class="title"><input type="button" value="添加" style="width:53px; background-color:#108ee9;color:#fff;height: 27px;line-height: 27px;text-align: center;"/></td>'+'<td class="tw"> 第<input type="text" value="" style="border:1px" /> 年：<input type="text" value="" style="border:1px" /> 。 </td>' + '</tr>');
+                    }
+
+                    var str6 = data.data.data[0].yk_tjzd_yj;
+                    var strs6 = new Array(); //定义一数组
+                    strs6 = str6.split(","); //字符分割
+                    //alert(strs6.length/2);
+                    $("#tjzdyjtitle").attr("rowspan",strs6.length/2);
+                    if (str6 != "") {
+                        $("#1").find("tr[class='tjzdyj']").eq(0).find("td").eq(1).append( '第'+'<input type="text"  class="yktjzdyj" value="' + strs6[0] + '"/>'+'年：'+'<input type="text"  class="yktjzdyj" value="' + strs6[1] + '"/>'  + '%。');
+                        $("#1").find("tr[class='tjzdyj']").eq(0).find("td").eq(1).after( '<td><div class="xiugai tjzdyjtj" id="xiugai2" style="float:left">添加</div>  </td>');
+                        for (var i = 2; i < strs6.length ; i=i+2) {
+                            $("#1").find("tr[class='tjzdyj']").eq(i/2-1).after('<tr class="tjzdyj"><td class="tw">' + '第'+'<input type="text"  class="yktjzdyj" value="' + strs6[i] + '"/>'+'年：'+'<input type="text" class="yktjzdyj"  value="' + strs6[i+1] + '"/>'  + '%。' + '</td><td> <div class="xiugai tjzdyjsc" id="xiugai3" style="float:left;">删除</div></td></tr>');
+                        }
+                        // $("#1").find("tr[class='tjzdyj']").eq(strs6.length-1).after('<tr class="tjzdyj"><td class="title"><input type="button" value="添加" style="width:53px; background-color:#108ee9;color:#fff;height: 27px;line-height: 27px;text-align: center;"/></td>'+'<td class="tw"> 第<input type="text" value="" style="border:1px" /> 年：<input type="text" value="" style="border:1px" /> 。 </td>' + '</tr>');
+                    }
+
+                    var str7 = data.data.data[0].yj_ts_sl;
+                    var strs7 = new Array(); //定义一数组
+                    strs7 = str7.split(","); //字符分割
+                    $(".yjtssltitle").attr("rowspan",strs7.length/3);
+                    if (str7 != "") {
+                        $("#1").find("tr[class='yjtssl']").eq(0).find("td").eq(1).append('<input type="text" class="yjtssl"  value="' + strs7[0] + '"/>'  + '至'+'<input type="text" class="yjtssl"  value="' + strs7[1] + '"/>'  + '税率'+'<input type="text" class="yjtssl"  value="' + strs7[2] + '"/>%');
+                        $("#1").find("tr[class='yjtssl']").eq(0).find("td").eq(1).after('<td><div class="xiugai yjtssltj" id="xiugai2" style="float:left">添加</div>  </td> ');
+                        for (var i = 3; i < strs7.length; i=i+3) {
+                            $("#1").find("tr[class='yjtssl']").eq(i/3-1).after('<tr class="yjtssl"><td class="tw">' + '<input type="text" class="yjtssl"  value="' + strs7[i] + '"/>'  + '至'+'<input type="text" class="yjtssl"  value="' + strs7[i+1] + '"/>'  + '税率'+'<input type="text" class="yjtssl"  value="' + strs7[i+2] + '"/>%' + '</td><td>  <div class="xiugai yjtsslsc" id="xiugai3" style="float:left;">删除</div></td></tr>');
+                        }
+                        // $("#1").find("tr[class='yjtssl']").eq((strs7.length-3)/3).after('<tr class="yjtssl"><td class="title"><input type="button" value="添加" style="width:53px; background-color:#108ee9;color:#fff;height: 27px;line-height: 27px;text-align: center;"/></td>'+'<td class="tw">'+'<input type="text"   value=""/>'  + '至'+'<input type="text"   value=""/>'  + '税率'+'<input type="text"   value=""/>' +'  </td>' + '</tr>');
+                    }
+
+                    var str8 = data.data.data[0].zb_txgz;
+                    var strs8 = new Array(); //定义一数组
+                    strs8 = str8.split(","); //字符分割
+                    $(".txgztitle").attr("rowspan",strs8.length/3);
+                    if (str8 != "") {
+                        // $("#1").find("tr[class='txgz']").eq(0).find("td").eq(1).append('提现金额:<='+' <input type="text" value=""  />    元,手续费为 <input type="text" value="1"  /> % ');
+                        $("#1").find("tr[class='txgz']").eq(0).find("td").eq(1).append('提现金额:<=' + '<input type="hidden" class="txje" value="'+strs8[0]+'"/> ' + '<input type="text" class="txje" value="'+strs8[1]+'"/> ' +   '元,手续费为 ' +  '<input type="text" class="txje" value="'+strs8[2]+'"/> %' );
+                        $("#1").find("tr[class='txgz']").eq(0).find("td").eq(1).after('<td><div class="xiugai txgztj" id="xiugai2" style="float:left">添加</div>  </td> ');
+                        for (var i = 3; i < strs8.length; i=i+3) {
+                            $("#1").find("tr[class='txgz']").eq(i/3-1).after('<tr class="txgz"><td class="tw"> 提现金额：( <input type="text" value="'+strs8[i]+'" class="txje" style="width:60px" /> ，<input type="text" class="txje" value="'+strs8[i+1]+'" style="width:60px" />  ] ,手续费为 <input type="text" class="txje" value="'+strs8[i+2]+'"  /> % </td> <td  ><div class="xiugai txgzsc" id="xiugai3" style="float:left;">删除</div></td> </tr>');
+                        }
+                        // $("#1").find("tr[class='yjtssl']").eq((strs7.length-3)/3).after('<tr class="yjtssl"><td class="title"><input type="button" value="添加" style="width:53px; background-color:#108ee9;color:#fff;height: 27px;line-height: 27px;text-align: center;"/></td>'+'<td class="tw">'+'<input type="text"   value=""/>'  + '至'+'<input type="text"   value=""/>'  + '税率'+'<input type="text"   value=""/>' +'  </td>' + '</tr>');
+                    }
+
+
+                    $("#sjkhbz1").val(data.data.data[0].zb_sjkhbz.split(",")[0]);
+                    $("#sjkhbz2").val(data.data.data[0].zb_sjkhbz.split(",")[1]);
+                    $(".syzszdsj").find("input").eq(0).val(data.data.data[0].zb_zhanshimintime);
+                    $(".dyzdsj").find("input").eq(0).val(data.data.data[0].zb_daiyanmintime);
+                    $(".ddqx").find("input").eq(0).val(data.data.data[0].zb_huiyuanshouhuotime);
+                    $(".zdqxwfkddqx").find("input").eq(0).val(data.data.data[0].zb_quxiaoweifukuan);
+                    $(".zdqrthhsqqx").find("input").eq(0).val(data.data.data[0].zb_querentuihuanhuosq);
+                    $(".zdqrthhshqx").find("input").eq(0).val(data.data.data[0].zb_tuihuanhuoshouhuo);
+                    $(".zdfhxyqx").find("input").eq(0).val(data.data.data[0].zb_maxfahuoxiangying);
+                    $(".fhqx").find("input").eq(0).val(data.data.data[0].zb_fahuoqixian);
+                    $(".fhqxwfh").find("input").eq(0).val(data.data.data[0].zb_fahuoqixianweifahuo);
+                    $(".wfzyjgqx").find("input").eq(0).val(data.data.data[0].zb_weifahuojinggao);
+                    $(".jgqxfk").find("input").eq(0).val(data.data.data[0].zb_jinggaoweifahuo);
+                    $(".wfzywfh").find("input").eq(0).val(data.data.data[0].zb_weifahuoguandian);
+                    $(".spjc1").find("input").eq(0).val(data.data.data[0].zb_shangpingchaping);
+                    $(".spjc2").find("input").eq(0).val(data.data.data[0].zb_shangpingchapinggao);
+
+                    $("#2").find("input").eq(0).val(data.data.data[0].sj_bzj_sz.split(",")[0]);
+                    $("#2").find("input").eq(1).val(data.data.data[0].sj_bzj_sz.split(",")[1]);
+
+                    $("#3").find("input").eq(0).val(data.data.data[0].zd_bzj_sz.split(",")[0]);
+
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest.status); // 200
+                    alert(textStatus); // parsererror
+                    alert(errorThrown); // SyntaxError: Unexpected end of input
+                }
+            });
+
+            // $("#xiugai1").click(
+            // );
+
+
+            //推荐商家
+            $(".tjsjyjtj").click(function(){
+                $(this).parents("tr").find("td").eq(0).attr("rowspan",$("tr[class='tjsjyj']").size()+1);
+                // alert($("tr[class='tjsjyj']").size());
+                $(this).parents("tr").eq(0).after('<tr class="tjsjyj"><td class="tw">' + '第'+'<input type="text" class="yktjsjyj"  value=""/>' +'年：'+'<input type="text"  class="yktjsjyj"  value=""/>'  + '。' + '</td><td>  <div class="xiugai tjsjyjsc"  onclick="sc2(this)"  style="float:left;margin-left:5px">删除</div></td>/tr>');
+                //alert(2);
+
+            });
+            $(".tjsjyjsc").click(function(){
+                var trsize=parseInt($("tr[class='tjsjyj']").size())-parseInt(1);
+                $(".tjsjyjtitle").attr("rowspan",trsize);
+                $(this).parent().parent().remove();
+                editssss();
+            });
+            //推荐栈带
+            $(".tjzdyjtj").click(function(){
+                $(this).parents("tr").find("td").eq(0).attr("rowspan",$("tr[class='tjzdyj']").size()+1);
+                // alert($("tr[class='tjzdyj']").size());
+                $(this).parents("tr").eq(0).after('<tr class="tjzdyj"><td class="tw">' + '第'+'<input type="text" class="yktjzdyj"  value=""/>' +'年：'+'<input type="text"  class="yktjzdyj"  value=""/>'  + '。' + '</td><td>  <div class="xiugai tjzdyjsc"  onclick="sc3(this);"   style="float:left;margin-left:5px">删除</div></td></tr>');
+                //alert(2);
+
+            });
+            $(".tjzdyjsc").click(function(){
+                var trsize=parseInt($("tr[class='tjzdyj']").size())-parseInt(1);
+                $(".tjzdyjtitle").attr("rowspan",trsize);
+                $(this).parent().parent().remove();
+                editssss();
+            });
+
+            //佣金退税 增加和删除按钮
+            $(".yjtssltj").click(function(){
+                $(this).parents("tr").find("td").eq(0).attr("rowspan",$("tr[class='yjtssl']").size()+1);
+                // alert($("tr[class='yjtssl']").size());
+                $(this).parents("tr").eq(0).after('<tr class="yjtssl"><td class="tw"><input type="text"  class="yjtssl"  value=""/>' +'至'+'<input type="text" class="yjtssl"  value=""/>'  + '税率'+'<input type="text" class="yjtssl"  value=""/>'  + '</td><td>  <div class="xiugai yjtsslsc" onclick="sc4(this);"   style="float:left;margin-left:5px">删除</div></td></tr>');
+                //alert(2);
+
+            });
+            $(".yjtsslsc").click(function(){
+                var trsize=parseInt($("tr[class='yjtssl']").size())-parseInt(1);
+                $(".yjtssltitle").attr("rowspan",trsize);
+                $(this).parent().parent().remove();
+                editssss();
+            });
+
+            //提现规则
+            $(".txgztj").click(function(){
+                $(this).parents("tr").find("td").eq(0).attr("rowspan",$("tr[class='txgz']").size()+1);
+                // alert($("tr[class='txgz']").size());
+                $(this).parents("tr").eq(0).after('<tr class="txgz"><td class="tw">' + '提现金额：( <input type="text"   class="txje" style="width:60px" /> ，<input type="text"   class="txje" style="width:60px" />  ] ,手续费为 <input type="text" class="txje" value=""  /> % ' + '</td><td>  <div class="xiugai txgzsc" onclick="sc5(this);"   style="float:left;margin-left:5px">删除</div></td></tr>');
+                //alert(2);
+
+            });
+            $(".txgzsc").click(function(){
+                var trsize=parseInt($("tr[class='txgz']").size())-parseInt(1);
+                $(".txgztitle").attr("rowspan",trsize);
+                $(this).parent().parent().remove();
+                editssss();
+            });
+
+            //云客代金卷规则
+            $(".ykdjjgztj").click(function(){
+                $(this).parents("tr").find("td").eq(0).attr("rowspan",$("tr[class='ykdjjgz']").size()+1);
+                // alert($("tr[class='ykdjjgz']").size());
+                $(this).parents("tr").eq(0).after('<tr class="ykdjjgz"><td class="tw">' + ' <input type="text"   class="ykdjjgz" style="width:60px" /> 元，单笔订单满<input type="text"   class="ykdjjgz" style="width:60px" />  元使用 ' + '</td><td>  <div class="xiugai ykdjjgzsc" onclick="sc1(this);"   style="float:left;margin-left:5px">删除</div></td></tr>');
+                //alert(2);
+            });
+            $(".ykdjjgzsc").click(function(){
+                var trsize=parseInt($("tr[class='ykdjjgz']").size())-parseInt(1);
+                $(".ykdjjgztitle").attr("rowspan",trsize);
+                $(this).parent().parent().remove();
+                editssss();
+            });
+            //商家保证金修改
+            $("#sjbzjxg").click(function(){
+                var sjbzjxg="";
+                var i=0;
+                $(this).parents("table").find("input").each(function(){
+                    if(i!=0){
+                        sjbzjxg+=",";
+                    }
+                    i++;
+                    sjbzjxg+=this.value;
+                });
+                //alert(sjbzjxg);
+                jQuery.ajax({
+                    type:"POST",
+                    cache: false,
+                    async:false,
+                    url:"/ajax.jsp",
+                    dataType:"json",
+                    // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                    data:"action=update&table=zb_jichushezhi&field=id,sj_bzj_sz&values="+$("#hyjfId").val()+"|"+sjbzjxg,
+
+                    success:function(data)
+                    {
+                        if(data.state=="error"){alert("系统错误，操作被取消！");return;}else{alert("操作成功！");}
+
+                    },
+                    error:function(){alert("数据错误，操作被取消！");}
+                });
+            });
+            //栈带保证金修改
+            $("#zdbzjxg").click(function(){
+                var zdbzjxg="";
+                var i=0;
+                $(this).parents("table").find("input").each(function(){
+                    if(i!=0){
+                        zdbzjxg+=",";
+                    }
+                    i++;
+                    zdbzjxg+=this.value;
+                });
+                // alert(zdbzjxg);
+                jQuery.ajax({
+                    type:"POST",
+                    cache: false,
+                    async:false,
+                    url:"/ajax.jsp",
+                    dataType:"json",
+                    // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                    data:"action=update&table=zb_jichushezhi&field=id,zd_bzj_sz&values="+$("#hyjfId").val()+"|"+zdbzjxg,
+
+                    success:function(data)
+                    {
+                        if(data.state=="error"){alert("系统错误，操作被取消！");return;}else{alert("操作成功！");}
+                    },
+                    error:function(){alert("数据错误，操作被取消！");}
+                });
+            });
+        });
+
+    </script>
+    <!--style>
+       // .trnone{ display: none;}
+       // .sjbzjlb{ display: block; background: #00f; cursor:pointer;   }
+    </style-->
+    <title>基础设置</title>
+    <style>
+        body {
+            font-size:16px;
+            line-height: 1.42857143;
+            color: #333;
+            background-color: #fff;
+            font-family: "Microsoft Yahei", "Lucida Grande", Verdana, Lucida, Helvetica, Arial, 'Simsun', sans-serif;
+        }
+        input{border:none;width:60px; border: 1px solid #EEEEEE; text-align: center; margin: 0 5px;   }
+        ul,ul li{list-style: none;padding: 0;margin: 0;border:0!important;}
+        table tr td{border-bottom: 1px solid #eee; padding: 10px 0;}
+        a{color:#333}
+        .xiugai {
+            background-color: #108ee9;
+            width: 80px;
+            color: #fff;
+            text-align: center;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 4px;
+        }
+        .title{width:20%;padding-left: 5%;}
+        .tw{width:50%;padding-left: 10%;}
+        .sj tr td{border:0!important;}
+        .seth1 {
+            border-top: 1px solid #D9D9D9;
+            height: 35px;
+            border-bottom: 1px solid #D9D9D9;
+            line-height: 35px;
+            padding-left: 40px;
+            color: #686868;
+            margin: 5px;
+            font-size:16px;
+            padding: 0px;
+            text-align: left;
+            background: #f3f3f3;
+        }
+        .ac8 a {
+            color: #999;
+            margin-left: 5px;
+            margin-right: 5px;
+            text-decoration: none;
+        }
+        .ac8 a:hover {
+            color:#ff6600;
+            background: #fff;
+        }
+        .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{background:#108EE9;color:#fff;font-size: 16px;}
+        .nav{margin: 17px 0 29px 21px;}
+        .bor{height:30px;line-height: 30px;}
+        .pagination{float: right;}
+        .disable a{border:0!important;color:#000!important;}
+        .disable a:hover{border:0!important;color:#000!important;background: #fff!important;}
+        .pagination .active a{background:#108ee9!important; }
+        .pagination li a{padding: 4px 10px!important;margin: 0 2px!important; border-radius: 4px;}
+        .nav li{margin-left:2px}
+        .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{background:#3fa4ed;color:#fff; width:100%;}
+        .nav>li>a {
+            position: relative;
+            border:1px solid #c3c3c3;
+            display: block;
+            border-top-left-radius: 8px;
+            border-top-right-radius:8px;
+            font-size: 16px!important;
+            padding: 5px 15px;
+            color:#000;
+        }
+        .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{background:#3fa4ed;color:#fff;font-size: 16px;}
+        .nav{margin: 17px 0 29px 21px;border-bottom: 1px solid #c3c3c3!important;}
+
+        .pagination{float: right;}
+        .disable a{border:0!important;color:#000!important;}
+        .disable a:hover{border:0!important;color:#000!important;background: #fff!important;}
+        .pagination .active a{background:#108ee9!important; }
+        .pagination li a{padding: 4px 10px!important;margin: 0 2px!important; border-radius: 4px;}
+    </style>
+
+</head>
+
+<body>
+
+<center>
+    <div class="tabbable" style="width:100%;">
+        <div class="seth1">
+            <img src="$!webPath/resources/style/system/manage/black/img/1.png" alt="">
+            基础设置
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#1" data-toggle="tab" aria-expanded="false" style="border-right: 1px ">基础设置</a></li>
+            <li><a href="#2" data-toggle="tab">商家保证金设置</a></li>
+            <li><a href="#3" data-toggle="tab">栈代保证金设置</a></li>
+        </ul>
+        <div class="tab-content" style="height: 780px;overflow: scroll">
+            <!--基础设置-->
+            <div class="tab-pane active" id="1">
+                <input type="hidden" id="hyjfId"/>
+                <table style="width:100%;margin:0!important; font-size:16px;">
+                    <tr class="hyjfgz">
+                        <td rowspan="3" valign="top" style="width:20%;" class="title"> 会员积分规则： </td>
+                        <td style="margin-left:5px" class="tw"> <!--实付金额  *   <input type="text" value="1%" class="hyjf" />     =积分。--> </td>
+                        <td><div class="xiugai" id="xiugai1" onclick="editssss();" >  修改  </div></td>
+                    </tr>
+                    <!--tr>
+                        <td  class="tw">实付金额  * <input type="text" value="1%"  class="hyjf" />   =积分。   </td>
+                    </tr-->
+                    <!--tr>
+                        <td class="tw">单个订单使用积分不超过 <input type="text" value="500" class="hyjf" />  个。  </td>
+                    </tr-->
+
+                    <tr class="ykjjtj">
+                        <td rowspan="2" valign="top" class="title">云客晋级条件：</td>
+                        <td class="tw"> <!--会员购买金额达到 <input type="text" value="2000"  /> 元时,可申请成为初级云客。-->  </td>
+                        <!--td><div class="xiugai" id="xiugai2">修改</div></td-->
+                    </tr>
+                    <!--tr class="ykjjtj">
+                        <td class="tw">商品订单数量达到 <input type="text" value="3000"  /> 笔后可自动升级为中级云客。 </td>
+                    </tr>
+                    <tr class="ykjjtj">
+                        <td class="tw">推荐的云客有 <input type="text" value="100"  />  个达到中级以上时，可自动升级为高级云客。</td>
+                    </tr-->
+
+                    <tr class="ykkhbz" >
+                        <td rowspan="2" valign="top" class="title ykkhbz">云客考核标准：  </td>
+                        <td class="tw"><!--初级云客  考核周期  <input type="text" value="1"  />   个月。考核标准 <input type="text" value="20000"  /> 元  --></td>
+                    </tr>
+                    <!--tr  >
+                        <td class="tw">中级云客  考核周期  <input type="text" value="1"  />  个月。考核标准 <input type="text" value="80000"  /> 元 </td>
+                    </tr-->
+
+                    <tr  class="ykdjjgz">
+                        <td   valign="top"   class="title ykdjjgztitle"  id="ykdjjgztitle">云客代金券规则：</td>
+                        <td class="tw"> <!-- <input type="text" value="5"  /> 元，单笔订单满 <input type="text" value="100"  /> 元使用。 --> </td>
+                    </tr>
+                    <!--tr>
+                        <td class="tw"> <input type="text" value="10"  /> 元，单笔订单满 <input type="text" value="300"  /> 元使用。 </td>
+                    </tr>
+                    <tr>
+                        <td class="tw"> <input type="text" value="20"  /> 元，单笔订单满 <input type="text" value="500"  /> 元使用。 </td>
+                    </tr>
+                    <tr>
+                        <td class="title"><input type="button" value="添加" style="width:53px; background-color:#108ee9;color:#fff;height:27px;line-height: 27px;text-align: center;"/></td>
+                        <td class=""tw> <input type="text" value="" style="boder:1px" /> 元，单笔订单满 <input type="text" value=""  /> 元使用。 </td>
+                    </tr-->
+                    <tr class="tjsjyj">
+                        <td   valign="top" class="title tjsjyjtitle" id="tjsjyjtitle">云客推荐商家佣金：</td>
+                        <td class="tw"> <!--第一年：<input type="text" value="5%"  /> 。 --></td>
+
+                    </tr>
+                    <!--tr>
+                        <td class="tw"> 第二年：<input type="text" value="3%"  /> 。 </td>
+                    </tr>
+                    <tr>
+                        <td class="tw"> 第三年：<input type="text" value="1%"  /> 。 </td>
+                    </tr>
+                    <tr>
+                        <td class="title"><input type="button" value="添加" style="width:53px; background-color:#108ee9;color:#fff;height: 27px;line-height: 27px;text-align: center;"/></td>
+                        <td class="tw"> 第<input type="text" value="" style="border:1px" /> 年：<input type="text" value="" style="border:1px" /> 。 </td>
+                    </tr-->
+                    <tr class="tjzdyj">
+                        <td   valign="top" class="title tjzdyjtitle" id="tjzdyjtitle">云客推荐栈代佣金：</td>
+                        <td class="tw"><!-- 第一年：<input type="text" value="5%"  /> 。--> </td>
+
+                    </tr>
+                    <!--tr>
+                        <td class="tw"> 第二年：<input type="text" value="3%"  /> 。 </td>
+                    </tr>
+                    <tr>
+                        <td class="tw"> 第三年：<input type="text" value="1%"  /> 。 </td>
+                    </tr>
+                    <tr>
+                        <td class="title"><input type="button" value="添加" style="width:53px; background-color:#108ee9;color:#fff;height: 27px;line-height: 27px;text-align: center;"/></td>
+                        <td class="tw"> 第<input type="text" value="" style="border:1px" /> 年：<input type="text" value="" style="border:1px" /> 。 </td>
+                    </tr-->
+                    <tr class="yjtssl">
+                        <td rowspan="4" valign="top" class="title yjtssltitle">佣金扣税税率：</td>
+                        <td class="tw"> <!-- <input type="text" value="0"  /> 至 <input type="text" value="3000"  />  税率：<input type="text" value="5%"  /> --></td>
+                    </tr>
+                    <!--tr>
+                        <td class="tw">    <input type="text" value="3001"  /> 至 <input type="text" value="5000"  />  税率：<input type="text" value="5.5%"  /> </td>
+                    </tr>
+                    <tr>
+                        <td class="tw">  <input type="text" value="5001"  /> 至 <input type="text" value="10000"  />  税率：<input type="text" value="8%"  /> </td>
+                    </tr>
+                    <tr>
+                        <td class="title"><input type="button" value="添加" style="width:53px; background-color:#108ee9;color:#fff;height: 27px;line-height: 27px;text-align: center;"/></td>
+                        <td class="tw">  <input type="text" value="5001"  /> 至 <input type="text" value="10000"  />  税率：<input type="text" value="8%"  /> </td>
+                    </tr-->
+                    <tr  >
+                        <td class="title">商家考核标准：</td>
+                        <td class="tw"> 考核周期 <input type="text" value="" id="sjkhbz1"/>个月 内，销售额达到 <input type="text" value="" id="sjkhbz2"/>。</td>
+                    </tr>
+                    <tr class="syzszdsj">
+                        <td class="title">首页展示最短时间：</td>
+                        <td class="tw"> 进行首页展示的最短时间为  <input type="text" value=""/>个月。 </td>
+                    </tr>
+                    <tr class="dyzdsj">
+                        <td class="title">代言最短时间：</td>
+                        <td class="tw">进行代言的最短时间为  <input type="text" value=""/>个月。 </td>
+                    </tr>
+                    <tr class="txgz">
+                        <td  rowspan="3"  valign="top" class="title txgztitle">提现规则：</td>
+                        <td class="tw"><!-- 提现金额：<= <input type="text" value=""  />    元,手续费为 <input type="text" value="1"  /> % --></td>
+                        <!--td class="title"><input type="button" class="txgztj" value="添加" style="width:53px; background-color:#108ee9;color:#fff;height: 27px;line-height: 27px;text-align: center;"/></td>-->
+                    </tr>
+
+                    <!--tr class="txgz">
+                        <td class="tw"> 提现金额：( <input type="text" value="1000" style="width:60px" /> ，<input type="text" value="10000" style="width:60px" />  ] ,手续费为 <input type="text" value="0.5"  /> % </td>
+                        <td class="title"><input type="button" value="删除" class="txgzsc" style="width:53px; background-color:#108ee9;color:#fff;height: 27px;line-height: 27px;text-align: center;"/></td>
+                    </tr>
+                    <tr class="txgz">
+                        <td class="tw"> 提现金额：( <input type="text" value=" " style="width:60px" /> ，<input type="text" value="  " style="width:60px" />  ] ,手续费为 <input type="text" value="0.5"  /> % </td>
+                        <td class="title"><input type="button" value="删除" class="txgzsc" style="width:53px; background-color:#108ee9;color:#fff;height: 27px;line-height: 27px;text-align: center;"/></td>
+                    </tr-->
+                    <tr class="ddqx">
+                        <td rowspan="10" valign="top" class="title">订单期限：</td>
+                        <td class="tw"> 自动确认会员收货期限  <input type="text" value=""  />  天。 </td>
+                    </tr>
+                    <tr class="zdqxwfkddqx">
+                        <td class="tw">自动取消未付款订单期限  <input type="text" value=""  />  小时。</td>
+                    </tr>
+                    <tr class="zdqrthhsqqx">
+                        <td class="tw">自动确认退换货申请期限  <input type="text" value=""  />  天。</td>
+                    </tr>
+                    <tr class="zdqrthhshqx">
+                        <td class="tw">自动确认退换货的收获期限  <input type="text" value=""  />  天。</td>
+                    </tr>
+                    <tr class="zdfhxyqx">
+                        <td class="tw">最大发货响应期限  <input type="text" value=""  />  小时。</td>
+                    </tr>
+                    <tr class="fhqx">
+                        <td class="tw">发货期限 <input type="text" value=""  />  天。</td>
+                    </tr>
+                    <tr class="fhqxwfh">
+                        <td class="tw">发货期限未发货，罚款 <input type="text" value=""  />  元/单。</td>
+                    </tr>
+                    <tr class="wfzyjgqx">
+                        <td class="tw">无法转移发货订单,未发货警告期限 <input type="text" value=""  />  天。</td>
+                    </tr>
+                    <tr class="jgqxfk">
+                        <td class="tw">警告期限未发货,罚款 <input type="text" value=""  />  元/单。</td>
+                    </tr>
+                    <tr class="wfzywfh">
+                        <td class="tw">无法转移发货订单,未发货关店期限 <input type="text" value=""  />  天。</td>
+                    </tr>
+                    <tr class="spjc1">
+                        <td rowspan="2" class="title">商品警察：</td>
+                        <td class="tw">商品差评率超过<input type="text" value=""  /> %进行警告。</td>
+                    </tr>
+                    <tr class="spjc2">
+                        <td class="tw">商品差评率超过<input type="text" value=""  /> %进行下架。</td>
+                    </tr>
+                </table>
+            </div>
+            <!--商家保证金-->
+            <div class="tab-pane " id="2">
+                <table width="98%" style="margin-top:30px;margin-left:2%" class="sj">
+                    <tr>
+                        <td class="">商家保证金:</td>
+                        <td class="">保证金退还期限：合同到期后 <input value=" "/> 天，系统自动退还保证金。</td>
+                        <td><div class="xiugai" id="sjbzjxg">修改</div></td>
+                    </tr>
+                    <tr>
+                        <td class="">保证金计提方式:</td>
+                        <td class="">保证金计提方式：按结算金额的 <input value="5"/>%。</td>
+                    </tr>
+
+                </table>
+                <table width="98%" style="font-size:16px;text-align: center;margin-left: 2%;">
+                    <input type="hidden" value="dsdzb_business_bond_setting" name="table1" id="table1"/>
+                    <tr style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#3fa4ed;text-align: center"><td>品牌</td><td>品牌所有者</td><td>品牌一级授权者</td><td>品牌二级授权者</td><td>品牌三级授权者</td><td>操作</td> </tr>
+                    <tbody  id="tablesss1" >
+                    <!--tr><td>海参快客</td><td>10,000</td><td>8,000</td><td>5,000</td><td>3,000</td><td class="ac8"><a href="">编辑</a>|<a href="">删除</a></td></tr>
+                    <tr><td>名都伊恩</td><td>10,000</td><td>8,000</td><td>5,000</td><td>3,000</td><td class="ac8"><a href="">编辑</a>|<a href="">删除</a></td></tr>
+                    <tr><td>快客海参</td><td>10,000</td><td>8,000</td><td>5,000</td><td>3,000</td><td class="ac8"><a href="">编辑</a>|<a href="">删除</a></td></tr>
+                    <tr><td>海参快跑</td><td>10,000</td><td>8,000</td><td>5,000</td><td>3,000</td><td class="ac8"><a href="">编辑</a>|<a href="">删除</a></td></tr>
+                    <tr><td>海参快客</td><td>10,000</td><td>8,000</td><td>5,000</td><td>3,000</td><td class="ac8"><a href="">编辑</a>|<a href="">删除</a></td></tr>
+                    <tr><td>维尼所想</td><td>10,000</td><td>8,000</td><td>5,000</td><td>3,000</td><td class="ac8"><a href="">编辑</a>|<a href="">删除</a></td></tr>
+                    <tr><td>海参来了</td><td>10,000</td><td>8,000</td><td>5,000</td><td>3,000</td><td class="ac8"><a href="">编辑</a>|<a href="">删除</a></td></tr-->
+                    </tbody>
+                </table>
+                <div id="demo7" style="text-align: center; margin-top: 30px;" ></div>
+            </div>
+            <!--栈代保证金-->
+            <!--<div class="tab-pane" id="3">
+                        <td><div class="xiugai">修改</div></td>
+                    </tr>
+                </table>
+                <table width="60%" style="margin-top:30px;margin-left:30px">
+                    <tr><td style="width:150px">代理的商家数量</td><td style="width:150px">栈代保证金</td></tr>
+                    <tr><td>一家</td><td>10，000元</td></tr>
+                    <tr><td>两家</td><td>20，000元</td></tr>
+                    <tr><td>三家</td><td>30，000元</td></tr>
+                    <tr><td>四家</td><td>40，000元</td></tr>
+                    <tr><td>五家</td><td>50，000元</td></tr>
+                    <tr><td>六家</td><td>60，000元</td></tr>
+                </table>
+                <center>
+                    <ul class="pagination">
+                        <li><a href="#">&laquo;</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li class="disabled"><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">&raquo;</a></li>
+                    </ul>
+                </center>
+                </div>-->
+            <div class="tab-pane" id="3">
+                <table width="98%" style="margin-top:30px;margin-left:2%">
+                    <tr>
+                        <td >栈代保证金:</td>
+                        <td >保证金退还期限：合同到期后 <input value="20"/> 天，系统自动退还保证金。</td>
+                        <td><div class="xiugai" id="zdbzjxg">修改</div></td>
+                    </tr>
+                </table>
+                <table width="98%" style="font-size:16px;text-align: center;margin-left: 2%;">
+                    <input type="hidden" value="dsdzb_stack_bond_setting" name="table2" id="table2"/>
+                    <tr  style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#3fa4ed;text-align: center">
+                        <td>代理的商家数量</td>
+                        <td>栈带保证金</td>
+                        <td>操作</td>
+                    </tr>
+                    <tbody  id="tablesss2" >
+                    <tr>
+                        <!--td>10，000元</td>
+                        <td>20，000元</td>
+                        <td>30，000元</td>
+                        <td>40，000元</td>
+                        <td>50，000元</td>
+                        <td>60，000元</td>
+                        <td class="ac8"><a href="">编辑</a>|<a href="">删除</a></td-->
+                    </tr>
+                    </tbody>
+                </table>
+                <div id="demo8" style="text-align: center; margin-top: 30px;" ></div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+
+
+        // $('.sjbzjlb').each(function(){
+        //     $(this).on('click',function(){
+        //         // $('.text').val($('.evals>li').eq(index).html());
+        //         alert('888');
+        //     })
+        // })
+        // $(".pagination li").click(function(){
+        //     $(this).addClass("active");
+        //     $(this).siblings().removeClass("active");
+        // })
+
+
+    </script>
+
+    <!--分页开始-->
+
+    <script>
+
+        jQuery(document).ready(function(){
+
+            var mycars=new Array();
+            var cuur=1;
+            var pagelimit=10;
+            function loadajax(action,table,field,values,page_size,page_no,moudle_id){
+                jQuery.ajax({
+                    type:"POST",
+                    cache: false,
+                    async:false,
+                    url:"/ajax.jsp",
+                    dataType:"json",
+                    // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                    data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                    error:function(){alert("数据错误，操作被取消3！");},
+                    success:function(data)
+                    {
+                        if(data.state=="error"){alert("系统错误，操作被取消3！");return;}
+                        total2=data.data.total;
+                        mycars[0]=total2;
+                        var message=data.data.data;
+                        //console.log(message);
+                        $("#tablesss2").html('');
+                        for(var i=0;i<message.length;i++){
+                            $("#tablesss2").append("<tr><td><input type='hidden' value='"+message[i]['id']+"'/><input type='text' value='"+message[i]['agent_number']+"'/></td><td><input type='text' value='"+message[i]['stack_bond']+"'/></td>"+"<td class='ac8'><span class='sjbzjlb2'  onclick='surprise(this)'>修改</span>|<span onclick='surprise2(this)' >删除</span></td></tr>");
+                        }
+                    }
+                });
+            }
+            loadajax("select","dsdzb_stack_bond_setting","states","0",pagelimit,cuur,1);
+            layui.use(['laypage', 'layer'], function(){
+                var laypage = layui.laypage
+                    ,layer = layui.layer;
+                //完整功能
+                laypage.render({
+                    elem: 'demo8'
+                    ,count:total2
+                    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                    ,jump: function(obj){
+                        //console.log(obj)
+                        cuur=obj.curr;
+                        pagelimit=obj.limit;
+                        //alert(pagelimit);
+                        loadajax("select","dsdzb_stack_bond_setting","states","0",pagelimit,cuur,1);
+                        //loadajax("select","stu",pagelimit,cuur,1);
+                    },
+                    limits:[10, 20, 30, 50, 100],
+                    limit:pagelimit
+                });
+            });
+        });
+    </script>
+    <!--分页结束-->
+    <script>
+        $(".pagination li").click(function(){
+            $(this).addClass("active");
+            $(this).siblings().removeClass("active");
+        })
+    </script>
+
+
+</center>
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>卖家品牌列表 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <!--<script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>-->
+    <script src="$!webPath/resources/js/jquery-2.0.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+    <!-- <script src="$!webPath/resources/js/jquery.shop.common.js"></script>-->
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link href="$!webPath/resources/style/system/manage/black/zxx.css"  rel="stylesheet" type="text/css"/>
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <!--<link href="$!webPath/resources/style/system/front/default/css/zxx.csss" type="text/css" rel="stylesheet" />-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+    <script src="$!webPath/resources/js/echarts.min.js"></script>
+    <!--<script type="text/javascript" src="$!webPath/resources/js/lib/req/require.js" data-main="index"></script>-->
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+
+    <script src="$!webPath/resources/js/echarts.min.js"></script>
+    <script>
+        var userId='${user.id}';
+        var begin_time;
+        var end_time;
+        var array=new Array();
+        jQuery(document).ready(function(){
+            //广告效果分析
+            advert_time();
+            before_advert_count();
+            at_advert_count();
+            advert_bar(array);
+            activity_bar(array);
+
+            //活动效果分析
+        });
+        //获取广告播放时间段
+        function advert_time(){
+            var sql = "SELECT a.ad_begin_time,a.ad_end_time,a.`addTime` FROM dashidao_advert a WHERE a.ad_user_id=" + userId +" order by a.ad_end_time ";
+            jQuery.ajax({
+                type: "POST",
+                cache: false,
+                async: false,
+                url: "/ajaxuser.jsp",
+                dataType: "json",
+                data: "table=dashidao_advert&dates=ad_begin_time,ad_end_time,addTime&sql="+sql,
+                error: function () {
+                   // alert("数据错误，操作被取消！");
+                },
+                success: function (data) {
+
+                    if (data.state == "error") {
+                    	//alert("系统错误，操作被取消！");
+                        return;
+                    }
+                    var message = data.data.data;
+                    begin_time=message[0]['ad_begin_time'];
+                    end_time=message[message.length-1]['ad_end_time'];
+
+                }
+            });
+        }
+        //取得广告期间的销量
+        function at_advert_count(){
+            var sqls = "SELECT b.`count` " +
+                "FROM dashidao_goodscart B INNER JOIN  dashidao_orderform A ON b.`of_id`=a.`id` " +
+                "WHERE A.seller="+userId+" AND b.`addTime` BETWEEN  '"+begin_time+"' and '"+end_time+"' order by b.id";
+            jQuery.ajax({
+                type: "POST",
+                cache: false,
+                async: false,
+                url: "/ajaxuser.jsp",
+                dataType: "json",
+                data: "table=dashidao_goodscart&dates=addTime&sql="+sqls,
+                error: function () {
+                	//alert("数据错误，操作被取消！");
+                },
+                success: function (data) {
+
+                    if (data.state == "error") {
+                    	//alert("系统错误，操作被取消！");
+                        return;
+                    }
+                    var message = data.data.data;
+                    var count=0;
+                    for(var i=0;i < message.length;i++){
+                        count=count+parseFloat(message[i]['count']);
+                    }
+                    array[1]=count;
+
+                }
+            });
+        }
+        //取得广告之前的销量
+        function before_advert_count(){
+            var sql2 = "SELECT b.`count` " +
+                "FROM dashidao_goodscart B INNER JOIN  dashidao_orderform A ON b.`of_id`=a.`id` " +
+                "WHERE A.seller="+userId+" AND b.`addTime` NOT BETWEEN  '"+begin_time+"' and '"+end_time+"' order by b.id";
+            jQuery.ajax({
+                type: "POST",
+                cache: false,
+                async: false,
+                url: "/ajaxuser.jsp",
+                dataType: "json",
+                data: "table=dashidao_goodscart&dates=addTime&sql="+sql2,
+                error: function () {
+                	// alert("数据错误，操作被取消！");
+                },
+                success: function (data) {
+                    if (data.state == "error") {
+                    	// alert("系统错误，操作被取消！");
+                        return;
+                    }
+                    var message = data.data.data;
+                    var count1=0;
+                    for(var i=0;i < message.length;i++){
+                        count1=count1+parseFloat(message[i]['count']);
+                    }
+                    array[0]=count1;
+                }
+            });
+        }
+        function advert_bar(v){
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('first'));
+            // 指定图表的配置项和数据
+            var option = {
+                xAxis: {
+                    type: 'category',
+                    data: ['广告之前', '广告期间']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: v,
+                    type: 'bar'
+                }]
+            };
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        }
+        function activity_bar(v){
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('main1'));
+            // 指定图表的配置项和数据
+            var option = {
+                xAxis: {
+                    type: 'category',
+                    data: ['活动之前', '活动期间']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: v,
+                    type: 'bar'
+                }]
+            };
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        }
+    </script>
+</head>
+<body>
+
+<div class="main"> $!httpInclude.include("/seller/nav_head.htm")
+ 
+    <div class="user_center">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=activity_analyze")
+                <td id="centerbg" valign="top" width="80%" >
+                	<div class="buyer_position">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">商家支持</a> > <span>销售分析</span> > <span>活动分析</span></div>
+                    </div>
+                    <div class="xiaoshou-box">
+                        <div class="xiaoshou-mid">
+                            <div class="xiaoshou-mid1"><p><span></span>广告效果分析</p></div>
+                            <div class="xiaoshou-mid2">
+                                <form>
+                                    <button type="submit" class="btn btn-default" style="border: none;  background: #3fa4ed; color: #fff; height: 38px; float: right;  margin-left: 20px;   " >确定</button>
+                                    <select class="form-control" style="width: 300px; float: right; height: 36px; line-height: 36px; margin-left: 10px;">
+                                        <option>满200减100  2017-2-3 至 2017-9-1-1</option>
+                                        <option>拼团iPhone  2017-2-3 至 2017-9-1-1</option>
+                                    </select>
+                                </form>
+
+                            </div>
+
+                        </div>
+                        <div class="huodong-top">
+                            <div id="main" style="width: 600px;height:400px;">
+                                <div  id="first" style="width: 300px;height:250px;border-bottom: 1px solid #ccc;border-radius: 10px;"></div>
+                                <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                                <!-- <div id="main3" style="width: 800px;height: 400px; display: flex;margin: 15px auto;"></div>-->
+
+                            </div>
+                        </div>
+                        <div class="xiaoshou-mid">
+                            <div class="xiaoshou-mid1"><p><span></span>活动效果分析</p></div>
+                            <div class="xiaoshou-mid2">
+                                <form>
+                                    <button type="submit" class="btn btn-default" style="border: none;  background: #3fa4ed; color: #fff; height: 38px; float: right;  margin-left: 20px;   " >确定</button>
+                                    <select class="form-control" style="width: 300px; float: right; height: 36px; line-height: 36px; margin-left: 10px;">
+                                        <option>满200减100  2017-2-3 至 2017-9-1-1</option>
+                                        <option>拼团iPhone  2017-2-3 至 2017-9-1-1</option>
+                                    </select>
+                                </form>
+                            </div>
+
+
+                        </div>
+                        <div class="huodong-top">
+                            <div id="main1" style="width: 600px;height:400px;">
+                                <div  id="second" style="width: 300px;height:250px;border-bottom: 1px solid #ccc;border-radius: 10px;"></div>
+
+                            </div>
+                        </div>
+
+                        <div class="xiaoshou-mid">
+                            <div class="xiaoshou-mid1"><p><span></span>代言效果分析</p></div>
+                            <div class="xiaoshou-mid2">总代言人数：10人&nbsp;&nbsp;总代言费：1000元</div>
+
+                        </div>
+                        <div class="huodong-top2">
+                            <div class="huodong-top3">
+                                <div class="huodong-top4">
+                                    <ul>
+                                        <li style="width: 15%;">代言商品</li>
+                                        <li style="width: 15%;">代言人</li>
+                                        <li style="width: 15%;">代言费用</li>
+                                        <li style="width: 18%;">上月代言销量</li>
+                                        <li style="width: 15%;">总销量</li>
+                                        <li style="width: 22%;">代言销量/总销量</li>
+
+                                    </ul>
+                                </div>
+                                <div class="huodong-top5">
+                                    <ul>
+                                        <li style="width: 15%;font-weight: bold;">韩版T恤</li>
+                                        <li style="width: 15%;">赵丽颖</li>
+                                        <li style="width: 15%;font-weight: bold;">90</li>
+                                        <li style="width: 18%;">100</li>
+                                        <li style="width: 15%;">2100</li>
+                                        <li style="width: 22%;font-weight: bold;">4.78%</li>
+
+                                    </ul>
+                                    <ul>
+                                        <li style="width: 15%;font-weight: bold;">韩版T恤</li>
+                                        <li style="width: 15%;">赵丽颖</li>
+                                        <li style="width: 15%;font-weight: bold;">90</li>
+                                        <li style="width: 18%;">100</li>
+                                        <li style="width: 15%;">2100</li>
+                                        <li style="width: 22%;font-weight: bold;">4.78%</li>
+
+                                    </ul>
+                                    <ul>
+                                        <li style="width: 15%;font-weight: bold;">韩版T恤</li>
+                                        <li style="width: 15%;">赵丽颖</li>
+                                        <li style="width: 15%;font-weight: bold;">90</li>
+                                        <li style="width: 18%;">100</li>
+                                        <li style="width: 15%;">2100</li>
+                                        <li style="width: 22%;font-weight: bold;">4.78%</li>
+
+                                    </ul>
+                                    <ul>
+                                        <li style="width: 15%;font-weight: bold;">韩版T恤</li>
+                                        <li style="width: 15%;">赵丽颖</li>
+                                        <li style="width: 15%;font-weight: bold;">90</li>
+                                        <li style="width: 18%;">100</li>
+                                        <li style="width: 15%;">2100</li>
+                                        <li style="width: 22%;font-weight: bold;">4.78%</li>
+
+                                    </ul>
+
+
+
+                                </div>
+                                <div class="xx-bontom">
+                                    <div class="xx-bontom1">Total 85 items</div>
+                                    <div class="xx-bontom-ul">
+                                        <ul>
+                                            <li><i class="iconfont icon-back"></i></li>
+                                            <li>1</li>
+                                            <li>2</li>
+                                            <li>3</li>
+                                            <li>4</li>
+                                            <li>5</li>
+                                            <li>…</li>
+                                            <li>50</li>
+                                            <li><i class="iconfont icon-more"></i></li>
+                                        </ul>
+
+                                    </div>
+                                    <div class="xx-bontom2">10/page<i class="iconfont icon-moreunfold"></i></div>
+                                    <div class="xx-bontom3">Goto</div>
+                                    <div class="xx-bontom4"><input type="text" placeholder="8"></div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

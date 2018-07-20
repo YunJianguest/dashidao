@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>商品上架审核 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+<link href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/template.css"  rel="stylesheet" type="text/css"/>
+<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+<script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+        });
+    </script>
+</head>
+<body>
+<body>
+<div class="cont">
+  <h1 class="seth1">商品上架审核</h1>                                                                                                                                                                                                                                  <!--tab-two-->
+  <div class="settab"><span class="tab-one"></span> <span class="tabs"> 
+  	<a href="$!webPath/admin/goods_listcheck.htm"  class="this">管理</a>  
+  </div>
+  <div class="operation">
+    <h3>友情提示</h3>
+    <ul>
+      <li></li>
+    </ul>
+  </div>
+  <div class="classtable">
+    <FORM name="ListForm" id="ListForm"  action="$!webPath/admin/goods_listcheck.htm" method="post">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="class_table">
+        <tr class="tableheader">
+          <td width="5%"></td>
+          <td width="30%">商品信息</td>
+          <td width="15%">出厂价</td>
+          <td width="20%">起订数量</td>
+          <td width="15%">审核状态</td>
+          <td width="">操作</td>
+        </tr>
+
+        #foreach($obj in $objs)
+        <tr>
+        	 <td >&nbsp;</td>
+             <td align="rigth">
+             	<span class="fl">
+                               $!obj.goods_name<br/>
+                            </span>
+                                    <span class="fr">
+                                商品编号:$!obj.goods_serial<br/>
+
+                               #foreach($sp in $!obj.gsps)
+                                                $sp.spec.name：$sp.spec.type/$sp.value<br/>
+                                                  #end<br/>
+
+                            </span>
+             </td>
+             <td align="rigth">$!obj.goods_price</td>
+             <td>$!obj.goods_salenum</td>
+             <td>
+             	  #if($!{obj.goods_shzt} ==1)
+             	  	审核成功
+	              #end
+	              #if($!{obj.goods_shzt} ==0)
+	              	待审核
+	              #end
+	               #if($!{obj.goods_shzt} ==2)
+             	  	审核不成功
+	              #end
+             </td>
+             <td>
+             	<a href="$!webPath/admin/goods_check.htm?goodsid=$!obj.id&goods_shzt=1&currentPage=$!currentPage">审核成功</a>  &nbsp;&nbsp;
+             	<a href="$!webPath/admin/goods_check.htm?goodsid=$!obj.id&goods_shzt=2&currentPage=$!currentPage">审核不成功</a>
+             </td>
+        </tr>
+        #end
+      </table>
+      <input type="hidden" name="currentPage" id="currentPage" value="$!currentPage" />
+      <input name="mulitId" type="hidden" id="mulitId" />
+      <div class="fenye"> $!gotoPageHTML</div>
+    </FORM>
+  </div>
+</div>
+</body>
+</html>
+
+<!--</body>-->
+<!--</html>-->

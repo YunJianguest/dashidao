@@ -1,0 +1,319 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!--link href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/template.css"  rel="stylesheet" type="text/css"/-->
+    <!--link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet-->
+
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/iconfont.css">
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="$!webPath/resources/js/jquery.js"></script>
+    <script type="text/javascript" src="$!webPath/resources/js/highcharts.js"></script>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+    <!--<script type="text/javascript" src="$!webPath/resources/js/exporting.js"></script>-->
+    <title>无标题文档</title>
+
+    <style>
+        body{
+            font-family: "Microsoft Yahei", "Lucida Grande", Verdana, Lucida, Helvetica, Arial, 'Simsun', sans-serif;
+            font-size: 16px!important;
+        }
+        input{
+            border:none;
+            width: 100px;
+        }
+        table tr td{
+            border-bottom: 1px solid #eee;padding: 10px 0;
+        }
+        ul{margin: 0;}
+        .a{
+            width: 80%;
+
+        }
+        .nav-tabs{width: 100%; margin: 10px auto;border:0;}
+
+        .nav li{margin-left:2px}
+        .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{background:#3fa4ed;color:#fff; width:100%;}
+        #font{
+            color: red;
+        }
+        #font2{
+            color:blue;
+
+        }
+        .tabbable{margin: 0 auto;}
+        .tab-content{width:100%;}
+        .table a{
+            border:1px solid #c3c3c3;
+            padding: 5px 14px;
+            border-radius: 4px;
+        }
+        .table a:hover{color:#000;background: #fff;}
+        .seth1 {
+            border-top: 1px solid #D9D9D9;
+            height: 35px;
+            border-bottom: 1px solid #D9D9D9;
+            line-height: 35px;
+            padding-left: 40px;
+            color: #686868;
+            margin: 5px;
+            font-size: 16px;
+            padding: 0px;
+            text-align: left;
+            background: #f3f3f3;
+        }
+        .nav>li>a {
+            position: relative;
+            border:1px solid #c3c3c3;
+            display: block;
+            border-top-left-radius: 8px;
+            border-top-right-radius:8px;
+            font-size: 16px!important;
+            padding: 5px 15px;
+            color:#000;
+        }
+        .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{background:#3fa4ed;color:#fff;font-size: 16px;}
+        .nav{margin: 17px 0 29px 21px;border-bottom: 1px solid #c3c3c3;}
+        .bor{height:30px;line-height: 30px;}
+        .ac9 a {
+            color: #999;
+            padding:3px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            border:1px solid #999;
+        }
+        .ac9 a:hover {
+            color:#999;
+            background: #fff;
+        }
+        .dai,.shenh{color:#3fa4ed;}
+        .agree{color:#0a7e07;}
+        .disagree{color:red;}
+        .qd{font-size:16px;border-radius: 4px;color:#fff;background:#3fa4ed;width:100px;text-align:center;margin: 10px auto;line-height:33px;}
+        .cans li{width:33.3%;float:left;list-style: none;}
+        .title{border-left: 3px  solid #3fa4ed;margin:20px 1%;}
+        .dcwb ul li{list-style:none;float:left;height: 30px;line-height: 15px;font-size: 16px;margin-right: 10px;}
+        .dcwb{float:right;}
+        .dcwb ul li i{font-size: 30px;}
+        .allmen input {
+            width: 180px;
+            height: 29px;
+            line-height:29px;
+            padding-left: 5px;
+            border: 1px solid #ccc;
+            color: #333333;
+            background: #FAFAFA none repeat scroll 0 0;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #B2B2B2 #E7E7E8 #E7E7E8 #B2B2B2;
+            border-radius: 5px;
+            margin:5px 0 0 2%;
+        }
+        .btn_search input {
+            background-color: #3fa4ed;
+            width: 62px;
+            height: 30px;
+            border: 0px;
+            color: #FFF;
+        }
+        .day{margin-left: 20px;}
+        .day input{
+            text-align: center;
+            width:40px;
+            height: 34px;
+            border: 1px solid #c3c3c3;
+            background: #fff;
+            border-radius: 4px;
+        }
+        .day .sel{
+            background-color: #3fa4ed;
+            color: #FFF;
+        }
+        .seday input{
+            text-align: center;
+            width:40px;
+            height: 34px;
+            border: 1px solid #c3c3c3;
+        }
+        .pagination{float: right;}
+        .disable a{border:0!important;color:#000!important;}
+        .disable a:hover{border:0!important;color:#000!important;background: #fff!important;}
+        .pagination .active a{background:#108ee9!important; }
+        .pagination li a{padding: 4px 10px!important;margin: 0 2px!important; border-radius: 4px;}
+    </style>
+</head>
+
+<body>
+<div class="tabbable">
+    <div class="seth1">
+        <img src="$!webPath/resources/style/system/manage/black/img/1.png" alt="">
+        订单
+    </div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#1" data-toggle="tab">订单概况</a></li>
+        <li><a href="#2" data-toggle="tab">区域分析</a></li>
+    </ul>
+    <div class="tab-content">
+        <!--数据表格-->
+        <div class="tab-pane active" id="1"style="width:99%;margin-left:1%;">
+            <table width="100%" style="font-size: 16px;text-align: center;">
+                <tr style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#3fa4ed;text-align: center">
+                    <td>订单总数</td>
+                    <td>订单金额</td>
+                    <td>自提订单占比</td>
+                    <td>最高订单额</td>
+                    <td>最低订单额</td>
+                </tr>
+                <tbody  id="tablesss" >
+                <tr>
+                    <td>19009</td>
+                    <td>60%</td>
+                    <td>200</td>
+                    <td>900</td>
+                    <td>20</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tab-pane" id="2" >
+            <div id="container" style="height: 800px;width:1200px;background:white;margin:20px 0 0;"></div>
+            <script src="$!webPath/resources/js/echarts.min.js"></script>
+            <script src="$!webPath/resources/js/china.js"></script>
+            <script type="text/javascript">
+                // 全国省份列表
+                var dataMap = [{ name: '北京' }, { name: '天津' }, { name: '上海' }, { name: '重庆' }, { name: '河北' }, { name: '河南' }, { name: '云南' }, { name: '辽宁' }, { name: '黑龙江' }, { name: '湖南' }, { name: '安徽' }, { name: '山东' },
+                    { name: '新疆' }, { name: '江苏' }, { name: '浙江' }, { name: '江西' }, { name: '湖北' }, { name: '广西' }, { name: '甘肃' }, { name: '山西' }, { name: '内蒙古' }, { name: '陕西' }, { name: '吉林' }, { name: '福建' }, { name: '贵州' },
+                    { name: '广东' }, { name: '青海' }, { name: '西藏' }, { name: '四川' }, { name: '宁夏' }, { name: '海南' }, { name: '台湾' }, { name: '香港' }, { name: '澳门' }]
+                // 需要在页面上直接标记出来的城市
+                var specialMap = [ '陕西'];
+                // 对dataMap进行处理，使其可以直接在页面上展示
+                for (var i = 0; i < specialMap.length; i++) {
+                    for (var j = 0; j < dataMap.length; j++) {
+                        if (specialMap[i] == dataMap[j].name) {
+                            dataMap[j].selected = true;
+                            break;
+                        }
+
+                    }
+                }
+                // 绘制图表，准备数据
+                var option = {
+                    tooltip: {
+                        formatter: function (params) {
+                            var info = '<p style="font-size:18px">' + params.name + '</p><p style="font-size:16px"></p>'
+                            return info;
+                        },
+                        backgroundColor: "#ff7f50",//提示标签背景颜色
+                        textStyle: { color: "#fff" } //提示标签字体颜色
+                    },
+                    series: [
+                        {
+                            name: '中国',
+                            type: 'map',
+                            mapType: 'china',
+                            selectedMode: 'multiple',
+                            label: {
+                                normal: {
+                                    show: true,//显示省份标签
+                                    // textStyle:{color:"#c71585"}//省份标签字体颜色
+                                },
+                                emphasis: {
+                                    show: true,//对应的鼠标悬浮效果
+                                    // textStyle:{color:"#800080"}
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+                                    borderWidth: .5,//区域边框宽度
+                                    // borderColor: '#009fe8',//区域边框颜色
+                                    // areaColor:"#ffefd5",//区域颜色
+                                },
+                                emphasis: {
+                                    borderWidth: .5,
+                                    borderColor: '#4b0082',
+                                    areaColor: "#ffdead",
+                                }
+                            },
+                            data: dataMap
+                        }
+                    ]
+                };
+                //初始化echarts实例
+                var myChart = echarts.init(document.getElementById('container'));
+                //使用制定的配置项和数据显示图表
+                myChart.setOption(option);
+            </script>
+        </div>
+
+
+    </div>
+</div>
+<!--分页开始-->
+<div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+<script>
+    jQuery(document).ready(function(){
+        var mycars=new Array()
+        var cuur=1;
+        var pagelimit=2;
+        function loadajax(action,table,field,values,page_size,page_no,moudle_id){
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajax.jsp",
+                dataType:"json",
+                // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error:function(){alert("数据错误，操作被取消！");},
+                success:function(data)
+                {
+                    if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                    total=data.data.total;
+                    mycars[0]=total;
+                    var message=data.data.data;
+                    //console.log(message);
+                    $("#tablesss").html('');
+                    for(var i=0;i<message.length;i++){
+                        $("#tablesss").append("<tr><td>"+message[i]['id']+"</td><td>"+message[i]['name']+"</td><td>"+message[i]['age']+"</td><td>"+message[i]['name']+"</td><td>"+message[i]['age']+"</td></tr>");
+                    }
+                }
+            });
+        }
+        loadajax("select","stu","name,age","c,5",pagelimit,cuur,1);
+        layui.use(['laypage', 'layer'], function(){
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+            //完整功能
+            laypage.render({
+                elem: 'demo7'
+                ,count:total
+                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                ,jump: function(obj){
+                    //console.log(obj)
+                    cuur=obj.curr;
+                    pagelimit=obj.limit;
+                    //alert(pagelimit);
+                    loadajax("select","stu","name,age","c,5",pagelimit,cuur,1);
+                    //loadajax("select","stu",pagelimit,cuur,1);
+                },
+                limits:[2, 4, 6, 8, 10],
+                limit:pagelimit
+            });
+        });
+    });
+</script>
+<!--分页结束-->
+<script>
+    $(".pagination li").click(function(){
+        $(this).addClass("active");
+        $(this).siblings().removeClass("active");
+    })
+</script>
+</body>
+</html>

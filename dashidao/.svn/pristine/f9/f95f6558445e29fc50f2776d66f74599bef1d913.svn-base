@@ -1,0 +1,344 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>总部业务详情</title>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/two_level.css">
+	<script src="$!webPath/resources/js/jquery-1.7.1.min.js"></script>
+	<!--layui-->
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+	<script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+	
+	<style type="text/css" >
+    /*tablediv*/
+    .tablediv{ border: 1px solid #ccc; width: 560px; margin:30px 0 0 100px;  }
+    .sborder{ height: 40px;  border-bottom: 1px solid #a8a8aa; }
+    .nmouth font{ background:#fff; padding-top: -20px; font-size: 20px;color: #a8a8aa;  display: block; width:140px; margin:-12px 0 0 210px;}
+    .ggtable{border: none; }
+    .ggtable tr td{ height: 80px; text-align: center;  width:80px; }
+    .ggtable thead td{ background:#f3f3f4; color: #464646; font-weight: 600;  text-align: center; height: 40px; line-height: 40px; }
+    .ggtable div{ width:100%; height:100%;}
+    .ggtable div span{ display:block; width:100%; color: #464646; font-size: 20px; font-weight: 600;   }
+    .ggtable div.xiu span{ color: #d9d9d9; }
+    .ggtable div span.small{ font-size: 12px;  height: 12px;  }
+    .ggtable div span.big{ font-size: 13px; font-weight: normal; padding-top: 5px;  }
+    .tpday{ color: #5795e0; font-size: 18px; line-height: 60px; }
+    .ggtable div.price:hover{background: url("images/hoverbg.png") no-repeat top center; cursor: pointer; }
+    .ggtable div.price:hover span{ color: #fff; }
+    /*topcontent*/
+    .topcontent{ width: 760px; padding-left: 20px;}
+    .topcontent .button{ background: #108ee9; color: #fff; border: none; padding: 5px 10px; float: right; }
+    .clear{ clear: both;}
+    .topcontent input{ width: 40px; padding: 5px 0; text-align: center; border-radius:1px; border: none; border: 1px solid #ccc; margin: 0 10px;   }
+    .tablediv p{  text-align: center;}
+    .tablediv p span{ padding: 0 15px; border: 1px solid #ccc; margin: 0 10px; }
+</style>
+</head>
+<body>
+<div class="both headquarters">
+<form id="form1" name="form1" method="post" class="form-inline">
+ <div class="topcontent" > 
+            <div class="clear"></div>
+            <p>云店会员端轮播广告：每天的基准价格<input type="text" value="100"/>元</p>
+            <div class="tablediv" >
+                <p>查看<span><</span>&nbsp;&nbsp;2018&nbsp;&nbsp;<span>></span>年价格</p>
+                <table  class="ggtable" border="0"  cellspacing="0" cellpadding="0">
+                    <thead>
+                    <tr >
+                        <td>日</td>
+                        <td>一</td>
+                        <td>二</td>
+                        <td>三</td>
+                        <td>四</td>
+                        <td>五</td>
+                        <td>六</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td colspan="7" class="nmouth">
+                            <div>
+                                <span class="sborder" ></span>
+                                <font>2018年01月</font>
+                            </div>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div class="xiu">
+                                <span class="small" >休</span>
+                                <span>1</span>
+                                <span class="big"></span>
+                            </div>
+                        </td>
+                        <td><div class="tpday">今天</div></td>
+                        <td>
+                            <div class="price" >
+                                <span class="small"></span>
+                                <span>3</span>
+                                <span class="big">￥366</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>4</span>
+                                <span class="big">￥368</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>5</span>
+                                <span class="big red">￥310</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>6</span>
+                                <span class="big">￥310</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>7</span>
+                                <span class="big">￥366</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>8</span>
+                                <span class="big">￥366</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>9</span>
+                                <span class="big">￥366</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>10</span>
+                                <span class="big">￥366</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>11</span>
+                                <span class="big">￥368</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>12</span>
+                                <span class="big red">￥310</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>13</span>
+                                <span class="big">￥310</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>14</span>
+                                <span class="big">￥366</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>15</span>
+                                <span class="big">￥366</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>16</span>
+                                <span class="big">￥366</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>17</span>
+                                <span class="big">￥366</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>18</span>
+                                <span class="big">￥368</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>19</span>
+                                <span class="big red">￥310</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>20</span>
+                                <span class="big">￥310</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>21</span>
+                                <span class="big">￥366</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>22</span>
+                                <span class="big">￥366</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>23</span>
+                                <span class="big">￥366</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>24</span>
+                                <span class="big">￥366</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>25</span>
+                                <span class="big">￥368</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>26</span>
+                                <span class="big red">￥310</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>27</span>
+                                <span class="big">￥310</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>28</span>
+                                <span class="big">￥366</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>29</span>
+                                <span class="big">￥366</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>30</span>
+                                <span class="big">￥366</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price">
+                                <span class="small"></span>
+                                <span>31</span>
+                                <span class="big">￥366</span>
+                            </div>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+   <div style="height:50px;line-height:50px;border-left:2px solid #3fa4ed;font-size: 20px; margin-bottom: 5px;">审核意见</div>
+	<div class="view">
+	<span></span>    <font>同意</font> <span class="refuse check"></span>   <font>不同意</font>
+	<div>
+		<textarea type="text" class="" name="" id="shyj" value="" placeholder="同意修改" ></textarea>
+	</div>
+	</div>
+</form>
+<div class="sub" onclick="subc();">提交审核意见</div>
+</div>
+<script type="text/javascript">
+$('.view span').click(function(){
+	$(this).addClass('check');
+	$(this).siblings('span').removeClass('check');
+})
+function subc(){ 
+	if($('#shyj').val()==""){
+		alert('请输入审核意见');
+		return;
+	}
+	var state;
+	if($('.refuse').hasClass('check')){
+		state="不同意";
+		
+	}else{
+		state="同意";
+	}
+	
+	   jQuery.ajax({
+           type:"POST",
+           cache: false,
+           async:false,
+           url:"/ajax.jsp",
+           dataType:"json",
+           // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+           data:"action=update&table=zb_yewushenhe&field=id,zb_state,zb_yijian&values=${id}|同意|"+state,
+           error:function(){alert("数据错误，操作被取消！");},
+           success:function(data)
+           {
+               if(data.state=="error"){alert("系统错误，操作被取消！");return;} 
+               alert("操作成功");
+               
+               
+           }
+       });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+ /*提示*/
+         h1, h2, h3, h4, h5, h6 {font-size: 16px;padding: 0px;margin: 0px;}
+         body, li, input, textarea, select, button {margin: 0px;font-size: 16px;color: #555;padding: 0px;font-family: "Microsoft Yahei", "Lucida Grande", Verdana, Lucida, Helvetica, Arial, 'Simsun', sans-serif;}
+         ol, ul, li {list-style-image: none;list-style-position: outside;list-style-type: none;}
+         .operation_tip h3 {font-size: 16px!important;padding-left: 30px;padding-top: 10px;color: #088ECD;text-align: left;}
+         .operation_tip ul li {line-height: 25px;background: url(images/xing.jpg) no-repeat left 8px;padding-left: 15px;text-align: left!important;}
+         .operation_tip ul {padding: 10px;padding-left: 30px;}
+         .operation_tip {border: 1px solid #D2D0D0;margin-top: 20px;width: 98%;background: url(images/czts.jpg) no-repeat 10px 10px;}
+         .operation_tip h3 {padding-left: 30px;padding-top: 10px;color: #088ECD;}

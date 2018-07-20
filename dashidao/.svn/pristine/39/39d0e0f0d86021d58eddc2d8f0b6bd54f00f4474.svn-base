@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>卖家品牌列表 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css">
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+	<link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+	<link href="$!webPath/resources/style/system/manage/blue/zhandai.css"  rel="stylesheet" type="text/css"/>
+   </head>
+<body>
+$!httpInclude.include("/top.htm")
+<div class="main ele_invoice">
+    <div class="user_center">
+        $!httpInclude.include("/seller/nav_head.htm")
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=ele_invoice")
+                <td id="centerbg" valign="top" width="100%" class="eleinbox" >
+                    <div  class="fp">
+                        <p class="eleinvotitile"  >税务信息</p>
+                    </div>
+                    <div class="operation_tip">
+	<h3>友情提示</h3>
+	<ul>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+                    <div class="div_2" >
+                        <table width="100%" >
+                            <tbody>
+                            <tr>
+                                <td  align="right">企业名称：</td>
+                                <td  colspan="2" ><input type="text" placeholder="大世道有限公司"/></td>
+                            </tr>
+                            <tr>
+                                <td align="right">纳税人识别号：</td>
+                                <td colspan="2"><input type="text" placeholder="3454354352345"/></td>
+                            </tr>
+                            <tr>
+                                <td align="right">纳税人地址：</td>
+                                <td><input type="text" placeholder="雁塔路"/></td>
+                            </tr>
+                            <tr>
+                                <td align="right">纳税人类型：</td>
+                                <td colspan="2"><input type="text" placeholder="029-5465436"/></td>
+                            </tr>
+                            <tr>
+                                <td align="right">税务登记证书：</td>
+                                <td><input type="text" placeholder="税务证书"/>
+
+                                </td>
+                                <td>（单张不超过3M，支持jpg,png）</td>
+                            </tr>
+                            <tr>
+                                <td align="right">公章图片：</td>
+                                <td colspan="2"><input type="text" placeholder="345345345"/></td>
+                            </tr>
+                            <tr>
+                                <td align="right">公章协议：</td>
+                                <td><input type="text" placeholder="**协议"/>
+
+                                </td>
+                                <td>（先下载公章协议，打印盖章后，再上传；）</td>
+                            </tr>
+                            <tr>
+                                <td align="right">经办人身份证：</td>
+                                <td colspan="2"><input type="text" placeholder="45698745632121"/>
+                                    <input type="text" src="" placeholder="正面照上传"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">经办人姓名：</td>
+                                <td colspan="2"><input type="text" placeholder="胡琴"/></td>
+                            </tr>
+                            <tr>
+                                <td align="right">经办人手机：</td>
+                                <td colspan="2"><input type="text" placeholder="1373445345"/></td>
+                            </tr>
+                            <tr>
+                                <td align="right">经办人邮箱：</td>
+                                <td colspan="2"><input type="text" placeholder="345345345@qq.com"/></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="div_2" >
+                        <div style="width: 30%">
+                            <p>税务登记证书：</p>
+                            <input type="image" src="$!webPath/resources/style/system/manage/black/img/raw_1509689655.jpeg"/>
+                        </div>
+                        <div style="width: 20%">
+                            <p>公章图片：</p>
+                            <input type="image" src="$!webPath/resources/style/system/manage/black/img/raw_1509673550.jpeg"/>
+                        </div>
+                        <div style="width: 20%">
+                            <p>公章协议：</p>
+                            <input type="image" src="$!webPath/resources/style/system/manage/black/img/raw_1509689972.jpeg"/>
+                        </div>
+                        <div style="width: 30%">
+                            <p>经办人身份证：</p>
+                            <input type="image" src="$!webPath/resources/style/system/manage/black/img/raw_1509689749.jpeg"/>
+                        </div>
+                    </div>
+                    <div class="fpr">
+                        <p class="eleinvotitile" >票面初始化</p>
+                    </div>
+                    <div style="width: 90%;display: flex;margin: 15px auto">
+                        <div style="width: 40%">
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td align="right">默认税率：</td>
+                                    <td><input type="text" placeholder="10%"/></td>
+                                </tr>
+                                <tr>
+                                    <td align="right">纳税人地址：</td>
+                                    <td><input type="text" placeholder="雁塔路"/></td>
+                                </tr>
+                                <tr>
+                                    <td align="right">电话：</td>
+                                    <td><input type="text" placeholder="029-5465465"/></td>
+                                </tr>
+                                <tr>
+                                    <td align="right">开户行：</td>
+                                    <td><input type="text" placeholder="建设银行雁塔分行"/></td>
+                                </tr>
+                                <tr>
+                                    <td align="right">账号：</td>
+                                    <td><input type="text" placeholder="523654789"/></td>
+                                </tr>
+                                <tr>
+                                    <td align="right">收款人：</td>
+                                    <td><input type="text" placeholder="江南"/></td>
+                                </tr>
+                                <tr>
+                                    <td align="right">复核：</td>
+                                    <td><input type="text" placeholder="刘洋"/></td>
+                                </tr>
+                                <tr>
+                                    <td align="right">开票人：</td>
+                                    <td><input type="text" placeholder="胡琴"/></td>
+                                </tr>
+                                <tr>
+                                    <td align="right">税收分类编码：</td>
+                                    <td><input type="text" placeholder="胡琴"/></td>
+                                </tr>
+                                <tr>
+                                    <td align="right">商品名称：</td>
+                                    <td><input type="text" placeholder="图书"/></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="padding-top: 30px; width: 60%;">
+                            <input type="image" src="$!webPath/resources/style/system/manage/black/img/raw_1506045440.jpeg"/>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

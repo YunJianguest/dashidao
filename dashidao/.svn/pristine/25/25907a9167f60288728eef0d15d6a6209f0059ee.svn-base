@@ -1,0 +1,582 @@
+package com.dashidao.view.web.action;
+
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.dashidao.core.domain.virtual.SysMap;
+import com.dashidao.core.mv.JModelAndView;
+import com.dashidao.core.query.support.IPageList;
+import com.dashidao.core.security.support.SecurityUserHolder;
+import com.dashidao.core.tools.CommUtil;
+import com.dashidao.foundation.domain.Accessory;
+import com.dashidao.foundation.domain.Coupon;
+import com.dashidao.foundation.domain.CouponInfo;
+import com.dashidao.foundation.domain.Goods;
+import com.dashidao.foundation.domain.GoodsCart;
+import com.dashidao.foundation.domain.GoodsSpecProperty;
+import com.dashidao.foundation.domain.GoodsSpecification;
+import com.dashidao.foundation.domain.Invoice;
+import com.dashidao.foundation.domain.OrderForm;
+import com.dashidao.foundation.domain.Store;
+import com.dashidao.foundation.domain.StoreCart;
+import com.dashidao.foundation.domain.User;
+import com.dashidao.foundation.domain.WuLiuMuBan;
+import com.dashidao.foundation.domain.query.StoreCartQueryObject;
+import com.dashidao.foundation.service.IAccessoryService;
+import com.dashidao.foundation.service.IAdvertService;
+import com.dashidao.foundation.service.IArticleClassService;
+import com.dashidao.foundation.service.IArticleService;
+import com.dashidao.foundation.service.IBargainGoodsService;
+import com.dashidao.foundation.service.ICouponInfoService;
+import com.dashidao.foundation.service.ICouponService;
+import com.dashidao.foundation.service.IDeliveryGoodsService;
+import com.dashidao.foundation.service.IGoodsBrandService;
+import com.dashidao.foundation.service.IGoodsCartService;
+import com.dashidao.foundation.service.IGoodsClassService;
+import com.dashidao.foundation.service.IGoodsFloorService;
+import com.dashidao.foundation.service.IGoodsService;
+import com.dashidao.foundation.service.IGroupGoodsService;
+import com.dashidao.foundation.service.IGroupService;
+import com.dashidao.foundation.service.IInvoiceService;
+import com.dashidao.foundation.service.IMessageService;
+import com.dashidao.foundation.service.INavigationService;
+import com.dashidao.foundation.service.IOrderFormService;
+import com.dashidao.foundation.service.IPartnerService;
+import com.dashidao.foundation.service.IRoleService;
+import com.dashidao.foundation.service.IStoreCartService;
+import com.dashidao.foundation.service.IStoreService;
+import com.dashidao.foundation.service.ISysConfigService;
+import com.dashidao.foundation.service.IUserConfigService;
+import com.dashidao.foundation.service.IUserService;
+import com.dashidao.foundation.service.IWuLiuMuBanService;
+import com.dashidao.jwt.filter.SignFilter;
+import com.dashidao.jwt.util.ComplexOutPropertyPreFilter;
+import com.dashidao.jwt.util.DateJsonValueProcessor;
+import com.dashidao.manage.admin.tools.MsgTools;
+import com.dashidao.view.web.tools.GoodsFloorViewTools;
+import com.dashidao.view.web.tools.GoodsViewTools;
+import com.dashidao.view.web.tools.NavViewTools;
+import com.dashidao.view.web.tools.StoreViewTools;
+
+import io.jsonwebtoken.Claims;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
+
+/**
+ * 商城购物车制器
+ */
+@Controller
+public class GoodsCarViewAction {
+	@Autowired
+	private ISysConfigService configService;
+	
+	@Autowired
+	private IOrderFormService orderFormService;
+
+	@Autowired
+	private IUserConfigService userConfigService;
+
+	@Autowired
+	private IGoodsClassService goodsClassService;
+
+	@Autowired
+	private IGoodsBrandService goodsBrandService;
+
+	@Autowired
+	private IPartnerService partnerService;
+
+	@Autowired
+	private IRoleService roleService;
+
+	@Autowired
+	private IUserService userService;
+
+	@Autowired
+	private IArticleClassService articleClassService;
+
+	@Autowired
+	private IArticleService articleService;
+
+	@Autowired
+	private IAccessoryService accessoryService;
+
+	@Autowired
+	private IMessageService messageService;
+
+	@Autowired
+	private IStoreService storeService;
+
+	@Autowired
+	private IGoodsService goodsService;
+
+	@Autowired
+	private INavigationService navigationService;
+
+	@Autowired
+	private IGroupGoodsService groupGoodsService;
+
+	@Autowired
+	private IGroupService groupService;
+
+	@Autowired
+	private IGoodsFloorService goodsFloorService;
+
+	@Autowired
+	private IBargainGoodsService bargainGoodsService;
+
+	@Autowired
+	private IDeliveryGoodsService deliveryGoodsService;
+
+	@Autowired
+	private IStoreCartService storeCartService;
+
+	@Autowired
+	private IGoodsCartService goodsCartService;
+	@Autowired
+	private IAdvertService advertservice;
+
+	@Autowired
+	private NavViewTools navTools;
+
+	@Autowired
+	private GoodsViewTools goodsViewTools;
+
+	@Autowired
+	private StoreViewTools storeViewTools;
+
+	@Autowired
+	private MsgTools msgTools;
+
+	@Autowired
+	private GoodsFloorViewTools gf_tools;
+
+	 @Autowired
+	private IWuLiuMuBanService wuLiuMuBanService;
+	 
+	 @Autowired
+		private IInvoiceService invoiceService;
+	 
+	 @Autowired
+	 private ICouponService couponService;
+	 
+	 @Autowired
+	 private ICouponInfoService couponInfoService;
+	 
+	// 会员购物车
+	@RequestMapping({ "/wap/buyer/goodscar.htm" })
+	public ModelAndView buyerallclass(HttpServletRequest request, HttpServletResponse response, String currentPage) {
+		ModelAndView mv = new JModelAndView("/wap/buyer/goodscar.html", this.configService.getSysConfig(),
+				this.userConfigService.getUserConfig(), 1, request, response);
+		StoreCartQueryObject gcqo = new StoreCartQueryObject(currentPage, mv, "addTime", "desc");
+		gcqo.addQuery("obj.user.id", new SysMap("user_id", SecurityUserHolder.getCurrentUser().getId()), "=");
+		IPageList pList = this.storeCartService.list(gcqo);
+		CommUtil.saveIPageList2ModelAndView("", "", "", pList, mv);
+		mv.addObject("navTools", this.navTools);
+
+		return mv;
+	}
+
+	// 云客购物车
+	@RequestMapping({ "/wap/yunke/goodscar.htm" })
+	public ModelAndView yunkeallclass(HttpServletRequest request, HttpServletResponse response, String currentPage) {
+		ModelAndView mv = new JModelAndView("/wap/buyer/goodscar.html", this.configService.getSysConfig(),
+				this.userConfigService.getUserConfig(), 1, request, response);
+		StoreCartQueryObject gcqo = new StoreCartQueryObject(currentPage, mv, "addTime", "desc");
+		gcqo.addQuery("obj.user.id", new SysMap("user_id", SecurityUserHolder.getCurrentUser().getId()), "=");
+		IPageList pList = this.storeCartService.list(gcqo);
+		CommUtil.saveIPageList2ModelAndView("", "", "", pList, mv);
+		mv.addObject("navTools", this.navTools);
+
+		return mv;
+	}
+
+	// 购物车列表
+	@RequestMapping({ "/wap/goodscar.htm" })
+	@ResponseBody
+	public void goodscar(HttpServletRequest request, HttpServletResponse response, String currentPage,
+			String storecarid) throws IOException {
+		Map params = new HashMap();
+		Claims claims = SignFilter.checkSign(request, response);
+		
+		if (claims != null) {
+			System.out.println(claims.getId());
+			StoreCartQueryObject gcqo = new StoreCartQueryObject(currentPage, params, "addTime", "desc");
+			gcqo.addQuery("obj.user.id", new SysMap("user_id", Long.parseLong(claims.getId())),
+					"=");
+			IPageList pList = this.storeCartService.list(gcqo);
+			JsonConfig jsonConfig = new JsonConfig();
+			System.out.println(claims.getId());
+			jsonConfig.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor("yyyy-MM-dd hh:mm:ss"));
+			// 需要过滤的类 + 属性
+			Map<Class<?>, Set<String>> includeMap = new HashMap<Class<?>, Set<String>>();
+			Set<String> set = new HashSet<String>();
+			set.add("id");
+			set.add("store");
+			set.add("gcs");
+			set.add("sc_status");
+			includeMap.put(StoreCart.class, set);
+
+			set = new HashSet<String>();
+			set.add("store_name");
+			set.add("id");
+			includeMap.put(Store.class, set);
+
+			set = new HashSet<String>();
+			set.add("goods");
+			set.add("count");
+			set.add("price");
+			set.add("id");
+			set.add("spec_info");
+			set.add("status");
+			includeMap.put(GoodsCart.class, set);
+
+			set = new HashSet<String>();
+			set.add("seo_keywords");
+			set.add("seo_description");
+			set.add("goods_name");
+			set.add("goods_price");
+			set.add("goods_main_photo");
+			set.add("goods_specs");
+			set.add("id");
+			includeMap.put(Goods.class, set);
+
+			set = new HashSet<String>();
+			set.add("name");
+			set.add("path");
+			includeMap.put(Accessory.class, set);
+
+			set = new HashSet<String>();
+			set.add("value");
+			set.add("spec");
+			set.add("specImage");
+			set.add("sequence");
+			includeMap.put(GoodsSpecProperty.class, set);
+
+			set = new HashSet<String>();
+			set.add("name");
+			set.add("sequence");
+			set.add("type");
+			includeMap.put(GoodsSpecification.class, set);
+
+			jsonConfig.setJsonPropertyFilter(new ComplexOutPropertyPreFilter(includeMap));
+
+			JSONArray json = JSONArray.fromObject(pList.getResult(), jsonConfig);
+			SignFilter.printNoCheck(request, response, json);
+			System.out.println(json);
+		}
+
+	}
+
+	// 购物车添加
+	@RequestMapping({ "/wap/goodscarsave.htm" })
+	@ResponseBody
+	public void goodscarsave(HttpServletRequest request, HttpServletResponse response, String goodsid,String storeid,String count,String spec_info)
+			throws IOException {
+		Map<String, Number> params = new HashMap();
+		Claims claims = SignFilter.checkSign(request, response);
+		if (claims != null) {
+			 params.put("user_id", Long.parseLong(claims.getId()));
+			 params.put("store_id", Long.parseLong(storeid));
+             params.put("sc_status", Integer.valueOf(0));
+             
+			 List<StoreCart> user_cart=this.storeCartService.query(
+                    "select obj from StoreCart obj where obj.user.id=:user_id and obj.sc_status=:sc_status and obj.store.id=:store_id",
+                    params, -1, -1);
+			 StoreCart storeCart=null;
+			 if(user_cart.size()>0) {
+				 if (user_cart.get(0)!=null) {
+					 storeCart=user_cart.get(0);
+				} 
+				
+			 }else {
+				 storeCart=new StoreCart();
+				 storeCart.setAddTime(new Date());
+				 storeCart.setUser(this.userService.getObjById(Long.parseLong(claims.getId())));
+				 storeCart.setStore(this.storeService.getObjById(Long.parseLong(storeid))); 
+			 }
+			 List<GoodsCart> lsgc=storeCart.getGcs();
+			 GoodsCart goodsCart=new GoodsCart();
+			 goodsCart.setAddTime(new Date());
+			 String total_price = request.getParameter("total_price");
+			 System.out.println(total_price);
+			 goodsCart.setCount(Integer.parseInt(count));
+			 goodsCart.setSpec_info(spec_info);
+			 
+			 Goods goods=goodsService.getObjById(Long.parseLong(goodsid));
+			 goodsCart.setGoods(goods);
+			 
+			 
+			/*goodsCart.setGsps(goods.getGoods_specs());
+			System.out.println(goods.getGoods_specs());*/
+			 goodsCart.setPrice(BigDecimal.valueOf(CommUtil.formatMoney(CommUtil.mul(goods.getGoods_price(),count))));
+			 lsgc.add(goodsCart);
+			 storeCart.setGcs(lsgc);
+			 
+			 this.storeCartService.save(storeCart); 
+			 goodsCart.setSc(storeCart);
+			 this.goodsCartService.save(goodsCart);
+			 
+			SignFilter.print(request, response, "添加成功！");
+			
+
+		}
+
+	}
+
+	// 购物车移除
+	@RequestMapping({ "/wap/goodscardel.htm" })
+	@ResponseBody
+	public void goodscardel(HttpServletRequest request, HttpServletResponse response, String storecarid,String goodscarid)
+			throws IOException {
+		Map params = new HashMap();
+		Claims claims = SignFilter.checkSign(request, response);
+		if (claims != null) { 
+			 StoreCart storeCart=this.storeCartService.getObjById(Long.parseLong(storecarid));
+			 List<GoodsCart> lsgc=storeCart.getGcs(); 
+			 for (GoodsCart Cart : lsgc) {
+				if (Cart.getId()==Long.parseLong(goodscarid)) {
+					lsgc.remove(Cart);
+					break;
+				}
+			 }
+			 storeCart.setGcs(lsgc); 
+			 this.storeCartService.update(storeCart); 
+			 this.goodsCartService.delete(Long.parseLong(goodscarid));
+			 
+			SignFilter.print(request, response, "删除成功！");
+
+		}
+
+	}
+	
+	// 获取运费计算比例
+		@RequestMapping({ "/wap/freight_ratio.htm" })
+		@ResponseBody
+		public void freight_ratio(HttpServletRequest request, HttpServletResponse response,String currentPage)
+				throws IOException {
+			Map params = new HashMap();
+			Claims claims = SignFilter.checkSign(request, response);
+			
+			if (claims != null) {
+				List<WuLiuMuBan> list = this.wuLiuMuBanService.query("select obj from WuLiuMuBan obj", params, -1, -1);
+				JsonConfig jsonConfig = new JsonConfig();
+				jsonConfig.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor("yyyy-MM-dd hh:mm:ss"));
+				Map<Class<?>, Set<String>> includeMap = new HashMap<Class<?>, Set<String>>();
+				Set<String> set = new HashSet<String>();
+				set.add("szzl");
+				set.add("szfy");
+				set.add("xzjjzl");
+				set.add("xzdj");
+				includeMap.put(WuLiuMuBan.class, set);
+
+				
+				jsonConfig.setJsonPropertyFilter(new ComplexOutPropertyPreFilter(includeMap));
+
+				JSONObject json = JSONObject.fromObject(list.get(0), jsonConfig);
+				SignFilter.print(request, response, json);
+				
+			}
+		}
+	
+	//下单时保存发票
+		@RequestMapping({ "/wap/invoice_save.htm" })
+		@ResponseBody
+		public void invoice_save(HttpServletRequest request, HttpServletResponse response,String currentPage)
+				throws IOException {
+			Claims claims = SignFilter.checkSign(request, response);
+			
+			if (claims != null) {
+				Invoice invoice = new Invoice();
+				
+				String company_name = request.getParameter("company_name");
+				String email = request.getParameter("email");
+				String id_number = request.getParameter("id_number");
+				String phone = request.getParameter("phone");
+				invoice.setCompany_name(company_name);
+				invoice.setEmail(email);
+				invoice.setId_number(id_number);
+				invoice.setPhone(phone);
+				invoice.setAddTime(new Date());
+				invoice.setOrder_id(request.getParameter("order_id"));
+				if(company_name!=null&&company_name!=""||id_number!=null&&id_number!=""||phone!=null&&phone!=""){
+					this.invoiceService.save(invoice);
+					OrderForm orderForm = this.orderFormService.getObjById(Long.parseLong(request.getParameter("order_id")));
+					orderForm.setInvoice(invoice.getId().toString());
+					
+					this.orderFormService.update(orderForm);
+					SignFilter.print(request, response, "发票添加成功！");
+				}else{
+					SignFilter.print(request, response, "未添加发票！");
+				}
+				
+			}
+		}	
+		
+		//获取优惠卷列表
+		@RequestMapping({ "/wap/get_coupon_list.htm" })
+		@ResponseBody
+		public void get_coupon_list(HttpServletRequest request, HttpServletResponse response)
+				throws IOException {
+			Map params = new HashMap();
+			Claims claims = SignFilter.checkSign(request, response);
+			if (claims != null) { 
+				
+				//查询已经领取的优惠卷和数量
+				List couponInfoList = this.couponInfoService.query(""
+						+"select obj.coupon.id,count(obj) as count from CouponInfo obj group by obj.coupon.id ",
+						params, -1, -1);
+				
+				
+				params.put("coupon_end_time",new Date());
+				//查询所有优惠卷
+				List<Coupon> list =this.couponService.query(""
+						+"select obj from Coupon obj "
+						+"where obj.coupon_end_time>=:coupon_end_time and obj.coupon_count>0", 
+						params, -1, -1);
+				
+				
+				//循环删除   已经领取完的优惠卷
+				ListIterator<Coupon> it = list.listIterator();
+				List<Coupon> list1 = new ArrayList<Coupon>();
+				while(it.hasNext()){
+					Coupon coupon = it.next();
+					Long couponid = coupon.getId();//优惠卷 id
+					int couponcount = coupon.getCoupon_count();//优惠卷数量
+					boolean flag = true;    
+					for(int i=0;i<couponInfoList.size();i++){
+						Object[] object = (Object[])couponInfoList.get(i);
+						Long coupon_id = (long)object[0];//已经领取的  优惠卷id
+						Long coupon_count = (long)object[1];//已经领取的 优惠卷数量
+							
+						if(coupon_id.equals(couponid)&&couponcount<=coupon_count){
+						    it.remove();
+						    flag = false;
+						}
+					}	
+					 
+					if(flag){
+						list1.add(coupon);
+					}
+				}
+				
+				JsonConfig jsonConfig = new JsonConfig();
+				jsonConfig.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor("yyyy-MM-dd hh:mm:ss"));
+				Map<Class<?>, Set<String>> includeMap = new HashMap<Class<?>, Set<String>>();
+				Set<String> set = new HashSet<String>();
+				set.add("coupon_name");
+				set.add("coupon_amount");
+				set.add("coupon_begin_time");
+				set.add("coupon_end_time");
+				set.add("coupon_count");
+				set.add("coupon_order_amount");
+				set.add("coupon_acc");
+				set.add("id");
+				includeMap.put(Coupon.class, set);
+				
+				set = new HashSet<String>();
+				set.add("name");
+				set.add("path");
+				includeMap.put(Accessory.class, set);
+				
+				jsonConfig.setJsonPropertyFilter(new ComplexOutPropertyPreFilter(includeMap));
+
+				JSONArray json = JSONArray.fromObject(list1, jsonConfig);
+				SignFilter.print(request, response, json);
+				
+			}
+
+		}	
+		
+				//领取优惠卷
+				@RequestMapping({ "/wap/get_coupon.htm" })
+				@ResponseBody
+				public void get_coupon(HttpServletRequest request, HttpServletResponse response)
+						throws IOException {
+					Map params;
+					Claims claims = SignFilter.checkSign(request, response);
+					if (claims != null) { 
+						
+						String[] coupon_ids = request.getParameter("coupon_ids").split(",");//选择的优惠卷列表
+						
+						boolean flag = true;
+						for(int i=0;i<coupon_ids.length;i++){
+							if(coupon_ids[i]!=null&&!coupon_ids[i].equals("")){
+								params = new HashMap();
+								params.put("coupon_id", Long.parseLong(coupon_ids[i]));
+								//查询已经领取的优惠卷和数量
+								List couponInfoList = this.couponInfoService.query(""
+										+"select obj.coupon.id,count(obj) as count from CouponInfo obj where obj.coupon.id=:coupon_id group by obj.coupon.id ",
+										params, -1, -1);
+								
+								params.put("coupon_end_time",new Date());
+								//查询所有优惠卷
+								List<Coupon> list =this.couponService.query(""
+										+"select obj from Coupon obj "
+										+"where obj.coupon_end_time>=:coupon_end_time and obj.coupon_count>0 and obj.id=:coupon_id", 
+										params, -1, -1);
+								
+								int couponcount = list.get(0).getCoupon_count();//优惠卷的总数
+								
+								Long coupon_count;
+								if(couponInfoList.size()==0){
+									coupon_count = 0L;
+								}else{
+									Object[] object = (Object[])couponInfoList.get(0);
+									coupon_count = (long)object[1];//已经领取的 优惠卷数量
+								}
+								
+								
+								//判断优惠卷是否领完
+								if(coupon_count>=couponcount){//领完
+									flag = false;
+									break;
+								}
+							}
+						}
+						
+						//未领完
+						if(flag){
+							for(int i=0;i<coupon_ids.length;i++){
+								if(coupon_ids[i]!=null&&!coupon_ids[i].equals("")){
+									CouponInfo couponInfo = new CouponInfo();
+									Coupon coupon = new Coupon();
+									coupon.setId(Long.parseLong(coupon_ids[i]));
+									couponInfo.setCoupon(coupon);
+									couponInfo.setStatus(0);
+									String uuid = UUID.randomUUID().toString().replace("-", "").toLowerCase();
+									couponInfo.setCoupon_sn(uuid);
+									String user_id = (String)claims.get("jti");
+									
+									User user = new User();
+									user.setId(Long.parseLong(user_id));
+									couponInfo.setUser(user);
+									couponInfo.setAddTime(new Date());
+									this.couponInfoService.save(couponInfo);
+								}
+							}
+							SignFilter.print(request, response, "领取成功");
+						}else{//领完
+							SignFilter.print(request, response, "领取失败");
+						}
+					}
+				}	
+}

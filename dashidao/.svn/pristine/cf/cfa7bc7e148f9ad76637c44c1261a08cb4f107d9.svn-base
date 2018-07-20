@@ -1,0 +1,288 @@
+<script>
+    jQuery(document).ready(function(){
+        //
+        jQuery(".sellul>li>a").click(function(){
+            var child_show=jQuery(this).attr("child_show");
+            if(child_show=="true"){
+                jQuery(this).parent().find("img").attr("src","$!webPath/resources/style/system/front/default/images/usercenter/seller_menu_add.png");
+                jQuery(this).parent().find("ul").slideUp('normal');
+                jQuery(this).attr("child_show","false");
+            }else{
+                jQuery(this).parent().find("img").attr("src","$!webPath/resources/style/system/front/default/images/usercenter/seller_menu_sub.png");
+                jQuery(this).parent().find("ul").slideDown('normal');
+                jQuery(this).attr("child_show","true");
+            }
+        });
+        //
+        jQuery(".sellul>ul>li").removeClass("this");
+        jQuery("li[op=$!op]").addClass("this");
+    });
+</script>
+<style type="text/css" >
+
+  .shopadminbox{ margin-top: 0px; }
+  /*
+
+
+
+  搜索框样式
+  */
+  .ht-top{
+    width: 100%;
+    height: 55px;
+    background: white;
+    line-height: 55px;
+  }
+  .ht-tu{
+    float: left;
+    width: 75%;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 5%;
+    margin-top: 0px;
+    border-radius:10px ;
+    border: 3px solid #E5E5E5;
+    float: left;
+  }
+  .ht-tu i{
+    margin:0 10px;
+    font-size: 20px;
+  }
+  .ht-top input{
+    width:96%;
+    height: 39px; margin:0px; padding: 0px;
+    font-size: 14px;
+    text-align: left;
+  }
+  .ht-right{
+    width: 10%;
+    height: 50px;
+    float: right;
+    margin-top: 0px;
+    margin-right: 5%;
+  }
+
+
+  .ht-right i{
+    font-size: 30px;
+    color: #599BD9;
+  }
+  .ht-right input{
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    background: #DCEFFA;
+    border: none;
+    border-radius: 10px; margin-top:3px;
+
+  }
+  #centerbg{ padding: 15px; }
+  .buyer_position{ margin-bottom:20px; height: 45px; line-height: 45px; font-weight: 600; border: none; border-left:3px solid #3fa4ed;   font-size: 14px;  background: #fff; width: 99%;   }
+  .buyer_p_box{line-height: 43px; height: auto; }
+  .buyer_position a{ font-weight: 600; }
+  .buyer_position span{ font-weight: 600; font-size: 14px; padding-left: 0px; }
+  .user_table{ background: #fff; }
+  a.span,p,div,input,button,li,tr,td{ font-size: 14px;}
+  .product_manage2{ width: 100%; }
+  .sellul li{ width:100%;  }
+  .sellul li a{  width: 100%; padding-left: 0px; text-indent: 1rem;   }
+  .sellul li a:hover{ width: 100%; background: url("$!webPath/resources/style/system/front/default/images/usercenter/blue.jpg") no-repeat 5px 0px;  text-decoration:none   }
+  .sellul li ul{ margin: 0px; padding: 0px; width: 100%; }
+  .sellul li ul li{width: 100%;   background-position:50px 13px;  margin: 0px; padding: 0px;  }
+  .sellul li ul li a{ padding-left:0%; text-indent: 4rem;  width: 100%;   }
+  .sellul li ul li a:hover{ background: url("$!webPath/resources/style/system/front/default/images/usercenter/blue.jpg") no-repeat 35px 0px ;   }
+  .sellul a{ color: #333; }
+  .protitle_seller{ width: 100%; display: none; }
+  .productmain{ width: 99%; border: none; }
+  .ordernav{ width: 100%; padding-top: 0px; border-bottom: 2px solid #3fa4ed; ; }
+  .ordercon{ width: 100%;  border: none; }
+  .orderul{ padding: 0px; }
+  .orderul li{ height: 50px; line-height: 50px; padding: 0 30px; border: none; float: left; margin-left: 0px; }
+  .orderul li.this{ height: 50px; line-height: 50px; padding: 0 30px;}
+  .seller{ margin-top: 10px; }
+  .shopadminbox .hd ul{ border-bottom: 2px solid #ccc; display: block; height: 42px; line-height: 40px; }
+  .shopadminbox .hd ul li{ height: 40px; }
+
+
+
+
+  .product_manage2{ width: 100%; }
+  .sellul li{ width:100%; line-height: 40px;  }
+  .sellul li a{  width: 100%; height: 40px; padding-left: 0px; text-indent: 1rem; font-size: 14px;   }
+  .sellul li a:hover{ width: 100%; background: url("$!webPath/resources/style/system/front/default/images/usercenter/blue.png") no-repeat 10px 0px;  text-decoration:none;color: #fff; }
+  .sellul li a:hover i{ color: #fff; }
+  .sellul li ul{ margin: 0px; padding: 0px; width: 100%; }
+  .sellul li ul li{width: 100%;   background-position:50px 13px;  margin: 0px; padding: 0px; height: 40px; background:  url("$!webPath/resources/style/system/front/default/images/usercenter/menudian.jpg") no-repeat 40px 20px;  }
+  .sellul li ul li a{ padding-left:0%; text-indent: 4rem;  width: 100%; line-height: 40px;  font-size: 14px; height: 40px;  }
+  .sellul li ul li a:hover{ background: url("$!webPath/resources/style/system/front/default/images/usercenter/blue.png") no-repeat 35px 0px ; line-height: 40px; height: 40px; color: #fff;   }
+  .sellul a{ color: #333; }
+
+</style>
+<style type="text/css">
+			#adv img{width: 100%;border-bottom:3px solid #c3c3c3; font-size: 17px; background: #f7f7f7;height: 80px;background: repeat-x;}
+		</style>
+	
+		<div id="adv"><img src="$!webPath/img/details.jpg"/></div>
+	
+<script>
+	jQuery(document).ready(function(){
+		var sql="SELECT * FROM dashidao_top_advert WHERE deleteStatus=0 and addTime=(select max(addTime) from dashidao_top_advert)";
+        jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajaxuser.jsp",
+            dataType:"json",
+            data:"table=dashidao_navigation&dates=addTime&sql="+sql,
+            error:function(){},
+            success:function(data){
+                var message = data.data.data;
+                console.log(message);
+                var path = message[0]['path'];
+                var name = message[0]['name'];
+                var url = message[0]['url'];
+                var src = "$!webPath/"+path+"/"+name;
+                $("#adv").html("");
+                $("#adv").append("<img src='"+src+"' width='100%' height='120px' onclick='advert_url("+url+")'/>");
+            }
+        });
+	});
+	
+	function advert_url(url){
+		window.location.href=url;
+	}
+</script>
+<td width="15%" id="userbg" valign="top">
+  <div class="seller" style=" margin: 0px; padding: 0px;" >
+    <!--店铺设置-->
+    <div class="product_manage2">
+      <div class="protitle_seller">卖家中心</div>
+      <ul class="sellul">
+        <li >
+          <a href="javascript:void(0);" child_show="true"><i class="iconfont icon-jifen"></i>营销活动</a>
+          <ul>
+            <li op="ztc_apply"><a href="$!webPath/seller/ztc_apply.htm">竞价直通车</a></li>
+            <li op="activity"><a href="$!webPath/seller/activity.htm">秒杀管理</a></li>
+            <li op="group"><a href="$!webPath/seller/group.htm">拼团管理</a></li>
+            <li op="bargain"><a href="$!webPath/seller/bargain.htm">打折管理</a></li>
+            <li op="combin"><a href="$!webPath/seller/combin.htm">组合销售</a></li>
+            <li op="delivery"><a href="$!webPath/seller/delivery.htm">买就送</a></li>
+            <li op="advert"><a href="$!webPath/seller/advert_list.htm">选择广告</a></li>
+           <!-- <li op="delivery"><a>优惠活动</a></li>
+            <li op="delivery"><a>悬赏活动</a></li>
+            <li op="delivery"><a>官方活动报名</a></li>
+            <li op="delivery"><a>选择广告</a></li>-->
+          </ul>
+        </li>
+
+        <li ><a href="javascript:void(0);" child_show="false"><i class="iconfont icon-trade-assurance"></i>交易管理</a>
+          <ul>
+            <li op="order"><a href='$!webPath/seller/order.htm'>订单管理</a></li>
+            <!-- #if($!{config.config_payment_type}==0)
+              <li op="payment"><a href='$!webPath/seller/payment.htm'>支付方式</a></li>
+              #end
+              <li op="transport"><a href='$!webPath/seller/transport_list.htm'>物流工具</a></li>-->
+            <li op="evaluated_manager"><a  href='$!webPath/seller/evaluated_manager.htm'>评价管理</a></li>
+          </ul>
+        </li>
+        <li ><a href="javascript:void(0);" child_show="false"><i class="iconfont icon-similarproduct"></i>商品管理</a>
+          <ul>
+            <li op="usergoodsbrand"><a href='$!webPath/seller/usergoodsbrand_list.htm'>品牌管理</a></li>
+            <li op="zhaomuzhandai"><a href='$!webPath/seller/zhaomuzhandai.htm'>招募栈代</a></li>
+            <!-- 商品分类暂时不要 -->
+            <!-- <li op="usergoodsclass"><a href='$!webPath/seller/usergoodsclass_list.htm'>商品分类</a></li> -->
+            <li><a href="$!webPath/seller/add_goods_first.htm" target="_blank">添加商品</a></li>
+            <li op="goods"><a href='$!webPath/seller/goods.htm'>商品上下架</a></li>
+            <li op="goods_storage"><a href='$!webPath/seller/goods_storage.htm'>商品入库</a></li>
+            <li op="storage_shenhe"><a href='$!webPath/seller/storage_shenhe.htm'>入库审核</a></li>
+            <li op="goods_kucun"><a href='$!webPath/seller/goods_kucun.htm'>商品库存</a></li>
+           <!--  <li op="usergoodsclass"><a href='$!webPath/seller/usergoodsclass_list.htm'>商品分类</a></li> -->
+            <li op="request_tiaojia"><a href='$!webPath/seller/request_tiaojia.htm'>调价申请</a></li>
+            <!-- 暂不展示 -->
+           <!--  <li op="tihuoka_manager"><a href='$!webPath/seller/tihuoka_manager.htm'>提货卡管理</a></li> -->
+            <!--<li op="goods_out"><a href='$!webPath/seller/goods_out.htm'>违规商品</a></li>-->
+            <li op="goods_report"><a href='$!webPath/seller/goods_report.htm'>被举报禁售</a></li>
+          </ul>
+        </li>
+        <li ><a href="javascript:void(0);" child_show="false"><i class="iconfont icon-gerenzhongxin"></i>客户服务</a>
+          <ul>
+            <li op="refund"><a href='$!webPath/seller/refund.htm'>售后服务</a></li>
+            <li op="goods_return"><a href='$!webPath/seller/goods_return.htm'>退换货管理</a></li>
+            <li op="destroy_product_manager"><a href='$!webPath/seller/destroy_product_manager.htm'>破损补记管理</a></li>
+            <li op="complaint"><a href='$!webPath/seller/complaint.htm'>投诉管理</a></li>
+            <li op="role_invoice_manager"><a href='$!webPath/seller/role_invoice_manager.htm'>发票管理</a></li>
+            <li op="role_appeal_manager"><a href='$!webPath/seller/role_appeal_manager.htm'>申诉管理</a></li>
+            <li op="role_maintain_manager"><a href='$!webPath/seller/role_maintain_manager.htm' >维修管理</a></li>
+            <li op="role_service_data"><a href='$!webPath/seller/role_service_data.htm'>服务数据看板</a></li>
+          </ul>
+        </li>
+
+        <li ><a href="javascript:void(0);" child_show="false"><i class="iconfont icon-jifen"></i>基础管理</a>
+          <ul>
+            <li op="store_set"><a href='$!webPath/seller/store_set.htm'>商家信息</a></li>
+            <li op="contract_information"><a href='$!webPath/seller/contract_information.htm'>合同信息</a></li>
+            <li op="bunisess_test_information"><a href='$!webPath/seller/bunisess_test_information.htm' >商家考核信息</a></li>
+            <li op="sub_account"><a href='$!webPath/seller/sub_account_listsj.htm'>子账户管理</a></li>
+            <li op="bunisess_produce_manager"><a href='$!webPath/seller/bunisess_produce_manager.htm'>供货商管理</a></li>
+            <!-- <li op="ele_invoice"><a href='$!webPath/seller/ele_invoice.htm'>电子发票</a></li> -->
+            <li op="ele_invoice"><a href='$!webPath/seller/dianzifapiao.htm'>电子发票</a></li>
+            <li op="request_exit"><a href='$!webPath/seller/request_exit.htm'>申请退出</a></li>
+            <li op="open_store"><a href='$!webPath/seller/open_store.htm'>开设直营店</a></li>
+          </ul>
+        </li>
+        <li ><a href="javascript:void(0);" child_show="false"><i class="iconfont icon-column"></i>栈代管理</a>
+          <ul>
+            <li op="tuijian_zhandai"><a href='$!webPath/seller/tuijian_zhandai.htm'>推荐栈代</a></li>
+            <li op="zhandai_hetong"><a href='$!webPath/seller/zhandai_hetong.htm'>栈代合同</a></li>
+            <li op="zhandai_xinxi"><a href='$!webPath/seller/zhandai_xinxi.htm'>栈代信息</a></li>
+            <li op="zhandai_dongtai"><a href='$!webPath/seller/zhandai_dongtai.htm'>栈代动态</a></li>
+          </ul>
+
+        </li>
+
+        <li ><a href="javascript:void(0);" child_show="false"><i class="iconfont icon-store"></i>直营店管理</a>
+          <ul>
+            <li op="product_commit" ><a href='$!webPath/seller/product_commit.htm'>货物调拨</a></li>
+            <li op="evaluate_manager"><a href='$!webPath/seller/evaluate_manager.htm'>评价管理</a></li>
+          </ul>
+
+        </li>
+        <li ><a href="javascript:void(0);" child_show="false"><i class="iconfont icon-trade"></i>资金管理</a>
+          <ul>
+            <li op="yinhangka_manager"><a href='$!webPath/seller/yinhangka_manager.htm'>银行卡管理</a></li>
+            <li op="sefaty_set"><a href='$!webPath/seller/sefaty_set.htm'>安全设置</a></li>
+            <li op="money_fuwu"><a href='$!webPath/seller/money_fuwu.htm'>资金服务</a></li>
+            <li op="out_shenhe"><a href='$!webPath/seller/out_shenhe.htm'>支出审核</a></li>
+            <li op="duizhang_center"><a href='$!webPath/seller/duizhang_center.htm'>对账中心</a></li>
+          </ul>
+
+        </li>
+        <li ><a href="javascript:void(0);" child_show="false"><i class="iconfont icon-calendar"></i>统计管理</a>
+          <ul>
+            <li op="sel_list"><a href='$!webPath/seller/sel_list.htm'>销售明细一览表</a></li>
+            <li op="sel_list_day"><a href='$!webPath/seller/sel_list_day.htm'>销售日报表</a></li>
+            <li op="sel_list_month"><a href='$!webPath/seller/sel_list_month.htm'>销售月报表</a></li>
+            <li op="purchase_sell_stock_list"><a href='$!webPath/seller/purchase_sell_stock_list.htm'>进销存一览表</a></li>
+            <li op="purchase_sell_stock_dayList"><a href='$!webPath/seller/purchase_sell_stock_dayList.htm'>进销存日报表</a></li>
+            <li op="purchase_sell_stock_monthList"><a href='$!webPath/seller/purchase_sell_stock_monthList.htm'>进销存月报表</a></li>
+          </ul>
+
+        </li>
+        <li ><a href="javascript:void(0);" child_show="false"><i class="iconfont icon-imagetext"></i>销售分析</a>
+          <ul>
+            <li op="product_analyze"><a href='$!webPath/seller/product_analyze.htm'>商品分析</a></li>
+            <li op="activity_analyze"><a href='$!webPath/seller/activity_analyze.htm'>活动分析</a></li>
+            <li op="supply_analyze"><a href='$!webPath/seller/supply_analyze.htm'>供货分析</a></li>
+            <!--<li op="gold_record"><a href="$!webPath/seller/gold_record.htm">金币管理</a></li>
+            <li op="advert"><a href="$!webPath/seller/advert_list.htm">广告管理</a></li>
+            <li op="album"><a href="$!webPath/seller/album.htm">图片管理</a></li>-->
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <!--店铺设置-->
+  </div>
+  $!httpInclude.include("/chatting.htm")
+</td>
+
+

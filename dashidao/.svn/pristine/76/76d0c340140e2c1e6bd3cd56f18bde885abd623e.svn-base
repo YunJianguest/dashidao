@@ -1,0 +1,718 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<!--link href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/template.css"  rel="stylesheet" type="text/css"/-->
+	<!--link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet-->
+
+	<link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/iconfont.css">
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+	<script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+	<script src="$!webPath/resources/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="$!webPath/resources/js/jquery.js"></script>
+	<script type="text/javascript" src="$!webPath/resources/js/highcharts.js"></script>
+	<!--<script type="text/javascript" src="$!webPath/resources/js/exporting.js"></script>-->
+	<title>无标题文档</title>
+
+	<style>
+		body{
+			font-family: "Microsoft Yahei", "Lucida Grande", Verdana, Lucida, Helvetica, Arial, 'Simsun', sans-serif;
+			font-size: 16px!important;
+		}
+		input{
+			border:none;
+			width: 100px;
+		}
+		table tr td{
+			border-bottom: 1px solid #eee;padding: 10px 0;
+		}
+		ul{margin: 0;}
+		.a{
+			width: 80%;
+
+		}
+		.nav-tabs{width: 100%; margin: 10px auto;border:0;}
+
+		.nav li{margin-left:2px}
+		.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{background:#3fa4ed;color:#fff; width:100%;}
+		#font{
+			color: red;
+		}
+		#font2{
+			color:blue;
+
+		}
+		.tabbable{margin: 0 auto;}
+		.tab-content{width:100%;}
+		.table a{
+			border:1px solid #c3c3c3;
+			padding: 5px 14px;
+			border-radius: 4px;
+		}
+		.table a:hover{color:#000;background: #fff;}
+		.seth1 {
+			border-top: 1px solid #D9D9D9;
+			height: 35px;
+			border-bottom: 1px solid #D9D9D9;
+			line-height: 35px;
+			padding-left: 40px;
+			color: #686868;
+			margin: 5px;
+			font-size: 16px;
+			padding: 0px;
+			text-align: left;
+			background: #f3f3f3;
+		}
+		.nav>li>a {
+			position: relative;
+			border:1px solid #c3c3c3;
+			display: block;
+			border-top-left-radius: 8px;
+			border-top-right-radius:8px;
+			font-size: 16px!important;
+			padding: 5px 15px;
+			color:#000;
+		}
+		.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{background:#3fa4ed;color:#fff;font-size: 16px;}
+		.nav{margin: 17px 0 29px 21px;border-bottom: 1px solid #c3c3c3;}
+		.bor{height:30px;line-height: 30px;}
+		.ac9 a {
+			color: #999;
+			padding:3px 20px;
+			border-radius: 4px;
+			text-decoration: none;
+			border:1px solid #999;
+		}
+		.ac9 a:hover {
+			color:#999;
+			background: #fff;
+		}
+		.dai,.shenh{color:#3fa4ed;}
+		.agree{color:#0a7e07;}
+		.disagree{color:red;}
+		.qd{font-size:16px;border-radius: 4px;color:#fff;background:#3fa4ed;width:100px;text-align:center;margin: 10px auto;line-height:33px;}
+		.cans li{width:33.3%;float:left;list-style: none;}
+		.title{border-left: 3px  solid #3fa4ed;margin:20px 1%;}
+		.dcwb ul li{list-style:none;float:left;height: 30px;line-height: 15px;font-size: 16px;margin-right: 10px;}
+		.dcwb{float:right;}
+		.dcwb ul li i{font-size: 30px;}
+		.allmen input {
+			width: 180px;
+			height: 29px;
+			line-height:29px;
+			padding-left: 5px;
+			border: 1px solid #ccc;
+			color: #333333;
+			background: #FAFAFA none repeat scroll 0 0;
+			border-style: solid;
+			border-width: 1px;
+			border-color: #B2B2B2 #E7E7E8 #E7E7E8 #B2B2B2;
+			border-radius: 5px;
+			margin:5px 0 0 2%;
+		}
+		.btn_search input {
+			background-color: #3fa4ed;
+			width: 62px;
+			height: 30px;
+			border: 0px;
+			color: #FFF;
+		}
+		.day{margin-left: 20px;}
+		.day input{
+			text-align: center;
+			width:40px;
+			height: 34px;
+			border: 1px solid #c3c3c3;
+			background: #fff;
+			border-radius: 4px;
+		}
+		.day .sel{
+			background-color: #3fa4ed;
+			color: #FFF;
+		}
+		.seday input{
+			text-align: center;
+			width:40px;
+			height: 34px;
+			border: 1px solid #c3c3c3;
+		}
+	</style>
+</head>
+
+<body>
+<div class="tabbable">
+	<div class="seth1">
+		<img src="$!webPath/resources/style/system/manage/black/img/1.png" alt="">
+		云客
+	</div>
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#1" data-toggle="tab">云客概况</a></li>
+		<li><a href="#2" data-toggle="tab">云客指数</a></li>
+		<li><a href="#3" data-toggle="tab">排行榜</a></li>
+		<li><a href="#4" data-toggle="tab">云客新增趋势</a></li>
+	</ul>
+	<div class="tab-content">
+		<!--数据表格-->
+		<div class="tab-pane active" id="1"style="width:99%;margin-left:1%;">
+			<table width="100%" style="font-size: 16px;text-align: center;">
+				<tr style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#FFF;text-align: center">
+					<td>云客总数</td>
+					<td>初级云客占比</td>
+					<td>中级云客占比</td>
+					<td>高级云客占比</td>
+				</tr>
+				<tr>
+					<td>19009</td>
+					<td>60%</td>
+					<td>30%</td>
+					<td>10%</td>
+				</tr>
+			</table>
+			<div class="title" >初级云客</div>
+			<table width="100%" style="font-size: 16px;text-align: center;">
+				<tr style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#FFF;text-align: center">
+					<td>购买人数/云客总数</td>
+					<td>人均消费额</td>
+					<td>最高消费额</td>
+					<td>最低消费额</td>
+				</tr>
+				<tr>
+					<td>80%</td>
+					<td>2000</td>
+					<td>30000</td>
+					<td>100</td>
+				</tr>
+			</table>
+			<div class="title" >中级云客</div>
+			<table width="100%" style="font-size: 16px;text-align: center;">
+				<tr style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#FFF;text-align: center">
+					<td>购买人数/云客总数</td>
+					<td>人均消费额</td>
+					<td>最高消费额</td>
+					<td>最低消费额</td>
+				</tr>
+				<tr>
+					<td>89%</td>
+					<td>2000</td>
+					<td>30000</td>
+					<td>100</td>
+				</tr>
+			</table>
+			<div class="title" >高级云客</div>
+			<table width="100%" style="font-size: 16px;text-align: center;">
+				<tr style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#FFF;text-align: center">
+					<td>购买人数/云客总数 </td>
+					<td>人均消费额</td>
+					<td>最高消费额</td>
+					<td>最低消费额</td>
+				</tr>
+				<tr>
+					<td>70%</td>
+					<td>2000</td>
+					<td>30000</td>
+					<td>100</td>
+				</tr>
+			</table>
+			<!--云客消费总额平台销售总额比-->
+			<div class="title" >云客消费总额平台销售总额比
+				<div class="dcwb">
+					<ul>
+						<li>导出</li>
+						<li>
+							<div><i class="iconfont icon-wendang"></i></div>
+							<div>doc</div>
+						</li>
+						<li>
+							<div><i class="iconfont icon-xinwenzixun-xianxing"></i></div>
+							<div>xls</div>
+						</li>
+						<li>
+							<div><i class="iconfont icon-text"></i></div>
+							<div>txt</div>
+						</li>
+						<div style="clear:both;"></div>
+					</ul></div></div>
+
+			<div style="clear:both;"></div>
+			<table width="99%" style="font-size: 16px;text-align: center;margin-left: 1%;">
+				<tr style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#FFF;text-align: center">
+					<td>行号</td>
+					<td>云客ID</td>
+					<td>云客名称</td>
+					<td>云客销售总额 <br>
+						<!--<i class="iconfont icon-wendang"></i>-->
+					</td>
+					<td>云客销售总额/平台销售总额</td>
+				</tr>
+				<tr>
+					<td>01</td>
+					<td>230018</td>
+					<td>Jack</td>
+					<td>10000</td>
+					<td>5%</td>
+				</tr>
+				<tr>
+					<td>02</td>
+					<td>230019</td>
+					<td>Mike</td>
+					<td>1000</td>
+					<td>3%</td>
+				</tr>
+				<tr>
+					<td>03</td>
+					<td>230020</td>
+					<td>Mike</td>
+					<td>500</td>
+					<td>3% </td>
+				</tr>
+				<tr>
+					<td>04</td>
+					<td>230021</td>
+					<td>Mike</td>
+					<td>300</td>
+					<td>3%</td>
+				</tr>
+				<tr>
+					<td>04</td>
+					<td>230021</td>
+					<td>Mike</td>
+					<td>300</td>
+					<td>3%</td>
+				</tr>
+				<tr>
+					<td>04</td>
+					<td>230021</td>
+					<td>Mike</td>
+					<td>300</td>
+					<td>3%</td>
+				</tr>
+				<tr>
+					<td>04</td>
+					<td>230021</td>
+					<td>Mike</td>
+					<td>300</td>
+					<td>3%</td>
+				</tr>
+				<tr>
+					<td>04</td>
+					<td>230021</td>
+					<td>Mike</td>
+					<td>300</td>
+					<td>3%</td>
+				</tr>
+
+			</table>
+		</div>
+		<div class="tab-pane" id="2" >
+			<!--搜索-->
+			<div>
+				<span class="allmen"><input type="month"></span>
+				<span class="day">
+                <span><input type="text" class="sel" value="7天" disabled="disabled"></span>
+                <span><input type="text"  value="30天" disabled="disabled"></span>
+                <span><input type="text"  value="90天" disabled="disabled"></span>
+                    <script>
+                        $('.day span').click(function(){
+                            $(this).children().addClass('sel');
+                            $(this).siblings().children().removeClass('sel');
+                        })
+                    </script>
+                </span>
+				<span class="seday"><input type="text">天</span>
+				<span class="allmen"><input type="date" name="startime" style="margin-right: 20px;">至<input type="date"></span><span class="btn_search"> <input type="submit" value="搜索" style="cursor:pointer;background-color: #108ee9;color:#FFF"></span></div>
+			<div class="title" >初级云客</div>
+			<table width="100%" style="font-size: 16px;text-align: center;">
+				<tr style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#FFF;text-align: center">
+					<td>购买人数/云客总数</td>
+					<td>人均消费额</td>
+					<td>最高消费额</td>
+					<td>最低消费额</td>
+				</tr>
+				<tr>
+					<td>80%</td>
+					<td>2000</td>
+					<td>30000</td>
+					<td>100</td>
+				</tr>
+			</table>
+			<div class="title" >中级云客</div>
+			<table width="100%" style="font-size: 16px;text-align: center;">
+				<tr style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#FFF;text-align: center">
+					<td>购买人数/云客总数</td>
+					<td>人均消费额</td>
+					<td>最高消费额</td>
+					<td>最低消费额</td>
+				</tr>
+				<tr>
+					<td>89%</td>
+					<td>2000</td>
+					<td>30000</td>
+					<td>100</td>
+				</tr>
+			</table>
+			<div class="title" >高级云客</div>
+			<table width="100%" style="font-size: 16px;text-align: center;">
+				<tr style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#FFF;text-align: center">
+					<td>购买人数/云客总数 </td>
+					<td>人均消费额</td>
+					<td>最高消费额</td>
+					<td>最低消费额</td>
+				</tr>
+				<tr>
+					<td>70%</td>
+					<td>2000</td>
+					<td>30000</td>
+					<td>100</td>
+				</tr>
+			</table>
+		</div>
+		<div class="tab-pane" id="3" >
+			<!--搜索-->
+			<div>
+				<span class="allmen"><input type="month"></span>
+				<span class="day">
+                <span><input type="text" class="sel" value="7天" disabled="disabled"></span>
+                <span><input type="text"  value="30天" disabled="disabled"></span>
+                <span><input type="text"  value="90天" disabled="disabled"></span>
+                    <script>
+                        $('.day span').click(function(){
+                            $(this).children().addClass('sel');
+                            $(this).siblings().children().removeClass('sel');
+                        })
+                    </script>
+                </span>
+				<span class="seday"><input type="text">天</span>
+				<span class="allmen"><input type="date" name="startime" style="margin-right: 20px;">至<input type="date"></span><span class="btn_search"> <input type="submit" value="搜索" style="cursor:pointer;background-color: #108ee9;color:#FFF"></span></div>
+			<!--会员消费总额平台销售总额比-->
+			<div class="title" >
+				<div class="dcwb">
+					<ul>
+						<li>导出</li>
+						<li>
+							<div><i class="iconfont icon-wendang"></i></div>
+							<div>doc</div>
+						</li>
+						<li>
+							<div><i class="iconfont icon-xinwenzixun-xianxing"></i></div>
+							<div>xls</div>
+						</li>
+						<li>
+							<div><i class="iconfont icon-text"></i></div>
+							<div>txt</div>
+						</li>
+						<div style="clear:both;"></div>
+					</ul></div></div>
+
+			<div style="clear:both;"></div>
+			<table width="99%" style="font-size: 16px;text-align: center;margin-left: 1%;">
+				<tr style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#FFF;text-align: center">
+					<td>排名</td>
+					<td>云客ID</td>
+					<td>云客名称</td>
+					<td>云客销售额</td>
+					<td>云客佣金</td>
+				</tr>
+				<tr>
+					<td>01</td>
+					<td>230018</td>
+					<td>Jack</td>
+					<td>10000</td>
+					<td>5%</td>
+				</tr>
+				<tr>
+					<td>02</td>
+					<td>230019</td>
+					<td>Mike</td>
+					<td>1000</td>
+					<td>3%</td>
+				</tr>
+				<tr>
+					<td>03</td>
+					<td>230020</td>
+					<td>Mike</td>
+					<td>500</td>
+					<td>3% </td>
+				</tr>
+				<tr>
+					<td>04</td>
+					<td>230021</td>
+					<td>Mike</td>
+					<td>300</td>
+					<td>3%</td>
+				</tr>
+				<tr>
+					<td>04</td>
+					<td>230021</td>
+					<td>Mike</td>
+					<td>300</td>
+					<td>3%</td>
+				</tr>
+				<tr>
+					<td>04</td>
+					<td>230021</td>
+					<td>Mike</td>
+					<td>300</td>
+					<td>3%</td>
+				</tr>
+				<tr>
+					<td>04</td>
+					<td>230021</td>
+					<td>Mike</td>
+					<td>300</td>
+					<td>3%</td>
+				</tr>
+				<tr>
+					<td>04</td>
+					<td>230021</td>
+					<td>Mike</td>
+					<td>300</td>
+					<td>3%</td>
+				</tr>
+
+			</table>
+		</div>
+		<div class="tab-pane" id="4" >
+			<!--搜索-->
+			<div>
+				<span class="allmen"><input type="month"></span>
+				<span class="day">
+                <span><input type="text" class="sel" value="7天" disabled="disabled"></span>
+                <span><input type="text"  value="30天" disabled="disabled"></span>
+                <span><input type="text"  value="90天" disabled="disabled"></span>
+                    <script>
+                        $('.day span').click(function(){
+                            $(this).children().addClass('sel');
+                            $(this).siblings().children().removeClass('sel');
+                        })
+                    </script>
+                </span>
+				<span class="seday"><input type="text">天</span>
+				<span class="allmen"><input type="date" name="startime" style="margin-right: 20px;">至<input type="date"></span><span class="btn_search"> <input type="submit" value="搜索" style="cursor:pointer;background-color: #108ee9;color:#FFF"></span></div>
+			<!--图形分析-->
+			<div class="title" >高级云客</div>
+			<div id="container" style="width:98%;height:300px;margin:0 1%"></div>
+			<script type="text/javascript">
+                $(function () {
+                    $('#container').highcharts({
+                        chart: {
+                        },
+                        title: {
+                            text: ''
+                        },
+                        //x轴
+                        xAxis: {
+                            categories: ['周一', '周二', '周三', '周四', '周五','周六','周日']
+                        },
+                        tooltip: {
+                            formatter: function() {
+                                var s;
+                                if (this.point.name) { // the pie chart
+                                    s = ''+
+                                        this.point.name +': '+ this.y +' fruits';
+                                } else {
+                                    s = ''+
+                                        this.x  +': '+ this.y;
+                                }
+                                return s;
+                            }
+                        },
+                        labels: {
+                            items: [{
+                                html: '指数',
+                                style: {
+                                    left: '40px',
+                                    top: '8px',
+                                    color: 'black'
+                                }
+                            }]
+                        },
+                        series: [ {
+                            type: 'spline',
+                            name: '增加数',
+                            data: [13, 13,15, 13, 13,12,10],
+                            marker: {
+                                lineWidth: 2,
+                                lineColor: Highcharts.getOptions().colors[3],
+                                fillColor: 'white'
+                            }
+                        },
+                            {
+                                type: 'spline',
+                                name: '有效数',
+                                data: [18, 20,30,52.15,60,82,100],
+                                marker: {
+                                    lineWidth: 2,
+                                    lineColor: Highcharts.getOptions().colors[2],
+                                    fillColor: 'white'
+                                }
+                            },]
+                    });
+                });
+			</script>
+			<div class="title" >中级云客</div>
+			<div id="container2" style="width:98%;height:300px;margin:0 1%"></div>
+			<script type="text/javascript">
+                $(function () {
+                    $('#container2').highcharts({
+                        chart: {
+                        },
+                        title: {
+                            text: ''
+                        },
+                        //x轴
+                        xAxis: {
+                            categories: ['周一', '周二', '周三', '周四', '周五','周六','周日']
+                        },
+                        tooltip: {
+                            formatter: function() {
+                                var s;
+                                if (this.point.name) { // the pie chart
+                                    s = ''+
+                                        this.point.name +': '+ this.y +' fruits';
+                                } else {
+                                    s = ''+
+                                        this.x  +': '+ this.y;
+                                }
+                                return s;
+                            }
+                        },
+                        labels: {
+                            items: [{
+                                html: '指数',
+                                style: {
+                                    left: '40px',
+                                    top: '8px',
+                                    color: 'black'
+                                }
+                            }]
+                        },
+                        series: [ {
+                            type: 'spline',
+                            name: '增加数',
+                            data: [13, 13,15, 13, 13,12,10],
+                            marker: {
+                                lineWidth: 2,
+                                lineColor: Highcharts.getOptions().colors[3],
+                                fillColor: 'white'
+                            }
+                        },
+                            {
+                                type: 'spline',
+                                name: '降级增加数',
+                                data: [18, 20,30,52.15,60,82,100],
+                                marker: {
+                                    lineWidth: 2,
+                                    lineColor: Highcharts.getOptions().colors[2],
+                                    fillColor: 'white'
+                                }
+                            },
+                            {
+                                type: 'spline',
+                                name: '降为会员数',
+                                data: [34, 54,45, 56, 78,98,87],
+                                marker: {
+                                    lineWidth: 2,
+                                    lineColor: Highcharts.getOptions().colors[5],
+                                    fillColor: 'white'
+                                }
+                            },
+                            {
+                                type: 'spline',
+                                name: '有效数',
+                                data: [30, 13,55, 73, 13,72,100],
+                                marker: {
+                                    lineWidth: 2,
+                                    lineColor: Highcharts.getOptions().colors[4],
+                                    fillColor: 'white'
+                                }
+                            },]
+                    });
+                });
+			</script>
+			<div class="title" >初级云客</div>
+			<div id="container3" style="width:98%;height:300px;margin:0 1%"></div>
+			<script type="text/javascript">
+                $(function () {
+                    $('#container3').highcharts({
+                        chart: {
+                        },
+                        title: {
+                            text: ''
+                        },
+                        //x轴
+                        xAxis: {
+                            categories: ['周一', '周二', '周三', '周四', '周五','周六','周日']
+                        },
+                        tooltip: {
+                            formatter: function() {
+                                var s;
+                                if (this.point.name) { // the pie chart
+                                    s = ''+
+                                        this.point.name +': '+ this.y +' fruits';
+                                } else {
+                                    s = ''+
+                                        this.x  +': '+ this.y;
+                                }
+                                return s;
+                            }
+                        },
+                        labels: {
+                            items: [{
+                                html: '指数',
+                                style: {
+                                    left: '40px',
+                                    top: '8px',
+                                    color: 'black'
+                                }
+                            }]
+                        },
+                        series: [ {
+                            type: 'spline',
+                            name: '增加数',
+                            data: [13, 13,15, 13, 13,12,10],
+                            marker: {
+                                lineWidth: 2,
+                                lineColor: Highcharts.getOptions().colors[3],
+                                fillColor: 'white'
+                            }
+                        },
+                            {
+                                type: 'spline',
+                                name: '降级增加数',
+                                data: [18, 20,30,52.15,60,82,100],
+                                marker: {
+                                    lineWidth: 2,
+                                    lineColor: Highcharts.getOptions().colors[2],
+                                    fillColor: 'white'
+                                }
+                            },
+                            {
+                                type: 'spline',
+                                name: '降为会员数',
+                                data: [24, 54,76, 76, 45,87,89],
+                                marker: {
+                                    lineWidth: 2,
+                                    lineColor: Highcharts.getOptions().colors[5],
+                                    fillColor: 'white'
+                                }
+                            },
+                            {
+                                type: 'spline',
+                                name: '有效数',
+                                data: [30, 13,55, 73, 13,72,100],
+                                marker: {
+                                    lineWidth: 2,
+                                    lineColor: Highcharts.getOptions().colors[4],
+                                    fillColor: 'white'
+                                }
+                            },]
+                    });
+                });
+			</script>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+<link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
+<link rel="stylesheet" type="text/css" href="css/zxx.css"/>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<title>店铺信息</title>
+<style>
+		/*信息*/
+		#information{margin-top: 20px;padding 0 5%;width: 100%;}
+		#information ul li{float:left;}
+		#information>ul>li{width:90%;height: 3.2rem;line-height: 3.2rem;background: #fff;padding: 0 5%;}
+		#information>ul>li>ul>li{width:40%}
+		#information .clear{clear: both;}
+		.store_logo{height: 4.5rem!important;line-height: 4.5rem!important;margin-top:.5px;}
+		.background{height: 6rem!important;line-height: 6rem!important;margin:15px 0;}
+		.background .right img {margin-top:.8rem!important;	}
+		.jieshao ul li{border-bottom: 1px solid #c3c3c3;}
+		.right{width:60%!important;text-align: right;}
+		.right i{float: right;font-size: 1.5rem;color: black;}
+		.right img {margin-top:.5rem;}
+
+	/**/
+		/*上传图片*/
+		.storelogo,.storebaner{display:none;}
+
+		/*.upload_photo li{height:10rem!important;}*/
+		.company li{width:50%!important;}
+		.company{width: 100%;}
+</style>
+</head>
+<body>
+<!--头部-->
+	<div class="header">
+			<ul>
+				<li class="back" onclick="history.go(-1)"><img src="image/back.png"/></li>
+				<li>店铺信息</li>
+				<li class="jilu">预览</li>
+				<div class="clear"></div>
+			</ul>
+	</div>	
+	<!--店铺-->
+<form action="" method="get" enctype="text/plain">
+	<div id="information">
+		<ul>
+			<li>
+				<ul>
+					<li>店名</li>
+					<li class="right">王燕如<a href="stores_information_modify.html"><i class="iconfont">&#xe947;</i></a></li>
+				</ul>
+			</li>
+			<li class="jieshao" >
+				<ul>
+					<li>店铺介绍</li>
+					<li class="right"><a href="stores_information_introduction.html"><i class="iconfont">&#xe947;</i></a></li>
+				</ul>
+			</li>
+			<li class="store_logo">
+				<ul>
+					<li>店铺logo</li>
+					<li class="right">
+						<!--店铺logo-->
+						<label for="storelogo">
+							<input type="file" name="storelogo" id="storelogo" value="" class="storelogo"/>
+							<img src="image/logo.png" style="width: 4rem; height: 4rem;" >
+							<i class="iconfont">&#xe947;</i>
+						</label>
+							<!--<img src="image/logo.png"/><a href="stores_information_logo.html"><i class="iconfont">&#xe6a7;</i></a>-->
+					</li>
+				</ul>
+			</li>
+
+			<li class="background">
+				<ul>
+					<li>店招图</li>
+					<li  class="right">
+						<!--店招图-->
+						<label for="storebaner">
+							<input type="file" name="storebaner" id="storebaner" value="" class="storebaner"/>
+							<img src="image/background.png" style="width: 8rem; height: 4rem;" >
+							<i class="iconfont">&#xe947;</i>
+						</label>
+						<!--<img src="image/background.png" alt="" /><a href="stores_information_shopkeperimg.html"><i class="iconfont">&#xe6a7;</i></a>-->
+					</li>
+				</ul>
+			</li>
+			<li>
+				<ul>
+					<li>店主名片</li>
+					<li  class="right"><a href="stores_information_shopkepercard.html"><i class="iconfont">&#xe947;</i></a></li>
+				</ul>
+			</li>
+			<div class="clear"></div>
+		</ul>
+	</div>
+</form>
+<!--图片上传-->
+<script type="text/javascript">
+    $(function(){
+        function getObjectURL(file) {
+            var url = null ;
+            if (window.createObjectURL!=undefined) { // basic
+                url = window.createObjectURL(file) ;
+            } else if (window.URL!=undefined) { // mozilla(firefox)
+                url = window.URL.createObjectURL(file) ;
+            } else if (window.webkitURL!=undefined) { // webkit or chrome
+                url = window.webkitURL.createObjectURL(file) ;
+            }
+            return url ;
+        }
+        $('#storelogo').change(function() {
+
+            var eImg = $(this).next("img");
+            eImg.attr('src', getObjectURL($(this)[0].files[0])); // 或 this.files[0] this->input
+
+        });
+        $('#storebaner').change(function() {
+
+            var eImg = $(this).next("img");
+            eImg.attr('src', getObjectURL($(this)[0].files[0])); // 或 this.files[0] this->input
+
+        });
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>分配渠道设置</title>
+<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/two_level2.css" type="text/css"/>
+<script src="$!webPath/resources/js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="$!webPath/resources/js/menu_min.js"></script>
+	<script src="$!webPath/resources/js/jquery.shop.base.js"></script>
+	<link rel="stylesheet" type="text/css" href="$!webPath/resources/style/system/manage/black/base.css"/>
+<script type="text/javascript">
+$(document).ready(function (){
+  $(".menu ul li").menu();
+}); 
+</script> 
+
+<!--<link rel="stylesheet" type="text/css" href="css/menu.css">-->
+</head>
+<body>
+<div class="both classfy">
+<div class="tip">注：按照商品三级类目设置渠道费率，表示占商品利润的比例。</div>
+<div class="menu">
+	<ul>
+		<li><a class="active" href="#">服装</a>
+			<ul style="display: block;">
+				<li><a href="#">上衣</a>
+					<ul>
+						<li><a href="#">外套</a><span class="sl"><span class="slsum">渠道费率为：5%</span><span class="list">费率列表<input type="hidden" value="1"/></span></span></li>
+						<li><a href="#">毛衣</a><span class="sl"><span class="slsum">渠道费率为：5%</span><span class="list">费率列表<input type="hidden" value="2"/></span></span></li>
+					</ul>
+				</li>
+				<li><a href="#">裤装</a></li>
+				<li><a href="#">裙装</a>
+				</li>
+			</ul>
+		</li>
+		<li><a href="#">鞋靴</a>
+		</li>
+		<li><a href="#">箱包</a>
+		</li>
+	</ul>
+</div>
+</div>
+</body>
+<script>
+$('.list').click(function(){
+    openURL('url','$!webPath/admin/sl_list.htm?a=1','main_workspace','sl_list');
+
+});
+</script>
+</html>

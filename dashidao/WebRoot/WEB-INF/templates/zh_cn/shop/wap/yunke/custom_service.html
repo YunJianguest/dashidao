@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=100%; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+		<title>客服中心</title>
+    <link rel="stylesheet" href="css/demo.css"/>
+	<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<script src="js/rollSlide.js"></script>
+	<script type="text/javascript" src="js/iscroll.js"></script>
+		<link rel="stylesheet" href="iconfont/iconfont.css">
+	<script type="text/javascript" src="js/navbarscroll.js"></script>
+	</head>
+	<style type="text/css">
+		body{background:#efefef;width: 100%;}
+		*{margin:0;padding: 0;}
+		ul,ol li{list-style: none;}
+		.clear{clear:both}
+		a{text-decoration: none;color: #000000;}
+		p{margin: 0;}
+		/*头部*/
+			.header ul li{float: left;width:90%;text-align: center;height:3rem;line-height:3rem ;background:#FF6600 ;color:#fff;}
+			.header .back{width: 10%!important;}
+			.header .back img{margin: 15% 0;}
+		/*公告*/
+		.container{width:100%;overflow: hidden;}
+		.adv{z-index: 99999;background: #fefced;width:30px;position:relative;left: 0;z-index: 9999999;}
+		/*轮播*/
+		.slides li img{width:100%;height:5.5rem;}
+		/*自助工具*/
+		.tools ul li{width:25%;float: left;text-align: center;}
+		.tools ul li div{height: 2rem;line-height:2rem;font-size: .8rem;}
+		.tools .zizhu{padding-left:1.5%;line-height:2rem;height:2.5rem;font-size: 1rem;}
+		.tools{background: #fff;} 
+		.tools .tools_detail{width:90%;margin: 0 5%;}
+		/*常见问题*/
+		.question{margin-top:5px;background: #fff;}
+		.question .changjian{margin-top: -1rem;}
+		.question .forms input{width:94%;margin:0 3%;height: 2.3rem;border:1px solid #f4f4f4;background:#f4f4f4;margin-top: 10px;}
+		.question .forms img{position: relative;top:-2rem;left:4%;text-align: center;}
+		.question ul li{width:50%;float: left;border-bottom: 1px solid #efefef;margin-top: .5rem;height:3.8rem;padding-top::;rem ;}
+		.changjian .issue{float:left;}
+		.changjian p{border-bottom: 1px solid #efefef;height:1.5rem;padding-left: 1.5%;font-size: 1.rem;}
+		.changjian .text{width: 73%;}
+		.changjian .text div{height: 1.2rem;line-height:.85rem;padding:2%;width: 100%;}
+		.changjian .ico{margin-left:2%;width:25%}
+		.changjian .ico img{width:100%}
+		.changjian .text .sencond{font-size: .8rem;color:#d4d4d4;}
+		/*在线客服*/
+		.custom_service{background: #fff; margin-top: 5px;text-align: center;padding-top: .3rem;}
+		.custom_service div{width:100%;line-height: 1.3rem;height: 1.3rem;font-size: .9rem;}
+	</style>
+	<body>
+<!--头部-->
+	<div class="header">
+			<ul>
+				<li class="back"  ><i class="iconfont icon-back fl" onclick="history.go(-1)" style="font-size: 1.6rem;"  ></i></li>
+				<li>客服中心</li>
+				<div class="clear"></div>
+			</ul>
+	</div>
+<!--公告-->
+	<div class="container">
+    <div class="roll-wrap roll_row" id="e">
+    	<div class="adv"><img src="img/adv.png"/></div>
+        <ul class="roll__list" style="position: absolute; left: 0; top: 0;">
+            <li>下单后一般24小时内会发出（不包含店主礼包、预售商品和大促活动商品；跨境商品遇商品海关清关、节假日等因素会有所延误）具体发货时效可留意APP物流动态，或在商品详情页的购买须知里查看，感谢您的谅解</li>
+        </ul>
+    </div>
+</div>
+<!--轮播图-->
+	<div class="receipt_information" style="border:0;">
+					<div class="row-fluid">
+						<div class="span12">
+							<div class="pro">
+								<div id="slider">
+									<ul class="slides sli_product">
+										<li><img class="responsive" src="image/lunb1.png"></li>
+										<li><img class="responsive" src="image/lunb2.png"></li>
+									</ul>
+									<script src="js/easySlider.js"></script>
+									<script>
+										$(function() {
+											$("#slider").easySlider({
+												slideSpeed:300,
+												autoSlide: true,
+												paginationSpacing: "150px",
+												paginationDiameter: "100px",
+												paginationPositionFromBottom: "0px",
+												slidesClass: ".slides",
+												controlsClass: ".controls",
+												paginationClass: ".pagination"
+											});
+										});
+									</script>
+								</div>
+
+							</div>
+						</div>
+					</div>
+	</div>
+<!--自助工具-->
+	<div class="tools">
+		<div class="zizhu">自助工具</div>
+		<div class="tools_detail">
+			<ul>
+				<li><img src="image/sale.png"/><div>我的售后</div></li>
+				<li><img src="image/tx.png"/><div>我要提现</div></li>
+				<li><img src="image/bangd.png"/><div>换绑手机</div></li>
+				<li><img src="image/zhifu.png"/><div>设置支付密码</div></li>
+				<li><img src="image/weixin.png"/><div>换绑微信</div></li>
+				<li><img src="image/address.png"/><div>地址管理</div></li>
+				<li><a href="certification.html"><img src="image/shiming.png"/><div>实名认证</div></a></li>
+				<div class="clear"></div>
+			</ul>
+	    </div>
+	</div>
+<!--常见问题-->
+	<div class="question">
+			<form action="" method="post" class="forms">
+				<input type="text" value="" name="key" class="key" id="key" placeholder="       搜索"/>
+				<img src="image/search.png"/>
+			</form>
+			<div class="changjian">
+			<p>常见问题</p>
+			<ul>
+				<li>
+					<div class="issue ico">
+						<img src="image/new_store.png"/>
+					</div>
+					<div class="issue text">
+						<div>新店主宝典</div>
+						<div class="sencond">新手入门涨知识</div>
+					</div>
+				</li>
+				<li>
+					<div class="issue ico">
+						<img src="image/active.png"/>
+					</div>
+					<div class="issue text">
+						<div>活动新资讯</div>
+						<div class="sencond">大促活动先知道</div>
+					</div>
+				</li>
+				<li>
+					<div class="issue ico">
+						<img src="image/wuliu.png"/>
+					</div>
+					<div class="issue text">
+						<div>物流日日新</div>
+						<div class="sencond">物流情况在更新</div>
+					</div>
+				</li>
+				<li>
+					<div class="issue ico">
+						<img src="image/shouhou.png"/>
+					</div>
+					<div class="issue text">
+						<div>售后大帮手</div>
+						<div class="sencond">售后享无忧</div>
+					</div>
+				</li>
+				<li>
+					<div class="issue ico">
+						<img src="image/orderpng.png"/>
+					</div>
+					<div class="issue text">
+						<div>订单小科普</div>
+						<div class="sencond">订单问题不用怕</div>
+					</div>
+				</li>
+				<li>
+					<div class="issue ico">
+						<img src="image/zhengpin.png"/>
+					</div>
+					<div class="issue text">
+						<div>正品授权库</div>
+						<div class="sencond">正品保证看这里</div>
+					</div>
+				</li>
+				<div class="clear"></div>
+			</ul>
+			</div>
+		</div>
+<!--在线客服-->
+	<div class="custom_service">
+		<img src="image/kefu.png"/>
+		<div>在线客服</div>
+	</div>
+<script>
+    $('#e').rollNoInterval().left();
+</script>
+	</body>
+</html>

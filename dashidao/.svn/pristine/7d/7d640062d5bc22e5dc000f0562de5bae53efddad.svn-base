@@ -1,0 +1,474 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>卖家品牌列表 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+	<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+	<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+	<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css">
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <!-- <script src="$!webPath/resources/js/bootstrap.min.js"></script>-->
+	<link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+	<link href="$!webPath/resources/style/system/manage/blue/zhandai.css"  rel="stylesheet" type="text/css"/>
+   
+   	<style>
+		.input_tax{
+			border:1px solid #CFCFCF;
+			outline:none;
+			border-top-style:none;
+			border-left-style:none;
+			border-right-style:none;
+			border-bottom-style:solid;
+		}
+		
+		.save_button{
+			background-color: #0080FF;
+		    border: none;
+		    color: white;
+		    padding: 15px 32px;
+		    text-align: center;
+		    text-decoration: none;
+		    display: inline-block;
+		    font-size: 16px;
+		    margin: 4px 2px;
+		    cursor: pointer;
+		    border-radius: 40px;
+		    width:200px;
+		}
+		
+	</style>
+	
+	<script>
+	function showTaxInformation(){
+		var user_id = "${user.id}";//登录用户的id
+		var sql = "SELECT * FROM wemall_taxinfo t LEFT JOIN dashidao_user u ON t.user_id=u.id WHERE t.user_id='"+user_id+"'";
+		
+		//获取税务信息
+        jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajaxuser.jsp",
+            dataType:"json",
+            data:"table=wemall_taxinfo&dates=addTime,birthday,lastLoginDate,loginDate&sql="+sql,
+            //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+            error:function(){
+            	alert("数据错误，操作被取消222！");},
+            success:function(data)
+            {
+            	
+                if(data.state=="error"){alert("系统错误，操作被取消！222");return;}
+                var message=data.data.data;
+                //alert(data.data.total);
+                count1=data.data.total;
+                
+                for(var i=0;i<message.length;i++) {
+                	var ti_comName = message[i]['ti_comName'];//企业名称
+                	var ti_num = message[i]['ti_num'];//纳税人识别号
+                	var ti_address = message[i]['ti_address'];//纳税人地址
+                	var ti_style = message[i]['ti_style'];//纳税人类型
+                	var ti_djZhengShu = message[i]['ti_djZhengShu'];//税务登记证书
+                	var ti_picture = message[i]['ti_picture'];//公章图片
+                	var ti_agreement = message[i]['ti_agreement'];//公章协议
+                	var ti_agentName = message[i]['ti_agentName'];//经办人姓名
+                	var ti_agentEmail = message[i]['ti_agentEmail'];//经办人邮箱
+                	var ti_agentPhone = message[i]['ti_agentPhone'];//经办人手机
+                	var ti_card = message[i]['ti_card'];//经办人身份证
+                	var addTime = message[i]['ti_addTime'];//添加时间
+                	var ti_card_phone_front = message[i]['ti_card_phone_front'];//身份证照片正面
+                	var ti_card_phone_verso = message[i]['ti_card_phone_verso'];//身份证照片反面
+                	
+                	$("#ti_comName").attr("value",ti_comName);
+                	$("#ti_num").attr("value",ti_num);
+                	$("#ti_address").attr("value",ti_address);
+                	$("#ti_style").attr("value",ti_style);
+                	$("#ti_card").attr("value",ti_card);
+                	$("#ti_agentName").attr("value",ti_agentName);
+                	$("#ti_agentEmail").attr("value",ti_agentEmail);
+                	$("#ti_agentPhone").attr("value",ti_agentPhone);
+                	$("#ti_djZhengShu").attr("src","$!webPath/"+ti_djZhengShu);
+                	$("#ti_picture").attr("src","$!webPath/"+ti_picture);
+                	$("#ti_agreement").attr("src","$!webPath/"+ti_agreement);
+                	$("#ti_djZhengShu1").attr("src","$!webPath/"+ti_djZhengShu);
+                	$("#ti_agreement1").attr("src","$!webPath/"+ti_agreement);
+                	$("#ti_card_phone_front").attr("src","$!webPath/"+ti_card_phone_front);
+                	$("#ti_card_phone_verso").attr("src","$!webPath/"+ti_card_phone_verso);
+                	$("#ti_card_phone_front1").attr("src","$!webPath/"+ti_card_phone_front);
+                	$("#ti_card_phone_verso1").attr("src","$!webPath/"+ti_card_phone_verso);
+                }
+            }
+        });
+        
+        //获取发票信息
+        sql = "SELECT * FROM wemall_ticketinfo t WHERE t.ticket_userId='"+user_id+"'";
+        jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajaxuser.jsp",
+            dataType:"json",
+            data:"table=wemall_ticketinfo&dates=addTime&sql="+sql,
+            //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+            error:function(){
+            	alert("数据错误，操作被取消222！");},
+            success:function(data){
+                if(data.state=="error"){alert("系统错误，操作被取消！222");return;}
+                var message=data.data.data;
+                //alert(data.data.total);
+                count1=data.data.total;
+                
+                for(var i=0;i<message.length;i++) {
+                	var ticket_tax = message[i]['ticket_tax'];//默认税率
+                	var ticket_adderss = message[i]['ticket_adderss'];//纳税人地址
+                	var ticket_phone = message[i]['ticket_phone'];//电话
+                	var ticket_bank = message[i]['ticket_bank'];//开户行
+                	var ticket_accountNumber = message[i]['ticket_accountNumber'];//账号
+                	var ticket_payee = message[i]['ticket_payee'];//收款人
+                	var ticket_checkPeople = message[i]['ticket_checkPeople'];//复核人
+                	var ticket_drawer = message[i]['ticket_drawer'];//开票人
+                	var ticket_code = message[i]['ticket_code'];//税收分类编码
+                	var ticket_goodsName = message[i]['ticket_goodsName'];//商品名称
+                	var ticket_invoice_phone = message[i]['ticket_invoice_phone'];//发票图片
+                	
+                	$("#ticket_tax").attr("value",ticket_tax);
+                	$("#ticket_adderss").attr("value",ticket_adderss);
+                	$("#ticket_phone").attr("value",ticket_phone);
+                	$("#ticket_bank").attr("value",ticket_bank);
+                	$("#ticket_accountNumber").attr("value",ticket_accountNumber);
+                	$("#ticket_payee").attr("value",ticket_payee);
+                	$("#ticket_checkPeople").attr("value",ticket_checkPeople);
+                	$("#ticket_drawer").attr("value",ticket_drawer);
+                	$("#ticket_code").attr("value",ticket_code);
+                	$("#ticket_goodsName").attr("value",ticket_goodsName);
+                	
+                	$("#ticket_invoice_phone").attr("src","$!webPath/"+ticket_invoice_phone);
+                }
+            }
+        });
+	}
+    
+  	//页面加载完成后获取登录的用户税务信息
+    jQuery(document).ready(function(){
+    	showTaxInformation();
+    });
+  	
+  	
+  	//保存按钮单击事件
+  	function saveInformation(){
+  		var user_id = "${user.id}";//登录用户的id
+  		//获取输入的信息
+  		var ti_comName = $("#ti_comName").val();//企业名称
+    	var ti_num = $("#ti_num").val();//纳税人识别号
+    	var ti_address = $("#ti_address").val();//纳税人地址
+    	var ti_style = $("#ti_style").val();//纳税人类型
+    	var ti_agentName = $("#ti_agentName").val();//经办人姓名
+    	var ti_agentEmail = $("#ti_agentEmail").val();//经办人邮箱
+    	var ti_agentPhone = $("#ti_agentPhone").val();//经办人手机
+    	var ti_card = $("#ti_card").val();//经办人身份证
+    	
+    	var ticket_tax = $("#ticket_tax").val();//默认税率
+    	var ticket_adderss = $("#ticket_adderss").val();//纳税人地址
+    	var ticket_phone = $("#ticket_phone").val();//电话
+    	var ticket_bank = $("#ticket_bank").val();//开户行
+    	var ticket_accountNumber = $("#ticket_accountNumber").val();//账号
+    	var ticket_payee = $("#ticket_payee").val();//收款人
+    	var ticket_checkPeople = $("#ticket_checkPeople").val();//复核人
+    	var ticket_drawer = $("#ticket_drawer").val();//开票人
+    	var ticket_code = $("#ticket_code").val();//税收分类编码
+    	var ticket_goodsName = $("#ticket_goodsName").val();//商品名称
+    	
+    	//查询该用户是否已经添加
+    	var sql = "SELECT * FROM wemall_taxinfo t WHERE t.user_id='"+user_id+"'";
+        jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajaxuser.jsp",
+            dataType:"json",
+            data:"table=wemall_taxinfo&dates=addTime&sql="+sql,
+            //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+            error:function(){
+            	alert("数据错误，操作被取消222！");},
+            success:function(data){
+                if(data.state=="error"){alert("系统错误，操作被取消！222");return;}
+                var message=data.data.data;
+                
+                var sql1;
+                var field;
+                var values;
+                var action;
+                if(message.length>0){//该用户已经添加税务信息
+                	action = "update";
+                	field = "user_id,ti_comName,ti_num,ti_address,ti_style,ti_agentName,ti_agentEmail,ti_agentPhone,ti_card";
+                	values = user_id+"|"+ti_comName+"|"+ti_num+"|"+ti_address+"|"+ti_style+"|"+ti_agentName+"|"+ti_agentEmail+"|"+ti_agentPhone+"|"+ti_card;
+                }else{//改用户未添加税务信息
+                	action = "insert";
+                	field = "user_id,ti_comName,ti_num,ti_address,ti_style,ti_agentName,ti_agentEmail,ti_agentPhone,ti_card,states";
+                	values = user_id+","+ti_comName+","+ti_num+","+ti_address+","+ti_style+","+ti_agentName+","+ti_agentEmail+","+ti_agentPhone+","+ti_card+",1";
+                }
+                
+                jQuery.ajax({
+                    type:"POST",
+                    cache: false,
+                    async:false,
+                    url:"/ajaxuser.jsp",
+                    dataType:"json",
+                    data:"action="+action+"&table=wemall_taxinfo&field="+field+"&values="+values,
+                    //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                    error:function(){
+                    	alert("数据错误，操作被取消222！");},
+                    success:function(data){
+                        if(data.state=="error"){alert("系统错误，操作被取消！222");return;}
+                       	alert("更新成功");
+                    }
+                });
+            }
+        });
+  	}
+  	
+  	
+	</script>
+   </head>
+<body>
+$!httpInclude.include("/top.htm")
+<div class="main ele_invoice">
+    <div class="user_center">
+        $!httpInclude.include("/seller/nav_head.htm")
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=ele_invoice")
+                <td id="centerbg" valign="top" width="100%" class="eleinbox" >
+                    <div  class="fpr">
+                        <p class="eleinvotitile"  >税务信息</p>
+                    </div>
+                    
+					<!-- 上侧展示企业信息 -->
+                    <div class="div_2" id="taxationInformation">
+                        <table width="100%" style="border-collapse:separate; border-spacing:5px 15px;">
+                            <tbody>
+                            <tr >
+                                <td  align="right">企业名称：</td>
+                                <td  colspan="2"><input type="text" id="ti_comName" class="input_tax" placeholder=""/></td>
+                            </tr>
+                            <tr>
+                                <td align="right">纳税人识别号：</td>
+                                <td colspan="2"><input type="text" id="ti_num" class="input_tax" placeholder=""/></td>
+                            </tr>
+                            <tr>
+                                <td align="right">纳税人地址：</td>
+                                <td><input type="text" id="ti_address" class="input_tax" placeholder=""/></td>
+                            </tr>
+                            <tr>
+                                <td align="right">纳税人类型：</td>
+                                <td colspan="2"><input id="ti_style" type="text" class="input_tax" placeholder=""/></td>
+                            </tr>
+                            <tr>
+                                <td align="right">税务登记证书：</td>
+                                <td>
+									<img src="" id="ti_djZhengShu1"/>
+                                </td>
+                                <td>
+                                	<label for="fileinp" style="position: relative;">
+        								<button style="margin-right: 5px;">税务证书上传</button>
+        								<input type="file" id="tax_certificate" style="position: absolute;left: 0;top: 0;opacity: 0;"/><span>（单张不超过3M，支持jpg,png）</span>
+									</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">公章图片：</td>
+                                <td colspan="2"><input type="text" class="input_tax" placeholder=""/></td>
+                            </tr>
+                            <tr>
+                                <td align="right">公章协议：</td>
+                                <td>
+									<img src="" id="ti_agreement1"/>
+                                </td>
+                                <td>
+           							<label for="fileinp" style="position: relative;">
+        								<button style="margin-right: 5px;">公章协议上传</button>
+        								<input type="file" id="cachet_protocol" style="position: absolute;left: 0;top: 0;opacity: 0;"/><span>（先下载公章协议，打印盖章后，再上传；）</span>
+									</label>                     
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">经办人身份证：</td>
+                                <td colspan="2"><input type="text" id="ti_card" class="input_tax" placeholder=""/>
+                                    <input type="text" src="" placeholder=""/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right"></td>
+                                <td>
+                                	<img src="" id="ti_card_phone_front" width="150" height="90"/>
+                                </td>
+                                <td>
+                                	<label for="fileinp" style="position: relative;">
+        								<button style="margin-right: 5px;">身份证正面照上传</button>
+        								<input type="file" id="imgInput1" style="position: absolute;left: 0;top: 0;opacity: 0;"/>
+									</label>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td align="right"></td>
+                                <td>
+									<img src="" id="ti_card_phone_verso" width="150" height="90"/>
+                                </td>
+                                <td>
+                                	<label for="fileinp" style="position: relative;">
+        								<button style="margin-right: 5px;">身份证反面照上传</button>
+        								<input type="file" id="imgInput2" style="position: absolute;left: 0;top: 0;opacity: 0;"/>
+									</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">经办人姓名：</td>
+                                <td colspan="2"><input type="text" id="ti_agentName" class="input_tax" placeholder=""/></td>
+                            </tr>
+                            <tr>
+                                <td align="right">经办人手机：</td>
+                                <td colspan="2"><input type="text" id="ti_agentPhone" class="input_tax" placeholder=""/></td>
+                            </tr>
+                            <tr>
+                                <td align="right">经办人邮箱：</td>
+                                <td colspan="2"><input type="text" id="ti_agentEmail" class="input_tax" placeholder=""/></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- 展示证书、身份证等图片 -->
+                    <div class="div_2" >
+                        <div style="width: 30%">
+                            <p>税务登记证书：</p>
+                            <input type="image" id="ti_djZhengShu" src=""/>
+                        </div>
+                        <div style="width: 20%">
+                            <p>公章图片：</p>
+                            <input type="image" id="ti_picture" src=""/>
+                        </div>
+                        <div style="width: 20%">
+                            <p>公章协议：</p>
+                            <input type="image" id="ti_agreement" src=""/>
+                        </div>
+                        <div style="width: 30%">
+                            <p>经办人身份证：</p>
+                            <img id="ti_card_phone_front1" src="" width="150" height="90"/>
+                            <img id="ti_card_phone_verso1" src="" width="150" height="90"/>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="fpr">
+                        <p class="eleinvotitile" >票面初始化</p>
+                    </div>
+                    
+                    <!-- 展示发票的信息 -->
+                    <div style="width: 90%;display: flex;margin: 15px auto">
+                        <div style="width: 40%">
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td align="right">默认税率：</td>
+                                    <td><input type="text" id="ticket_tax" class="input_tax" placeholder=""/></td>
+                                </tr>
+                                <tr>
+                                    <td align="right">纳税人地址：</td>
+                                    <td><input type="text" id="ticket_adderss" class="input_tax" placeholder=""/></td>
+                                </tr>
+                                <tr>
+                                    <td align="right">电话：</td>
+                                    <td><input type="text" id="ticket_phone" class="input_tax" placeholder=""/></td>
+                                </tr>
+                                <tr>
+                                    <td align="right">开户行：</td>
+                                    <td><input type="text" id="ticket_bank" class="input_tax" placeholder=""/></td>
+                                </tr>
+                                <tr>
+                                    <td align="right">账号：</td>
+                                    <td><input type="text" id="ticket_accountNumber" class="input_tax" placeholder=""/></td>
+                                </tr>
+                                <tr>
+                                    <td align="right">收款人：</td>
+                                    <td><input type="text" id="ticket_payee" class="input_tax" placeholder=""/></td>
+                                </tr>
+                                <tr>
+                                    <td align="right">复核：</td>
+                                    <td><input type="text" id="ticket_checkPeople" class="input_tax" placeholder=""/></td>
+                                </tr>
+                                <tr>
+                                    <td align="right">开票人：</td>
+                                    <td><input type="text" id="ticket_drawer" class="input_tax" placeholder=""/></td>
+                                </tr>
+                                <tr>
+                                    <td align="right">税收分类编码：</td>
+                                    <td><input type="text" id="ticket_code" class="input_tax" placeholder=""/></td>
+                                </tr>
+                                <tr>
+                                    <td align="right">商品名称：</td>
+                                    <td><input type="text" id="ticket_goodsName" class="input_tax" placeholder=""/></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="padding-top: 30px; width: 60%;">
+                            <label for="fileinp" style="position: relative;">
+        						<button style="margin-right: 5px;">发票上传</button>
+        						<input type="file" id="invoice" style="position: absolute;left: 0;top: 0;opacity: 0;"/>
+							</label><br/>
+							<img src="" id="ticket_invoice_phone"/>
+                        </div>
+                    </div>
+					
+					<!-- 保存按钮 -->
+					<div style="position:relative;left:40%;">
+                        <button class="save_button" onclick="saveInformation()">保存</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+
+<script>
+	//展示身份证正面照片
+	$("#imgInput1").change(function(){
+		console.log(URL.createObjectURL($(this)[0].files[0]));
+		
+	    $("#ti_card_phone_front").attr("src",URL.createObjectURL($(this)[0].files[0]));
+	});
+	
+	//展示身份证反面照片
+	$("#imgInput2").change(function(){
+	    $("#ti_card_phone_verso").attr("src",URL.createObjectURL($(this)[0].files[0]));
+	});
+	
+	//税务证书上传
+	$("#tax_certificate").change(function(){
+	    $("#ti_djZhengShu1").attr("src",URL.createObjectURL($(this)[0].files[0]));
+	});
+	
+	//公章协议上传
+	$("#cachet_protocol").change(function(){
+	    $("#ti_agreement1").attr("src",URL.createObjectURL($(this)[0].files[0]));
+	});
+	
+	//发票上传
+	$("#invoice").change(function(){
+	    $("#ticket_invoice_phone").attr("src",URL.createObjectURL($(this)[0].files[0]));
+	});
+</script>
+</body>
+</html>

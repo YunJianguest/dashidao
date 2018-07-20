@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>卖家品牌列表 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link href="$!webPath/resources/style/system/manage/black/zxx.css"  rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css">
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+    <link href="$!webPath/resources/style/system/manage/blue/zhandai.css"  rel="stylesheet" type="text/css"/>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+	<style>
+        .hzhaomu li{ width: 14%; }
+        .hzhaomu2 li{ width: 14%; }
+        .ac9 a {
+            color: #999;
+            padding:4px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            border:1px solid #999;margin-left:4px;
+        }
+        .ac9 a:hover {
+            color:#999;
+            background: #fff;
+
+        }
+        .input{
+            border: 0;
+            text-align: center;
+            width: 50px;
+        }
+    </style>
+	<script type="text/javascript">
+	jQuery(document).ready(function(){
+		sel_evaluate();
+	});
+	</script>
+</head>
+<body>
+<div class="main evaluated_manager">
+    <div class="user_center" id="evalubox">
+        $!httpInclude.include("/seller/nav_head.htm") 
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=open_store")
+                <td id="centerbg" valign="top" width="80%" >
+                    <div class="buyer_position">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">商家支持</a> > <span>交易管理</span>  > <span>评价管理</span></div>
+                    </div>
+                    <div class="div_2">
+                            <div class="ht-top">
+                                <form class="form-inline" style="float: right;">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入查询内容" style="width: 200px; border: 1px solid #ccc; text-indent: 2rem;" >
+                                    </div>
+                                    <label><input type="checkbox" value="">好评</label>
+                                    <label><input type="checkbox" value="">中评</label>
+                                    <label><input type="checkbox" value="">差评</label>
+                                    <label><input type="checkbox" value="">追评</label>
+                                </form>
+                            </div>
+                    </div>
+                    <div class="operation_tip">
+                        <h3>友情提示</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <FORM name="ListForm" id="ListForm"  action="$!webPath/seller/evaluated_manager.htm" method="post">
+                    <div class="ghs_div">
+	                    <table class="table">
+		                    <thead>
+		                    <th>评价内容</th>
+		                    <th>评论</th>
+		                    <th>评价人</th>
+		                    <th>订单消息</th>
+		                    <th>操作</th>
+		                    </thead>
+		                    <tbody id="tabless">
+		                    </tbody>
+	                    </table>
+	                    
+                    </div>
+                 </FORM>
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+<script>
+	var user_id='${user.store.id}';
+	var currentPage=10;
+
+	$(function(){
+		sel_evaluate();
+		
+	});
+	
+	function sel_evaluate(){
+
+	/* $(function(){
+		sel_evaluate(); */
+
+		
+		jQuery.ajax({  
+            url:"$!webPath/seller/sel_evaluate.htm",
+            dataType:"json",
+            data:"currentPage="+currentPage+"&user_id="+user_id,
+            error:function(XMLHttpRequest, textStatus, errorThrown){
+               alert("数据错误！");
+			},
+            success:function(data)
+            {
+            	
+            	var mess=data.data;
+            	$("#tabless").html('');
+            	for(var i=0;i<mess.length;i++){
+            		
+            		$("#tabless").append("<tr>"+
+            		"<td><input type='image' src='$!webPath/resources/style/system/manage/black/img/raw_1495541442.jpeg' style='padding-left: 10px;padding-top: 8px;'/></td>"+
+            		"<td><ul><li>"+mess[i].content+"</li><li>"+mess[i].addTime+"</li></ul></td>"+
+            		"<td><ul><li>买家：</li><li>"+mess[i].user.userName+"</li></ul></td>"+
+            		"<td><ul><li>"+mess[i].goods.goods_name+"</li><li>"+mess[i].orderForm.totalPrice+"</li></ul></td>"+
+            		"<td class='ac9'><a href='$!webPath/seller/evaluate_huifu.htm?id="+mess[i].id+"'>回复</a></td>"+
+            		"</tr>"); 
+            		/* <a href='$!webPath/seller/evaluate_details.htm?id="+mess[i].id+"'>详情</a> */
+            	}
+            }
+     });
+	}
+</script>
+</body>
+
+
+</html>

@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+		<title>商品详情</title>
+		<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="js/swiper-3.4.0.jquery.min.js" ></script>
+		<link rel="stylesheet" href="css/swiper-3.2.7.min.css" />
+		<link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
+		<!--<link rel="stylesheet" href="css/bootstrap.css">-->
+		<link rel="stylesheet" href="css/index.css">
+		<script type="text/javascript" src="js/iscroll.js"></script>
+		<script type="text/javascript" src="js/navbarscroll.js"></script>
+		<style>
+			body {min-width: 320px;max-width: 640px;margin: 0 auto;color: #333;padding: 0;font-family: "Microsoft Yahei";text-align: center;}
+			.clear{clear: both;}
+			.clear {clear: both;}
+			ul{margin:0;}
+			.zhuan{color:red;}
+			/*.body{margin-bottom:1.6rem;}*/
+			/*第一个选项卡*/
+			.container {margin-bottom:3rem;}
+			.swiper1 {width: 100%;background-color:#fff;}
+			.swiper1 .selected {background:url(img/address2.png);background-repeat:no-repeat;background-position:9% 50%;}
+			.swiper1 .swiper-slide {text-align: center;font-size: 16px;display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;-webkit-justify-content: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;-webkit-align-items: center;align-items: center;cursor: pointer;}
+			.swiper2 {width: 100%;}
+			.swiper2 .swiper-slide {height: calc(100vh - 50px);background-color:;color:;box-sizing: border-box !important;overflow-x: hidden !important;}
+			/*第二个选项卡*/
+			.swiper3 {width: 100%;background-color:#fff;}
+			.swiper3 .swiper-wrapper{width:94%;margin:1rem 3%;border-radius: 5px;;}
+			.swiper3 .selected {background:#000;background-repeat:no-repeat;background-position:9% 50%;color:#fff;}
+			.swiper3 .swiper-slide {height:4rem;text-align: center;font-size: 16px;display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;-webkit-justify-content: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;-webkit-align-items: center;align-items: center;cursor: pointer;}
+			.swiper3 .swiper-wrapper div{border:1px solid #000!important;margin: 0!important;width:33.3%!important;height: 2rem;line-height: 2rem;margin-top:1rem;font-size: .9rem;}
+			.swiper4 {width: 100%;}
+			.swiper4 .swiper-slide {height: calc(100vh - 50px);background-color:#fff;color: ;text-align: center;box-sizing: border-box !important;overflow-x: hidden !important;}
+			/*阿里字体样式*/
+			@font-face {font-family: 'iconfont';src: url('iconfont.eot');src: url('iconfont.eot?#iefix') format('embedded-opentype'),url('iconfont.woff') format('woff'),url('iconfont.ttf') format('truetype'),url('iconfont.svg#iconfont') format('svg');}
+			.iconfont{ font-family:"iconfont" !important; font-size:16px;font-style:normal; -webkit-font-smoothing: antialiased;-webkit-text-stroke-width: 0.2px; -moz-osx-font-smoothing: grayscale;}
+			/*头部*/
+			.swiper1 .swiper-wrapper div i{font-size: 2rem;}
+			.nav div{width:10%;height:3.2rem;line-height: 3.2rem;}
+			.nav .swiper-slide{width:24.5%!important;}
+			/*轮播图*/
+			#slider ul li{height:23.6em;}
+			
+			.slides li img {width: 100%;height:100%;}
+			/*限时特卖*/
+			.flash ul {background:#F1D43D;font-size: .9rem;}
+			.flash ul li {width: 60%;height: 2.5rem;line-height: 2.5rem;}
+			.flash .time {width: 40%!important;margin: 0!important;font-size:.9rem;}
+			.flash .time>div {height: 1.2rem;line-height: 1.2rem;text-align: center;}
+			.flash .titler {background: url(img/show5.png);background-size: 100% 100%;background-repeat: no-repeat;color: #fff;text-align: left;}
+			/*商品*/
+			.goods ol li{width:90%;margin: 0 5%;height: 2rem;line-height:2rem;text-align: left;}
+			.goods .goods_details>ul li{width:25%;margin: 0;font-size:.8rem;color:#c3c3c3;}
+			.goods .goods_name{font-size:.9rem;color: #000;line-height:3.5rem!important;}
+			.goods{background: #fff;}
+			.goods li span{margin:0 2%;color:red;font-size:.8rem;}
+			.goods .yuanjia{color:#000;}
+			/*活动*/	
+			.action>ol>li{width:100%;margin: 2.5% 0;height:3.5rem;line-height:3.5rem;background: #fff;text-align: left;padding-left:3%;font-size:.8rem;}
+			.action .act_content{color:red;font-size:.8rem;}
+			.action>ol>li i{float:right;margin-right: 5%;font-size: 1.2rem;}
+			.action .act_content .hongbao{width:30px;}
+			/*送货地址*/
+			.action .delivery .shouhuo{height: 2rem;line-height: 2rem;}
+			.action .delivery .shouhuo span{background: #3abe58;color: #fff;margin-left: 1rem;border-radius: 2px;letter-spacing:2px;font-size::;rem;}
+			.delivery .song{width:18%;}
+			.action .delivery{height: 4rem;}
+			.delivery ul li{width:80%;background:none;}
+			.detail_addr{color: #c9c9c9;}
+			/*规格选择*/
+			.action .specifications img{width:20px;float: right;margin:5% 2%;}
+			/*产品规格*/
+			.standard{background:#fff;width:100%;}
+			.standard .goods_check{width:90%;margin:5%;border-bottom: 1px solid #c3c3c3;}
+			.standard .goods_check .goods_gui{color:#C3C3C3;height: 2.3rem;line-height: 2.3rem;}
+			.standard .close{float: right;}
+			.standard .goods_check .goods_picture{position:relative;top:-2rem;width:100px;width:100px;border-radius:5px;border:1px solid #EEECE4;background: #fff;}
+			.standard .goods_check .goods_picture img{width:90%;height: 90%;margin:5%;}
+			.goods_check>ul{width:100%;}
+			/*关闭*/
+			.share_btn img{width:30px;height: 30px;}
+			/*颜色*/
+			.standard{margin-top: 2rem;}
+			.standard .goods_color ul li{width:25%;background:#F7F7FA;border-radius:10px;margin-left: 3%;height:2.5rem;line-height: 2.5rem;text-align: center;}
+			.goods_color .color{height:2rem;line-height:2rem;font-size: 1rem;text-align: left;}
+			.goods_color span{margin-left: 4%;}
+			/*尺寸*/
+			.standard  .goods_size ul li{width:15%;background:#F7F7FA;border-radius:10px;margin-left: 3%;height:2.5rem;line-height: 2.5rem;text-align: center;margin-bottom:1.5rem;}
+			.goods_size .size{height:2rem;line-height:2rem;font-size: 1rem;text-align: left;}
+			.goods_size span{margin-left: 4%;}
+			.goods_size ul{border-bottom:1px solid #c3c3c3;}
+			/*数量*/
+			.goods_sum .sum{height:2rem;line-height:2rem;font-size: 1rem;text-align: left;}
+			.goods_sum>ul>li{width:50%;margin: 1.5rem 0;}
+		    .goods_sum li .number,.kucun {display: inline-block;color: #808080;vertical-align: sub;}
+		    .goods_sum .count .num-jian,.input-num,.num-jia {display: inline-block; width:2rem; text-align: center;font-size: 18px;  color: #999;cursor: pointer;border: 1px solid #e6e6e6;margin: 0 .5%;}
+		    .goods_sum .count .input-num { width: 3rem;color: #333; border-left: 0; border-right: 0;height:2rem;font-size:.8rem; }
+		    .count li{height:2rem;line-height:2rem;font-size: 1rem;;}
+		    .goods_sum span{margin-left: 7%;}
+		    /*购买*/
+			.buy_goods ul li{width:50%;height:2.5rem;line-height: 2.5rem;font-size: 1rem;text-align: center;border-top:1px solid #c3c3c3;}
+			.buy_goods .buy{background:#FF0000;color:#fff;}
+		    /*商品详情*/
+		    .adv{width:100%;}
+		    .adv img{width:100%;}
+		   	.detail{width:100%;height: 4.2rem;line-height: 4.2rem;border-bottom: 1px solid #E5E5E5;}
+		   	.details_nav{width:96%;margin:0 2%;}
+		    .details_nav ul li{width:33.3%;border:1px solid #000;text-align: center;height: 3.1rem;line-height: 3.1rem;font-size: 1.2rem;}
+		   	.adv{width:100%;}
+		    .adv img{width: 100%;}
+		    .introduce ol li{width: 100%;}
+		    .introduce ol li img{width:100%;}
+		     /*承诺*/
+		   .acceptance_wenzi{height: 5rem;line-height: 5rem;}
+		   .acceptance_wenzi .border_line{width:60%;text-align: center;height: 2rem;border-bottom: 1px solid #E5E5E5;line-height: 4rem;margin: 0 20%;font-size: 1.2rem;}
+		   .acceptance .acceptance_menu{width:90%;margin:0 5%;}
+		   .acceptance .acceptance_menu ul li{width:25%;text-align: center;color:#EE2532;}
+		   .acceptance .acceptance_menu ul li>div{font-size: .9rem;width:100%;}
+		   .acceptance .acceptance_menu ul li>.ico{width:60%;margin:2% 20%;height: 3rem;line-height:3rem;border:1px solid #f3e5ea;border-radius: 50%;background: #fffbf8;}
+		   .acceptance .acceptance_menu ul li>.ico i{font-size:1.7rem;}
+		   .acceptance_detail{width:40%;height: 3rem;line-height: 3rem;border: 1px solid #E5E5E5;margin: 3rem auto;text-align: center;}
+		   /*规格参数*/
+		   .guige{width:100%;}
+		   .guige img{width:100%;}
+		   /*购买须知*/
+		   .xuzhi ol li{width:100%;}
+		   .xuzhi ol li img{width:100%;} 
+		   /*大家都在卖*/
+		   .similar_sale {width:100%;background: #fff;text-align: left;}
+		   .similar_sale .sim{width: 96%;margin:0 2% ;overflow: hidden;height: 200px;}
+		   .similar_sale .sim ul li{width:100px;height: 200px;}
+		   .similar_sale .sim ul li img{width:100%;height: 120px;}
+		   .similar_sale .goods_name,.jiage{font-size:.8rem;line-height: 3.2rem;}
+		   .similar_sale p{height: 3rem;line-height: 3rem;padding-left: 3%;}
+		   .similar_sale .goods_name{line-height:1.5rem;height:4rem;overflow: hidden;padding:0 3%;}   
+	  	  /*商品推荐*/
+	  	  .goods_recommend{background: #fff;margin-top:10px ;text-align: left;}
+		  .goods_recommend ul li{width:49.4%;border:.2px solid #E5E5E5;font-size: .9rem;}
+		  .goods_recommend .recommend_title{height: 3rem;line-height: 3rem;padding:0 3% ;text-align: left;}
+		  .goods_recommend .recommend_goods{width:84%;margin: 8% 8%;}
+		  .goods_recommend .recommend_goods img{width:100%;}
+		  .recommend_name{line-height: 1.2rem;height:2.4rem;overflow: hidden;padding:0 3%;}
+		  .recommend_jiage{line-height: 2.2rem;}
+		   /*底部导航*/
+		  .foot ul li{width:28.9%;font-size: .9rem;line-height:3rem!important;height:3rem;border:1px solid #EEECE4;}
+		  .foot ul li .txt{line-height:1rem!important;height:1rem;}
+		  .foot ul li div{line-height:2rem!important;height:2rem;}
+		  .foot ul li div i{font-size: 2rem;}
+		  .foot .cart{width:20%!important;}
+		  .foot .sale{background:red;color:#fff;}
+		  /*评论*/
+		  .comment{background: #fff;border-top:1px solid #f9f9f9;}
+		  .comment .pinl,.marg{width:94%;margin: 0 3%;}
+		  .comment .summary ul li{width:50%;height: 3rem;line-height: 3rem;font-size: .9rem;}
+		  .comment .summary ul .comment_sum{text-align: left;}
+		  .comment .summary ul .more{text-align: right;color:#ff6600;}
+		  .comment .comment_detail ul li{font-size:.85rem;padding: 0 2%;margin: 0 1%;background:#fdecea;border-radius: 20px;height: 2.2rem;line-height: 2.2rem;}
+		  .comment .comment_person .per{text-align: left;font-size: .8rem;color:#b1b1b1;height: 3rem;line-height: 3rem;}
+		  .comment .comment_person .per img{height: 2rem;width: 2rem;border-radius: 50%;margin: -3% 0;}
+		  .comment .comment_person .content{font-size: .8rem;text-align: left;height: 3rem;line-height: 1.3rem;}
+		  .comment_person{border-bottom: 1px solid #f9f9f9;height:6.5rem;}
+		  .pinl .question ul li{width:50%;height:1.5rem;font-size: .8rem;}
+		  .pinl .question .ques{text-align: left;}
+		  .pinl .question .ans{text-align: right;color:#c3c3c3;}
+		  .stores{background: #fff;margin-top:10px;text-align: left;}
+		  .stores .comp{font-size: .9rem;height: 2.5rem;line-height: 2.5rem;}
+		  .ques span{color:#fff;background: #ff6600;margin-right: 1%;}
+		  .marg>ul>li{margin-top: 1rem;}
+		  .stores_pic{width:18%;}
+		  .stores_pic img{width:100%;}
+		  .stores_name{width:82%;}
+		  .jindi,.both_bb{margin-left: 2%;border:1px solid #ff6600;color:#f60 ;border-radius: 20px;height: 1.5rem;line-height: 1.5rem;width:22%;font-size: .7rem;text-align: center;margin-top: .7rem;}
+		  .both_bb{border: 1px solid #c3c3c3;color:#c3c3c3;}
+		  .pingfen ul li{width:33.33%;font-size: .8rem;height:3rem;line-height: 3rem;}
+		  .pingfen ul li span{color:#f60;background:#fbf2eb ;border-radius: 2px;margin-left:5%;}
+		  .xiangqing{text-align: center;font-size: 1rem;height: 4rem;}
+		   .xiangqing div{line-height: 0rem;border-bottom: 1px solid #c3c3c3;width:10rem;margin:2rem 30%;color:#c3c3c3;}
+		   .xiangqing div i{font-size: 1.5rem;}
+		</style>
+	</head>
+	<body>
+
+	<style type="text/css">
+		#show{width:40%; height: auto; padding: 15px 0;  position: fixed; z-index: 1000; background-color:rgba(0, 0, 0, 0.5); border-radius: 5px; display: none;  left: 30%; top:300px;    }
+		#show i{ font-size: 2rem; color: #fff;  }
+		#show p{ padding-top: 15px; color: #fff; }
+		.prodcti i{ font-size: 1.8rem; margin-top: 10px;}
+	</style>
+	<div id="show" >
+		<i class="iconfont icon-success" ></i>
+		<p>加入购物车成功</p>
+	</div>
+	<script type="text/javascript">
+        $(function () {
+            $(".addcar").click(function () {
+				$("#show").css({'display':'block'});
+                $(".am-share2").removeClass("am-modal-active");
+                $(".sharebg").remove();
+                setTimeout(function() {
+                    $("#show").css({'display':'none'});
+
+                }, 1000);
+            });
+        });
+	</script>
+
+
+	<!--导航-->	
+		<div class="container">
+			<div class="swiper-container swiper1">
+				<div class="swiper-wrapper nav prodcti">
+					<i class="iconfont icon-back" onclick="history.go(-1)"></i>
+					<div class="swiper-slide selected">商品</div>
+					<div class="swiper-slide">详情</div>
+					<div class="swiper-slide">评论</div>
+					<i class="iconfont icon-skip"></i>
+				</div>
+			</div>
+			<!-- swiper2 -->
+		<!--商品-->
+			<div class="swiper-container swiper2">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide swiper-no-swiping">
+						<div class="body shangpin">
+				<!--轮播图-->
+				<div class="receipt_information" style="border:0;">
+					<div class="row-fluid">
+						<div class="span12">
+							<div class="pro">
+								<div id="slider">
+									<ul class="slides sli_product">
+										<li><img class="responsive" src="img/raw_1494472637.png"></li>
+										<li><img class="responsive" src="img/raw_1494472701.png"></li>
+										<li><img class="responsive" src="img/raw_1494472701.png"></li>
+									</ul>
+									<script src="js/easySlider.js"></script>
+									<script>
+										$(function() {
+											$("#slider").easySlider({
+												slideSpeed: 500,
+												autoSlide: true,
+												paginationSpacing: "15px",
+												paginationDiameter: "10px",
+												paginationPositionFromBottom: "0px",
+												slidesClass: ".slides",
+												controlsClass: ".controls",
+												paginationClass: ".pagination"
+											});
+										});
+									</script>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--限时特卖-->
+				<div class="flash">
+					<ul>
+						<li class="titler">&nbsp;&nbsp;&nbsp;限时特卖</li>
+						<li class="time">
+							<div>距离结束仅剩</div>
+							<div class="content3">
+								<div class="timer" style="color:red;font-size:.9em;"><span id="LeftTime"></span></div>
+							</div>
+							<script>
+								//倒计时效果js代码  
+								function checktime(i) {
+									if(i < 10) {
+										i = "0" + i;
+
+									} else {
+										i = i;
+									}
+									return i;
+								}
+								function freshTime() {
+									var endtime = new Date('2018/3/28');
+									var nowtime = new Date();
+									var lefttime = parseInt(endtime.getTime() - nowtime.getTime()); //这是毫秒，如果再/1000就是秒  
+									// 获取剩下的日、小时、分钟、秒钟  
+									// 一天有多少毫秒，一小时有多少毫秒，一分钟有多少毫秒，一秒钟有多少毫秒  
+									var dm = 24 * 60 * 60 * 1000;
+									var d = parseInt(lefttime / dm);
+									var hm = 60 * 60 * 1000;
+									var h = parseInt((lefttime / hm) % 24);
+									var mm = 60 * 1000;
+									var m = parseInt((lefttime / mm) % 60);
+									var s = parseInt((lefttime / 1000) % 60);
+									m = checktime(m);
+									s = checktime(s);
+									document.getElementById('LeftTime').innerHTML = d + "天" + h + "小时" + m + "分钟" + s + "秒";
+									if(lefttime < 0) {
+										document.getElementById('LeftTime').innerHTML = "团购活动已经结束！";
+									}
+								}
+								freshTime();
+								var sh;
+								sh = setInterval('freshTime()', 1000)
+							</script>
+						</li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+				
+				<!--商品-->
+				<div class="goods">
+					<ol>
+						<li class="goods_name">&nbsp; 夏季潮流青年圆领T恤纯色V领</li>
+						<script>
+ 						 /*用js限制字数，超出部分以省略号...显示*/
+ 						var str=$('.goods_name').text();//原始字符串					
+						var s = str;//要展示的字符串
+						if(str.length>20){
+						  s=str.substring(0,20)+"...";
+						  $('.goods_name').text(s);
+						}	
+					</script>	
+						<li><span>2件装</span><span>男士</span></li>
+						<li><span class="yuanjia">￥139</span>/<span class="zhuan">赚13.9</span></li>
+						<li class="goods_details">
+							<ul>
+								<li>.在售人数</li>
+								<li>.限量1000组</li>
+								<li>.库存770</li>
+							</ul>
+							<div class="clear"></div>
+						</li>
+					</ol>
+				</div>
+			<!--商品参数-->
+			<div class="action">
+			<ol>
+				<!--&lt;!&ndash;活动&ndash;&gt;-->
+				<!--<li class="act_content">-->
+					<!--<a href="rwlist.html">-->
+						<!--<img class="hongbao" src="img/hongbao.png" alt="" />&nbsp;&nbsp;此款商品参与‘3月日常奖励方案’奖励活动<i class="iconfont">&#xe6a7;</i>-->
+					<!--</a>-->
+				<!--</li>-->
+				<!--规格选择-->
+				<li class="specifications"><span>规格选择</span><span onClick="toshare()"><i class="iconfont">&#xe947;</i></span></li>
+				<!--送货地址-->
+				<li class="delivery address">
+				<!--收件人-->
+				<ul>
+					<a href="shdz.html">
+						<li class="song">送至</li>
+						<li>
+							<div class="shouhuo">张某某<span>可配送</span>
+								<i class="iconfont">&#xe947;</i>
+								<div class="clear"></div>
+							</div>
+
+							<div class="shouhuo detail_addr">陕西省去西安市碑林区</div>
+						</li>
+						<div class="clear"></div>
+					</a>
+				</ul>
+				</li>
+			</ol>
+		</div>
+		</div>					
+	</div>
+		<!--商品详情-->
+		<div class="swiper-slide swiper-no-swiping">
+		<!--第二个选项卡-->
+		<div class="container2">
+			<div class="swiper-container swiper3">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide selected">商品详情</div>
+					<div class="swiper-slide">规格参数</div>
+					<div class="swiper-slide">购买须知</div>
+				</div>
+			</div>
+			<!-- swiper2 -->
+			<div class="swiper-container swiper4">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide swiper-no-swiping">
+					<!--活动广告-->
+				<div class="adv">
+					<img src="image/xianshi.png"/>
+				</div>
+				<!--商品介绍   第一个选项卡内容-->
+				<div class="mui-slider-item mui-control-content mui-active" id="item1mobile">
+					<div class="introduce">
+					<ol>
+						<li><img src="img/introduce1.png"/></li>
+						<li><img src="img/introduce2.png"/></li>
+						<li><img src="img/introduce3.png"/></li>
+						<li><img src="img/introduce5.png"/></li>
+						<li><img src="img/introduce6.png"/></li>
+					</ol>
+					</div>
+					<!--承诺-->
+					<div class="acceptance">
+					<div class="acceptance_wenzi">
+						<div class="border_line">承诺</div>
+					</div>
+					<div class="acceptance_menu">
+						<ul>
+							<li><div class="ico"><i class="iconfont">&#xea32;</i></div><div>正品保障</div></li>
+							<li><div class="ico"><i class="iconfont">&#xe825;</i></div><div>全场包邮</div></li>
+							<li><div class="ico"><i class="iconfont">&#xea66;</i></div><div>退货无忧</div></li>
+							<li><div class="ico"><i class="iconfont">&#xeb9c;</i></div><div>极速售后</div></li>
+							<div class="clear"></div>
+						</ul>
+					</div>
+					<div class="acceptance_detail">了解承诺详情 <img src="img/jiantou7.png" alt="" /></div>
+				</div>
+				</div>	
+						
+						
+					</div>
+					<div class="swiper-slide swiper-no-swiping">
+						<!--规格参数  第二个选项卡内容-->
+				<div class="mui-slider-item mui-control-content" id="item2mobile">
+						<div class="guige">
+							<img src="img/gxg.png"/>
+						</div>
+				</div>
+					</div>
+					<div class="swiper-slide swiper-no-swiping">
+						<div class="mui-slider-item mui-control-content" id="item3mobile">
+						<div class="xuzhi">
+							<ol>
+								<li><img src="img/xuzhi.png"/></li>
+								<li><img src="img/xuzhi2.png"/></li>
+							</ol>
+						</div>
+					</div>		
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!--大家都在卖-->
+				<div class="similar_sale">
+					<p>大家都在卖</p>
+					<div class="sim wrapper" id="sass">
+						<div class="scroller">
+						<ul>
+							<li>
+								<img src="img/similar_sale.png"/>
+								<div class="goods_name">新品 汤米T恤 男女同款升级版</div>
+								<div class="jiage"><span>￥59.9</span>/<span class="zhuan">赚7.19</span></div>
+							</li>
+							<li>
+								<img src="img/similar_sale2.png"/>
+								<div class="goods_name">双星“蜜恋”青春小白鞋</div>
+								<div class="jiage"><span>￥88</span>/<span class="zhuan">赚14.96</span></div>
+							</li>
+							<li>
+								<img src="img/similar_sale3.png"/>
+								<div class="goods_name">BA2时尚透气弹力瑜伽服五件套</div>
+								<div class="jiage"><span>￥199</span>/<span class="zhuan">赚19.9</span></div>
+							</li>
+							<li>
+								<img src="img/similar_sale4.png"/>
+								<div class="goods_name">Let's deit经典时尚遮阳帽</div>
+								<div class="jiage"><span>￥89</span>/<span class="zhuan">赚13.35</span></div>
+							</li>
+							<li>
+								<img src="img/similar_sale5.png"/>
+								<div class="goods_name">Let's deit经典时尚遮阳帽</div>
+								<div class="jiage"><span>￥89</span>/<span class="zhuan">赚13.35</span></div>
+							</li>
+							<li>
+								<img src="img/similar_sale6.png"/>
+								<div class="goods_name">Let's deit经典时尚遮阳帽</div>
+								<div class="jiage"><span>￥89</span>/<span class="zhuan">赚13.35</span></div>
+							</li>
+							<li><img src="img/similar_sale7.png"/>
+								<div class="goods_name">Let's deit经典时尚遮阳帽</div>
+								<div class="jiage"><span>￥89</span>/<span class="zhuan">赚13.35</span></div>
+							</li>
+							<li>
+								<img src="img/similar_sale8.png"/>
+								<div class="goods_name">Let's deit经典时尚遮阳帽</div>
+								<div class="jiage"><span>￥89</span>/<span class="zhuan">赚13.35</span></div>
+							</li>
+							<div class="clear"></div>
+						</ul>
+						</div>
+					</div>
+					<script type="text/javascript">
+							$(function(){
+								//demo示例一到四 通过lass调取，一句可以搞定，用于页面中可能有多个导航的情况
+							$('.wrapper').navbarscroll();
+							});
+					</script>
+				</div>
+				<!--商品推荐-->
+				<div class="goods_recommend">
+				<div class="recommend_title">商品推荐</div>
+					<ul>
+						<li>
+							<div class="recommend_goods">
+								<img src="img/recomend_goods1.png"/>
+								<div class="recommend_name">乔治汤米情侣款基础圆领打底长袖</div>
+								<div class="recommend_jiage"><span>￥79</span>/<span class="zhuan">赚7.45</span></div>
+							</div>
+						</li>
+						<li>
+							<div class="recommend_goods">
+								<img src="img/recomend_goods2.png"/>
+								<div class="recommend_name">乔治汤米情侣款基础圆领打底长袖</div>
+								<div class="recommend_jiage"><span>￥79</span>/<span class="zhuan">赚7.45</span></div>
+							</div>
+						</li>
+						<li>
+							<div class="recommend_goods">
+								<img src="img/recomend_goods2.png"/>
+								<div class="recommend_name">乔治汤米情侣款基础圆领打底长袖</div>
+								<div class="recommend_jiage"><span>￥79</span>/<span class="zhuan">赚7.45</span></div>
+							</div>
+						</li>
+						<li>
+							<div class="recommend_goods">
+								<img src="img/recomend_goods1.png"/>
+								<div class="recommend_name">乔治汤米情侣款基础圆领打底长袖</div>
+								<div class="recommend_jiage"><span>￥79</span>/<span class="zhuan">赚7.45</span></div>
+							</div>
+						</li>
+						<div class="clear"></div>
+					</ul>
+					
+				</div>
+<!--第二个选项卡-->
+		<script>
+			$(function() {
+				function setCurrentSlide(ele, index) {
+					$(".swiper3 .swiper-slide").removeClass("selected");
+					ele.addClass("selected");
+					//swiper1.initialSlide=index;
+				}
+
+				var swiper3 = new Swiper('.swiper3', {
+//					设置slider容器能够同时显示的slides数量(carousel模式)。
+//					可以设置为number或者 'auto'则自动根据slides的宽度来设定数量。
+//					loop模式下如果设置为'auto'还需要设置另外一个参数loopedSlides。
+					slidesPerView: 5.5,
+					paginationClickable: true,//此参数设置为true时，点击分页器的指示点分页器会控制Swiper切换。
+					spaceBetween: 10,//slide之间的距离（单位px）。
+					freeMode: true,//默认为false，普通模式：slide滑动时只滑动一格，并自动贴合wrapper，设置为true则变为free模式，slide会根据惯性滑动且不会贴合。
+					loop: false,//是否可循环
+					onTab: function(swiper) {
+						var n = swiper3.clickedIndex;
+					}
+				});
+				swiper3.slides.each(function(index, val) {
+					var ele = $(this);
+					ele.on("click", function() {
+						setCurrentSlide(ele, index);
+						swiper4.slideTo(index, 500, false);
+						//mySwiper.initialSlide=index;
+					});
+				});
+
+				var swiper4 = new Swiper('.swiper4', {
+					//freeModeSticky  设置为true 滑动会自动贴合  
+					direction: 'horizontal',//Slides的滑动方向，可设置水平(horizontal)或垂直(vertical)。
+					loop: false,
+//					effect : 'fade',//淡入
+					//effect : 'cube',//方块
+					//effect : 'coverflow',//3D流
+//					effect : 'flip',//3D翻转
+					autoHeight: true,//自动高度。设置为true时，wrapper和container会随着当前slide的高度而发生变化。
+					onSlideChangeEnd: function(swiper) {  //回调函数，swiper从一个slide过渡到另一个slide结束时执行。
+						var n = swiper.activeIndex;
+						setCurrentSlide($(".swiper3 .swiper-slide").eq(n), n);
+						swiper3.slideTo(n, 500, false);
+					}
+				});
+			});
+		</script>
+					</div>
+	<!--评论-->
+		<div class="swiper-slide swiper-no-swiping ">
+			<div class="comment">
+			<div class="pinl">
+			<!--评论内容-->
+			<div class="summary">
+				<ul>
+					<li class="comment_sum">宝贝评价(58)</li>
+					<li class="more">查看全部<i class="iconfont">&#xe947;</i></li>
+					<div class="clear"></div>
+				</ul>
+			</div>
+			<div class="comment_detail">
+				<ul>
+					<li>质量不错(17)</li>
+					<li>划算(14)</li>
+					<li>样子好看(9)</li>
+					<div class="clear"></div>
+				</ul>
+			</div>
+			<div class="comment_person">
+				<div class="per"><img src="image/logo.png"/>&nbsp;&nbsp;&nbsp;丹**4</div>	
+				<div class="content">好满意的包包，开始想买米白的，但是感觉太嫩了，就换了个灰色的，出乎意料的好，而且面积还打，可以领可以跨，而···</div>
+			</div>
+			<!--问大家-->
+			<div class="summary">
+				<ul>
+					<li class="comment_sum">问大家(58)</li>
+					<li class="more">查看全部<i class="iconfont">&#xe947;</i></li>
+					<div class="clear"></div>
+				</ul>
+			</div>
+			<div class="question">
+				<ul>
+					<li class="ques"><span> 问 </span>质量怎么样</li>
+					<li class="ans">1个回答</li>
+					<li class="ques"><span> 问 </span>质量怎么样</li>
+					<li class="ans">4个回答</li>
+					<div class="clear"></div>
+				</ul>
+			</div>
+			</div>
+			</div>
+			<div class="stores"> 
+				<div class="marg">
+					<ul>
+						<li class="stores_pic">
+							<img src="image/new_store.png" alt="" />
+						</li>
+						<li class="stores_name">
+							<ul class="comp">
+								<li>广州柳叶皮具有限公司</li>
+								<li class="both_bb">全部宝贝</li>
+								<li class="jindi">进店逛逛</li>
+							</ul>
+							<div><img src="image/comment.png" alt=""/></div>
+						</li>
+						<div class="clear"></div>
+					</ul>
+					<div class="pingfen">
+						<ul>
+							<li>宝贝描述 <span>4.9</span><span>高</span></li>
+							<li>卖家服务 <span>4.9</span><span>高</span></li>
+							<li>物流服务 <span>4.9</span><span>高</span></li>
+							<div class="clear"></div>
+						</ul>
+					</div>
+			</div>
+			</div>
+			<div class="xiangqing">
+				<div>
+				<i class="iconfont">&#xe6a8;</i>&nbsp;&nbsp;详情
+				</div>
+			</div>
+		</div>
+				</div>
+			</div>
+
+		</div>
+		<!--产品规格-->
+		<div class="am-share2">
+			<div class="standard am-share">
+				<div class="goods_check">
+					<ul>
+						<li>
+							<ul>
+								<li class="goods_picture"><img src="img/goods.png" /></li>
+								<li>
+									<div class="goods_gui">&nbsp&nbsp;￥96.00</div>
+									<div class="goods_gui">&nbsp;&nbsp;库存770</div>
+									<div class="goods_gui">&nbsp;&nbsp;请选择规格</div>
+								</li>
+								<div class="clear"></div>
+							</ul>
+						</li>
+		
+						<li class="close"><button class="share_btn"><img src="img/detele.png"/></button></li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+				<!--颜色-->
+				<div class="goods_color">
+					<div class="color"><span>颜色</span></div>
+					<ul id="goods_color">
+						<li>白海蓝-女</li>
+						<li>白果绿-女</li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+				<script>
+					$("#goods_color li").click(
+						function() {
+							$(this).css({
+								"background": "red",
+								"color": "#fff"
+							});
+							$(this).siblings().css({
+								"background": "#F7F7FA",
+								"color": "black"
+							});
+						});
+				</script>
+				<!--尺码-->
+				<div class="goods_size">
+					<div class="size"><span>尺寸</span></div>
+					<ul id="goods_size">
+						<li>M</li>
+						<li>S</li>
+						<li>L</li>
+						<li>XL</li>
+						<li>XXL</li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+				<script>
+					$("#goods_size li").click(
+						function() {
+							$(this).css({
+								"background": "red",
+								"color": "#fff"
+							});
+							$(this).siblings().css({
+								"background": "#F7F7FA",
+								"color": "black"
+							});
+						});
+				</script>
+				<!--数量-->
+				<div class="goods_sum">
+					<ul>
+						<li class="sum"><span>数量</span> </li>
+						<li>
+							<ul class="count">
+								<li><span id="num-jian" class="num-jian">-</span></li>
+								<li><input type="text" class="input-num" id="input-num" value="0" /></li>
+								<li><span id="num-jia" class="num-jia">+</span></li>
+								<div class="clear"> </div>
+							</ul>
+						</li>
+						<div class="clear"></div>
+					</ul>
+					<script>
+						var num_jia = document.getElementById("num-jia");
+						var num_jian = document.getElementById("num-jian");
+						var input_num = document.getElementById("input-num");
+		
+						num_jia.onclick = function() {
+		
+							input_num.value = parseInt(input_num.value) + 0;
+						}
+		
+						num_jian.onclick = function() {
+		
+							if(input_num.value <= 0) {
+								input_num.value = 0;
+							} else {
+		
+								input_num.value = parseInt(input_num.value) - 0;
+							}
+		
+						}
+						$("body").on("click", ".num-jian", function(m) {
+							var obj = $(this).closest("ul").find(".input-num");
+							if(obj.val() <= 0) {
+								obj.val(0);
+							} else {
+								obj.val(parseInt(obj.val()) - 1);
+							}
+							obj.change();
+						});
+						$("body").on("click", ".num-jia", function(m) {
+							var obj = $(this).closest("ul").find(".input-num");
+							obj.val(parseInt(obj.val()) + 1);
+							obj.change();
+						});
+					</script>
+				</div>
+				<div class="buy_goods">
+					<ul>
+						<li class="shopping cart addcar">加入购物车</li>
+						<li class="buy" onclick="window.location='order_confirm.html'" >立即购买</li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+			</div>
+		</div>
+	<style type="text/css" >
+		.cartnum{ position: relative; }
+		.cartnum span{ position: absolute; background: red; width: 18px; height: 18px; line-height: 18px; color: #fff;   display: block; font-size: .6rem; border-radius: 10px; top: -2px; right: 10px; }
+	</style>
+			<!--底部导航栏-->
+			<div class="foot">
+				<ul>
+                	<li class="shopping cart cartnum">
+						<a href="buycar.html">
+							
+							<div style="color:#7bbfea;"><i class="iconfont">&#xeb90;</i></div>
+							<div class="txt">客服</div>
+						</a>
+					</li>
+					<li class="shopping cart cartnum">
+						<a href="shopping_trolley.html">
+							<span>2</span>
+							<div><i class="iconfont">&#xe929;</i></div>
+							<div class="txt">购物车</div>
+						</a>
+					</li>
+					<li onClick="toshare()" class="sa_buy">立即购买</li>
+					<li class="sale">分享商品</li>
+				</ul>
+			</div>
+			<script type="text/javascript">
+				function toshare() {
+					$(".am-share2").addClass("am-modal-active");
+					if($(".sharebg").length > 0) {
+						$(".sharebg").addClass("sharebg-active");
+						//				
+					} else {
+						$("body").append('<div class="sharebg"></div>');
+						$(".sharebg").addClass("sharebg-active");
+					}
+			
+					$(".sharebg-active,.share_btn").click(function() {
+						$(".am-share2").removeClass("am-modal-active");
+						setTimeout(function() {
+							$(".sharebg-active").removeClass("sharebg-active");
+							$(".sharebg").remove();
+						}, 300);
+					})
+				}
+			</script>
+			<script>
+				//倒计时效果js代码  
+				function checktime(i) {
+					if(i < 10) {
+						i = "0" + i;
+			
+					} else {
+						i = i;
+					}
+					return i;
+				}
+			
+				function freshTime() {
+					var endtime = new Date('2018/3/28');
+					var nowtime = new Date();
+					var lefttime = parseInt(endtime.getTime() - nowtime.getTime()); //这是毫秒，如果再/1000就是秒  
+					// 获取剩下的日、小时、分钟、秒钟  
+					// 一天有多少毫秒，一小时有多少毫秒，一分钟有多少毫秒，一秒钟有多少毫秒  
+					var dm = 24 * 60 * 60 * 1000;
+					var d = parseInt(lefttime / dm);
+					var hm = 60 * 60 * 1000;
+					var h = parseInt((lefttime / hm) % 24);
+					var mm = 60 * 1000;
+					var m = parseInt((lefttime / mm) % 60);
+					var s = parseInt((lefttime / 1000) % 60);
+					m = checktime(m);
+					s = checktime(s);
+					document.getElementById('LeftTime').innerHTML = d + "天" + h + "小时" + m + "分钟" + s + "秒";
+					if(lefttime < 0) {
+						document.getElementById('LeftTime').innerHTML = "活动已经结束！";
+					}
+				}
+				freshTime();
+				var sh;
+				sh = setInterval('freshTime()', 1000)
+			</script>
+<!--第一个选项卡-->
+		<script>
+			$(function() {
+				function setCurrentSlide(ele, index) {
+					$(".swiper1 .swiper-slide").removeClass("selected");
+					ele.addClass("selected");
+					//swiper1.initialSlide=index;
+				}
+
+				var swiper1 = new Swiper('.swiper1', {
+//					设置slider容器能够同时显示的slides数量(carousel模式)。
+//					可以设置为number或者 'auto'则自动根据slides的宽度来设定数量。
+//					loop模式下如果设置为'auto'还需要设置另外一个参数loopedSlides。
+					slidesPerView: 5.5,
+					paginationClickable: true,//此参数设置为true时，点击分页器的指示点分页器会控制Swiper切换。
+					spaceBetween: 10,//slide之间的距离（单位px）。
+					freeMode: true,//默认为false，普通模式：slide滑动时只滑动一格，并自动贴合wrapper，设置为true则变为free模式，slide会根据惯性滑动且不会贴合。
+					loop: false,//是否可循环
+					onTab: function(swiper) {
+						var n = swiper1.clickedIndex;
+					}
+				});
+				swiper1.slides.each(function(index, val) {
+					var ele = $(this);
+					ele.on("click", function() {
+						setCurrentSlide(ele, index);
+						swiper2.slideTo(index, 500, false);
+						//mySwiper.initialSlide=index;
+					});
+				});
+
+				var swiper2 = new Swiper('.swiper2', {
+					//freeModeSticky  设置为true 滑动会自动贴合  
+					direction: 'horizontal',//Slides的滑动方向，可设置水平(horizontal)或垂直(vertical)。
+					loop: false,
+//					effect : 'fade',//淡入
+					//effect : 'cube',//方块
+					//effect : 'coverflow',//3D流
+//					effect : 'flip',//3D翻转
+					autoHeight: true,//自动高度。设置为true时，wrapper和container会随着当前slide的高度而发生变化。
+					onSlideChangeEnd: function(swiper) {  //回调函数，swiper从一个slide过渡到另一个slide结束时执行。
+						var n = swiper.activeIndex;
+						setCurrentSlide($(".swiper1 .swiper-slide").eq(n), n);
+						swiper1.slideTo(n, 500, false);
+					}
+				});
+			});
+		</script>
+
+	</body>
+
+</html>

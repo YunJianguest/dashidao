@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<!--link href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/template.css"  rel="stylesheet" type="text/css"/-->
+	<!--link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet-->
+	<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+	<link href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/01.css"  rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/bootstrap.min.css" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/font-awesome.min.css"  type="text/css">
+	<script src="$!webPath/resources/js/bootstrap.min.js"></script>
+<style>
+	input{
+		border:none;
+		
+	}
+</style>
+<title>歇业申请详情</title>
+</head>
+
+<body>
+<div class="div_1">
+	<table class="solid">
+		<tbody>
+			<tr>
+				<td align="right">商家账号:</td>
+				<td class="xy_td"><input type="text" placeholder="650017"/></td>
+			</tr>
+			<tr>
+				<td align="right">用户名:</td>
+				<td class="xy_td"><input type="text" placeholder="名秋月"/></td>
+			</tr>
+			<tr>
+				<td align="right">性别:</td>
+				<td class="xy_td"><input type="text" placeholder="女"/></td>
+			</tr>
+			<tr>
+				<td align="right">手机号:</td>
+				<td class="xy_td"><input type="text" placeholder="186 2838 0304"/></td>
+			</tr>
+			<tr>
+				<td align="right">歇业截止日期:</td>
+				<td class="xy_td"><input type="text" placeholder="2018/9/12-2018/9/30"/></td>
+			</tr>
+			<tr >
+				<td align="right" >详情:</td>
+				<td class="xy_td"><input type="text" placeholder="因个人原因，希望歇业。" style="color: #959595"/></td>
+			</tr>
+		</tbody>
+	</table>
+	<table class="xy_table" >
+		<tbody>
+			<tr align="left">
+				<td>
+					<label class="radio-inline">
+						<input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="option1" checked> 同意
+					</label>
+				</td>
+				<td >
+					<label class="radio-inline">
+						<input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option1" checked /> 不同意
+					</label>
+				</td>
+			</tr>
+			<tr align="left">
+				<td colspan="2">
+					<textarea class="form-control" rows="3" placeholder="可以留下您的理由吗？" style="width: 550px;"></textarea>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<table class="xy_table">
+		<tbody>
+			<tr>
+				<td align="center">
+					<!--<input type="button" value="确定"/ style="background-color: #108ee9;width: 100px;height: 50px;color: white;font-size: 20px;">-->
+					<button type="button" class="button" onclick="location.href='$!webPath/admin/end_check.htm'">确定</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>

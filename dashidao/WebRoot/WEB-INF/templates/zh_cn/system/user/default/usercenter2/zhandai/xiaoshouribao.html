@@ -1,0 +1,328 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>销售日报 - $!{config.poweredby}</title>
+	<meta name="keywords" content="$!config.keywords" />
+	<meta name="description" content="$!config.description" />
+	<meta name="generator" content="$!{config.meta_generator}" />
+	<meta name="author" content="$!{config.meta_author}">
+	<meta name="copyright" content="$!{config.copyRight}">
+	#if($!config.website_ico)
+	<link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+	#end
+	<link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/zxx.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+	<link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+	<link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+	<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+	<script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+	<script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+	<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+	<script>
+        jQuery(document).ready(function(){
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+	</script>
+</head>
+<body>
+$!httpInclude.include("/top.htm")
+<div class="main"> $!httpInclude.include("/poster/nav_head.htm")
+	<div class="user_center">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+			<tr> $!httpInclude.include("/poster/nav.htm?op=store_set")
+				<td id="centerbg" valign="top" width="80%">
+					<div class="buyer_position">
+						<div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代中心</a> > <span>销售日报</span></div>
+					</div>
+					<div class="xiaoshou-box">
+						<div class="xiaoshou-top"><p><i class="iconfont icon-information"></i>&nbsp;您的海参一号销售突破 10000 件。</p></div>
+						<div class="xiaoshou-top2">
+							<div class="ht-top"style="margin:0px; width: 55%; float: left;" >
+								<div class="ht-tu">
+									<i class="iconfont icon-search"></i>
+									<input type="text" placeholder="韩版"  />
+								</div>
+							</div>
+
+							<div class="ribao-rili">时间：<span style="color: red; font-size: 25px;">今天</span>&nbsp;昨天&nbsp;前天&nbsp;<input class="laydate-icon" id="demo" value="2018-04-18"> </div>
+						</div>
+
+						<div class="xiaoshou-mid">
+							<div class="xiaoshou-mid1"><p><span></span>销售日报表</p></div>
+							<div class="xiaoshou-mid2"><p>导出&nbsp;<i class="iconfont icon-pdf"></i><i class="iconfont icon-exl"></i><i class="iconfont icon-form"></i></p><p><span>txt</span><span>xls</span><span>doc</span></p></div>
+
+						</div>
+						<div class="xiaoshou-med">
+							<div class="ribao-med1">
+								<ul style="text-align: center;">
+									<li style="width:15%;">行号</li>
+									<li style="width:15%;">商品编号</li>
+									<li style="width:25%;">商品名称</li>
+									<li style="width:15%;">单价<br><i class="iconfont icon-move"></i></li>
+									<li style="width:15%;">销量<br><i class="iconfont icon-move"></i></li>
+									<li style="width:15%;">销售额<br><i class="iconfont icon-move"></i></li>
+								</ul>
+							</div>
+							<div class="ribao-med2">
+								<ul style="text-align: center;">
+									<li style="width:15%;">01</li>
+									<li style="width:15%;">230018</li>
+									<li style="width:25%;font-weight: bold;">韩版修身T恤</li>
+									<li style="width:15%;font-weight: bold;">100</li>
+									<li style="width:15%;font-weight: bold;">91</li>
+									<li style="width:15%;font-weight: bold;color: #108EE9;">9100</li>
+								</ul>
+
+
+							</div>
+							<div class="ribao-med2">
+								<ul style="text-align: center;">
+									<li style="width:15%;">01</li>
+									<li style="width:15%;">230018</li>
+									<li style="width:25%;font-weight: bold;">韩版修身T恤</li>
+									<li style="width:15%;font-weight: bold;">100</li>
+									<li style="width:15%;font-weight: bold;">91</li>
+									<li style="width:15%;font-weight: bold;color: #108EE9;">9100</li>
+								</ul>
+
+
+							</div>
+							<div class="ribao-med2">
+								<ul style="text-align: center;">
+									<li style="width:15%;">01</li>
+									<li style="width:15%;">230018</li>
+									<li style="width:25%;font-weight: bold;">韩版修身T恤</li>
+									<li style="width:15%;font-weight: bold;">100</li>
+									<li style="width:15%;font-weight: bold;">91</li>
+									<li style="width:15%;font-weight: bold;color: #108EE9;">9100</li>
+								</ul>
+
+
+							</div>
+							<div class="ribao-med2">
+								<ul style="text-align: center;">
+									<li style="width:15%;">01</li>
+									<li style="width:15%;">230018</li>
+									<li style="width:25%;font-weight: bold;">韩版修身T恤</li>
+									<li style="width:15%;font-weight: bold;">100</li>
+									<li style="width:15%;font-weight: bold;">91</li>
+									<li style="width:15%;font-weight: bold;color: #108EE9;">9100</li>
+								</ul>
+
+
+							</div>
+							<div class="ribao-med2">
+								<ul style="text-align: center;">
+									<li style="width:15%;">01</li>
+									<li style="width:15%;">230018</li>
+									<li style="width:25%;font-weight: bold;">韩版修身T恤</li>
+									<li style="width:15%;font-weight: bold;">100</li>
+									<li style="width:15%;font-weight: bold;">91</li>
+									<li style="width:15%;font-weight: bold;color: #108EE9;">9100</li>
+								</ul>
+
+
+							</div>
+							<div class="ribao-med2">
+								<ul style="text-align: center;">
+									<li style="width:15%;">01</li>
+									<li style="width:15%;">230018</li>
+									<li style="width:25%;font-weight: bold;">韩版修身T恤</li>
+									<li style="width:15%;font-weight: bold;">100</li>
+									<li style="width:15%;font-weight: bold;">91</li>
+									<li style="width:15%;font-weight: bold;color: #108EE9;">9100</li>
+								</ul>
+
+
+							</div>
+							<div class="ribao-med2">
+								<ul style="text-align: center;">
+									<li style="width:15%;">01</li>
+									<li style="width:15%;">230018</li>
+									<li style="width:25%;font-weight: bold;">韩版修身T恤</li>
+									<li style="width:15%;font-weight: bold;">100</li>
+									<li style="width:15%;font-weight: bold;">91</li>
+									<li style="width:15%;font-weight: bold;color: #108EE9;">9100</li>
+								</ul>
+
+
+							</div>
+							<div class="ribao-med2">
+								<ul style="text-align: center;">
+									<li style="width:15%;">01</li>
+									<li style="width:15%;">230018</li>
+									<li style="width:25%;font-weight: bold;">韩版修身T恤</li>
+									<li style="width:15%;font-weight: bold;">100</li>
+									<li style="width:15%;font-weight: bold;">91</li>
+									<li style="width:15%;font-weight: bold;color: #108EE9;">9100</li>
+								</ul>
+
+
+							</div>
+							<div class="ribao-med2">
+								<ul style="text-align: center;">
+									<li style="width:15%;">01</li>
+									<li style="width:15%;">230018</li>
+									<li style="width:25%;font-weight: bold;">韩版修身T恤</li>
+									<li style="width:15%;font-weight: bold;">100</li>
+									<li style="width:15%;font-weight: bold;">91</li>
+									<li style="width:15%;font-weight: bold;color: #108EE9;">9100</li>
+								</ul>
+
+
+							</div>
+							<div class="ribao-med2">
+								<ul style="text-align: center;">
+									<li style="width:15%;">01</li>
+									<li style="width:15%;">230018</li>
+									<li style="width:25%;font-weight: bold;">韩版修身T恤</li>
+									<li style="width:15%;font-weight: bold;">100</li>
+									<li style="width:15%;font-weight: bold;">91</li>
+									<li style="width:15%;font-weight: bold;color: #108EE9;">9100</li>
+								</ul>
+
+
+							</div>
+							<div class="ribao-med2">
+								<ul style="text-align: center;">
+									<li style="width:15%;">01</li>
+									<li style="width:15%;">230018</li>
+									<li style="width:25%;font-weight: bold;">韩版修身T恤</li>
+									<li style="width:15%;font-weight: bold;">100</li>
+									<li style="width:15%;font-weight: bold;">91</li>
+									<li style="width:15%;font-weight: bold;color: #108EE9;">9100</li>
+								</ul>
+
+
+							</div>
+							<div class="ribao-med2">
+								<ul style="text-align: center;">
+									<li style="width:15%;">01</li>
+									<li style="width:15%;">230018</li>
+									<li style="width:25%;font-weight: bold;">韩版修身T恤</li>
+									<li style="width:15%;font-weight: bold;">100</li>
+									<li style="width:15%;font-weight: bold;">91</li>
+									<li style="width:15%;font-weight: bold;color: #108EE9;">9100</li>
+								</ul>
+
+
+							</div>
+							<div class="ribao-med2">
+								<ul style="text-align: center;">
+									<li style="width:15%;">01</li>
+									<li style="width:15%;">230018</li>
+									<li style="width:25%;font-weight: bold;">韩版修身T恤</li>
+									<li style="width:15%;font-weight: bold;">100</li>
+									<li style="width:15%;font-weight: bold;">91</li>
+									<li style="width:15%;font-weight: bold;color: #108EE9;">9100</li>
+								</ul>
+
+
+							</div>
+							<div class="ribao-med2">
+								<ul style="text-align: center;">
+									<li style="width:15%;">01</li>
+									<li style="width:15%;">230018</li>
+									<li style="width:25%;font-weight: bold;">韩版修身T恤</li>
+									<li style="width:15%;font-weight: bold;">100</li>
+									<li style="width:15%;font-weight: bold;">91</li>
+									<li style="width:15%;font-weight: bold;color: #108EE9;">9100</li>
+								</ul>
+
+
+							</div>
+							<div class="ribao-med2">
+								<ul style="text-align: center;">
+									<li style="width:15%;">01</li>
+									<li style="width:15%;">230018</li>
+									<li style="width:25%;font-weight: bold;">韩版修身T恤</li>
+									<li style="width:15%;font-weight: bold;">100</li>
+									<li style="width:15%;font-weight: bold;">91</li>
+									<li style="width:15%;font-weight: bold;color: #108EE9;">9100</li>
+								</ul>
+
+
+							</div>
+							<div class="ribao-med2">
+								<ul style="text-align: center;">
+									<li style="width:15%;">01</li>
+									<li style="width:15%;">230018</li>
+									<li style="width:25%;font-weight: bold;">韩版修身T恤</li>
+									<li style="width:15%;font-weight: bold;">100</li>
+									<li style="width:15%;font-weight: bold;">91</li>
+									<li style="width:15%;font-weight: bold;color: #108EE9;">9100</li>
+								</ul>
+
+
+							</div>
+							<div class="ribao-med2">
+								<ul style="text-align: center;">
+									<li style="width:15%;">01</li>
+									<li style="width:15%;">230018</li>
+									<li style="width:25%;font-weight: bold;">韩版修身T恤</li>
+									<li style="width:15%;font-weight: bold;">100</li>
+									<li style="width:15%;font-weight: bold;">91</li>
+									<li style="width:15%;font-weight: bold;color: #108EE9;">9100</li>
+								</ul>
+
+
+							</div>
+
+							<div class="xx-bontom">
+								<div class="xx-bontom1">Total 85 items</div>
+								<div class="xx-bontom-ul">
+									<ul>
+										<li><i class="iconfont icon-back"></i></li>
+										<li>1</li>
+										<li>2</li>
+										<li>3</li>
+										<li>4</li>
+										<li>5</li>
+										<li>…</li>
+										<li>50</li>
+										<li><i class="iconfont icon-more"></i></li>
+									</ul>
+
+								</div>
+								<div class="xx-bontom2">10/page<i class="iconfont icon-moreunfold"></i></div>
+								<div class="xx-bontom3">Goto</div>
+								<div class="xx-bontom4"><input type="text" placeholder="8"></div>
+							</div>
+
+						</div>
+
+
+
+
+
+
+
+
+
+
+
+					</div>
+		s
+
+
+</td>
+</tr>
+</table>
+</div>
+$!httpInclude.include("/footer.htm")
+</div>
+</body>
+
+</html>

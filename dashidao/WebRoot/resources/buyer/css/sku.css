@@ -1,0 +1,108 @@
+.ui-nowrap-flex {display: -webkit-box;overflow: hidden;text-overflow: ellipsis;-webkit-box-orient: vertical;-webkit-line-clamp: 1;-webkit-box-flex: 1;height: inherit;}
+.ui-nowrap-multi {display: -webkit-box;overflow: hidden;text-overflow: ellipsis;-webkit-box-orient: vertical;-webkit-line-clamp: 2;}
+.ui-nowrap-three {display: -webkit-box;overflow: hidden;text-overflow: ellipsis;-webkit-box-orient: vertical;-webkit-line-clamp: 3;}
+.ui-rows {display: -webkit-box;display: -webkit-flex;display: -moz-box;display: -moz-flex;display: -ms-flexbox;display: flex;}
+.ui-rows-m {display: -webkit-box;display: -webkit-flex;display: -moz-box;display: -moz-flex;display: -ms-flexbox;display: flex;-webkit-box-align: center;-ms-flex-align: center;-webkit-align-items: center;-moz-align-items: center;align-items: center;width: 100%;}
+.ui-rows-grid {display: -webkit-box;display: -webkit-flex;display: -moz-box;display: -moz-flex;display: -ms-flexbox;display: flex;-webkit-flex-flow:row wrap;-webkit-box-orient:horizontal;-webkit-box-lines:multiple;-moz-flex-flow:row wrap;box-orient:horizontal;box-lines:multiple;flex-flow:row wrap;}
+.ui-cols {-webkit-box-flex: 1;-webkit-flex: 1;-moz-box-flex: 1;-moz-flex: 1;-ms-flex: 1;flex: 1;display: block;width: 100%;}
+.ui-cols-auto {-webkit-box-flex: 0;-webkit-flex: 0 0 auto;-moz-box-flex: 0;-moz-flex: 0 0 auto;-ms-flex: 0 0 auto;flex: 0 0 auto;max-width: 100%;}
+.clearfix {display: inline-block;}
+.clearfix:after {clear: both; content: " "; display: block; height: 0; visibility: hidden;font-size: 0;}
+.ui-text-left{text-align: left;}
+.ui-text-center{text-align: center;}
+.ui-text-right{text-align: right;}
+
+.border-top-1px,.border-bottom-1px,.border-right-1px{position: relative}
+.border-top-1px:before{display: block;position: absolute;left: 0;top: 0;width: 100%;height: 1px;background-color: #D8D8D8;content: ' ';z-index: 2;}
+.border-bottom-1px:after{display: block;position: absolute;left: 0;bottom: 0;width: 100%;height: 1px;background-color: #D8D8D8;content: ' ';z-index: 2;}
+.border-top-1px.red:before{background-color: #D73B3B;}
+.border-top-1px.gray:before{background-color: #C8C8C8;}
+.border-top-1px.gray-light:before{background-color: #E8E8E8;}
+.border-top-1px.gray-color:before{background-color: #E6E6E6;}
+.border-top-1px.gray-deep:before{background-color: #ddd;}
+@media (-webkit-min-device-pixel-ratio:  1.5),(min-device-pixel-ratio: 1.5){
+  .border-top-1px:before,.border-bottom-1px:after{
+    -webkit-transform: scaleY(0.7);transform: scaleY(0.7);
+  }
+}
+@media (-webkit-min-device-pixel-ratio:  2),(min-device-pixel-ratio: 2){
+  .border-top-1px:before,.border-bottom-1px:after{
+    -webkit-transform: scaleY(0.5);transform: scaleY(0.5);
+  }
+}
+
+.ui-cols-12 {-webkit-box-flex: 0;-webkit-flex: 0 0 1rem;-moz-box-flex: 0;-moz-flex: 0 0 1rem;-ms-flex: 0 0 1rem;flex: 0 0 1rem;max-width: 1rem;}
+.ui-cols-18 {-webkit-box-flex: 0;-webkit-flex: 0 0 1.8rem;-moz-box-flex: 0;-moz-flex: 0 0 1.8rem;-ms-flex: 0 0 1.8rem;flex: 0 0 1.8rem;max-width: 1.8rem;}
+.ui-cols-30 {-webkit-box-flex: 0;-webkit-flex: 0 0 30%;-moz-box-flex: 0;-moz-flex: 0 0 30%;-ms-flex: 0 0 30%;flex: 0 0 30%;max-width: 30%;}
+.ui-cols-34 {-webkit-box-flex: 0;-webkit-flex: 0 0 .34rem;-moz-box-flex: 0;-moz-flex: 0 0 .34rem;-ms-flex: 0 0 .34rem;flex: 0 0 .34rem;max-width: .34rem;}
+
+.toast{position: absolute;left: 50%;top: 50%;z-index: 11000;text-align: center;color: #fff;padding: .2rem .3rem;line-height: .4rem;font-size: .28rem;width: auto;}
+.toast-fade-enter-active,.toast-fade-leave-active {-webkit-transition: opacity 2s;-webkit-transition: background 2s;transition: opacity 2s;transition: background 2s;}
+.toast-fade-enter-active{opacity: 1;background: rgba(0, 0, 0, 0.8);}
+.toast-fade-enter,.toast-fade-leave-active{opacity: 0;background: rgba(0, 0,0, 0);}
+.icon-toast{display: inline-block;width: 0.6rem; height: 0.6rem;margin:0.1rem auto;}
+.icon-toast.success{background: url("//static.yunjiweidian.com/img/sku/succeed.png") no-repeat center center;background-size: 100% 100%;}
+.icon-toast.warning{background: url("//static.yunjiweidian.com/img/sku/warning.png") no-repeat center center;background-size: 100% 100%;}
+.alert{position: fixed;top: 0;left: 0;width: 100%;height: 100%;z-index: 100001;}
+.alert.fade-transition {-webkit-transition: opacity 0.3s;-webkit-transition: background 0.3s;transition: opacity 0.3s;transition: background 0.3s;opacity: 1;background: rgba(0, 0, 0, 0.4)}
+.alert.fade-enter,.alert.fade-leave {opacity: 0;background: rgba(0, 0,0, 0);}
+.alert-content{position: relative;top: 25%;display: block;width: 80%;margin: 0 auto;padding: 0;font-size: 14px;border-radius: 4px;color: #333;text-align: center;background-color: #fff;box-shadow: 0 0 10px rgba(0,0,0,.2);}
+.alert-text{padding: .5rem;font-size: .28rem;}
+.alert-btn{width: 100%;height: 1rem;font-size: .3rem;line-height: 1rem;margin: 0 auto;color: #1c87ff;}
+
+.sku-box{line-height: .34rem;font-size: .24rem;}
+.sku-content-wrapper{position: fixed;left: 0;bottom: -2px;z-index: 16;width: 100%;}
+.sku-content{position: absolute;left: 0;top: 0;width: 100%;background: #fff;min-height:6rem;transform: translate3d(0,-100%,0);-webkit-transform: translate3d(0,-100%,0);}
+.sku-fold-enter-active,.sku-fold-leave-active {transition: all 0.3s;-webkit-transition: all 0.3s;}
+.sku-fold-enter-active {transform: translate3d(0,-100%,0);-webkit-transform: translate3d(0,-100%,0);}
+.sku-fold-enter,.sku-fold-leave-active{transform: translate3d(0,0,0);-webkit-transform: translate3d(0,0,0);}
+.sku-main{padding: 0.3rem 0.3rem 1.6rem;width: 100%;box-sizing: border-box;}
+.sku-main.new{padding: 0.3rem 0.3rem 2.5rem;}
+.global-mask {position: fixed;top: 0;left:0;width: 100%;height: 100%;z-index: 15;opacity: 1;background: rgba(0, 0, 0, 0.5)}
+.sku-fade-enter-active,.sku-fade-leave-active {transition: all 0.3s;-webkit-transition: all 0.3s;}
+.sku-fade-enter-active{opacity: 1;background: rgba(0, 0, 0, 0.5);}
+.sku-fade-enter,.sku-fade-leave-active{opacity: 0;background: rgba(0, 0, 0, 0);}
+.sku-img{width:1.8rem;height: 1.8rem;}
+.sku-info-box{padding-left: .2rem;margin-top: .34rem;line-height: 1.4;}
+.sku-price{font-size:.3rem;color: #1D1F23;letter-spacing: 0.18px;}
+.sku-price > i{color:#A5A7AB;margin: 0 2px}
+.sku-price .red-title{font-size: .24rem;color: #D73B3B;letter-spacing: 0.14px;margin-right: 2px}
+.sku-price .red-price{color: #D73B3B;}
+.sku-other,.sku-error{margin-top: .12rem;}
+.sku-other > span{margin-right: .05rem;color: #444;font-size: .24rem;}
+.icon-sku-close{display: inline-block;width: 0.34rem; height: 0.34rem; background: url("//static.yunjiweidian.com/recruit/img/sku/sku_close.png") no-repeat center center;background-size: 100% 100%;position: absolute;}
+.icon-sku{display: inline-block;width: 0.3rem; height: 0.3rem;vertical-align: -0.02rem;}
+.icon-sku.icon-sku-minus{background: url("//static.yunjiweidian.com/recruit/img/sku/number_minus_useable.png") no-repeat center center;background-size: 100% 100%;}
+.icon-sku.icon-sku-minus.disabled{background: url("//static.yunjiweidian.com/recruit/img/sku/number_minus_unusable.png") no-repeat center center;background-size: 100% 100%;}
+.icon-sku.icon-sku-add{background: url("//static.yunjiweidian.com/recruit/img/sku/number_add_useable.png") no-repeat center center;background-size: 100% 100%;}
+.icon-sku.icon-sku-add.disabled{background: url("//static.yunjiweidian.com/recruit/img/sku/number_add_unusable.png") no-repeat center center;background-size: 100% 100%;}
+.sku-minus-add-box{text-align: center;height: .64rem;line-height: .64rem;color:#444;font-size:.34rem;margin-top:.25rem;}
+.sku-minus-btn{border:1px solid #A1A1A1;border-right: none;}
+.sku-add-btn{border:1px solid #A1A1A1;border-left: none;}
+.sku-buy-num{border:1px solid #A1A1A1;}
+.sku-minus-btn.disabled{border:1px solid #d3d3d3;border-right: none;}
+.sku-add-btn.disabled{border:1px solid #d3d3d3;border-left: none;}
+.sku-buy-num.disabled{border:1px solid #d3d3d3;color: #d3d3d3;}
+.icon-sku.icon-sku-add-disabled{background: url("//static.yunjiweidian.com/recruit/img/sku/number_add_unusable.png") no-repeat center center;background-size: 100% 100%;}
+.sku-xian-gou{padding-left: .14rem;font-size:.26rem;color: #444;text-align: left;}
+.sku-type-title{font-size:.24rem;color: #959595;margin:.3rem 0 -.1rem 0;}
+.sku-type-hide{height: 0}
+.sku-ul-list > li{float:left;color: #444;font-size:.26rem;padding: .13rem .2rem;border:1px solid #A1A1A1;margin-right: .2rem;margin-top: .25rem;height: auto;}
+.sku-ul-list > li.active{color:#fff;border:1px solid transparent;background-color:#D73B3B;}
+.sku-bottom-wrapper{position:fixed;left:0;bottom:0;width:100%;height:auto;text-align: center;color: #212121;font-size: .3rem;box-sizing: border-box;}
+.sku-rate-box{box-sizing: border-box;background: #F5F5F9;font-size: .24rem;color: #1D1F23;height: .8rem;line-height: .8rem;width:100%;padding: 0 0.3rem;}
+.sku-rate-tip{text-align: left;}
+.sku-rate-info{font-size: .2rem;color: #959595;margin-left:.5rem;}
+.sku-error-tip{text-align: right;}
+.sku-btn-box{height: 1rem;line-height: 1rem;}
+.sku-btn-title{color: #fff;font-size: .3rem;text-align: center}
+.sku-btn-red{background-color: #D73B3B;color: #fff;}
+.sku-btn-gray{background: #C8C8C8;color: #fff;}
+.sku-btn-box .ui-rows-m > .ui-cols{height: 1rem;box-sizing: border-box;}
+.sku-height{max-height: 5rem;overflow-y: auto;}
+.sku-new-height{max-height: 3.6rem;overflow-y: auto;}
+.overhidden{overflow:hidden !important;position: absolute;top:0;width:100%;height: 100%;}
+
+.dots{bottom: .25rem;}
+.dot-item {background: #E6E6E6;text-indent: 99px;width: 7px;height: 2px;border: 1px solid #f2f2f2;margin: 0 .1rem;outline: 0;opacity: .5;display: inline-block;border-radius: 0;}
+.dot-item.active {height: 2px;background: #818181;border: 1px solid #d3d3d3;}

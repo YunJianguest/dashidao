@@ -1,0 +1,44 @@
+package com.dashidao.foundation.service.impl;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.dashidao.core.dao.IGenericDAO;
+import com.dashidao.foundation.domain.Address;
+import com.dashidao.foundation.domain.Certification;
+import com.dashidao.foundation.service.ICertificationService;
+
+@Service
+@Transactional
+public class CertificationServiceImpl
+    implements ICertificationService {
+    @Resource(name = "certificationDAO")
+    private IGenericDAO<Certification> certificationDao;
+
+    public Certification getObjById(Long id){
+        Certification certification = (Certification)this.certificationDao.get(id);
+        if (certification != null){
+            return certification;
+        }
+
+        return null;
+    }
+
+    
+    public boolean save(Certification certification){
+        try {
+            this.certificationDao.save(certification);
+            return true;
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+}
+
+
+
+

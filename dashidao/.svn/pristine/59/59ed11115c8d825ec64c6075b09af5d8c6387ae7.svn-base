@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>栈代合同 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/zxx.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+    <link href="$!webPath/resources/style/system/manage/blue/tip2.css"  rel="stylesheet" type="text/css"/>
+<link href="$!webPath/resources/style/system/manage/blue/zhandai.css"  rel="stylesheet" type="text/css"/>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div class="main tihuoka_manager">
+    <div class="user_center">
+        $!httpInclude.include("/seller/nav_head.htm")
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=sub_account")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="buyer_position">
+                        <div class="buyer_p_box"><span>您的提货卡剩余1000张</span></div>
+                    </div>
+
+                    <div class="xx-box">
+                        <div class="ht-top" >
+                            <form class="form-inline" style="float: right;">
+
+                                <button type="submit" class="btn btn-default" >统计</button>
+                                <button type="submit" class="btn btn-default" style="border: none;  background: #3fa4ed; color: #fff;   " ><a href="$!webPath/seller/add_pick_up_card.htm">添加</a></button>
+                            </form>
+                        </div>
+						<div class="operation_tip">
+	<h3>友情提示</h3>
+	<ul>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+                        <div class="ht-top2">
+                            <ul style="width: 100%;">
+                                <li style="width: 12%;">商品编号</li>
+                                <li style="width: 12%;">商品名称</li>
+                                <li style="width: 12%;">提货卡号</li>
+                                <li style="width: 10%;">总量</li>
+                                <li style="width: 10%;">剩余</li>
+                                <li style="width: 10%;">提货卡价格</li>
+                                <li style="width: 20%;">有效期</li>
+                                <li style="width: 14%;">操作</li>
+                            </ul>
+
+                        </div>
+                        <div class="ht-botton">
+
+                            <div class="ht-botton1">
+                                <ul id="tablesss">
+
+                                </ul>
+                            </div>
+                            <div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+                        </div>
+
+
+                        <script>
+                            jQuery(document).ready(function(){
+                                var mycars=new Array();
+                                var cuur=1;
+                                var pagelimit=10;
+                                function loadajax(action,table,field,values,page_size,page_no,moudle_id){
+                                    jQuery.ajax({
+                                        type:"POST",
+                                        cache: false,
+                                        async:false,
+                                        url:"/ajax.jsp",
+                                        dataType:"json",
+                                        // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                                        data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                                        error:function(){alert("数据错误，操作被取消！");},
+                                        success:function(data)
+                                        {
+                                            if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                                            total=data.data.total;
+                                            mycars[0]=total;
+                                            var message=data.data.data;
+                                            //console.log(message);
+                                            $("#tablesss").html('');
+                                            for(var i=0;i<message.length;i++){
+                                                $("#tablesss").append('<ul>'+
+                                                    '<li style="width: 12%;">'+message[i]['goods_number']+'</li>' +
+                                                    '<li style="width: 12%;">'+message[i]['goods_name']+'</li>' +
+                                                    '<li style="width: 12%;">'+message[i]['card_number']+'</li>' +
+                                                    '<li style="width: 10%;">'+message[i]['count']+'</li>' +
+                                                    '<li style="width: 10%;">'+message[i]['less']+'</li>' +
+                                                    '<li style="width: 10%;">'+message[i]['card_price']+'</li>' +
+                                                    '<li style="width: 20%;">'+message[i]['create_date1']+'-'+message[i]['create_date2']+'</li>' +
+                                                    '<li style="width: 14%;"><a href="$!webPath/seller/pick_up_card_yanqi.htm?id='+message[i]['id']+'" style="color: #0B4784;">延期</a></li>' +
+                                                    '</ul>');
+                                            }
+                                        }
+                                    });
+                                }
+                                loadajax("select","dsdsj_pickup_card_manager","states","1",pagelimit,cuur,1);
+                                layui.use(['laypage', 'layer'], function(){
+                                    var laypage = layui.laypage
+                                        ,layer = layui.layer;
+                                    //完整功能
+                                    laypage.render({
+                                        elem: 'demo7'
+                                        ,count:total
+                                        ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                                        ,jump: function(obj){
+                                            //console.log(obj)
+                                            cuur=obj.curr;
+                                            pagelimit=obj.limit;
+                                            //alert(pagelimit);
+                                            loadajax("select","dsdsj_pickup_card_manager","states","1",pagelimit,cuur,1);
+                                            //loadajax("select","stu",pagelimit,cuur,1);
+                                        },
+                                        limits:[2, 4, 6, 8, 10],
+                                        limit:pagelimit
+                                    });
+                                });
+                            });
+                            <!--分页结束-->
+                        </script>
+
+                    </div>
+
+
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>

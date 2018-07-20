@@ -1,0 +1,878 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link href="$!webPath/resources/style/system/manage/blue/tip.css"  rel="stylesheet" type="text/css"/>
+    <link href="$!webPath/resources/style/system/manage/blue/headquarters.css"  rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/iconfont.css">
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="$!webPath/resources/js/jquery.js"></script>
+    <script type="text/javascript" src="$!webPath/resources/js/highcharts.js"></script>
+    <title>无标题文档</title>
+</head>
+
+<body>
+<div class="tabbable">
+    <div class="seth1">
+        <img src="$!webPath/resources/style/system/manage/black/img/1.png" alt="">
+   商家
+    </div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#1" data-toggle="tab">商家概况</a></li>
+        <li><a href="#2" data-toggle="tab">商家区域分析</a></li>
+        <li><a href="#3" data-toggle="tab">排行榜</a></li>
+        <li><a href="#4" data-toggle="tab">新增商家趋势</a></li>
+        <li><a href="#5" data-toggle="tab">商家结算</a></li>
+        <li><a href="#6" data-toggle="tab">商家评分</a></li>
+    </ul>
+    <div class="tab-content sj ">
+        <!--数据表格-->
+        <div class="tab-pane active" id="1"style="width:99%;margin-left:1%;">
+            <div class="operation">
+                <h3>友情提示</h3>
+                <ul>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <table width="100%" style="font-size: 16px;text-align: center;margin-top: 10px;">
+                <tr  class="tableheader">
+                    <td>商家总数</td>
+                    <td>招栈代商家占比</td>
+                    <td>销售额占比</td>
+                    <td>订单数占比</td>
+
+                </tr>
+                <tr>
+                    <td id="sjzs">19009</td>
+                    <td id="zmsj">60%</td>
+                    <td id="buyAll">30%</td>
+                    <td id="buydan">10%</td>
+                </tr>
+            </table>
+            <input type="hidden" id="dingdanzs" value=""><input type="hidden" id="dingdanzl" value="">
+
+        </div>
+        <div class="tab-pane" id="2" >
+            <div class="operation">
+                <h3>友情提示</h3>
+                <ul>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <div id="container9" style="height: 800px;width:1200px;background:white;margin:20px 0 0;"></div>
+            <script src="$!webPath/resources/js/echarts.min.js"></script>
+            <script src="$!webPath/resources/js/china.js"></script>
+            <script type="text/javascript">
+           
+            </script>
+        </div>
+        <div class="tab-pane" id="3" >
+            <!--搜索-->
+            <div class="ss">
+                <span class="allmen size4"><input type="month"></span>
+                <span class="day">
+                <span><input type="text" class="sel" value="7天" disabled="disabled"></span>
+                <span><input type="text"  value="30天" disabled="disabled"></span>
+                <span><input type="text"  value="90天" disabled="disabled"></span>
+                    <script>
+                        $('.day span').click(function(){
+                            $(this).children().addClass('sel');
+                            $(this).siblings().children().removeClass('sel');
+                        })
+                    </script>
+                </span>
+                <span class="seday"><input type="text">天</span>
+                <span class="allmen"><input type="date" name="startime" style="margin-right: 20px;">至<input type="date"></span><span class="btn_search"> <input type="submit" value="搜索"></span></div>
+            <div class="operation">
+                <h3>友情提示</h3>
+                <ul>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <!--会员消费总额平台销售总额比-->
+            <div class="" >
+                <div class="dcwb">
+                    <ul>
+                        <li>
+                            <input type="button" value="批量导出" class="button" onclick="batch_export()">
+                        </li>
+                    </ul>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <table width="99%" style="font-size: 16px;text-align: center;margin-left: 1%;margin-top: 20px;">
+                <tr  class="tableheader">
+                    <td>排名</td>
+                    <td>商家ID</td>
+                    <td>商家名称</td>
+                    <td>商家销售额</td>
+                    <td>商家销售额占比</td>
+                </tr>
+                <tbody id="xfmx"></tbody>
+
+            </table>
+        </div>
+        <div class="tab-pane" id="4" >
+            <!--搜索-->
+            <div class="ss">
+                <span class="allmen size4"><input type="month"></span>
+                <span class="day">
+                <span><input type="text" class="sel" value="7天" disabled="disabled"></span>
+                <span><input type="text"  value="30天" disabled="disabled"></span>
+                <span><input type="text"  value="90天" disabled="disabled"></span>
+                    <script>
+                        $('.day span').click(function(){
+                            $(this).children().addClass('sel');
+                            $(this).siblings().children().removeClass('sel');
+                        })
+                    </script>
+                </span>
+                <span class="seday"><input type="text">天</span>
+                <span class="allmen"><input type="date" name="startime" style="margin-right: 20px;">至<input type="date"></span><span class="btn_search"> <input type="submit" value="搜索" ></span></div>
+            <div class="operation">
+                <h3>友情提示</h3>
+                <ul>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <!--图形分析-->
+            <div class="title" >新增厂家趋势图</div>
+            <div id="container2" style="width:98%;height:300px;margin:0 1%"></div>
+            <script type="text/javascript">
+
+            </script>
+        </div>
+        <div class="tab-pane" id="5" >
+            <div class="operation">
+                <h3>友情提示</h3>
+                <ul>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <!--会员消费总额平台销售总额比-->
+            <div class="" >
+                <div class="dcwb">
+                    <ul>
+                        <li>
+                            <input type="button" value="批量导出" class="button" onclick="batch_export()">
+                        </li>
+                    </ul>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <table width="99%" style="font-size: 16px;text-align: center;margin-left: 1%;margin-top: 20px;">
+                <tr  class="tableheader">
+                    <td>排名</td>
+                    <td>商家ID</td>
+                    <td>商家名称</td>
+                    <td>商家销售额</td>
+                    <td>商家销售额占比</td>
+                </tr>
+                <tbody id="xsmx"></tbody>
+            </table>
+
+        </div>
+        <div class="tab-pane" id="6" >
+            <div class="operation">
+                <h3>友情提示</h3>
+                <ul>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <!--会员消费总额平台销售总额比-->
+            <div class="" >
+                <div class="dcwb">
+                    <ul>
+                        <li>
+                            <input type="button" value="批量导出" class="button" onclick="batch_export()">
+                        </li>
+                    </ul>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <table width="99%" style="font-size: 16px;text-align: center;margin-left: 1%;margin-top: 20px;">
+                <tr  class="tableheader">
+                    <td>排名</td>
+                    <td>商家ID</td>
+                    <td>商家名称</td>
+                    <td>商家评分</td>
+                </tr>
+                <tbody id="sjpingfen"></tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function startEcha(v){
+
+        $('#container2').highcharts({
+            chart: {
+            },
+            title: {
+                text: ''
+            },
+            //x轴
+            xAxis: {
+                categories: ['周一', '周二', '周三', '周四', '周五','周六','周日']
+            },
+            tooltip: {
+                formatter: function() {
+                    var s;
+                    if (this.point.name) { // the pie chart
+                        s = ''+
+                            this.point.name +': '+ this.y +' fruits';
+                    } else {
+                        s = ''+
+                            this.x  +': '+ this.y;
+                    }
+                    return s;
+                }
+            },
+            labels: {
+                items: [{
+                    html: '新增会员趋势图',
+                    style: {
+                        left: '40px',
+                        top: '8px',
+                        color: 'black'
+                    }
+                }]
+            },
+            series: [ {
+                type: 'spline',
+                name: 'Average',
+                data: v,
+                marker: {
+                    lineWidth: 2,
+                    lineColor: Highcharts.getOptions().colors[3],
+                    fillColor: 'white'
+                }
+            }, ]
+        });
+    }
+    
+    function  startEcah1(dataMap){
+    	
+      
+        // 需要在页面上直接标记出来的城市
+        var specialMap = [ '陕西'];
+        // 对dataMap进行处理，使其可以直接在页面上展示
+        for (var i = 0; i < specialMap.length; i++) {
+            for (var j = 0; j < dataMap.length; j++) {
+                if (specialMap[i] == dataMap[j].name) {
+                    dataMap[j].selected = true;
+                    break;
+                }
+
+            }
+        }
+        // 绘制图表，准备数据
+        var option = {
+            tooltip: {
+                formatter: function (params) {
+                    var info = '<p style="font-size:18px">' + params.value + '</p><p style="font-size:16px"></p>'
+                    return info;
+                },
+                backgroundColor: "#ff7f50",//提示标签背景颜色
+                textStyle: { color: "#fff" } //提示标签字体颜色
+            },
+            series: [
+                {
+                    name: '中国',
+                    type: 'map',
+                    mapType: 'china',
+                    selectedMode: 'multiple',
+                    label: {
+                        normal: {
+                            show: true,//显示省份标签
+                            // textStyle:{color:"#c71585"}//省份标签字体颜色
+                        },
+                        emphasis: {
+                            show: true,//对应的鼠标悬浮效果
+                            // textStyle:{color:"#800080"}
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            borderWidth: .5,//区域边框宽度
+                            // borderColor: '#009fe8',//区域边框颜色
+                            // areaColor:"#ffefd5",//区域颜色
+                        },
+                        emphasis: {
+                            borderWidth: .5,
+                            borderColor: '#4b0082',
+                            areaColor: "#ffdead",
+                        }
+                    },
+                    data: dataMap
+                }
+            ]
+        };
+        //初始化echarts实例
+        var myChart = echarts.init(document.getElementById('container9'));
+        //使用制定的配置项和数据显示图表
+        myChart.setOption(option);
+    }
+
+    var echaData=new Array(7);
+    var echaData1=[];
+    function instData(v){
+        var startdate=getDay(-10000);
+        var enddate=getDay(0);
+        for(var i=0;i<7;i++){
+            if(v==i){
+                startdate=getWeek(i)+" 00:00:00";
+                enddate=getWeek(i)+" 24:00:00";
+                break;
+            }
+        }
+        var sql="SELECT * FROM `dashidao_user`where addTime  Between '"+startdate+"' And '"+enddate+"' and dashidao_user.userRole='SELLER' ORDER BY addTime";
+        jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajaxuser.jsp",
+            dataType:"json",
+            data:"table=dashidao_user&dates=lastLoginDate,loginDate,addTime,finishTime,payTime,shipTime,return_shipTime&sql="+sql,
+            //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+            error:function(){alert("数据错误，操作被取消！111");},
+            success:function(data)
+            {
+
+            	 var dataMap = [{ name: '北京',value:15 }, { name: '天津',value:15 }, { name: '上海' }, { name: '重庆',value:15 }, { name: '河北',value:15 }, { name: '河南' ,value:15}, { name: '云南',value:15 }, { name: '辽宁' ,value:15}, { name: '黑龙江',value:15 }, { name: '湖南',value:15 }, { name: '安徽',value:15 }, { name: '山东',value:15 },
+                     { name: '新疆',value:15 }, { name: '江苏',value:15 }, { name: '浙江' ,value:15}, { name: '江西',value:15 }, { name: '湖北' ,value:15}, { name: '广西',value:15 }, { name: '甘肃' ,value:15}, { name: '山西' ,value:15}, { name: '内蒙古',value:15 }, { name: '陕西',value:15 }, { name: '吉林' ,value:15}, { name: '福建' ,value:15}, { name: '贵州' ,value:15},
+                     { name: '广东',value:15 }, { name: '青海' ,value:15}, { name: '西藏' ,value:15}, { name: '四川' ,value:15}, { name: '宁夏',value:15 }, { name: '海南' ,value:15}, { name: '台湾' ,value:15}, { name: '香港' ,value:15}, { name: '澳门',value:15 }]
+                if(data.state=="error"){alert("系统错误，操作被取消111！");return;}
+                var message=data.data.data;
+                var ALLtotal=data.data.total;
+                var zmsj=0;
+                
+                var bjcount=0;
+                var tjcount=0;
+                var shhcount=0;
+                var cqcount=0;
+                var hbcount=0;
+                var hncount=0;
+                var yncount=0;
+                var lncount=0;
+                var hljcount=0;
+                var huncount=0;
+                var anhuicount=0;
+                var shandcount=0;
+                var xinjcount=0;
+                var jiangscount=0;
+                var zhejcount=0;
+                var jiangxcount=0;
+                var hubcount=0;
+                var guangxcount=0;
+                var ganscount=0;
+                var shanxcount=0;
+                var nmgcount=0;
+                var sxcount=0;
+                var jilincount=0;
+                var fjcount=0;
+                var guizhoucount=0;
+                var guangdcount=0;
+                var qinghcount=0;
+                var xizcount=0;
+                var siccount=0;
+                var ningxcount=0;
+                var haincount=0;
+                var taiwcount=0;
+                var xianggcount=0;
+                var aomcount=0;
+                
+                for(var i=0;i<message.length;i++){
+                    if(message[i]['recruit']==1){
+                        zmsj++;
+                    }
+                    if(message[i]['address']!=null){
+                    	 if(message[i]['address'].indexOf('北京')>0){
+                         	bjcount++;
+                         }
+                         if(message[i]['address'].indexOf('天津')>0){
+                         	tjcount++;
+                         }
+                         if(message[i]['address'].indexOf('上海')>0){
+                         	shhcount++;
+                         }
+                         if(message[i]['address'].indexOf('重庆')>0){
+                         	cqcount++;
+                         }
+                         if(message[i]['address'].indexOf('河北')>0){
+                         	hbcount++;
+                         }
+                         if(message[i]['address'].indexOf('河南')>0){
+                         	hncount++;
+                         }
+                         if(message[i]['address'].indexOf('云南')>0){
+                         	yncount++;
+                         }
+                         if(message[i]['address'].indexOf('辽宁')>0){
+                         	lncount++;
+                         }
+                         if(message[i]['address'].indexOf('黑龙江')>0){
+                         	hljcount++;
+                         }
+                         if(message[i]['address'].indexOf('湖南')>0){
+                         	huncount++;
+                         }
+                         if(message[i]['address'].indexOf('安徽')>0){
+                         	anhuicount++;
+                         }
+                         if(message[i]['address'].indexOf('山东')>0){
+                         	shandcount++;
+                         }
+                         if(message[i]['address'].indexOf('新疆')>0){
+                         	xinjcount++;
+                         }
+                         if(message[i]['address'].indexOf('江苏')>0){
+                         	jiangscount++;
+                         }
+                         if(message[i]['address'].indexOf('浙江')>0){
+                         	zhejcount++;
+                         }
+                         if(message[i]['address'].indexOf('江西')>0){
+                         	jiangxcount++;
+                         }
+                         if(message[i]['address'].indexOf('湖北')>0){
+                         	hubcount++;
+                         }
+                         if(message[i]['address'].indexOf('广西')>0){
+                         	guangxcount++;
+                         }
+                         if(message[i]['address'].indexOf('甘肃')>0){
+                         	ganscount++;
+                         }
+                         if(message[i]['address'].indexOf('山西')>0){
+                         	shanxcount++;
+                         }
+                         if(message[i]['address'].indexOf('内蒙古')>0){
+                         	nmgcount++;
+                         }
+                         
+                         if(message[i]['address'].indexOf('陕西')>0){
+                         	sxcount++;
+                         }
+                         if(message[i]['address'].indexOf('吉林')>0){
+                         	jilincount++;
+                         }
+                         if(message[i]['address'].indexOf('福建')>0){
+                         	fjcount++;
+                         }
+                         if(message[i]['address'].indexOf('贵州')>0){
+                         	guizhoucount++;
+                         }
+                         if(message[i]['address'].indexOf('广东')>0){
+                         	guangdcount++;
+                         }
+                         if(message[i]['address'].indexOf('青海')>0){
+                         	qinghcount++;
+                         }
+                         if(message[i]['address'].indexOf('西藏')>0){
+                         	xizcount++;
+                         }
+                         if(message[i]['address'].indexOf('四川')>0){
+                         	siccount++;
+                         }
+                         if(message[i]['address'].indexOf('宁夏')>0){
+                         	ningxcount++;
+                         }
+                         if(message[i]['address'].indexOf('海南')>0){
+                         	haincount++;
+                         }
+                         if(message[i]['address'].indexOf('台湾')>0){
+                         	taiwcount++;
+                         }
+                         if(message[i]['address'].indexOf('香港')>0){
+                         	xianggcount++;
+                         }
+                         if(message[i]['address'].indexOf('澳门')>0){
+                         	aomcount++;
+                         }
+                    }
+                   
+                }
+          
+                if(v==-1){
+                    var bjobj={}; 
+                    bjobj.name='北京';
+                    bjobj.value=bjcount;
+                    echaData1.push(bjobj);
+                    var tjobj={};
+                    tjobj.name='天津';
+                    tjobj.value=bjcount;
+                    echaData1.push(tjobj);
+                    
+                    var shhobj={};
+                    shhobj.name='上海';
+                    shhobj.value=shhcount;
+                    echaData1.push(shhobj);
+                    
+                    var cqobj={};
+                    cqobj.name='重庆';
+                    cqobj.value=cqcount;
+                    echaData1.push(cqobj);
+                    
+                    var hbobj={};
+                    hbobj.name='河北';
+                    hbobj.value=hbcount;
+                    echaData1.push(hbobj);
+                    
+                    var hnobj={};
+                    hnobj.name='河南';
+                    hnobj.value=hncount;
+                    echaData1.push(hnobj);
+                    
+                    var ynobj={};
+                    ynobj.name='云南';
+                    ynobj.value=yncount;
+                    echaData1.push(ynobj);
+                    
+                    var lnobj={};
+                    lnobj.name='辽宁';
+                    lnobj.value=lncount;
+                    echaData1.push(lnobj);
+                    
+                    var hljobj={};
+                    hljobj.name='黑龙江';
+                    hljobj.value=hljcount;
+                    echaData1.push(hljobj);
+                    
+                    var hunobj={};
+                    hunobj.name='湖南';
+                    hunobj.value=huncount;
+                    echaData1.push(hunobj);
+                    
+                    var anhuiobj={};
+                    anhuiobj.name='安徽';
+                    anhuiobj.value=anhuicount;
+                    echaData1.push(anhuiobj);
+                    
+                    var shandobj={};
+                    shandobj.name='山东';
+                    shandobj.value=shandcount;
+                    echaData1.push(shandobj);
+                    
+                    var xinjobj={};
+                    xinjobj.name='新疆';
+                    xinjobj.value=xinjcount;
+                    echaData1.push(xinjobj);
+                    
+                    var jiangsobj={};
+                    jiangsobj.name='江苏';
+                    jiangsobj.value=jiangscount;
+                    echaData1.push(jiangsobj);
+                    
+                    var zhejobj={};
+                    zhejobj.name='浙江';
+                    zhejobj.value=zhejcount;
+                    echaData1.push(zhejobj);
+                    
+                    var jiangxobj={};
+                    jiangxobj.name='江西';
+                    jiangxobj.value=jiangxcount;
+                    echaData1.push(jiangxobj);
+                    
+                    var hubobj={};
+                    hubobj.name='湖北';
+                    hubobj.value=hubcount;
+                    echaData1.push(hubobj);
+                    
+                    var guangxobj={};
+                    guangxobj.name='广西';
+                    guangxobj.value=guangxcount;
+                    echaData1.push(guangxobj);
+                    
+                    var gansobj={};
+                    gansobj.name='甘肃';
+                    gansobj.value=ganscount;
+                    echaData1.push(gansobj);
+                    
+                    var shanxobj={};
+                    shanxobj.name='山西';
+                    shanxobj.value=shanxcount;
+                    echaData1.push(shanxobj);
+                    
+                    var nmgobj={};
+                    nmgobj.name='内蒙古';
+                    nmgobj.value=nmgcount;
+                    echaData1.push(nmgobj);
+                    
+                    var sxobj={};
+                    sxobj.name='陕西';
+                    sxobj.value=sxcount;
+                    echaData1.push(sxobj);
+                    
+                    var jilinobj={};
+                    jilinobj.name='吉林';
+                    jilinobj.value=jilincount;
+                    echaData1.push(jilinobj);
+                    
+                    var fjobj={};
+                    fjobj.name='福建';
+                    fjobj.value=fjcount;
+                    echaData1.push(fjobj);
+                    
+                    var guizhouobj={};
+                    guizhouobj.name='贵州';
+                    guizhouobj.value=guizhoucount;
+                    echaData1.push(guizhouobj);
+                    
+                    var guangdobj={};
+                    guangdobj.name='广东';
+                    guangdobj.value=guangdcount;
+                    echaData1.push(guangdobj);
+                    
+                    var qinghobj={};
+                    qinghobj.name='青海';
+                    qinghobj.value=qinghcount;
+                    echaData1.push(qinghobj);
+                    
+                    var xizobj={};
+                    xizobj.name='西藏';
+                    xizobj.value=xizcount;
+                    echaData1.push(xizobj);
+                    
+                    var sicobj={};
+                    sicobj.name='四川';
+                    sicobj.value=siccount;
+                    echaData1.push(sicobj);
+                    
+                    var ningxobj={};
+                    ningxobj.name='宁夏';
+                    ningxobj.value=ningxcount;
+                    echaData1.push(ningxobj);
+                     
+                    var hainobj={};
+                    hainobj.name='海南';
+                    hainobj.value=haincount;
+                    echaData1.push(hainobj);
+                    
+                    var taiwobj={};
+                    taiwobj.name='台湾';
+                    taiwobj.value=taiwcount;
+                    echaData1.push(taiwobj);
+                    
+                    var xianggobj={};
+                    xianggobj.name='香港';
+                    xianggobj.value=xianggcount;
+                    echaData1.push(xianggobj);
+                    
+                    var aomobj={};
+                    aomobj.name='澳门';
+                    aomobj.value=aomcount;
+                    echaData1.push(aomobj);
+                    // alert(echaData1);
+                    startEcah1(echaData1);
+                    
+                }
+                if(v>=0){
+                    echaData[v]=data.data.total;
+                }
+                if(v==6){
+                    //初始化Echac
+                    startEcha(echaData);
+                }
+                if(v<0){
+                    $('#sjzs').html(data.data.total);
+                    $('#zmsj').html(GetPercent(zmsj,ALLtotal));
+                    dingdan();
+                    instEcha();
+                    instOrder();
+                    instOrder1();
+
+                }
+
+
+
+            }
+        });
+    }
+    function dingdan(){
+        var sql="SELECT * FROM `dashidao_orderform`where totalPrice";
+        jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajaxuser.jsp",
+            dataType:"json",
+            data:"table=dashidao_user&dates=lastLoginDate,loginDate,addTime,finishTime,payTime,shipTime,return_shipTime&sql="+sql,
+            //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+            error:function(){alert("数据错误，操作被取消！222");},
+            success:function(data)
+            {
+
+                if(data.state=="error"){alert("系统错误，操作被取消222！");return;}
+                var message=data.data.data;
+                var ALLtotal=data.data.total;
+                var buyall1=0;
+                for(var i=0;i<message.length;i++){
+                    buyall1+=message[i]['totalPrice'];
+                }
+                $('#dingdanzs').val(buyall1);
+                $('#dingdanzl').val(ALLtotal);
+
+            }
+        });
+
+    }
+
+    function instOrder(){
+        var sql="SELECT dashidao_orderform.user_id, dashidao_orderform.addTime, dashidao_orderform.totalPrice ,dashidao_user.userName,dashidao_user.recruit FROM dashidao_orderform INNER JOIN dashidao_user ON  dashidao_orderform.user_id = dashidao_user.id  And dashidao_user.userRole='SELLER' ORDER BY dashidao_orderform.totalPrice";
+        jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajaxuser.jsp",
+            dataType:"json",
+            data:"table=dashidao_orderform&dates=addTime,finishTime,payTime,shipTime,return_shipTime&sql="+sql,
+            //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+            error:function(){alert("数据错误，操作被取消33！");},
+            success:function(data)
+            {
+                if(data.state=="error"){alert("系统错误，操作被取消3！");return;}
+                var message=data.data.data;
+                //alert(data.data.total);
+                var buycount=data.data.total;
+                var buyAll=0;
+                $('#bybfz').html(GetPercent(buycount,$('#hyzs').html()));
+                var html='';
+                for(var i=0;i<message.length;i++){
+                    buyAll+=message[i]['totalPrice'];
+                }
+                for(var i=0;i<message.length;i++){
+                    html+='<tr>'
+                        +'<td>'+i+'</td>'
+                        +'<td>'+message[i]['user_id']+'</td>'
+                        +'<td>'+message[i]['userName']+'</td>'
+                        +'<td>'+message[i]['totalPrice']+'</td>'
+                        +'<td>'+GetPercent(message[i]['totalPrice'],$('#dingdanzs').val())+'</td></tr>';
+                }
+                $('#xfmx').html(html);
+                $('#xsmx').html(html);
+                xsze=buyAll;
+                $('#buyAll').html(GetPercent(buyAll,$('#dingdanzs').val()));
+                $('#buydan').html(GetPercent(buycount,$('#dingdanzl').val()));
+                if(message[0]!=null){
+                    $('#buyfri').html(message[0]['totalPrice']);
+                }
+                if(message[message.length]!=null){
+                    $('#buylas').html(message[message.length]['totalPrice']);
+                }
+
+
+            }
+        });
+    }
+    function instOrder1(){
+        var sql="SELECT dashidao_orderform.user_id, dashidao_orderform.addTime, dashidao_orderform.totalPrice ,dashidao_user.userName,dashidao_orderform.score FROM dashidao_orderform INNER JOIN dashidao_user ON  dashidao_orderform.user_id = dashidao_user.id  AND dashidao_user.userRole='SELLER' ORDER BY dashidao_orderform.totalPrice";
+        jQuery.ajax({
+            type:"POST",
+            cache: false,
+            async:false,
+            url:"/ajaxuser.jsp",
+            dataType:"json",
+            data:"table=dashidao_orderform&dates=addTime,finishTime,payTime,shipTime,return_shipTime&sql="+sql,
+            //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+            error:function(){alert("数据错误，操作被取消33！");},
+            success:function(data)
+            {
+                if(data.state=="error"){alert("系统错误，操作被取消3！");return;}
+                var message=data.data.data;
+                //alert(data.data.total);
+                var buycount=data.data.total;
+                var pingfen;
+                var sellerds;
+                $('#bybfz').html(GetPercent(buycount,$('#hyzs').html()));
+                var html='';
+
+
+                for(var i=0;i<message.length;i++){
+                    html+='<tr>'
+                        +'<td>'+i+'</td>'
+                        +'<td>'+message[i]['user_id']+'</td>'
+                        +'<td>'+message[i]['userName']+'</td>'
+                        +'<td>'+message[i]['score']+'</td></tr>';
+                }
+                $('#sjpingfen').html(html);
+
+            }
+        });
+    }
+    function getDay(day){
+        var today = new Date();
+
+        var targetday_milliseconds=today.getTime() + 1000*60*60*24*day;
+
+        today.setTime(targetday_milliseconds); //注意，这行是关键代码
+
+        var tYear = today.getFullYear();
+        var tMonth = today.getMonth();
+        var tDate = today.getDate();
+        tMonth = doHandleMonth(tMonth + 1);
+        tDate = doHandleMonth(tDate);
+        return tYear+"-"+tMonth+"-"+tDate;
+    }
+    function getTDay(day){
+        day=day+"00:00:00"
+        return "";
+    }
+    function doHandleMonth(month){
+        var m = month;
+        if(month.toString().length == 1){
+            m = "0" + month;
+        }
+        return m;
+    }
+    function GetPercent(num, total) {
+        num = parseFloat(num);
+        total = parseFloat(total);
+        if (isNaN(num) || isNaN(total)) {
+            return "-";
+        }
+        return total <= 0 ? "0%" : (Math.round(num / total * 10000) / 100.00 + "%");
+    }
+    //获取本周第几天的日期
+    function getWeek(i) {
+
+        var now = new Date();
+
+        var firstDay=new Date(now - (now .getDay() - 1 ) * 86400000);
+
+        firstDay.setDate(firstDay.getDate() + i);
+
+        mon = Number(firstDay.getMonth()) + 1;
+
+        return now .getFullYear() + "/" + mon + "/" + firstDay.getDate();
+
+    }
+    instData(-1);
+    function instEcha(){
+        for(var i=0;i<7;i++){
+            instData(i);
+
+        }
+    }
+    function upData(){
+        instEcha();
+    }
+    function upinsData(){};
+    //instOrder();
+</script>
+</body>
+</html>

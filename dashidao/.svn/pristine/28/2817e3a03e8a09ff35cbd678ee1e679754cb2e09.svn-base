@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>物流详情</title>
+    <!--必选css-->
+    <link rel="stylesheet" type="text/css" href="css/css.css" >
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+</head>
+<body style="background: #f2f6f9; padding-top: 0px;">
+<!--head-->
+<div class="myer ykmyer" >
+    <p >
+        <i class="iconfont icon-back fl" onclick="history.go(-1)"  ></i>物流详情
+    </p>
+</div>
+<div class="storeoner" style="padding-top: 10px; padding-bottom: 10px;" >
+    <div class="dptx fl" style="width: 30%" ><a href="product.html"><img src="images/good1.png" style="width:6.5rem; height: 6.5rem;" /></a></div>
+    <div class="one fl" style="width:70%" >
+        <p >恢复健康和短时间恢复三等奖</p>
+        <span>规格：205ml*12盒*2提</span>
+    </div>
+    <div class="clear"></div>
+    <div class="wllist" >
+        <ul>
+            <li><span>发货时间：</span>2018-03-18 13:45</li>
+            <li><span>物流公司：</span>2018-03-18 13:45</li>
+            <li><span>联系电话：</span>11183</li>
+            <li><span>物流单号：</span><textarea id="text" >1138528640114</textarea><button id='copy' onclick=copy()>复制</button></li>
+        </ul>
+    </div>
+</div>
+<!--物流-->
+<div class="order logisorder ">
+    <p>物流跟踪 <span><i class="iconfont icon-tongbu fl" onclick="history.go(0)" ></i>刷新物流轨迹</span></p>
+    <div class="detaillist">
+        <ul>
+            <li>
+                <div class="fl"></div>
+                <div class="fr">
+                    <p>投递并签收，签收人：他人收 王星</p>
+                    <span>2018-03-20 15：39：35</span>
+                </div>
+                <div class="clear"></div>
+            </li>
+            <li>
+                <div class="fl"></div>
+                <div class="fr">
+                    <p>西安文景揽投安排投递(投递员姓名：郑青松联系电话：<b>18292862544</b>)</p>
+                    <span>2018-03-20 15：39：35</span>
+                </div>
+                <div class="clear"></div>
+            </li>
+            <li>
+                <div class="fl"></div>
+                <div class="fr">
+                    <p>离开西安邮政速物邮件处理中心 发往下一城市</p>
+                    <span>2018-03-20 15：39：35</span>
+                </div>
+                <div class="clear"></div>
+            </li>
+            <li>
+                <div class="fl"></div>
+                <div class="fr">
+                    <p>达到西安中心处理中心</p>
+                    <span>2018-03-20 15：39：35</span>
+                </div>
+                <div class="clear"></div>
+            </li>
+            <li>
+                <div class="fl"></div>
+                <div class="fr">
+                    <p>离开环渤海集散 发往西安市</p>
+                    <span>2018-03-20 15：39：35</span>
+                </div>
+                <div class="clear"></div>
+            </li>
+        </ul>
+    </div>
+    <div class="clear"></div>
+</div>
+<script>
+    function copy(){
+        var text=document.getElementById('text');
+        var copy=document.getElementById('copy');
+        text.select();
+        document.execCommand("copy");
+        copy.focus();
+        alert("复制成功")
+    }
+</script>
+</body>
+</html>

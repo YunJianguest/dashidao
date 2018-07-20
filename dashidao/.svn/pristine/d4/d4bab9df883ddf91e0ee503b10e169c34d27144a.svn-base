@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+#macro ( genericTree $somelist ) 
+#foreach ( $some in $somelist )
+<option value="$!some.id">#if($!some.level>0)
+#foreach($count in [0..$!some.level])&nbsp;&nbsp;#end #end $!some.className</option>
+#genericTree($some.childs) 
+#end 
+#end
+<link href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/template.css"  rel="stylesheet" type="text/css"/>
+<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+<script src="$!webPath/resources/js/jquery.validate.min.js"></script>
+<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+<script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+<script charset="utf-8" src="$!webPath/resources/editor/kindeditor.js"></script>
+<script charset="utf-8" src="$!webPath/resources/editor/lang/zh_CN.js"></script>
+<script>
+jQuery(document).ready(function(){
+//
+  jQuery("#theForm").validate({
+	ignore: "",						  
+    rules:{
+	  company_name:{required :true},
+	  company_sequence:{number:true},
+	  company_mark:{
+		    required :true,
+		    remote:{
+				   url: "$!webPath/admin/commission_mark.htm",     //后台处理程序
+                   type: "post",               //数据发送方式
+                   dataType: "json",           //接受数据格式   
+                   data: {                     //要传递的数据
+                     "company_mark": function(){return jQuery("#company_mark").val();},
+					 "id":"$!obj.id"
+		           }
+				}
+		  }
+	 },
+	messages:{
+	  company_name:{required:"快递名称不能为空"},
+	  company_sequence:{number:"序号只能为数字"},
+	  company_mark:{required:"公司代码不能为空",remote:"公司代码已经存在"}
+	}
+  });
+  //
+  jQuery("#company_status_img").click(function(){
+    var company_status=jQuery("#company_status").val();
+	if(company_status=="0"){
+	  jQuery("#company_status_img").attr("src","$!webPath/resources/style/system/manage/blue/images/no.jpg");
+	  jQuery("#company_status").val("-1");
+	}else{
+	  jQuery("#company_status_img").attr("src","$!webPath/resources/style/system/manage/$!{config.websiteCss}/images/yes.jpg");
+	  jQuery("#company_status").val("0");
+	}
+  }); 
+  //
+  jQuery("#company_type[value=$!{obj.company_type}]").attr("checked",true);
+});
+
+function saveForm(method){
+   jQuery("#theForm").submit();
+}
+</script>
+</head>
+<body>
+<div class="cont">
+  <h1 class="seth1">佣金管理</h1>
+  <div class="settab"><span class="tab-one"></span> <span class="tabs"> <a href="$!webPath/admin/commission_list.htm">管理</a> | <a href="$!webPath/admin/commission_add.htm" #if(!$!edit)class="this"#end>新增</a> #if($!edit) <a href="javascript:void(0);" class="this">编辑</a> #end </span> <span class="tab-two"></span></div>
+  <form name="theForm" id="theForm" action="$!webPath/admin/commission_save.htm" method=post>
+    <input name="id" type="hidden" id="id" value="$!obj.id" />
+    <input name="currentPage" type="hidden" id="currentPage" value="$!currentPage" />
+    <input name="list_url" type="hidden" id="list_url" value="$!webPath/admin/commission_list.htm" />
+    <input name="add_url" type="hidden" id="add_url" value="$!webPath/admin/commission_add.htm" />
+    <div class="setcont">
+      <ul class="set1">
+        <li><strong class="orange fontsize20">*</strong>佣金名称</li>
+        <li><span class="webname">
+          <input name="commission_name" type="text" id="commission_name" value="$!obj.commission_name" size="40" />
+          </span></li>
+      </ul>
+      <ul class="set1">
+        <li><strong class="orange fontsize20">*</strong>佣金代码</li>
+        <li><span class="webname">
+          <input name="commission_code" type="text" id="commission_code" value="$!obj.commission_code" size="40" />
+          </span></li>
+		  
+      </ul>
+      <ul class="set1">
+        <li>佣金配值</li>
+		<li><span class="webname">
+        <input name="commission_value" id="commission_value" type="text" value="$!obj.commission_value" >
+        <!-- <img #if($!obj.company_status==0)src="$!webPath/resources/style/system/manage/$!{config.websiteCss}/images/yes.jpg"#else src="$!webPath/resources/style/system/manage/blue/images/no.jpg"#end width="61" height="23" id="company_status_img" style="cursor:pointer"/> -->
+		</span>
+		</li>
+      </ul>
+      <ul class="set1">
+        <li>佣金使用角色</li>
+        <li>
+         <!--  <label>
+            <select type="" name="commission_role" id="commission_role"  value="$!obj.commission_role" >
+            <option value="BUYER">会员</option>
+            <option value="SELLER">云客</option>
+            <option value="POSTER">棧代</option>
+            <option value="TRADER">商家</option>
+            <option value="ADMIN">平台管理员</option>
+            </select>
+         
+          </label> -->
+           <label>
+           <input type="checkbox" name="commission_role"      value="BUYER"  />会员
+          </label>
+          <label>
+            <input type="checkbox" name="commission_role"  value="SELLER" />云客
+          </label>
+          <label>
+            <input type="checkbox" name="commission_role"  value="POSTER" />棧代
+          </label>
+           <label>
+            <input type="checkbox" name="commission_role"  value="TRADER" />商家
+          </label>
+          <label>
+            <input type="checkbox" name="commission_role"  value="ADMIN" />平台管理员
+          </label>
+         
+         </li>
+      </ul>
+      <ul class="set1">
+        <li>佣金说明</li>
+        <li><span class="webname">
+          <input name="commission_notes" type="text" id="commission_notes" value="$!obj.commission_notes" size="40" />
+          </span></li>
+      </ul>
+    </div>
+  </form>
+  <div class="submit">
+    <input name="save" type="button" value="提交" onclick="saveForm()" />
+  </div>
+</div>
+</body>
+</html>

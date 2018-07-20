@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>基础设置</title>
+    <script type="text/javascript" src="$!webPath/resources/js/jquery1.42.min.js"></script>
+    <link href="$!webPath/resources/style/system/manage/blue/jcsz.css"  rel="stylesheet" type="text/css"/>
+     <style>
+		body{font-size: 14px!important;}
+		table {margin-top: 20px; width:100%;}
+		table td{height: 45px;line-height: 45px;padding-left:5%; }
+		.first{width:20%;}
+		.two{width:70%;}
+		table tr td input{width: 100px;margin: 0 20px;}
+		.ls{width:10%;}
+		span{padding: 3px 10px;border-radius: 3px;background: #108ee9;color:#fff;text-align: center;}
+		.first span{padding: 3px 10px;border-radius: 3px;background: #108ee;color:#fff;}
+		table {display: table;border-collapse: separate;border-spacing:0; border-color: grey;}
+		.con tr td{border-bottom:1px solid #c3c3c3;}
+		.search {width: 80%; margin:2% 0 0 5%; height: 30px; border-radius: 5px;border: 1px solid #c3c3c3;}
+		.seach_button{padding: 5px 15px;margin-left: 10px;}
+		.hd li{border:1px solid #c3c3c3;}
+	</style>
+</head>
+<body>
+
+<div class="shopadminbox">
+    <div class="hd">
+        <ul>
+            <a href="javascript:void(0)" onclick="javascript:window.location.href='$!webPath/admin/setting_admin.htm'"><li>基础设置</li></a>
+            <a href="javascript:void(0)" onclick="javascript:window.location.href='$!webPath/admin/sjbzj_admin.htm'"><li class="on">商家保证金设置</li></a>
+            <a href="javascript:void(0)" onclick="javascript:window.location.href='$!webPath/admin/zdbzj_admin.htm'"><li>栈代保证金设置</li></a>
+        </ul>
+    </div>
+    <div class="bd">
+        <!--商家保证金设置-->
+		 <ul>
+        <li>
+        <input type="hidden" id="id" value="$!obj.id">
+        	<table>
+        		<tr>
+        			<td class="first">商家保证金：</td>
+        			<td class="two">保证金退还期限：合同到期后 <input type="text" class="form-control" name="" id="zb_htdqts" value="$!obj.zb_htdqts" />天，系统自动退还保证金 。</td>
+        			<td class="ls"><span onclick="jcsz_save()">提交</span></td>
+        		</tr>
+        		<tr>
+        			<td class="first">保证金计提方式：</td>
+        			<td class="two">保证金计提方式：按结算金额的 <input type="text" class="form-control" name="" id="zb_jsjinE" value="$!obj.zb_jsjinE" /> 。</td>
+        			<td class="ls"></td>
+        		</tr>
+        	</table>
+        	<div><input type="text" class="form-control search" name="email" id="brand_name" value="$!name" placeholder="搜索"/><span class="seach_button" onclick="javascript:window.location.href='$!webPath/admin/sjbzj_admin.htm?brand_name='+$('#brand_name').val()">搜索</span><span class="seach_button" onclick="save()">添加</span></div>
+        	<table border="0" style="text-align: center;">
+        		<tr style="background: #DFE2F5;">
+        			<td>品牌</td>
+        			<td>品牌所有者</td>
+        			<td>品牌一级授权者</td>
+        			<td>品牌二级授权者</td>
+        			<td>品牌三级授权者</td>
+        		</tr>
+        		<tbody class="con" >
+        		#foreach($obj in $objs)
+					<tr >
+						<td>$obj.goodsBrand.name</td>
+						<td>$obj.zb_one_bigDecimal_attr元</td>
+						<td>$obj.zb_two_bigDecimal_attr元</td>
+						<td>$obj.zb_three_bigDecimal_attr元</td>
+						<td>$obj.zb_four_bigDecimal_attr元</td>
+					</tr>
+				#end 
+					<tr >
+						<td> <select id="goodsType_id">
+						#foreach($item in $goodsBrand)
+                                 <option value="$item.id">$item.name</option>
+                         #end         
+                         </select></td>
+						<td><input type="text" class="form-control" name="" id="zb_one_bigDecimal_attr" value="" />元</td>
+						<td><input type="text" class="form-control" name="" id="zb_two_bigDecimal_attr" value="" />元</td>
+						<td><input type="text" class="form-control" name="" id="zb_three_bigDecimal_attr" value="" />元</td>
+					    <td><input type="text" class="form-control" name="" id="zb_four_bigDecimal_attr" value="" />元</td>
+					</tr>
+        		</tbody>
+        	</table>
+        </li>
+        </ul>
+    
+    </div>
+</div>
+<button ></button>
+</body>
+<script type="text/javascript">
+    function jcsz_save(){ 
+    	var data={
+            id:$('#id').val(),
+            zb_htdqts:$('#zb_htdqts').val(),
+            zb_jsjinE:$('#zb_jsjinE').val()
+    	}
+    	jQuery.ajax({
+    	    type:"POST",
+    	    cache: false,
+    	    async:false,
+    	    url:"$!webPath/admin/setting_save_admin.htm",
+    	    dataType:"json",
+    	    data:data,
+    	    error:function(){},
+    	    success:function(data)
+    	    { 
+    	    	alert(data.data);
+    	    	
+    	    }
+    	});
+    }
+    var reg = /^(?!(0[0-9]{0,}$))[0-9]{1,}[.]{0,}[0-9]{0,}$/;
+    function save(){
+    	if($('#goodsType_id').val()==''){
+    		alert('请选择品牌');
+    		return;
+    	}
+    	if(!reg.test($('#zb_one_bigDecimal_attr').val())||!reg.test($('#zb_two_bigDecimal_attr').val())||!reg.test($('#zb_three_bigDecimal_attr').val())||!reg.test($('#zb_four_bigDecimal_attr').val())){
+    		alert('请输入数字');
+    		return;
+    	}
+    	var data={
+    		goodsType_id:$('#goodsType_id').val(),
+    		zb_one_bigDecimal_attr:$('#zb_one_bigDecimal_attr').val(),
+            zb_two_bigDecimal_attr:$('#zb_two_bigDecimal_attr').val(),
+            zb_three_bigDecimal_attr:$('#zb_three_bigDecimal_attr').val(),
+            zb_four_bigDecimal_attr:$('#zb_four_bigDecimal_attr').val(),
+            zb_type:6
+    	}
+    	jQuery.ajax({
+    	    type:"POST",
+    	    cache: false,
+    	    async:false,
+    	    url:"$!webPath/admin/settingList_save_admin.htm",
+    	    dataType:"json",
+    	    data:data,
+    	    error:function(){},
+    	    success:function(data)
+    	    { 
+    	    	alert(data.data);
+    	    	window.location.reload();
+    	    	
+    	    }
+    	});
+    }
+</script>
+</html>

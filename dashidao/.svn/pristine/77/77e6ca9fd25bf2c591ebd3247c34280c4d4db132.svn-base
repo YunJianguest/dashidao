@@ -1,0 +1,246 @@
+	<!doctype html>
+	<html>
+	<head>
+		<meta charset="utf-8">
+		<!--link href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/template.css"  rel="stylesheet" type="text/css"/-->
+		<!--link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet-->
+
+		<link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+		<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css" type="text/css"/>
+		<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+		<script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+		<script src="$!webPath/resources/js/bootstrap.min.js"></script>
+		<title>无标题文档</title>
+
+		<style>
+			body{
+				font-family: "Microsoft Yahei", "Lucida Grande", Verdana, Lucida, Helvetica, Arial, 'Simsun', sans-serif;
+			}
+			input{
+				border:none;
+				width: 100px;
+			}
+			table tr td{
+				border-bottom: 1px solid #eee;padding: 10px 0;
+			}
+			ul{margin: 0;}
+			.a{
+				width: 80%;
+
+			}
+			#font{
+				color: red;
+			}
+			#font2{
+				color:blue;
+
+			}
+			.tabbable{margin: 0 auto;}
+			.tab-content{width:100%;}
+			.table a{
+				border:1px solid #c3c3c3;
+				padding: 5px 14px;
+				border-radius: 4px;
+			}
+			.table a:hover{color:#000;background: #fff;}
+			.seth1 {
+				border-top: 1px solid #D9D9D9;
+				height: 35px;
+				border-bottom: 1px solid #D9D9D9;
+				line-height: 35px;
+				padding-left: 40px;
+				color: #686868;
+				margin: 5px;
+				font-size:16px;
+				padding: 0px;
+				text-align: left;
+				background: #f3f3f3;
+			}
+			.bor{height:30px;line-height: 30px;}
+			.ac9 a {
+				color: #999;
+				padding:3px 20px;
+				border-radius: 4px;
+				text-decoration: none;
+				border:1px solid #999;
+			}
+			.ac9 a:hover {
+				color:#999;
+				background: #fff;
+			}
+			.dai,.shenh{color:#108EE9;}
+			.agree{color:#0a7e07;}
+			.disagree{color:red;}
+			.qd{font-size:15px;border-radius: 4px;color:#fff;background:#108EE9;width:100px;text-align:center;margin: 10px auto;line-height:33px;}
+			.nav li{margin-left:2px}
+			.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{background:#3fa4ed;color:#fff; width:100%;}
+			.nav>li>a {
+				position: relative;
+				border:1px solid #c3c3c3;
+				display: block;
+				border-top-left-radius: 8px;
+				border-top-right-radius:8px;
+				font-size: 16px!important;
+				padding: 5px 15px;
+				color:#000;
+			}
+			.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{background:#3fa4ed;color:#fff;font-size: 16px;}
+			.nav{margin: 17px 0 29px 21px;border-bottom: 1px solid #c3c3c3!important;}
+
+		</style>
+	</head>
+
+	<body>
+	<div class="tabbable">
+		<div class="seth1">
+			<img src="$!webPath/resources/style/system/manage/black/img/1.png" alt="">
+			申诉管理
+		</div>
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#1" data-toggle="tab">一般违规</a></li>
+			<li><a href="#2" data-toggle="tab">严重违规</a></li>
+			<li><a href="#3" data-toggle="tab">历史记分</a></li>
+		</ul>
+		<div class="tab-content">
+			<div class="tab-pane active" id="1"style="width:99%;margin-left:1%;">
+				<table width="100%" style="font-size:16px;text-align: center;">
+					<tr style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#FFF;text-align: center">
+						<td>申请人</td>
+						<td>订单编号</td>
+						<td>违规类型</td>
+						<td>处罚时间</td>
+						<td>处罚记分</td>
+						<td>状态</td>
+						<td>操作</td>
+					</tr>
+					<tr>
+						<td>乐乐服装店</td>
+						<td>JT320176534</td>
+						<td>延迟发货</td>
+						<td>2017-03-22 10:10:10</td>
+						<td>0</td>
+						<td>客服介入</td>
+						<td class="ac9"><a href="">详情</a></td>
+					</tr>
+					<tr>
+						<td>美丽阳光</td>
+						<td>JT320176534</td>
+						<td>延迟发货</td>
+						<td>2017-03-22 10:10:10</td>
+						<td>5</td>
+						<td>客服介入</td>
+						<td class="ac9"><a href="">详情</a></td>
+					</tr>
+					<tr>
+						<td>海参旗舰店</td>
+						<td>JT320176534</td>
+						<td>滥发信息</td>
+						<td>2017-03-22 10:10:10</td>
+						<td>5</td>
+						<td>已完成</td>
+						<td class="ac9"><a href="">详情</a></td>
+					</tr>
+					<tr>
+						<td>乐乐服装店</td>
+						<td>JT320176534</td>
+						<td>违背承诺</td>
+						<td>2017-03-22 10:10:10</td>
+						<td>10</td>
+						<td>已完成</td>
+						<td class="ac9"><a href="">详情</a></td>
+					</tr>
+				</table>
+			</div>
+			<div class="tab-pane" id="2" style="text-align: center">
+				<table width="98%" style="font-size:16px;text-align: center;margin-left: 2%;">
+					<tr style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#FFF;text-align: center">
+						<td>申请人</td>
+						<td>订单编号</td>
+						<td>违规类型</td>
+						<td>处罚时间</td>
+						<td>处罚记分</td>
+						<td>状态</td>
+						<td>操作</td>
+					</tr>
+					<tr>
+						<td>乐乐服装店</td>
+						<td>JT320176534</td>
+						<td>延迟发货</td>
+						<td>2017-03-22 10:10:10</td>
+						<td>0</td>
+						<td>客服介入</td>
+						<td class="ac9"><a href="">详情</a></td>
+					</tr>
+					<tr>
+						<td>美丽阳光</td>
+						<td>JT320176534</td>
+						<td>延迟发货</td>
+						<td>2017-03-22 10:10:10</td>
+						<td>5</td>
+						<td>客服介入</td>
+						<td class="ac9"><a href="">详情</a></td>
+					</tr>
+					<tr>
+						<td>海参旗舰店</td>
+						<td>JT320176534</td>
+						<td>滥发信息</td>
+						<td>2017-03-22 10:10:10</td>
+						<td>5</td>
+						<td>已完成</td>
+						<td class="ac9"><a href="">详情</a></td>
+					</tr>
+					<tr>
+						<td>乐乐服装店</td>
+						<td>JT320176534</td>
+						<td>违背承诺</td>
+						<td>2017-03-22 10:10:10</td>
+						<td>10</td>
+						<td>已完成</td>
+						<td class="ac9"><a href="">详情</a></td>
+					</tr>
+				</table>
+			</div>
+			<div class="tab-pane" id="3" style="text-align: center">
+				<table width="98%" style="font-size:16px;text-align: center;margin-left: 2%;">
+					<tr style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#FFF;text-align: center">
+						<td>申请人</td>
+						<td>处罚时间</td>
+						<td>截止时间</td>
+						<td>一般违规记分</td>
+						<td>严重违规记分</td>
+					</tr>
+					<tr>
+						<td>乐乐服装店</td>
+						<td>JT320176534</td>
+						<td>延迟发货</td>
+						<td>2017-03-22 10:10:10</td>
+						<td>0</td>
+					</tr>
+					<tr>
+						<td>美丽阳光</td>
+						<td>JT320176534</td>
+						<td>延迟发货</td>
+						<td>2017-03-22 10:10:10</td>
+						<td>5</td>
+					</tr>
+					<tr>
+						<td>海参旗舰店</td>
+						<td>JT320176534</td>
+						<td>滥发信息</td>
+						<td>2017-03-22 10:10:10</td>
+						<td>5</td>
+					</tr>
+					<tr>
+						<td>乐乐服装店</td>
+						<td>JT320176534</td>
+						<td>违背承诺</td>
+						<td>2017-03-22 10:10:10</td>
+						<td>10</td>
+					</tr>
+				</table>
+			</div>
+
+		</div>
+	</div>
+	</body>
+	</html>

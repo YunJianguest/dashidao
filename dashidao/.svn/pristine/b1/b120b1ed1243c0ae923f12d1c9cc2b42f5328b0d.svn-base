@@ -1,0 +1,769 @@
+package com.dashidao.manage.poster.action;
+import com.dashidao.core.annotation.SecurityMapping;
+import com.dashidao.core.domain.virtual.SysMap;
+import com.dashidao.core.mv.JModelAndView;
+import com.dashidao.core.query.support.IPageList;
+import com.dashidao.core.security.support.SecurityUserHolder;
+import com.dashidao.core.tools.CommUtil;
+import com.dashidao.core.tools.WebForm;
+import com.dashidao.foundation.domain.*;
+import com.dashidao.foundation.domain.query.GoodsReturnQueryObject;
+/*import com.dashidao.foundation.domain.query.ZxxPosterFormQueryObject;*/
+import com.dashidao.foundation.domain.query.OrderFormQueryObject;
+import com.dashidao.foundation.service.IGoodsReturnItemService;
+import com.dashidao.foundation.service.IGoodsReturnService;
+import com.dashidao.foundation.service.IOrderFormService;
+import com.dashidao.foundation.service.ISysConfigService;
+import com.dashidao.foundation.service.IUserConfigService;
+import com.dashidao.view.web.tools.StoreViewTools;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * 卖家退货控制器
+ */
+@Controller
+
+
+public class ZxxPosterAction {
+
+    @Autowired
+    private ISysConfigService configService;
+
+    @Autowired
+    private IUserConfigService userConfigService;
+
+    @Autowired
+    private IOrderFormService orderFormService;
+
+    @Autowired
+    private IGoodsReturnService goodsReturnService;
+    @Autowired
+    private StoreViewTools storeViewTools;
+
+    @Autowired
+    private IGoodsReturnItemService goodsReturnItemService;
+
+    @SecurityMapping(display = false, rsequence = 0, title = "栈代删除列表", value = "/poster/zhandaisc.htm*", rtype = "poster", rname = "栈代删除", rcode = "zhandaisc_poster", rgroup = "商品管理")
+    @RequestMapping({"/poster/zhandaisc.htm"})
+    public ModelAndView zhandaisc(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandaisc.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+
+    @SecurityMapping(display = false, rsequence = 0, title = "栈代信息列表", value = "/poster/zhandaixx.htm*", rtype = "poster", rname = "栈代信息", rcode = "zhandaixx_poster", rgroup = "栈代管理")
+    @RequestMapping({"/poster/zhandaixx.htm"})
+    public ModelAndView zhandaixx(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/zhandaixx.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+    @SecurityMapping(display = false, rsequence = 0, title = "栈代合同列表", value = "/poster/zhandaiht.htm*", rtype = "poster", rname = "合同信息", rcode = "zhandaiht_poster", rgroup = "栈代管理")
+    @RequestMapping({"/poster/zhandaiht.htm"})
+    public ModelAndView zhandaiht(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/zhandaiht.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+    @SecurityMapping(display = false, rsequence = 0, title = "栈代资金列表", value = "/poster/duizhangzhongxin.htm*", rtype = "poster", rname = "对账中心", rcode = "duizhangzhongxin_poster", rgroup = "资金管理")
+    @RequestMapping({"/poster/duizhangzhongxin.htm"})
+    public ModelAndView duizhangzhongxin(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/duizhangzhongxin.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+    @SecurityMapping(display = false, rsequence = 0, title = "银行卡设置", value = "/poster/yinhangka.htm*", rtype = "poster", rname = "银行卡管理", rcode = "yinhangka_poster", rgroup = "资金管理")
+    @RequestMapping({"/poster/yinhangka.htm"})
+    public ModelAndView yinhangka(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/yinhangka.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+
+    @SecurityMapping(display = false, rsequence = 0, title = "销售统计表", value = "/poster/xiaoshoumingxi.htm*", rtype = "poster", rname = "销售明细一览表", rcode = "xiaoshoumingxi_poster", rgroup = "统计管理")
+    @RequestMapping({"/poster/xiaoshoumingxi.htm"})
+    public ModelAndView xiaoshoumingxi(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/xiaoshoumingxi.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+    @SecurityMapping(display = false, rsequence = 0, title = "申请退出", value = "/poster/sqtc.htm*", rtype = "poster", rname = "申请退出", rcode = "yinhangka_poster", rgroup = "基础管理")
+    @RequestMapping({"/poster/sqtc.htm"})
+    public ModelAndView sqtc(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/sqtc.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+
+    @SecurityMapping(display = false, rsequence = 0, title = "销售月报", value = "/poster/xiaoshouyuebao.htm*", rtype = "poster", rname = "销售月报", rcode = "xiaoshouyuebao_poster", rgroup = "统计管理")
+    @RequestMapping({"/poster/xiaoshouyuebao.htm"})
+    public ModelAndView xiaoshouyuebao(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/xiaoshouyuebao.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+    @SecurityMapping(display = false, rsequence = 0, title = "销售日报", value = "/poster/xiaoshouribao.htm*", rtype = "poster", rname = "销售月报", rcode = "xiaoshouribao_poster", rgroup = "统计管理")
+    @RequestMapping({"/poster/xiaoshouribao.htm"})
+    public ModelAndView xiaoshouribao(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/xiaoshouribao.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+
+
+    @SecurityMapping(display = false, rsequence = 0, title = "资金服务", value = "/poster/zijinfuwu.htm*", rtype = "poster", rname = "资金服务", rcode = "zijinfuwu_poster", rgroup = "资金管理")
+    @RequestMapping({"/poster/zijinfuwu.htm"})
+    public ModelAndView zijinfuwu(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/zijinfuwu.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+
+    @SecurityMapping(display = false, rsequence = 0, title = "代理商品", value = "/poster/agentcommodity.htm*", rtype = "poster", rname = "代理商品", rcode = "agentcommodity_poster", rgroup = "商品管理")
+    @RequestMapping({"/poster/agentcommodity.htm"})
+    public ModelAndView agentcommodity(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/agentcommodity.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+    @SecurityMapping(display = false, rsequence = 0, title = "破损补寄", value = "/poster/breakmaili.htm*", rtype = "poster", rname = "破损补寄管理", rcode = "breakmaili_poster", rgroup = "客户服务")
+    @RequestMapping({"/poster/breakmaili.htm"})
+    public ModelAndView breakmaili(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/breakmaili.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+    @SecurityMapping(display = false, rsequence = 0, title = "破损补寄详情查看", value = "/poster/breakmailidetail.htm*", rtype = "poster", rname = "破损补寄详情查看", rcode = "breakmailidetail_poster", rgroup = "客户服务")
+    @RequestMapping({"/poster/breakmailidetail.htm"})
+    public ModelAndView breakmailidetail(HttpServletRequest request, HttpServletResponse response, Long id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/breakmailidetail.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+        
+		Map params = new HashMap();
+       params.put("id", id);
+        List<PoSunBuJiGl> list=this.goodsReturnItemService.queryBysql(
+                "select obj from PoSunBuJiGl obj where obj.id=:id",
+                params, -1, -5);
+        mv.addObject("map",list.get(0));
+        
+        return mv;
+    } 
+    
+    @SecurityMapping(display = false, rsequence = 0, title = "选择商品", value = "/poster/choicegoods.htm*", rtype = "poster", rname = "选择商品", rcode = "choicegoods_poster", rgroup = "商品管理")
+    @RequestMapping({"/poster/choicegoods.htm"})
+    public ModelAndView choicegoods(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/choicegoods.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+    @SecurityMapping(display = false, rsequence = 0, title = "清仓活动", value = "/poster/cleargood.htm*", rtype = "poster", rname = "清仓活动", rcode = "cleargood_poster", rgroup = "营销活动")
+    @RequestMapping({"/poster/cleargood.htm"})
+    public ModelAndView cleargood(HttpServletRequest request, HttpServletResponse response, String id, String currentPage,String orderBy, String orderType ){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/cleargood.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+        return mv;
+    }
+
+    @SecurityMapping(display = false, rsequence = 0, title = "申述管理", value = "/poster/Complaintm.htm*", rtype = "poster", rname = "申述管理", rcode = "Complaintm_poster", rgroup = "客户服务")
+    @RequestMapping({"/poster/Complaintm.htm"})
+    public ModelAndView Complaintm(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/Complaintm.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+
+    @SecurityMapping(display = false, rsequence = 0, title = "维修管理", value = "/poster/maintmanag.htm*", rtype = "poster", rname = "维修管理", rcode = "maintmanag_poster", rgroup = "客户服务")
+    @RequestMapping({"/poster/maintmanag.htm"})
+    public ModelAndView maintmanag(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/maintmanag.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+    @SecurityMapping(display = false, rsequence = 0, title = "投诉管理", value = "/poster/tsmanage.htm*", rtype = "poster", rname = "投诉管理", rcode = "tsmanage_poster", rgroup = "客户服务")
+    @RequestMapping({"/poster/tsmanage.htm"})
+    public ModelAndView tsmanage(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/tsmanage.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+        
+        
+
+
+        return mv;
+    }
+    @SecurityMapping(display = false, rsequence = 0, title = "退换货管理", value = "/poster/returnmanage.htm*", rtype = "poster", rname = "退换货管理", rcode = "returnmanage_poster", rgroup = "客户服务")
+    @RequestMapping({"/poster/returnmanage.htm"})
+    public ModelAndView returnmanage(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/returnmanage.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+    
+    /**退换货管理详情查看
+     * @param request
+     * @param response
+     * @param id
+     * @return
+     */
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	@SecurityMapping(display = false, rsequence = 0, title = "退换货管理详情查看", value = "/poster/returnmanageDetail.htm*", rtype = "poster", rname = "退换货管理详情查看", rcode = "returnmanageDetail_poster", rgroup = "客户服务")
+    @RequestMapping({"/poster/returnmanageDetail.htm"})
+    public ModelAndView returnmanageDetail(HttpServletRequest request, HttpServletResponse response, Long id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/returnmanageDetail.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+        
+		Map params = new HashMap();
+       params.put("id", id);
+        List<TuiHuanHuoGl> list=this.goodsReturnItemService.queryBysql(
+                "select obj from TuiHuanHuoGl obj where obj.id=:id",
+                params, -1, -5);
+        mv.addObject("map",list.get(0));
+        return mv;
+    }
+    
+    
+    @SecurityMapping(display = false, rsequence = 0, title = "进货管理", value = "/poster/importbill.htm*", rtype = "poster", rname = "进货管理", rcode = "importbill_poster", rgroup = "客户服务")
+    @RequestMapping({"/poster/importbill.htm"})
+    public ModelAndView importbill(HttpServletRequest request, HttpServletResponse response, String id, String currentPage, String order_status, String order_id, String beginTime, String endTime, String buyer_userName,String urlStr){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/importbill.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+        OrderFormQueryObject ofqo = new OrderFormQueryObject(currentPage, mv,
+                "addTime", "desc");
+        ofqo.addQuery("obj.user.id",
+                      new SysMap("user_id",
+                                 SecurityUserHolder.getCurrentUser().getId()), "="); 
+        if (!CommUtil.null2String(order_status).equals("")){ 
+            if (order_status.equals("order_submit")){
+                ofqo.addQuery("obj.order_status",
+                              new SysMap("order_status", Integer.valueOf(10)), "=");
+            }
+            if (order_status.equals("order_pay")){
+                ofqo.addQuery("obj.order_status",
+                              new SysMap("order_status", Integer.valueOf(20)), "=");
+            }
+            if (order_status.equals("order_shipping")){
+                ofqo.addQuery("obj.order_status",
+                              new SysMap("order_status", Integer.valueOf(30)), "=");
+            }
+            if (order_status.equals("order_receive")){
+                ofqo.addQuery("obj.order_status",
+                              new SysMap("order_status", Integer.valueOf(40)), "=");
+            }
+            if (order_status.equals("order_evaluate")){
+                ofqo.addQuery("obj.order_status",
+                              new SysMap("order_status", Integer.valueOf(50)), "=");
+            }
+            if (order_status.equals("order_finish")){
+                ofqo.addQuery("obj.order_status",
+                              new SysMap("order_status", Integer.valueOf(60)), "=");
+            }
+            if (order_status.equals("order_cancel")){
+                ofqo.addQuery("obj.order_status",
+                              new SysMap("order_status", Integer.valueOf(0)), "=");
+            }
+            if (order_status.equals("order_tosendgoods")){
+                ofqo.addQuery("obj.order_status",
+                              new SysMap("order_status", Integer.valueOf(70)), "=");
+            }
+            if (order_status.equals("order_fotgoods")){
+                ofqo.addQuery("obj.order_status",
+                              new SysMap("order_status", Integer.valueOf(80)), "=");
+            }
+        }
+        if (!CommUtil.null2String(order_id).equals("")){
+            ofqo.addQuery("obj.order_id",
+                          new SysMap("order_id", "%" + order_id +
+                                     "%"), "like");
+        }
+        if (!CommUtil.null2String(beginTime).equals("")){
+            ofqo.addQuery("obj.addTime",
+                          new SysMap("beginTime", CommUtil.formatDate(beginTime)),
+                          ">=");
+        }
+        if (!CommUtil.null2String(endTime).equals("")){
+            ofqo.addQuery("obj.addTime",
+                          new SysMap("endTime", CommUtil.formatDate(endTime)), ">=");
+        }
+        if (!CommUtil.null2String(buyer_userName).equals("")){
+            ofqo.addQuery("obj.user.userName",
+                          new SysMap("userName",
+                                     buyer_userName), "=");
+        }
+        IPageList pList = this.orderFormService.list(ofqo);  
+        CommUtil.saveIPageList2ModelAndView("", "", "", pList, mv);
+        mv.addObject("storeViewTools", this.storeViewTools);
+        mv.addObject("order_id", order_id);
+        mv.addObject("order_status", order_status == null ? "all" :
+                     order_status);
+        mv.addObject("beginTime", beginTime);
+        mv.addObject("endTime", endTime);
+        mv.addObject("buyer_userName", buyer_userName); 
+   
+//        System.out.println("urlStr========="+urlStr);
+        mv.addObject("urlc",urlStr);
+
+        return mv;
+    }
+    @SecurityMapping(display = false, rsequence = 0, title = "库存管理", value = "/poster/stockmanage.htm*", rtype = "poster", rname = "库存管理", rcode = "stockmanage_poster", rgroup = "客户服务")
+    @RequestMapping({"/poster/stockmanage.htm"})
+    public ModelAndView stockmanage(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/stockmanage.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+    @SecurityMapping(display = false, rsequence = 0, title = "退款售后", value = "/poster/refundsale.htm*", rtype = "poster", rname = "退款售后", rcode = "refundsale_poster", rgroup = "商品管理")
+    @RequestMapping({"/poster/refundsale.htm"})
+    public ModelAndView refundsale(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/refundsale.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+    /**
+     * 退款售后详情
+     * @param request
+     * @param response
+     * @param id
+     * @return
+     */
+    @SecurityMapping(display = false, rsequence = 0, title = "退款售后详情", value = "/poster/tuiKuanShouHouInfo.htm*", rtype = "poster", rname = "退款售后详情", rcode = "refundsale_poster", rgroup = "商品管理")
+    @RequestMapping({"/poster/tuiKuanShouHouInfo.htm"})
+    public ModelAndView tuiKuanShouHouInfo(HttpServletRequest request, HttpServletResponse response, Long id) 
+    {
+    	 ModelAndView mv = new JModelAndView(
+                 "user/default/usercenter/zhandai/tuiKuanShouHouInfo.html", this.configService
+                 .getSysConfig(),
+                 this.userConfigService.getUserConfig(), 0, request, response);
+    	 
+    	 Map params = new HashMap();
+    	 Long ids= (long) id;
+         params.put("id", ids);
+         List<ShouHouXiangQing> list=this.goodsReturnItemService.queryBysql(
+                 "select obj from ShouHouXiangQing obj where obj.id=:id",
+                 params, -1, -5);
+         mv.addObject("map",list.get(0));
+         return mv;
+    }
+    
+    
+    @SecurityMapping(display = false, rsequence = 0, title = "售后服务看板", value = "/poster/shouhouwufukanban.htm*", rtype = "poster", rname = "售后服务看板", rcode = "shouhouwufukanban_poster", rgroup = "商品管理")
+    @RequestMapping({"/poster/shouhouwufukanban.htm"})
+    public ModelAndView shouhouwufukanban(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/shouhouwufukanban.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+
+
+
+    /**
+     * 跳转页面
+     */
+    @SecurityMapping(display = false, rsequence = 0, title = "商品详情", value = "/poster/agentdetail.htm*", rtype = "poster", rname = "代理商品详情", rcode = "agentdetail_poster", rgroup = "商品管理")
+    @RequestMapping({"/poster/agentdetail.htm"})
+    public ModelAndView agentdetail(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/agentdetail.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+    @SecurityMapping(display = false, rsequence = 0, title = "选择商家", value = "/poster/choicebusiness.htm*", rtype = "poster", rname = "选择商家", rcode = "choicebusiness_poster", rgroup = "商品管理")
+    @RequestMapping({"/poster/choicebusiness.htm"})
+    public ModelAndView choicebusiness(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/choicebusiness.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+    @SecurityMapping(display = false, rsequence = 0, title = "申诉管理详情", value = "/poster/Complaintdetal.htm*", rtype = "poster", rname = "申诉管理", rcode = "Complaintdetal_poster", rgroup = "客户服务")
+    @RequestMapping({"/poster/Complaintdetal.htm"})
+    public ModelAndView Complaintdetal(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/Complaintdetal.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+
+    @SecurityMapping(display = false, rsequence = 0, title = "进货订单详情", value = "/poster/entrysheetdetail.htm*", rtype = "poster", rname = "进货管理", rcode = "entrysheetdetail_poster", rgroup = "商品管理")
+    @RequestMapping({"/poster/entrysheetdetail.htm"})
+    public ModelAndView entrysheetdetail(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/entrysheetdetail.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+
+    @SecurityMapping(display = false, rsequence = 0, title = "发起诉讼详情", value = "/poster/fqqs.htm*", rtype = "poster", rname = "投诉管理", rcode = "fqqs_poster", rgroup = "客服管理")
+    @RequestMapping({"/poster/fqqs.htm"})
+    public ModelAndView fqqs(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/fqqs.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+
+    @SecurityMapping(display = false, rsequence = 0, title = "申请退款", value = "/poster/refundapplication.htm*", rtype = "poster", rname = "进货管理", rcode = "refundapplication_poster", rgroup = "商品管理")
+    @RequestMapping({"/poster/refundapplication.htm"})
+    public ModelAndView refundapplication(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/refundapplication.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+    @SecurityMapping(display = false, rsequence = 0, title = "售后详情", value = "/poster/refunddetail.htm*", rtype = "poster", rname = "进货管理", rcode = "refunddetail_poster", rgroup = "商品管理")
+    @RequestMapping({"/poster/refunddetail.htm"})
+    public ModelAndView refunddetail(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/refunddetail.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+    @SecurityMapping(display = false, rsequence = 0, title = "结算", value = "/poster/settle.htm*", rtype = "poster", rname = "进货管理", rcode = "settle_poster", rgroup = "商品管理")
+    @RequestMapping({"/poster/settle.htm"})
+    public ModelAndView settle(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/settle.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+
+    @SecurityMapping(display = false, rsequence = 0, title = "换货申请", value = "/poster/transferapplication.htm*", rtype = "poster", rname = "进货管理", rcode = "transferapplication_poster", rgroup = "商品管理")
+    @RequestMapping({"/poster/transferapplication.htm"})
+    public ModelAndView transferapplication(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/transferapplication.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+
+    @SecurityMapping(display = false, rsequence = 0, title = "库存调整", value = "/poster/storeadjuslist.htm*", rtype = "poster", rname = "库存调整", rcode = "storeadjuslist_poster", rgroup = "商品管理")
+    @RequestMapping({"/poster/storeadjuslist.htm"})
+    public ModelAndView storeadjuslist(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/storeadjuslist.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+
+    @SecurityMapping(display = false, rsequence = 0, title = "库存调整", value = "/poster/storeadjus.htm*", rtype = "poster", rname = "库存调整", rcode = "storeadjus_poster", rgroup = "商品管理")
+    @RequestMapping({"/poster/storeadjus.htm"})
+    public ModelAndView storeadjus(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/storeadjus.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+    @SecurityMapping(display = false, rsequence = 0, title = "投诉详情", value = "/poster/tsdetails.htm*", rtype = "poster", rname = "投诉管理", rcode = "tsdetails_poster", rgroup = "客服服务")
+    @RequestMapping({"/poster/tsdetails.htm"})
+    public ModelAndView tsdetails(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhandai/tsdetails.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+
+    @SecurityMapping(display = false, rsequence = 0, title = "添加银行卡", value = "/admin/add_bank.htm*", rtype = "poster", rname = "平台收款", rcode = "add_bank_poster", rgroup = "基础设置")
+    @RequestMapping({"/admin/add_bank.htm"})
+    public ModelAndView add_bank(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "admin/blue/dodot/add_bank.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+
+    @SecurityMapping(display = false, rsequence = 0, title = "银行卡管理", value = "/seller/add_bank2.htm*", rtype = "seller", rname = "银行卡管理", rcode = "tuih_seller", rgroup = "资金管理")
+    @RequestMapping({"/seller/add_bank2.htm"})
+    public ModelAndView add_bank2(HttpServletRequest request, HttpServletResponse response, String id){
+        System.out.println("*********************************"+1);
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/ziJinGuanLi/add_bank2.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+        System.out.println("*********************************"+2);
+        return mv;
+    }
+    @SecurityMapping(display = false, rsequence = 0, title = "修改项", value = "/admin/tuih.htm*", rtype = "poster", rname = "消保服务", rcode = "tuih_poster", rgroup = "基础设置")
+    @RequestMapping({"/admin/tuih.htm"})
+    public ModelAndView tuih(HttpServletRequest request, HttpServletResponse response, String id){
+        System.out.println("ccccccccccccccccccccccccccc");
+        System.out.println(id);
+        System.out.println("ccccccccccccccccccccccccccc");
+        ModelAndView mv = new JModelAndView(
+                "admin/blue/dodot/tuih.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+    @SecurityMapping(display = false, rsequence = 0, title = "添加项", value = "/admin/add_tuih.htm*", rtype = "poster", rname = "消保服务", rcode = "add_tuih_poster", rgroup = "基础设置")
+    @RequestMapping({"/admin/add_tuih.htm"})
+    public ModelAndView add_tuih(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "admin/blue/dodot/add_tuih.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+
+    @SecurityMapping(display = false, rsequence = 0, title = "评价管理", value = "/seller/evaluate.htm*", rtype = "seller", rname = "评价管理", rcode = "tuih_seller", rgroup = "资金管理")
+    @RequestMapping({"/seller/evaluate.htm"})
+    public ModelAndView evaluate(HttpServletRequest request, HttpServletResponse response, String id){
+        System.out.println("*********************************"+11111);
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/zhiYingDianGuanli/evaluate.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+        System.out.println("*********************************"+22222);
+        return mv;
+    }
+
+    @SecurityMapping(display = false, rsequence = 0, title = "添加项", value = "/admin/zhandaixq.htm*", rtype = "poster", rname = "消保服务", rcode = "zhandaixq_poster", rgroup = "基础设置")
+    @RequestMapping({"/admin/zhandaixq.htm"})
+    public ModelAndView zhandaixq(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "admin/blue/dodot/zhandaixq.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+
+    @SecurityMapping(display = false, rsequence = 0, title = "推荐栈代", value = "/admin/tuijian_zhandai2.htm*", rtype = "poster", rname = "推荐栈代", rcode = "tuijian_zhandai2_poster", rgroup = "基础设置")
+    @RequestMapping({"/admin/tuijian_zhandai2.htm"})
+    public ModelAndView tuijian_zhandai2(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "admin/blue/dodot/tuijian_zhandai2.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+    @SecurityMapping(display = false, rsequence = 0, title = "推荐栈代", value = "/admin/tuijian_zhandai3.htm*", rtype = "poster", rname = "推荐栈代", rcode = "tuijian_zhandai3_poster", rgroup = "基础设置")
+    @RequestMapping({"/admin/tuijian_zhandai3.htm"})
+    public ModelAndView tuijian_zhandai3(HttpServletRequest request, HttpServletResponse response, String id){
+        ModelAndView mv = new JModelAndView(
+                "admin/blue/dodot/tuijian_zhandai3.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+
+        return mv;
+    }
+    @SecurityMapping(display = false, rsequence = 0, title = "银行卡管理", value = "/seller/sjcomplaintdetails.htm*", rtype = "seller", rname = "银行卡管理", rcode = "sjcomplaintdetails_seller", rgroup = "资金管理")
+    @RequestMapping({"/seller/sjcomplaintdetails.htm"})
+    public ModelAndView sjcomplaintdetails(HttpServletRequest request, HttpServletResponse response, String id){
+        System.out.println("*********************************"+1);
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/sjcomplaintdetails.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+        System.out.println("*********************************"+2);
+        return mv;
+    }
+    @SecurityMapping(display = false, rsequence = 0, title = "申诉管理", value = "/seller/sjappeal_details.htm*", rtype = "seller", rname = "申诉管理", rcode = "sjappeal_details_seller", rgroup = "申诉详情")
+    @RequestMapping({"/seller/sjappeal_details.htm"})
+    public ModelAndView sjappeal_details(HttpServletRequest request, HttpServletResponse response, String id){
+        System.out.println("*********************************"+1);
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/sjappeal_details.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+        System.out.println("*********************************"+2);
+        return mv;
+    }
+    @SecurityMapping(display = false, rsequence = 0, title = "申诉管理", value = "/seller/sjapply_appeal.htm*", rtype = "seller", rname = "申诉管理", rcode = "sjapply_appeal_seller", rgroup = "申请申诉")
+    @RequestMapping({"/seller/sjapply_appeal.htm"})
+    public ModelAndView sjapply_appeal(HttpServletRequest request, HttpServletResponse response, String id){
+        System.out.println("*********************************"+1);
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/sjapply_appeal.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+        System.out.println("*********************************"+2);
+        return mv;
+    }
+
+    @SecurityMapping(display = false, rsequence = 0, title = "维修管理", value = "/seller/sjseekhelp.htm*", rtype = "seller", rname = "维修管理", rcode = "sjseekhelp_seller", rgroup = "一键求助详情")
+    @RequestMapping({"/seller/sjseekhelp.htm"})
+    public ModelAndView sjseekhelp(HttpServletRequest request, HttpServletResponse response, String id){
+        System.out.println("*********************************"+1);
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/sjseekhelp.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+        System.out.println("*********************************"+2);
+        return mv;
+    }
+
+    @SecurityMapping(display = false, rsequence = 0, title = "维修管理", value = "/seller/sjguarantee.htm*", rtype = "seller", rname = "维修管理", rcode = "sjguarantee_seller", rgroup = "全国联保详情")
+    @RequestMapping({"/seller/sjguarantee.htm"})
+    public ModelAndView sjguarantee(HttpServletRequest request, HttpServletResponse response, String id){
+        System.out.println("*********************************"+1);
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/sjguarantee.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+        System.out.println("*********************************"+2);
+        return mv;
+    }
+    
+    @SecurityMapping(display = false, rsequence = 0, title = "维修管理", value = "/seller/sjsannianquality.htm*", rtype = "seller", rname = "维修管理", rcode = "sjsannianquality_seller", rgroup = "三年质保详情")
+    @RequestMapping({"/seller/sjsannianquality.htm"})
+    public ModelAndView sjsannianquality(HttpServletRequest request, HttpServletResponse response, String id){
+        System.out.println("*********************************"+1);
+        ModelAndView mv = new JModelAndView(
+                "user/default/usercenter/sjsannianquality.html", this.configService
+                .getSysConfig(),
+                this.userConfigService.getUserConfig(), 0, request, response);
+
+        System.out.println("*********************************"+2);
+        return mv;
+    }
+
+}

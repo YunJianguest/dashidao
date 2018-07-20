@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+     <link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+    <link href="$!webPath/resources/style/system/manage/blue/tip.css"  rel="stylesheet" type="text/css"/>
+    <link href="$!webPath/resources/style/system/manage/blue/headquarters.css"  rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+    <script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+    <script src="$!webPath/resources/js/bootstrap.min.js"></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+    <title>续签合同审核</title>
+
+</head>
+
+<body>
+<div class="continue_check">
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#1" data-toggle="tab">续签合同审核</a></li>
+</ul>
+
+
+<div class="operation">
+    <h3>友情提示</h3>
+    <ul>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<div class="ss"><span class="allmen size4"><input type="text"></span><span class="btn_search"> <input type="submit" value="搜索" ></span></div>
+<div style="margin-top: 20px;">
+    <table  width="98%" style="font-size:16px;text-align: center;margin-left: 2%;margin-top: 20px;">
+        <tr style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#3fa4ed;text-align: center">
+            <th style="text-align: center;">申请账号</th>
+            <th style="text-align: center;">用户名</th>
+            <th style="text-align: center;">申请人类型</th>
+            <th style="text-align: center;">联系方式</th>
+            <th style="text-align: center;">申请日期</th>
+            <th style="text-align: center;">合同到期日期</th>
+            <th style="text-align: center;">申请续签至</th>
+            <th style="text-align: center;">操作</th></tr>
+        <tbody  id="tablesss" >
+        </tbody>
+    </table>
+    <!--分页开始-->
+    <div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+    <script>
+        jQuery(document).ready(function(){
+            var mycars=new Array()
+            var cuur=1;
+            var pagelimit=10;
+            function loadajax(action,table,field,values,page_size,page_no,moudle_id){
+                jQuery.ajax({
+                    type:"POST",
+                    cache: false,
+                    async:false,
+                    url:"/ajax.jsp",
+                    dataType:"json",
+                    // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                    data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                    error:function(){alert("数据错误，操作被取消！");},
+                    success:function(data)
+                    {
+                        if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                        total=data.data.total;
+                        mycars[0]=total;
+                        var message=data.data.data;
+                        //console.log(message);
+                        $("#tablesss").html('');
+                        for(var i=0;i<message.length;i++){
+                            var ye=message[i]['yesstates'];
+                            var id=message[i]['id'];
+                            var mess;
+                            var mett;
+                            if(ye==0){
+                                mess='<a href="" >同意</a>';
+                                mett='<a href="" >拒绝</a>';
+
+                            }else if(ye==1){
+                                mess='<a style="color: #0a7e07;">已同意</a>';
+                                mett='<a  style="display: none;" >拒绝</a>';
+                            }else {
+                                mess='<a style="color: red;">已拒绝</a>';
+                                mett='<a  style="display: none;" >拒绝</a>';
+                            }
+
+                            $("#tablesss").append("<tr>" +
+                                "<td>"+message[i]['zb_shangjiaid']+"</td>" +
+                                "<td>"+message[i]['zb_yonghuming']+"</td>" +
+                                "<td>"+message[i]['zb_shenqingrenleixing']+"</td>" +
+                                "<td>"+message[i]['zb_lianxifangshi']+"</td>" +
+                                "<td>"+message[i]['create_date3']+"</td>" +
+                                "<td>"+message[i]['create_date2']+"</td>" +
+                                "<td>"+message[i]['create_date1']+"</td>" +
+                                "<td class='ac9'><span onclick='yes("+id+")'>"+mess+"</span><span onclick='no("+id+")'>"+mett+"</span><a href='$!webPath/admin/xqht_details.htm?id="+id+"&yesstates="+ye+"'>详情</a></td>" +
+                                "</tr>");
+                        }
+                    }
+                });
+            }
+            loadajax("select","zb_xuqianhetongshenhe","states","1",pagelimit,cuur,1);
+            layui.use(['laypage', 'layer'], function(){
+                var laypage = layui.laypage
+                    ,layer = layui.layer;
+                //完整功能
+                laypage.render({
+                    elem: 'demo7'
+                    ,count:total
+                    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                    ,jump: function(obj){
+                        //console.log(obj)
+                        cuur=obj.curr;
+                        pagelimit=obj.limit;
+                        //alert(pagelimit);
+                        loadajax("select","zb_xuqianhetongshenhe","states","1",pagelimit,cuur,1);
+                        //loadajax("select","stu",pagelimit,cuur,1);
+                    },
+                    limits:[2, 4, 6, 8, 10],
+                    limit:pagelimit
+                });
+            });
+        });
+        <!--分页结束-->
+    </script>
+    <script>
+        $(".pagination li").click(function(){
+            $(this).addClass("active");
+            $(this).siblings().removeClass("active");
+        })
+        function yes(id) {
+            var fpsz=id+"|"+1;
+            //alert("action=update&table=zb_fenpeishezhinew&field=id,hy_jf_gz&values="+fpszId+"|"+hyjf);
+            jQuery.ajax({
+                type: "POST",
+                cache: false,
+                async: false,
+                url: "/ajax.jsp",
+                dataType: "json",
+                // data:"action=update&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                data: "action=update&table=zb_xuqianhetongshenhe&field=id,yesstates&values=" + fpsz,
+
+                success: function (data) {
+                    if (data.code == "0") {
+                        alert("系统错误，操作被取消！");
+                        return;
+                    }
+                    var strs = '操作成功';
+                    if (strs == data.msg) {
+                        //window.location.href== '$!webPath/admin/xbfwsz_admin.htm';
+                        //openURL('url','$!webPath/admin/xbfwsz_admin.htm','main_workspace','xbfwsz_admin');
+                        location.reload();
+
+                    }
+
+                }
+            });
+        }
+        function no(id) {
+            var fpsz=id+"|"+2;
+            //alert("action=update&table=zb_fenpeishezhinew&field=id,hy_jf_gz&values="+fpszId+"|"+hyjf);
+            jQuery.ajax({
+                type: "POST",
+                cache: false,
+                async: false,
+                url: "/ajax.jsp",
+                dataType: "json",
+                // data:"action=update&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                data: "action=update&table=zb_xuqianhetongshenhe&field=id,yesstates&values=" + fpsz,
+
+                success: function (data) {
+                    if (data.code == "0") {
+                        alert("系统错误，操作被取消！");
+                        return;
+                    }
+                    var strs = '操作成功';
+                    if (strs == data.msg) {
+                        //window.location.href== '$!webPath/admin/xbfwsz_admin.htm';
+                        //openURL('url','$!webPath/admin/xbfwsz_admin.htm','main_workspace','xbfwsz_admin');
+                        location.reload();
+
+                    }
+
+                }
+            });
+        }
+
+    </script>
+</div>
+</div>
+</body>
+</html>

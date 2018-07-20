@@ -1,0 +1,39 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{ margin:0px; color:#000; padding:0px; font-family:"微软雅黑", 
+Helvetica, sans-serif,"微软雅黑"; 
+background: url("../blue/ydlui/images/face/gb.jpg");
+background-size: 100%;
+/* background-color:#800040; */
+}
+
+#login_body{
+	width:450px;
+	height:500px;
+	background:white;
+	margin-top:200px;
+	margin-left:23%;
+	border-radius:30px;
+}
+
+
+#yzmimg{margin-left: 100px;}
+#layui-form-item-acc {
+	width:479px;text-align:left;height:357px; position:fixed;top:50%;left:65%;margin:-178px 0 0 -239px; 
+}
+#layui-form-item-pwd {
+	width:479px;text-align:left;height:357px; position:fixed;top:60%;left:65%;margin:-178px 0 0 -239px; 
+}
+#layui-form-item-code {
+	width:479px;text-align:left;height:357px; position:fixed;top:70%;left:65%;margin:-178px 0 0 -239px; 
+	border: 1px red;
+}
+#layui-form-item-btn {
+	width:479px;text-align:left;height:357px; position:fixed;top:80%;left:65%;margin:-178px 0 0 -149px; 
+}
+
+
+
+
+ 

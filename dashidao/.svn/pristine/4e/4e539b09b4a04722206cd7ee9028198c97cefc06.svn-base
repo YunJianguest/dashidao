@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>库存管理 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <script src="$!webPath/resources/js/zhandjs/jquery.page.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery1.42.min.js"></script>
+    <script src="$!webPath/resources/js/zhandjs/jquery.SuperSlide.2.1.1.js"></script>
+
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('#beginTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            jQuery('#endTime').datepicker({
+                dateFormat:"yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+</head>
+<body>
+$!httpInclude.include("/top.htm")
+<div class="main">
+    <div class="user_center">
+        $!httpInclude.include("/seller/nav_head.htm")
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=refund")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="shopadminbox">
+                        <div class="hd">
+                            <ul>
+                                <li>保护资金安全</li>
+                                <li>保护账户安全</li>
+                                <li>保护隐私安全</li>
+                            </ul>
+                        </div>
+                        <div class="bd">
+                            <!--有效期商品-->
+                            <ul>
+                                <li>
+                                    <table width="100%" class="shopadmin-top" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr id="thead" >
+                                            <td width="15%">行号</td>
+                                            <td width="15%">商品编号</td>
+                                            <td width="50%">商品名称</td>
+                                            <td width="20%">是否发货</td>
+                                        </tr>
+                                        <tr>
+                                            <td><font style="font-size: 20px;">●</font>保护中</td>
+                                            <td>支付密码</td>
+                                            <td>付款或修改账户信息时输入，保护账户资金安全</td>
+                                            <td>
+                                                <p style="line-height: 30px; margin: 5px 0 20px 0;" ><span>重置</span></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><font style="font-size: 20px;">●</font>保护中</td>
+                                            <td>支付密码</td>
+                                            <td>付款或修改账户信息时输入，保护账户资金安全</td>
+                                            <td>
+                                                <p style="line-height: 30px; margin: 5px 0 20px 0;" ><span>重置</span></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><font style="font-size: 20px;">●</font>保护中</td>
+                                            <td>支付密码</td>
+                                            <td>付款或修改账户信息时输入，保护账户资金安全</td>
+                                            <td>
+                                                <p style="line-height: 30px; margin: 5px 0 20px 0;" ><span>重置</span></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><font style="font-size: 20px;">●</font>保护中</td>
+                                            <td>支付密码</td>
+                                            <td>付款或修改账户信息时输入，保护账户资金安全</td>
+                                            <td>
+                                                <p style="line-height: 30px; margin: 5px 0 20px 0;" ><span>重置</span></p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- PageNum -->
+                                    <div class="pageDiv"></div>
+                                </li>
+                            </ul>
+                            <!--提货卡库存-->
+                            <ul>
+                                <li>
+                                    <table width="100%" class="shopadmin-top" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr id="thead" >
+                                            <td width="15%">行号</td>
+                                            <td width="15%">商品编号</td>
+                                            <td width="50%">商品名称</td>
+                                            <td width="20%">是否发货</td>
+                                        </tr>
+                                        <tr>
+                                            <td><font style="font-size: 20px;">●</font>保护中</td>
+                                            <td>支付密码</td>
+                                            <td>付款或修改账户信息时输入，保护账户资金安全</td>
+                                            <td>
+                                                <p style="line-height: 30px; margin: 5px 0 20px 0;" ><span>重置</span></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><font style="font-size: 20px;">●</font>保护中</td>
+                                            <td>支付密码</td>
+                                            <td>付款或修改账户信息时输入，保护账户资金安全</td>
+                                            <td>
+                                                <p style="line-height: 30px; margin: 5px 0 20px 0;" ><span>重置</span></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><font style="font-size: 20px;">●</font>保护中</td>
+                                            <td>支付密码</td>
+                                            <td>付款或修改账户信息时输入，保护账户资金安全</td>
+                                            <td>
+                                                <p style="line-height: 30px; margin: 5px 0 20px 0;" ><span>重置</span></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><font style="font-size: 20px;">●</font>保护中</td>
+                                            <td>支付密码</td>
+                                            <td>付款或修改账户信息时输入，保护账户资金安全</td>
+                                            <td>
+                                                <p style="line-height: 30px; margin: 5px 0 20px 0;" ><span>重置</span></p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- PageNum -->
+                                    <div class="pageDiv"></div>
+                                </li>
+                            </ul>
+                            <!--临期库存-->
+                            <ul>
+                                <li>
+                                    <table width="100%" class="shopadmin-top shopadmin-top2" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr id="topthead" >
+                                            <td width="60%" colspan="6" >
+                                                <div style="height: 40px; background:#e5e5e5; width: 100%;" >
+                                                    <input type="text"  name="name" id="name" value="" placeholder="自成" />
+                                                </div>
+                                            </td>
+                                            <td width="20%" colspan="2" class="kc">
+                                                <a href=""><i class="iconfont icon-copy"></i>库存调整</a>
+                                            </td>
+                                            <td width="20%" colspan="2" class="kc">
+                                                <a href=""><i class="iconfont icon-rfq"></i>导出Excel</a>
+                                            </td>
+                                        </tr>
+                                        <tr class="tiptitles">
+                                            <td width="100%" colspan="10" >
+                                                <p>103件,5030元</p>
+                                            </td>
+                                        </tr>
+                                        <tr id="thead" >
+                                            <td width="9%">行号</td>
+                                            <td width="9%">商品编号</td>
+                                            <td width="9%">商品名称</td>
+                                            <td width="9%">规格型号</td>
+                                            <td width="9%">单价</td>
+                                            <td width="9%">销量</td>
+                                            <td width="9%">预供货量</td>
+                                            <td width="9%">库存</td>
+                                            <td width="19%">保存期至</td>
+                                            <td width="9%">是否参与临期促销</td>
+                                        </tr>
+                                        <tr>
+                                            <td>01</td>
+                                            <td>230018</td>
+                                            <td>韩版修身T恤</td>
+                                            <td>蓝色/L</td>
+                                            <td>30元</td>
+                                            <td>2000</td>
+                                            <td>2000</td>
+                                            <td>3000</td>
+                                            <td class="bcq" >
+                                                <font>2017-12-31</font>
+                                                <div class="clear"></div>
+                                                <p>
+                                                    <span class="green"></span>
+                                                    <span class="yellow" ></span>
+                                                    <span class="orage"></span>
+                                                    <span class="red"></span>
+                                                </p>
+                                                <img src="image/top.png" style=" margin-left: 20%;" />
+                                            </td>
+                                            <td class="zclick">
+
+                                                <img src="image/write.png">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>02</td>
+                                            <td>230018</td>
+                                            <td>韩版修身T恤</td>
+                                            <td>蓝色/L</td>
+                                            <td>30元</td>
+                                            <td>2000</td>
+                                            <td>2000</td>
+                                            <td>3000</td>
+                                            <td class="bcq" >
+                                                <font>2017-12-31</font>
+                                                <div class="clear"></div>
+                                                <p>
+                                                    <span class="green"></span>
+                                                    <span class="yellow" ></span>
+                                                    <span class="orage"></span>
+                                                    <span class="red"></span>
+                                                </p>
+                                                <img src="image/top.png" style=" margin-left: 50%;"/>
+                                            </td>
+                                            <td class="zclick" >
+                                                <img src="image/wrong.png">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>03</td>
+                                            <td>230018</td>
+                                            <td>韩版修身T恤</td>
+                                            <td>蓝色/L</td>
+                                            <td>30元</td>
+                                            <td>2000</td>
+                                            <td>2000</td>
+                                            <td>3000</td>
+                                            <td class="bcq" >
+                                                <font>2017-12-31</font>
+                                                <div class="clear"></div>
+                                                <p>
+                                                    <span class="green"></span>
+                                                    <span class="yellow" ></span>
+                                                    <span class="orage"></span>
+                                                    <span class="red"></span>
+                                                </p>
+                                                <img src="image/top.png" style=" margin-left: 60%;"/>
+                                            </td>
+                                            <td class="zclick" >
+                                                <i class="iconfont icon-good fl" ></i>
+                                                <i class="iconfont icon-bad fr" ></i>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>04</td>
+                                            <td>230018</td>
+                                            <td>韩版修身T恤</td>
+                                            <td>蓝色/L</td>
+                                            <td>30元</td>
+                                            <td>2000</td>
+                                            <td>2000</td>
+                                            <td>3000</td>
+                                            <td class="bcq" >
+                                                <font>2017-12-31</font>
+                                                <div class="clear"></div>
+                                                <p>
+                                                    <span class="green"></span>
+                                                    <span class="yellow" ></span>
+                                                    <span class="orage"></span>
+                                                    <span class="red"></span>
+                                                </p>
+                                                <img src="image/top.png" style=" margin-left: 70%;"/>
+                                            </td>
+                                            <td class="zclick" >
+                                                <i class="iconfont icon-good fl" ></i>
+                                                <i class="iconfont icon-bad fr" ></i>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- PageNum -->
+                                    <div class="pageDiv"></div>  <table width="100%" class="shopadmin-top shopadmin-top2" border="0" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                    <tr id="topthead" >
+                                        <td width="60%" colspan="6" >
+                                            <div style="height: 40px; background:#e5e5e5; width: 100%;" >
+                                                <input type="text"  name="name" id="name" value="" placeholder="自成" />
+                                            </div>
+                                        </td>
+                                        <td width="20%" colspan="2" class="kc">
+                                            <a href=""><i class="iconfont icon-copy"></i>库存调整</a>
+                                        </td>
+                                        <td width="20%" colspan="2" class="kc">
+                                            <a href=""><i class="iconfont icon-rfq"></i>导出Excel</a>
+                                        </td>
+                                    </tr>
+                                    <tr class="tiptitles">
+                                        <td width="100%" colspan="10" >
+                                            <p>103件,5030元</p>
+                                        </td>
+                                    </tr>
+                                    <tr id="thead" >
+                                        <td width="9%">行号</td>
+                                        <td width="9%">商品编号</td>
+                                        <td width="9%">商品名称</td>
+                                        <td width="9%">规格型号</td>
+                                        <td width="9%">单价</td>
+                                        <td width="9%">销量</td>
+                                        <td width="9%">预供货量</td>
+                                        <td width="9%">库存</td>
+                                        <td width="19%">保存期至</td>
+                                        <td width="9%">是否参与临期促销</td>
+                                    </tr>
+                                    <tr>
+                                        <td>01</td>
+                                        <td>230018</td>
+                                        <td>韩版修身T恤</td>
+                                        <td>蓝色/L</td>
+                                        <td>30元</td>
+                                        <td>2000</td>
+                                        <td>2000</td>
+                                        <td>3000</td>
+                                        <td class="bcq" >
+                                            <font>2017-12-31</font>
+                                            <div class="clear"></div>
+                                            <p>
+                                                <span class="green"></span>
+                                                <span class="yellow" ></span>
+                                                <span class="orage"></span>
+                                                <span class="red"></span>
+                                            </p>
+                                            <img src="image/top.png" style=" margin-left: 20%;" />
+                                        </td>
+                                        <td class="zclick">
+
+                                            <img src="image/write.png">
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>02</td>
+                                        <td>230018</td>
+                                        <td>韩版修身T恤</td>
+                                        <td>蓝色/L</td>
+                                        <td>30元</td>
+                                        <td>2000</td>
+                                        <td>2000</td>
+                                        <td>3000</td>
+                                        <td class="bcq" >
+                                            <font>2017-12-31</font>
+                                            <div class="clear"></div>
+                                            <p>
+                                                <span class="green"></span>
+                                                <span class="yellow" ></span>
+                                                <span class="orage"></span>
+                                                <span class="red"></span>
+                                            </p>
+                                            <img src="image/top.png" style=" margin-left: 50%;"/>
+                                        </td>
+                                        <td class="zclick" >
+                                            <img src="image/wrong.png">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>03</td>
+                                        <td>230018</td>
+                                        <td>韩版修身T恤</td>
+                                        <td>蓝色/L</td>
+                                        <td>30元</td>
+                                        <td>2000</td>
+                                        <td>2000</td>
+                                        <td>3000</td>
+                                        <td class="bcq" >
+                                            <font>2017-12-31</font>
+                                            <div class="clear"></div>
+                                            <p>
+                                                <span class="green"></span>
+                                                <span class="yellow" ></span>
+                                                <span class="orage"></span>
+                                                <span class="red"></span>
+                                            </p>
+                                            <img src="image/top.png" style=" margin-left: 60%;"/>
+                                        </td>
+                                        <td class="zclick" >
+                                            <i class="iconfont icon-good fl" ></i>
+                                            <i class="iconfont icon-bad fr" ></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>04</td>
+                                        <td>230018</td>
+                                        <td>韩版修身T恤</td>
+                                        <td>蓝色/L</td>
+                                        <td>30元</td>
+                                        <td>2000</td>
+                                        <td>2000</td>
+                                        <td>3000</td>
+                                        <td class="bcq" >
+                                            <font>2017-12-31</font>
+                                            <div class="clear"></div>
+                                            <p>
+                                                <span class="green"></span>
+                                                <span class="yellow" ></span>
+                                                <span class="orage"></span>
+                                                <span class="red"></span>
+                                            </p>
+                                            <img src="image/top.png" style=" margin-left: 70%;"/>
+                                        </td>
+                                        <td class="zclick" >
+                                            <i class="iconfont icon-good fl" ></i>
+                                            <i class="iconfont icon-bad fr" ></i>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                    <!-- PageNum -->
+                                    <div class="pageDiv"></div>
+                                </li>
+                            </ul>
+
+
+                        </div>
+                    </div>
+                    <script type="text/javascript">jQuery(".shopadminbox").slide({trigger:"click"});</script>
+                    <script type="text/javascript">
+                        $(function(){$(".pageDiv").createPage({
+                            pageCount:9,//总页数
+                            current:1,//当前页
+                            turndown:'true',//是否显示跳转框，显示为true，不现实为false,一定记得加上引号...
+                            backFn:function(p){
+                                console.log(p);
+                            }
+                        });
+                        })
+                    </script>
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>
+
+</body>
+</html>

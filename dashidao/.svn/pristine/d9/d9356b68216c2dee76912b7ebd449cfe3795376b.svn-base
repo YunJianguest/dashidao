@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>代理商品 - $!{config.poweredby}</title>
+    <meta name="keywords" content="$!config.keywords" />
+    <meta name="description" content="$!config.description" />
+    <meta name="generator" content="$!{config.meta_generator}" />
+    <meta name="author" content="$!{config.meta_author}">
+    <meta name="copyright" content="$!{config.copyRight}">
+    #if($!config.website_ico)
+    <link rel="shortcut icon" href="$!imageWebServer/$!config.website_ico.path/$!config.website_ico.name" type="image/x-icon"/>
+    #end
+    <link href="$!webPath/resources/style/system/front/default/css/iconfont.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/mcss.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/system/front/default/css/user.css" type="text/css" rel="stylesheet" />
+    <link href="$!webPath/resources/style/common/css/overlay.css" type="text/css" rel="stylesheet" />
+    <link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet>
+    <script src="$!webPath/resources/js/jquery-2.0.3.min.js"></script>
+    <script src="$!webPath/resources/js/jquery-ui-1.8.21.js"></script>
+    <script src="$!webPath/resources/js/jquery.zh.cn.js"></script>
+    <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+
+    <script type="text/javascript" src="$!webPath/resources/js/jquery1.42.min.js"></script>
+    <script type="text/javascript" src="$!webPath/resources/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script src="$!webPath/resources/js/jquery.page.js" type="text/javascript" ></script>
+
+    <!--bootstrap-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/js/bootstrap.min.js"  ></script>
+    <!--layui-->
+    <link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+    <script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+
+    <script>
+        var mycars=new Array();
+        var cuur=1;
+        var pagelimit=10;
+        var total=0;
+        var hang_num=0;
+        jQuery(document).ready(function(){
+
+            get_goodsInfo();
+        });
+        //取得该商家的所有商品信息
+        function get_goodsInfo(){
+            var store_id='${user.store.id}';
+            var sql="SELECT * FROM dashidao_goods A WHERE A.goods_store_id="+store_id;
+            jQuery.ajax({
+                type: "POST",
+                cache: false,
+                async: false,
+                url: "/ajaxuser.jsp",
+                dataType: "json",
+                data: "table=dashidao_goods&dates=addTime,goods_seller_time,store_recommend_time,ztc_apply_time,ztc_begin_time,combin_begin_time,combin_end_time,weixin_shop_hotTime,weixin_shop_recommendTime&sql="+sql,
+                //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                error: function () {
+                    alert("数据错误，操作被取消！");
+                },
+                success: function (data) {
+                    total=data.data.total;
+                    mycars[0]=total;
+                    var message=data.data.data;
+                    //console.log(message);
+                    $("#tablesss").html('');
+                    for(var i=0;i<message.length;i++){
+                        hang_num++;
+                        $("#tablesss").append('<tr style="text-align: center;">'+
+                            '<td id="goods_id'+hang_num+'">'+message[i]['id']+'</td>' +
+                            '<td id="goods_name'+hang_num+'">'+message[i]['goods_name']+'</td>' +
+                            '<td id="goods_main_photo_id'+hang_num+'">'+message[i]['goods_main_photo_id']+'</td>' +
+                            '<td id="goods_serial'+hang_num+'">'+message[i]['goods_serial']+'</td>' +
+                            '<td><ul><li id="goods_size'+hang_num+'">尺码：'+message[i]['goods_size']+'</li>'+
+                            '<li id="goods_color'+hang_num+'">颜色：'+message[i]['goods_color']+'</li>'+
+                            '<li id="goods_unit'+hang_num+'">零售单位：'+message[i]['goods_unit']+'</li></ul></td>' +
+                            '<td id="goods_price'+hang_num+'">'+message[i]['goods_price']+'</td>' +
+                            '<td ><input id="request_price'+hang_num+'" type="text" style="text-align: center;"></td>' +
+                            '<td id="goods_inventory'+hang_num+'">'+message[i]['goods_inventory']+'</td>' +
+                            '<td><input type="text" class="layui-input" id="time'+hang_num+'" style="text-align: center;"></td>' +
+                            '<td><button type="button" onclick="submit_tiaojia(this)">提交</button><br/><button type="button" onclick="deleteRow(this)">删除</button></td>' +
+                            '</tr>');
+                    }
+                }
+
+            });
+            layui.use('laydate', function(){
+                for(var i=1;i<=hang_num;i++){
+                    var laydate = layui.laydate;
+                    //执行一个laydate实例
+                    laydate.render({
+                        elem: '#time'+i//指定元素
+                    });
+                }
+
+            });
+        }
+        //删除行
+        function deleteRow(r){
+            var i=r.parentNode.parentNode.parentNode.rowIndex;
+            document.getElementById("mytable").deleteRow(i);
+        }
+        //提交调价申请
+        function submit_tiaojia(v){
+            var t = document.getElementById("mytable");
+            var rows = t.getElementsByTagName("tr");
+
+            //给tr绑定click事件
+            for(var i in rows){
+                rows[i].onclick = rowClick;
+            }
+        }
+        function rowClick(e){
+            var num=this.rowIndex-1;
+            var user_id='${user.id}';
+            var goods_id=$('#goods_id'+num).html();
+            var goods_name=$('#goods_name'+num).html();
+            alert(goods_name);
+            var picture=$('#goods_main_photo_id'+num).html();
+            var goods_serial=$('#goods_serial'+num).html();
+            var goods_size=$('#goods_size'+num).html().split(":")[1];
+            var goods_color=$('#goods_color'+num).html().split(":")[1];
+            var goods_unit=$('#goods_unit'+num).html().split(":")[1];
+            var goods_price=$('#goods_price'+num).html();
+            var request_price=$('#request_price'+num).val();
+            var goods_inventory=$('#goods_inventory'+num).html();
+            var time=$('#time'+num).val();
+            var examine_state=1;
+
+            var dat=user_id+','+goods_id+','+goods_name+','+picture+','+goods_serial+','+goods_size+','+goods_color+','+goods_unit+','+goods_price+','+request_price+','+goods_inventory+','+time+','+examine_state;
+            jQuery.ajax({
+                type:"POST",
+                cache: false,
+                async:false,
+                url:"/ajax.jsp",
+                dataType:"json",
+                // data:"action=update&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                data:"action=insert&table=zb_sjtiaojiashenhe&field=zb_shangjiaid,goods_id,zb_shangpinmingcheng,zb_tupian,zb_shangpinbianhao,zb_chima,zb_color,zb_danwei,zb_muqianchuchangjia,zb_qiwangchuchangjia,storage,create_date,examine_state&values="+dat,
+
+                success:function(data)
+                {
+                    alert(data.msg);
+                    if(data.code=="0"){alert("系统错误，操作被取消！");return;}
+
+                    var str='操作成功';
+                    if(str==data.msg){
+                        window.location.href='$!webPath/seller/request_tiaojia.htm';
+                    }
+                }
+
+            });
+        }
+    </script>
+</head>
+<body>
+
+<div class="main">
+    <div class="user_center">
+        $!httpInclude.include("/seller/nav_head.htm") 
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user_table">
+            <tr> $!httpInclude.include("/seller/nav.htm?op=refund")
+                <td id="centerbg" valign="top" width="80%">
+                    <div class="buyer_position">
+                        <div class="buyer_p_box"><a href="$!webPath/poster/index.htm">栈代中心</a> > <span>所有订单</span></div>
+                    </div>
+                    <div class="shopadminbox choicebox">
+                        <table width="100%" border="0"  cellspacing="0" cellpadding="0" class="table" id="mytable">
+
+                            <tr class="returnthead" >
+                                <td width="100%" colspan="9" >
+                                    <form class="form-inline" style="float: right;">
+                                        <div class="form-group">
+                                            <!--<input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入查询内容" style="width: 200px;" >-->
+                                            <input type="checkbox" name="" checked>待审核
+                                            <input type="checkbox" name="" checked>已通过
+                                            <input type="checkbox" name="" checked>申请失败
+                                        </div>
+                                        <button type="submit" class="btn btn-default" style="border: none;  background: #3fa4ed; color: #fff;   " ><a href="" style="color: white;"></a></button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <tr width="100%" style="background:#dfe2f5 ; height:30px;line-height: 15px; color:#3fa4ed;text-align: center">
+                                <td  width="8%">商品id</td>
+                                <td width="8%">商品名称</td>
+                                <td width="15%">商品图片</td>
+                                <td width="8%">商品编号</td>
+                                <td width="15%">商品规格</td>
+                                <td width="8%">目前出厂价</td>
+                                <td width="8%">期望出厂价</td>
+                                <td width="8%">库存</td>
+                                <td width="10%">起始日期</td>
+                                <td width="12%">操作</td>
+                            </tr>
+                            <tbody  id="tablesss" >
+
+                            </tbody>
+                        </table>
+
+                        <div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+
+
+
+
+                    </div>
+                    <script type="text/javascript">jQuery(".shopadminbox").slide({trigger:"click"});</script>
+
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    $!httpInclude.include("/footer.htm")
+</div>
+</body>
+</html>
+
+</body>
+</html>

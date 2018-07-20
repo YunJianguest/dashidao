@@ -1,0 +1,226 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<!--link href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/template.css"  rel="stylesheet" type="text/css"/-->
+	<!--link  href="$!webPath/resources/style/common/css/jquery-ui-1.8.22.custom.css" type=text/css rel=stylesheet-->
+
+	<link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+	<script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+	<script src="$!webPath/resources/js/bootstrap.min.js"></script>
+	<script src="$!webPath/resources/js/jquery.shop.base.js"></script>
+	<!--layui-->
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+	<script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+	<title>无标题文档</title>
+
+	<style>
+		body{
+			font-family: "Microsoft Yahei", "Lucida Grande", Verdana, Lucida, Helvetica, Arial, 'Simsun', sans-serif;
+		}
+		input{
+			border:none;
+			width: 100px;
+		}
+		table tr td{
+			padding: 13px 0;
+		}
+		ul{margin: 0;}
+		.a{
+			width: 80%;
+
+		}
+
+
+		#font{
+			color: red;
+		}
+		#font2{
+			color:blue;
+
+		}
+		.tabbable{margin: 0 auto;overflow-y: scroll;}
+		.tab-content{width:100%; height: auto; overflow-y: scroll; }
+		.table a{
+			border:1px solid #c3c3c3;
+			padding: 5px 14px;
+			border-radius: 4px;
+		}
+		.table a:hover{color:#000;background: #fff;}
+		.seth1 {
+			border-top: 1px solid #D9D9D9;
+			height: 35px;
+			border-bottom: 1px solid #D9D9D9;
+			line-height: 35px;
+			padding-left: 40px;
+			color: #686868;
+			margin: 5px;
+			font-size:16px;
+			padding: 0px;
+			text-align: left;
+			background: #f3f3f3;
+		}
+		.nav li{margin-left:2px}
+		.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{background:#3fa4ed;color:#fff; width:100%;}
+		.nav>li>a {
+			position: relative;
+			border:1px solid #c3c3c3;
+			display: block;
+			border-top-left-radius: 8px;
+			border-top-right-radius:8px;
+			font-size: 16px!important;
+			padding: 5px 15px;
+			color:#000;
+		}
+		.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{background:#3fa4ed;color:#fff;font-size: 16px;}
+		.nav{margin: 17px 0 29px 21px;border-bottom: 1px solid #c3c3c3!important;}
+
+		.bor{height:30px;line-height: 30px;}
+		.ac8 a {
+			color: #999;
+			margin-left: 5px;
+			margin-right: 5px;
+			text-decoration: none;
+		}
+		.ac8 a:hover {
+			color:#ff6600;
+			background: #fff;
+		}
+		.flsz a{font-size:15px;border-radius: 4px;color:#fff;background:#108EE9;padding: 5px 15px;text-decoration: none;float: right;}
+		.dai,.shenh{color:#108EE9;}
+		.agree{color:#0a7e07;}
+		.disagree{color:red;}
+		.cont{padding-left:20%!important;letter-spacing: 2px;width:25%;}
+		.cont input{
+			border-bottom: 1px solid #eee;
+			text-align: center;
+			margin: 0 5px;
+		}
+	</style>
+</head>
+<body style="height: 100%;">
+<div class="tabbable" style="width:100%;">
+	<div class="seth1">
+		<img src="$!webPath/resources/style/system/manage/black/img/1.png" alt="">
+		分配设置
+	</div>
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#1" data-toggle="tab">分配设置</a></li>
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane active" id="1"style="width:99%;margin-left:1%;">
+			<table width="100%" style="overflow-y: scroll;">
+				<tbody  id="tablesss1" style="overflow-y: scroll;">
+				</tbody>
+				<script>
+                    jQuery(document).ready(function(){
+                        var mycars=new Array();
+                        var cuur=1;
+                        var pagelimit=2;
+                        function loadajax(action,table,field,values,page_size,page_no,moudle_id){
+                            jQuery.ajax({
+                                type:"POST",
+                                cache: false,
+                                async:false,
+                                url:"/ajax.jsp",
+                                dataType:"json",
+                                // data:"action=select&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                                data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size=3"+"&page_no="+page_no+"&moudle_id="+moudle_id,
+                                error:function(){alert("数据错误，操作被取消！");},
+                                success:function(data)
+                                {
+                                    if(data.state=="error"){alert("系统错误，操作被取消！");return;}
+                                    total=data.data.total;
+                                    mycars[0]=total;
+                                    var message=data.data.data;
+                                    //console.log(message);
+                                    $("#tablesss1").html('');
+                                    for(var i=0;i<message.length;i++){
+                                        $("#tablesss1").append("<tr><input type='hidden' value='"+message[i]['id']+"'  id='fpszId' />" +
+                                            // "<td rowspan='14' valign='top' style='width: 30%;text-align: center;'>分配设置:</td>" +
+                                            "<td class='cont'>技术服务费率为商品利润的<input type='text' value='"+message[i]['zb_jishufuwu'] +"' id='zbJishufuwu' />%。</td>" +
+                                            "<td width='10%'><input type='button' id='xiugai1' onclick='cc()' value='修改' style='width:90px;height: 30px;line-height: 30px;border-radius: 4px; background-color:#3fa4ed;color:#fff;'/ ></td></tr>" +
+                                            "<tr><td class='cont'>平台管理费率为商品利润的<input type='text' value='"+message[i]['zb_pingtaiguanli']+"' id='zbPingtaiguanli'/>%。</td></tr>" +
+                                            "<tr><td class='cont'>订单奖激励系数为商品利润的<input type='text' value='"+message[i]['zb_dingdanjiangli'] +"' id='zbDingdanjiangli'/>%。</td></tr>" +
+                                            "<tr><td class='cont'>奖励时间为<input type='text' value='"+message[i]['zb_kaishi1']+"' id='zbKaishi1'/>到<input type='text' value='"+message[i]['zb_jieshu1']+"' id='zbJieshu1'/>。</td></tr>" +
+                                            "<tr><td class='cont'>拓展奖激励系数为商品利润的<input type='text' value='"+message[i]['zb_tuozhanjiang']+"' id='zbTuozhanjiang'/>%。</td></tr>" +
+                                            "<tr><td class='cont'>奖励时间为<input type='text' value='"+message[i]['zb_kaishi2']+"' id='zbKaishi2' />到<input type='text' value='"+message[i]['zb_jieshu2']+"' id='zbJieshu2'/>。</td></tr>"+
+                                            "<tr><td class='cont'>开发奖激励系数为商品利润的<input type='text' value='"+message[i]['zb_kaifajiang'] +"' id='zbKaifajiang'/>%。</td></tr>" +
+                                            "<tr><td class='cont'>奖励时间为<input type='text' value='"+message[i]['zb_kaishi3']+"' id='zbKaishi3' />到<input type='text' value='"+message[i]['zb_jieshu3']+"' id='zbJieshu3' />。</td></tr>"+
+                                            "<tr><td class='cont'>伯乐奖激励系数为商品利润的<input type='text' value='"+message[i]['zb_bolejiang'] +"' id='zbBolejiang'/>%。</td></tr>" +
+                                            "<tr><td class='cont'>奖励时间为<input type='text' value='"+message[i]['zb_kaishi4']+"' id='zbKaishi4'/>到<input type='text' value='"+message[i]['zb_jieshu4']+"' id='zbJieshu4'/>。</td></tr>"+
+                                            "<tr><td class='cont'>供货奖激励系数为商品利润的<input type='text' value='"+message[i]['zb_gonghuojiang'] +"' id='zbGonghuojiang'/>%。</td></tr>" +
+                                            "<tr><td class='cont'>奖励时间为<input type='text' value='"+message[i]['zb_kaishi5']+"' id='zbKaishi5'/>到<input type='text' value='"+message[i]['zb_jieshu5']+"' id='zbJieshu5'/>。</td></tr>"+
+                                            "<tr><td class='cont'>体验奖激励系数为商品利润的<input type='text' value='"+message[i]['zb_tiyanjiang'] +"' id='zbTiyanjiang'/>%。</td></tr>" +
+                                            "<tr><td class='cont'>奖励时间为<input type='text' value='"+message[i]['zb_kaishi6']+"' id='zbKaishi6'/>到<input type='text' value='"+message[i]['zb_jieshu6']+"' id='zbJieshu6'/>。</td></tr><tr></tr>" +
+                                            "<tr><td class='cont'></td><td ><input type='button' id='classfy_admin' onclick=\"openURL('url','$!webPath/admin/classfy_admin.htm','main_workspace','classfy_admin')\" value='渠道费率设置' style='width:115px;height: 30px;line-height: 30px;border-radius: 4px; background-color:#3fa4ed;color:#fff;'/></td></tr>");
+                                    }
+                                }
+                            });
+                        }
+                        loadajax("select","zb_fenpeishezhinew","states","1",pagelimit,cuur,1);
+                        layui.use(['laypage', 'layer'], function(){
+                            var laypage = layui.laypage
+                                ,layer = layui.layer;
+                            //完整功能
+                            laypage.render({
+                                elem: 'demo7'
+                                ,count:total
+                                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                                ,jump: function(obj){
+                                    //console.log(obj)
+                                    cuur=obj.curr;
+                                    pagelimit=obj.limit;
+                                    //alert(pagelimit);
+                                    loadajax("select","zb_fenpeishezhinew","states","1",pagelimit,cuur,1);
+                                    //loadajax("select","stu",pagelimit,cuur,1);
+                                },
+                                limits:[2, 4, 6, 8, 10],
+                                limit:pagelimit
+                            });
+                        });
+
+
+
+                    });
+                    function cc(){
+
+                        var fpszId=$("#fpszId").val();
+                        var fpsz=$("#fpszId").val()+"|"+ $("#zbJishufuwu").val()+"|"+  $("#zbPingtaiguanli").val()+"|"+  $("#zbDingdanjiangli").val()+"|"+    $("#zbKaishi1").val()+"|"+ $("#zbJieshu1").val()+"|"+ $("#zbTuozhanjiang").val()+"|"+ $("#zbKaishi2").val()+"|"+ $("#zbJieshu2").val()+"|"+  $("#zbKaifajiang").val()+"|"+  $("#zbKaishi3").val()+"|"+  $("#zbJieshu3").val()+"|"+ $("#zbBolejiang").val()+"|"+  $("#zbKaishi4").val()+"|"+  $("#zbJieshu4").val()+"|"+ $("#zbGonghuojiang").val()+"|"+
+                            $("#zbKaishi5").val()+"|"+  $("#zbJieshu5").val()+"|"+  $("#zbTiyanjiang").val()+"|"+  $("#zbKaishi6").val()+"|"+  $("#zbJieshu6").val();
+                        //alert("action=update&table=zb_fenpeishezhinew&field=id,hy_jf_gz&values="+fpszId+"|"+hyjf);
+                        jQuery.ajax({
+                            type:"POST",
+                            cache: false,
+                            async:false,
+                            url:"/ajax.jsp",
+                            dataType:"json",
+                            // data:"action=update&table=stu&field=name,age&values=c,5&page_size=&page_no=1&moudle_id=1",
+                            data:"action=update&table=zb_fenpeishezhinew&field=id,zb_jishufuwu,zb_pingtaiguanli,zb_dingdanjiangli,zb_kaishi1,zb_jieshu1,zb_tuozhanjiang,zb_kaishi2,zb_jieshu2,zb_kaifajiang,zb_kaishi3,zb_jieshu3,zb_bolejiang,zb_kaishi4,zb_jieshu4,zb_gonghuojiang,zb_kaishi5,zb_jieshu5,zb_tiyanjiang,zb_kaishi6,zb_jieshu6&values="+fpsz,
+
+
+                            success:function(data)
+                            {
+                                if(data.code=="0"){alert("系统错误，操作被取消！");return;}
+
+                                //alert(data.data);
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                                alert(XMLHttpRequest.status); // 200
+                                alert(textStatus); // parsererror
+                                alert(errorThrown); // SyntaxError: Unexpected end of input
+                            }
+                        });
+
+
+                    }
+				</script>
+			</table>
+		</div>
+	</div>
+</div>
+</body>
+</html>

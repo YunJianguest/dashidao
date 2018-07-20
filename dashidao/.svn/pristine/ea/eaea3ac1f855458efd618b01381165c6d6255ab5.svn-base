@@ -1,0 +1,547 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+</head>
+<link href="$!webPath/resources/style/system/manage/$!{config.websiteCss}/template.css"  rel="stylesheet" type="text/css"/>
+<script src="$!webPath/resources/js/jquery-1.8.3.min.js"></script>
+<script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+<script src="$!webPath/resources/js/jquery.poshytip.min.js"></script>
+<link rel="stylesheet" type="text/css" href="$!webPath/resources/style/system/front/default/css/font_Icon/iconfont.css">
+  <link href="$!webPath/resources/style/system/front/default/css/chat.css" type="text/css" rel="stylesheet" />
+<style>
+.left {width:13%;}
+</style>
+<script>
+var userid ="${user.id}";//当前登录人id 
+var huiYuanid ;//获取会员id
+var huiYuanName;
+var faSongMess ;
+var id;
+
+jQuery(document).ready(function(){
+  jQuery(".memimg").mouseover(function(){
+     jQuery(this).css("cursor","pointer");
+	 jQuery(".mem_detail[id^=user_detail_]").hide();
+     var id=jQuery(this).attr("id");
+	 jQuery("#user_detail_"+id).show();
+  });
+  jQuery(".mem_detail[id^=user_detail_]").mouseleave(function(){
+    jQuery(this).hide();
+  });
+  
+  //initLiaotiao();
+});
+	//初始化聊天页面
+	/* function initLiaotiao()
+	{
+		$(".chatBox").hide();
+		$(".chatBox").attr("display","none");
+	} */
+
+</script> 
+ <script>
+    
+      var loading;
+      function  load(txt){
+        var opts = {
+		lines: 13, // The number of lines to draw
+		length: 6, // The length of each line
+		width: 3, // The line thickness
+		radius: 8, // The radius of the inner circle
+		corners: 1, // Corner roundness (0..1)
+		rotate: 0, // The rotation offset
+		color: '#FFF', // #rgb or #rrggbb
+		speed: 1, // Rounds per second
+		trail: 60, // Afterglow percentage
+		shadow: false, // Whether to render a shadow
+		hwaccel: false, // Whether to use hardware acceleration
+		className: 'spinner', // The CSS class to assign to the spinner
+		zIndex: 2e9, // The z-index (defaults to 2000000000)
+		top: 'auto', // Top position relative to parent in px
+		left: 'auto' // Left position relative to parent in px
+	}; 
+	   var target = document.createElement("div");
+	   document.body.appendChild(target);
+	   var spinner = new Spinner(opts).spin(target);
+	   loading=iosOverlay({
+		text: txt, 
+		spinner: spinner
+	   });
+     }
+     
+     
+        var issend = true;
+        var fypage = 0;
+        var xszf = "";
+        var rid = '${rid}';
+        var winheight = window.innerHeight;
+        var useragent = navigator.userAgent;
+        function ajaxjz() {//加载 
+           
+        }
+
+        function createReply() {
+         
+
+        }
+        function sendmsg(textContent) {
+            var time = new Date();
+            var content = textContent;
+            var fromid = '${no}';
+            var msg = {
+                "content": content,  
+                "toId":huiYuanid,
+                "fromId":"${user.id}",//发送人id
+                "fromName":"${user.userName}",
+            };
+            if (content.length > 0) {
+            	console.log(JSON.stringify(msg));
+            	socket.send(JSON.stringify(msg));//发送消息
+            	
+             
+            } else {
+                alert("发送的内容不能为空！");
+            }
+        }
+       </script> 
+<body>
+  <div class="cont">
+    <h1 class="seth1">会员管理</h1>
+    <div class="settab"><span class="tab-one"></span> <span class="tabs"> <a href="$!webPath/admin/user_list.htm"  class="this">管理</a>   <a href="$!webPath/admin/user_add.htm">新增</a> </span> <span class="tab-two"></span></div>
+	<form>
+    <div class="allmem_search">
+      <ul>
+        <li> <span>
+          <select name="condition" id="condition">
+            <option value="userName">会员名</option>
+            <option value="email">注册邮箱</option>
+            <option value="trueName">真实姓名</option>
+          </select>
+          </span> <span class="allmen size4">
+          <input name="value" type="text" id="value" />
+          </span><span class="btn_search">
+          <input name="" type="submit"  value="搜索" style="cursor:pointer;" title="搜索会员"/>
+          </span> </li>
+      </ul>
+    </div>
+	</form>
+    <div class="operation">
+      <h3>友情提示</h3>
+      <ul>
+        <li>可用金额，买家会员可以用来支付订单、提现，卖家可以用来支付商城收费服务</li>
+        <li>冻结金额，当会员进行提现操作后，提现金额变为冻结金额等待管理员审核操作。当会员使用预存款支付购买时，在订单支付后且未收货之前，
+          可用金额减少，支付的金额变为冻结金额，直到确认收货后，冻结金额减少，卖家可用金额增加。冻结金额不能用来支付或提现</li>
+      </ul>
+    </div>
+	<FORM name="ListForm" id="ListForm"  action="$!webPath/admin/user_list.htm" method="post">
+    <div class="allmem_table">
+      <table width="98%" border="0" cellspacing="0" cellpadding="0">
+        <tr class="tableheader">
+          <td width="8%" align="left">&nbsp;</td>
+          <td width="25%" align="left">会员名</td>
+          <td width="6%" align="center">会员积分</td>
+          <td width="6%" align="center">会员金币</td>
+          <td width="6%" align="center">登录次数</td>
+          <td width="15%" align="center">最后登录</td>
+          <td width="6%" align="center">预存款</td>
+          <td width="15%" align="center">商家</td>
+          <td  align="center">操作</td>
+        </tr>
+        #foreach($!obj in $objs)
+        <tr>
+          <td  align="left"><input name="id" type="checkbox" id="id" style="width:16px; border:none;" value="$!obj.id" /></td>
+          <td  align="left"><span class="memimg"><img  src="#if($!obj.photo)$!webPath/$!obj.photo.path/$!obj.photo.name #else $!webPath/resources/style/system/manage/blue/images/default_user_photo.gif #end" width="45" height="49" /></span> <span class="mem_detail">
+            <ul>
+              <li class="mem_font"><i id="userName">$!obj.userName</i><i>(真实姓名：$!obj.trueName)</i></li>
+              <li>注册时间：$!CommUtil.formatLongDate($!obj.addTime)</li>
+              <li class="open"><span class="email"><a href="mailto:$!obj.email" title="用户邮箱:$!obj.email"><img src="$!webPath/resources/style/system/manage/blue/images/mail.jpg" width="15" height="11" /></a></span> <span><a href="#if($!obj.QQ)http://wpa.qq.com/msgrd?v=3&uin=$!obj.QQ&Site=$!obj.QQ&Menu=yes #else javascript:void(0);#end" #if($!obj.QQ)target="_blank"#end  title="#if($!obj.QQ)用户QQ:$!{obj.QQ}#else 用户没填写QQ#end"><img src="$!webPath/resources/style/system/manage/blue/images/qq.jpg" width="19" height="20" /></a></span> </li>
+            </ul>
+            </span></td>
+          <td align="center">$!obj.integral</td>
+          <td class="lightred">$!obj.gold</td>
+          <td class="lightred">$!obj.loginCount</td>
+          <td class="lightred"><ul>
+              <li>$!CommUtil.formatLongDate($!obj.lastLoginDate)</li>
+              <li>$!obj.lastLoginIp</li>
+            </ul></td>
+          <td class="lightred"><ul>
+              <li>可用：<strong>#if($!{obj.availableBalance})$!{obj.availableBalance}#else 0 #end元</strong></li>
+              <li>冻结：<strong>#if($!{obj.freezeBlance})$!{obj.freezeBlance}#else 0 #end元</strong></li>
+            </ul></td>
+          <td class="blue" align="center">#if($!storeTools.query_store_with_user("$!obj.id")==1)<a href="javascript:void(0);" onclick="window.parent.openURL('url','$!webPath/admin/store_edit.htm?id=$!obj.store.id','main_workspace','store_manage_op','about_store')">商家</a>#else <span style="color:#F00">未开店</span>#end</td>
+          <td align="center"  class="blue xiahua">
+         	<a href="javascript:void(0);" class="chat-list-people">聊天</a> | 
+          <a href="$!webPath/admin/user_edit.htm?id=$!obj.id">编辑</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:void(0);" onclick="if(confirm('删除会员会同步删除删除该会员所有信息，且不可恢复，是否继续？'))window.location.href='$!webPath/admin/user_del.htm?mulitId=$!obj.id&currentPage=$!currentPage'">删除</a></td>
+        </tr>
+        #end
+        <tr style="background:#F2F2F2; height:30px;">
+          <td colspan="9"><div class="shopbtn shopfx">
+              <input name="all" type="checkbox" id="all" onclick="selectAll(this)" value="" />
+              &nbsp;&nbsp;全部</div>
+            <div class="shop_btn_del shopbtn">
+              <input name="" type="button" value="删除" style="cursor:pointer;" onclick="cmd('$!webPath/admin/user_del.htm')"/>
+            </div></td>
+        </tr>
+      </table>
+    </div>
+    <div class="fenye">
+      <input name="userRole" type="hidden" id="userRole" value="BUYER" />
+      <input type="hidden" name="currentPage" id="currentPage" value="$!currentPage" />
+      <input name="mulitId" type="hidden" id="mulitId" />
+      $!gotoPageHTML
+	</div>
+	</FORM>  
+	<div class="chatContainer">
+    <!-- <div class="chatBtn">
+        <i class="iconfont icon-xiaoxi1"></i>
+    </div> -->
+    <!-- <div class="chat-message-num">10</div> -->
+    <div class="chatBox" ref="chatBox" style="display: none;">
+        <div class="chatBox-head">
+            <div class="chatBox-head-one">
+                Conversations
+                <div class="chat-close" style="margin: 10px 10px 0 0;font-size: 14px">关闭</div>
+            </div>
+            <div class="chatBox-head-two">
+                <!-- <div class="chat-return">返回</div> -->
+                <div class="chat-people">
+                    <div class="ChatInfoHead">
+                        <img src="" alt="头像"/>
+                    </div>
+                    <div class="ChatInfoName">这是用户的名字，看看名字到底能有多长</div>
+                </div>
+                <div class="chat-close">关闭</div>
+            </div>
+        </div>
+        <div class="chatBox-info">
+            <div class="chatBox-list" ref="chatBoxlist">
+                <div class="chat-list-people">
+                    <div><img src="img/icon01.png" alt="头像"/></div>
+                    <div class="chat-name">
+                        <p>自酌一杯酒</p>
+                    </div>
+                    <div class="message-num">10</div>
+                </div>
+            </div>
+            <div class="chatBox-kuang" ref="chatBoxkuang">
+                <div class="chatBox-content">
+                    <div class="chatBox-content-demo" id="chatBox-content-demo">
+	
+                    </div>
+                </div>
+                <div class="chatBox-send">
+                    <div class="div-textarea" contenteditable="true"></div>
+                    <div>
+                        <button id="chat-biaoqing" class="btn-default-styles">
+                            <i class="iconfont icon-biaoqing"></i>
+                        </button>
+                        <label id="chat-tuxiang" title="发送图片" for="inputImage" class="btn-default-styles">
+                            <input type="file" onchange="selectImg(this)" accept="image/jpg,image/jpeg,image/png"
+                                   name="file" id="inputImage" class="hidden">
+                            <i class="iconfont icon-tuxiang"></i>
+                        </label>
+                        <button id="chat-fasong" onclick="" class="btn-default-styles"><i class="iconfont icon-fasong"></i>
+                        </button>
+                    </div>
+                    <div class="biaoqing-photo">
+                        <ul>
+                            <li><span class="emoji-picker-image" style="background-position: -9px -18px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -40px -18px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -71px -18px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -102px -18px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -133px -18px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -164px -18px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -9px -52px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -40px -52px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -71px -52px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -102px -52px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -133px -52px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -164px -52px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -9px -86px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -40px -86px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -71px -86px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -102px -86px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -133px -86px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -164px -86px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -9px -120px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -40px -120px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -71px -120px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -102px -120px;"></span>
+                            </li>
+                            <li><span class="emoji-picker-image" style="background-position: -133px -120px;"></span>
+                            </li>
+                            <li><span class="emoji-picker-image" style="background-position: -164px -120px;"></span>
+                            </li>
+                            <li><span class="emoji-picker-image" style="background-position: -9px -154px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -40px -154px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -71px -154px;"></span></li>
+                            <li><span class="emoji-picker-image" style="background-position: -102px -154px;"></span>
+                            </li>
+                            <li><span class="emoji-picker-image" style="background-position: -133px -154px;"></span>
+                            </li>
+                            <li><span class="emoji-picker-image" style="background-position: -164px -154px;"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+var socket;
+
+var ip="$!webPath";
+    ip=ip.replace("http://","");
+	function init(){
+	   socket= new WebSocket("ws:"+ip+"/websocket");  //本地url + 端口
+	socket.onopen = function() { 
+	            var msg = {
+	                            "init" : "init",
+	                            "uid" :userid, //登陆人id
+	                             
+	                        };
+	                    socket.send(JSON.stringify(msg));   
+	    
+	};
+	
+	socket.onclose = function(evt) {  
+	    init();
+	}
+	socket.onerror = function(evt) {  
+	    init();
+	
+	}  
+	function encodeScript(data) {
+	    if(null == data || "" == data) {
+	        return "";
+	    }
+	    return data.replace("<", "&lt;").replace(">", "&gt;");
+	}
+	socket.onmessage = function(evt) { 
+	    //alert(evt.data); //拼接接受到的消息
+	    var sdmess = eval ("(" + evt.data + ")");
+	    console.log(sdmess);
+	    jieshoumess(sdmess);
+	};  
+	} 
+	init();
+
+	function jieshoumess(sdmess)
+	{
+		
+		var content = $(".div-textarea").html();
+		if(huiYuanid!=sdmess.fromId){
+			$("#chatBox-content-demo").html('');
+		}
+		$('.ChatInfoName').html("与 "+sdmess.fromName+" 的聊天");
+        var textContent = sdmess.content.replace(/[\n\r]/g, '<br>');
+        if (textContent != "") {
+        	var today = new Date();
+	        var minutes;
+	        if(today.getMinutes()>=0&&today.getMinutes()<=9){
+	            minutes="0"+today.getMinutes();
+	        }else{
+	            minutes=today.getMinutes();
+	        }
+	        //获取当前日期
+	        var nowdate = (today.getFullYear()) + "-" + (today.getMonth() + 1) + "-" + today.getDate()+" "+today.getHours()+":"+minutes+":"+today.getSeconds();
+	        $(".chatBox-content-demo").append("<div class=\"clearfloat\">" +
+	                "<div class=\"author-name\"><small class=\"chat-date\">"+nowdate+"</small> </div> " +
+	                "<div class=\"left\" style=\"width:14%\">" +
+	                "<div class=\"chat-avatars\"><img src=\"$!webPath/resources/style/common/images/icon01.png\" alt=\"头像\" /></div>"+
+	                "<div class=\"chat-message\"> " + textContent + " </div> " +
+	                " </div> </div>");
+	        //发送后清空输入框
+            $(".div-textarea").html("");
+            //聊天框默认最底部
+            $(document).ready(function () {
+                $("#chatBox-content-demo").scrollTop($("#chatBox-content-demo")[0].scrollHeight);
+            });
+        }
+        $(".chatBox").show();
+        $(".chatBox-head-one").hide();
+        $(".chatBox-head-two").show();
+        $(".chatBox-list").hide();
+        $(".chatBox-kuang").show();
+	}
+</script>
+
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script>
+    screenFuc();
+    function screenFuc() {
+        var topHeight = $(".chatBox-head").innerHeight();//聊天头部高度
+        //屏幕小于768px时候,布局change
+        var winWidth = $(window).innerWidth();
+        if (winWidth <= 768) {
+            var totalHeight = $(window).height(); //页面整体高度
+            $(".chatBox-info").css("height", totalHeight - topHeight);
+            var infoHeight = $(".chatBox-info").innerHeight();//聊天头部以下高度
+            //中间内容高度
+            $(".chatBox-content").css("height", infoHeight - 46);
+            $(".chatBox-content-demo").css("height", infoHeight - 46);
+
+            $(".chatBox-list").css("height", totalHeight - topHeight);
+            $(".chatBox-kuang").css("height", totalHeight - topHeight);
+            $(".div-textarea").css("width", winWidth - 106);
+        } else {
+            $(".chatBox-info").css("height", 495);
+            $(".chatBox-content").css("height", 448);
+            $(".chatBox-content-demo").css("height", 448);
+            $(".chatBox-list").css("height", 495);
+            $(".chatBox-kuang").css("height", 495);
+            $(".div-textarea").css("width", 260);
+        }
+    }
+    (window.onresize = function () {
+        screenFuc();
+    })();
+    //未读信息数量为空时
+    var totalNum = $(".chat-message-num").html();
+    if (totalNum == "") {
+        $(".chat-message-num").css("padding", 0);
+    }
+    $(".message-num").each(function () {
+        var wdNum = $(this).html();
+        if (wdNum == "") {
+            $(this).css("padding", 0);
+        }
+    });
+
+
+    //打开/关闭聊天框
+     $(".chatBtn").click(function () {
+        $(".chatBox").toggle(10);
+    }) 
+    
+    $(".chat-close").click(function () {
+        //$(".chatBox").toggle(10);//chatBox  chatBox-head-one chatBox-head-two
+        $(".chatBox").hide();
+        $(".chatBox-head-one").hide();
+    })
+    //进聊天页面
+    $(".chat-list-people").each(function () {
+        $(this).click(function () {
+        	
+        	huiYuanid =$(this).parent().parent().find("input[name='id']").val();
+        	huiYuanName =$(this).parent().parent().find("i[id='userName']").html();
+        	$('.ChatInfoName').html("与 "+huiYuanName+" 的聊天");
+        	/* if(huiYuanid != id)
+        	{
+        		$("#chatBox-content-demo").html("");
+        	}
+        	id = huiYuanid; */
+        	
+        	$(".chatBox").show();
+        	//$(".chatBox-kuang").attr("style","height: 495px; display: block;");
+            var n = $(this).index();
+           $(".chatBox-head-one").hide();
+            $(".chatBox-head-two").show();
+            $(".chatBox-list").hide();
+            $(".chatBox-kuang").show();
+
+            //传名字
+            $(".ChatInfoName").text($(this).children(".chat-name").children("p").eq(0).html());
+
+            //传头像
+            $(".ChatInfoHead>img").attr("src", $(this).children().eq(0).children("img").attr("src"));
+
+            //聊天框默认最底部
+            $(document).ready(function () {
+                $("#chatBox-content-demo").scrollTop($("#chatBox-content-demo")[0].scrollHeight);
+            });
+        })
+    });
+
+    //返回列表
+    $(".chat-return").click(function () {
+        $(".chatBox-head-one").toggle(1);
+        $(".chatBox-head-two").toggle(1);
+        $(".chatBox-list").fadeToggle(1);
+        $(".chatBox-kuang").fadeToggle(1);
+    });
+
+    //      发送信息
+    $("#chat-fasong").click(function () {
+    	var content = $(".div-textarea").html();
+        var textContent = $(".div-textarea").html().replace(/[\n\r]/g, '<br>');
+        if (textContent != "") {
+        	var today = new Date();
+	        var minutes;
+	        if(today.getMinutes()>=0&&today.getMinutes()<=9){
+	            minutes="0"+today.getMinutes();
+	        }else{
+	            minutes=today.getMinutes();
+	        }
+	        //获取当前日期
+	        var nowdate = (today.getFullYear()) + "-" + (today.getMonth() + 1) + "-" + today.getDate()+" "+today.getHours()+":"+minutes+":"+today.getSeconds();
+            $(".chatBox-content-demo").append("<div class=\"clearfloat\">" +
+                "<div class=\"author-name\"><small class=\"chat-date\">"+nowdate+"</small> </div> " +
+                "<div class=\"right\"> <div class=\"chat-message\"> " + textContent + " </div> " +
+                "<div class=\"chat-avatars\"><img src=\"$!webPath/resources/style/common/images/icon01.png\" alt=\"头像\" /></div> </div> </div>");
+            //发送后清空输入框
+            $(".div-textarea").html("");
+            //聊天框默认最底部
+            $(document).ready(function () {
+                $("#chatBox-content-demo").scrollTop($("#chatBox-content-demo")[0].scrollHeight);
+            });
+        }
+        sendmsg(content);
+    });
+
+    //      发送表情
+    $("#chat-biaoqing").click(function () {
+        $(".biaoqing-photo").toggle();
+    });
+    $(document).click(function () {
+        $(".biaoqing-photo").css("display", "none");
+    });
+    $("#chat-biaoqing").click(function (event) {
+        event.stopPropagation();//阻止事件
+    });
+
+    $(".emoji-picker-image").each(function () {
+        $(this).click(function () {
+            var bq = $(this).parent().html();
+            $(".chatBox-content-demo").append("<div class=\"clearfloat\">" +
+                "<div class=\"author-name\"><small class=\"chat-date\">2017-12-02 14:26:58</small> </div> " +
+                "<div class=\"right\"> <div class=\"chat-message\"> " + bq + " </div> " +
+                "<div class=\"chat-avatars\"><img src=\"$!webPath/resources/style/common/images/icon01.png\" alt=\"头像\" /></div> </div> </div>");
+            //发送后关闭表情框
+            $(".biaoqing-photo").toggle();
+            //聊天框默认最底部
+            $(document).ready(function () {
+                $("#chatBox-content-demo").scrollTop($("#chatBox-content-demo")[0].scrollHeight);
+            });
+        })
+    });
+
+    //      发送图片
+    function selectImg(pic) {
+        if (!pic.files || !pic.files[0]) {
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function (evt) {
+            var images = evt.target.result;
+            $(".chatBox-content-demo").append("<div class=\"clearfloat\">" +
+                "<div class=\"author-name\"><small class=\"chat-date\">2017-12-02 14:26:58</small> </div> " +
+                "<div class=\"right\"> <div class=\"chat-message\"><img src=" + images + "></div> " +
+                "<div class=\"chat-avatars\"><img src=\"$!webPath/resources/style/common/images/icon01.png\" alt=\"头像\" /></div> </div> </div>");
+            //聊天框默认最底部
+            $(document).ready(function () {
+                $("#chatBox-content-demo").scrollTop($("#chatBox-content-demo")[0].scrollHeight);
+            });
+        };
+        reader.readAsDataURL(pic.files[0]);
+
+    }
+
+
+</script> 
+  </div>
+</body>
+</html>

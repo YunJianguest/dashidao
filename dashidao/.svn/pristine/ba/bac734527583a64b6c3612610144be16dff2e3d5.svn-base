@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link href="$!webPath/resources/style/system/manage/black/01.css"  rel="stylesheet" type="text/css"/>
+	<link href="$!webPath/resources/style/system/manage/blue/tip.css"  rel="stylesheet" type="text/css"/>
+	<link href="$!webPath/resources/style/system/manage/blue/headquarters.css"  rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/bootstrap.min.css" type="text/css"/>
+	<link rel="stylesheet" href="$!webPath/resources/style/system/manage/black/font-awesome.min.css"  type="text/css">
+	<script src="$!webPath/resources/js/jquery-1.9.1.min.js"></script>
+	<script src="$!webPath/resources/js/bootstrap.min.js"></script>
+	<!--layui-->
+	<link rel="stylesheet" href="$!webPath/resources/style/system/front/default/css/layui.css" type="text/css" rel="stylesheet" >
+	<script src="$!webPath/resources/style/system/front/default/layui.js"></script>
+	<title>购物卡</title>
+	<style>
+		#d1{
+			float:right;
+			display:black;
+		}
+
+	</style>
+</head>
+
+<body>
+<div class="seller_activity_check">
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#1" data-toggle="tab">购物卡管理</a></li>
+	</ul>
+
+
+	<div class="operation">
+		<h3>友情提示</h3>
+		<ul>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+<div class="ss"><span class="allmen size4"><input id="cc" type="text"></span><span class="btn_search"> <input id="sel" type="submit" value="搜索" ></span><span id="d1"><a href='$!webPath/admin/add_card.htm'>添加购物卡</a></span></div>
+<table width="98%" style="font-size:16px;text-align: center;margin-left: 2%;margin-top: 20px;">
+	<tr class="tableheader">
+		<td>购物卡名称</td>
+		<td>购物卡编号</td>
+		<td>购物卡类型</td>
+		<td>面值</td>
+		<td>有效期</td>
+		<td>状态</td>
+		<td>操作</td>
+	</tr>
+	<tbody  id="xfmx" >
+
+	</tbody>
+</table>
+<!--分页开始-->
+<div id="demo7" style=" text-align: center; margin-top: 30px;" ></div>
+<script>
+
+//分页
+var page_size=10;
+var page_no=1;
+var pagelimit=10;
+var total;
+var id;
+jQuery(document).ready(function(){
+    stack_user(page_size,page_no);
+    getCount();
+    table_column(char_tt);
+});
+function instOrder(page_size,page_no){
+    var sql="SELECT * FROM dashidao_shoppingcard WHERE states='0'";
+    jQuery.ajax({
+        type:"POST",
+        cache: false,
+        async:false,
+        url:"/ajaxuser.jsp",
+        dataType:"json",
+        data:"table=dashidao_shoppingcard&dates=addTime,finishTime,endtime,payTime,shipTime,return_shipTime&sql="+sql,
+        //data:"action="+action+"&table="+table+"&field="+field+"&values="+values+"&page_size="+page_size+"&page_no="+page_no+"&moudle_id="+moudle_id,
+        error:function(){alert("数据错误，操作被取消222！");},
+        success:function(data)
+        {
+            if(data.state=="error"){alert("系统错误，操作被取消！222");return;}
+            var message=data.data.data;
+            //alert(data.data.total);
+            total=data.data.total;
+            var html="";
+            for(var i=0;i<message.length;i++) {
+                id=message[i]['id'];
+
+                html+='<tr><td>'+message[i]['card_name']+'</td><td>'+message[i]['id']+'</td><td>'+message[i]['type']+'</td><td>'+message[i]['menoy']+'</td><td>'+message[i]['endtime']+'</td><td>'+message[i]['states']+'</td><td><span onclick="aa('+id+')">删除</span>/<span><a href="$!webPath/admin/cardxiangqing.htm?id='+id+'">详情</a></span></td></tr>';
+
+            }
+            $('#xfmx').html(html);
+        }
+    });
+
+}
+
+layui.use(['laypage', 'layer'], function(){
+    var laypage = layui.laypage
+        ,layer = layui.layer;
+    //完整功能
+    laypage.render({
+        elem: 'demo7'
+        ,count:total
+        ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+        ,jump: function(obj){
+            //console.log(obj)
+            cuur=obj.curr;
+            pagelimit=obj.limit;
+            //alert(pagelimit);
+           instOrder(page_size,page_no);
+            //loadajax("select","stu",pagelimit,cuur,1);
+        },
+        limits:[2, 4, 6, 8, 10],
+        limit:pagelimit
+    });
+});
+
+
+
+function aa(id)
+{
+	
+	jQuery.ajax({
+        type: "POST",
+        cache: false,
+        async: false,
+        url: "/ajaxuser.jsp",
+        dataType: "json",
+        data: "action=update&table=dashidao_shoppingcard&field=id,states&values="+id+"|3",
+        error: function () {
+            alert("数据错误，操作被取消！");
+        },
+        success: function (data) {
+            if (data.state == "error") {
+                alert("系统错误，操作被取消！");
+                return;
+            } else {
+                alert("操作成功！");
+                window.location.reload();
+            }
+        }
+    }); 
+}
+</script>
+<!--分页结束-->
+<script>
+    $(".pagination li").click(function(){
+        $(this).addClass("active");
+        $(this).siblings().removeClass("active");
+    })
+</script>
+</div>
+</body>
+</html>
