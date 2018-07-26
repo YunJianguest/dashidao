@@ -60,11 +60,11 @@ public class GoodsCart extends IdEntity {
     
     private int status;
     /**
-     * 发货人
+     * 发货人(栈代或者商家)
      */
     private User fhUser;
     /**
-     * 云客
+     * 云客（商品代理者）
      */
     private User ykUser;
     

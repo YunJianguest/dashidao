@@ -710,6 +710,10 @@ public class OrderViewAction {
 			
 			String[] carid = storecart_ids.split(",");
 			String[] gcarid = goodscart_ids.split(",");
+			/**
+			 * 云客ID
+			 */
+			String ykid=request.getParameter("ykid");
 			
 			
 			
@@ -741,8 +745,7 @@ public class OrderViewAction {
 								 hwsl=goods.size();
 								 fhUser=user;
 							 }
-						}
-						 
+						} 
 						if(fhUser==null||hwsl<storeCart.getGcs().size()){
 							//检索距离
 						      //1.获取定位

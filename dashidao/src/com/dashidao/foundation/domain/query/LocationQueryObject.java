@@ -5,7 +5,11 @@ import java.util.Map;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dashidao.core.query.QueryObject;
-
+/**
+ * 位置查询器
+ * @author lsp
+ *
+ */
 public class LocationQueryObject extends QueryObject {
     public LocationQueryObject(String currentPage, ModelAndView mv, String orderBy, String orderType){
         super(currentPage, mv, orderBy, orderType);
