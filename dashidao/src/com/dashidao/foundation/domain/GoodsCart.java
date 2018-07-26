@@ -59,9 +59,32 @@ public class GoodsCart extends IdEntity {
     private StoreCart sc;
     
     private int status;
+    /**
+     * 发货人
+     */
+    private User fhUser;
+    /**
+     * 云客
+     */
+    private User ykUser;
     
+    public User getYkUser() {
+		return ykUser;
+	}
 
-    public int getStatus() {
+	public void setYkUser(User ykUser) {
+		this.ykUser = ykUser;
+	}
+
+	public User getFhUser() {
+		return fhUser;
+	}
+
+	public void setFhUser(User fhUser) {
+		this.fhUser = fhUser;
+	}
+
+	public int getStatus() {
 		return status;
 	}
 

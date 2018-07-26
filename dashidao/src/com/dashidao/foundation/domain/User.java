@@ -77,6 +77,15 @@ public class User extends IdEntity
     private String zfpassword;//支付密码
     
 
+    @OneToOne
+    private Location loc; 
+    public Location getLoc() {
+		return loc;
+	}
+
+	public void setLoc(Location loc) {
+		this.loc = loc;
+	}
     public String getZfpassword() {
 		return zfpassword;
 	}

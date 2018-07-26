@@ -100,8 +100,17 @@ public class OrderForm extends IdEntity {
     private int invoiceType;
     @ManyToOne
     private Invoice invoice;
+    @OneToOne
+    private Location loc; 
+    public Location getLoc() {
+		return loc;
+	}
 
-    @OneToMany(mappedBy = "of", cascade = {javax.persistence.CascadeType.REMOVE})
+	public void setLoc(Location loc) {
+		this.loc = loc;
+	}
+
+	@OneToMany(mappedBy = "of", cascade = {javax.persistence.CascadeType.REMOVE})
     private List<OrderFormLog> ofls = new ArrayList();
 
     @OneToMany(mappedBy = "of", cascade = {javax.persistence.CascadeType.REMOVE})

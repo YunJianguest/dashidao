@@ -39,8 +39,21 @@ public class StoreCart extends IdEntity {
     //运送状态
     @Column(columnDefinition = "int default 0")
     private int sc_status;
+    /**
+     * 栈代发货时候的栈代ID
+     */
+    private User zduser;
+    
 
-    public int getSc_status(){
+    public User getZduser() {
+		return zduser;
+	}
+
+	public void setZduser(User zduser) {
+		this.zduser = zduser;
+	}
+
+	public int getSc_status(){
         return this.sc_status;
     }
 

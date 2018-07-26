@@ -3,6 +3,7 @@ package com.dashidao.view.web.action;
 import java.io.IOException;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Struct;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -32,11 +33,13 @@ import com.dashidao.core.security.support.SecurityUserHolder;
 import com.dashidao.core.tools.CommUtil;
 import com.dashidao.foundation.domain.Accessory;
 import com.dashidao.foundation.domain.Address;
+import com.dashidao.foundation.domain.Area;
 import com.dashidao.foundation.domain.Goods;
 import com.dashidao.foundation.domain.GoodsCart;
 import com.dashidao.foundation.domain.GoodsSpecProperty;
 import com.dashidao.foundation.domain.GoodsSpecification;
 import com.dashidao.foundation.domain.JiChuSheZhi;
+import com.dashidao.foundation.domain.Location;
 import com.dashidao.foundation.domain.OrderCom;
 import com.dashidao.foundation.domain.OrderComPhoto;
 import com.dashidao.foundation.domain.OrderForm;
@@ -45,8 +48,10 @@ import com.dashidao.foundation.domain.Store;
 import com.dashidao.foundation.domain.StoreCart;
 import com.dashidao.foundation.domain.StoreGoods;
 import com.dashidao.foundation.domain.User;
+import com.dashidao.foundation.domain.query.GoodsQueryObject;
 import com.dashidao.foundation.domain.query.OrderComQueryObject;
 import com.dashidao.foundation.domain.query.OrderFormQueryObject;
+import com.dashidao.foundation.domain.query.UserQueryObject;
 import com.dashidao.foundation.service.IAccessoryService;
 import com.dashidao.foundation.service.IAddressService;
 import com.dashidao.foundation.service.IAdvertService;
@@ -187,7 +192,8 @@ public class OrderViewAction {
 	@Autowired
 	private IOrderFormLogService orderFormLogService;
 	@Autowired
-	private IOrderComService orderComService;
+	private IOrderComService orderComService; 
+	
 	
 	@Autowired
 	private IOrderComPhotoService orderComPhotoService;
@@ -705,14 +711,66 @@ public class OrderViewAction {
 			String[] carid = storecart_ids.split(",");
 			String[] gcarid = goodscart_ids.split(",");
 			
-			  
+			
 			
 			// 获取选中的购物车列表
 			for (String string : carid) {
 				if (StringUtils.isNotEmpty(string)) {
 					StoreCart storeCart = storeCartService.getObjById(CommUtil.null2Long(string));
 					if (storeCart != null) {
+						//获取商家
+						User sjuser=storeCart.getUser();
 						
+						//订单获取地址ID
+						Address address=orderForm.getAddr();
+						Area area=address.getArea().getParent();
+						//根据商家获取区域栈代
+						Map params = new HashMap();
+						UserQueryObject ofqo = new UserQueryObject("0", params, "addTime", "desc");
+						ofqo.addQuery("obj.area.id", new SysMap("area_id", area.getId()), "=");
+						ofqo.addQuery("obj.parent.id", new SysMap("parent_id", sjuser.getId()), "=");
+						List<User>lsuser=(List<User>) userService.list(ofqo);
+						User fhUser=null;
+						int  hwsl=0;
+						//检索货最全的栈代
+						for (User user : lsuser) {
+							 GoodsQueryObject goodsQueryObject=new GoodsQueryObject("0", params, "addTime", "desc");
+							 ofqo.addQuery("obj.store.user.id", new SysMap("user_id", user.getId()), "=");
+							 List<Goods>goods=(List<Goods>) userService.list(ofqo);
+							 if(goods.size()>hwsl){
+								 hwsl=goods.size();
+								 fhUser=user;
+							 }
+						}
+						 
+						if(fhUser==null||hwsl<storeCart.getGcs().size()){
+							//检索距离
+						      //1.获取定位
+							String longitude=request.getParameter("longitude");
+							String latitude=request.getParameter("latitude");
+							
+							Location location=new Location();
+							location.setLatitude(Double.parseDouble(latitude));  
+							location.setLongitude(Double.parseDouble(longitude));
+							  double juli=0;
+							  //2.获取栈代商家的定位进行比较
+							  for (User user : lsuser) {
+								  Location ls=user.getLoc();
+								  //距离计算
+								  double jl=Distance(ls.getLongitude(), ls.getLatitude(),location.getLongitude(), location.getLatitude()); 
+								  if(jl<juli){
+									  fhUser=user; 
+								  }
+							  }
+							
+							
+						}
+						 //处理订单
+						 GoodsQueryObject goodsQueryObject=new GoodsQueryObject("0", params, "addTime", "desc");
+						 ofqo.addQuery("obj .store.user.id", new SysMap("user_id", fhUser.getId()), "=");
+						 List<Goods>goods=(List<Goods>) userService.list(ofqo);
+						 
+						 
 						Iterator<GoodsCart> lsg = storeCart.getGcs().iterator();
 						while (lsg.hasNext()) {
 							GoodsCart goodsCart = lsg.next();
@@ -1100,4 +1158,32 @@ public class OrderViewAction {
 			
 		}
 	}
+	 /** 
+     * 计算地球上任意两点(经纬度)距离 
+     *  
+     * @param long1 
+     *            第一点经度 
+     * @param lat1 
+     *            第一点纬度 
+     * @param long2 
+     *            第二点经度 
+     * @param lat2 
+     *            第二点纬度 
+     * @return 返回距离 单位：米 
+     */  
+    public static double Distance(double long1, double lat1, double long2,  
+            double lat2) {  
+        double a, b, R;  
+        R = 6378137; // 地球半径  
+        lat1 = lat1 * Math.PI / 180.0;  
+        lat2 = lat2 * Math.PI / 180.0;  
+        a = lat1 - lat2;  
+        b = (long1 - long2) * Math.PI / 180.0;  
+        double d;  
+        double sa2, sb2;  
+        sa2 = Math.sin(a / 2.0);  
+        sb2 = Math.sin(b / 2.0);  
+        d = 2* R* Math.asin(Math.sqrt(sa2 * sa2 + Math.cos(lat1)* Math.cos(lat2) * sb2 * sb2));  
+        return d;  
+    }
 }
