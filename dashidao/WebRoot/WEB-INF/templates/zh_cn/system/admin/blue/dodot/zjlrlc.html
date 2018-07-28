@@ -115,92 +115,111 @@ function instData(sql,v,t){
             	  for(var i=0;i<message.length;i++){
                       var type=message[i]['type'];
                       if(type==1){
+                    	  //总金额
                     	  zje+=parseFloat(message[i]['amount']);
                       }
                       if(type==2){
+                    	  //储蓄金额
                     	  cxje+=parseFloat(message[i]['amount']);
                       }
                       if(type==3){
+                    	  //购卡金额
                     	  gkje+=parseFloat(message[i]['amount']); 
                       }
                       if(type==4){
+                    	  //合同保证金额
                     	  htbzj+=parseFloat(message[i]['amount']); 
                       }
                       if(type==5){
+                    	  //补差保证金金额
                     	  bcbzj+=parseFloat(message[i]['amount']); 
                       }
                       if(type==6){
+                    	  //其他保证金金额
                     	  qtbzj+=parseFloat(message[i]['amount']); 
                       }
                       if(type==7){
+                    	  //订单佣金
                     	  ddyj+=parseFloat(message[i]['amount']); 
                       }
                       if(type==8){
+                    	  //拓展佣金
                     	  tzyj+=parseFloat(message[i]['amount']); 
                       }
                       if(type==9){
+                    	  //开发佣金
                     	  kfyj+=parseFloat(message[i]['amount']); 
                       }
                       
                       if(type==10){
+                    	  //伯乐佣金
                     	  blyj+=parseFloat(message[i]['amount']); 
                       }
                       if(type==11){
+                    	  //供货佣金
                     	  ghyj+=parseFloat(message[i]['amount']); 
                       }
                       
                       if(type==12){
+                    	  //订单奖
                     	  ddj+=parseFloat(message[i]['amount']); 
                       }
                       if(type==13){
+                    	  //拓展奖
                     	  tzj+=parseFloat(message[i]['amount']); 
                       }
                       if(type==14){
+                    	  //开发奖
                     	  kfj+=parseFloat(message[i]['amount']); 
                       }
-                      if(type==15){
+                      if(type==15){ 
+                    	  //伯乐奖
                     	  blj+=parseFloat(message[i]['amount']); 
                       }
                       if(type==16){
+                    	  //供货奖
                     	  ghj+=parseFloat(message[i]['amount']); 
                       }
                       if(type==17){
+                    	  //体验店奖
                     	  tydj+=parseFloat(message[i]['amount']); 
                       }
                       if(type==18){
+                    	  //贷款奖
                     	  dk+=parseFloat(message[i]['amount']); 
                       }
                       if(type==19){
+                    	  //物流补贴
                     	  wlbt+=parseFloat(message[i]['amount']); 
                       }
                       
                     }
             	  var html1="";
-            	   html1+='<p class="zj_little_font">实付金额（元）：'+zje+'</p>'
-            	        +'<p class="zj_little_font">实付金额（元）：'+cxje+'</p>'
-            	        +'<p class="zj_little_font">实付金额（元）：'+gkje+'</p>'
-            	        +'<p class="zj_little_font">实付金额（元）：'+htbzj+'</p>'
-            	        +'<p class="zj_little_font">实付金额（元）：'+bcbzj+'</p>'
-            	        +'<p class="zj_little_font">实付金额（元）：'+qtbzj+'</p>'
+            	   html1+='<p class="zj_little_font">总金额（元）：'+zje+'</p>'
+            	        +'<p class="zj_little_font">储蓄金额（元）：'+cxje+'</p>'
+            	        +'<p class="zj_little_font">购卡金额（元）：'+gkje+'</p>'
+            	        +'<p class="zj_little_font">合同保证金（元）：'+htbzj+'</p>'
+            	        +'<p class="zj_little_font">补差保证金（元）：'+bcbzj+'</p>'
+            	        +'<p class="zj_little_font">其他保证金（元）：'+qtbzj+'</p>'
             	        +'<p style="position:relative;top:10px;left:46% ; z-index: 999;">'
             	        +'<button type="button" class="btn btn-primary zj_button xq" onclick="window.location.href=\'$!webPath/admin/zjlrlcxq.htm\'" >详情</button></p>';
 		
             	    $('#zjlr').html(html1);
             	    $('#zjlr1').html("资金流入（元）："+(zje+cxje+gkje+htbzj+htbzj+bcbzj+qtbzj));
             	    html1="";
-            	    html1+='<p class="zj_little_font">实付金额（元）：'+ddyj+'</p>'
-        	        +'<p class="zj_little_font">实付金额（元）：'+tzyj+'</p>'
-        	        +'<p class="zj_little_font">实付金额（元）：'+kfyj+'</p>'
-        	        +'<p class="zj_little_font">实付金额（元）：'+blyj+'</p>'
-        	        +'<p class="zj_little_font">实付金额（元）：'+ghyj+'</p>'
-        	        +'<p class="zj_little_font">实付金额（元）：'+ddj+'</p>'
-        	        +'<p class="zj_little_font">实付金额（元）：'+tzj+'</p>'
-        	        +'<p class="zj_little_font">实付金额（元）：'+kfj+'</p>'
-        	        +'<p class="zj_little_font">实付金额（元）：'+blj+'</p>'
-        	        +'<p class="zj_little_font">实付金额（元）：'+ghj+'</p>'
-        	        +'<p class="zj_little_font">实付金额（元）：'+tydj+'</p>'
-        	        +'<p class="zj_little_font">实付金额（元）：'+dk+'</p>'
-        	        +'<p class="zj_little_font">实付金额（元）：'+wlbt+'</p>'
+            	    html1+='<p class="zj_little_font">订单佣金（元）：'+ddyj+'</p>'
+        	        +'<p class="zj_little_font">拓展佣金（元）：'+tzyj+'</p>'
+        	        +'<p class="zj_little_font">开发佣金（元）：'+kfyj+'</p>'
+        	        +'<p class="zj_little_font">伯乐佣金（元）：'+blyj+'</p>'
+        	        +'<p class="zj_little_font">供货佣金（元）：'+ghyj+'</p>'
+        	        +'<p class="zj_little_font">订单奖（元）：'+ddj+'</p>'
+        	        +'<p class="zj_little_font">拓展奖（元）：'+tzj+'</p>'
+        	        +'<p class="zj_little_font">开发奖（元）：'+kfj+'</p>'
+        	        +'<p class="zj_little_font">伯乐奖（元）：'+blj+'</p>'
+        	        +'<p class="zj_little_font">供货奖（元）：'+ghj+'</p>'
+        	        +'<p class="zj_little_font">体验店奖（元）：'+tydj+'</p>'
+        	        +'<p class="zj_little_font">贷款奖（元）：'+dk+'</p>'
+        	        +'<p class="zj_little_font">物流补贴（元）：'+wlbt+'</p>'
         	        +'<p style="position:relative;top:10px;left:46% ; z-index: 999;">'
         	        +'<button type="button" class="btn btn-primary zj_button xq" onclick="window.location.href=\'$!webPath/admin/zjlrlcxq.htm\'">详情</button></p>';
             	    $('#zjlc').html(html1);

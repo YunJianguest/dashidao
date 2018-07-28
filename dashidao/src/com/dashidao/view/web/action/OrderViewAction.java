@@ -714,69 +714,44 @@ public class OrderViewAction {
 			 * 云客ID
 			 */
 			String ykid=request.getParameter("ykid");
-			
-			
-			
+			//订单获取地址ID
+			Address address=orderForm.getAddr();
+			Area area=address.getArea().getParent();
+			//根据商家获取区域栈代
+			Map params = new HashMap();
+			UserQueryObject ofqo = new UserQueryObject("0", params, "addTime", "desc");
+			ofqo.addQuery("obj.area.id", new SysMap("area_id", area.getId()), "="); 
+			List<User>lsuser=(List<User>) userService.list(ofqo);
+			User fhUser=null;
+			int  hwsl=0; 
 			// 获取选中的购物车列表
 			for (String string : carid) {
 				if (StringUtils.isNotEmpty(string)) {
 					StoreCart storeCart = storeCartService.getObjById(CommUtil.null2Long(string));
 					if (storeCart != null) {
-						//获取商家
-						User sjuser=storeCart.getUser();
-						
-						//订单获取地址ID
-						Address address=orderForm.getAddr();
-						Area area=address.getArea().getParent();
-						//根据商家获取区域栈代
-						Map params = new HashMap();
-						UserQueryObject ofqo = new UserQueryObject("0", params, "addTime", "desc");
-						ofqo.addQuery("obj.area.id", new SysMap("area_id", area.getId()), "=");
-						ofqo.addQuery("obj.parent.id", new SysMap("parent_id", sjuser.getId()), "=");
-						List<User>lsuser=(List<User>) userService.list(ofqo);
-						User fhUser=null;
-						int  hwsl=0;
-						//检索货最全的栈代
-						for (User user : lsuser) {
-							 GoodsQueryObject goodsQueryObject=new GoodsQueryObject("0", params, "addTime", "desc");
-							 ofqo.addQuery("obj.store.user.id", new SysMap("user_id", user.getId()), "=");
-							 List<Goods>goods=(List<Goods>) userService.list(ofqo);
-							 if(goods.size()>hwsl){
-								 hwsl=goods.size();
-								 fhUser=user;
-							 }
-						} 
-						if(fhUser==null||hwsl<storeCart.getGcs().size()){
-							//检索距离
-						      //1.获取定位
-							String longitude=request.getParameter("longitude");
-							String latitude=request.getParameter("latitude");
-							
-							Location location=new Location();
-							location.setLatitude(Double.parseDouble(latitude));  
-							location.setLongitude(Double.parseDouble(longitude));
-							  double juli=0;
-							  //2.获取栈代商家的定位进行比较
-							  for (User user : lsuser) {
-								  Location ls=user.getLoc();
-								  //距离计算
-								  double jl=Distance(ls.getLongitude(), ls.getLatitude(),location.getLongitude(), location.getLatitude()); 
-								  if(jl<juli){
-									  fhUser=user; 
-								  }
-							  }
-							
-							
-						}
-						 //处理订单
-						 GoodsQueryObject goodsQueryObject=new GoodsQueryObject("0", params, "addTime", "desc");
-						 ofqo.addQuery("obj .store.user.id", new SysMap("user_id", fhUser.getId()), "=");
-						 List<Goods>goods=(List<Goods>) userService.list(ofqo);
-						 
 						 
 						Iterator<GoodsCart> lsg = storeCart.getGcs().iterator();
 						while (lsg.hasNext()) {
 							GoodsCart goodsCart = lsg.next();
+							
+							//获取商家
+							User sjuser=storeCart.getUser(); 
+							//检索货最全的栈代
+							for (User user : lsuser) {
+								 GoodsQueryObject goodsQueryObject=new GoodsQueryObject("0", params, "addTime", "desc");
+								 ofqo.addQuery("obj.store.user.id", new SysMap("user_id", user.getId()), "=");
+								 List<Goods>goods=(List<Goods>) userService.list(ofqo);
+								 int count=0;
+								 for (Goods goods2 : goods) {
+									if(goods2.getId()==goodsCart.getId()){
+										count++;
+									}
+								 }
+								 if(count>hwsl){
+									 hwsl=count;
+									 fhUser=user;
+								 }
+							}  
 							for (String string2 : gcarid) {
 								if (StringUtils.isNotEmpty(string2)) {
 									if (goodsCart.getId() == Long.parseLong(string2)) {
@@ -800,6 +775,37 @@ public class OrderViewAction {
 				}
 
 			}
+			
+			
+			if(fhUser==null){
+				//检索距离
+			      //1.获取定位
+				String longitude=request.getParameter("longitude");
+				String latitude=request.getParameter("latitude");
+				
+				Location location=new Location();
+				location.setLatitude(Double.parseDouble(latitude));  
+				location.setLongitude(Double.parseDouble(longitude));
+				  double juli=0;
+				  //2.获取栈代商家的定位进行比较
+				  for (User user : lsuser) {
+					  Location ls=user.getLoc();
+					  //距离计算
+					  double jl=Distance(ls.getLongitude(), ls.getLatitude(),location.getLongitude(), location.getLatitude()); 
+					  if(jl<juli){
+						  fhUser=user; 
+					  }
+				  }
+				
+				
+			}
+			 //处理订单
+			 GoodsQueryObject goodsQueryObject=new GoodsQueryObject("0", params, "addTime", "desc");
+			 ofqo.addQuery("obj .store.user.id", new SysMap("user_id", fhUser.getId()), "=");
+			 List<Goods>goods=(List<Goods>) userService.list(ofqo);
+			 
+			
+			
 			OrderFormLog ofl = new OrderFormLog();
 			ofl.setAddTime(new Date());
 			ofl.setOf(orderForm);
