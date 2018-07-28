@@ -255,10 +255,9 @@ function doHandleMonth(month){
        m = "0" + month;    
     }    
     return m;    
-}
-//instData("SELECT * FROM `zb_account`",0);
-instData("SELECT * FROM `zb_accountdetail`order by createdate;",1,0);   
-instData("SELECT * FROM `zb_accountdetail` where createdate  Between '"+getDay(0)+"' And '"+getDay(1)+"' order by createdate;",1,1); 
+} 
+instData("SELECT * FROM `zb_account`order by createdate;",1,0);   
+instData("SELECT * FROM `zb_account` where createdate  Between '"+getDay(0)+"' And '"+getDay(1)+"' order by createdate;",1,1); 
 
 
 </script>
